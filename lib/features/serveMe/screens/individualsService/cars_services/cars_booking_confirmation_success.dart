@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
+import 'package:shella_design/features/serveMe/widgets/booking_status.dart';
+import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
+import 'package:shella_design/features/serveMe/widgets/service_summary.dart';
+import 'package:shella_design/features/serveMe/widgets/technical_details.dart';
+import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/util/app_dimensions.dart';
+import 'package:shella_design/util/app_styles.dart';
+
+class CarsBookingConfirmationSuccess extends StatelessWidget {
+  const CarsBookingConfirmationSuccess({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarColor: AppColors.primaryColor,
+        statusBarIconBrightness: Brightness.light,
+      ),
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        // appBar: greenAppBar(context, ''),
+        body: ListView(
+          children: [
+            SizedBox(height: 240, child: BookingStatus()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TechnicalDetails(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: ServiceSummary(),
+            ),
+            SizedBox(height: 20),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: custom_Button(context,
+                  buttoncolor: AppColors.gryColor_3,
+                  border_color: AppColors.gryColor_3,
+                  title: "العودة للرئيسية",
+                  onPressed: () {},
+                  style:
+                      font12SecondaryColor400W(context, size: size_14(context)),
+                  h: 45),
+            ),
+            SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+}

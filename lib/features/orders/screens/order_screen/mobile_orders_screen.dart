@@ -1,0 +1,65 @@
+// ignore_for_file: file_names, avoid_unnecessary_containers, camel_case_types
+
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/features/orders/widgets/builds/build_lists.dart';
+import 'package:shella_design/features/orders/widgets/taps_card.dart';
+import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/util/app_styles.dart';
+
+class MobileOrders_Screen extends StatefulWidget {
+  const MobileOrders_Screen({super.key});
+
+  @override
+  State<MobileOrders_Screen> createState() => _MobileOrders_ScreenState();
+}
+
+class _MobileOrders_ScreenState extends State<MobileOrders_Screen> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.wtColor,
+      appBar: customAppBar(context, title: 'طلباتي'),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 17.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 5.h),
+
+            TapsCard(tabController: _tabController),
+
+            // --------------------  TabBarView
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  buildLists(context),
+                  Center(
+                    child: Custom_Text(
+                      context,
+                      text: "لا توجد طلبات مجدولة",
+                      style: font14Black600W(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+}
