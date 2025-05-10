@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_sign_up.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_text_field.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/sign_up_account_btn.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_sign_up_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_text_field_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/sign_up_account_btn_mobile.dart';
 import 'package:shella_design/helper/app_routes.dart';
 import 'package:shella_design/util/app_colors.dart';
 import 'package:shella_design/util/app_navigators.dart';

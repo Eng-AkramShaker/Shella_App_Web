@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/custom_pin_code_txt_field.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/resend_code_row.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/send_verify_btn.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/timer_row.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/custom_pin_code_txt_field_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/resend_code_row_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/send_verify_btn_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/timer_row_mobile.dart';
 import 'package:shella_design/util/app_styles.dart';
 
 class MobilelVerification extends StatefulWidget {

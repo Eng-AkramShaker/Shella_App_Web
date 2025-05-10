@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'dart:convert';
 import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/features/Auth/domain/models/signup_body_model.dart';
@@ -9,18 +8,21 @@ import 'package:shella_design/util/Api_constants.dart';
 
 import '../../../../api/api_client.dart';
 import '../../../../util/sharedPre_constants.dart';
-import '../models/login_model.dart';
 import 'package:http/http.dart' as http;
-
 
 class AuthRepo implements AuthRepositoryInterface {
   final ApiProvider apiClient;
   final SharedPreferences sharedPreferences;
 
-  AuthRepo({ required this.sharedPreferences, required this.apiClient});
+  AuthRepo({required this.sharedPreferences, required this.apiClient});
 
   @override
-  Future<http.Response?> login({required String emailOrPhone, required String password, required String loginType, required String fieldType, bool alreadyInApp = false}) async {
+  Future<http.Response?> login(
+      {required String emailOrPhone,
+      required String password,
+      required String loginType,
+      required String fieldType,
+      bool alreadyInApp = false}) async {
     String guestId = getSharedPrefGuestId();
     Map<String, String> data = {
       "email_or_phone": "+966$emailOrPhone",
@@ -29,12 +31,11 @@ class AuthRepo implements AuthRepositoryInterface {
       "field_type": fieldType,
     };
     log(data.toString());
-    if(guestId.isNotEmpty) {
+    if (guestId.isNotEmpty) {
       data.addAll({"guest_id": guestId});
     }
     return await apiClient.postData(Api_Constants.login, data);
   }
-
 
   @override
   String getSharedPrefGuestId() {

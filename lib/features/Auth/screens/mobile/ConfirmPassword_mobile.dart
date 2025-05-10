@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_mobile.dart';
 import 'package:shella_design/helper/app_routes.dart';
 import 'package:shella_design/util/app_colors.dart';
 import 'package:shella_design/util/app_dimensions.dart';

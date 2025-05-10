@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/start_shopping_btn.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/start_shopping_btn_mobile.dart';
 import 'package:shella_design/util/app_colors.dart';
 import 'package:shella_design/util/app_dimensions.dart';
 import 'package:shella_design/util/app_images.dart';

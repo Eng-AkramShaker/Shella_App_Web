@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/Auth/widgets/web/otp_action_row.dart';
-import 'package:shella_design/features/Auth/widgets/web/otp_fields.dart';
-import 'package:shella_design/features/Auth/widgets/web/otp_header.dart';
+import 'package:shella_design/features/Auth/widgets/web/otp_action_row_web.dart';
+import 'package:shella_design/features/Auth/widgets/web/otp_fields_web.dart';
+import 'package:shella_design/features/Auth/widgets/web/otp_header_web.dart';
 import 'package:shella_design/util/app_colors.dart';
 import 'package:shella_design/util/app_icons.dart';
 import 'package:shella_design/util/svg_icon_widget.dart';

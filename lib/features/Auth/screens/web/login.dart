@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/Auth/widgets/web/login_form.dart';
+import 'package:shella_design/features/Auth/widgets/web/login_form_web.dart';
 import 'package:shella_design/util/app_colors.dart';
 
 class LoginPage extends StatelessWidget {
