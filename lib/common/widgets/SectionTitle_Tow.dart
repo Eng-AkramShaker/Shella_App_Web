@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 Widget buildSectionTitleTwo({
   required String title,

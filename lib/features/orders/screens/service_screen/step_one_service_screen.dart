@@ -7,9 +7,9 @@ import 'package:shella_design/features/home/home/widgets/builds/build_category_l
 import 'package:shella_design/features/orders/widgets/step_service/build_delivery.dart';
 import 'package:shella_design/features/orders/widgets/step_service/build_image_title.dart';
 import 'package:shella_design/features/orders/widgets/step_service/build_service.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class Step_One_Service_Screen extends StatefulWidget {
   const Step_One_Service_Screen({super.key});
@@ -60,9 +60,7 @@ class _Step_One_Service_ScreenState extends State<Step_One_Service_Screen> {
 
   // Category ListView
 
-
   // Delivery
 
   //  Service
-
 }

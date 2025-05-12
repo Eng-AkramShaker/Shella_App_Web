@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class TechnicianDetailsScreen extends StatelessWidget {
   const TechnicianDetailsScreen({super.key});
@@ -44,23 +44,19 @@ class TechnicianDetailsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Custom_Text(context,
-                            text: 'احمد محمد', style: font14Black600W(context)),
+                        Custom_Text(context, text: 'احمد محمد', style: font14Black600W(context)),
                         SizedBox(height: 4.h),
                         Row(
                           children: [
                             Icon(Icons.star, color: Colors.amber, size: 16.sp),
                             SizedBox(width: 4.w),
-                            Custom_Text(context,
-                                text: '4.7', style: font12Grey400W(context)),
+                            Custom_Text(context, text: '4.7', style: font12Grey400W(context)),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  Custom_Text(context,
-                      text: 'خبرة 8 سنوات',
-                      style: font12SecondaryColor400W(context)),
+                  Custom_Text(context, text: 'خبرة 8 سنوات', style: font12SecondaryColor400W(context)),
                 ],
               ),
             ),
@@ -86,16 +82,11 @@ class TechnicianDetailsScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Custom_Text(context,
-                              text: 'يبدأ من ',
-                              style: font14Black500W(context)),
-                          Custom_Text(context,
-                              text: '90 ريال', style: font14Green500W(context)),
+                          Custom_Text(context, text: 'يبدأ من ', style: font14Black500W(context)),
+                          Custom_Text(context, text: '90 ريال', style: font14Green500W(context)),
                         ],
                       ),
-                      Custom_Text(context,
-                          text: 'السعر يشمل الكشف والمعاينة',
-                          style: font12Grey400W(context)),
+                      Custom_Text(context, text: 'السعر يشمل الكشف والمعاينة', style: font12Grey400W(context)),
                     ],
                   ),
                 ],
@@ -105,8 +96,7 @@ class TechnicianDetailsScreen extends StatelessWidget {
             SizedBox(height: 16.h),
 
             // Customer Reviews Title
-            Custom_Text(context,
-                text: 'آراء العملاء', style: font14SecondaryColor500W(context)),
+            Custom_Text(context, text: 'آراء العملاء', style: font14SecondaryColor500W(context)),
 
             SizedBox(height: 8.h),
 
@@ -130,17 +120,12 @@ class TechnicianDetailsScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Custom_Text(context,
-                                  text: 'محمد خالد',
-                                  style: font14Black500W(context)),
+                              Custom_Text(context, text: 'محمد خالد', style: font14Black500W(context)),
                               Row(
                                 children: [
-                                  Icon(Icons.star,
-                                      color: Colors.amber, size: 16.sp),
+                                  Icon(Icons.star, color: Colors.amber, size: 16.sp),
                                   SizedBox(width: 4.w),
-                                  Custom_Text(context,
-                                      text: '4.7',
-                                      style: font12Grey400W(context)),
+                                  Custom_Text(context, text: '4.7', style: font12Grey400W(context)),
                                 ],
                               ),
                             ],
@@ -157,9 +142,7 @@ class TechnicianDetailsScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Custom_Text(context,
-                                text: 'راجل امين و شغله حلو',
-                                style: font13Black400W(context)),
+                            Custom_Text(context, text: 'راجل امين و شغله حلو', style: font13Black400W(context)),
                           ],
                         ),
                       ),
@@ -171,8 +154,7 @@ class TechnicianDetailsScreen extends StatelessWidget {
             ),
 
             // Booking Time Section
-            Custom_Text(context,
-                text: 'حدد وقت الحجز', style: font14Black500W(context)),
+            Custom_Text(context, text: 'حدد وقت الحجز', style: font14Black500W(context)),
             SizedBox(height: 12.h),
 
             Row(
@@ -213,14 +195,11 @@ class TechnicianDetailsScreen extends StatelessWidget {
                             children: [
                               Icon(Icons.access_time, color: Colors.green),
                               SizedBox(width: 4.w),
-                              Custom_Text(context,
-                                  text: 'الوقت',
-                                  style: font12Grey400W(context)),
+                              Custom_Text(context, text: 'الوقت', style: font12Grey400W(context)),
                             ],
                           ),
                           SizedBox(height: 4.h),
-                          Custom_Text(context,
-                              text: '9:00', style: font14Black500W(context)),
+                          Custom_Text(context, text: '9:00', style: font14Black500W(context)),
                         ],
                       ),
                     ),
@@ -233,15 +212,13 @@ class TechnicianDetailsScreen extends StatelessWidget {
                       final DateTime? picked = await showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
-                        firstDate:
-                            DateTime.now(), // can be set to any past/future
+                        firstDate: DateTime.now(), // can be set to any past/future
                         lastDate: DateTime(2100),
                         builder: (context, child) {
                           return Theme(
                             data: Theme.of(context).copyWith(
                               colorScheme: ColorScheme.light(
-                                primary: Colors
-                                    .green, // header background & OK button
+                                primary: Colors.green, // header background & OK button
                                 onPrimary: Colors.white, // header text color
                                 onSurface: Colors.black, // body text color
                               ),
@@ -267,15 +244,11 @@ class TechnicianDetailsScreen extends StatelessWidget {
                             children: [
                               Icon(Icons.calendar_month, color: Colors.green),
                               SizedBox(width: 4.w),
-                              Custom_Text(context,
-                                  text: 'التاريخ',
-                                  style: font12Grey400W(context)),
+                              Custom_Text(context, text: 'التاريخ', style: font12Grey400W(context)),
                             ],
                           ),
                           SizedBox(height: 4.h),
-                          Custom_Text(context,
-                              text: '25 فبراير',
-                              style: font14Black500W(context)),
+                          Custom_Text(context, text: '25 فبراير', style: font14Black500W(context)),
                         ],
                       ),
                     ),

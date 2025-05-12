@@ -5,10 +5,10 @@ import 'package:shella_design/common/widgets/container/empty_%20container.dart';
 import 'package:shella_design/common/widgets/divider/custom_divider.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class paymentSwitch extends StatefulWidget {
   const paymentSwitch({super.key});

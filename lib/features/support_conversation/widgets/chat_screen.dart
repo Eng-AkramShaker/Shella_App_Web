@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -45,7 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildMessageBubble(String message, {required bool isMe, required String time}) {
     return Row(
-      mainAxisAlignment: isMe? MainAxisAlignment.end:MainAxisAlignment.start,
+      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Align(
           alignment: isMe ? Alignment.centerLeft : Alignment.centerRight,
@@ -82,21 +82,20 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
         ),
-        isMe?
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.greenColor,
-                  shape: BoxShape.circle
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('M',style: TextStyle(color: AppColors.wtColor),
-                ),
+        isMe
+            ? Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                    decoration: BoxDecoration(color: AppColors.greenColor, shape: BoxShape.circle),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'M',
+                        style: TextStyle(color: AppColors.wtColor),
+                      ),
+                    )),
               )
-          ),
-        ):Container(),
+            : Container(),
       ],
     );
   }

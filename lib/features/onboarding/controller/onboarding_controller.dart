@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/onboarding/controller/static.dart';
-import 'package:shella_design/helper/app_routes.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 
 class OnBoardingProvider extends ChangeNotifier {
   late PageController pageController;

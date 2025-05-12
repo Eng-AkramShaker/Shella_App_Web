@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 Image custom_Images_asset({required String image, BoxFit? fit, double? h, double? w}) {
   return image != null

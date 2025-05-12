@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class StoreCard extends StatelessWidget {
   const StoreCard({
@@ -47,10 +47,7 @@ class StoreCard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    custom_Images_asset(
-                        image: AppImages.fRAME31,
-                        h: 180.h,
-                        w: width_media(context)),
+                    custom_Images_asset(image: AppImages.fRAME31, h: 180.h, w: width_media(context)),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Column(
@@ -59,28 +56,17 @@ class StoreCard extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Custom_Text(context,
-                                  text: 'متجر مربع كاف',
-                                  style: font14Black500W(context,
-                                      lineHeight: 2.5)),
+                              Custom_Text(context, text: 'متجر مربع كاف', style: font14Black500W(context, lineHeight: 2.5)),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  custom_Images_asset(
-                                      image: AppImages.icon_Star,
-                                      h: 18.h,
-                                      w: 18.h),
-                                  Custom_Text(context,
-                                      text: ' 4.8',
-                                      style: font14Grey400W(context,
-                                          lineHeight: 2.5))
+                                  custom_Images_asset(image: AppImages.icon_Star, h: 18.h, w: 18.h),
+                                  Custom_Text(context, text: ' 4.8', style: font14Grey400W(context, lineHeight: 2.5))
                                 ],
                               ),
                             ],
                           ),
-                          Custom_Text(context,
-                              text: 'بلال بن رباح, طويق,الرياض 12225,',
-                              style: font10Grey400W(context)),
+                          Custom_Text(context, text: 'بلال بن رباح, طويق,الرياض 12225,', style: font10Grey400W(context)),
                           SizedBox(
                             height: 10.h,
                           ),

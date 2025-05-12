@@ -6,7 +6,7 @@ import 'package:shella_design/features/Balance/widget/builds/build_amount_btns_r
 import 'package:shella_design/features/Balance/widget/builds/build_max_account_text.dart';
 import 'package:shella_design/features/Balance/widget/header_section.dart';
 import 'package:shella_design/features/Balance/widget/submit_button.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class AddCredit extends StatelessWidget {
   const AddCredit({super.key});

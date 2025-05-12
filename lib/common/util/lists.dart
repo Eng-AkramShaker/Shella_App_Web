@@ -2,69 +2,22 @@ import 'package:shella_design/features/cart/widgets/cart_item.dart';
 import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
 import 'package:shella_design/features/my_points/widgets/offers.dart';
 import 'package:shella_design/features/my_points/widgets/offers_widgets.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 List<CartItem> items = [
-  CartItem(
-      name: 'شاي ليبتون',
-      description: 'عرض 35 ظرف + 5 هدية',
-      price: 10,
-      quantity: 1,
-      img: AppImages.item_25),
-  CartItem(
-      name: 'شاي ليبتون',
-      description: 'عرض 35 ظرف + 5 هدية',
-      price: 10,
-      quantity: 1,
-      img: AppImages.item_26),
-  CartItem(
-      name: 'شاي ليبتون',
-      description: 'عرض 35 ظرف + 5 هدية',
-      price: 10,
-      quantity: 1,
-      img: AppImages.item_27),
+  CartItem(name: 'شاي ليبتون', description: 'عرض 35 ظرف + 5 هدية', price: 10, quantity: 1, img: AppImages.item_25),
+  CartItem(name: 'شاي ليبتون', description: 'عرض 35 ظرف + 5 هدية', price: 10, quantity: 1, img: AppImages.item_26),
+  CartItem(name: 'شاي ليبتون', description: 'عرض 35 ظرف + 5 هدية', price: 10, quantity: 1, img: AppImages.item_27),
 ];
 List<Offers> itemsOfOffers = [
-  Offers(
-      title: 'خصم 10.00 ر.س على بيغ تيستي',
-      image: 'assets/images/im4.png',
-      offer: 'خصم  10.00 ر.س',
-      point: '600 نقطة'),
-  Offers(
-      title: 'خصم 05.00 ر.س على برغر كينغ',
-      image: 'assets/images/im1.png',
-      offer: 'خصم  05.00 ر.س',
-      point: '300 نقطة'),
-  Offers(
-      title: 'خصم 15.00 ر.س على حلي الورد',
-      image: 'assets/images/im2.png',
-      offer: 'خصم  15.00 ر.س',
-      point: '800 نقطة'),
-  Offers(
-      title: 'خصم 15.00 ر.س على حلي الورد',
-      image: 'assets/images/im3.png',
-      offer: 'خصم  15.00 ر.س',
-      point: '800 نقطة'),
-  Offers(
-      title: 'خصم 10.00 ر.س على بيغ تيستي',
-      image: 'assets/images/im4.png',
-      offer: 'خصم  10.00 ر.س',
-      point: '600 نقطة'),
-  Offers(
-      title: 'خصم 05.00 ر.س على برغر كينغ',
-      image: 'assets/images/im1.png',
-      offer: 'خصم  05.00 ر.س',
-      point: '300 نقطة'),
-  Offers(
-      title: 'خصم 15.00 ر.س على حلي الورد',
-      image: 'assets/images/im2.png',
-      offer: 'خصم  15.00 ر.س',
-      point: '800 نقطة'),
-  Offers(
-      title: 'خصم 15.00 ر.س على حلي الورد',
-      image: 'assets/images/im3.png',
-      offer: 'خصم  15.00 ر.س',
-      point: '800 نقطة'),
+  Offers(title: 'خصم 10.00 ر.س على بيغ تيستي', image: 'assets/images/im4.png', offer: 'خصم  10.00 ر.س', point: '600 نقطة'),
+  Offers(title: 'خصم 05.00 ر.س على برغر كينغ', image: 'assets/images/im1.png', offer: 'خصم  05.00 ر.س', point: '300 نقطة'),
+  Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im2.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+  Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im3.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+  Offers(title: 'خصم 10.00 ر.س على بيغ تيستي', image: 'assets/images/im4.png', offer: 'خصم  10.00 ر.س', point: '600 نقطة'),
+  Offers(title: 'خصم 05.00 ر.س على برغر كينغ', image: 'assets/images/im1.png', offer: 'خصم  05.00 ر.س', point: '300 نقطة'),
+  Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im2.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+  Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im3.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
 ];
 List<String> saudiCities = [
   "الرياض",
@@ -170,7 +123,7 @@ List<Map<String, dynamic>> nationalities = [
   {'name': 'Spanish', 'code': 'ES', 'flag': '🇪🇸'},
   {'name': 'Turkish', 'code': 'TR', 'flag': '🇹🇷'},
 ];
-   
+
 List<int> img = [7, 8, 2, 1];
 List<String> title = ["خدمة تخدمني", "استلام وتسليم", "المطاعم", "سوبر ماركت"];
 List<Coupon> coupons = [

@@ -6,8 +6,8 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/home_maintenance/edit_contact_information.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/home_maintenance/info_of_service.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ServiceInfoPage extends StatelessWidget {
   final String name;
@@ -93,9 +93,7 @@ class ServiceInfoPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
-        ],
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))],
       ),
       child: Row(
         children: [
@@ -136,8 +134,7 @@ class ServiceInfoPage extends StatelessWidget {
           builder: (context) => const EditContactInformation(),
         );
       },
-      child: Text('أضف عنوان جديد',
-          style: TextStyle(color: Colors.orange, fontSize: 14.sp)),
+      child: Text('أضف عنوان جديد', style: TextStyle(color: Colors.orange, fontSize: 14.sp)),
     );
   }
 
@@ -184,9 +181,7 @@ class ServiceInfoPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))
-        ],
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(0, 2))],
       ),
       child: Row(
         children: [
@@ -274,8 +269,7 @@ class ServiceInfoPage extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
           padding: EdgeInsets.symmetric(vertical: 14.h),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
         ),
         child: Custom_Text(
           context,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 import '../../../../common/widgets/images/custom_Images.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -8,8 +8,7 @@ class CategoryItem extends StatelessWidget {
   final String label;
   final double? h;
   final double? w;
-  const CategoryItem(
-      {super.key, required this.image, required this.label, this.h, this.w});
+  const CategoryItem({super.key, required this.image, required this.label, this.h, this.w});
 
   @override
   Widget build(BuildContext context) {

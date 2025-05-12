@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 Widget buildListTile(String title, IconData icon, BuildContext context, VoidCallback onTap,
     {Widget? trailing, Color color = AppColors.title}) {

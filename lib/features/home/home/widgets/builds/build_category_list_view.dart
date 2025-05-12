@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/product/widgets/category/category_item.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
-import 'package:shella_design/util/lists.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/lists.dart';
+
 class BuildCategoryListView extends StatefulWidget {
   const BuildCategoryListView({super.key});
 
@@ -12,7 +13,7 @@ class BuildCategoryListView extends StatefulWidget {
 }
 
 class _BuildCategoryListViewState extends State<BuildCategoryListView> {
-    int selectedIndex = 2;
+  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +37,12 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CategoryItem(
-                          image: 'assets/images/${img[index]}.png',
-                          label: title[index]),
+                      CategoryItem(image: 'assets/images/${img[index]}.png', label: title[index]),
                       SizedBox(height: 7),
                       Container(
                         height: 3,
                         width: _getTextWidth(context, title[index]) * 1.3,
-                        color: selectedIndex == index
-                            ? AppColors.greenColor
-                            : Colors.transparent,
+                        color: selectedIndex == index ? AppColors.greenColor : Colors.transparent,
                       ),
                     ],
                   ),
@@ -56,10 +53,9 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
         ),
       ),
     );
-
-
   }
-    double _getTextWidth(BuildContext context, String text) {
+
+  double _getTextWidth(BuildContext context, String text) {
     final TextPainter textPainter = TextPainter(
       text: TextSpan(text: text, style: font10Black400W(context)),
       maxLines: 1,
@@ -67,7 +63,4 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
     )..layout();
     return textPainter.width;
   }
-
 }
-
-

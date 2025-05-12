@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
-import 'package:shella_design/util/sharedPre_constants.dart';
-import 'package:shella_design/helper/shared_pref_helper.dart';
-import 'package:shella_design/util/Api_constants.dart';
+import 'package:shella_design/common/util/sharedPre_constants.dart';
+import 'package:shella_design/common/helper/shared_pref_helper.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 
 final sp = GetIt.instance;
 

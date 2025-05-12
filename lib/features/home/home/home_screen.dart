@@ -11,7 +11,7 @@ import 'package:shella_design/features/home/home/widgets/builds/build_category_l
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_2.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -21,7 +21,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +57,7 @@ class _HomeViewState extends State<HomeView> {
               SizedBox(height: 16.h),
               buildRestaurantGrid(context),
               SizedBox(height: 24.h),
-              buildSectionTitleTow(context,
-                  title: "المطاعم القريبة منك",
-                  lapel: "المزيد",
-                  underline: true),
+              buildSectionTitleTow(context, title: "المطاعم القريبة منك", lapel: "المزيد", underline: true),
               SizedBox(height: 16.h),
               buildDeliveryListView(context),
               SizedBox(height: 50.h),
@@ -72,14 +68,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
- 
-
   //   Banner
 
-
   // Section title 2
- 
-
-
-
 }

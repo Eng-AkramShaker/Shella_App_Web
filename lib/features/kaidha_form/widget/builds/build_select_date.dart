@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 Future<void> selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
@@ -22,8 +22,7 @@ Future<void> selectDate(BuildContext context) async {
   );
 
   if (picked != null) {
-    final formattedDate =
-        "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
+    final formattedDate = "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
     context.read<KaidhaFormController>().updateBirthDate(formattedDate);
   }
 }

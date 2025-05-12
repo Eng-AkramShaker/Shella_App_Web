@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shella_design/util/sharedPre_constants.dart';
+import 'package:shella_design/common/util/sharedPre_constants.dart';
 
 class ApiProvider with ChangeNotifier {
   final SharedPreferences sharedPreferences;
@@ -26,8 +26,7 @@ class ApiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<http.Response?> getData(String uri,
-      {Map<String, dynamic>? query}) async {
+  Future<http.Response?> getData(String uri, {Map<String, dynamic>? query}) async {
     try {
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
       final response = await http.get(url, headers: _headers);
@@ -39,9 +38,7 @@ class ApiProvider with ChangeNotifier {
   }
 
   Future<http.Response?> postData(String uri, dynamic body) async {
-
     try {
-
       final response = await http.post(
         Uri.parse("$appBaseUrl$uri"),
         headers: _headers,
@@ -83,8 +80,7 @@ class ApiProvider with ChangeNotifier {
     }
   }
 
-  Future<http.Response?> postMultipartData(String uri, Map<String, String> body,
-      List<MultipartBody> multipartBody) async {
+  Future<http.Response?> postMultipartData(String uri, Map<String, String> body, List<MultipartBody> multipartBody) async {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
       request.headers.addAll(_headers);

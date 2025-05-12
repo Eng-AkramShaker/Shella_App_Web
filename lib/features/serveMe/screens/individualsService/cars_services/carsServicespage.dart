@@ -9,8 +9,8 @@ import 'package:shella_design/features/serveMe/widgets/HomeServiceCard.dart';
 import 'package:shella_design/features/serveMe/widgets/LocationInfo.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
 import 'package:shella_design/features/serveMe/widgets/important_services_card.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
 
 class CarsServicesPage extends StatelessWidget {
   const CarsServicesPage({super.key});
@@ -79,9 +79,7 @@ class CarsServicesPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ServiceInfoPage(
-                                name: 'صيانة دورية',
-                                image: 'assets/images/FRAME (24) 1.png'),
+                            builder: (context) => ServiceInfoPage(name: 'صيانة دورية', image: 'assets/images/FRAME (24) 1.png'),
                           ),
                         );
                       },

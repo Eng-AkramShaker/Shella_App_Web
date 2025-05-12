@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/my_coupon/screens/mobile_widget.dart';
-import 'package:shella_design/helper/responsive_helper.dart';
+import 'package:shella_design/common/helper/responsive_helper.dart';
 
 class MyCouponScreen extends StatefulWidget {
   const MyCouponScreen({super.key});
@@ -17,4 +17,3 @@ class _MyCouponScreenState extends State<MyCouponScreen> {
     return ResponsiveLayout(mobileBody: MyCouponMobileWidget());
   }
 }
-

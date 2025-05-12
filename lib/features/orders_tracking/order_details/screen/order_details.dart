@@ -8,8 +8,8 @@ import 'package:shella_design/features/orders_tracking/order_details/widget/divi
 import 'package:shella_design/features/orders_tracking/order_details/widget/items_section.dart';
 import 'package:shella_design/features/orders_tracking/order_details/widget/payment_method_chip.dart';
 import 'package:shella_design/features/orders_tracking/order_details/widget/status_indicator.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key});
@@ -35,31 +35,17 @@ class OrderDetails extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 15),
-                DetailRow(
-                    title: "معرف الطلب",
-                    value: orderDetailsConroller.orderID,
-                    isBold: true),
+                DetailRow(title: "معرف الطلب", value: orderDetailsConroller.orderID, isBold: true),
                 SizedBox(height: 15),
-                DetailRow(
-                    title: "تاريخ الطلب",
-                    value: orderDetailsConroller.orderDate),
+                DetailRow(title: "تاريخ الطلب", value: orderDetailsConroller.orderDate),
                 SizedBox(height: 15),
-                DetailRow(
-                    title: "اقل وقت مقدر لوصول طلبك",
-                    value: orderDetailsConroller.minimumTime),
+                DetailRow(title: "اقل وقت مقدر لوصول طلبك", value: orderDetailsConroller.minimumTime),
                 SizedBox(height: 15),
-                DetailRow(
-                    title: "اقصى وقت مقدر لوصول طلبك",
-                    value: orderDetailsConroller.maxmumTime),
+                DetailRow(title: "اقصى وقت مقدر لوصول طلبك", value: orderDetailsConroller.maxmumTime),
                 DividerSection(),
-                DetailRow(
-                    title: "رمز التحقق من التسليم :",
-                    value: "${orderDetailsConroller.deliveryCode}",
-                    valueStyle: true),
+                DetailRow(title: "رمز التحقق من التسليم :", value: "${orderDetailsConroller.deliveryCode}", valueStyle: true),
                 SizedBox(height: 15),
-                DetailRow(
-                    title: "نوع الطلب",
-                    value: orderDetailsConroller.requestType),
+                DetailRow(title: "نوع الطلب", value: orderDetailsConroller.requestType),
                 SizedBox(height: 15),
                 PaymentMethodChip(
                   text: orderDetailsConroller.paymentMethod,

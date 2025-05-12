@@ -7,10 +7,10 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/widgets/bottom_bar.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_info_section.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_tab_bar.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class Address_Details_Service_Screen extends StatefulWidget {
   const Address_Details_Service_Screen({super.key});

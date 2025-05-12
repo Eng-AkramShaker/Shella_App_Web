@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/Auth/widgets/web/login_form_web.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

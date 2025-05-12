@@ -6,8 +6,8 @@ import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_lists.dart';
 import 'package:shella_design/features/orders/widgets/taps_card.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class MobileOrders_Screen extends StatefulWidget {
   const MobileOrders_Screen({super.key});
@@ -18,7 +18,6 @@ class MobileOrders_Screen extends StatefulWidget {
 
 class _MobileOrders_ScreenState extends State<MobileOrders_Screen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
 
   @override
   void initState() {
@@ -61,5 +60,4 @@ class _MobileOrders_ScreenState extends State<MobileOrders_Screen> with SingleTi
       ),
     );
   }
-
 }

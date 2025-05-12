@@ -11,12 +11,12 @@ import 'package:shella_design/features/payment/widgets/paymentOption.dart';
 import 'package:shella_design/features/payment/widgets/paymentSummaryRow.dart';
 import 'package:shella_design/features/payment/widgets/paymentSwitch.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 // تعريف Provider (إذا كان هنالك حاجة لإدارة الحالة)
 class PaymentController with ChangeNotifier {

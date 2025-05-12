@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class BookingDetails extends StatelessWidget {
   final String time;
@@ -22,9 +22,7 @@ class BookingDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Custom_Text(context,
-                  text: "تفاصيل الحجز",
-                  style: font11Black500W(context, size: size_16(context))),
+              Custom_Text(context, text: "تفاصيل الحجز", style: font11Black500W(context, size: size_16(context))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -33,8 +31,7 @@ class BookingDetails extends StatelessWidget {
                     width: 140,
                     color: AppColors.gryColor_8,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                       child: Column(
                         children: [
                           Row(
@@ -45,20 +42,14 @@ class BookingDetails extends StatelessWidget {
                                 color: AppColors.greenColor,
                               ),
                               Spacer(flex: 1),
-                              Custom_Text(context,
-                                  text: "الوقت",
-                                  style: font10Black400W(context,
-                                      size: size_12(context))),
+                              Custom_Text(context, text: "الوقت", style: font10Black400W(context, size: size_12(context))),
                               Spacer(flex: 5),
                             ],
                           ),
                           Spacer(flex: 2),
                           Row(children: [
                             Spacer(flex: 3),
-                            Custom_Text(context,
-                                text: time,
-                                style: font14Green500W(context,
-                                    size: size_16(context))),
+                            Custom_Text(context, text: time, style: font14Green500W(context, size: size_16(context))),
                             Spacer(flex: 1),
                           ]),
                           Spacer(flex: 1),
@@ -71,8 +62,7 @@ class BookingDetails extends StatelessWidget {
                     width: 140,
                     color: AppColors.gryColor_8,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
                       child: Column(
                         children: [
                           Row(
@@ -83,20 +73,14 @@ class BookingDetails extends StatelessWidget {
                                 color: AppColors.greenColor,
                               ),
                               Spacer(flex: 1),
-                              Custom_Text(context,
-                                  text: "التاريخ",
-                                  style: font10Black400W(context,
-                                      size: size_12(context))),
+                              Custom_Text(context, text: "التاريخ", style: font10Black400W(context, size: size_12(context))),
                               Spacer(flex: 5),
                             ],
                           ),
                           Spacer(flex: 2),
                           Row(children: [
                             Spacer(flex: 3),
-                            Custom_Text(context,
-                                text: date,
-                                style: font14Green500W(context,
-                                    size: size_16(context))),
+                            Custom_Text(context, text: date, style: font14Green500W(context, size: size_16(context))),
                             Spacer(flex: 1),
                           ]),
                           Spacer(flex: 1),

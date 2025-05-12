@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:shella_design/api/api_client.dart';
-import 'package:shella_design/util/Api_constants.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import '../models/cart_model.dart';
 
 abstract class CartRepository {

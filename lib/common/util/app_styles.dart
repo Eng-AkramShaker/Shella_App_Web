@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
 
 //
 
@@ -716,8 +716,7 @@ TextStyle font14Green400W(
   );
 }
 
-TextStyle font18Green500W(BuildContext context,
-    {double? size, double? lineHeight}) {
+TextStyle font18Green500W(BuildContext context, {double? size, double? lineHeight}) {
   return TextStyle(
       fontFamily: 'ReadexPro',
       height: lineHeight ?? 1.5,

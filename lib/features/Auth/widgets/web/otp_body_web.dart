@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_action_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_fields_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_header_web.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_icons.dart';
-import 'package:shella_design/util/svg_icon_widget.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_icons.dart';
+import 'package:shella_design/common/util/svg_icon_widget.dart';
 
 class BodyOtp extends StatefulWidget {
   const BodyOtp({super.key});

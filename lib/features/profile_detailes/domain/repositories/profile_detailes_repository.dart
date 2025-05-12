@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
-import 'package:shella_design/util/Api_constants.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import '../../../../api/api_client.dart';
 
 abstract class ProfileRepository {

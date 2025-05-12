@@ -11,7 +11,7 @@ import 'package:shella_design/features/home/home/widgets/builds/build_category_l
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_2.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});

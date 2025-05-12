@@ -4,10 +4,10 @@ import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/features/Auth/domain/models/signup_body_model.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
-import 'package:shella_design/util/Api_constants.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 
 import '../../../../api/api_client.dart';
-import '../../../../util/sharedPre_constants.dart';
+import '../../../../common/util/sharedPre_constants.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepo implements AuthRepositoryInterface {

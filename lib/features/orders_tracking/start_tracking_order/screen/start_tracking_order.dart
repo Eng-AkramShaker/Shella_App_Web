@@ -4,12 +4,12 @@ import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/success_icon.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/widget/time_left_widget.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/widget/tracking_text.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class StartTrackingOrder extends StatelessWidget {
   const StartTrackingOrder({super.key});

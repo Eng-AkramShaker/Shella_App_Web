@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/appBar.dart';
 import 'package:shella_design/features/return_and_earn/widgets/invite_friends_text_and_personal_code.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import '../../../common/widgets/texts/custom_text.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_styles.dart';
 
 class ReturnAndEarnScreen extends StatelessWidget {
   const ReturnAndEarnScreen({super.key});

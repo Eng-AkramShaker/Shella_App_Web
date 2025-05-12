@@ -6,9 +6,9 @@ import 'package:shella_design/features/serveMe/widgets/booking_information.dart'
 import 'package:shella_design/features/serveMe/widgets/comments.dart';
 import 'package:shella_design/features/serveMe/widgets/evaluation.dart';
 import 'package:shella_design/features/serveMe/widgets/technical_info.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ReviewOfAService extends StatelessWidget {
   const ReviewOfAService({super.key});
@@ -43,10 +43,7 @@ class ReviewOfAService extends StatelessWidget {
           ),
           SizedBox(height: 40),
           custom_Button(context,
-              title: "ارسال تقييم",
-              style: font10White400W(context, size: size_14(context)),
-              onPressed: () {},
-              h: 45),
+              title: "ارسال تقييم", style: font10White400W(context, size: size_14(context)), onPressed: () {}, h: 45),
           SizedBox(height: 20),
           custom_Button(context,
               title: "تخطي",

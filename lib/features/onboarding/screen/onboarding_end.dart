@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/features/onboarding/widget/custombutton.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class OnboardingEnd extends StatelessWidget {
   const OnboardingEnd({super.key});

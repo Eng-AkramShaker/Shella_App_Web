@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class DetailRow extends StatelessWidget {
   final String title;
@@ -37,9 +37,7 @@ class DetailRow extends StatelessWidget {
           Custom_Text(
             context,
             text: value,
-            style: isBold
-                ? font18Black700W(context, size: size_16(context))
-                : font10Black400W(context, size: size_14(context)),
+            style: isBold ? font18Black700W(context, size: size_16(context)) : font10Black400W(context, size: size_14(context)),
           ),
       ],
     );

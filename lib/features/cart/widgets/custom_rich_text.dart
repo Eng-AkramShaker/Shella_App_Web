@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class CustomRichText extends StatelessWidget {
   const CustomRichText({
@@ -19,9 +19,7 @@ class CustomRichText extends StatelessWidget {
         children: [
           TextSpan(text: 'عرض نسكافيه 3*1\n'),
           TextSpan(text: '30 ظرف '),
-          TextSpan(
-              text: ' + 5 هدية',
-              style: TextStyle(color: AppColors.secondaryColor)),
+          TextSpan(text: ' + 5 هدية', style: TextStyle(color: AppColors.secondaryColor)),
         ],
       ),
     );

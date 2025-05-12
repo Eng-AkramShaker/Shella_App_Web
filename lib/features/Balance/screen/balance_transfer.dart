@@ -7,10 +7,10 @@ import 'package:shella_design/features/Balance/widget/builds/build_amount_btns_r
 import 'package:shella_design/features/Balance/widget/builds/build_max_account_text.dart';
 import 'package:shella_design/features/Balance/widget/header_section.dart';
 import 'package:shella_design/features/Balance/widget/submit_button.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class BalanceTransfer extends StatelessWidget {
   const BalanceTransfer({super.key});
@@ -55,8 +55,7 @@ class BalanceTransfer extends StatelessWidget {
             buildMaxAmountText(context),
             const Spacer(),
             Custom_Text(context,
-                text: "ادخل رقم هاتف صاحب الحساب التي تود التحويل له",
-                style: font10Black400W(context, size: size_12(context))),
+                text: "ادخل رقم هاتف صاحب الحساب التي تود التحويل له", style: font10Black400W(context, size: size_12(context))),
             const SizedBox(height: 10),
             CustomPhoneInput(
               controller: controller.phone,

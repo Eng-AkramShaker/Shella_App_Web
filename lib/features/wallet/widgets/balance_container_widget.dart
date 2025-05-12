@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import '../../../common/widgets/texts/custom_text.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_styles.dart';
 
 class BalanceContainerWidget extends StatelessWidget {
   const BalanceContainerWidget({super.key});

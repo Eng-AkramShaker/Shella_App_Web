@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_list_view.dart';
-import 'package:shella_design/util/app_styles.dart';
-import 'package:shella_design/util/lists.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/lists.dart';
 
 Widget buildLists(BuildContext context) {
   return SingleChildScrollView(

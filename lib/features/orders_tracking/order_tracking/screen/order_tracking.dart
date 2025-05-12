@@ -9,9 +9,9 @@ import 'package:shella_design/features/orders_tracking/order_tracking/widget/ord
 import 'package:shella_design/features/orders_tracking/order_tracking/widget/order_tracking_overlay.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/widget/stages_order_widget.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/widget/toggle_buttons_section.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class OrderTracking extends StatefulWidget {
   const OrderTracking({super.key});

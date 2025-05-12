@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AddressContainer extends StatelessWidget {
@@ -14,8 +14,7 @@ class AddressContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        String googleMapsUrl =
-            'https://www.google.com/maps/search/?api=1&query=48.8584,2.2945'; // Eiffel Tower
+        String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=48.8584,2.2945'; // Eiffel Tower
         await launchUrl(Uri.parse(googleMapsUrl));
       },
       child: Container(
@@ -36,9 +35,7 @@ class AddressContainer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.greenColor)),
+                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppColors.greenColor)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(

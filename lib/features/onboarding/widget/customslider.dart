@@ -6,9 +6,9 @@ import 'package:shella_design/features/onboarding/controller/onboarding_controll
 import 'package:shella_design/features/onboarding/controller/static.dart';
 import 'package:shella_design/features/onboarding/widget/custombutton.dart';
 import 'package:shella_design/features/onboarding/widget/dotcontroller.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class CustomSliderOnBoarding extends StatelessWidget {
   const CustomSliderOnBoarding({super.key});

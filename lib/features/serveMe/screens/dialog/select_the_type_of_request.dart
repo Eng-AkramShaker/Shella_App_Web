@@ -5,10 +5,10 @@ import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companiesServicesPage.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/individualsServicePage.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class SelectTheTypeOfRequest extends StatefulWidget {
   const SelectTheTypeOfRequest({super.key});
@@ -34,9 +34,7 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
     return Column(
       children: [
         Spacer(flex: 2),
-        Custom_Text(context,
-            text: "الرجاء اختيار الخدمه المناسبه",
-            style: font11Black500W(context, size: size_21(context))),
+        Custom_Text(context, text: "الرجاء اختيار الخدمه المناسبه", style: font11Black500W(context, size: size_21(context))),
         Spacer(flex: 2),
         InkWell(
           onTap: () {
@@ -46,11 +44,7 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
           },
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(
-                  color: isSelected == 1
-                      ? AppColors.greenColor
-                      : AppColors.gryColor_5,
-                  width: 2.w),
+              border: Border.all(color: isSelected == 1 ? AppColors.greenColor : AppColors.gryColor_5, width: 2.w),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Padding(
@@ -62,16 +56,14 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
                       child: Row(
                     children: [
                       ClipOval(
-                        child: custom_Images_asset(
-                            image: AppImages.individuals, h: 42, w: 42),
+                        child: custom_Images_asset(image: AppImages.individuals, h: 42, w: 42),
                       ),
                       Spacer(flex: 1),
                       Custom_Text(context,
                           text: "خدمه الافراد",
                           style: isSelected == 1
                               ? font10Black400W(context, size: size_16(context))
-                              : font10Grey400W(context,
-                                  size: size_16(context))),
+                              : font10Grey400W(context, size: size_16(context))),
                       Spacer(flex: 6),
                     ],
                   ))),
@@ -87,11 +79,7 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
           },
           child: Container(
             decoration: BoxDecoration(
-              border: Border.all(
-                  color: isSelected == 2
-                      ? AppColors.greenColor
-                      : AppColors.gryColor_5,
-                  width: 2.w),
+              border: Border.all(color: isSelected == 2 ? AppColors.greenColor : AppColors.gryColor_5, width: 2.w),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Padding(
@@ -103,16 +91,14 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
                       child: Row(
                     children: [
                       ClipOval(
-                        child: custom_Images_asset(
-                            image: AppImages.corporate, h: 42, w: 42),
+                        child: custom_Images_asset(image: AppImages.corporate, h: 42, w: 42),
                       ),
                       Spacer(flex: 1),
                       Custom_Text(context,
                           text: "خدمه الشركات",
                           style: isSelected == 2
                               ? font10Black400W(context, size: size_16(context))
-                              : font10Grey400W(context,
-                                  size: size_16(context))),
+                              : font10Grey400W(context, size: size_16(context))),
                       Spacer(flex: 6),
                     ],
                   ))),
@@ -120,15 +106,11 @@ class _SelectTheTypeOfRequestState extends State<SelectTheTypeOfRequest> {
           ),
         ),
         Spacer(flex: 1),
-        custom_Button(context,
-            title: 'التالي',
-            style: font10White400W(context, size: size_14(context)),
-            h: 45, onPressed: () {
+        custom_Button(context, title: 'التالي', style: font10White400W(context, size: size_14(context)), h: 45, onPressed: () {
           isSelected == 1
               ? Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => IndividualsServicePage()),
+                  MaterialPageRoute(builder: (context) => IndividualsServicePage()),
                 )
               : isSelected == 2
                   ? Navigator.of(context).push(

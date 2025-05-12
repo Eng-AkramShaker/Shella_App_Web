@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {

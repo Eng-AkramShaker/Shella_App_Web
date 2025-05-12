@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class StoreproductCard extends StatelessWidget {
   const StoreproductCard({
@@ -30,8 +30,7 @@ class StoreproductCard extends StatelessWidget {
         children: [
           Expanded(
             child: ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(12)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.asset(
                 product['image']!,
                 width: double.infinity,
@@ -56,9 +55,7 @@ class StoreproductCard extends StatelessWidget {
                     const Icon(Icons.add_circle_outline, color: Colors.green),
                     Text(
                       'ر.س ${product['price']}',
-                      style: const TextStyle(
-                          color: AppColors.orangeColor,
-                          fontWeight: FontWeight.w600),
+                      style: const TextStyle(color: AppColors.orangeColor, fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),

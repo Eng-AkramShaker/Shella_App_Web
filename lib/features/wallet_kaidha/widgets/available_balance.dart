@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import '../../../common/widgets/texts/custom_text.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_styles.dart';
 
 class PaymentOptions extends StatefulWidget {
   PaymentOptions({super.key});
@@ -68,8 +68,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Custom_Text(
                                             context,
@@ -79,9 +78,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                                           SizedBox(
                                             height: 5.h,
                                           ),
-                                          Custom_Text(context,
-                                              text: list[index]['amount'],
-                                              style: font10Grey400W(context))
+                                          Custom_Text(context, text: list[index]['amount'], style: font10Grey400W(context))
                                         ],
                                       ),
                                       Spacer(),

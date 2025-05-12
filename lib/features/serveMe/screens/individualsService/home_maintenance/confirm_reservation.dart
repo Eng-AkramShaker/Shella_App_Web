@@ -9,12 +9,12 @@ import 'package:shella_design/features/serveMe/widgets/comments.dart';
 import 'package:shella_design/features/serveMe/widgets/fees.dart';
 import 'package:shella_design/features/serveMe/widgets/payment_method.dart';
 import 'package:shella_design/features/serveMe/widgets/service_evaluation.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ConfirmReservation extends StatefulWidget {
   const ConfirmReservation({super.key});
@@ -29,9 +29,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
     final serveMeController = Provider.of<ServeMeController>(context);
     return Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        appBar: customAppBar(context,
-            style: font12White600W(context, size: size_14(context)),
-            title: "تاكيد الحجز", onPressed: () {
+        appBar: customAppBar(context, style: font12White600W(context, size: size_14(context)), title: "تاكيد الحجز", onPressed: () {
           popRoute(context);
         }),
         body: ListView(children: [
@@ -56,10 +54,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
           Fees(),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
-            child: custom_Button(context,
-                h: 45,
-                title: "تاكيد الحجز",
-                style: font10White400W(context, size: size_14(context)),
+            child: custom_Button(context, h: 45, title: "تاكيد الحجز", style: font10White400W(context, size: size_14(context)),
                 onPressed: () {
               pushNewScreen(context, AppRoutes.bookingConfirmationSuccess);
             }),

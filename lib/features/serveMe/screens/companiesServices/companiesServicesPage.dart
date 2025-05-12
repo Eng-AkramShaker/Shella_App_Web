@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class Companiesservicespage extends StatelessWidget {
   const Companiesservicespage({super.key});
@@ -26,10 +26,7 @@ class Companiesservicespage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10.h),
-            Custom_Text(context,
-                text: 'اختر نوع الخدمات التي ترغب  في شرائها',
-                size: 14,
-                color: Colors.black),
+            Custom_Text(context, text: 'اختر نوع الخدمات التي ترغب  في شرائها', size: 14, color: Colors.black),
             SizedBox(height: 20),
             Expanded(
               child: GridView.builder(
@@ -60,8 +57,7 @@ class Companiesservicespage extends StatelessWidget {
                               horizontal: 5.w,
                               vertical: 5.h,
                             ),
-                            child: Image.asset(
-                                'assets/images/pngtree-a-bag-of-home-tool-kits-ai-generative-png-image_11555782 1.png'),
+                            child: Image.asset('assets/images/pngtree-a-bag-of-home-tool-kits-ai-generative-png-image_11555782 1.png'),
                           ),
                         ),
                         SizedBox(height: 10),
