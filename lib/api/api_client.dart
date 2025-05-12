@@ -7,13 +7,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 
-class ApiProvider with ChangeNotifier {
+class ApiClient with ChangeNotifier {
   final SharedPreferences sharedPreferences;
   final String appBaseUrl;
   late Map<String, String> _headers;
   String? token;
 
-  ApiProvider({required this.appBaseUrl, required this.sharedPreferences}) {
+  ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     updateHeaders();
   }
 

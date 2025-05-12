@@ -203,7 +203,7 @@ class AppRoutes {
     // Auth
     Login_Mobile: (context) => Provider<AuthRepositoryInterface>(
           create: (context) => AuthRepo(
-              apiClient: ApiProvider(appBaseUrl: Api_Constants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()),
+              apiClient: ApiClient(appBaseUrl: Api_Constants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()),
               sharedPreferences: sp<SharedPreferences>()),
           child: Provider<AuthService>(
             create: (context) => AuthService(authRepositoryInterface: context.read<AuthRepositoryInterface>()),
@@ -214,7 +214,7 @@ class AppRoutes {
 
     signup: (context) => Provider<AuthRepositoryInterface>(
           create: (context) => AuthRepo(
-            apiClient: ApiProvider(
+            apiClient: ApiClient(
               appBaseUrl: Api_Constants.appBaseUrl,
               sharedPreferences: sp<SharedPreferences>(),
             ),
@@ -247,7 +247,7 @@ class AppRoutes {
           providers: [
             Provider<CartRepository>(
               create: (context) => CartRepositoryImpl(
-                apiClient: ApiProvider(
+                apiClient: ApiClient(
                   appBaseUrl: Api_Constants.appBaseUrl,
                   sharedPreferences: Provider.of<SharedPreferences>(
                     context,
@@ -316,7 +316,7 @@ class AppRoutes {
           providers: [
             Provider<ProfileRepository>(
               create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiProvider(
+                apiClient: ApiClient(
                   appBaseUrl: Api_Constants.appBaseUrl,
                   sharedPreferences: sp<SharedPreferences>(),
                 ),
@@ -339,7 +339,7 @@ class AppRoutes {
           providers: [
             Provider<ProfileRepository>(
               create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiProvider(
+                apiClient: ApiClient(
                   appBaseUrl: Api_Constants.appBaseUrl,
                   sharedPreferences: sp<SharedPreferences>(),
                 ),

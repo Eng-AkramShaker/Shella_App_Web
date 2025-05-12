@@ -11,7 +11,7 @@ import '../../../../common/util/sharedPre_constants.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRepo implements AuthRepositoryInterface {
-  final ApiProvider apiClient;
+  final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
 
   AuthRepo({required this.sharedPreferences, required this.apiClient});

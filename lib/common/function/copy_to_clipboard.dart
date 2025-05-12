@@ -1,7 +1,9 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void copyToClipboard(BuildContext context , TextEditingController _controller) {
+void copyToClipboard(BuildContext context, TextEditingController _controller) {
   String textToCopy = _controller.text; // Get the text from the text field
 
   if (textToCopy.isNotEmpty) {

@@ -12,7 +12,7 @@ abstract class CartRepository {
 }
 
 class CartRepositoryImpl implements CartRepository {
-  final ApiProvider apiClient;
+  final ApiClient apiClient;
 
   CartRepositoryImpl({required this.apiClient});
 
