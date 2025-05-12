@@ -5,11 +5,11 @@ import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/payment/widgets/BottomBar_add_New.dart';
 import 'package:shella_design/features/payment/widgets/payment_form.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class Add_New_Card_Screen extends StatefulWidget {
   const Add_New_Card_Screen({super.key});

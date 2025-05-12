@@ -1,5 +1,5 @@
 import 'package:shella_design/features/onboarding/model/onboardingmodel.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 List<OnBoardingModel> onBoardingList = [
   OnBoardingModel(

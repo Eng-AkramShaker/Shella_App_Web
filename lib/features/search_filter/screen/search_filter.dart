@@ -7,9 +7,9 @@ import 'package:shella_design/features/search_filter/widget/category_tabs.dart';
 import 'package:shella_design/features/search_filter/widget/location_header.dart';
 import 'package:shella_design/features/search_filter/widget/most_searched_list.dart';
 import 'package:shella_design/features/search_filter/widget/search_history_section.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({super.key});
@@ -52,8 +52,7 @@ class _SearchFilterState extends State<SearchFilter> {
           ),
           CategoryTabs(
             initialCategory: searchFilterController.selectedCategory,
-            onCategoryChanged: (category) => setState(
-                () => searchFilterController.selectedCategory = category),
+            onCategoryChanged: (category) => setState(() => searchFilterController.selectedCategory = category),
           ),
           SearchHistorySection(
             previousSearches: searchFilterController.previousSearches,
@@ -62,9 +61,7 @@ class _SearchFilterState extends State<SearchFilter> {
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Custom_Text(context,
-                text: "الاكثر بحثا",
-                style: font10Grey400W(context, size: size_10(context))),
+            child: Custom_Text(context, text: "الاكثر بحثا", style: font10Grey400W(context, size: size_10(context))),
           ),
           SizedBox(height: 10),
           MostSearchedList()

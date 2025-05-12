@@ -5,9 +5,9 @@ import 'package:shella_design/features/serveMe/widgets/booking_status.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
 import 'package:shella_design/features/serveMe/widgets/service_summary.dart';
 import 'package:shella_design/features/serveMe/widgets/technical_details.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class CarsBookingConfirmationSuccess extends StatelessWidget {
   const CarsBookingConfirmationSuccess({super.key});
@@ -42,8 +42,7 @@ class CarsBookingConfirmationSuccess extends StatelessWidget {
                   border_color: AppColors.gryColor_3,
                   title: "العودة للرئيسية",
                   onPressed: () {},
-                  style:
-                      font12SecondaryColor400W(context, size: size_14(context)),
+                  style: font12SecondaryColor400W(context, size: size_14(context)),
                   h: 45),
             ),
             SizedBox(height: 40),

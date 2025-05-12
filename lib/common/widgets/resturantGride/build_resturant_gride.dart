@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/home/home/widgets/restaurant_Item.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 Widget buildRestaurantGrid(context) {
   final List<String> images = [

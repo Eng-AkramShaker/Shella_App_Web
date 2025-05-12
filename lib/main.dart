@@ -2,10 +2,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/util/appProviders.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/helper/check_Logged.dart';
-import 'util/sharedPre_constants.dart';
+import 'package:shella_design/common/util/appProviders.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/helper/check_Logged.dart';
+import 'common/util/sharedPre_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

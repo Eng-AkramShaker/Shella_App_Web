@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class ToggleButtonWidget extends StatelessWidget {
   final bool isPressed;

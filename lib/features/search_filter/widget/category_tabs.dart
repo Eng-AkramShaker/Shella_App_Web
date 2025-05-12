@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/search_filter/widget/builds/build_category_button.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class CategoryTabs extends StatefulWidget {
   final String initialCategory;
@@ -32,29 +32,17 @@ class _CategoryTabsState extends State<CategoryTabs> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             buildCategoryButton(context, 'اصناف المتاجر', () {
-              setState(() =>
-                  searchFilterController.selectedCategory = 'اصناف المتاجر');
+              setState(() => searchFilterController.selectedCategory = 'اصناف المتاجر');
               widget.onCategoryChanged('اصناف المتاجر');
-            },
-                searchFilterController.selectedCategory == 'اصناف المتاجر'
-                    ? AppColors.secondaryColor
-                    : AppColors.backgroundColor),
+            }, searchFilterController.selectedCategory == 'اصناف المتاجر' ? AppColors.secondaryColor : AppColors.backgroundColor),
             buildCategoryButton(context, 'المطاعم والمتاجر', () {
-              setState(() =>
-                  searchFilterController.selectedCategory = 'المطاعم والمتاجر');
+              setState(() => searchFilterController.selectedCategory = 'المطاعم والمتاجر');
               widget.onCategoryChanged('المطاعم والمتاجر');
-            },
-                searchFilterController.selectedCategory == 'المطاعم والمتاجر'
-                    ? AppColors.secondaryColor
-                    : AppColors.backgroundColor),
+            }, searchFilterController.selectedCategory == 'المطاعم والمتاجر' ? AppColors.secondaryColor : AppColors.backgroundColor),
             buildCategoryButton(context, 'اصناف المطاعم', () {
-              setState(() =>
-                  searchFilterController.selectedCategory = 'اصناف المطاعم');
+              setState(() => searchFilterController.selectedCategory = 'اصناف المطاعم');
               widget.onCategoryChanged('اصناف المطاعم');
-            },
-                searchFilterController.selectedCategory == 'اصناف المطاعم'
-                    ? AppColors.secondaryColor
-                    : AppColors.backgroundColor),
+            }, searchFilterController.selectedCategory == 'اصناف المطاعم' ? AppColors.secondaryColor : AppColors.backgroundColor),
           ],
         ),
       ),

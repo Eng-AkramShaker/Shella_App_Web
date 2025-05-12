@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button_2.dart';
 
 class ScheduleActions extends StatelessWidget {

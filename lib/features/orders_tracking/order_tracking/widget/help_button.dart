@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class HelpButton extends StatelessWidget {
   const HelpButton({
@@ -47,8 +47,7 @@ class HelpButton extends StatelessWidget {
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.backgroundColor,
-              shape:
-                  const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
               padding: const EdgeInsets.symmetric(horizontal: 10),
             ),
             child: Row(
@@ -60,8 +59,7 @@ class HelpButton extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 SizedBox(
-                  child:
-                      custom_Images_asset(image: AppImages.help, h: 18, w: 18),
+                  child: custom_Images_asset(image: AppImages.help, h: 18, w: 18),
                 ),
               ],
             ),

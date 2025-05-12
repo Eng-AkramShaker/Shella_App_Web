@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/widget/toggle_button_widget.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ToggleButtonsSection extends StatelessWidget {
   final Function() onTap1;
@@ -9,11 +9,7 @@ class ToggleButtonsSection extends StatelessWidget {
   final bool isPressed1;
   final bool isPressed2;
   const ToggleButtonsSection(
-      {super.key,
-      required this.onTap1,
-      required this.onTap2,
-      required this.isPressed1,
-      required this.isPressed2});
+      {super.key, required this.onTap1, required this.onTap2, required this.isPressed1, required this.isPressed2});
 
   @override
   Widget build(BuildContext context) {

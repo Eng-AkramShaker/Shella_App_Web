@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/AdressCard.dart';
 import 'package:shella_design/features/profile_detailes/widgets/greanappbar.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class AddressDetailsPage extends StatelessWidget {
   const AddressDetailsPage({super.key});
@@ -31,8 +31,7 @@ class AddressDetailsPage extends StatelessWidget {
                 controller.getAdress();
                 return Expanded(
                   child: Center(
-                    child: CircularProgressIndicator(
-                        color: AppColors.primaryColor),
+                    child: CircularProgressIndicator(color: AppColors.primaryColor),
                   ),
                 );
               }
@@ -40,8 +39,7 @@ class AddressDetailsPage extends StatelessWidget {
               if (controller.adressstate == RequestState.loading) {
                 return Expanded(
                   child: Center(
-                    child: CircularProgressIndicator(
-                        color: AppColors.primaryColor),
+                    child: CircularProgressIndicator(color: AppColors.primaryColor),
                   ),
                 );
               }
@@ -50,8 +48,7 @@ class AddressDetailsPage extends StatelessWidget {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content:
-                          Text(controller.errorMessage ?? 'Request Failed'),
+                      content: Text(controller.errorMessage ?? 'Request Failed'),
                     ),
                   );
                 });

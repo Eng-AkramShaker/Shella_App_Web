@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ArrivalTime extends StatelessWidget {
   const ArrivalTime({super.key});
@@ -21,13 +21,9 @@ class ArrivalTime extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(width: 10),
-            Custom_Text(context,
-                text: "الوصول المتوقع : 15 دقيقة",
-                style: font10Grey500W(context, size: size_12(context))),
+            Custom_Text(context, text: "الوصول المتوقع : 15 دقيقة", style: font10Grey500W(context, size: size_12(context))),
             Spacer(),
-            Custom_Text(context,
-                text: "في الطريق ",
-                style: font11Black500W(context, size: size_12(context))),
+            Custom_Text(context, text: "في الطريق ", style: font11Black500W(context, size: size_12(context))),
             ClipOval(
               child: Container(
                 height: 8,

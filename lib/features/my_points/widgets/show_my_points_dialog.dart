@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/widgets/texts/custom_text.dart';
 import '../../../common/widgets/texts/text_button.dart';
-import '../../../util/app_colors.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_colors.dart';
+import '../../../common/util/app_styles.dart';
 import 'offers_widgets.dart';
 
 class ShowMyPointsDialog extends StatelessWidget {
@@ -16,16 +16,15 @@ class ShowMyPointsDialog extends StatelessWidget {
   final String buttonText;
   final VoidCallback onTap;
 
-  const ShowMyPointsDialog({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.subTitle,
-    required this.widget,
-    required this.buttonText,
-    required this.discount,
-    required this.onTap
-  });
+  const ShowMyPointsDialog(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subTitle,
+      required this.widget,
+      required this.buttonText,
+      required this.discount,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -56,37 +55,57 @@ class ShowMyPointsDialog extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Custom_Text(
                   context,
                   text: title,
                   style: font14Black500W(context),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Custom_Text(
                   context,
                   text: subTitle,
                   style: font10Grey500W(context),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 widget,
-                SizedBox(height: 10,),
-                discount?
-                Container(
-                  width: double.infinity,
-                  height: 1,
-                  color: AppColors.gryColor_6,
-                ):Container(),
-                discount?
-                SizedBox(height: 10.h,):SizedBox(height: 0.h,),
-                discount?
-                Custom_Text(
-                  context,
-                  text: 'عدد النقاط حاليآ : 1500 نقطة',
-                  style: font10Grey500W(context),
-                ):Container(),
-                discount?
-                SizedBox(height: 10.h,):SizedBox(height: 0.h,),
+                SizedBox(
+                  height: 10,
+                ),
+                discount
+                    ? Container(
+                        width: double.infinity,
+                        height: 1,
+                        color: AppColors.gryColor_6,
+                      )
+                    : Container(),
+                discount
+                    ? SizedBox(
+                        height: 10.h,
+                      )
+                    : SizedBox(
+                        height: 0.h,
+                      ),
+                discount
+                    ? Custom_Text(
+                        context,
+                        text: 'عدد النقاط حاليآ : 1500 نقطة',
+                        style: font10Grey500W(context),
+                      )
+                    : Container(),
+                discount
+                    ? SizedBox(
+                        height: 10.h,
+                      )
+                    : SizedBox(
+                        height: 0.h,
+                      ),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),

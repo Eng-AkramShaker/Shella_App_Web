@@ -9,8 +9,8 @@ import 'package:shella_design/features/home/super/screens/super_screen.dart';
 import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
 import 'package:shella_design/features/orders/screens/order_screen/mobile_orders_screen.dart';
 import 'package:shella_design/features/profile_detailes/screens/profile_detailes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -56,26 +56,20 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 40,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.transparent,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : AppColors.gryColor,
+                        color: _selectedIndex == index ? AppColors.primaryColor : AppColors.gryColor,
                       ),
                       const SizedBox(height: 5),
                       if (_selectedIndex == index)
                         Text(
                           _getLabel(index),
-                          style: const TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
+                          style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
                         ),
                     ],
                   ),
@@ -105,18 +99,14 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 70,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.transparent,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.grey,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.grey,
                       ),
                     ],
                   ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
-Widget buildNotesInput(BuildContext context, TextEditingController notesController ) {
+Widget buildNotesInput(BuildContext context, TextEditingController notesController) {
   return Card(
     color: AppColors.backgroundColor,
     child: TextField(

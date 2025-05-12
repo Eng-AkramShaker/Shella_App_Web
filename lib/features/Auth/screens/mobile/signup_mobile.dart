@@ -6,10 +6,10 @@ import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_p
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_text_field_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/sign_up_account_btn_mobile.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});

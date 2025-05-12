@@ -5,8 +5,8 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/my_points/widgets/gift_image_container.dart';
 import 'package:shella_design/features/my_points/widgets/offers.dart';
 import 'package:shella_design/features/my_points/widgets/show_my_points_dialog.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 // ignore: must_be_immutable
 class OffersGrid extends StatelessWidget {
@@ -26,8 +26,7 @@ class OffersGrid extends StatelessWidget {
             discount: true,
             widget: Custom_Text(
               context,
-              text:
-                  'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
+              text: 'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
               style: font10Grey400W(context),
             ),
             subTitle: '600 نقطة',
@@ -40,9 +39,7 @@ class OffersGrid extends StatelessWidget {
                       subTitle: 'لقد حصلت على 15.00 ر.س خصم',
                       widget: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(
-                                width: 1, color: AppColors.orangeColor)),
+                            borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.orangeColor)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -54,8 +51,7 @@ class OffersGrid extends StatelessWidget {
                               Expanded(
                                 child: Custom_Text(
                                   context,
-                                  text:
-                                      'لا تنسى استعمال القسيمة عند مرحلة الدفع',
+                                  text: 'لا تنسى استعمال القسيمة عند مرحلة الدفع',
                                   style: font10Grey400W(context),
                                   maxLines: 1,
                                   textOverFlow: TextOverflow.ellipsis,

@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 
 import '../../../common/widgets/texts/custom_text.dart';
-import '../../../util/app_colors.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_colors.dart';
+import '../../../common/util/app_styles.dart';
 
 class PictureAndFullName extends StatelessWidget {
   const PictureAndFullName({super.key});
@@ -29,17 +29,14 @@ class PictureAndFullName extends StatelessWidget {
                   Icons.camera_alt_outlined,
                   color: AppColors.gryColor_5,
                 ),
-                Custom_Text(
-                    context,
-                    textAlign: TextAlign.center,
-                    text: 'تحميل صورة الملف\nالشخصي',
-                    style: font11Grey400W(context)
-                ),
+                Custom_Text(context, textAlign: TextAlign.center, text: 'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
               ],
             ),
           ),
         ),
-        SizedBox(height: 20.h,),
+        SizedBox(
+          height: 20.h,
+        ),
         Row(
           children: [
             Expanded(
@@ -49,7 +46,9 @@ class PictureAndFullName extends StatelessWidget {
                 prefixIcon: Icon(Icons.person_outline_outlined),
               ),
             ),
-            SizedBox(width: 20,),
+            SizedBox(
+              width: 20,
+            ),
             Expanded(
               child: CustomTextField(
                 borderColor: AppColors.gryColor_5,

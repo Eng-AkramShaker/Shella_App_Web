@@ -8,8 +8,8 @@ import 'package:shella_design/features/cart/widgets/bottom_bar_CartScreen.dart';
 import 'package:shella_design/features/cart/widgets/builds/build_cart_item.dart';
 import 'package:shella_design/features/cart/widgets/builds/build_promo_code_input.dart';
 import 'package:shella_design/features/cart/widgets/builds/build_summary_row.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/lists.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/lists.dart';
 
 class Cart_Screen extends StatefulWidget {
   const Cart_Screen({super.key});
@@ -19,7 +19,6 @@ class Cart_Screen extends StatefulWidget {
 }
 
 class _Cart_ScreenState extends State<Cart_Screen> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +30,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (int index = 0; index < items.length; index++)
-                buildCartItem(items[index], index, context),
+              for (int index = 0; index < items.length; index++) buildCartItem(items[index], index, context),
               buildPromoCodeInput(context),
 
               //
@@ -47,8 +45,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                     Cus_Divider(color: AppColors.gryColor_2),
                     buildSummaryRow("التوصيل", "15 ريال", context),
                     Cus_Divider(color: AppColors.gryColor_2),
-                    buildSummaryRow("الإجمالي", "105 ريال", context,
-                        extra: "(5 عناصر)", isBold: true),
+                    buildSummaryRow("الإجمالي", "105 ريال", context, extra: "(5 عناصر)", isBold: true),
                     SizedBox(height: 50.h),
                   ],
                 ),
@@ -60,9 +57,4 @@ class _Cart_ScreenState extends State<Cart_Screen> {
       bottomNavigationBar: BottomBar_CartScren(),
     );
   }
-
-
- 
-
-
 }

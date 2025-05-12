@@ -4,8 +4,8 @@ import 'package:shella_design/common/widgets/appBar/appBar.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/features/wallet_kaidha/widgets/available_balance.dart';
 import 'package:shella_design/features/wallet_kaidha/widgets/payment_details.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 import '../../../common/widgets/texts/text_button.dart';
 
@@ -16,8 +16,7 @@ class WalletKaidhaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, 'محفظة قيدها', Icons.arrow_back_sharp,
-          Icons.account_balance_wallet_outlined),
+      appBar: custom_AppBar(context, 'محفظة قيدها', Icons.arrow_back_sharp, Icons.account_balance_wallet_outlined),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),

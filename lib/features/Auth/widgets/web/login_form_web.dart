@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/Auth/widgets/web/login_action_buttons_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/login_header_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/phone_number_field_web.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});

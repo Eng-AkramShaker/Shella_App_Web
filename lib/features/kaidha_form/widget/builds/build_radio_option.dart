@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 Widget buildRadioOption({
   required BuildContext context,
@@ -15,9 +15,7 @@ Widget buildRadioOption({
 }) {
   return Container(
     height: 75,
-    decoration: BoxDecoration(
-        border: Border.all(color: AppColors.gryColor_3),
-        borderRadius: BorderRadius.circular(10)),
+    decoration: BoxDecoration(border: Border.all(color: AppColors.gryColor_3), borderRadius: BorderRadius.circular(10)),
     child: Padding(
       padding: const EdgeInsets.only(right: 10.0),
       child: Row(

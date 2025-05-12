@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class CustomSelection extends StatefulWidget {
   final String title;

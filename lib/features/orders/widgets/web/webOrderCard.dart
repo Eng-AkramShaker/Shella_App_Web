@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class WebOrderCard extends StatelessWidget {
   final Map<String, String> order;
@@ -61,14 +61,10 @@ class WebOrderCard extends StatelessWidget {
                   child: Card(
                     color: AppColors.backgroundColor,
                     child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 10.h),
+                      padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 10.h),
                       child: Row(
                         children: [
-                          Custom_Text(context,
-                              text: 'قيد الموافقة',
-                              size: 14,
-                              color: AppColors.greenColor),
+                          Custom_Text(context, text: 'قيد الموافقة', size: 14, color: AppColors.greenColor),
                           SizedBox(width: 5.w),
                           Container(
                             decoration: BoxDecoration(

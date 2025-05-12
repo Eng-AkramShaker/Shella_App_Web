@@ -5,10 +5,10 @@ import 'package:shella_design/features/my_points/screens/my_points_screen.dart';
 import 'package:shella_design/features/profile_detailes/screens/language_selection_page.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
-import '../../../helper/app_routes.dart';
+import '../../../common/helper/app_routes.dart';
 
 class ProfileDetailsPage extends StatelessWidget {
   const ProfileDetailsPage({super.key});
@@ -77,8 +77,7 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.joinAsDriverOne);
           }),
           buildListTile('سياسة الخصوصية', Icons.privacy_tip, context, () {}),
-          buildListTile(
-              'الحصول على المساعدة', Icons.help_outline, context, () {}),
+          buildListTile('الحصول على المساعدة', Icons.help_outline, context, () {}),
           buildListTile('الشروط والأحكام', Icons.rule, context, () {}),
           buildListTile('سياسة الاسترداد', Icons.replay, context, () {}),
           buildListTile('المساعدة والدعم', Icons.support_agent, context, () {
@@ -87,9 +86,7 @@ class ProfileDetailsPage extends StatelessWidget {
           buildListTile('الدردشة المباشرة', Icons.chat, context, () {
             pushNewScreen(context, AppRoutes.supportConversation);
           }),
-          buildListTile(
-              'تسجيل الخروج', Icons.power_settings_new, context, () {},
-              color: Colors.red),
+          buildListTile('تسجيل الخروج', Icons.power_settings_new, context, () {}, color: Colors.red),
         ],
       ),
     );

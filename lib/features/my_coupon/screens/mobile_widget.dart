@@ -4,7 +4,7 @@ import 'package:shella_design/features/my_coupon/widgets/available_container.dar
 import 'package:shella_design/features/my_coupon/widgets/expired_container.dart';
 
 import '../../../common/widgets/appBar/customAppBar.dart';
-import '../../../util/app_colors.dart';
+import '../../../common/util/app_colors.dart';
 import '../widgets/available_coupon_widget.dart';
 import '../widgets/expired_coupon_widget.dart';
 
@@ -23,11 +23,12 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context,title: 'قسائمي',img: 'assets/images/coupon1.png'),
+      appBar: customAppBar(context, title: 'قسائمي', img: 'assets/images/coupon1.png'),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -48,11 +49,11 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
                   ],
                 ),
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 25.sp),
+                  padding: EdgeInsets.symmetric(horizontal: 25.sp),
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           int i = 0;
                           setState(() {
                             index = i;
@@ -62,7 +63,7 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
                       ),
                       Spacer(),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           int i = 1;
                           setState(() {
                             index = i;
@@ -74,11 +75,7 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
                   ),
                 ),
               ),
-              if (index == 0) Expanded(
-                  child: AvailableCouponWidget()
-              ) else Expanded(
-                  child: ExpiredCouponWidget()
-              )
+              if (index == 0) Expanded(child: AvailableCouponWidget()) else Expanded(child: ExpiredCouponWidget())
             ],
           ),
         ),

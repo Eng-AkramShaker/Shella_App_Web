@@ -75,13 +75,11 @@ import 'package:shella_design/features/serveMe/screens/serve_product_screen.dart
 import 'package:shella_design/features/support_conversation/screens/support_conversation_screen.dart';
 import 'package:shella_design/features/wallet/screens/wallet_screen.dart';
 import 'package:shella_design/features/wallet_kaidha/screens/wallet_kaidha_screen.dart';
-import 'package:shella_design/helper/check_Logged.dart';
-import 'package:shella_design/test.dart';
-
-import '../api/api_client.dart';
-import '../features/Auth/domain/repositories/auth_repo.dart';
-import '../features/Auth/domain/services/auth_service.dart';
-import '../features/statistics/screens/statistics_screen.dart';
+import 'package:shella_design/common/helper/check_Logged.dart';
+import '../../api/api_client.dart';
+import '../../features/Auth/domain/repositories/auth_repo.dart';
+import '../../features/Auth/domain/services/auth_service.dart';
+import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
 
 class AppRoutes {
@@ -190,18 +188,16 @@ class AppRoutes {
   static const String foodDetialsPage = '/foodDetialsPage';
   static const String resturantSectionScreen = '/resturantSectionScreen';
   static const String superMarketFoodDetails = '/superMarketFoodDetails';
-  // static const String confirmationPage = '/confirmationPage';
   static const String orderTracking = '/orderTracking';
   static const String companyMarketsShopes = '/companyMarketsShopes';
   static const String returantsDetailes = '/returantsDetailes';
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
 
-  // =========================================================================================================
+  // App =========================================================================================================
 
   static final Map<String, Widget Function(BuildContext)> routes = {
     // Main Layout
     mainLayout: (context) => const MainLayout(),
-    testPage: (context) => const TestPage(),
     scheduleOrderBottomSheet: (context) =>
         ChangeNotifierProvider(create: (_) => ScheduleController(), child: const ScheduleOrderBottomSheet()),
     // Auth
@@ -400,42 +396,6 @@ class AppRoutes {
 
     loginPage: (context) => const LoginPage(),
     otpPage: (context) => OtpScreen(),
-    // contactUs: (context) => ContactUsPage(),
-    // orderConfirmation: (context) => ConfirmationScreen(),
-    // orderConfirmationPage: (context) => OrderConfirmationPage(),
-
-    // serviceProviders: (context) => const ServiceProviders(),
-    // AppRoutes.serviceInformation: (context) =>
-    //     ChangeNotifierProvider(create: (_) => ServeMeController(), child: const ServiceInformation()),
-    // AppRoutes.howWasYourExperience: (context) =>
-    //     ChangeNotifierProvider(create: (_) => ServeMeController(), child: const HowWasYourExperience()),
-    // raiseAProblem: (context) => const RaiseAProblem(),
-    // service: (context) => const Service(),
-    // individualServices: (context) => const IndividualServices(),
-    // selectService: (context) => const SelectService(),
-    // ordersTrackingPage: (context) => const OrdersTrackingPage(),
-    // ordersTrackingPage2: (context) => const OrdersTrackingPage2(),
-    // webHome: (context) => const WebHomeScreen(),
-    // alfaressaudiarabiascreen: (context) => const WebAlfaresSaudiArabiaScreen(),
-    // alfaresOffersPage: (context) => const WebAlfaresOffersPage(),
-    // paymentDetailsPage: (context) => const WebPaymentPage(),
-    // accountdetails: (context) => const AccountDetails(),
-    // myOrders: (context) => const WebMyOrders(),
-    // webDeliveryServicePage: (context) => const WebDeliveryServicePage(),
-    // webDeliveryServicePage2: (context) => const WebDeliveryServicePage2(),
-    // websenderinfo: (context) => const WebSenderInfo(),
-    // oneWayDeliveryPage: (context) => const OneWayDeliveryPage(),
-    // resturantPage: (context) => const ResturantPage(),
-    // companyService: (context) => const CompanyService(),
-    // hyperShella: (context) => const MainHyperShella(),
-    // foodDetialsPage: (context) => const FoodDetailPage(),
-    // resturantSectionScreen: (context) => const ResturantSectionScreen(),
-    // superMarketFoodDetails: (context) => const SuperMarketFoodDetails(),
-    // // confirmationPage: (context) => const ConfirmationPage(),
-    // orderTracking: (context) => const OrdersTracking(),
-    // companyMarketsShopes: (context) => const CompanyMarketshopesScreen(),
-    // returantsDetailes: (context) => const ReturantsDetailes(),
-    // termsAndConditionsScreen: (context) => const TermsAndConditionsScreen(),
   };
 }
 

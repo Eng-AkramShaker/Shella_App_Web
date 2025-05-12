@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/Balance/controller/balance_controller.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class AmountButton extends StatelessWidget {
   final String value;
@@ -29,16 +29,12 @@ class AmountButton extends StatelessWidget {
               child: Custom_Text(
                 context,
                 text: isOther ? value : '$value ر.س',
-                style: isSelected
-                    ? font10White400W(context, size: size_14(context))
-                    : font10Grey400W(context, size: size_14(context)),
+                style: isSelected ? font10White400W(context, size: size_14(context)) : font10Grey400W(context, size: size_14(context)),
               ),
             ),
             selected: isSelected,
             showCheckmark: false,
-            onSelected: (_) => isaddition
-                ? controller.selectaddonAmount(value)
-                : controller.selecttransferAmount(value),
+            onSelected: (_) => isaddition ? controller.selectaddonAmount(value) : controller.selecttransferAmount(value),
             backgroundColor: AppColors.backgroundColor,
             selectedColor: AppColors.primaryColor,
             side: BorderSide(
@@ -57,8 +53,7 @@ class AmountButton extends StatelessWidget {
 
   bool _calculateIsSelected(bool isOther, BalanceController controller) {
     if (isOther) {
-      return controller.selectedAmount.isNotEmpty &&
-          !['30', '60', '100'].contains(controller.selectedAmount);
+      return controller.selectedAmount.isNotEmpty && !['30', '60', '100'].contains(controller.selectedAmount);
     }
     return controller.selectedAmount == value;
   }

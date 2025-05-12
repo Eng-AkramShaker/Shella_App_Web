@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 class OrderTrackingController with ChangeNotifier {
   int currentStage = 1;

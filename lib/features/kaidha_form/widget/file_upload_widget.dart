@@ -3,9 +3,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class FileUploadWidget extends StatefulWidget {
   const FileUploadWidget({super.key});
@@ -42,8 +42,7 @@ class FileUploadWidgetState extends State<FileUploadWidget> {
           });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text('الملف ${file.name} تجاوز الحد المسموح (5MB)')),
+            SnackBar(content: Text('الملف ${file.name} تجاوز الحد المسموح (5MB)')),
           );
         }
       }
@@ -80,16 +79,12 @@ class FileUploadWidgetState extends State<FileUploadWidget> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.cloud_upload,
-                      size: 48, color: AppColors.greenColor),
+                  Icon(Icons.cloud_upload, size: 48, color: AppColors.greenColor),
                   SizedBox(height: 10),
-                  Custom_Text(context,
-                      text: "اضغط هنا لرفع المستندات",
-                      style: font10Black400W(context, size: size_14(context))),
+                  Custom_Text(context, text: "اضغط هنا لرفع المستندات", style: font10Black400W(context, size: size_14(context))),
                   SizedBox(height: 5),
                   Custom_Text(context,
-                      text: "(الحد الاقصى 5 ميجابايت ) pdf,jpg,png",
-                      style: font10Grey400W(context, size: size_14(context))),
+                      text: "(الحد الاقصى 5 ميجابايت ) pdf,jpg,png", style: font10Grey400W(context, size: size_14(context))),
                 ],
               ),
             ),
@@ -105,9 +100,7 @@ class FileUploadWidgetState extends State<FileUploadWidget> {
                 return Container(
                   margin: EdgeInsets.only(bottom: 10),
                   padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.gryColor_3),
-                      borderRadius: BorderRadius.circular(10)),
+                  decoration: BoxDecoration(border: Border.all(color: AppColors.gryColor_3), borderRadius: BorderRadius.circular(10)),
                   child: Row(
                     children: [
                       Icon(
@@ -128,8 +121,7 @@ class FileUploadWidgetState extends State<FileUploadWidget> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.delete_outline_outlined,
-                            color: AppColors.redColor),
+                        icon: Icon(Icons.delete_outline_outlined, color: AppColors.redColor),
                         onPressed: () => _removeFile(index),
                       ),
                     ],
@@ -145,8 +137,7 @@ class FileUploadWidgetState extends State<FileUploadWidget> {
                 _files.length < _maxFiles ? _pickFile : null;
               }),
               Custom_Text(context,
-                  text: 'ملفات تم رفعها ${_files.length}/$_maxFiles',
-                  style: font10Grey400W(context, size: size_14(context)))
+                  text: 'ملفات تم رفعها ${_files.length}/$_maxFiles', style: font10Grey400W(context, size: size_14(context)))
             ],
           ),
       ],

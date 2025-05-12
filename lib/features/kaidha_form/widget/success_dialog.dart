@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({super.key});
@@ -19,9 +19,7 @@ class SuccessDialog extends StatelessWidget {
         children: [
           const Icon(Icons.check_circle, color: AppColors.greenColor, size: 45),
           const SizedBox(height: 10),
-          Custom_Text(context,
-              text: "في انتظار تفغيل محفظة قيدها",
-              style: font10Black600W(context, size: size_14(context))),
+          Custom_Text(context, text: "في انتظار تفغيل محفظة قيدها", style: font10Black600W(context, size: size_14(context))),
           const SizedBox(height: 15),
           Custom_Text(context,
               text: "شكرآ لك على ملئ البيانات المطلوبة\nسوف نتواصل معك قريبآ",

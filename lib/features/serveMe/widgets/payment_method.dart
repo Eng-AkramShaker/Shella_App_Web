@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class PaymentMethod extends StatelessWidget {
   const PaymentMethod({super.key});
@@ -16,18 +16,13 @@ class PaymentMethod extends StatelessWidget {
         height: 170,
         child: Card(
             color: AppColors.backgroundColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
             child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Custom_Text(context,
-                        text: "طريقة الدفع",
-                        style:
-                            font11Black500W(context, size: size_16(context))),
+                    Custom_Text(context, text: "طريقة الدفع", style: font11Black500W(context, size: size_16(context))),
                     SizedBox(height: 15),
                     _buildRadioOption(
                       context: context,
@@ -65,9 +60,7 @@ class PaymentMethod extends StatelessWidget {
     return Container(
       height: 45,
       decoration: BoxDecoration(
-          color: AppColors.gryColor_8,
-          border: Border.all(color: AppColors.gryColor_3),
-          borderRadius: BorderRadius.circular(10)),
+          color: AppColors.gryColor_8, border: Border.all(color: AppColors.gryColor_3), borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.only(right: 10.0),
         child: Row(

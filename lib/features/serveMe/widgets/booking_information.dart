@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class BookingInformation extends StatelessWidget {
   const BookingInformation({super.key});
@@ -24,36 +24,24 @@ class BookingInformation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Custom_Text(context,
-                    text: "رقم الحجز",
-                    style: font10Black300W(context, size: size_14(context))),
-                Custom_Text(context,
-                    text: "#244558",
-                    style: font10Black400W(context, size: size_14(context))),
+                Custom_Text(context, text: "رقم الحجز", style: font10Black300W(context, size: size_14(context))),
+                Custom_Text(context, text: "#244558", style: font10Black400W(context, size: size_14(context))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Custom_Text(context,
-                    text: "نوع الخدمة",
-                    style: font10Black300W(context, size: size_14(context))),
-                Custom_Text(context,
-                    text: "صيانة السباكة",
-                    style: font10Black400W(context, size: size_14(context))),
+                Custom_Text(context, text: "نوع الخدمة", style: font10Black300W(context, size: size_14(context))),
+                Custom_Text(context, text: "صيانة السباكة", style: font10Black400W(context, size: size_14(context))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Custom_Text(context,
-                    text: "التاريخ والوقت",
-                    style: font10Black300W(context, size: size_14(context))),
-                Custom_Text(context,
-                    text: "25 فبراير - 9:00",
-                    style: font10Black400W(context, size: size_14(context))),
+                Custom_Text(context, text: "التاريخ والوقت", style: font10Black300W(context, size: size_14(context))),
+                Custom_Text(context, text: "25 فبراير - 9:00", style: font10Black400W(context, size: size_14(context))),
               ],
             )
           ],

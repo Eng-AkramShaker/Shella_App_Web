@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 Widget buildOrderButton(
   String title,

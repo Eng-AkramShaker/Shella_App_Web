@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_icons.dart';
-import 'package:shella_design/util/app_styles.dart';
-import 'package:shella_design/util/svg_icon_widget.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_icons.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/svg_icon_widget.dart';
 
 class LoginHeaderRow extends StatelessWidget {
   final String title;

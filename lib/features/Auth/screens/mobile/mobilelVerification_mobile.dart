@@ -4,7 +4,7 @@ import 'package:shella_design/features/Auth/widgets/mobile/custom_pin_code_txt_f
 import 'package:shella_design/features/Auth/widgets/mobile/resend_code_row_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/send_verify_btn_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/timer_row_mobile.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class MobilelVerification extends StatefulWidget {
   const MobilelVerification({super.key});

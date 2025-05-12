@@ -10,11 +10,11 @@ import 'package:shella_design/features/Auth/widgets/mobile/remember_me_row_mobil
 import 'package:shella_design/features/Auth/widgets/mobile/sign_in_as_guest_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/sign_up_button_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/text_divider_mobile.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/sizes.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/sizes.dart';
 import '../../controllers/auth_controller.dart';
 
 class Login_mobile extends StatefulWidget {

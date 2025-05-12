@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -59,8 +59,7 @@ class _NotificationsState extends State<Notifications> {
                         Custom_Text(
                           context,
                           text: "دوبلها من بيتزا هت",
-                          style:
-                              font10Black400W(context, size: size_10(context)),
+                          style: font10Black400W(context, size: size_10(context)),
                         ),
                       ],
                     ),
@@ -70,16 +69,13 @@ class _NotificationsState extends State<Notifications> {
                       children: [
                         Custom_Text(
                           context,
-                          text:
-                              'اشتري 2 بيتزا فصول اربعة بسعر واحدة \n من بيتزا هت واحصل على توصيل مجاني',
-                          style:
-                              font10Black300W(context, size: size_12(context)),
+                          text: 'اشتري 2 بيتزا فصول اربعة بسعر واحدة \n من بيتزا هت واحصل على توصيل مجاني',
+                          style: font10Black300W(context, size: size_12(context)),
                         ),
                         Custom_Text(
                           context,
                           text: 'قبل 46 دقيقة',
-                          style:
-                              font10Black400W(context, size: size_8(context)),
+                          style: font10Black400W(context, size: size_8(context)),
                         ),
                       ],
                     ),

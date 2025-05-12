@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
-Widget buildDayButton(BuildContext context, String day, String selectedDay,
-        ValueChanged<String> onDaySelected) =>
-    GestureDetector(
+Widget buildDayButton(BuildContext context, String day, String selectedDay, ValueChanged<String> onDaySelected) => GestureDetector(
       onTap: () => onDaySelected(day),
       child: Text(day,
           style: selectedDay == day

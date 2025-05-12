@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class ItemsSection extends StatelessWidget {
   final String text;
@@ -39,9 +39,8 @@ class ItemsSection extends StatelessWidget {
                   width: 50,
                   child: Card(
                     color: AppColors.backgroundColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: AppColors.gryColor_3)),
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: AppColors.gryColor_3)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: custom_Images_asset(

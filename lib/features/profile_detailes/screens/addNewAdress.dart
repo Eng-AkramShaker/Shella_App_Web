@@ -8,9 +8,9 @@ import 'package:shella_design/features/profile_detailes/widgets/greanappbar.dart
 import 'package:shella_design/features/profile_detailes/widgets/locationTag.dart';
 import 'package:shella_design/features/profile_detailes/widgets/selectableButton.dart';
 import 'package:shella_design/features/profile_detailes/widgets/textField.dart';
-import 'package:shella_design/helper/app_routes.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
   const AddNewAddressScreen({super.key});
@@ -50,9 +50,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(
-                      context.read<ProfileController>().errorMessage ??
-                          'Request Failed'),
+                  content: Text(context.read<ProfileController>().errorMessage ?? 'Request Failed'),
                 ),
               );
             });
@@ -94,9 +92,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                 builder: (context, controller, _) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("تسمية الموقع",
-                        style: TextStyle(
-                            fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                    Text("تسمية الموقع", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -108,9 +104,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.home,
                             label: "منزل",
-                            color: (controller.tybe == 1)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 1) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -121,9 +115,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.work,
                             label: "عمل",
-                            color: (controller.tybe == 2)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 2) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -134,9 +126,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.add,
                             label: "إضافة",
-                            color: (controller.tybe == 3)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 3) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                       ],
@@ -180,9 +170,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           },
                           child: selectableButton(
                             "منزل (اختياري)",
-                            (controller.floor == 1)
-                                ? AppColors.greenColor
-                                : AppColors.darkGreyColor,
+                            (controller.floor == 1) ? AppColors.greenColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10),
@@ -192,9 +180,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           },
                           child: selectableButton(
                             "أرضية (اختياري)",
-                            (controller.floor == 2)
-                                ? AppColors.greenColor
-                                : AppColors.darkGreyColor,
+                            (controller.floor == 2) ? AppColors.greenColor : AppColors.darkGreyColor,
                           ),
                         ),
                       ],
@@ -205,8 +191,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         controller.addAddress(
                           Address(
                             id: 0,
-                            addressType:
-                                (controller.tybe == 1) ? 'منزل' : "عمل",
+                            addressType: (controller.tybe == 1) ? 'منزل' : "عمل",
                             contactPersonName: nameController.text,
                             contactPersonNumber: phoneController.text,
                             address: adressController.text,
@@ -224,8 +209,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         backgroundColor: Colors.green,
                         minimumSize: Size(double.infinity, 50),
                       ),
-                      child: const Text("حفظ العنوان",
-                          style: TextStyle(fontSize: 18, color: Colors.white)),
+                      child: const Text("حفظ العنوان", style: TextStyle(fontSize: 18, color: Colors.white)),
                     ),
                   ],
                 ),

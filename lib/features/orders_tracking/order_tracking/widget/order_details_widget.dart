@@ -4,19 +4,18 @@ import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_navigators.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
   const OrderDetailsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final orderTrackingController =
-        Provider.of<OrderTrackingController>(context);
+    final orderTrackingController = Provider.of<OrderTrackingController>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,23 +32,16 @@ class OrderDetailsWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  custom_Images_asset(
-                      image: orderTrackingController.deliveryImage,
-                      h: 20,
-                      w: 20),
+                  custom_Images_asset(image: orderTrackingController.deliveryImage, h: 20, w: 20),
                   SizedBox(width: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Custom_Text(context,
-                          text: orderTrackingController.deliveryName,
-                          style:
-                              font11Black600W(context, size: size_10(context))),
+                          text: orderTrackingController.deliveryName, style: font11Black600W(context, size: size_10(context))),
                       Custom_Text(context,
-                          text: orderTrackingController.deliveryCar,
-                          style:
-                              font11Black400W(context, size: size_8(context))),
+                          text: orderTrackingController.deliveryCar, style: font11Black400W(context, size: size_8(context))),
                     ],
                   ),
                   Spacer(flex: 1),
@@ -83,12 +75,10 @@ class OrderDetailsWidget extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: custom_Images_asset(
-                      image: orderTrackingController.storeImage, h: 30, w: 30),
+                  child: custom_Images_asset(image: orderTrackingController.storeImage, h: 30, w: 30),
                 ),
                 Custom_Text(context,
-                    text: "${orderTrackingController.storeName}   >",
-                    style: font10Black600W(context, size: size_10(context)))
+                    text: "${orderTrackingController.storeName}   >", style: font10Black600W(context, size: size_10(context)))
               ],
             ),
           ),
@@ -100,32 +90,26 @@ class OrderDetailsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Custom_Text(context,
-                  text: "${orderTrackingController.orderPrice} ل.س",
-                  style: font11Black500W(context, size: size_11(context))),
+                  text: "${orderTrackingController.orderPrice} ل.س", style: font11Black500W(context, size: size_11(context))),
               Spacer(flex: 1),
               custom_Images_asset(image: AppImages.icon_pay, h: 17, w: 24),
               SizedBox(width: 10),
-              Custom_Text(context,
-                  text: orderTrackingController.payType,
-                  style: font11Black500W(context, size: size_11(context))),
+              Custom_Text(context, text: orderTrackingController.payType, style: font11Black500W(context, size: size_11(context))),
             ],
           ),
         ),
         SizedBox(height: 20),
         Custom_Text(context,
-            text: "${orderTrackingController.itemCont} عنصر",
-            style: font11Black500W(context, size: size_11(context))),
+            text: "${orderTrackingController.itemCont} عنصر", style: font11Black500W(context, size: size_11(context))),
         SizedBox(height: 10),
         SizedBox(
             height: 25,
             child: Row(
               children: [
-                custom_Images_asset(
-                    image: orderTrackingController.orderImage, h: 25, w: 25),
+                custom_Images_asset(image: orderTrackingController.orderImage, h: 25, w: 25),
                 SizedBox(width: 5),
                 Custom_Text(context,
-                    text: "${orderTrackingController.itemCont} X",
-                    style: font11Black500W(context, size: size_11(context))),
+                    text: "${orderTrackingController.itemCont} X", style: font11Black500W(context, size: size_11(context))),
               ],
             )),
         SizedBox(height: 20),

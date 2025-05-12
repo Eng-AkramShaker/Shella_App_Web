@@ -6,11 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/function/copy_to_clipboard.dart';
 import 'package:shella_design/common/widgets/texts/text_button.dart';
 import 'package:shella_design/features/return_and_earn/widgets/share_container.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 import '../../../common/widgets/textField/custom_textfield_2.dart';
 import '../../../common/widgets/texts/custom_text.dart';
-import '../../../util/app_styles.dart';
+import '../../../common/util/app_styles.dart';
 
 class InviteFriendsTextAndPersonalCode extends StatefulWidget {
   const InviteFriendsTextAndPersonalCode({super.key});
@@ -21,8 +21,6 @@ class InviteFriendsTextAndPersonalCode extends StatefulWidget {
 
 class _InviteFriendsTextAndPersonalCodeState extends State<InviteFriendsTextAndPersonalCode> {
   final TextEditingController _controller = TextEditingController(); // Controller for the text field
-
-
 
   @override
   void dispose() {

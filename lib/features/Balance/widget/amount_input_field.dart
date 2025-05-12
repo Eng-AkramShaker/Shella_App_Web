@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/Balance/controller/balance_controller.dart';
-import 'package:shella_design/util/app_colors.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class AmountInputField extends StatelessWidget {
   final BalanceController controller;

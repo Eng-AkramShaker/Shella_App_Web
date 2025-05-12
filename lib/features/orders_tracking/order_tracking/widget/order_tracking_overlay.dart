@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_images.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
 
 class OrderTrackingOverlay extends StatelessWidget {
   final bool showOverlay;
@@ -28,8 +28,7 @@ class OrderTrackingOverlay extends StatelessWidget {
               child: Center(
                   child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: custom_Images_asset(
-                    image: AppImages.shella, h: 400, w: double.infinity),
+                child: custom_Images_asset(image: AppImages.shella, h: 400, w: double.infinity),
               )),
             ),
             Positioned(

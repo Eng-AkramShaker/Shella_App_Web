@@ -5,8 +5,8 @@ import 'package:shella_design/features/schedule_order/controller/schedule_contro
 import 'package:shella_design/features/schedule_order/widget/day_selector.dart';
 import 'package:shella_design/features/schedule_order/widget/schedule_actions.dart';
 import 'package:shella_design/features/schedule_order/widget/time_picker_grid.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_navigators.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 
 class ScheduleOrderBottomSheet extends StatelessWidget {
   const ScheduleOrderBottomSheet({super.key});
@@ -35,8 +35,7 @@ class ScheduleOrderBottomSheet extends StatelessWidget {
             ScheduleActions(
               onCancel: () => popRoute(context),
               onSchedule: () {
-                final controller =
-                    Provider.of<ScheduleController>(context, listen: false);
+                final controller = Provider.of<ScheduleController>(context, listen: false);
                 controller.scheduleOrder();
                 popRoute(context); // إغلاق البوتوم شيت بعد الحفظ
               },

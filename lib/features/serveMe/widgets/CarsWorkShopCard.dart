@@ -4,10 +4,10 @@ import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/cars_work_shop_booking_confirmation_page.dart';
-import 'package:shella_design/util/app_colors.dart';
-import 'package:shella_design/util/app_dimensions.dart';
-import 'package:shella_design/util/app_images.dart';
-import 'package:shella_design/util/app_styles.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 
 class CarsWorkShopCard extends StatelessWidget {
   const CarsWorkShopCard({
@@ -54,10 +54,7 @@ class CarsWorkShopCard extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                custom_Images_asset(
-                                    image: AppImages.icon_Star,
-                                    h: 18.h,
-                                    w: 18.h),
+                                custom_Images_asset(image: AppImages.icon_Star, h: 18.h, w: 18.h),
                                 Custom_Text(
                                   context,
                                   text: ' 4.8',
@@ -88,9 +85,7 @@ class CarsWorkShopCard extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Custom_Text(context,
-                                text: 'متاح اليوم من : 9 ص - 6 م',
-                                style: font10Grey400W(context)),
+                            Custom_Text(context, text: 'متاح اليوم من : 9 ص - 6 م', style: font10Grey400W(context)),
                             Icon(
                               Icons.alarm,
                               color: AppColors.primaryColor,
@@ -115,8 +110,7 @@ class CarsWorkShopCard extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          CarsWorkShopBookingConfirmationPage(),
+                      builder: (context) => CarsWorkShopBookingConfirmationPage(),
                     ),
                   );
                 },
