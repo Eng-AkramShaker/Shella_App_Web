@@ -13,7 +13,7 @@ abstract class ProfileRepository {
 }
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  final ApiProvider apiClient;
+  final ApiClient apiClient;
 
   ProfileRepositoryImpl({
     required this.apiClient,
@@ -55,7 +55,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     print(response.statusCode);
     print(responsemap);
     print(response.statusCode);
-    if (response != null && response.statusCode == 200) {
+    if (response.statusCode == 200) {
       return true;
     } else {
       throw Exception('Failed to add address');

@@ -1,7 +1,6 @@
 import 'package:shella_design/features/cart/widgets/cart_item.dart';
 import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
 import 'package:shella_design/features/my_points/widgets/offers.dart';
-import 'package:shella_design/features/my_points/widgets/offers_widgets.dart';
 import 'package:shella_design/common/util/app_images.dart';
 
 List<CartItem> items = [

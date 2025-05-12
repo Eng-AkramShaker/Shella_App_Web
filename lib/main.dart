@@ -46,3 +46,19 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+  //   599966674
+  //   Na25526aa
+
+
+  //  Card(
+  //     color: Colors.red,
+  //     child: ElevatedButton(
+  //       child: const Text('data'),
+  //       onPressed: () async {
+  //         Get.find<CategoryController>().getCategoryList(true);
+  //     },
+  //    ),
+  //  ),
