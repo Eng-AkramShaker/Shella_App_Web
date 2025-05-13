@@ -39,11 +39,7 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> postData(String uri, dynamic body) async {
     try {
-      final response = await http.post(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-        body: jsonEncode(body),
-      );
+      final response = await http.post(Uri.parse("$appBaseUrl$uri"), headers: _headers, body: jsonEncode(body));
       log('${(_handleResponse(response)) == null}55555');
       return _handleResponse(response);
     } catch (e) {
@@ -55,11 +51,7 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> putData(String uri, dynamic body) async {
     try {
-      final response = await http.put(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-        body: jsonEncode(body),
-      );
+      final response = await http.put(Uri.parse("$appBaseUrl$uri"), headers: _headers, body: jsonEncode(body));
       return _handleResponse(response);
     } catch (e) {
       debugPrint('PUT Error: $e');
@@ -69,10 +61,7 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> deleteData(String uri) async {
     try {
-      final response = await http.delete(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-      );
+      final response = await http.delete(Uri.parse("$appBaseUrl$uri"), headers: _headers);
       return _handleResponse(response);
     } catch (e) {
       debugPrint('DELETE Error: $e');
@@ -115,7 +104,7 @@ class ApiClient with ChangeNotifier {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return response;
     } else {
-      debugPrint("API Error: ${response.statusCode} - ${response.body}");
+      debugPrint("API Error: ${response.statusCode}  ");
       return null;
     }
   }

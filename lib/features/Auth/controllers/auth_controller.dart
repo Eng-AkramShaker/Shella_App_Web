@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -9,11 +8,10 @@ import '../domain/services/auth_service_interface.dart';
 
 enum AuthState { initial, loading, success, error }
 
-
 class AuthController extends ChangeNotifier {
-  final AuthServiceInterface authServiceInterface;
+  final AuthServiceInterface? authServiceInterface;
 
-  AuthController({required this.authServiceInterface});
+  AuthController({this.authServiceInterface});
 
   AuthState _state = AuthState.initial;
   AuthState get state => _state;
@@ -24,13 +22,19 @@ class AuthController extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  Future<ResponseModel> login({required String emailOrPhone, required String password, required String loginType, required String fieldType, bool alreadyInApp = false}) async {
+  Future<ResponseModel> login(
+      {required String emailOrPhone,
+      required String password,
+      required String loginType,
+      required String fieldType,
+      bool alreadyInApp = false}) async {
     ResponseModel? responseModel;
     _state = AuthState.loading;
     notifyListeners();
 
     try {
-      responseModel = await authServiceInterface.login(emailOrPhone: emailOrPhone, password: password, loginType: loginType, fieldType: fieldType, alreadyInApp: alreadyInApp);
+      responseModel = await authServiceInterface!.login(
+          emailOrPhone: emailOrPhone, password: password, loginType: loginType, fieldType: fieldType, alreadyInApp: alreadyInApp);
       _state = AuthState.success;
       notifyListeners();
     } catch (e) {
@@ -47,16 +51,15 @@ class AuthController extends ChangeNotifier {
     _state = AuthState.loading;
     notifyListeners();
     try {
-      responseModel = await authServiceInterface.registration(signUpBody);
+      responseModel = await authServiceInterface!.registration(signUpBody);
       _state = AuthState.success;
       notifyListeners();
-    }catch(error){
+    } catch (error) {
       responseModel = ResponseModel(false, 'error');
       log(error.toString());
     }
     return responseModel;
   }
-
 
   // SignupState _signupState = SignupState.initial;
   // SignupState get signupState => _signupState;
