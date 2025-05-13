@@ -65,13 +65,15 @@ class _Home_ScreenState extends State<Home_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Consumer<HomeController>(builder: (context, controller, _) {
+              Consumer<SplashController>(builder: (context, controller, _) {
                 return Card(
                   color: Colors.red,
                   child: ElevatedButton(
                     child: const Text('data'),
                     onPressed: () async {
                       //
+
+                      await controller.getConfigData(context);
                     },
                   ),
                 );
