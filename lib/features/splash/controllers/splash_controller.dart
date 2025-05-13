@@ -6,6 +6,8 @@ import 'package:shella_design/features/splash/domain/models/config_model.dart';
 class SplashController extends ChangeNotifier {
   //
 
+  SplashController();
+
   ConfigModel? _configModel;
   ConfigModel? get configModel => _configModel;
 
