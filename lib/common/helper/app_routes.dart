@@ -55,6 +55,7 @@ import 'package:shella_design/features/profile_detailes/domain/repositories/prof
 import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
 import 'package:shella_design/features/profile_detailes/screens/addNewAdress.dart';
 import 'package:shella_design/features/profile_detailes/screens/adressDetailes.dart';
+import 'package:shella_design/features/profile_detailes/screens/profile_info.dart';
 import 'package:shella_design/features/return_and_earn/screens/return_and_earn_screen.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
@@ -138,6 +139,7 @@ class AppRoutes {
   static const String savedaddresses = '/savedaddresses';
   static const String myOrders = '/myOrders';
   //prifile Details
+  static const String profileInfo = '/profile_info';
   static const String addressDetails = '/addressDetails';
   static const String addaddress = '/addaddress';
 
@@ -312,8 +314,10 @@ class AppRoutes {
         ),
 
     //prifile Details
+    profileInfo: (context) => const ProfileInfo (),
     addressDetails: (context) => MultiProvider(
           providers: [
+            
             Provider<ProfileRepository>(
               create: (context) => ProfileRepositoryImpl(
                 apiClient: ApiClient(
