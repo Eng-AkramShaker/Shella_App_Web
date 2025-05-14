@@ -21,6 +21,7 @@ import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/discount/screens/discount_screen.dart';
 import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
+import 'package:shella_design/features/home/home/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
@@ -101,7 +102,8 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String step_one_service_screen = '/step_one_service_screen';
   static const String step_tow_service_screen = '/step_tow_service_screen';
-  static const String address_details_service_screen = '/address_details_service_screen';
+  static const String address_details_service_screen =
+      '/address_details_service_screen';
   static const String payment_screen = '/payment_screen';
   static const String payment_method_screen = '/payment_method_screen';
   static const String add_new_card_screen = '/add_new_card_screen';
@@ -128,7 +130,8 @@ class AppRoutes {
   static const String forgetpassword = '/forgetpassword';
   static const String mobilelVerification = '/mobilelVerification';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
-  static const String passwordResetSuccessScreen = '/passwordResetSuccessScreen';
+  static const String passwordResetSuccessScreen =
+      '/passwordResetSuccessScreen';
   static const String succsessflycreated = '/succsessflycreated';
   static const String orderdetails = '/orderdetails';
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
@@ -147,7 +150,8 @@ class AppRoutes {
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
-  static const String bookingConfirmationSuccess = '/bookingConfirmationSuccess';
+  static const String bookingConfirmationSuccess =
+      '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
   // static const String infoOfService = '/infoOfService';
@@ -198,17 +202,24 @@ class AppRoutes {
   static final Map<String, Widget Function(BuildContext)> routes = {
     // Main Layout
     mainLayout: (context) => const MainLayout(),
-    scheduleOrderBottomSheet: (context) =>
-        ChangeNotifierProvider(create: (_) => ScheduleController(), child: const ScheduleOrderBottomSheet()),
+    scheduleOrderBottomSheet: (context) => ChangeNotifierProvider(
+        create: (_) => ScheduleController(),
+        child: const ScheduleOrderBottomSheet()),
     // Auth
     Login_Mobile: (context) => Provider<AuthRepositoryInterface>(
           create: (context) => AuthRepo(
-              apiClient: ApiClient(appBaseUrl: Api_Constants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()),
+              apiClient: ApiClient(
+                  appBaseUrl: Api_Constants.appBaseUrl,
+                  sharedPreferences: sp<SharedPreferences>()),
               sharedPreferences: sp<SharedPreferences>()),
           child: Provider<AuthService>(
-            create: (context) => AuthService(authRepositoryInterface: context.read<AuthRepositoryInterface>()),
+            create: (context) => AuthService(
+                authRepositoryInterface:
+                    context.read<AuthRepositoryInterface>()),
             child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(authServiceInterface: context.read<AuthService>()), child: const Login_mobile()),
+                create: (context) => AuthController(
+                    authServiceInterface: context.read<AuthService>()),
+                child: const Login_mobile()),
           ),
         ),
 
@@ -221,9 +232,13 @@ class AppRoutes {
             sharedPreferences: sp<SharedPreferences>(),
           ),
           child: Provider<AuthService>(
-            create: (context) => AuthService(authRepositoryInterface: context.read<AuthRepositoryInterface>()),
+            create: (context) => AuthService(
+                authRepositoryInterface:
+                    context.read<AuthRepositoryInterface>()),
             child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(authServiceInterface: context.read<AuthService>()), child: const Signup()),
+                create: (context) => AuthController(
+                    authServiceInterface: context.read<AuthService>()),
+                child: const Signup()),
           ),
         ),
     forgetpassword: (context) => const Forgetpassword(),
@@ -233,7 +248,7 @@ class AppRoutes {
     succsessflycreated: (context) => const Succsessflycreated(),
 
     // Home
-    home: (context) => const Home_Screen(),
+    home: (context) => const HomeView(),
     shops_screen: (context) => const ShopsScreen(),
     hyper_screen: (context) => const HyperScreen(),
     super_screen: (context) => const SuperScreen(),
@@ -261,7 +276,8 @@ class AppRoutes {
               ),
             ),
             ChangeNotifierProvider<CartController>(
-              create: (context) => CartController(cartService: context.read<CartService>()),
+              create: (context) =>
+                  CartController(cartService: context.read<CartService>()),
             ),
           ],
           child: const Cart_Screen(),
@@ -272,10 +288,13 @@ class AppRoutes {
     ordersScreen: (context) => const OrdersPage(),
     step_one_service_screen: (context) => const Step_One_Service_Screen(),
     step_tow_service_screen: (context) => const Step_Tow_Service_Screen(),
-    address_details_service_screen: (context) => const Address_Details_Service_Screen(),
-    order_tracking: (context) => ChangeNotifierProvider(create: (_) => OrderTrackingController(), child: const OrderTracking()),
-    start_tracking_order: (context) =>
-        ChangeNotifierProvider(create: (_) => StartTrackingOrderController(), child: const StartTrackingOrder()),
+    address_details_service_screen: (context) =>
+        const Address_Details_Service_Screen(),
+    order_tracking: (context) => ChangeNotifierProvider(
+        create: (_) => OrderTrackingController(), child: const OrderTracking()),
+    start_tracking_order: (context) => ChangeNotifierProvider(
+        create: (_) => StartTrackingOrderController(),
+        child: const StartTrackingOrder()),
     orderdetails: (context) => ChangeNotifierProvider(
           create: (_) => OrderDetailsConroller(),
           child: const OrderDetails(),
