@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import '../../../common/widgets/appBar/customAppBar.dart';
+import '../../../common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import '../../../common/helper/app_routes.dart';
 import '../../../common/util/app_navigators.dart';
 import '../widgets/phone_and_email.dart';

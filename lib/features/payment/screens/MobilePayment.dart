@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import 'package:shella_design/common/widgets/divider/divider_2.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';

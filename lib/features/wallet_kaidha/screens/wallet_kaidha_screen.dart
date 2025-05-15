@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/appBar/appBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/features/wallet_kaidha/widgets/available_balance.dart';
 import 'package:shella_design/features/wallet_kaidha/widgets/payment_details.dart';

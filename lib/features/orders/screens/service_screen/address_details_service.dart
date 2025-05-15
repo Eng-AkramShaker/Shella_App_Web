@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/widgets/bottom_bar.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_info_section.dart';

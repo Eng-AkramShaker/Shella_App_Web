@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/serveMe/widgets/address.dart';

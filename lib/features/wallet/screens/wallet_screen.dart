@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/appBar/appBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/features/wallet/widgets/balance_container_widget.dart';
 import 'package:shella_design/features/wallet/widgets/wallet_transactions_widgets.dart';
 import 'package:shella_design/common/util/app_colors.dart';

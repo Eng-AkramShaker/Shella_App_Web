@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/my_coupon/screens/my_coupon_screen.dart';
@@ -7,7 +9,6 @@ import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
-
 import '../../../common/helper/app_routes.dart';
 
 class ProfileDetailsPage extends StatelessWidget {
@@ -15,6 +16,7 @@ class ProfileDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -81,7 +83,9 @@ class ProfileDetailsPage extends StatelessWidget {
           buildListTile('الشروط والأحكام', Icons.rule, context, () {}),
           buildListTile('سياسة الاسترداد', Icons.replay, context, () {}),
           buildListTile('المساعدة والدعم', Icons.support_agent, context, () {
-            pushNewScreen(context, AppRoutes.helpAndSupport);
+            isWideScreen==true?
+            pushNewScreen(context, AppRoutes.accountdetails):
+            pushNewScreen(context, AppRoutes.helpAndSupportMobile);
           }),
           buildListTile('الدردشة المباشرة', Icons.chat, context, () {
             pushNewScreen(context, AppRoutes.supportConversation);

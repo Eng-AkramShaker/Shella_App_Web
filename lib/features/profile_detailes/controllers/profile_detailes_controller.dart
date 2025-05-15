@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
@@ -6,9 +5,9 @@ import 'package:shella_design/features/profile_detailes/domain/services/profile_
 enum RequestState { initial, loading, success, error }
 
 class ProfileController extends ChangeNotifier {
-  final ProfileDetailsService profileDetailsService;
+  final ProfileDetailsService? profileDetailsService;
 
-  ProfileController({required this.profileDetailsService});
+  ProfileController({this.profileDetailsService});
 
   RequestState adressstate = RequestState.initial;
   RequestState get adresstate => adressstate;
@@ -22,13 +21,35 @@ class ProfileController extends ChangeNotifier {
   int tybe = 1;
   int floor = 1;
 
+  /// WEP
+  int _currentPage = 0;
+  int _currentAddressesPage = 0;
+
+  // Getters
+  int get currentPage => _currentPage;
+  int get currentAddressesPage => _currentAddressesPage;
+
+  // Setters
+  void setCurrentAddressesPage(int value) {
+    _currentAddressesPage = value;
+    notifyListeners();
+  }
+
+  void changePage(int index) {
+    _currentPage = index;
+    notifyListeners();
+  }
+
+  void changeAddressesPage() => notifyListeners();
+
+
   /// Fetches the list of addresses
   Future<void> getAdress() async {
     adressstate = RequestState.loading;
     notifyListeners();
 
     try {
-      address = await profileDetailsService.fetchAddressList();
+      address = await profileDetailsService!.fetchAddressList();
       adressstate = RequestState.success;
     } catch (e) {
       _errorMessage = e.toString();
@@ -43,7 +64,7 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      bool success = await profileDetailsService.addAddress(newAddress);
+      bool success = await profileDetailsService!.addAddress(newAddress);
       if (success) {
         address?.add(newAddress);
         adressstate = RequestState.success;
@@ -64,7 +85,7 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      bool success = await profileDetailsService.removeAddress(addressId);
+      bool success = await profileDetailsService!.removeAddress(addressId);
       if (success) {
         address?.removeWhere((addr) => addr.id == addressId);
         adressstate = RequestState.success;
@@ -84,7 +105,7 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      bool success = await profileDetailsService.updateAddress(updatedAddress);
+      bool success = await profileDetailsService!.updateAddress(updatedAddress);
       if (success) {
         int index =
             address?.indexWhere((addr) => addr.id == updatedAddress.id) ?? -1;

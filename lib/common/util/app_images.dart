@@ -38,6 +38,8 @@ class AppImages {
 
   static const String icon_card = 'assets/icons/card.png';
 
+  static const String cIcon = 'assets/icons/c.svg';
+
   // ======================== Images ========================
   static const String individualsService =
       'assets/images/IndividualsService.png';
@@ -107,6 +109,7 @@ class AppImages {
   static const String order2 = 'assets/images/100.png';
   static const String mark = 'assets/images/101.png';
   static const String success = 'assets/images/109.png';
+  static const String helpAndSupport = 'assets/images/Help.png';
 
   static const String coupon = 'assets/images/coupon.png';
   static const String visa = 'assets/images/visa.png';
