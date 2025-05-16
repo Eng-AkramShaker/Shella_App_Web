@@ -21,15 +21,29 @@ class ApiClient with ChangeNotifier {
     String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
     _headers = {
       'Content-Type': 'application/json',
-      'Authorization': token != null ? 'Bearer $token' : '',
+      'Accept': 'application/json',
+      'Authorization': token != null ? 'Bearer $token' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYmM3ZDYyY2FmMmFlZDY0ODk3ZDQ0YTk4OWVmMWY2N2E0NjIwZDVlMTFiYzM0NmEwODM0ZTgyYjg2ZDZlYWIyOWRlZjcyZDlhODM2OTI3Y2IiLCJpYXQiOjE3NDY0NzUwOTAuNTM3MjAxLCJuYmYiOjE3NDY0NzUwOTAuNTM3MjA5LCJleHAiOjE3NzgwMTEwOTAuNTM0NTg2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.dekJRiq3c076cBkA8X-_fBIAR8W2MNscf2gjU5-jb7SI1FhiTXNLs8kVREzSI83bdGFVT1OFr94oXqwN8QOdAsEiJxqz8EF54-JAJQspRiWlgNdY2rUyV9pyLn2TxR4BazApS8MsxH2Po_XV9lhS0iboETkU__2qyulgGkTMLJ6g91qqWP0-qoYo1arrUAIlX3ns-uUeK6T7t57t5pv6L11Y_kCSPIgmLSDY7R_Spk8r6AgDY4XIGIdtFk1y0vMQhvQPe6Qxcb7-E9e2MAe3d4CbGnv0HwZ_WZ4sBtDfXOrhexExWevGCfeRVE7BR12AiaD1oBq_UJpWB93MivoB1wE4XI0C3IOpdxxag3xyp-sNdzoeAYB9IMRzNWxZo-WuiMntsct0mVgALsyT6SJaBSmGcLSv3hQRqsxlTTBQXtAqKFwPAxLKtwLkYA9sntJzPw9iEvEDX0iEyv_eSB-FHVl3jRinwH7OiySemHeKb0yKjMzDU_XJBi-DU082pGLhh8stZA1JpEWwU8DTWinOyCe_g-0tuV475uMrx2yNMMRvAcChEiKDBwyjv0PUR5CuP1idviNxUGUzbf9uz9X5mu43kwNswIwErJiOdOy5-7U0VRlb03lxN0EyDA2scF4wo5PJLVRHLhE2Mo8vFt310c_xZlueCSVb8jAopzKIiC4',
+
     };
     notifyListeners();
   }
 
-  Future<http.Response?> getData(String uri, {Map<String, dynamic>? query}) async {
+  Future<http.Response?> getData(String uri,
+      {Map<String, dynamic>? query}) async {
     try {
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
+
+      // Log request
+      log('GET Request: $url');
+      log('Headers: $_headers');
+      if (query != null) log('Query params: $query');
+
       final response = await http.get(url, headers: _headers);
+
+      // Log response
+      log('GET Response status: ${response.statusCode}');
+      log('GET Response body: ${response.body}');
+
       return _handleResponse(response);
     } catch (e) {
       debugPrint('GET Error: $e');
@@ -39,7 +53,20 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> postData(String uri, dynamic body) async {
     try {
-      final response = await http.post(Uri.parse("$appBaseUrl$uri"), headers: _headers, body: jsonEncode(body));
+      Uri url = Uri.parse("$appBaseUrl$uri");
+
+      // Log request
+      log('POST Request: $url');
+      log('Headers: $_headers');
+      log('Body: ${jsonEncode(body)}');
+
+      final response =
+          await http.post(url, headers: _headers, body: jsonEncode(body));
+
+      // Log response
+      log('POST Response status: ${response.statusCode}');
+      log('POST Response body: ${response.body}');
+
       log('${(_handleResponse(response)) == null}55555');
       return _handleResponse(response);
     } catch (e) {
@@ -51,7 +78,20 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> putData(String uri, dynamic body) async {
     try {
-      final response = await http.put(Uri.parse("$appBaseUrl$uri"), headers: _headers, body: jsonEncode(body));
+      Uri url = Uri.parse("$appBaseUrl$uri");
+
+      // Log request
+      log('PUT Request: $url');
+      log('Headers: $_headers');
+      log('Body: ${jsonEncode(body)}');
+
+      final response =
+          await http.put(url, headers: _headers, body: jsonEncode(body));
+
+      // Log response
+      log('PUT Response status: ${response.statusCode}');
+      log('PUT Response body: ${response.body}');
+
       return _handleResponse(response);
     } catch (e) {
       debugPrint('PUT Error: $e');
@@ -61,7 +101,18 @@ class ApiClient with ChangeNotifier {
 
   Future<http.Response?> deleteData(String uri) async {
     try {
-      final response = await http.delete(Uri.parse("$appBaseUrl$uri"), headers: _headers);
+      Uri url = Uri.parse("$appBaseUrl$uri");
+
+      // Log request
+      log('DELETE Request: $url');
+      log('Headers: $_headers');
+
+      final response = await http.delete(url, headers: _headers);
+
+      // Log response
+      log('DELETE Response status: ${response.statusCode}');
+      log('DELETE Response body: ${response.body}');
+
       return _handleResponse(response);
     } catch (e) {
       debugPrint('DELETE Error: $e');
@@ -69,9 +120,18 @@ class ApiClient with ChangeNotifier {
     }
   }
 
-  Future<http.Response?> postMultipartData(String uri, Map<String, String> body, List<MultipartBody> multipartBody) async {
+  Future<http.Response?> postMultipartData(String uri, Map<String, String> body,
+      List<MultipartBody> multipartBody) async {
     try {
-      var request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
+      Uri url = Uri.parse(appBaseUrl + uri);
+
+      // Log request
+      log('MULTIPART POST Request: $url');
+      log('Headers: $_headers');
+      log('Field data: $body');
+      log('Files count: ${multipartBody.length}');
+
+      var request = http.MultipartRequest('POST', url);
       request.headers.addAll(_headers);
 
       for (MultipartBody multipart in multipartBody) {
@@ -90,7 +150,10 @@ class ApiClient with ChangeNotifier {
       http.StreamedResponse streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
 
-      debugPrint(response.body);
+      // Log response
+      log('MULTIPART POST Response status: ${response.statusCode}');
+      log('MULTIPART POST Response body: ${response.body}');
+
       return _handleResponse(response);
     } catch (e) {
       debugPrint('Multipart POST Error: $e');
@@ -105,6 +168,7 @@ class ApiClient with ChangeNotifier {
       return response;
     } else {
       debugPrint("API Error: ${response.statusCode}  ");
+      log("API Error Response: ${response.body}");
       return null;
     }
   }

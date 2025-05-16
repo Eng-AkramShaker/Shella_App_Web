@@ -32,7 +32,7 @@ class _CouponInputDialogState extends State<CouponInputDialog> {
         child: Container(
           width: ResponsiveLayout.isWeb()
               ? MediaQuery.of(context).size.width / 3
-              : MediaQuery.of(context).size.width, // Take full screen width
+              : MediaQuery.of(context).size.width, // Take full screens width
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: ResponsiveLayout.isWeb() ? BorderRadius.circular(8.r) : BorderRadius.circular(0.r)),

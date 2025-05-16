@@ -51,7 +51,7 @@ class _Login_mobileState extends State<Login_mobile> {
               ),
               child: Consumer<AuthController>(
                 builder: (context, controller, _) {
-                  // Listen to the controller's state to show loading or errors
+                  // Listen to the controllers's state to show loading or errors
                   if (controller.state == AuthState.loading) {
                     return Center(
                         child: CircularProgressIndicator(

@@ -23,6 +23,7 @@ class IconButtonCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+
       color: color ?? AppColors.backgroundColor,
       shape: const CircleBorder(),
       elevation: 2,
@@ -33,6 +34,10 @@ class IconButtonCircle extends StatelessWidget {
           width: width ?? 30,
           height: height ?? 30,
           alignment: Alignment.center,
+          decoration:   BoxDecoration(
+            border:   Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(30),
+          ),
           child: Icon(icon, color: iconcolor ?? Colors.black, size: iconsize ?? 24),
         ),
       ),

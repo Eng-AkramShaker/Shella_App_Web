@@ -12,6 +12,7 @@ import 'package:shella_design/features/schedule_order/controller/schedule_contro
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
+import 'package:shella_design/features/Balance/controllers/balance_controller.dart';
 
 List<SingleChildWidget> appProviders = [
   //
@@ -30,4 +31,5 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
+  ChangeNotifierProvider(create: (_) => BalanceController()),
 ];

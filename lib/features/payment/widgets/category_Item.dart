@@ -1,4 +1,4 @@
-// item widget
+// item widgets
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';

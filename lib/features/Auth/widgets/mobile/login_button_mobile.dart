@@ -23,7 +23,7 @@ class LoginButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         if (formKey.currentState!.validate()) {
-          // Trigger the login logic in the controller
+          // Trigger the login logic in the controllers
           context.read<AuthController>().login(
               emailOrPhone: phoneController.text,
               password: passwordController.text,
