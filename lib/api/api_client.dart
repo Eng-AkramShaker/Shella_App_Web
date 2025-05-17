@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 
+import '../common/widgets/print/custom_print.dart';
+
 class ApiClient with ChangeNotifier {
   final SharedPreferences sharedPreferences;
   final String appBaseUrl;
@@ -22,12 +24,17 @@ class ApiClient with ChangeNotifier {
     _headers = {
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',
+      'zoneId': '[2,4,3,5]',
+      'moduleId': '3',
+      'longitude': '46.701550834948726',
+      'latitude': '24.604741730570755'
     };
     notifyListeners();
   }
 
   Future<http.Response?> getData(String uri, {Map<String, dynamic>? query}) async {
     try {
+      customPrint('URL ========> ${appBaseUrl+uri}',isUrl: true);
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
       final response = await http.get(url, headers: _headers);
       return _handleResponse(response);

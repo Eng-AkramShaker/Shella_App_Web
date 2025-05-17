@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/search_filter/widget/site_dropdown_menu.dart';
+import 'package:shella_design/features/search_filter/widget/mobile/site_dropdown_menu.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -26,7 +26,7 @@ class LocationHeader extends StatelessWidget {
             children: [
               Custom_Text(
                 context,
-                style: font10Black300W(context, size: size_11(context)),
+                style: font10Black300W(context, size: size_13(context)),
                 text: "التوصيل الى:",
               ),
               const SizedBox(width: 10),

@@ -14,7 +14,7 @@ Widget buildAddressRow(context) {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          height: 28.h,
+          height: 5.h,
           width: 24.w,
           child: IconButton(
             icon: Image.asset(AppImages.shape),
@@ -22,7 +22,7 @@ Widget buildAddressRow(context) {
           ),
         ),
         Custom_Text(context, text: 'التوصيل الى السعودية ,شارع 112 بناء 14  ', style: font11White400W(context)),
-        Icon(Icons.keyboard_arrow_down, color: AppColors.backgroundColor, size: 22.w),
+        Icon(Icons.keyboard_arrow_down, color: AppColors.backgroundColor, size: 50),
       ],
     ),
   );

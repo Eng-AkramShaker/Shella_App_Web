@@ -11,22 +11,23 @@ class MostSearchedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchFilterController = Provider.of<SearchFilterController>(context);
-    return ListView.builder(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height*0.45,
+      child: ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
         itemCount: searchFilterController.img.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Row(
               children: [
-                SizedBox(
-                    height: 70, width: 100, child: custom_Images_asset(fit: BoxFit.fill, image: searchFilterController.img[index])),
-                SizedBox(width: 10),
-                Custom_Text(context, text: searchFilterController.text[index], style: font10Black400W(context, size: 10)),
+                SizedBox(height: 80, width: 110, child: custom_Images_asset(fit: BoxFit.fill, image: searchFilterController.img[index])),
+                SizedBox(width: 15),
+                Custom_Text(context, text: searchFilterController.text[index], style: font10Black400W(context, size: 11)),
               ],
             ),
           );
-        });
+        }),
+    );
   }
 }

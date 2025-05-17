@@ -59,7 +59,9 @@ import 'package:shella_design/features/return_and_earn/screens/return_and_earn_s
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
-import 'package:shella_design/features/search_filter/screen/search_filter.dart';
+import 'package:shella_design/features/search_filter/domain/services/searchService/search_service.dart';
+import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
+import 'package:shella_design/features/search_filter/screen/mobile/search_filter.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companies_workshops_page.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/carsServicespage.dart';
@@ -80,6 +82,7 @@ import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/Auth/domain/services/auth_service.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
 import '../widgets/profile/web/accountDetails/account_details.dart';
@@ -310,35 +313,36 @@ class AppRoutes {
 
     // Notifications & Search
     notifications: (context) => const Notifications(),
+
     AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-          create: (_) => SearchFilterController(),
-          child: const SearchFilter(),
-        ),
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository())),
+      child: const SearchFilter(),
+    ),
 
     //prifile Details
     addressDetails: (context) => MultiProvider(
-          providers: [
-            Provider<ProfileRepository>(
-              create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: sp<SharedPreferences>(),
-                ),
-              ),
+      providers: [
+        Provider<ProfileRepository>(
+          create: (context) => ProfileRepositoryImpl(
+            apiClient: ApiClient(
+              appBaseUrl: Api_Constants.appBaseUrl,
+              sharedPreferences: sp<SharedPreferences>(),
             ),
-            Provider<ProfileDetailsService>(
-              create: (context) => ProfileDetailsService(
-                profileRepository: context.read<ProfileRepository>(),
-              ),
-            ),
-            ChangeNotifierProvider<ProfileController>(
-              create: (context) => ProfileController(
-                profileDetailsService: context.read<ProfileDetailsService>(),
-              ),
-            ),
-          ],
-          child: const AddressDetailsPage(),
+          ),
         ),
+        Provider<ProfileDetailsService>(
+          create: (context) => ProfileDetailsService(
+            profileRepository: context.read<ProfileRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider<ProfileController>(
+          create: (context) => ProfileController(
+            profileDetailsService: context.read<ProfileDetailsService>(),
+          ),
+        ),
+      ],
+      child: const AddressDetailsPage(),
+    ),
     addaddress: (context) => MultiProvider(
           providers: [
             Provider<ProfileRepository>(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
-import 'package:shella_design/features/search_filter/widget/builds/build_category_button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'builds/build_category_button.dart';
 
 class CategoryTabs extends StatefulWidget {
   final String initialCategory;
@@ -24,7 +24,7 @@ class _CategoryTabsState extends State<CategoryTabs> {
     final searchFilterController = Provider.of<SearchFilterController>(context);
     return Card(
       color: AppColors.backgroundColor,
-      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),side: BorderSide(color: AppColors.gryColor_3)),
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Padding(
         padding: const EdgeInsets.only(top: 15, right: 10, left: 10),

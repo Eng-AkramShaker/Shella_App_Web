@@ -30,4 +30,5 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
+
 ];

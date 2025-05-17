@@ -17,7 +17,7 @@ Widget buildCategoryButton(BuildContext context, String text, Function() onTap, 
         ),
         AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          height: 2,
+          height: 3,
           width: MediaQuery.of(context).size.width * 0.25,
           margin: const EdgeInsets.only(top: 10),
           color: color,

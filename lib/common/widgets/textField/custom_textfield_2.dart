@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
   final Color? suffixColor;
   final double? borderWidth;
   final Color? enableBorderColor;
+  final Function(String)? onChanged;
 
   const CustomTextField({
     Key? key,
@@ -43,6 +44,7 @@ class CustomTextField extends StatelessWidget {
     this.horizontalPadding,
     this.borderWidth,
     this.enableBorderColor,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -58,6 +60,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         validator: validator,
+        onChanged: onChanged,
         style: TextStyle(color: AppColors.bgColor),
         decoration: InputDecoration(
           labelText: labelText,
@@ -73,7 +76,7 @@ class CustomTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
                   borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
           focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(radius?.r?? 8.r),borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
           border: dottedBorder ?? false
               ? OutlineInputBorder(borderSide: BorderSide.none)
               : OutlineInputBorder(
