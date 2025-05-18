@@ -19,5 +19,21 @@ class SearchRepository implements SearchRepositoryInterface{
     return response;
   }
 
+  ///-------------------------------------<<<---MOST SEARCHED--->>>-------------------------------------
+  @override
+  Future<http.Response?> mostSearched() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.mostSearched);
+    customPrint('Most Searched Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
+  ///-------------------------------------<<<---CART PRODUCTS--->>>-------------------------------------
+  @override
+  Future<http.Response?> cartProducts() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts);
+    customPrint('Cart Products Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
 
 }

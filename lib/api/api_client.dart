@@ -21,6 +21,7 @@ class ApiClient with ChangeNotifier {
 
   void updateHeaders() {
     String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
+    customPrint('TOKEN =====> $token');
     _headers = {
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',

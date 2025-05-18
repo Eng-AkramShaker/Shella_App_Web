@@ -26,4 +26,10 @@ class Api_Constants {
 
   /// SEARCH ITEMS
   static const String searchItems = '/api/v1/items/item-or-store-search';
+
+  /// MOST SEARCHED
+  static const String mostSearched = '/api/v1/items/popular';
+
+  /// CART PRODUCTS
+  static const String cartProducts = '/api/v1/items/suggested';
 }

@@ -315,7 +315,7 @@ class AppRoutes {
     notifications: (context) => const Notifications(),
 
     AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository())),
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched(),
       child: const SearchFilter(),
     ),
 

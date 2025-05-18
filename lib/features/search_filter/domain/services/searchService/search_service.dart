@@ -5,6 +5,9 @@ import 'package:shella_design/features/search_filter/domain/models/searchResultM
 import 'package:shella_design/features/search_filter/domain/repositories/searchRepositoryInterface/search_repository_interface.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
 
+import '../../models/cartProductsModel/cart_products_model.dart';
+import '../../models/mostSearchedModel/most_searched_model.dart';
+
 class SearchService implements SearchServiceInterface{
 
   final SearchRepositoryInterface searchRepositoryInterface;
@@ -26,6 +29,42 @@ class SearchService implements SearchServiceInterface{
         print('Search Item Exception :: ${e.toString()}');
       }
       throw Exception('Search Item Exception :: ${e.toString()}');
+    }
+  }
+
+  ///-------------------------------------<<<---MOST SEARCHED--->>>-------------------------------------
+  @override
+  Future<MostSearchedModel> mostSearched() async {
+    try{
+      Response? response = await searchRepositoryInterface.mostSearched();
+      if(response!.statusCode==200){
+        return MostSearchedModel.fromJson(jsonDecode(response.body));
+      }else{
+        throw Exception('Most Searched Failed');
+      }
+    }catch(e){
+      if (kDebugMode) {
+        print('Most Searched Exception :: ${e.toString()}');
+      }
+      throw Exception('Most Searched Exception :: ${e.toString()}');
+    }
+  }
+
+  ///-------------------------------------<<<---CART PRODUCTS--->>>-------------------------------------
+  @override
+  Future<CartProductsModel> cartProducts() async {
+    try{
+      Response? response = await searchRepositoryInterface.cartProducts();
+      if(response!.statusCode==200){
+        return CartProductsModel.fromJson(jsonDecode(response.body));
+      }else{
+        throw Exception('Cart Products Failed');
+      }
+    }catch(e){
+      if (kDebugMode) {
+        print('Cart Products Exception :: ${e.toString()}');
+      }
+      throw Exception('Cart Products Exception :: ${e.toString()}');
     }
   }
 }
