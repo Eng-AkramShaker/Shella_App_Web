@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/Favorite/screens/favoritePage.dart';
+import 'package:shella_design/features/Favorite/screens/mobile/favoritePage.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
