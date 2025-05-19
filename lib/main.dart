@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
@@ -9,11 +10,19 @@ import 'common/util/sharedPre_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+
   await init();
   await checkIfLoggedInUser();
+
   runApp(
     MultiProvider(
-      providers: appProviders,
+      providers: [
+        Provider<SharedPreferences>.value(value: sharedPreferences),
+        ...appProviders,
+      ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -36,7 +45,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'شلة',
       routes: AppRoutes.routes,
-      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      initialRoute:
+          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      theme: ThemeData(
+        primaryColor: Colors.green,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
+      ),
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -47,9 +62,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
-  //   599966674
+ //   599966674
   //   Na25526aa
 
 
