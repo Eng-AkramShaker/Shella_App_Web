@@ -13,7 +13,7 @@ void main() async {
   await checkIfLoggedInUser();
   runApp(
     MultiProvider(
-      providers: appProviders,
+       providers: getAppProviders(),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 
 

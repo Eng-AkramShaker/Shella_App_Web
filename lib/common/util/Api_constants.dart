@@ -14,6 +14,7 @@ class Api_Constants {
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
   static const String updateAddressUri = '/api/v1/customer/address/update/';
+  //static const String getDiscountedProducts = '/items/discounted?type=all&offset=2&limit=50';
 
   //
 

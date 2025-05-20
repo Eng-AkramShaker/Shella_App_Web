@@ -19,6 +19,7 @@ import 'package:shella_design/features/cart/domain/repositories/cart_repository.
 import 'package:shella_design/features/cart/domain/services/cart_service.dart';
 import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
+import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/screens/discount_screen.dart';
 import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
@@ -108,7 +109,7 @@ class AppRoutes {
   static const String add_new_card_screen = '/add_new_card_screen';
   static const String statisticsScreen = '/statisticsScreen';
   static const String returnAndEarnScreen = '/returnAndEarnScreen';
-  static const String discountScreen = '/discountScreen';
+  static const discountScreen = '/discountScreen';
   static const String walletScreen = '/walletScreen';
   static const String walletKaidhaScreen = '/walletKaidhaScreen';
   static const String myCouponScreen = '/myCouponScreen';
@@ -228,6 +229,19 @@ class AppRoutes {
                 create: (context) => AuthController(authServiceInterface: context.read<AuthService>()), child: const Signup()),
           ),
         ),
+        //Discount
+        discountScreen: (context) => const DiscountScreen(),
+        //discountScreen: (context) => const DiscountScreen(),
+//         discountScreen: (context) => ChangeNotifierProvider.value(
+//   value: context.read<DiscountController>(), // جاي من MultiProvider
+//   child: const DiscountScreen(),
+// ),
+
+//         discountScreen: (context) => ChangeNotifierProvider(
+//   create: (_) => DiscountController(),
+//   child: const DiscountScreen(),
+// ),
+
     forgetpassword: (context) => const Forgetpassword(),
     mobilelVerification: (context) => const MobilelVerification(),
     confirmPasswordScreen: (context) => const ConfirmPasswordScreen(),
@@ -291,7 +305,7 @@ class AppRoutes {
     // Other Features
     statisticsScreen: (context) => const StatisticsScreen(),
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
-    discountScreen: (context) => const DiscountScreen(),
+   // discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
     myCouponScreen: (context) => const MyCouponScreen(),

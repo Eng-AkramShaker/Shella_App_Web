@@ -58,7 +58,7 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
           buildListTile('كود الخصم', Icons.discount, context, () {
-            pushNewScreen(context, AppRoutes.discountScreen);
+           Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
             Navigator.push(
