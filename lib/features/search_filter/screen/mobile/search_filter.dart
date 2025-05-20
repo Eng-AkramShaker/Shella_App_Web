@@ -73,6 +73,7 @@ class _SearchFilterState extends State<SearchFilter> {
                   );
                 },
               ),
+              if(searchFilterController.searchResultModel!=null)
               CategoryTabs(
                 initialCategory: searchFilterController.selectedCategory,
                 onCategoryChanged: (category) => setState(() => searchFilterController.selectedCategory = category),

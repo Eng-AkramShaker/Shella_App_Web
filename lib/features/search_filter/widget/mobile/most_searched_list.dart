@@ -10,7 +10,7 @@ class MostSearchedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*0.62,
+      height: MediaQuery.of(context).size.height*0.71,
       child: ListView.separated(
         shrinkWrap: true,
         padding: EdgeInsets.only(bottom: 10),
