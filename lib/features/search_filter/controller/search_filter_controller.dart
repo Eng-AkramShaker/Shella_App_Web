@@ -7,6 +7,7 @@ import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/search_filter/domain/models/searchResultModel/search_result_model.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
 import '../../../common/helper/check_Logged.dart';
+import '../domain/models/addressModel/address_model.dart';
 import '../domain/models/cartProductsModel/cart_products_model.dart';
 import '../domain/models/mostSearchedModel/most_searched_model.dart';
 
@@ -23,7 +24,7 @@ class SearchFilterController with ChangeNotifier {
   SearchState _state = SearchState.initial;
   SearchState get state => _state;
 
-  String selectedCategory = 'اصناف المتاجر';
+  int selectedCategory = 0;
   final List<String> previousSearches = ['عروض وخصومات', 'مشروبات', 'ماركت'];
   final List<String> img = [
     AppImages.item_42,
@@ -76,6 +77,29 @@ class SearchFilterController with ChangeNotifier {
     notifyListeners();
   }
 
+  /// MIXED ITEMS
+  List<Map<String,String>> mixedList = [];
+  mixedItems(){
+    for(int i=0; i<searchResultModel!.items!.length; i++) {
+      mixedList.add(
+        {
+          'name': searchResultModel!.items![i].name!,
+          'img': searchResultModel!.items![i].imageFullUrl!,
+        }
+      );
+    }
+    for(int i=0; i<searchResultModel!.stores!.length; i++) {
+      mixedList.add(
+        {
+          'name': searchResultModel!.stores![i].name!,
+          'img': searchResultModel!.stores![i].logoFullUrl!,
+        }
+      );
+    }
+    mixedList.shuffle();
+    notifyListeners();
+  }
+  
   ///-------------------------------------<<<---APIs--->>>-------------------------------------
 
   /// SEARCH ITEMS
@@ -86,6 +110,7 @@ class SearchFilterController with ChangeNotifier {
       searchResultModel=null;
       notifyListeners();
       searchResultModel = await searchServiceInterface!.searchItems(value: value);
+      mixedItems();
       _state = SearchState.success;
       notifyListeners();
     }catch(e){
@@ -100,7 +125,6 @@ class SearchFilterController with ChangeNotifier {
     try{
       _state = SearchState.loading;
       notifyListeners();
-      customPrint('SEARCH INTERFACE IN MOST SEARCHED ::: $searchServiceInterface');
       mostSearchedModel = await searchServiceInterface!.mostSearched();
       _state = SearchState.success;
       notifyListeners();
@@ -110,20 +134,31 @@ class SearchFilterController with ChangeNotifier {
     }
   }
 
-  // /// CART PRODUCTS
-  // CartProductsModel? cartProductsModel;
-  // cartProducts() async {
-  //   try{
-  //     _state = SearchState.loading;
-  //     notifyListeners();
-  //     customPrint('SEARCH INTERFACE IN CART ::: $searchServiceInterface');
-  //     cartProductsModel = await searchServiceInterface!.cartProducts();
-  //     _state = SearchState.success;
-  //     notifyListeners();
-  //   }catch(e){
-  //     _state = SearchState.error;
-  //     notifyListeners();
-  //   }
-  // }
+  /// GET ADDRESS
+  AddressModel? addressModel;
+  getAddress() async {
+    try{
+      addressModel = await searchServiceInterface!.getAddress();
+      notifyListeners();
+    }catch(e){
+      _state = SearchState.error;
+      notifyListeners();
+    }
+  }
+
+  /// CART PRODUCTS
+  CartProductsModel? cartProductsModel;
+  cartProducts() async {
+    try{
+      _state = SearchState.loading;
+      notifyListeners();
+      cartProductsModel = await searchServiceInterface!.cartProducts();
+      _state = SearchState.success;
+      notifyListeners();
+    }catch(e){
+      _state = SearchState.error;
+      notifyListeners();
+    }
+  }
 
 }

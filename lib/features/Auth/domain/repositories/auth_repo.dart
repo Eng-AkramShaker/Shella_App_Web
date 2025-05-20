@@ -37,7 +37,6 @@ class AuthRepo implements AuthRepositoryInterface {
     return await apiClient.postData(Api_Constants.login, data);
   }
 
-  @override
   String getSharedPrefGuestId() {
     return sharedPreferences.getString(Api_Constants.guestId) ?? "";
   }

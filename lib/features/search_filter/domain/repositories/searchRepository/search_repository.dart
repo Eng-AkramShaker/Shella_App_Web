@@ -30,8 +30,16 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---CART PRODUCTS--->>>-------------------------------------
   @override
   Future<http.Response?> cartProducts() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts);
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts,query: {'guest_id': sp<SharedPreferences>().getString(Api_Constants.guestId)??''});
     customPrint('Cart Products Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
+  ///-------------------------------------<<<---GET ADDRESS--->>>-------------------------------------
+  @override
+  Future<http.Response?> getAddress() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAddress);
+    customPrint('Get Address Response :: ${jsonDecode(response!.body)}');
     return response;
   }
 

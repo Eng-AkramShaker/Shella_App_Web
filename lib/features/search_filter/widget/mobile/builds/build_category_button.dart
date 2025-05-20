@@ -7,6 +7,7 @@ import 'package:shella_design/common/util/app_styles.dart';
 Widget buildCategoryButton(BuildContext context, String text, Function() onTap, Color color) {
   return GestureDetector(
     onTap: onTap,
+    behavior: HitTestBehavior.opaque,
     child: Column(
       children: [
         Custom_Text(

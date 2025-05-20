@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../../../common/util/app_dimensions.dart';
 import '../../../../../../common/util/app_styles.dart';
 import '../../../../../../common/widgets/texts/custom_text.dart';
 import '../../../../controller/search_filter_controller.dart';
 
-class BuildSearchResult extends StatelessWidget {
-  const BuildSearchResult({super.key});
+class BuildSearchItems extends StatelessWidget {
+  const BuildSearchItems({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height*0.67,
-      child: ListView.separated(
+      child: SearchFilterController.get(context).searchResultModel!.items!.isEmpty?
+      Padding(
+        padding: EdgeInsets.only(bottom: 150.h),
+        child: Center(child: Custom_Text(context, text: 'لا يوجد منتجات',style: font10Black300W(context, size: size_14(context)))),
+      ):
+      ListView.separated(
         shrinkWrap: true,
         padding: EdgeInsets.only(bottom: 10),
         itemBuilder: (context, index) => Row(

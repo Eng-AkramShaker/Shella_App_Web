@@ -5,8 +5,8 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'builds/build_category_button.dart';
 
 class CategoryTabs extends StatefulWidget {
-  final String initialCategory;
-  final ValueChanged<String> onCategoryChanged;
+  final int initialCategory;
+  final ValueChanged<int> onCategoryChanged;
 
   const CategoryTabs({
     super.key,
@@ -31,18 +31,20 @@ class _CategoryTabsState extends State<CategoryTabs> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            buildCategoryButton(context, 'اصناف المتاجر', () {
-              setState(() => searchFilterController.selectedCategory = 'اصناف المتاجر');
-              widget.onCategoryChanged('اصناف المتاجر');
-            }, searchFilterController.selectedCategory == 'اصناف المتاجر' ? AppColors.secondaryColor : AppColors.backgroundColor),
-            buildCategoryButton(context, 'المطاعم والمتاجر', () {
-              setState(() => searchFilterController.selectedCategory = 'المطاعم والمتاجر');
-              widget.onCategoryChanged('المطاعم والمتاجر');
-            }, searchFilterController.selectedCategory == 'المطاعم والمتاجر' ? AppColors.secondaryColor : AppColors.backgroundColor),
-            buildCategoryButton(context, 'اصناف المطاعم', () {
-              setState(() => searchFilterController.selectedCategory = 'اصناف المطاعم');
-              widget.onCategoryChanged('اصناف المطاعم');
-            }, searchFilterController.selectedCategory == 'اصناف المطاعم' ? AppColors.secondaryColor : AppColors.backgroundColor),
+            buildCategoryButton(
+              context, 'المنتجات',
+              () {
+                  setState(() => searchFilterController.selectedCategory = 0);
+                  widget.onCategoryChanged(0);
+                },
+              searchFilterController.selectedCategory == 0 ? AppColors.secondaryColor : AppColors.backgroundColor),
+            buildCategoryButton(
+              context, 'كل المتاجر',
+              () {
+                  setState(() => searchFilterController.selectedCategory = 1);
+                  widget.onCategoryChanged(1);
+               },
+                searchFilterController.selectedCategory == 1 ? AppColors.secondaryColor : AppColors.backgroundColor),
           ],
         ),
       ),

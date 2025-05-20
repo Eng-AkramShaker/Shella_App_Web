@@ -5,6 +5,7 @@ import 'package:shella_design/features/search_filter/domain/models/searchResultM
 import 'package:shella_design/features/search_filter/domain/repositories/searchRepositoryInterface/search_repository_interface.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
 
+import '../../models/addressModel/address_model.dart';
 import '../../models/cartProductsModel/cart_products_model.dart';
 import '../../models/mostSearchedModel/most_searched_model.dart';
 
@@ -65,6 +66,24 @@ class SearchService implements SearchServiceInterface{
         print('Cart Products Exception :: ${e.toString()}');
       }
       throw Exception('Cart Products Exception :: ${e.toString()}');
+    }
+  }
+
+  ///-------------------------------------<<<---GET ADDRESS--->>>-------------------------------------
+  @override
+  Future<AddressModel> getAddress() async {
+    try{
+      Response? response = await searchRepositoryInterface.getAddress();
+      if(response!.statusCode==200){
+        return AddressModel.fromJson(jsonDecode(response.body));
+      }else{
+        throw Exception('Get Address Failed');
+      }
+    }catch(e){
+      if (kDebugMode) {
+        print('Get Address Exception :: ${e.toString()}');
+      }
+      throw Exception('Get Address Exception :: ${e.toString()}');
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +13,8 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import '../../widget/mobile/builds/buildMostSearched/build_most_searched.dart';
-import '../../widget/mobile/builds/buildSearchResult/build_search_result.dart';
+import '../../widget/mobile/builds/buildSearchItems/build_search_items.dart';
+import '../../widget/mobile/builds/buildSearchStores/build_search_stores.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({super.key});
@@ -47,9 +47,8 @@ class _SearchFilterState extends State<SearchFilter> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // if(SearchFilterController.get(context).cartProductsModel!=null)
               LocationHeader(
-                num: searchFilterController.cartNum,
+                num: searchFilterController.cartProductsModel?.items.length??0,
                 sites: searchFilterController.sites,
               ),
               CustomTextField(
@@ -87,7 +86,9 @@ class _SearchFilterState extends State<SearchFilter> {
               searchFilterController.state==SearchState.loading||searchFilterController.mostSearchedModel==null?
               Loading(isData: true,):
               searchFilterController.searchResultModel!=null?
-              BuildSearchResult():
+              searchFilterController.selectedCategory==0?
+              BuildSearchItems():
+              BuildSearchStores():
               BuildMostSearched()
             ],
           ),

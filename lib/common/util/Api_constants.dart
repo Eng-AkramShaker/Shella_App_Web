@@ -31,5 +31,8 @@ class Api_Constants {
   static const String mostSearched = '/api/v1/items/popular';
 
   /// CART PRODUCTS
-  static const String cartProducts = '/api/v1/items/suggested';
+  static const String cartProducts = '/api/v1/customer/cart/list';
+
+  /// GET ADDRESS
+  static const String getAddress = '/api/v1/customer/address/list';
 }

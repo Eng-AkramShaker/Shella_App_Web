@@ -9,6 +9,8 @@ import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
+import '../../controller/search_filter_controller.dart';
+
 class LocationHeader extends StatelessWidget {
   const LocationHeader({super.key, required this.num, required this.sites});
 
@@ -20,19 +22,24 @@ class LocationHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          if(SearchFilterController.get(context).addressModel!=null)
           Row(
             children: [
               Custom_Text(
                 context,
                 style: font10Black300W(context, size: size_13(context)),
-                text: "التوصيل الى:",
+                text: "الموقع الحالي :",
               ),
-              const SizedBox(width: 10),
-              SiteDropdownMenu(sites: sites),
+              const SizedBox(width: 5),
+              Custom_Text(
+                context,
+                style: font10Black300W(context, size: size_11(context)),
+                text: SearchFilterController.get(context).addressModel!.addresses?[0].address??'',
+              ),
             ],
           ),
+          Spacer(),
           Stack(
             clipBehavior: Clip.none,
             children: [
@@ -43,14 +50,14 @@ class LocationHeader extends StatelessWidget {
                 },
                 child: custom_Images_asset(
                   image: AppImages.basket,
-                  h: 30,
-                  w: 30,
+                  h: 25,
+                  w: 25,
                 ),
               ),
               if (num > 0)
                 Positioned(
                   right: -4,
-                  top: -4,
+                  bottom: 18,
                   child: Container(
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(

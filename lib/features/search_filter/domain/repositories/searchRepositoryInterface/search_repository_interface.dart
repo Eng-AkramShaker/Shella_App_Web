@@ -7,4 +7,6 @@ abstract class SearchRepositoryInterface{
   Future<http.Response?> mostSearched();
 
   Future<http.Response?> cartProducts();
+
+  Future<http.Response?> getAddress();
 }
