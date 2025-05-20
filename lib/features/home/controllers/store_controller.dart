@@ -15,11 +15,16 @@ class StoreProvider with ChangeNotifier {
   Future<void> fetchStores() async {
     _isLoading = true;
     notifyListeners();
+
     try {
-      _stores = await _storeService.fetchStores();
+      final zone2Stores = await _storeService.fetchStores(zoneId: 2);
+      final zone5Stores = await _storeService.fetchStores(zoneId: 5);
+
+      _stores = [...zone2Stores, ...zone5Stores];
     } catch (e) {
       debugPrint('Error fetching stores: $e');
     }
+
     _isLoading = false;
     notifyListeners();
   }

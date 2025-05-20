@@ -13,7 +13,6 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // height: 130,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

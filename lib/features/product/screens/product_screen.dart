@@ -51,7 +51,8 @@ class _ProductViewState extends State<ProductView> {
                       width: double.infinity,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Custom_Text(context, text: "ساندويش", style: font14Black600W(context)),
+                        child: Custom_Text(context,
+                            text: "ساندويش", style: font14Black600W(context)),
                       )),
                   SizedBox(height: 15.h),
                   buildPizzaItemListView(context),
@@ -61,7 +62,8 @@ class _ProductViewState extends State<ProductView> {
             ),
           ),
 
-          Positioned(top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
+          Positioned(
+              top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
 
           // title and information about item
           Positioned(
@@ -79,13 +81,19 @@ class _ProductViewState extends State<ProductView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 10.h),
-                    Custom_Text(context, text: "سوبر برغر - جدة - الطريق 11", style: font14Black600W(context)),
+                    Custom_Text(context,
+                        text: "سوبر برغر - جدة - الطريق 11",
+                        style: font14Black600W(context)),
                     SizedBox(height: 8.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Custom_Text(context, text: "ساندويتش، بيتزا", style: font10SecondaryColor600W(context)),
-                        Custom_Text(context, text: "\u200E10:00 PM - 1:00 AM", style: font11Black600W(context)),
+                        Custom_Text(context,
+                            text: "ساندويتش، بيتزا",
+                            style: font10SecondaryColor600W(context)),
+                        Custom_Text(context,
+                            text: "\u200E10:00 PM - 1:00 AM",
+                            style: font11Black600W(context)),
                       ],
                     ),
                     SizedBox(height: 15.h),
@@ -96,16 +104,23 @@ class _ProductViewState extends State<ProductView> {
                       children: [
                         Column(
                           children: [
-                            Custom_Text(context, text: "قيمة التوصيل", style: font11Black600W(context)),
+                            Custom_Text(context,
+                                text: "قيمة التوصيل",
+                                style: font11Black600W(context)),
                             SizedBox(height: 8.h),
-                            Custom_Text(context, text: "25 ريال", style: font10SecondaryColor600W(context)),
+                            Custom_Text(context,
+                                text: "25 ريال",
+                                style: font10SecondaryColor600W(context)),
                           ],
                         ),
                         Column(
                           children: [
-                            Custom_Text(context, text: "المسافة", style: font11Black600W(context)),
+                            Custom_Text(context,
+                                text: "المسافة",
+                                style: font11Black600W(context)),
                             SizedBox(height: 8.h),
-                            Custom_Text(context, text: "15 كم", style: font10Grey600W(context)),
+                            Custom_Text(context,
+                                text: "15 كم", style: font10Grey600W(context)),
                           ],
                         ),
                       ],
@@ -127,7 +142,8 @@ class _ProductViewState extends State<ProductView> {
                   child: Container(
                     width: 10.w,
                     height: 10.h,
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.greenColor),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.greenColor),
                   ),
                 ),
               ],
@@ -149,7 +165,8 @@ Widget buildHeaderSection(BuildContext context) {
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(AppImages.item_66), fit: BoxFit.fill),
+              image: DecorationImage(
+                  image: AssetImage(AppImages.item_66), fit: BoxFit.fill),
             ),
           ),
         ),
@@ -176,7 +193,8 @@ Widget buildHeaderSection(BuildContext context) {
                   IconButtonCircle(
                       icon: Icons.share,
                       onPressed: () {
-                        Share.share('url', subject: 'Sharing Text Field Content');
+                        Share.share('url',
+                            subject: 'Sharing Text Field Content');
                       }),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
