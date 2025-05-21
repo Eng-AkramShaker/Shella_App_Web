@@ -630,6 +630,20 @@ TextStyle font12Green600W(
   );
 }
 
+TextStyle font12LightGreen600W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_12(context),
+    color: AppColors.green2Color,
+    fontWeight: FontWeight.w600,
+  );
+}
+
 TextStyle font12Green300W(
   BuildContext context, {
   double? size,

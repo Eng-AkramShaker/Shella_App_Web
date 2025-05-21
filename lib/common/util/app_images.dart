@@ -26,6 +26,9 @@ class AppImages {
   static const String icon_deliv = 'assets/icons/bike.png';
   static const String icon_disc = 'assets/icons/33.png';
 
+  static const String view1 = 'assets/icons/view1.svg';
+  static const String view2 = 'assets/icons/view2.svg';
+
   static const String icon_order_service = 'assets/icons/order_service.png';
 
   static const String icon_v = 'assets/icons/v.png';

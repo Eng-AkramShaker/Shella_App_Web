@@ -32,7 +32,7 @@ Widget buildSearchRow(BuildContext context) {
               ),
             ),
             readOnly: true,
-            onTap: () => pushNewScreen(context, AppRoutes.searchfilter),
+            onTap: () => MediaQuery.of(context).size.width > 600?pushNewScreen(context, AppRoutes.searchFilterWeb):pushNewScreen(context, AppRoutes.searchfilter),
             style: font10Black400W(context),
           ),
         ),

@@ -61,7 +61,8 @@ import 'package:shella_design/features/schedule_order/screen/schedule_order.dart
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchService/search_service.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
-import 'package:shella_design/features/search_filter/screen/mobile/search_filter.dart';
+import 'package:shella_design/features/search_filter/screen/mobile/search_filter_mobile.dart';
+import 'package:shella_design/features/search_filter/screen/web/search_filter_web.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companies_workshops_page.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/carsServicespage.dart';
@@ -171,6 +172,7 @@ class AppRoutes {
   static const String orderConfirmation = "/orderConfirmation";
   static const String orderConfirmationPage = "/orderConfirmationPage";
   static const String webHome = "/webHome";
+  static const String searchFilterWeb = '/searchFilterWeb';
 
   static const String howWasYourExperience = '/howWasYourExperience';
   static const String serviceProviders = '/serviceProviders';
@@ -406,6 +408,10 @@ class AppRoutes {
     otpPage: (context) => OtpScreen(),
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
+    searchFilterWeb: (context) => ChangeNotifierProvider(
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
+      child: const SearchFilterWeb(),
+    ),
   };
 }
 

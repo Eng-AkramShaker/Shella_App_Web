@@ -22,6 +22,8 @@ class CustomTextField extends StatelessWidget {
   final int? radius;
   final Color? suffixColor;
   final double? borderWidth;
+  final double? width;
+  final double? height;
   final Color? enableBorderColor;
   final Function(String)? onChanged;
 
@@ -44,46 +46,50 @@ class CustomTextField extends StatelessWidget {
     this.horizontalPadding,
     this.borderWidth,
     this.enableBorderColor,
-    this.onChanged,
+    this.onChanged, this.width,this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: TextFormField(
-        cursorColor: enableBorderColor ?? AppColors.greenColor,
-        readOnly: readOnly ?? false,
-        initialValue: initialValue,
-        clipBehavior: Clip.hardEdge,
-        controller: controller,
-        obscureText: obscureText,
-        keyboardType: keyboardType,
-        validator: validator,
-        onChanged: onChanged,
-        style: TextStyle(color: AppColors.bgColor),
-        decoration: InputDecoration(
-          labelText: labelText,
-          suffixIcon: suffixIcon,
-          suffixIconColor: suffixColor,
-          prefixIcon: prefixIcon,
-          prefixIconColor: AppColors.gryColor_5,
-          labelStyle: font12Grey400W(context),
-          contentPadding: EdgeInsets.symmetric(vertical: padding ?? 20, horizontal: horizontalPadding ?? 20),
-          enabledBorder: dottedBorder ?? false
-              ? OutlineInputBorder(borderSide: BorderSide.none)
-              : OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
-                  borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
-          focusedBorder:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(radius?.r?? 8.r),borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
-          border: dottedBorder ?? false
-              ? OutlineInputBorder(borderSide: BorderSide.none)
-              : OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.r),
-                  borderSide: BorderSide(
-                    width: borderWidth ?? 1,
-                  )),
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: TextFormField(
+          cursorColor: enableBorderColor ?? AppColors.greenColor,
+          readOnly: readOnly ?? false,
+          initialValue: initialValue,
+          clipBehavior: Clip.hardEdge,
+          controller: controller,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          validator: validator,
+          onChanged: onChanged,
+          style: TextStyle(color: AppColors.bgColor),
+          decoration: InputDecoration(
+            labelText: labelText,
+            suffixIcon: suffixIcon,
+            suffixIconColor: suffixColor,
+            prefixIcon: prefixIcon,
+            prefixIconColor: AppColors.gryColor_5,
+            labelStyle: font12Grey400W(context),
+            contentPadding: EdgeInsets.symmetric(vertical: padding ?? 20, horizontal: horizontalPadding ?? 20),
+            enabledBorder: dottedBorder ?? false
+                ? OutlineInputBorder(borderSide: BorderSide.none)
+                : OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
+                    borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
+            focusedBorder:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(radius?.r?? 8.r),borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
+            border: dottedBorder ?? false
+                ? OutlineInputBorder(borderSide: BorderSide.none)
+                : OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(
+                      width: borderWidth ?? 1,
+                    )),
+          ),
         ),
       ),
     );
