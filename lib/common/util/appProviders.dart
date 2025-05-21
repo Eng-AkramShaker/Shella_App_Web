@@ -13,6 +13,13 @@ import 'package:shella_design/features/search_filter/controller/search_filter_co
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import 'package:shella_design/features/Balance/controllers/balance_controller.dart';
+import 'package:shella_design/features/address/controllers/address_controller.dart';
+import 'package:shella_design/features/address/domain/services/address_service.dart';
+import 'package:shella_design/features/address/domain/repositories/address_repo.dart';
+import 'package:shella_design/api/api_client.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shella_design/common/helper/check_Logged.dart';
 
 List<SingleChildWidget> appProviders = [
   //
@@ -32,4 +39,15 @@ List<SingleChildWidget> appProviders = [
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
   ChangeNotifierProvider(create: (_) => BalanceController()),
+
+  // Address Controller and dependencies
+  ChangeNotifierProvider(create: (_) {
+    final apiClient = ApiClient(
+      appBaseUrl: Api_Constants.appBaseUrl,
+      sharedPreferences: sp<SharedPreferences>(),
+    );
+    final repository = AddressRepositoryImpl(apiClient: apiClient);
+    final service = AddressServiceImpl(addressRepository: repository);
+    return AddressController(addressService: service);
+  }),
 ];

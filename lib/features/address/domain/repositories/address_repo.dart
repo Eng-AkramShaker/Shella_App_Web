@@ -1,21 +1,13 @@
-// ignore_for_file: file_names
-
 import 'dart:convert';
-import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
+import 'package:shella_design/features/address/domain/models/address_model.dart';
+import 'package:shella_design/features/address/domain/repositories/address_repository_interface.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import '../../../../api/api_client.dart';
 
-abstract class ProfileRepository {
-  Future<List<Address>> getAddressList();
-  Future<bool> addAddress(Address address);
-  Future<bool> removeAddress(String addressId);
-  Future<bool> updateAddress(Address address);
-}
-
-class ProfileRepositoryImpl implements ProfileRepository {
+class AddressRepositoryImpl implements AddressRepository {
   final ApiClient apiClient;
 
-  ProfileRepositoryImpl({
+  AddressRepositoryImpl({
     required this.apiClient,
   });
 
@@ -28,8 +20,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
     if (response != null) {
       if (response.statusCode == 200) {
         var responsemap = jsonDecode(response.body);
-        print('===================');
-        print(responsemap);
         List<Address> r = List<Address>.from(
           (responsemap['addresses'] ?? []).map(
             (e) => Address.fromJson(e),
@@ -51,10 +41,6 @@ class ProfileRepositoryImpl implements ProfileRepository {
       address.toJson(),
     );
     var responsemap = jsonDecode(response!.body);
-    print('===================');
-    print(response.statusCode);
-    print(responsemap);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -65,7 +51,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<bool> removeAddress(String addressId) async {
     final response = await apiClient.deleteData(
-      Uri.parse('${Api_Constants.removeAddressUri}/$addressId').toString(),
+      Uri.parse('${Api_Constants.removeAddressUri}$addressId').toString(),
     );
 
     if (response != null && response.statusCode == 200) {
@@ -78,7 +64,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<bool> updateAddress(Address address) async {
     final response = await apiClient.putData(
-      Uri.parse('${Api_Constants.updateAddressUri}/${address.id}').toString(),
+      Uri.parse('${Api_Constants.updateAddressUri}${address.id}').toString(),
       address.toJson(),
     );
 

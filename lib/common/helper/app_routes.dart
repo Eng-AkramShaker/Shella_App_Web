@@ -53,8 +53,6 @@ import 'package:shella_design/features/product/screens/product_screen.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profile_detailes_repository.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
-import 'package:shella_design/features/profile_detailes/screens/addNewAdress.dart';
-import 'package:shella_design/features/profile_detailes/screens/adressDetailes.dart';
 import 'package:shella_design/features/return_and_earn/screens/return_and_earn_screen.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
@@ -81,6 +79,13 @@ import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/Auth/domain/services/auth_service.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
+import 'package:shella_design/features/address/controllers/address_controller.dart';
+import 'package:shella_design/features/address/domain/repositories/address_repository_interface.dart';
+import 'package:shella_design/features/address/domain/repositories/address_repo.dart';
+import 'package:shella_design/features/address/domain/services/address_service.dart';
+import 'package:shella_design/features/address/domain/services/address_service_interface.dart';
+import 'package:shella_design/features/address/screens/mobile/address_details.dart';
+import 'package:shella_design/features/address/screens/mobile/add_new_address.dart';
 
 class AppRoutes {
   static const String testPage = '/testPage';
@@ -101,7 +106,8 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String step_one_service_screen = '/step_one_service_screen';
   static const String step_tow_service_screen = '/step_tow_service_screen';
-  static const String address_details_service_screen = '/address_details_service_screen';
+  static const String address_details_service_screen =
+      '/address_details_service_screen';
   static const String payment_screen = '/payment_screen';
   static const String payment_method_screen = '/payment_method_screen';
   static const String add_new_card_screen = '/add_new_card_screen';
@@ -128,7 +134,8 @@ class AppRoutes {
   static const String forgetpassword = '/forgetpassword';
   static const String mobilelVerification = '/mobilelVerification';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
-  static const String passwordResetSuccessScreen = '/passwordResetSuccessScreen';
+  static const String passwordResetSuccessScreen =
+      '/passwordResetSuccessScreen';
   static const String succsessflycreated = '/succsessflycreated';
   static const String orderdetails = '/orderdetails';
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
@@ -139,7 +146,7 @@ class AppRoutes {
   static const String myOrders = '/myOrders';
   //prifile Details
   static const String addressDetails = '/addressDetails';
-  static const String addaddress = '/addaddress';
+  static const String addNewAddress = '/addNewAddress';
 
   // kaidha form
   static const String aliashtirakFiQaydiha = '/aliashtirakFiQaydiha';
@@ -147,7 +154,8 @@ class AppRoutes {
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
-  static const String bookingConfirmationSuccess = '/bookingConfirmationSuccess';
+  static const String bookingConfirmationSuccess =
+      '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
   // static const String infoOfService = '/infoOfService';
@@ -198,17 +206,24 @@ class AppRoutes {
   static final Map<String, Widget Function(BuildContext)> routes = {
     // Main Layout
     mainLayout: (context) => const MainLayout(),
-    scheduleOrderBottomSheet: (context) =>
-        ChangeNotifierProvider(create: (_) => ScheduleController(), child: const ScheduleOrderBottomSheet()),
+    scheduleOrderBottomSheet: (context) => ChangeNotifierProvider(
+        create: (_) => ScheduleController(),
+        child: const ScheduleOrderBottomSheet()),
     // Auth
     Login_Mobile: (context) => Provider<AuthRepositoryInterface>(
           create: (context) => AuthRepo(
-              apiClient: ApiClient(appBaseUrl: Api_Constants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()),
+              apiClient: ApiClient(
+                  appBaseUrl: Api_Constants.appBaseUrl,
+                  sharedPreferences: sp<SharedPreferences>()),
               sharedPreferences: sp<SharedPreferences>()),
           child: Provider<AuthService>(
-            create: (context) => AuthService(authRepositoryInterface: context.read<AuthRepositoryInterface>()),
+            create: (context) => AuthService(
+                authRepositoryInterface:
+                    context.read<AuthRepositoryInterface>()),
             child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(authServiceInterface: context.read<AuthService>()), child: const Login_mobile()),
+                create: (context) => AuthController(
+                    authServiceInterface: context.read<AuthService>()),
+                child: const Login_mobile()),
           ),
         ),
 
@@ -221,9 +236,13 @@ class AppRoutes {
             sharedPreferences: sp<SharedPreferences>(),
           ),
           child: Provider<AuthService>(
-            create: (context) => AuthService(authRepositoryInterface: context.read<AuthRepositoryInterface>()),
+            create: (context) => AuthService(
+                authRepositoryInterface:
+                    context.read<AuthRepositoryInterface>()),
             child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(authServiceInterface: context.read<AuthService>()), child: const Signup()),
+                create: (context) => AuthController(
+                    authServiceInterface: context.read<AuthService>()),
+                child: const Signup()),
           ),
         ),
     forgetpassword: (context) => const Forgetpassword(),
@@ -261,7 +280,8 @@ class AppRoutes {
               ),
             ),
             ChangeNotifierProvider<CartController>(
-              create: (context) => CartController(cartService: context.read<CartService>()),
+              create: (context) =>
+                  CartController(cartService: context.read<CartService>()),
             ),
           ],
           child: const Cart_Screen(),
@@ -272,10 +292,13 @@ class AppRoutes {
     ordersScreen: (context) => const OrdersPage(),
     step_one_service_screen: (context) => const Step_One_Service_Screen(),
     step_tow_service_screen: (context) => const Step_Tow_Service_Screen(),
-    address_details_service_screen: (context) => const Address_Details_Service_Screen(),
-    order_tracking: (context) => ChangeNotifierProvider(create: (_) => OrderTrackingController(), child: const OrderTracking()),
-    start_tracking_order: (context) =>
-        ChangeNotifierProvider(create: (_) => StartTrackingOrderController(), child: const StartTrackingOrder()),
+    address_details_service_screen: (context) =>
+        const Address_Details_Service_Screen(),
+    order_tracking: (context) => ChangeNotifierProvider(
+        create: (_) => OrderTrackingController(), child: const OrderTracking()),
+    start_tracking_order: (context) => ChangeNotifierProvider(
+        create: (_) => StartTrackingOrderController(),
+        child: const StartTrackingOrder()),
     orderdetails: (context) => ChangeNotifierProvider(
           create: (_) => OrderDetailsConroller(),
           child: const OrderDetails(),
@@ -314,50 +337,28 @@ class AppRoutes {
     //prifile Details
     addressDetails: (context) => MultiProvider(
           providers: [
-            Provider<ProfileRepository>(
-              create: (context) => ProfileRepositoryImpl(
+            Provider<AddressRepository>(
+              create: (context) => AddressRepositoryImpl(
                 apiClient: ApiClient(
                   appBaseUrl: Api_Constants.appBaseUrl,
                   sharedPreferences: sp<SharedPreferences>(),
                 ),
               ),
             ),
-            Provider<ProfileDetailsService>(
-              create: (context) => ProfileDetailsService(
-                profileRepository: context.read<ProfileRepository>(),
+            Provider<AddressService>(
+              create: (context) => AddressServiceImpl(
+                addressRepository: context.read<AddressRepository>(),
               ),
             ),
-            ChangeNotifierProvider<ProfileController>(
-              create: (context) => ProfileController(
-                profileDetailsService: context.read<ProfileDetailsService>(),
+            ChangeNotifierProvider<AddressController>(
+              create: (context) => AddressController(
+                addressService: context.read<AddressService>(),
               ),
             ),
           ],
           child: const AddressDetailsPage(),
         ),
-    addaddress: (context) => MultiProvider(
-          providers: [
-            Provider<ProfileRepository>(
-              create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: sp<SharedPreferences>(),
-                ),
-              ),
-            ),
-            Provider<ProfileDetailsService>(
-              create: (context) => ProfileDetailsService(
-                profileRepository: context.read<ProfileRepository>(),
-              ),
-            ),
-            ChangeNotifierProvider<ProfileController>(
-              create: (context) => ProfileController(
-                profileDetailsService: context.read<ProfileDetailsService>(),
-              ),
-            ),
-          ],
-          child: const AddNewAddressScreen(),
-        ),
+    addNewAddress: (context) => const AddNewAddressScreen(),
 
     // kaidha form
     AppRoutes.aliashtirakFiQaydiha: (context) => ChangeNotifierProvider(
