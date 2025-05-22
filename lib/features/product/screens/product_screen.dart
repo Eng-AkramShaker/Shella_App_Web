@@ -48,8 +48,6 @@ class _ProductViewState extends State<ProductView> {
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Custom_Text(context,
-                          text: "ساندويش", style: font14Black600W(context)),
                     ),
                   ),
                   SizedBox(height: 15.h),
@@ -91,9 +89,6 @@ class _ProductViewState extends State<ProductView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Custom_Text(context,
-                            text: "ساندويتش، بيتزا",
-                            style: font10SecondaryColor600W(context)),
-                        Custom_Text(context,
                             text: widget.store.deliveryTime,
                             style: font11Black600W(context)),
                       ],
@@ -102,21 +97,7 @@ class _ProductViewState extends State<ProductView> {
                     Custom_Divider(dashed: true, color: AppColors.gryColor_4),
                     SizedBox(height: 12),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
-                          children: [
-                            Custom_Text(context,
-                                text: "قيمة التوصيل",
-                                style: font11Black600W(context)),
-                            SizedBox(height: 8.h),
-                            Custom_Text(context,
-                                text: widget.store.delivery
-                                    ? "25 ريال"
-                                    : "غير متوفر",
-                                style: font10SecondaryColor600W(context)),
-                          ],
-                        ),
                         Column(
                           children: [
                             Custom_Text(context,
