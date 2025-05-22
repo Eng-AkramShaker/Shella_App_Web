@@ -12,6 +12,9 @@ import 'package:shella_design/features/profile_detailes/screens/profile_detailes
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
 
+import '../helper/app_routes.dart';
+import '../util/app_navigators.dart';
+
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 

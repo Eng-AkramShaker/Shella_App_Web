@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/my_coupon/widgets/available_container.dart';
 import 'package:shella_design/features/my_coupon/widgets/expired_container.dart';
 
-import '../../../common/widgets/appBar/customAppBar.dart';
+import '../../../common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import '../../../common/util/app_colors.dart';
 import '../widgets/available_coupon_widget.dart';
 import '../widgets/expired_coupon_widget.dart';

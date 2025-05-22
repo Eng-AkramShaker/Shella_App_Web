@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 
+import '../common/widgets/print/custom_print.dart';
+
 class ApiClient with ChangeNotifier {
   final SharedPreferences sharedPreferences;
   final String appBaseUrl;
@@ -38,14 +40,23 @@ class ApiClient with ChangeNotifier {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiOTczMDQ3ZDJmZjEyY2JlMDkwMDA3ZWQ3OTIyYWFlNGYyODY2YjZkMDkxNmY2NGEyMmNlZjk2NjhjNTM5NTM0MDJiNjRlZDk3M2E4YjRjMTYiLCJpYXQiOjE3NDc1MDY3NDcuMTI3Mzk5LCJuYmYiOjE3NDc1MDY3NDcuMTI3NDAyLCJleHAiOjE3NzkwNDI3NDcuMTI1NjQ2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.qS23wdx6Oni7tM1ETa9SnksJQAqMFPsZgiFZ6U7eu3kcJrkaSIFrA6lV1VocWc2fqxJzQzUZyvU6KHM-GLU5PE48Qt9dLj81_109f9YLAc-6dt2gHAFqfr9r0VG5VLm411oVNZGrHO3dJxYQge5_yY-oACtH0_Gi_6T7UzC1pdO4C4E6Ik7-WzXxMHkRfqIIoOV9u43fVEEzFcrvX5zjud175kd4FObU04QPzDNQML98JT4hMpApe81cwzI8ivwMg-VlVTgDSOrGusAw64jrAfOrOyg_a9VWSmCOu6uH25rXuqie6AEMMMyd23uxccvVOO0HBcoKorSfoQZIHBn1k6onMfv0thPbLSkn1nxsB3Fm9uAe-cQYWDOD91nGAxI2cRc8cgiXOZzBEth4_acUlK9rJq0koxp5Nkqei1yEQtEE69J0xeBmTJ1vRx8asx7yD-GPOOpRkSB3Lb8mZfuBg9Hpvj5RIPucRcsFwoF_iqaPfQ-HQZgXUNpQ-gUZbmwojf62szWBa7agZHwt0lpxthdEqYMIbK-7iflcbVzB8hl0KPJ6G9c1TU9BIIFnHiBXx7PTbXT5JqV4cY85l3r6X29vqLf7K3gQtSDkVZk6Hdp2BFu-iQEQD8DvTUdEtnit0XUh5IRyPjhZvdMRfeAzvxDFYp1gLZA4I7_On0LgF7k',
-
+      'zoneId': '[2,4,3,5]',
+      'moduleId': '3',
+      'longitude': '46.701550834948726',
+      'latitude': '24.604741730570755'
     };
     notifyListeners();
+  }
+
+  // For backward compatibility with Asmaa branch
+  void updateHeaders() {
+    _updateHeaders();
   }
 
   Future<http.Response?> getData(String uri,
       {Map<String, dynamic>? query}) async {
     try {
+      customPrint('URL ========> ${appBaseUrl+uri}',isUrl: true);
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
 
       // Log request
@@ -118,6 +129,11 @@ class ApiClient with ChangeNotifier {
       debugPrint('خطأ PUT: $e');
       return null;
     }
+  }
+
+  // Method for refreshing headers to align with renamed methods
+  void refreshHeaders() {
+    _updateHeaders();
   }
 
   Future<http.Response?> deleteData(

@@ -20,7 +20,7 @@ import 'package:shella_design/features/cart/domain/services/cart_service.dart';
 import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/discount/screens/discount_screen.dart';
-import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
+import 'package:shella_design/features/help_and_support/screens/mobile/help_and_support_mobile.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
@@ -57,7 +57,10 @@ import 'package:shella_design/features/return_and_earn/screens/return_and_earn_s
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
-import 'package:shella_design/features/search_filter/screen/search_filter.dart';
+import 'package:shella_design/features/search_filter/domain/services/searchService/search_service.dart';
+import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
+import 'package:shella_design/features/search_filter/screen/mobile/search_filter_mobile.dart';
+import 'package:shella_design/features/search_filter/screen/web/search_filter_web.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companies_workshops_page.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/carsServicespage.dart';
@@ -77,6 +80,8 @@ import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/Auth/domain/services/auth_service.dart';
+import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
 import 'package:shella_design/features/address/controllers/address_controller.dart';
@@ -117,7 +122,7 @@ class AppRoutes {
   static const String walletScreen = '/walletScreen';
   static const String walletKaidhaScreen = '/walletKaidhaScreen';
   static const String myCouponScreen = '/myCouponScreen';
-  static const String helpAndSupport = '/helpAndSupport';
+  static const String helpAndSupportMobile = '/helpAndSupportMobile';
   static const String joinAsDriverOne = '/joinAsDriverOne';
   static const String joinAsDriverTwo = '/joinAsDriverTwo';
   static const String supportConversation = '/supportConversation';
@@ -141,7 +146,6 @@ class AppRoutes {
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
   static const String alfaresOffersPage = '/alfaresOffersPage';
   static const String paymentDetailsPage = '/paymentDetailsPage';
-  static const String accountdetails = '/accountdetails';
   static const String savedaddresses = '/savedaddresses';
   static const String myOrders = '/myOrders';
   //prifile Details
@@ -175,6 +179,7 @@ class AppRoutes {
   static const String orderConfirmation = "/orderConfirmation";
   static const String orderConfirmationPage = "/orderConfirmationPage";
   static const String webHome = "/webHome";
+  static const String searchFilterWeb = '/searchFilterWeb';
 
   static const String howWasYourExperience = '/howWasYourExperience';
   static const String serviceProviders = '/serviceProviders';
@@ -185,6 +190,9 @@ class AppRoutes {
   static const String selectService = '/selectService';
   static const String ordersTrackingPage = "/ordersTrackingPage";
   static const String ordersTrackingPage2 = "/ordersTrackingPage2";
+
+  static const String helpAndSupportWeb = '/helpAndSupportWeb';
+  static const String accountdetails = "/accountdetails";
 
   static const String webDeliveryServicePage = "/webDeliveryServicePage";
   static const String webDeliveryServicePage2 = "/webDeliveryServicePage2";
@@ -316,7 +324,7 @@ class AppRoutes {
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
     myCouponScreen: (context) => const MyCouponScreen(),
-    helpAndSupport: (context) => const HelpAndSupportScreen(),
+    helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverOne: (context) => const JoinAsDriverOne(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
     supportConversation: (context) => const SupportConversationScreen(),
@@ -329,10 +337,11 @@ class AppRoutes {
 
     // Notifications & Search
     notifications: (context) => const Notifications(),
+
     AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-          create: (_) => SearchFilterController(),
-          child: const SearchFilter(),
-        ),
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
+      child: const SearchFilter(),
+    ),
 
     //prifile Details
     addressDetails: (context) => MultiProvider(
@@ -397,6 +406,12 @@ class AppRoutes {
 
     loginPage: (context) => const LoginPage(),
     otpPage: (context) => OtpScreen(),
+    helpAndSupportWeb: (context) => HelpAndSupport(),
+    accountdetails: (context) => const AccountDetails(),
+    searchFilterWeb: (context) => ChangeNotifierProvider(
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
+      child: const SearchFilterWeb(),
+    ),
   };
 }
 

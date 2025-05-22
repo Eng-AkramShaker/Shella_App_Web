@@ -518,6 +518,20 @@ TextStyle font10Grey400W(
   );
 }
 
+TextStyle font10Grey700W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_10(context),
+    color: AppColors.gryColor_10,
+    fontWeight: FontWeight.w400,
+  );
+}
+
 TextStyle font10Grey600W(
   BuildContext context, {
   double? size,
@@ -556,6 +570,20 @@ TextStyle font11Grey400W(
     height: lineHeight ?? 1.5,
     fontSize: size ?? size_11(context),
     color: AppColors.wGreyColor,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle font11Green400W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_11(context),
+    color: AppColors.greenColor,
     fontWeight: FontWeight.w400,
   );
 }
@@ -612,6 +640,20 @@ TextStyle font12Green600W(
     height: lineHeight ?? 1.5,
     fontSize: size ?? size_12(context),
     color: AppColors.greenColor,
+    fontWeight: FontWeight.w600,
+  );
+}
+
+TextStyle font12LightGreen600W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_12(context),
+    color: AppColors.green2Color,
     fontWeight: FontWeight.w600,
   );
 }

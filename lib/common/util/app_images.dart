@@ -38,6 +38,7 @@ class AppImages {
 
   static const String icon_card = 'assets/icons/card.png';
 
+
   // ======================== Images ========================
   static const String individualsService =
       'assets/images/IndividualsService.png';
@@ -107,6 +108,7 @@ class AppImages {
   static const String order2 = 'assets/images/100.png';
   static const String mark = 'assets/images/101.png';
   static const String success = 'assets/images/109.png';
+  static const String helpAndSupport = 'assets/images/Help.png';
 
   static const String coupon = 'assets/images/coupon.png';
   static const String visa = 'assets/images/visa.png';
@@ -138,7 +140,15 @@ class AppImages {
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
 
-  //
+  ///======================== SVG ========================
+  static const String cIcon = 'assets/svg/c.svg';
+  static const String pharmacy = 'assets/svg/pharmacy.svg';
+  static const String view1 = 'assets/svg/view1.svg';
+  static const String view2 = 'assets/svg/view2.svg';
+  static const String food = 'assets/svg/food.svg';
+  static const String market = 'assets/svg/market.svg';
+  static const String carrot = 'assets/svg/carrot.svg';
+  static const String fish = 'assets/svg/fish.svg';
 }
 
   

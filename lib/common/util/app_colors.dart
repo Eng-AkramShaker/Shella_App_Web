@@ -13,12 +13,13 @@ class AppColors {
   static const Color title = Color(0xFF6C7278);
   static const Color supTitle = Color(0xFF6C7278);
 
-  static const Color bgColor = Color(0xFF2D3633);
+  static const Color bgColor = Color(0xFF000000);
   static const Color wtColor = Colors.white;
 
   static const Color wtColor_2 = Color(0xFFECECEC);
 
   static const Color greenColor = Colors.green;
+  static const Color green2Color = Color(0xFF75C180);
   static const Color wGreyColor = Color(0xFF858C83);
   static const Color darkGreyColor = Color(0xFF898888);
 
@@ -34,6 +35,7 @@ class AppColors {
   static const Color gryColor_7 = Color(0xFFEBEBEB);
   static const Color gryColor_8 = Color(0xFFF4F3F3);
   static const Color gryColor_9 = Color(0xfff0f0f0);
+  static const Color gryColor_10 = Color(0xFFD8D8D8);
 
   static const Color redColor = Colors.red;
   static const Color orangeColor = Color(0xFFFA9D2B);

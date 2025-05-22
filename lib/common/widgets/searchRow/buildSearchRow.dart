@@ -6,6 +6,9 @@ import 'package:shella_design/features/home/home/widgets/builds/buildNotificatio
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
+import '../../helper/app_routes.dart';
+import '../../util/app_navigators.dart';
+
 Widget buildSearchRow(BuildContext context) {
   return Row(
     children: [
@@ -28,6 +31,8 @@ Widget buildSearchRow(BuildContext context) {
                 borderSide: BorderSide.none,
               ),
             ),
+            readOnly: true,
+            onTap: () => MediaQuery.of(context).size.width > 600?pushNewScreen(context, AppRoutes.searchFilterWeb):pushNewScreen(context, AppRoutes.searchfilter),
             style: font10Black400W(context),
           ),
         ),

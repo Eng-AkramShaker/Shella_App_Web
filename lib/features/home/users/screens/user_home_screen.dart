@@ -38,7 +38,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(117.0.h),
+        preferredSize: Size.fromHeight(150.h),
         child: Container(
           color: AppColors.primaryColor,
           padding: EdgeInsets.only(bottom: 6.h),
@@ -49,12 +49,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                 padding: EdgeInsets.symmetric(horizontal: 17.w),
                 child: buildSearchRow(context),
               ),
-              SizedBox(height: 14.h),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 11.w),
-                child: buildAddressRow(context),
-              ),
-              SizedBox(height: 3.h),
+              buildAddressRow(context),
             ],
           ),
         ),
