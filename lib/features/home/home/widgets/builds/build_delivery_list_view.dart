@@ -9,6 +9,7 @@ import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/home/controllers/store_controller.dart';
+import 'package:shella_design/features/product/screens/product_screen.dart';
 
 Widget buildDeliveryListView(BuildContext context) {
   final storeProvider = Provider.of<StoreProvider>(context);
@@ -32,7 +33,12 @@ Widget buildDeliveryListView(BuildContext context) {
             final store = stores[index];
             return InkWell(
               onTap: () {
-                pushNewScreen(context, AppRoutes.product);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ProductView(store: store),
+                  ),
+                );
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -65,7 +71,8 @@ Widget buildDeliveryListView(BuildContext context) {
                                       children: [
                                         custom_Images_asset(
                                             image: AppImages.icon_Star,
-                                            h: 18, w: 18),
+                                            h: 18,
+                                            w: 18),
                                         Custom_Text(context,
                                             text: ' 4.8 (50)',
                                             style: font14Grey400W(context,
@@ -78,12 +85,14 @@ Widget buildDeliveryListView(BuildContext context) {
                                     text: store.address,
                                     style: font10Grey400W(context)),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
                                   child: Row(
                                     children: [
                                       custom_Images_asset(
                                           image: AppImages.icon_time,
-                                          h: 18, w: 18),
+                                          h: 18,
+                                          w: 18),
                                       SizedBox(width: 8),
                                       Custom_Text(context,
                                           text:
@@ -99,11 +108,11 @@ Widget buildDeliveryListView(BuildContext context) {
                                   children: [
                                     custom_Images_asset(
                                         image: AppImages.icon_disc,
-                                        h: 18, w: 18),
+                                        h: 18,
+                                        w: 18),
                                     SizedBox(width: 8),
                                     Custom_Text(context,
-                                        text:
-                                            'خصم يصل إلى 25% عند اول طلب', 
+                                        text: 'خصم يصل إلى 25% عند اول طلب',
                                         style: font10Grey400W(context)),
                                   ],
                                 ),

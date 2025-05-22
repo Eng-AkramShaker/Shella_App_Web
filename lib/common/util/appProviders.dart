@@ -13,13 +13,15 @@ import 'package:shella_design/features/kaidha_form/controller/kaidha_form_contro
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
+import 'package:shella_design/features/product/controllers/carfor.dart';
+import 'package:shella_design/features/product/controllers/product_controller.dart';
+import 'package:shella_design/features/product/domain/services/carfor.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 
 List<SingleChildWidget> appProviders = [
-  //
   ChangeNotifierProvider(
     create: (_) => BannerProvider(BannerService())..loadBanners(),
   ),
@@ -28,17 +30,19 @@ List<SingleChildWidget> appProviders = [
   ),
   ChangeNotifierProvider(
       create: (_) => StoreProvider(StoreService())..fetchStores()),
-
+  ChangeNotifierProvider(
+    create: (_) =>
+        FoodCategoryProvider(FoodCategoryService())..fetchMoreCategories(),
+  ),
+  ChangeNotifierProvider(
+      create: (_) => ProductController()..loadAllProductData()),
   ChangeNotifierProvider(create: (_) => SplashController()),
-
   ChangeNotifierProvider(create: (_) => HomeController()),
   ChangeNotifierProvider(create: (_) => KaidhaFormController()),
   ChangeNotifierProvider(create: (_) => ServeMeController()),
-
   ChangeNotifierProvider(create: (_) => SearchFilterController()),
   ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
   ChangeNotifierProvider(create: (_) => OrderTrackingController()),
-
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
 ];

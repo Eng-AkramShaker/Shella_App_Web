@@ -3,21 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/divider/custom_divider.dart';
+import 'package:shella_design/features/home/domain/models/store_model.dart';
 import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/features/product/widgets/category/category_list.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import '../widgets/category/pizza_item.dart';
-import '../widgets/discount_list/discount_list.dart';
 
 class ProductView extends StatefulWidget {
-  const ProductView({super.key});
+  final StoreModel store;
+
+  ProductView({super.key, required this.store});
 
   @override
   State<ProductView> createState() => _ProductViewState();
@@ -31,29 +32,26 @@ class _ProductViewState extends State<ProductView> {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          // ✅ الخلفية والهيدر في الأعلى
           Positioned.fill(
             top: MediaQuery.of(context).size.height * 0.4,
             child: SingleChildScrollView(
-              // ✅ الحل الصحيح
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildSectionTitle(context, title: "الاصناف", lapel: "المزيد"),
                   SizedBox(height: 15.h),
-                  DiscountList(),
-                  SizedBox(height: 15.h),
                   SizedBox(width: width_media(context), child: CategoryList()),
                   SizedBox(height: 15.h),
                   Container(
-                      color: AppColors.gryColor_8,
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Custom_Text(context,
-                            text: "ساندويش", style: font14Black600W(context)),
-                      )),
+                    color: AppColors.gryColor_8,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Custom_Text(context,
+                          text: "ساندويش", style: font14Black600W(context)),
+                    ),
+                  ),
                   SizedBox(height: 15.h),
                   buildPizzaItemListView(context),
                   SizedBox(height: 50.h),
@@ -63,9 +61,13 @@ class _ProductViewState extends State<ProductView> {
           ),
 
           Positioned(
-              top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
+            top: 0,
+            left: 0,
+            right: 0,
+            child: buildHeaderSection(context, store: widget.store),
+          ),
 
-          // title and information about item
+          // ✅ Store info card
           Positioned(
             top: 150,
             child: Card(
@@ -82,7 +84,7 @@ class _ProductViewState extends State<ProductView> {
                   children: [
                     SizedBox(height: 10.h),
                     Custom_Text(context,
-                        text: "سوبر برغر - جدة - الطريق 11",
+                        text: widget.store.name,
                         style: font14Black600W(context)),
                     SizedBox(height: 8.h),
                     Row(
@@ -92,7 +94,7 @@ class _ProductViewState extends State<ProductView> {
                             text: "ساندويتش، بيتزا",
                             style: font10SecondaryColor600W(context)),
                         Custom_Text(context,
-                            text: "\u200E10:00 PM - 1:00 AM",
+                            text: widget.store.deliveryTime,
                             style: font11Black600W(context)),
                       ],
                     ),
@@ -109,18 +111,21 @@ class _ProductViewState extends State<ProductView> {
                                 style: font11Black600W(context)),
                             SizedBox(height: 8.h),
                             Custom_Text(context,
-                                text: "25 ريال",
+                                text: widget.store.delivery
+                                    ? "25 ريال"
+                                    : "غير متوفر",
                                 style: font10SecondaryColor600W(context)),
                           ],
                         ),
                         Column(
                           children: [
                             Custom_Text(context,
-                                text: "المسافة",
+                                text: "العنوان",
                                 style: font11Black600W(context)),
                             SizedBox(height: 8.h),
                             Custom_Text(context,
-                                text: "15 كم", style: font10Grey600W(context)),
+                                text: widget.store.address,
+                                style: font10Grey600W(context)),
                           ],
                         ),
                       ],
@@ -131,21 +136,25 @@ class _ProductViewState extends State<ProductView> {
             ),
           ),
 
+          // ✅ Store logo image
           Positioned(
             top: 130,
             child: Stack(
               children: [
-                ImageCircle(img: AppImages.res_4),
-                Positioned(
-                  bottom: 5,
-                  right: 0,
-                  child: Container(
-                    width: 10.w,
-                    height: 10.h,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.greenColor),
+                ImageCircle(img: widget.store.logoUrl),
+                if (widget.store.open)
+                  Positioned(
+                    bottom: 5,
+                    right: 0,
+                    child: Container(
+                      width: 10.w,
+                      height: 10.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.greenColor,
+                      ),
+                    ),
                   ),
-                ),
               ],
             ),
           ),
@@ -155,18 +164,19 @@ class _ProductViewState extends State<ProductView> {
   }
 }
 
-Widget buildHeaderSection(BuildContext context) {
+Widget buildHeaderSection(BuildContext context, {required StoreModel store}) {
   return SizedBox(
     height: 210.h,
     child: Stack(
       alignment: Alignment.center,
       children: [
-        // header image
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(AppImages.item_66), fit: BoxFit.fill),
+                image: NetworkImage(store.coverPhotoUrl),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
@@ -177,31 +187,28 @@ Widget buildHeaderSection(BuildContext context) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  IconButtonCircle(
-                      icon: Icons.arrow_back_ios,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                ],
+              IconButtonCircle(
+                icon: Icons.arrow_back_ios,
+                onPressed: () => Navigator.pop(context),
               ),
               Row(
                 children: [
                   IconButtonCircle(icon: Icons.search, onPressed: () {}),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
-                      icon: Icons.share,
-                      onPressed: () {
-                        Share.share('url',
-                            subject: 'Sharing Text Field Content');
-                      }),
+                    icon: Icons.share,
+                    onPressed: () {
+                      Share.share(store.coverPhotoUrl,
+                          subject: 'Check out this store!');
+                    },
+                  ),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
-                      icon: Icons.favorite_border,
-                      onPressed: () {
-                        popRoute(context);
-                      }),
+                    icon: Icons.favorite_border,
+                    onPressed: () {
+                      popRoute(context);
+                    },
+                  ),
                 ],
               ),
             ],
@@ -212,7 +219,8 @@ Widget buildHeaderSection(BuildContext context) {
   );
 }
 
-Widget buildSectionTitle(context, {required title, String? lapel}) {
+Widget buildSectionTitle(BuildContext context,
+    {required String title, String? lapel}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 16.w),
     child: Row(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -9,7 +8,7 @@ Image custom_Images_asset({
   double? h,
   double? w,
 }) {
-  if (image.startsWith('http')) {
+  if (image.startsWith('https')) {
     return Image.network(
       image,
       width: w ?? 75.w,

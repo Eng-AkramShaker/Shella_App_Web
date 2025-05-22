@@ -4,6 +4,7 @@ class StoreModel {
   final String phone;
   final String email;
   final String logoUrl;
+  final String logo;
   final String coverPhotoUrl;
   final String address;
   final bool delivery;
@@ -17,6 +18,7 @@ class StoreModel {
     required this.phone,
     required this.email,
     required this.logoUrl,
+    required this.logo,
     required this.coverPhotoUrl,
     required this.address,
     required this.delivery,
@@ -32,6 +34,7 @@ class StoreModel {
       phone: json['phone'],
       email: json['email'],
       logoUrl: json['logo_full_url'] ?? '',
+      logo: json['logo'] ?? '',
       coverPhotoUrl: json['cover_photo_full_url'] ?? '',
       address: json['address'],
       delivery: json['delivery'] ?? false,

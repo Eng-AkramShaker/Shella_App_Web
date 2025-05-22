@@ -56,7 +56,7 @@ class AppImages {
 
   static const String icon_44 = 'assets/images/44.png';
 
-  static const String empty = 'assets/images/empty.png';
+  static const String empty = 'assets/images/empty.jpg';
 
   static const String item_25 = 'assets/images/25.png';
 
