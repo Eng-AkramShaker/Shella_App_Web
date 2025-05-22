@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/appBar/appBar.dart';
-import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
-
-import '../../../common/util/app_styles.dart';
+import 'package:shella_design/features/discount/widgets/discount_list_tile.dart';
 
 class DiscountScreen extends StatelessWidget {
   const DiscountScreen({super.key});
@@ -39,40 +37,7 @@ class DiscountScreen extends StatelessWidget {
               final product = controller.products[index];
               return Card(
                 margin: EdgeInsets.all(8.w),
-                child: ListTile(
-                  leading: Image.network(
-                    product.image,
-                    width: 60.w,
-                    height: 60.h,
-                    errorBuilder: (_, __, ___) => const Icon(Icons.image),
-                  ),
-                  title: Text(product.name),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                    Custom_Text (context,  text:'المتجر: ${product.storeName}',
-                    style: font18Black400W(
-                    context,
-                  )),
-                      Custom_Text(context,  text :'السعر الأصلي: ${product.price.toStringAsFixed(2)}',
-                         style: font18Black400W(
-                    context,
-                  )),
-                    Custom_Text(context,  text:
-                        'السعر بعد الخصم: ${product.finalPrice.toStringAsFixed(2)}',
-                        
-                         style: font18SecondaryColor500W(
-                    context,
-                  )),
-                        
-                      
-                     Custom_Text(context,  text: 'الكمية المتاحة: ${product.stock}',
-                     style: font18Black400W(
-                    context,
-                  )),
-                    ],
-                  ),
-                ),
+                child: DiscountListTile(product: product),
               );
             },
           );
@@ -81,3 +46,4 @@ class DiscountScreen extends StatelessWidget {
     );
   }
 }
+
