@@ -3,11 +3,12 @@
 class Api_Constants {
   // ======================== Url ========================
 
-  static const String appBaseUrl = 'https://admin.shalafood.net';
+  static const String appBaseUrl = 'https://shalafood.net';
   static String token = 'guest';
 
   static String login = '/api/v1/auth/login';
   static String signup = '/api/v1/auth/sign-up';
+  static const String addFund = '/api/v1/customer/wallet/add-fund';
   static const String guestId = '6ammart_guest_id';
   static String addresslist = '/api/v1/customer/address/list';
   static const String removeAddressUri =

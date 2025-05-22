@@ -22,7 +22,7 @@ class _WalletTransactionsWidgetsState extends State<WalletTransactionsWidgets> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      // Center the content on the screen
+      // Center the content on the screens
       child: Container(
         // Main container with margin and background color
         decoration: BoxDecoration(

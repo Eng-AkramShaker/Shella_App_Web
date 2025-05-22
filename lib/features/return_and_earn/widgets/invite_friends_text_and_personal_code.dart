@@ -24,7 +24,7 @@ class _InviteFriendsTextAndPersonalCodeState extends State<InviteFriendsTextAndP
 
   @override
   void dispose() {
-    _controller.dispose(); // Important: Dispose of the controller
+    _controller.dispose(); // Important: Dispose of the controllers
     super.dispose();
   }
 

@@ -112,7 +112,7 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Resets the controller state
+  /// Resets the controllers state
   void resetState() {
     adressstate = RequestState.initial;
     address = [];

@@ -79,7 +79,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<bool> updateAddress(Address address) async {
     final response = await apiClient.putData(
       Uri.parse('${Api_Constants.updateAddressUri}/${address.id}').toString(),
-      jsonEncode(address.toJson()),
+      address.toJson(),
     );
 
     if (response != null && response.statusCode == 200) {

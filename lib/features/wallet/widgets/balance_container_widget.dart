@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/features/Balance/screens/mobile/add_credit.dart';
+import 'package:shella_design/features/Balance/screens/mobile/balance_transfer.dart';
+import 'package:shella_design/features/Balance/screens/web/add_balance_widget.dart';
+import 'package:shella_design/common/helper/responsive_helper.dart';
 import '../../../common/widgets/texts/custom_text.dart';
 import '../../../common/util/app_styles.dart';
 
@@ -49,13 +53,27 @@ class BalanceContainerWidget extends StatelessWidget {
                   )),
             ],
           )),
-          IconButton(onPressed: () {}, icon: Image.asset('assets/images/wallet.png')),
+          IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const BalanceTransfer(),
+                );
+              },
+              icon: Image.asset('assets/images/wallet.png')),
           CircleAvatar(
             backgroundColor: AppColors.primaryColor,
             radius: 15.r,
             child: IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => ResponsiveLayout.isWeb()
+                      ? const AddBalanceWidget()
+                      : const AddCredit(),
+                );
+              },
               icon: Icon(
                 Icons.add,
                 color: AppColors.wtColor,

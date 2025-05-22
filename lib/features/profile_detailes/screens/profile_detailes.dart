@@ -7,6 +7,10 @@ import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/features/address/screens/mobile/address_details.dart';
+import 'package:shella_design/features/address/screens/web/address_list_page.dart';
+import 'package:shella_design/common/helper/responsive_helper.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../../common/helper/app_routes.dart';
 
@@ -34,10 +38,42 @@ class ProfileDetailsPage extends StatelessWidget {
           buildProfileHeader(),
           buildListTile('معلومات الحساب', Icons.account_circle, context, () {}),
           buildListTile('العناوين المحفوظة', Icons.location_on, context, () {
-            pushNewScreen(
-              context,
-              AppRoutes.addressDetails,
-            );
+            if (kIsWeb) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddressListPage(
+                    address: "الرياض، السعودية",
+                    onEdit: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("تم الضغط على زر التعديل"),
+                        ),
+                      );
+                    },
+                    onDelete: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("تم الضغط على زر الحذف"),
+                        ),
+                      );
+                    },
+                    onAddNew: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("تم الضغط على زر إضافة عنوان جديد"),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            } else {
+              pushNewScreen(
+                context,
+                AppRoutes.addressDetails,
+              );
+            }
           }),
           buildListTile('المفضلة لديك', Icons.favorite_border, context, () {}),
           buildListTile('اللغة', Icons.language, context, () {
@@ -77,7 +113,8 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.joinAsDriverOne);
           }),
           buildListTile('سياسة الخصوصية', Icons.privacy_tip, context, () {}),
-          buildListTile('الحصول على المساعدة', Icons.help_outline, context, () {}),
+          buildListTile(
+              'الحصول على المساعدة', Icons.help_outline, context, () {}),
           buildListTile('الشروط والأحكام', Icons.rule, context, () {}),
           buildListTile('سياسة الاسترداد', Icons.replay, context, () {}),
           buildListTile('المساعدة والدعم', Icons.support_agent, context, () {
@@ -86,7 +123,9 @@ class ProfileDetailsPage extends StatelessWidget {
           buildListTile('الدردشة المباشرة', Icons.chat, context, () {
             pushNewScreen(context, AppRoutes.supportConversation);
           }),
-          buildListTile('تسجيل الخروج', Icons.power_settings_new, context, () {}, color: Colors.red),
+          buildListTile(
+              'تسجيل الخروج', Icons.power_settings_new, context, () {},
+              color: Colors.red),
         ],
       ),
     );
