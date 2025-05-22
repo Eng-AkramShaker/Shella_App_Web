@@ -16,7 +16,7 @@ class BuildSearchResultWeb extends StatelessWidget {
           SearchResultFilterWeb(),
           SizedBox(height: 10,),
           SizedBox(
-            height: height(context,0.73),
+            height: height(context,0.7),
             child: GridView.builder(
               shrinkWrap: true,
               padding: EdgeInsets.only(bottom: 30),

@@ -31,6 +31,7 @@ class SearchFilterWeb extends StatelessWidget {
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BuildSearchResultWeb(),
                 BuildFilterResultWeb()

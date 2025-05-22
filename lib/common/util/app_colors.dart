@@ -13,7 +13,7 @@ class AppColors {
   static const Color title = Color(0xFF6C7278);
   static const Color supTitle = Color(0xFF6C7278);
 
-  static const Color bgColor = Color(0xFF2D3633);
+  static const Color bgColor = Color(0xFF000000);
   static const Color wtColor = Colors.white;
 
   static const Color wtColor_2 = Color(0xFFECECEC);

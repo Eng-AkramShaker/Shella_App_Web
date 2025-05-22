@@ -26,9 +26,6 @@ class AppImages {
   static const String icon_deliv = 'assets/icons/bike.png';
   static const String icon_disc = 'assets/icons/33.png';
 
-  static const String view1 = 'assets/icons/view1.svg';
-  static const String view2 = 'assets/icons/view2.svg';
-
   static const String icon_order_service = 'assets/icons/order_service.png';
 
   static const String icon_v = 'assets/icons/v.png';
@@ -41,7 +38,6 @@ class AppImages {
 
   static const String icon_card = 'assets/icons/card.png';
 
-  static const String cIcon = 'assets/icons/c.svg';
 
   // ======================== Images ========================
   static const String individualsService =
@@ -144,7 +140,15 @@ class AppImages {
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
 
-  //
+  ///======================== SVG ========================
+  static const String cIcon = 'assets/svg/c.svg';
+  static const String pharmacy = 'assets/svg/pharmacy.svg';
+  static const String view1 = 'assets/svg/view1.svg';
+  static const String view2 = 'assets/svg/view2.svg';
+  static const String food = 'assets/svg/food.svg';
+  static const String market = 'assets/svg/market.svg';
+  static const String carrot = 'assets/svg/carrot.svg';
+  static const String fish = 'assets/svg/fish.svg';
 }
 
   
