@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/widgets/button/custom_button.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../../../common/util/app_styles.dart';
 import '../../../../../../../common/widgets/texts/custom_text.dart';
 
 class SearchResultContainerWeb extends StatelessWidget {
-  const SearchResultContainerWeb({super.key, required this.itemImg, required this.itemName, required this.rate, required this.location, required this.deliveryTime, required this.storeOffer});
+  const SearchResultContainerWeb({super.key, required this.itemImg, required this.itemName, required this.rate});
 
   final String itemImg;
   final String itemName;
   final String rate;
-  final String location;
-  final String deliveryTime;
-  final String storeOffer;
 
   @override
   Widget build(BuildContext context) {
@@ -29,54 +25,30 @@ class SearchResultContainerWeb extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Custom_Text(context, text: itemName,style: font14Black600W(context,size: 13),maxLines: 3),
+                SizedBox(height: 10,),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: Custom_Text(context, text: itemName,style: font14Black600W(context,size: 13),maxLines: 3)),
-                    // Spacer(),
                     Custom_Text(context, text: 'التقييمات ',size: 10,color: AppColors.secondaryColor),
                     Icon(Icons.star_border_purple500_outlined,color: AppColors.secondaryColor,size: 15,),
                     SizedBox(width: 5,),
                     Custom_Text(context, text: rate),
                   ],
                 ),
-                SizedBox(height: 5,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Custom_Text(context, text: location,size: 11),
-                    SizedBox(width: 5,),
-                    Icon(Icons.location_on_outlined,size: 15,),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Custom_Text(context, text: deliveryTime,size: 11),
-                    SizedBox(width: 5,),
-                    Icon(Icons.access_time_outlined,size: 15,),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IntrinsicWidth(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: AppColors.greenColor
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
-                          child: Custom_Text(context, text: 'عرض المتجر',color: AppColors.wtColor,size: 12),
-                        ),
-                      ),
+                SizedBox(height: 15,),
+                IntrinsicWidth(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: AppColors.greenColor
                     ),
-                    Custom_Text(context, text: storeOffer,style: font12LightGreen600W(context,size: 12)),
-                  ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
+                      child: Custom_Text(context, text: 'عرض المتجر',color: AppColors.wtColor,size: 12),
+                    ),
+                  ),
                 )
               ],
             ),

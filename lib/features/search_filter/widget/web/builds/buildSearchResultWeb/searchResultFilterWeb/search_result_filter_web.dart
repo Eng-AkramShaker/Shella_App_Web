@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../../../common/util/app_colors.dart';
 import '../../../../../../../common/util/app_images.dart';
@@ -28,11 +29,11 @@ class SearchResultFilterWeb extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view2),colorBorder: AppColors.gryColor_3,circular: 5,),
+            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view2,height: 15.h,),colorBorder: AppColors.gryColor_3,circular: 5,),
             SizedBox(width: 10,),
-            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view1),colorBorder: AppColors.gryColor_3,circular: 5,),
+            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view1,height: 17.h,),colorBorder: AppColors.gryColor_3,circular: 5,),
             SizedBox(width: 10,),
-            CustomButton(height: 30,width: width(context, 0.08),text: 'الاحدث',widget: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.greenColor,),colorBorder: AppColors.greenColor,colorTxt: AppColors.greenColor,circular: 5,),
+            CustomButton(height: 30,width: width(context, 0.08),text: 'الاحدث',widget: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.greenColor,size: 15.h,),colorBorder: AppColors.greenColor,colorTxt: AppColors.greenColor,circular: 5,),
           ],
         )
       ],
