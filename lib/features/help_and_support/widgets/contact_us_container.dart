@@ -54,7 +54,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'اتصل بنا',
-                    style: font12Green400W(context),
+                    style: font12Green400W(context,size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +62,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: '+966-5999-777-25',
-                    style: font12Black300W(context),
+                    style: font12Black300W(context,size: 11),
                   ),
                 ],
               ),

@@ -18,7 +18,7 @@ class SearchFilterController with ChangeNotifier {
   final SearchServiceInterface? searchServiceInterface;
   SearchFilterController({this.searchServiceInterface});
 
-  static SearchFilterController get(context) => Provider.of<SearchFilterController>(context);
+  static SearchFilterController get(context, {listen=true}) => Provider.of<SearchFilterController>(context,listen: listen);
 
   /// GET STATE
   SearchState _state = SearchState.initial;

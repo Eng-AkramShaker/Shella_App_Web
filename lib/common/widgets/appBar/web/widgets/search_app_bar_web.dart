@@ -1,8 +1,12 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import '../../../../util/app_colors.dart';
 
 class SearchAppBar extends StatelessWidget {
-  const SearchAppBar({super.key});
+  const SearchAppBar({super.key, this.isSearchScreen});
+
+  final bool? isSearchScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,20 @@ class SearchAppBar extends StatelessWidget {
             hintStyle: TextStyle(fontSize: 16, color: AppColors.gryColor_3),
             floatingLabelBehavior: FloatingLabelBehavior.never,
           ),
+          onChanged: (value) {
+            if(isSearchScreen == true){
+              EasyDebounce.debounce(
+                  'search products',
+                  Duration(milliseconds: 700),
+                      (){
+                    if(value.trim().isNotEmpty){
+                      SearchFilterController.get(context,listen: false).saveSearchHistory(value);
+                    }
+                    SearchFilterController.get(context,listen: false).searchItems(value: value);
+                  }
+              );
+            }
+          },
         ),
       ),
     );

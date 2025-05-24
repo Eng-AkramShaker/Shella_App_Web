@@ -8,7 +8,9 @@ import '../../../util/app_navigators.dart' as NavigationHelper;
 import 'navBarState/nav_bar_state_web.dart';
 
 class WebHomeApppar extends StatelessWidget {
-  WebHomeApppar({super.key});
+  WebHomeApppar({super.key, this.isSearchScreen});
+
+  final bool? isSearchScreen;
 
   final List<NavItem> _navItems = [
     NavItem(title: 'السوق', icon: Icons.home_outlined),
@@ -67,10 +69,10 @@ class WebHomeApppar extends StatelessWidget {
                     child: VideoLogoWidget(),
                   ),
                   const SizedBox(width: 50),
-                  const Expanded(
+                  Expanded(
                     child: SizedBox(
                       height: 50,
-                      child: SearchAppBar(),
+                      child: SearchAppBar(isSearchScreen: isSearchScreen,),
                     ),
                   ),
                   const SizedBox(width: 50),

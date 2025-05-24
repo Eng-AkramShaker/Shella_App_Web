@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/search_filter/domain/models/searchResultModel/search_result_model.dart';
 import 'package:shella_design/features/search_filter/domain/repositories/searchRepositoryInterface/search_repository_interface.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';

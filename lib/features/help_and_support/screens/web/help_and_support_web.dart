@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../common/util/app_colors.dart';
 import '../../../../common/util/app_images.dart';
 import '../../../../common/widgets/images/custom_Images.dart';
@@ -12,8 +14,7 @@ class HelpAndSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 850,
-      height: 850,
+      width: width(context, 0.7),
       child: Card(
         color: AppColors.backgroundColor,
         shape: RoundedRectangleBorder(
@@ -29,18 +30,16 @@ class HelpAndSupport extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 250,
-                width: 800,
-                child: custom_Images_asset(
-                  image: AppImages.helpAndSupport,
-                  h: 250,
-                  w: 800,
-                  fit: BoxFit.fill),
-              ),
-              SizedBox(height: 40),
+              custom_Images_asset(
+                image: AppImages.helpAndSupport,
+                h: height(context, 0.3),
+                w: width(context, 0.6),
+                fit: BoxFit.fill),
+              SizedBox(height: 30),
               AddressContainer(),
+              SizedBox(height: 10,),
               ContactUsContainer(),
+              SizedBox(height: 10,),
               EmailUsContainer(),
             ],
           ),

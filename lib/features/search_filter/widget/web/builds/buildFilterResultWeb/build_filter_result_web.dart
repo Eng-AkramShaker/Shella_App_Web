@@ -6,6 +6,7 @@ import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
 import 'filterCategoryWeb/filter_category_web.dart';
+import 'filterLocationWeb/filter_location_web.dart';
 import 'filterRatingWeb/filter_rating_web.dart';
 import 'priceRangeWeb/price_range_web.dart';
 
@@ -21,14 +22,15 @@ class BuildFilterResultWeb extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
       child: SizedBox(
-        width: width(context, 0.23),
+        width: width(context, 0.2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Custom_Text(context, text: 'تصفية النتائج',style: font11Black500W(context,size: 14)),
             PriceRangeWeb(),
             FilterCategoryWeb(),
-            // FilterRatingWeb()
+            FilterRatingWeb(),
+            FilterLocationWeb()
           ],
         ),
       ),

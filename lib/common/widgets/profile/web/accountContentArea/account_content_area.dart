@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../../../../features/profile_detailes/controllers/profile_detailes_controller.dart';
 import '../accountInformationColumn1/account_information_column1.dart';
@@ -64,14 +66,13 @@ class AccountContentArea extends StatelessWidget {
       default:
         content = const SizedBox();
     }
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const AccountInformationColumn1(),
         Padding(
-          padding: const EdgeInsets.only(top: 60, right: 20),
+          padding: const EdgeInsets.only(right: 10),
           child: content,
         ),
       ],

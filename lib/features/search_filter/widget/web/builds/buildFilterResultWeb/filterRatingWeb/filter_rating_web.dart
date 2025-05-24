@@ -10,18 +10,24 @@ class FilterRatingWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        SizedBox(height: 10,),
+        SizedBox(height: 17,),
         Custom_Text(context, text: 'التقييم',style: font11Black400W(context,size: 13)),
-        Row(
-          children: [
-            Custom_Text(context, text: 'واعلى',style: font11Black400W(context,size: 13)),
-            RateBar(itemCount: 5),
-            Transform.scale(scale: 0.7,child: Checkbox(value: false, onChanged: (value){},side: BorderSide(color: AppColors.gryColor_2),shape: CircleBorder(),visualDensity: VisualDensity(vertical: -4,horizontal: -4),)),
-
-
-          ],
+        SizedBox(height: 7,),
+        ListView.separated(
+          shrinkWrap: true,
+          itemBuilder: (context, index) => Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Custom_Text(context, text: 'واعلى',style: font11Black400W(context,size: 11)),
+              SizedBox(width: 3,),
+              RateBar(itemCount: (5-index)),
+              Transform.scale(scale: 0.7,child: Checkbox(value: false, onChanged: (value){},side: BorderSide(color: AppColors.gryColor_2),shape: CircleBorder(),visualDensity: VisualDensity(vertical: -4,horizontal: -4),)),
+            ],
+          ),
+          separatorBuilder: (context, index) => SizedBox(height: 3,),
+          itemCount: 5,
         )
       ],
     );

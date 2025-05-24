@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/search_filter/widget/web/builds/buildSearchResultWeb/searchResultFilterWeb/search_result_filter_web.dart';
 import '../../../../../../common/widgets/gap/height/height.dart';
 import '../../../../../../common/widgets/gap/width/width.dart';
+import '../../../../controller/search_filter_controller.dart';
+import '../../itemLoadingWeb/item_loading_web.dart';
 import 'searchResultContainerWeb/search_result_container_web.dart';
 
 class BuildSearchResultWeb extends StatelessWidget {
@@ -15,22 +18,24 @@ class BuildSearchResultWeb extends StatelessWidget {
         children: [
           SearchResultFilterWeb(),
           SizedBox(height: 10,),
-          SizedBox(
-            height: height(context,0.7),
-            child: GridView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.only(bottom: 30),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 15, mainAxisSpacing: 15,childAspectRatio: 1.1),
-              itemBuilder: (context, index) => SearchResultContainerWeb(
-                itemImg: 'https://th.bing.com/th/id/OIP.MO6T-LKR9oi03dJSe9DMGgHaE8?cb=iwp2&rs=1&pid=ImgDetMain',
-                itemName: 'مطعم الشرق',
-                rate: '4.5',
-                location: 'الرياض , حي النخيل',
-                deliveryTime: 'يصل خلال 30-45 دقيقة',
-                storeOffer: 'يبدأ من 25 ريال',
-              ),
-              itemCount: 10,
+          SearchFilterController.get(context).state==SearchState.loading?
+          ItemLoadingWeb():
+          SearchFilterController.get(context).searchResultModel==null?
+          SizedBox():
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(bottom: 30),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 15, mainAxisSpacing: 15,childAspectRatio: (width(context, 1)/2)/height(context, 0.7)),
+            itemBuilder: (context, index) => SearchResultContainerWeb(
+              itemImg: SearchFilterController.get(context).mixedList[index]['img']??'',
+              itemName: SearchFilterController.get(context).mixedList[index]['name']??'',
+              rate: '4.5',
+              location: 'الرياض , حي النخيل',
+              deliveryTime: 'يصل خلال 30-45 دقيقة',
+              storeOffer: 'يبدأ من 25 ريال',
             ),
+            itemCount: SearchFilterController.get(context).mixedList.length,
           ),
         ],
       ),

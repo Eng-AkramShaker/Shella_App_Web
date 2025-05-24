@@ -25,15 +25,16 @@ class SearchResultContainerWeb extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: height(context, 0.17),width: width(context, 0.3),child: ClipRRect(borderRadius: BorderRadius.circular(10),child: Image.network(itemImg,fit: BoxFit.fill,))),
+          SizedBox(height: height(context, 0.17),width: width(context, 0.3),child: ClipRRect(borderRadius: BorderRadius.circular(10),child: Image.network(itemImg,errorBuilder: (context, error, stackTrace) => SizedBox(),))),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             child: Column(
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Custom_Text(context, text: itemName,style: font14Black600W(context,size: 13)),
-                    Spacer(),
+                    Expanded(child: Custom_Text(context, text: itemName,style: font14Black600W(context,size: 13),maxLines: 3)),
+                    // Spacer(),
                     Custom_Text(context, text: 'التقييمات ',size: 10,color: AppColors.secondaryColor),
                     Icon(Icons.star_border_purple500_outlined,color: AppColors.secondaryColor,size: 15,),
                     SizedBox(width: 5,),
@@ -62,8 +63,19 @@ class SearchResultContainerWeb extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomButton(height: 25,width: width(context, 0.08),text: 'عرض المتجر',color: AppColors.greenColor,textSize: 12,colorTxt: AppColors.wtColor,circular: 5,),
-                    Custom_Text(context, text: storeOffer,style: font12LightGreen600W(context)),
+                    IntrinsicWidth(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: AppColors.greenColor
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
+                          child: Custom_Text(context, text: 'عرض المتجر',color: AppColors.wtColor,size: 12),
+                        ),
+                      ),
+                    ),
+                    Custom_Text(context, text: storeOffer,style: font12LightGreen600W(context,size: 12)),
                   ],
                 )
               ],

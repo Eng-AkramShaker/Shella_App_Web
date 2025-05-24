@@ -409,7 +409,7 @@ class AppRoutes {
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
     searchFilterWeb: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository())),
       child: const SearchFilterWeb(),
     ),
   };

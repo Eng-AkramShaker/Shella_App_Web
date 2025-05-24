@@ -29,7 +29,7 @@ class _AccountDetailsState extends State<AccountDetails> {
           builder: (context, controller, child) => ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 45),
+                padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

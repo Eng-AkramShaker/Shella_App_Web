@@ -10,13 +10,13 @@ class RateBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      initialRating: 3,
+      initialRating: 5,
       minRating: 1,
       direction: Axis.horizontal,
       ignoreGestures: true,
       itemCount: itemCount,
-      itemSize: 20,
-      // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+      itemSize: 15,
+      itemPadding: EdgeInsets.symmetric(horizontal: 2),
       itemBuilder: (context, _) => Icon(
         Icons.star_border,
         color: AppColors.orangeColor,

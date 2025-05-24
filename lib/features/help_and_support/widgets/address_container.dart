@@ -23,7 +23,7 @@ class AddressContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // Shadow color
+              color: Colors.grey.withValues(alpha: 0.5), // Shadow color
               spreadRadius: 0, // Spread radius
               blurRadius: 5, // Blur radius
               offset: Offset(0, 3), // Offset from the container
@@ -44,24 +44,20 @@ class AddressContainer extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 10.w,
-              ),
+              SizedBox(width: 10.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Custom_Text(
                     context,
                     text: 'عناويننا',
-                    style: font12Green400W(context),
+                    style: font12Green400W(context,size: 11),
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  SizedBox(height: 10.h),
                   Custom_Text(
                     context,
                     text: 'ksa, saudi arabia , umm al hammam',
-                    style: font12Black300W(context),
+                    style: font12Black300W(context,size: 11),
                   ),
                 ],
               ),

@@ -6,6 +6,7 @@ import '../../../../../../../common/util/app_styles.dart';
 import '../../../../../../../common/widgets/button/custom_button.dart';
 import '../../../../../../../common/widgets/gap/width/width.dart';
 import '../../../../../../../common/widgets/texts/custom_text.dart';
+import '../../../../../controller/search_filter_controller.dart';
 
 class SearchResultFilterWeb extends StatelessWidget {
   const SearchResultFilterWeb({super.key});
@@ -13,27 +14,25 @@ class SearchResultFilterWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        if(SearchFilterController.get(context).searchResultModel!=null)
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Custom_Text(context, text: 'نتائج البحث',style: font18Black700W(context,size: 15)),
             SizedBox(height: 5),
-            Custom_Text(context, text: 'تم العثور على 245 نتيجة',color: AppColors.darkGreyColor),
+            Custom_Text(context, text: 'تم العثور على ${SearchFilterController.get(context).searchResultModel!.items!.length} نتيجة',color: AppColors.darkGreyColor),
           ],
         ),
-        Column(
+        Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Row(
-              children: [
-                CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view2),colorBorder: AppColors.gryColor_3,circular: 5,),
-                SizedBox(width: 10,),
-                CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view1),colorBorder: AppColors.gryColor_3,circular: 5,),
-                SizedBox(width: 10,),
-                CustomButton(height: 30,width: width(context, 0.08),text: 'الاحدث',widget: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.greenColor,),colorBorder: AppColors.greenColor,colorTxt: AppColors.greenColor,circular: 5,),
-              ],
-            )
+            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view2),colorBorder: AppColors.gryColor_3,circular: 5,),
+            SizedBox(width: 10,),
+            CustomButton(height: 30,width: width(context, 0.03),text: '',textSize: 0,isSpacer: true,paddingRight: 5,widget: SvgPicture.asset(AppImages.view1),colorBorder: AppColors.gryColor_3,circular: 5,),
+            SizedBox(width: 10,),
+            CustomButton(height: 30,width: width(context, 0.08),text: 'الاحدث',widget: Icon(Icons.keyboard_arrow_down_outlined,color: AppColors.greenColor,),colorBorder: AppColors.greenColor,colorTxt: AppColors.greenColor,circular: 5,),
           ],
         )
       ],
