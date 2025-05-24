@@ -99,7 +99,8 @@ class SearchFilterController with ChangeNotifier {
     mixedList.shuffle();
     notifyListeners();
   }
-  
+
+  ///
   ///-------------------------------------<<<---APIs--->>>-------------------------------------
 
   /// SEARCH ITEMS

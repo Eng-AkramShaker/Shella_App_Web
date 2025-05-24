@@ -12,6 +12,7 @@ import 'package:shella_design/features/search_filter/widget/mobile/search_histor
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import '../../widget/mobile/builds/buildFilterCategory/build_filter_category.dart';
 import '../../widget/mobile/builds/buildMostSearched/build_most_searched.dart';
 import '../../widget/mobile/builds/buildSearchItems/build_search_items.dart';
 import '../../widget/mobile/builds/buildSearchStores/build_search_stores.dart';
@@ -84,6 +85,7 @@ class _SearchFilterState extends State<SearchFilter> {
                 context: context,
               ),
               SizedBox(height: 10),
+              BuildFilterCategory(),
               searchFilterController.state==SearchState.loading||searchFilterController.mostSearchedModel==null?
               Loading(isData: true,):
               searchFilterController.searchResultModel!=null?
