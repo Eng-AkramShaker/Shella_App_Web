@@ -35,4 +35,7 @@ class Api_Constants {
 
   /// GET ADDRESS
   static const String getAddress = '/api/v1/customer/address/list';
+
+  /// GET MY COUPON
+  static const String getMyCoupon = '/api/v1/coupon/list';
 }

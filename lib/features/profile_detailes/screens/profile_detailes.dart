@@ -61,10 +61,7 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyCouponScreen()),
-            );
+            pushNewScreen(context, AppRoutes.myCouponScreen);
           }),
           buildListTile('نقاطي', Icons.stars_sharp, context, () {
             Navigator.push(

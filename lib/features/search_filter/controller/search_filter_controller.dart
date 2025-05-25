@@ -100,7 +100,7 @@ class SearchFilterController with ChangeNotifier {
     notifyListeners();
   }
 
-  ///
+
   ///-------------------------------------<<<---APIs--->>>-------------------------------------
 
   /// SEARCH ITEMS

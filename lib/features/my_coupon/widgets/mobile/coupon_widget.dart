@@ -4,18 +4,18 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/text_button.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-
-import '../../../common/util/app_colors.dart';
-import '../domain/models/my_coupon_models.dart';
+import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
+import '../../../../common/util/app_colors.dart';
 
 class buildCouponList extends StatelessWidget {
+  const buildCouponList({super.key, required this.index, this.discount, this.expiredDate});
+
   final int index;
-  final List<Coupon> list;
-  const buildCouponList({super.key, required this.index, required this.list});
+  final int? discount;
+  final String? expiredDate;
 
   @override
   Widget build(BuildContext context) {
-    final coupon = list[index];
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Stack(
@@ -27,7 +27,7 @@ class buildCouponList extends StatelessWidget {
               color: AppColors.wtColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.2), // Shadow color
+                  color: Colors.grey.withValues(alpha: 0.2), // Shadow color
                   spreadRadius: 2, // Spread radius
                   blurRadius: 2, // Blur radius
                   offset: Offset(0, 0), // Offset from the container
@@ -47,17 +47,11 @@ class buildCouponList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Custom_Text(context,
-                            text: '30 % خصم',
-                            style: font16SecondaryColor400W(context)
-                                .copyWith(color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.secondaryColor)),
+                        Custom_Text(context,text: '$discount % خصم', style: font16SecondaryColor400W(context).copyWith(color: MyCouponController.get(context).myCouponModel![index].status==1?AppColors.darkGreyColor:AppColors.secondaryColor)),
                         SizedBox(
                           height: 10.h,
                         ),
-                        Custom_Text(context,
-                            text: 'بدون حد ادنى',
-                            style: font12SecondaryColor400W(context)
-                                .copyWith(color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.secondaryColor)),
+                        Custom_Text(context,text: 'بدون حد ادنى', style: font12SecondaryColor400W(context).copyWith(color: MyCouponController.get(context).myCouponModel![index].status==1?AppColors.darkGreyColor:AppColors.secondaryColor)),
                       ],
                     ),
                   ),
@@ -70,24 +64,15 @@ class buildCouponList extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Custom_Text(context,
-                            text: 'خصم 50% وفر حتى 20 ر.س',
-                            style: font12Black400W(context)
-                                .copyWith(color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.bgColor)),
+                        Custom_Text(context, text: 'خصم $discount% وفر حتى 20 ر.س', style: font12Black400W(context).copyWith(color: MyCouponController.get(context).myCouponModel![index].status==1 ? AppColors.darkGreyColor : AppColors.bgColor)),
                         SizedBox(
                           height: 10.h,
                         ),
                         Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
-                              border: Border.all(
-                                  width: 1, color: coupon.isAvailable ? AppColors.secondaryColor : AppColors.darkGreyColor)),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: MyCouponController.get(context).myCouponModel![index].status!=1 ? AppColors.secondaryColor : AppColors.darkGreyColor)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Custom_Text(context,
-                                text: 'طلبات التوصيل فقط',
-                                style: font6SecondaryColor400W(context).copyWith(
-                                    color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.secondaryColor)),
+                            child: Custom_Text(context, text: 'طلبات التوصيل فقط', style: font6SecondaryColor400W(context,size: 8).copyWith(color: MyCouponController.get(context).myCouponModel![index].status==1 ? AppColors.darkGreyColor : AppColors.secondaryColor)),
                           ),
                         ),
                         SizedBox(
@@ -97,23 +82,23 @@ class buildCouponList extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.r),
                               border: Border.all(
-                                  width: 1, color: coupon.isAvailable ? AppColors.secondaryColor : AppColors.darkGreyColor)),
+                                  width: 1, color: MyCouponController.get(context).myCouponModel![index].status!=1 ? AppColors.secondaryColor : AppColors.darkGreyColor)),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Custom_Text(context,
                                 text: 'خصم يصل الى 20ر.س',
-                                style: font6SecondaryColor400W(context).copyWith(
-                                    color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.secondaryColor)),
+                                style: font6SecondaryColor400W(context,size: 8).copyWith(
+                                    color: MyCouponController.get(context).myCouponModel![index].status==1 ? AppColors.darkGreyColor : AppColors.secondaryColor)),
                           ),
                         ),
                         SizedBox(
                           height: 10.h,
                         ),
                         Custom_Text(context,
-                            text: 'صالح حتى 20/3/2025 11:59 م.',
-                            style: font8Black400W(context)
-                                .copyWith(color: coupon.isAvailable == false ? AppColors.darkGreyColor : AppColors.bgColor)),
-                        coupon.isAvailable
+                            text: 'صالح حتى $expiredDate',
+                            style: font8Black400W(context,size: 10)
+                                .copyWith(color: MyCouponController.get(context).myCouponModel![index].status==1 ? AppColors.darkGreyColor : AppColors.bgColor)),
+                        MyCouponController.get(context).myCouponModel![index].status!=1
                             ? ResponsiveLayout.isWeb()
                                 ? Align(
                                     alignment: AlignmentDirectional.bottomEnd,
@@ -161,7 +146,7 @@ class buildCouponList extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(color: AppColors.wtColor, shape: BoxShape.circle, boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.2), // Shadow color
+                  color: Colors.grey.withValues(alpha: 0.2), // Shadow color
                   spreadRadius: 2, // Spread radius
                   blurRadius: 2, // Blur radius
                   offset: Offset(0, 0), // Offset from the container

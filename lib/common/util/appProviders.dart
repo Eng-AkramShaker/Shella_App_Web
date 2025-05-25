@@ -13,6 +13,8 @@ import 'package:shella_design/features/search_filter/controller/search_filter_co
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 
+import '../../features/my_coupon/controllers/my_coupon_controller.dart';
+
 List<SingleChildWidget> appProviders = [
   //
 

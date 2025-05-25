@@ -30,6 +30,9 @@ import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
 import 'package:shella_design/features/kaidha_form/screen/verify_source_of_income.dart';
+import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
+import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
+import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
 import 'package:shella_design/features/my_coupon/screens/my_coupon_screen.dart';
 import 'package:shella_design/features/notifications/notifications.dart';
 import 'package:shella_design/features/onboarding/screen/onboarding.dart';
@@ -301,7 +304,10 @@ class AppRoutes {
     discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
-    myCouponScreen: (context) => const MyCouponScreen(),
+    myCouponScreen: (context) => ChangeNotifierProvider(
+      create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))..getMyCoupon(),
+      child: const MyCouponScreen(),
+    ),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverOne: (context) => const JoinAsDriverOne(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
