@@ -5,6 +5,7 @@ import 'package:shella_design/common/widgets/appBar/web/widgets/video_logo_web.d
 import '../../../helper/app_routes.dart';
 import '../../../util/app_colors.dart';
 import '../../../util/app_navigators.dart' as NavigationHelper;
+import '../../gap/width/width.dart';
 import 'navBarState/nav_bar_state_web.dart';
 
 class WebHomeApppar extends StatelessWidget {
@@ -59,23 +60,20 @@ class WebHomeApppar extends StatelessWidget {
           child: Card(
             color: AppColors.backgroundColor,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    width: 111,
+                  SizedBox(
+                    width: width(context, 0.2),
                     height: 50,
-                    child: VideoLogoWidget(),
+                    child: const VideoLogoWidget(),
                   ),
-                  const SizedBox(width: 50),
+                  const SizedBox(width: 20),
                   Expanded(
-                    child: SizedBox(
-                      height: 50,
-                      child: SearchAppBar(isSearchScreen: isSearchScreen,),
-                    ),
+                    child: SearchAppBar(isSearchScreen: isSearchScreen,),
                   ),
-                  const SizedBox(width: 50),
+                  const SizedBox(width: 20),
                   Row(
                     children: List.generate(
                       _navItems.length,

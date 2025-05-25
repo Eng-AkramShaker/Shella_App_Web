@@ -20,7 +20,7 @@ class ExpiredContainer extends StatelessWidget {
       child: Custom_Text(
         context,
         text: 'منتهية الصلاحية',
-        style: font14Black400W(context),
+        style: font14Black400W(context,size: 14),
       ),
     );
   }

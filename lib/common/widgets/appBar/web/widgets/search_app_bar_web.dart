@@ -1,5 +1,6 @@
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import '../../../../util/app_colors.dart';
 
@@ -12,6 +13,7 @@ class SearchAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
+      // width: width(context, 0.3),
       child: Material(
         elevation: 3,
         borderRadius: BorderRadius.circular(20),

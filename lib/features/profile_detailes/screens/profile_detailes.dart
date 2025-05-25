@@ -61,6 +61,8 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
+            isWideScreen==true?
+            pushNewScreen(context, AppRoutes.accountdetails):
             pushNewScreen(context, AppRoutes.myCouponScreen);
           }),
           buildListTile('نقاطي', Icons.stars_sharp, context, () {

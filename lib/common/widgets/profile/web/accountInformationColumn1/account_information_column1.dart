@@ -74,8 +74,8 @@ class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
                       controller.changePage(index);
                       },
                         text_style: index == controller.currentPage
-                            ? font13Green500W(context, size: width(context, 1)>600?24:14)
-                            : font10Black400W(context, size: width(context, 1)>600?24:14)),
+                            ? font13Green500W(context, size: width(context, 1)>600?20:14)
+                            : font10Black400W(context, size: width(context, 1)>600?20:14)),
                   );
                 },
               ),

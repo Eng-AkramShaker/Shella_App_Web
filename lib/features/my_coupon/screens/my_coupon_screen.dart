@@ -14,6 +14,6 @@ class _MyCouponScreenState extends State<MyCouponScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(mobileBody: MyCouponMobileWidget());
+    return ResponsiveLayout(mobileBody: MyCouponMobileWidget(),);
   }
 }

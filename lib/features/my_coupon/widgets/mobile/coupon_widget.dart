@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/text_button.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
@@ -41,7 +43,7 @@ class buildCouponList extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    height: ResponsiveLayout.isWeb() ? 200.h : 160.h,
+                    height: height(context, 0.2),
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: AppColors.gryColor_7),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +142,7 @@ class buildCouponList extends StatelessWidget {
           ),
           Positioned(
             bottom: 30,
-            left: -42,
+            left: -30,
             child: Container(
               height: 50,
               width: 50,

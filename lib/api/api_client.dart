@@ -5,8 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 
+import '../common/helper/app_routes.dart';
+import '../common/util/app_navigators.dart';
 import '../common/widgets/print/custom_print.dart';
 
 class ApiClient with ChangeNotifier {
@@ -23,6 +26,7 @@ class ApiClient with ChangeNotifier {
     String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
     customPrint('TOKEN =====> $token');
     _headers = {
+      "Accept": "application/json",
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',
       'zoneId': '[2,4,3,5]',
@@ -38,6 +42,7 @@ class ApiClient with ChangeNotifier {
       customPrint('URL ========> ${appBaseUrl+uri}',isUrl: true);
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
       final response = await http.get(url, headers: _headers);
+      customPrint(response.statusCode);
       return _handleResponse(response);
     } catch (e) {
       debugPrint('GET Error: $e');
@@ -109,7 +114,10 @@ class ApiClient with ChangeNotifier {
   // ============================
 
   http.Response? _handleResponse(http.Response response) {
-    if (response.statusCode >= 200 && response.statusCode < 300) {
+    if(response.statusCode==401){
+      pushAndRemoveUntil(Navigation.currentContext, AppRoutes.Login_Mobile);
+      return response;
+    }else if (response.statusCode >= 200 && response.statusCode < 300) {
       return response;
     } else {
       debugPrint("API Error: ${response.statusCode}  ");

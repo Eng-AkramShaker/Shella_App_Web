@@ -34,7 +34,7 @@ class _AccountDetailsState extends State<AccountDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AccountHeader(controller: controller),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
                     AccountContentArea(controller: controller),
                     const SizedBox(height: 60),
                     const WebFooter(),

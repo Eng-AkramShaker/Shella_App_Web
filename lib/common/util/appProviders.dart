@@ -5,6 +5,8 @@ import 'package:provider/single_child_widget.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
+import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
@@ -32,5 +34,7 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
+
+  ChangeNotifierProvider(create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))..getMyCoupon()),
 
 ];

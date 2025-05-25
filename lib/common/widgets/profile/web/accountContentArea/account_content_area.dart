@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../../../../features/my_coupon/screens/web/my_coupon_web.dart';
 import '../../../../../features/profile_detailes/controllers/profile_detailes_controller.dart';
 import '../accountInformationColumn1/account_information_column1.dart';
 
@@ -45,9 +46,9 @@ class AccountContentArea extends StatelessWidget {
       // case 6:
       //   content = const MyPointsWebWidget();
       //   break;
-      // case 7:
-      //   content = const MyCouponWebWidget();
-      //   break;
+      case 7:
+        content = const MyCouponWeb();
+        break;
       // case 8:
       //   content = const RefundPolicy();
       //   break;
@@ -70,9 +71,10 @@ class AccountContentArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        if(width(context, 1)>600||controller.currentPage==0)
         const AccountInformationColumn1(),
         Padding(
-          padding: const EdgeInsets.only(right: 10),
+          padding: const EdgeInsets.only(right: 0),
           child: content,
         ),
       ],

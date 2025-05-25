@@ -20,7 +20,7 @@ class AvailableContainer extends StatelessWidget {
       child: Custom_Text(
         context,
         text: 'المتاحة',
-        style: font14Black400W(context),
+        style: font14Black400W(context, size: 14),
       ),
     );
   }

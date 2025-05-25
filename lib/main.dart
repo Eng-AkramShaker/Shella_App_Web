@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
+import 'common/util/navigation/navigation.dart';
 import 'common/util/sharedPre_constants.dart';
 
 void main() async {
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
           child: child!,
         );
       },
+      // navigatorObservers: [FlutterSmartDialog.observer],
+      navigatorKey: navigatorKey,
     );
   }
 }

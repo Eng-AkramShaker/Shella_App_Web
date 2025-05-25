@@ -14,7 +14,7 @@ class HelpAndSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width(context, 0.7),
+      width: width(context, 1)>600?width(context, 0.7):width(context, 0.9),
       child: Card(
         color: AppColors.backgroundColor,
         shape: RoundedRectangleBorder(
