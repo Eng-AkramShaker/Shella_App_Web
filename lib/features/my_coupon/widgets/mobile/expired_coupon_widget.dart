@@ -10,21 +10,21 @@ class ExpiredCouponWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return MyCouponController.get(context).unAvailableCoupons!.isEmpty ?
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/my_coupon_not_found.png'),
+            Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context))
+          ],
+        ),
+      ),
+    ):
+    Column(
       children: [
-        MyCouponController.get(context).unAvailableCoupons!.isEmpty
-        ? Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/my_coupon_not_found.png'),
-                  Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context))
-                ],
-              ),
-            ),
-          )
-        :
         ListView.builder(
           shrinkWrap: true,
           padding: EdgeInsets.zero,

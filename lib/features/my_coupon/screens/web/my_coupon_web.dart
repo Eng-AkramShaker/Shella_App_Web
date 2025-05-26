@@ -17,7 +17,7 @@ class MyCouponWeb extends StatefulWidget {
 
 class _MyCouponWebState extends State<MyCouponWeb> {
   
-  int index =0;
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -67,7 +67,7 @@ class _MyCouponWebState extends State<MyCouponWeb> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10),
               MyCouponController.get(context).state==MyCouponState.loading||MyCouponController.get(context).myCouponModel==null?
               LinearProgressIndicator(color: AppColors.greenColor,backgroundColor: AppColors.greenColor.withValues(alpha: 0.2),):
               (index == 0)? AvailableCouponWeb() : ExpiredCouponWeb()

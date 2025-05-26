@@ -17,40 +17,39 @@ class AvailableCouponWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        MyCouponController.get(context).availableCoupons!.isEmpty
-        ? Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/my_coupon_not_found.png'),
-                  Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context))
-                ],
-              ),
+        MyCouponController.get(context).availableCoupons!.isEmpty ?
+         Expanded(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/my_coupon_not_found.png'),
+                Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context))
+              ],
             ),
-          )
-        :
-        ResponsiveLayout.isWeb()
-          ? ListView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return buildCouponList(
-                  index: index,
-                );
-              },
-            )
-          : Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemCount: MyCouponController.get(context).availableCoupons!.length,
-                itemBuilder: (context, index) {
-                  return buildCouponList(index: index,discount: MyCouponController.get(context).availableCoupons![index].discount,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,);
-                },
-              ),
-            ),
+          ),
+        ):
+        ResponsiveLayout.isWeb() ?
+        ListView.builder(
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return buildCouponList(
+              index: index,
+            );
+          },
+        ):
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemCount: MyCouponController.get(context).availableCoupons!.length,
+            itemBuilder: (context, index) {
+              return buildCouponList(index: index,discount: MyCouponController.get(context).availableCoupons![index].discount,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,);
+            },
+          ),
+        ),
         Container(
           width: double.infinity,
           height: 55.h,
