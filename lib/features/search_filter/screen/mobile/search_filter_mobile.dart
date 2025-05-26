@@ -85,6 +85,7 @@ class _SearchFilterState extends State<SearchFilter> {
                 context: context,
               ),
               SizedBox(height: 10),
+              if(SearchFilterController.get(context).allCategoriesModel!=null&&searchFilterController.selectedCategory==0)
               BuildFilterCategory(),
               searchFilterController.state==SearchState.loading||searchFilterController.mostSearchedModel==null?
               Loading(isData: true,):

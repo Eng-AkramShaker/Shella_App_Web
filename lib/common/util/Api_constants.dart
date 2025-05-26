@@ -41,4 +41,7 @@ class Api_Constants {
 
   /// APPLY COUPON
   static const String applyCoupon = '/api/v1/coupon/apply';
+
+  /// GET ALL CATEGORIES
+  static const String getAllCategories = '/api/v1/categories';
 }

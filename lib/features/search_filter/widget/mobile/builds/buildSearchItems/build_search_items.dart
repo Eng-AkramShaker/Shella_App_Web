@@ -19,7 +19,7 @@ class BuildSearchItems extends StatelessWidget {
       ):
       ListView.separated(
         shrinkWrap: true,
-        padding: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.only(bottom: 10,top: 10),
         itemBuilder: (context, index) => Row(
           children: [
             ClipRRect(borderRadius: BorderRadius.circular(15),child: Image.network(SearchFilterController.get(context).searchResultModel!.items![index].imageFullUrl??'',height: 80.h,width: 70.w,fit: BoxFit.fill,errorBuilder: (context, error, stackTrace) => const SizedBox(),)),

@@ -8,6 +8,7 @@ import 'package:shella_design/features/search_filter/domain/models/searchResultM
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
 import '../../../common/helper/check_Logged.dart';
 import '../domain/models/addressModel/address_model.dart';
+import '../domain/models/allCategoriesModel/all_categories_model.dart';
 import '../domain/models/cartProductsModel/cart_products_model.dart';
 import '../domain/models/mostSearchedModel/most_searched_model.dart';
 
@@ -179,6 +180,21 @@ class SearchFilterController with ChangeNotifier {
       _state = SearchState.loading;
       notifyListeners();
       cartProductsModel = await searchServiceInterface!.cartProducts();
+      _state = SearchState.success;
+      notifyListeners();
+    }catch(e){
+      _state = SearchState.error;
+      notifyListeners();
+    }
+  }
+
+  /// CART PRODUCTS
+  List<AllCategoriesModel>? allCategoriesModel;
+  getAllCategories() async {
+    try{
+      _state = SearchState.loading;
+      notifyListeners();
+      allCategoriesModel = await searchServiceInterface!.getAllCategories();
       _state = SearchState.success;
       notifyListeners();
     }catch(e){

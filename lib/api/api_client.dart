@@ -30,9 +30,9 @@ class ApiClient with ChangeNotifier {
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',
       'zoneId': '[2,4,3,5]',
-      // 'moduleId': '3',
-      // 'longitude': '46.701550834948726',
-      // 'latitude': '24.604741730570755'
+      'moduleId': '3',
+      'longitude': '46.701550834948726',
+      'latitude': '24.604741730570755'
     };
     notifyListeners();
   }

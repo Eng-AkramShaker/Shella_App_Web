@@ -42,5 +42,13 @@ class SearchRepository implements SearchRepositoryInterface{
     return response;
   }
 
+  ///-------------------------------------<<<---GET ALL CATEGORIES--->>>-------------------------------------
+  @override
+  Future<http.Response?> getAllCategories() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAllCategories);
+    customPrint('Get All Categories Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
 
 }

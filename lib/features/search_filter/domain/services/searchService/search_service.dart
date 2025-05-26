@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/search_filter/domain/models/searchResultModel/search_result_model.dart';
 import 'package:shella_design/features/search_filter/domain/repositories/searchRepositoryInterface/search_repository_interface.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
-
 import '../../models/addressModel/address_model.dart';
+import '../../models/allCategoriesModel/all_categories_model.dart';
 import '../../models/cartProductsModel/cart_products_model.dart';
 import '../../models/mostSearchedModel/most_searched_model.dart';
 
@@ -85,6 +84,24 @@ class SearchService implements SearchServiceInterface{
         print('Get Address Exception :: ${e.toString()}');
       }
       throw Exception('Get Address Exception :: ${e.toString()}');
+    }
+  }
+
+  ///-------------------------------------<<<---GET ALL CATEGORIES--->>>-------------------------------------
+  @override
+  Future<List<AllCategoriesModel>> getAllCategories() async {
+    try{
+      Response? response = await searchRepositoryInterface.getAllCategories();
+      if(response!.statusCode==200){
+        return (jsonDecode(response.body) as List).map((e) => AllCategoriesModel.fromJson(e)).toList();
+      }else{
+        throw Exception('Get All Categories Failed');
+      }
+    }catch(e){
+      if (kDebugMode) {
+        print('Get All Categories Exception :: ${e.toString()}');
+      }
+      throw Exception('Get All Categories Exception :: ${e.toString()}');
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import '../../../../../../common/util/app_styles.dart';
 
 class BuildFilterCategory extends StatelessWidget {
@@ -22,16 +23,16 @@ class BuildFilterCategory extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: AppColors.gryColor_3,
-              child: SvgPicture.asset(AppImages.fish,colorFilter: ColorFilter.mode(AppColors.bgColor, BlendMode.srcIn),),
+              backgroundImage: NetworkImage(SearchFilterController.get(context).allCategoriesModel![index].image??'',),
             ),
             SizedBox(height: 5,),
-            Custom_Text(context, text: 'مطاعم',  style: font11Black500W(context)),
+            Custom_Text(context, text: SearchFilterController.get(context).allCategoriesModel![index].name??'',  style: font11Black500W(context)),
             SizedBox(height: 5,),
-            Custom_Text(context, text: '(300)'),
+            Custom_Text(context, text: '(${SearchFilterController.get(context).allCategoriesModel![index].productsCount})'),
           ],
         ),
         separatorBuilder: (context, index) => SizedBox(width: 13,),
-        itemCount: 10,
+        itemCount: SearchFilterController.get(context).allCategoriesModel!.length,
       ),
     );
   }
