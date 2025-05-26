@@ -54,7 +54,7 @@ class ApiClient with ChangeNotifier {
   }
 
   Future<http.Response?> getData(String uri,
-      {Map<String, dynamic>? query}) async {
+      {Map<String, dynamic>? query, required bool forceRefreshToken}) async {
     try {
       customPrint('URL ========> ${appBaseUrl+uri}',isUrl: true);
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);

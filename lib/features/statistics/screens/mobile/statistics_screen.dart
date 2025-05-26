@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+<<<<<<< HEAD:lib/features/statistics/screens/statistics_screen.dart
 import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/features/statistics/widgets/most_purchased_products.dart';
 import 'package:shella_design/features/statistics/widgets/statistics_kaidha_and_container_details.dart';
+=======
+>>>>>>> a6c8e54 (ui desian mobile statistics):lib/features/statistics/screens/mobile/statistics_screen.dart
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/appBar/appBar.dart';
+import 'package:shella_design/features/statistics/screens/mobile/widgets/most_purchased_products.dart';
+import 'package:shella_design/features/statistics/screens/mobile/widgets/statistics_kaidha_and_container_details.dart';
 
 class StatisticsScreen extends StatelessWidget {
   const StatisticsScreen({super.key});
