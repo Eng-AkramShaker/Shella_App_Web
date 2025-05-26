@@ -24,7 +24,7 @@ class ContactUsContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // Shadow color
+              color: Colors.grey.withValues(alpha: 0.5), // Shadow color
               spreadRadius: 0, // Spread radius
               blurRadius: 5, // Blur radius
               offset: Offset(0, 3), // Offset from the container

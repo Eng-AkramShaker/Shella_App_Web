@@ -48,6 +48,31 @@ class SearchFilterController with ChangeNotifier {
     "شوكولا",
   ];
 
+  /// CHECK HOVER
+  bool isHover = false;
+  int? containerIndex;
+  checkHover(value,index){
+    isHover = value;
+    containerIndex = index;
+    notifyListeners();
+  }
+
+  /// CHECK HOVER
+  bool isHoverView = false;
+  bool? isListViewIcon;
+  checkHoverView(value,listView){
+    isHoverView = value;
+    isListViewIcon = listView;
+    notifyListeners();
+  }
+
+  /// SET LIST VIEW
+  bool isListView = false;
+  setListView(value){
+    isListView = value;
+    notifyListeners();
+  }
+
   /// GET SEARCH HISTORY
   List<String> _searchHistory = sp<SharedPreferences>().getStringList(SharedPrefKeys.searchHistory)??[];
   List<String> get searchHistory => _searchHistory;
