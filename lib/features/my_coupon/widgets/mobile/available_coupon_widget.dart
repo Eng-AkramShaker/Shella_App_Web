@@ -6,7 +6,7 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import '../../../../common/widgets/dialog/dialog.dart';
 import '../../controllers/my_coupon_controller.dart';
-import 'coupon_widget.dart';
+import 'availableCouponMobile/available_coupon_mobile.dart';
 
 class AvailableCouponWidget extends StatelessWidget {
 
@@ -29,24 +29,13 @@ class AvailableCouponWidget extends StatelessWidget {
             ),
           ),
         ):
-        ResponsiveLayout.isWeb() ?
-        ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return buildCouponList(
-              index: index,
-            );
-          },
-        ):
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
             itemCount: MyCouponController.get(context).availableCoupons!.length,
             itemBuilder: (context, index) {
-              return buildCouponList(index: index,discount: MyCouponController.get(context).availableCoupons![index].discount,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,);
+              return AvailableCouponMobile(index: index,discount: MyCouponController.get(context).availableCoupons![index].title,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,);
             },
           ),
         ),

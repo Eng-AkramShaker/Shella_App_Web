@@ -16,15 +16,17 @@ class MyCouponController with ChangeNotifier {
 
   /// GET STATE
   MyCouponState _state = MyCouponState.initial;
+  MyCouponState _applySate = MyCouponState.initial;
   MyCouponState get state => _state;
+  MyCouponState get applyCouponState => _applySate;
 
 
   /// GET AVAILABLE COUPON
   List<MyCouponModel>?  availableCoupons;
   List<MyCouponModel>?  unAvailableCoupons;
   getAvailableCoupons() {
-    availableCoupons = myCouponModel!.where((element) => element.status!=1).toList();
-    unAvailableCoupons = myCouponModel!.where((element) => element.status==1).toList();
+    availableCoupons = myCouponModel!.where((element) => (DateTime.now().isAfter(DateTime.parse(element.expireDate!))==false)).toList();
+    unAvailableCoupons = myCouponModel!.where((element) => (DateTime.now().isAfter(DateTime.parse(element.expireDate!))==true)).toList();
     notifyListeners();
   }
   ///-------------------------------------<<<---APIs--->>>-------------------------------------
@@ -42,6 +44,23 @@ class MyCouponController with ChangeNotifier {
       notifyListeners();
     }catch(e){
       _state = MyCouponState.error;
+      notifyListeners();
+    }
+  }
+
+  /// APPLY COUPON
+  applyCoupon({code,storeId}) async {
+    try{
+      _applySate = MyCouponState.loading;
+      notifyListeners();
+      customPrint('CODE ::: $code');
+      customPrint('STORE ID ::: $storeId');
+      await myCouponServiceInterface!.applyCoupon(code: code,storeId: storeId);
+      _applySate = MyCouponState.success;
+      getMyCoupon();
+      notifyListeners();
+    }catch(e){
+      _applySate = MyCouponState.error;
       notifyListeners();
     }
   }

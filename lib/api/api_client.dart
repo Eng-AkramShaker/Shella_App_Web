@@ -30,9 +30,9 @@ class ApiClient with ChangeNotifier {
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',
       'zoneId': '[2,4,3,5]',
-      'moduleId': '3',
-      'longitude': '46.701550834948726',
-      'latitude': '24.604741730570755'
+      // 'moduleId': '3',
+      // 'longitude': '46.701550834948726',
+      // 'latitude': '24.604741730570755'
     };
     notifyListeners();
   }
@@ -42,7 +42,6 @@ class ApiClient with ChangeNotifier {
       customPrint('URL ========> ${appBaseUrl+uri}',isUrl: true);
       Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
       final response = await http.get(url, headers: _headers);
-      customPrint(response.statusCode);
       return _handleResponse(response);
     } catch (e) {
       debugPrint('GET Error: $e');

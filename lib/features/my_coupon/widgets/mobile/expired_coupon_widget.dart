@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/features/my_coupon/widgets/mobile/unavailableCouponMobile/unavailable_coupon_mobile.dart';
 import '../../../../common/util/app_styles.dart';
 import '../../../../common/widgets/texts/custom_text.dart';
 import '../../controllers/my_coupon_controller.dart';
-import 'coupon_widget.dart';
 
 class ExpiredCouponWidget extends StatelessWidget {
 
@@ -30,7 +30,7 @@ class ExpiredCouponWidget extends StatelessWidget {
           padding: EdgeInsets.zero,
           itemCount: MyCouponController.get(context).unAvailableCoupons!.length,
           itemBuilder: (context, index) {
-            return buildCouponList(index: index,discount: MyCouponController.get(context).unAvailableCoupons![index].discount,expiredDate: MyCouponController.get(context).unAvailableCoupons![index].expireDate,);
+            return UnavailableCouponMobile(index: index,discount: MyCouponController.get(context).unAvailableCoupons![index].discount,expiredDate: MyCouponController.get(context).unAvailableCoupons![index].expireDate,);
           },
         ),
       ],

@@ -5,7 +5,7 @@ import '../texts/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key,required this.text,
-    this.isSelected,this.onTap, this.color, this.colorTxt, this.isGradient, this.textSize, this.textWeight, this.colorBorder, this.width, this.height, this.secondColor, this.widget, this.paddingRight, this.circular, this.widget2, this.endGradient, this.isSpacer, this.borderWidth, this.isPrimary, this.paddingLeft, this.removeGap, this.isLoading, this.loadingColor});
+    this.isSelected,this.onTap, this.color, this.colorTxt, this.isGradient, this.textSize, this.textWeight, this.colorBorder, this.width, this.height, this.secondColor, this.widget, this.paddingRight, this.circular, this.widget2, this.endGradient, this.isSpacer, this.borderWidth, this.isPrimary, this.paddingLeft, this.removeGap, this.isLoading, this.loadingColor, this.loadingSize});
 
   final String text;
   final double? textSize;
@@ -29,6 +29,7 @@ class CustomButton extends StatelessWidget {
   final double? paddingLeft;
   final double? circular;
   final double? borderWidth;
+  final double? loadingSize;
   final AlignmentGeometry? endGradient;
   final GestureTapCallback? onTap;
 
@@ -64,6 +65,7 @@ class CustomButton extends StatelessWidget {
                     if(widget!=null)
                       if(removeGap!=true)
                         SizedBox(width: 5,),
+                    if(isLoading!=true)
                     Custom_Text(context,text:
                       text,textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: textWeight??FontWeight.w400,fontSize: textSize??14,color: colorTxt??AppColors.bgColor),
@@ -79,7 +81,7 @@ class CustomButton extends StatelessWidget {
             )),
         ),
         if(isLoading==true)
-          Loading(color: loadingColor,)
+          Loading(color: loadingColor,size: loadingSize,)
       ],
     );
   }

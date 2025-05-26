@@ -26,4 +26,20 @@ class MyCouponServices implements MyCouponServiceInterface{
     }
   }
 
+  ///-------------------------------------<<<---APPLY COUPON--->>>-------------------------------------
+  @override
+  Future<void> applyCoupon({code,storeId}) async {
+    try{
+      Response? response = await myCouponRepositoryInterface.applyCoupon(code: code,storeId: storeId);
+      if(response!.statusCode==200){
+        return jsonDecode(response.body);
+      }else{
+        throw Exception('Apply Coupon Failed');
+      }
+    }catch(e){
+      customPrint('Apply Coupon Exception :: ${e.toString()}');
+      throw Exception('Apply Coupon Exception :: ${e.toString()}');
+    }
+  }
+
 }

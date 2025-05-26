@@ -17,5 +17,13 @@ class MyCouponRepository implements MyCouponRepositoryInterface{
     return response;
   }
 
+  ///-------------------------------------<<<---APPLY COUPON--->>>-------------------------------------
+  @override
+  Future<Response?> applyCoupon({code,storeId}) async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.applyCoupon,query: {'code': code,'store_id': storeId.toString()});
+    customPrint('Apply Coupon Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
 
 }

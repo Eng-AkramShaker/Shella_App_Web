@@ -38,4 +38,7 @@ class Api_Constants {
 
   /// GET MY COUPON
   static const String getMyCoupon = '/api/v1/coupon/list';
+
+  /// APPLY COUPON
+  static const String applyCoupon = '/api/v1/coupon/apply';
 }
