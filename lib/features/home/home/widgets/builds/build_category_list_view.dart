@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/features/home/controllers/category_controller.dart';
-import 'package:shella_design/features/home/domain/models/category_model.dart';
+import 'package:shella_design/features/home/controllers/section_controller.dart';
+import 'package:shella_design/features/home/domain/models/section_model.dart';
 import 'package:shella_design/features/product/widgets/category/category_item.dart';
 
 class BuildCategoryListView extends StatefulWidget {
@@ -19,56 +20,86 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CategoryProvider>(
-      builder: (context, categoryProvider, _) {
-        if (categoryProvider.isLoading) {
+    return Consumer<SectionProvider>(
+      builder: (context, sectionProvider, _) {
+        if (sectionProvider.isLoading) {
           return Center(child: CircularProgressIndicator());
         }
 
-        if (categoryProvider.errorMessage.isNotEmpty) {
-          return Center(child: Text(categoryProvider.errorMessage));
+        if (sectionProvider.errorMessage.isNotEmpty) {
+          return Center(child: Text(sectionProvider.errorMessage));
         }
 
-        final categories = categoryProvider.categories;
+        final sections = sectionProvider.categories;
+        final SectionModel selectedCategory = sections[selectedIndex];
+        final List<SectionModel> childCategories = selectedCategory.childes;
 
         return Directionality(
           textDirection: TextDirection.rtl,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            reverse: true,
-            child: Row(
-              children: List.generate(categories.length, (index) {
-                final CategoryModel cat = categories[index];
-                return Padding(
-                  padding: EdgeInsets.only(right: 10.w, left: 3.w),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 13, left: 8),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CategoryItem(
-                              image: cat.imageFullUrl, label: cat.name),
-                          SizedBox(height: 7),
-                          Container(
-                            height: 3,
-                            width: _getTextWidth(context, cat.name) * 1.3,
-                            color: selectedIndex == index
-                                ? AppColors.greenColor
-                                : Colors.transparent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                reverse: true,
+                child: Row(
+                  children: List.generate(sections.length, (index) {
+                    final SectionModel cat = sections[index];
+                    return Padding(
+                      padding: EdgeInsets.only(right: 10.w, left: 3.w),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 13, left: 8),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CategoryItem(
+                                image: cat.imageFullUrl ?? AppImages.empty,
+                                label: cat.name,
+                              ),
+                              SizedBox(height: 7),
+                              Container(
+                                height: 3,
+                                width: _getTextWidth(context, cat.name) * 1.3,
+                                color: selectedIndex == index
+                                    ? AppColors.greenColor
+                                    : Colors.transparent,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    );
+                  }),
+                ),
+              ),
+
+              // Optional spacing
+              SizedBox(height: 12.h),
+
+              // Child categories
+              if (childCategories.isNotEmpty)
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  reverse: true,
+                  child: Row(
+                    children: childCategories.map((child) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6.w),
+                        child: CategoryItem(
+                          image: child.imageFullUrl ?? AppImages.empty,
+                          label: child.name,
+                        ),
+                      );
+                    }).toList(),
                   ),
-                );
-              }),
-            ),
+                ),
+            ],
           ),
         );
       },

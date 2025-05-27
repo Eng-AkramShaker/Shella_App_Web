@@ -11,6 +11,7 @@ class StoreModel {
   final bool takeAway;
   final String deliveryTime;
   final bool open;
+  final List<int> categoryIds;
 
   StoreModel({
     required this.id,
@@ -25,6 +26,7 @@ class StoreModel {
     required this.takeAway,
     required this.deliveryTime,
     required this.open,
+    required this.categoryIds,
   });
 
   factory StoreModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,10 @@ class StoreModel {
       takeAway: json['take_away'] ?? false,
       deliveryTime: json['delivery_time'] ?? '',
       open: json['open'] == 1,
+      categoryIds: (json['category_ids'] as List<dynamic>?)
+              ?.map((e) => int.tryParse(e.toString()) ?? 0)
+              .toList() ??
+          [],
     );
   }
 }

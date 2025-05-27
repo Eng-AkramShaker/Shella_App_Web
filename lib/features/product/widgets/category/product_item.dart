@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/features/product/domain/models/product_model.dart';
 
-class PizzaItem extends StatelessWidget {
+class ProductItem extends StatelessWidget {
+  final Product product;
   final VoidCallback onTap;
 
-  const PizzaItem({super.key, required this.onTap});
+  const ProductItem({super.key, required this.product, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class PizzaItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // ------------------------- النصوص
+            // -------- Text Info
             Flexible(
               flex: 3,
               child: Padding(
@@ -35,20 +36,31 @@ class PizzaItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Custom_Text(context, text: "دبل تشيز برغر", style: font14Black500W(context)),
-                    Custom_Text(context, text: "جبنة, ذرة ,فطر\nصلصة,سلامي, اوريغانو.....", style: font10Grey400W(context)),
-                    Custom_Text(context, text: "50 ريال", style: font10SecondaryColor600W(context)),
+                    Custom_Text(context,
+                        text: product.name, style: font14Black500W(context)),
+                    Custom_Text(
+                      context,
+                      text: "${product.price} ريال",
+                      style: font10SecondaryColor600W(context),
+                    ),
                   ],
                 ),
               ),
             ),
 
-            // ------------------------ الصوره
+            // -------- Image
             Expanded(
               flex: 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(AppImages.item_10, height: 110.h, width: 110.w, fit: BoxFit.fill),
+                child: Image.network(
+                  product.image,
+                  height: 100.h,
+                  width: 100.w,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) =>
+                      const Icon(Icons.image_not_supported),
+                ),
               ),
             ),
           ],

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/home/domain/models/category_model.dart';
-import 'package:shella_design/features/home/domain/services/category_service.dart';
-class CategoryProvider with ChangeNotifier {
-  final CategoryService _categoryService;
+import 'package:shella_design/features/home/domain/models/section_model.dart';
+import 'package:shella_design/features/home/domain/services/section_service.dart';
+class SectionProvider with ChangeNotifier {
+  final SectionService _sectionService;
 
-  CategoryProvider(this._categoryService);
+  SectionProvider(this._sectionService);
 
-  List<CategoryModel> _categories = [];
+  List<SectionModel> _categories = [];
   bool _isLoading = false;
   String _errorMessage = '';
 
-  List<CategoryModel> get categories => _categories;
+  List<SectionModel> get categories => _categories;
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
 
@@ -19,7 +19,7 @@ class CategoryProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _categories = await _categoryService.fetchCategories();
+      _categories = await _sectionService.fetchCategories();
       _errorMessage = '';
     } catch (e) {
       _errorMessage = 'Failed to load categories';

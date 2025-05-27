@@ -4,6 +4,7 @@ import 'package:shella_design/features/home/domain/services/store_service.dart';
 
 class StoreProvider with ChangeNotifier {
   final StoreService _storeService;
+
   List<StoreModel> _stores = [];
   bool _isLoading = false;
 
@@ -17,15 +18,19 @@ class StoreProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final zone2Stores = await _storeService.fetchStores(zoneId: 2);
-      final zone5Stores = await _storeService.fetchStores(zoneId: 5);
-
-      _stores = [...zone2Stores, ...zone5Stores];
+      _stores = await _storeService.fetchStores();
+      for (var store in _stores) {
+        debugPrint('Fetched Store ID: ${store.id}');
+      }
     } catch (e) {
       debugPrint('Error fetching stores: $e');
     }
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> fetchCategories(int storeId) async {
+    debugPrint("Fetching categories for store $storeId");
   }
 }

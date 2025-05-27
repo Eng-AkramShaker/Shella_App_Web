@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shella_design/features/home/domain/models/category_model.dart';
+import 'package:shella_design/features/home/domain/models/section_model.dart';
 
-class CategoryService {
-  Future<List<CategoryModel>> fetchCategories() async {
+class SectionService {
+  Future<List<SectionModel>> fetchCategories() async {
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ class CategoryService {
 
     var request = http.Request(
       'GET',
-      Uri.parse('https://shalafood.net/api/v1/categories/childes/1'),
+      Uri.parse('https://shalafood.net/api/v1/categories'),
     );
 
     request.headers.addAll(headers);
@@ -30,7 +30,7 @@ class CategoryService {
           : (data['categories'] ?? data['data'] ?? []) as List<dynamic>;
 
       return categoriesJson
-          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => SectionModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } else {
       throw Exception('Failed to fetch categories: ${response.reasonPhrase}');

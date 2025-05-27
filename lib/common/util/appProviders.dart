@@ -3,19 +3,16 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:shella_design/features/home/controllers/banner_controller.dart';
-import 'package:shella_design/features/home/controllers/category_controller.dart';
+import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/home/controllers/store_controller.dart';
 import 'package:shella_design/features/home/domain/services/banner_service.dart';
-import 'package:shella_design/features/home/domain/services/category_service.dart';
+import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
-import 'package:shella_design/features/product/controllers/carfor.dart';
-import 'package:shella_design/features/product/controllers/product_controller.dart';
-import 'package:shella_design/features/product/domain/services/carfor.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
@@ -26,16 +23,11 @@ List<SingleChildWidget> appProviders = [
     create: (_) => BannerProvider(BannerService())..loadBanners(),
   ),
   ChangeNotifierProvider(
-    create: (_) => CategoryProvider(CategoryService())..fetchCategories(),
+    create: (_) => SectionProvider(SectionService())..fetchCategories(),
   ),
   ChangeNotifierProvider(
-      create: (_) => StoreProvider(StoreService())..fetchStores()),
-  ChangeNotifierProvider(
-    create: (_) =>
-        FoodCategoryProvider(FoodCategoryService())..fetchMoreCategories(),
+    create: (_) => StoreProvider(StoreService())..fetchStores(),
   ),
-  ChangeNotifierProvider(
-      create: (_) => ProductController()..loadAllProductData()),
   ChangeNotifierProvider(create: (_) => SplashController()),
   ChangeNotifierProvider(create: (_) => HomeController()),
   ChangeNotifierProvider(create: (_) => KaidhaFormController()),
