@@ -24,6 +24,8 @@ class SplashController extends ChangeNotifier {
       return;
     }
 
-    final response = await apiClient!.getData('https://shalafood.net/api/v1/config');
+    final response = await apiClient!.getData(
+        'https://shalafood.net/api/v1/config',
+        forceRefreshToken: false);
   }
 }

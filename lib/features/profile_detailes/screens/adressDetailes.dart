@@ -31,7 +31,8 @@ class AddressDetailsPage extends StatelessWidget {
                 controller.getAdress();
                 return Expanded(
                   child: Center(
-                    child: CircularProgressIndicator(color: AppColors.primaryColor),
+                    child: CircularProgressIndicator(
+                        color: AppColors.primaryColor),
                   ),
                 );
               }
@@ -39,7 +40,8 @@ class AddressDetailsPage extends StatelessWidget {
               if (controller.adressstate == RequestState.loading) {
                 return Expanded(
                   child: Center(
-                    child: CircularProgressIndicator(color: AppColors.primaryColor),
+                    child: CircularProgressIndicator(
+                        color: AppColors.primaryColor),
                   ),
                 );
               }
@@ -48,7 +50,8 @@ class AddressDetailsPage extends StatelessWidget {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(controller.errorMessage ?? 'Request Failed'),
+                      content:
+                          Text(controller.errorMessage ?? 'Request Failed'),
                     ),
                   );
                 });
@@ -74,7 +77,7 @@ class AddressDetailsPage extends StatelessWidget {
         onPressed: () {
           pushNewScreen(
             context,
-            AppRoutes.addaddress,
+            AppRoutes.addNewAddress,
           );
         },
       ),

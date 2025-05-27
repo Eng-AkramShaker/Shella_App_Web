@@ -18,7 +18,8 @@ class CartRepositoryImpl implements CartRepository {
 
   @override
   Future<List<CartItem>> getCartItems() async {
-    final response = await apiClient.getData(Api_Constants.getCartListUri);
+    final response = await apiClient.getData(Api_Constants.getCartListUri,
+        forceRefreshToken: false);
     if (response != null && response.statusCode == 200) {
       final data = json.decode(response.body) as List;
       return data.map((item) => CartItem.fromJson(item)).toList();

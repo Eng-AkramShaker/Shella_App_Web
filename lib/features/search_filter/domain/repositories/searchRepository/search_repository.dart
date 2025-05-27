@@ -9,12 +9,15 @@ import '../../../../../common/util/Api_constants.dart';
 import '../../../../../common/widgets/print/custom_print.dart';
 import '../searchRepositoryInterface/search_repository_interface.dart';
 
-class SearchRepository implements SearchRepositoryInterface{
-
+class SearchRepository implements SearchRepositoryInterface {
   ///-------------------------------------<<<---SEARCH ITEMS--->>>-------------------------------------
   @override
   Future<http.Response?> searchItems({value}) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.searchItems,query: {'name': value});
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .getData(Api_Constants.searchItems,
+            query: {'name': value}, forceRefreshToken: false);
     customPrint('Search Items Response :: ${jsonDecode(response!.body)}');
     return response;
   }
@@ -22,7 +25,10 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---MOST SEARCHED--->>>-------------------------------------
   @override
   Future<http.Response?> mostSearched() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.mostSearched);
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .getData(Api_Constants.mostSearched, forceRefreshToken: false);
     customPrint('Most Searched Response :: ${jsonDecode(response!.body)}');
     return response;
   }
@@ -30,7 +36,15 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---CART PRODUCTS--->>>-------------------------------------
   @override
   Future<http.Response?> cartProducts() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts,query: {'guest_id': sp<SharedPreferences>().getString(Api_Constants.guestId)??''});
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .getData(Api_Constants.cartProducts,
+            query: {
+              'guest_id':
+                  sp<SharedPreferences>().getString(Api_Constants.guestId) ?? ''
+            },
+            forceRefreshToken: false);
     customPrint('Cart Products Response :: ${jsonDecode(response!.body)}');
     return response;
   }
@@ -38,10 +52,11 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---GET ADDRESS--->>>-------------------------------------
   @override
   Future<http.Response?> getAddress() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAddress);
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .getData(Api_Constants.getAddress, forceRefreshToken: false);
     customPrint('Get Address Response :: ${jsonDecode(response!.body)}');
     return response;
   }
-
-
 }

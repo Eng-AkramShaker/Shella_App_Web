@@ -15,6 +15,7 @@ class AddressRepositoryImpl implements AddressRepository {
   Future<List<Address>> getAddressList() async {
     final response = await apiClient.getData(
       Uri.parse(Api_Constants.addresslist).toString(),
+      forceRefreshToken: false,
     );
 
     if (response != null) {

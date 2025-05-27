@@ -15,11 +15,10 @@ class FavoriteRepository {
   Future<FavoriteModel?> getFavoriteList() async {
     try {
       debugPrint('Getting favorite list from: $wishListGetUri');
-      
+
       final response = await apiClient.getData(
-        wishListGetUri, 
+        wishListGetUri,
         forceRefreshToken: true,
-        attemptTokenRefresh: true
       );
 
       if (response != null) {
@@ -59,10 +58,9 @@ class FavoriteRepository {
 
       // تحديث الهيدرز قبل الطلب للتأكد من استخدام أحدث توكن
       final response = await apiClient.getData(
-        addWishListUri, 
-        query: query, 
+        addWishListUri,
+        query: query,
         forceRefreshToken: true,
-        attemptTokenRefresh: true
       );
 
       if (response != null) {
@@ -81,7 +79,7 @@ class FavoriteRepository {
   Future<bool> removeFromFavoriteList(int id, bool isStore) async {
     try {
       String uri = removeWishListUri;
-      
+
       if (isStore) {
         uri += '?store_id=$id';
         debugPrint('Removing store ID: $id from favorites');
@@ -90,10 +88,8 @@ class FavoriteRepository {
         debugPrint('Removing item ID: $id from favorites');
       }
 
-      final response = await apiClient.deleteData(
-        uri,
-        attemptTokenRefresh: true
-      );
+      final response =
+          await apiClient.deleteData(uri, attemptTokenRefresh: true);
 
       if (response != null) {
         debugPrint('Successfully removed from favorites');
