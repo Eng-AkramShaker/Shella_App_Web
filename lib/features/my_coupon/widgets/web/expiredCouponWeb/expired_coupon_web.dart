@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
 import '../../../../../common/util/app_styles.dart';
 import '../../../../../common/widgets/texts/custom_text.dart';
 import '../../../controllers/my_coupon_controller.dart';
@@ -12,17 +13,18 @@ class ExpiredCouponWeb extends StatelessWidget {
     return Column(
       children: [
         MyCouponController.get(context).unAvailableCoupons!.isEmpty
-            ? Expanded(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/my_coupon_not_found.png'),
-                Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context,size: 12))
-              ],
-            ),
-          ),
-        )
+            ? Padding(
+              padding: EdgeInsets.only(top: height(context, 0.2)),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/my_coupon_not_found.png'),
+                    Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context,size: 12))
+                  ],
+                ),
+              ),
+            )
             :
         ListView.builder(
           shrinkWrap: true,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/button/custom_button.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../../common/util/app_colors.dart';
 import '../../../../../../common/util/app_styles.dart';
 import '../../../../../../common/widgets/gap/height/height.dart';
@@ -32,71 +33,75 @@ class AvailableCouponContainerWeb extends StatelessWidget {
                 ),
               ],
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: height(context, 0.2),
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: AppColors.gryColor_7),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Custom_Text(context,text: '$discount % خصم', style: font16SecondaryColor400W(context,size: 15).copyWith(color: AppColors.secondaryColor)),
-                        SizedBox(height: 10.h,),
-                        Custom_Text(context,text: 'بدون حد ادنى', style: font12SecondaryColor400W(context,size: 10).copyWith(color: AppColors.secondaryColor)),
-                      ],
+            child: IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: AppColors.gryColor_7),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Custom_Text(context,text: '$discount % خصم', style: font16SecondaryColor400W(context,size: 17).copyWith(color: AppColors.secondaryColor)),
+                          SizedBox(height: 10.h,),
+                          Custom_Text(context,text: 'بدون حد ادنى', style: font12SecondaryColor400W(context,size: 12).copyWith(color: AppColors.secondaryColor)),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Custom_Text(context, text: 'خصم $discount% وفر حتى 20 ر.س', style: font12Black400W(context,size: 12).copyWith(color: AppColors.bgColor)),
-                            Custom_Text(context, text: 'صالح حتى $expiredDate', style: font8Black400W(context,size: 10).copyWith(color: AppColors.bgColor)),
-                          ],
-                        ),
-                        SizedBox(height: 10.h,),
-                        Container(
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Custom_Text(context, text: 'طلبات التوصيل فقط', style: font6SecondaryColor400W(context,size: 8).copyWith(color: AppColors.secondaryColor)),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(child: Custom_Text(context, text: 'خصم $discount% وفر حتى 20 ر.س', style: font12Black400W(context,size: 14).copyWith(color: AppColors.bgColor))),
+                              Custom_Text(context, text: 'صالح حتى $expiredDate', style: font8Black400W(context,size: 12).copyWith(color: AppColors.bgColor)),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Custom_Text(context,text: 'خصم يصل الى 20ر.س', style: font6SecondaryColor400W(context,size: 8).copyWith(color: AppColors.secondaryColor)),
+                          SizedBox(height: 20,),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Custom_Text(context, text: 'طلبات التوصيل فقط', style: font6SecondaryColor400W(context,size: 10).copyWith(color: AppColors.secondaryColor)),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10.h,
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional.bottomEnd,
-                          child: CustomButton(text: 'استخدام',colorBorder: AppColors.secondaryColor,)
-                        ),
-                      ],
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Custom_Text(context,text: 'خصم يصل الى 20ر.س', style: font6SecondaryColor400W(context,size: 10).copyWith(color: AppColors.secondaryColor)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Align(
+                              alignment: AlignmentDirectional.bottomEnd,
+                              child: CustomButton(height: 30,width: width(context, 0.13),text: 'استخدام',colorBorder: AppColors.secondaryColor,colorTxt: AppColors.secondaryColor,textSize: 13,)
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
           Positioned(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
 import '../../../../../features/profile_detailes/controllers/profile_detailes_controller.dart';
 import '../../../../util/app_colors.dart';
 import '../../../../util/app_navigators.dart' as NavigationHelper;
 import '../../../../util/app_styles.dart';
 import '../../../buttons/icon_button_circle.dart';
-import '../../../gap/height/height.dart';
 import '../../../gap/width/width.dart';
 import '../../../texts/custom_text.dart';
 
@@ -40,10 +40,14 @@ class AccountHeader extends StatelessWidget {
           SizedBox(
             width: width(context,0.32),
             child: DropdownButton(
-              hint: Custom_Text(context,text: _getMainTitle(controller.currentPage),style: font10Black600W(context, size: 15)),
+              hint: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Custom_Text(context,text: _getMainTitle(controller.currentPage),style: font10Black600W(context, size: 15)),
+              ),
               icon: Icon(Icons.keyboard_arrow_down_rounded),
               underline: const SizedBox(),
               padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 0),
+              alignment: Alignment.centerLeft,
               items: [
                 DropdownMenuItem(value: 0,child: Custom_Text(context,text: 'تفاصيل الحساب',style: font10Black600W(context, size: 15)),),
                 DropdownMenuItem(value: 1,child: Custom_Text(context,text: 'العناوين المحفوظة',style: font10Black600W(context, size: 15))),
@@ -87,24 +91,6 @@ class AccountHeader extends StatelessWidget {
       "الشروط قيدها",
       "الشروط والأحكام",
       "المساعدة والدعم"
-    ][page];
-  }
-
-  String _getSecondaryTitle(int page) {
-    return [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "الاسترداد",
-      "الخصوصية",
-      "قيدها",
-      "الأحكام",
-      ""
     ][page];
   }
 }

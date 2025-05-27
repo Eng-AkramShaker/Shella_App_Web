@@ -39,32 +39,6 @@ class AvailableCouponWidget extends StatelessWidget {
             },
           ),
         ),
-        Container(
-          width: double.infinity,
-          height: 55.h,
-          decoration: BoxDecoration(color: AppColors.greenColor, borderRadius: BorderRadius.circular(8.r)),
-          child: TextButton(
-            onPressed: () {
-              if (ResponsiveLayout.isWeb()) {
-                showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          contentPadding: EdgeInsets.zero,
-                          content: CouponInputDialog(),
-                        ));
-              } else {
-                showModalBottomSheet<String>(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return CouponInputDialog();
-                    });
-              }
-            },
-            child: Custom_Text(context, text: 'إضافة قسمية جديدة', style: font14White500W(context)),
-          ),
-        )
       ],
     );
   }
