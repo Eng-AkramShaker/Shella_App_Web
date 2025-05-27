@@ -415,7 +415,7 @@ class AppRoutes {
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
     searchFilterWeb: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository())),
+      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..getAllCategories(),
       child: const SearchFilterWeb(),
     ),
   };

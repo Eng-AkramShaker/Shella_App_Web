@@ -5,6 +5,7 @@ import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
+import '../../../../controller/search_filter_controller.dart';
 import 'filterCategoryWeb/filter_category_web.dart';
 import 'filterLocationWeb/filter_location_web.dart';
 import 'filterRatingWeb/filter_rating_web.dart';
@@ -28,6 +29,7 @@ class BuildFilterResultWeb extends StatelessWidget {
           children: [
             Custom_Text(context, text: 'تصفية النتائج',style: font11Black500W(context,size: 14)),
             PriceRangeWeb(),
+            if(SearchFilterController.get(context).allCategoriesModel!=null)
             FilterCategoryWeb(),
             FilterRatingWeb(),
             FilterLocationWeb()

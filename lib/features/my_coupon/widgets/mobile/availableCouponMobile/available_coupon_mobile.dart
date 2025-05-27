@@ -87,7 +87,7 @@ class AvailableCouponMobile extends StatelessWidget {
                           if(MyCouponController.get(context).availableCoupons![index].storeId!=null)
                           Padding(
                             padding: EdgeInsets.only(left: 10,right: width(context, 0.35)),
-                            child: CustomButton(onTap: () => MyCouponController.get(context,listen: false).applyCoupon(code: MyCouponController.get(context,listen: false).availableCoupons![index].code,storeId: MyCouponController.get(context,listen: false).availableCoupons![index].storeId),height: 27,width: width(context, 0.17),text: 'استخدام',color: AppColors.secondaryColor,colorTxt: AppColors.wtColor,textSize: 7.sp,isLoading: MyCouponController.get(context).applyCouponState==MyCouponState.loading,loadingColor: AppColors.wtColor,loadingSize: 15,),
+                            child: CustomButton(onTap: () => MyCouponController.get(context,listen: false).applyCoupon(code: MyCouponController.get(context,listen: false).availableCoupons![index].code,storeId: MyCouponController.get(context,listen: false).availableCoupons![index].storeId),height: 27,width: width(context, 0.17),text: 'استخدام',color: AppColors.secondaryColor,colorTxt: AppColors.wtColor,textSize: 13.sp,isLoading: MyCouponController.get(context).applyCouponState==MyCouponState.loading,loadingColor: AppColors.wtColor,loadingSize: 15,),
                           )
                         ],
                       ),
