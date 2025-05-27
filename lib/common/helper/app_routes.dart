@@ -6,6 +6,7 @@ import 'package:shella_design/common/widgets/bottom_Navigation.dart';
 import 'package:shella_design/common/widgets/profile/web/accountDetails/account_details.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
+import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
 import 'package:shella_design/features/Auth/screens/mobile/ConfirmPassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/forgetpassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/login_mobile.dart';
@@ -79,7 +80,6 @@ import 'package:shella_design/features/wallet_kaidha/screens/wallet_kaidha_scree
 import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
-import '../../features/Auth/domain/services/auth_service.dart';
 import '../util/Api_constants.dart';
 import 'package:shella_design/features/address/controllers/address_controller.dart';
 import 'package:shella_design/features/address/domain/repositories/address_repository_interface.dart';
@@ -336,9 +336,14 @@ class AppRoutes {
     notifications: (context) => const Notifications(),
 
     AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
-      child: const SearchFilter(),
-    ),
+          create: (_) => SearchFilterController(
+              searchServiceInterface:
+                  SearchService(searchRepositoryInterface: SearchRepository()))
+            ..mostSearched()
+            ..getAddress()
+            ..cartProducts(),
+          child: const SearchFilter(),
+        ),
 
     //prifile Details
     addressDetails: (context) => MultiProvider(
@@ -406,9 +411,14 @@ class AppRoutes {
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
     searchFilterWeb: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts(),
-      child: const SearchFilterWeb(),
-    ),
+          create: (_) => SearchFilterController(
+              searchServiceInterface:
+                  SearchService(searchRepositoryInterface: SearchRepository()))
+            ..mostSearched()
+            ..getAddress()
+            ..cartProducts(),
+          child: const SearchFilterWeb(),
+        ),
   };
 }
 
