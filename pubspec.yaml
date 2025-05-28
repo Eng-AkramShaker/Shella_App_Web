@@ -44,6 +44,9 @@ dependencies:
 
   smooth_page_indicator: ^1.2.1
   country_code_picker: ^3.3.0
+  drift: ^2.26.1
+  drift_flutter: ^0.2.4
+  get: ^4.7.2
 
 dev_dependencies:
   flutter_test:

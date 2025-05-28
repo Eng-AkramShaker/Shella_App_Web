@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/widgets/bottom_Navigation.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
+import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
 import 'package:shella_design/features/Auth/screens/mobile/ConfirmPassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/forgetpassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/login_mobile.dart';
@@ -79,7 +80,6 @@ import 'package:shella_design/features/wallet_kaidha/screens/wallet_kaidha_scree
 import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
-import '../../features/Auth/domain/services/auth_service.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
 
