@@ -26,16 +26,20 @@ class ApiClient with ChangeNotifier {
     'Authorization': token != null ? 'Bearer $token' : '',
     'Accept': 'application/json',
     'Accept-Language': 'ar',
+    'zoneId': '[2,4,3,5]',
+    'moduleId': '3',
   };
   debugPrint('🔄 تم تحديث الـ headers');
   notifyListeners();
 }
 
- Future<Response> getData(String uri) async {
+ Future<Response> getData(String uri,{Map<String,dynamic>? query}) async {
     try {
       debugPrint('🔵 [API] جلب بيانات من: $uri');
+      Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
+      debugPrint('URL ===> $url');
       final response = await http.get(
-        Uri.parse(uri), // تأكد من استخدام Uri.parse
+        url, // تأكد من استخدام Uri.parse
         headers: _headers,
       );
       return response;

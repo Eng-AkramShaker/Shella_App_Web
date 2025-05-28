@@ -15,8 +15,8 @@ import 'package:shella_design/features/Auth/screens/mobile/succsessflyCreated_mo
 import 'package:shella_design/features/Auth/screens/web/login.dart';
 import 'package:shella_design/features/Auth/screens/web/otp_screen.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
-import 'package:shella_design/features/cart/domain/repositories/cart_repository.dart';
-import 'package:shella_design/features/cart/domain/services/cart_service.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
@@ -259,29 +259,10 @@ class AppRoutes {
     productDetails: (context) => const ProductDetailsView(),
 
     // Cart
-    cartScreen: (context) => MultiProvider(
-          providers: [
-            Provider<CartRepository>(
-              create: (context) => CartRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: Provider.of<SharedPreferences>(
-                    context,
-                  ),
-                ),
-              ),
-            ),
-            Provider<CartService>(
-              create: (context) => CartService(
-                cartRepository: context.read<CartRepository>(),
-              ),
-            ),
-            // ChangeNotifierProvider<CartController>(
-            //   create: (context) => CartController(cartService: context.read<CartService>()),
-            // ),
-          ],
-          child: const Cart_Screen(),
-        ),
+    cartScreen: (context) => ChangeNotifierProvider(
+      create: (context) => CartController(cartService: CartService(cartRepository: CartRepository())),
+      child: const Cart_Screen(),
+    ),
     cartDetails: (context) => const CartDetailsScreen(),
 
     // Orders

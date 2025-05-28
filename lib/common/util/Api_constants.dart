@@ -24,4 +24,6 @@ class Api_Constants {
   static const String updateCartUri = '$appBaseUrl/api/v1/customer/cart/update';
   static const String removeAllCartUri = '$appBaseUrl/api/v1/customer/cart/remove';
   static const String removeItemCartUri = '$appBaseUrl/api/v1/customer/cart/remove-item';
+
+  static const String discountProducts = '/api/v1/items/discounted';
 }
