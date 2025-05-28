@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/appBar/appBar.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
-import 'package:shella_design/features/discount/widgets/discount_list_tile.dart';
+import 'package:shella_design/features/discount/widgets/discount_content.dart';
 
 class DiscountScreen extends StatelessWidget {
   const DiscountScreen({super.key});
@@ -16,7 +16,8 @@ class DiscountScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, 'كود الخصم', Icons.arrow_back_sharp, Icons.percent),
+      appBar: custom_AppBar(
+          context, 'كود الخصم', Icons.arrow_back_sharp, Icons.percent),
       body: Consumer<DiscountController>(
         builder: (context, controller, _) {
           if (controller.isLoading) {
@@ -31,14 +32,18 @@ class DiscountScreen extends StatelessWidget {
             return const Center(child: Text("لا توجد عروض متاحة حالياً"));
           }
 
-          return ListView.builder(
+          return GridView.builder(
+            padding: EdgeInsets.all(16.w),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.w,
+              mainAxisSpacing: 16.h,
+              childAspectRatio: 0.6, // تعديل النسبة لتحسين الشكل
+            ),
             itemCount: controller.products.length,
             itemBuilder: (context, index) {
               final product = controller.products[index];
-              return Card(
-                margin: EdgeInsets.all(8.w),
-                child: DiscountListTile(product: product),
-              );
+              return DiscountGridContent(product: product);
             },
           );
         },
@@ -46,4 +51,5 @@ class DiscountScreen extends StatelessWidget {
     );
   }
 }
+
 

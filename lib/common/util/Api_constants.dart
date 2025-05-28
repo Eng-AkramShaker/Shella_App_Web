@@ -3,7 +3,7 @@
 class Api_Constants {
   // ======================== Url ========================
 
-  static const String appBaseUrl = 'https://admin.shalafood.net';
+  static const String appBaseUrl = 'https://shalafood.net';
   static String token = 'guest';
 
   static String login = '/api/v1/auth/login';
@@ -19,9 +19,9 @@ class Api_Constants {
   //
 
   /// Cart
-  static const String getCartListUri = '/customer/cart/list';
-  static const String addCartUri = '/customer/cart/add';
-  static const String updateCartUri = '/customer/cart/update';
-  static const String removeAllCartUri = '/customer/cart/remove';
-  static const String removeItemCartUri = '/customer/cart/remove-item';
+  static const String getCartListUri = 'https://shalafood.net/api/v1/customer/cart/list';
+  static const String addCartUri = '$appBaseUrl/api/v1/customer/cart/add';
+  static const String updateCartUri = '$appBaseUrl/api/v1/customer/cart/update';
+  static const String removeAllCartUri = '$appBaseUrl/api/v1/customer/cart/remove';
+  static const String removeItemCartUri = '$appBaseUrl/api/v1/customer/cart/remove-item';
 }

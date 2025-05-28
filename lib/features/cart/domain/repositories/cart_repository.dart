@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import '../models/cart_model.dart';
@@ -17,14 +19,35 @@ class CartRepositoryImpl implements CartRepository {
   CartRepositoryImpl({required this.apiClient});
 
   @override
-  Future<List<CartItem>> getCartItems() async {
+ Future<List<CartItem>> getCartItems() async {
+  try {
+    debugPrint('🟣 [Repository] جلب عناصر السلة...');
+    
+    // 1. تأكد من تحديث الـ headers أولاً
+    apiClient.updateHeaders();
+    
+    // 2. أضف طباعة للتحقق من الـ headers
+   // debugPrint('🔵 [Headers] ${apiClient.}');
+    
     final response = await apiClient.getData(Api_Constants.getCartListUri);
-    if (response != null && response.statusCode == 200) {
+    
+    if (response.statusCode == 200) {
       final data = json.decode(response.body) as List;
+      debugPrint('🟢 [Repository] تم استلام ${data.length} عنصر');
       return data.map((item) => CartItem.fromJson(item)).toList();
+    } 
+    else if (response.statusCode == 401) {
+      debugPrint('🔴 [Repository] انتهت صلاحية Token، جارٍ تجديده...');
+      // أضف هنا منطق تجديد الـ Token إذا كان متاحاً
+      throw Exception('انتهت صلاحية الجلسة، يرجى إعادة تسجيل الدخول');
     }
-    throw Exception('Failed to load cart items');
-  }
+    else {
+      throw Exception('فشل جلب العناصر: ${response.statusCode}');
+    }
+  } catch (e) {
+    debugPrint('🔴 [Repository Error] ${e.toString()}');
+    rethrow;
+  }}
 
   @override
   Future<void> addToCart(Map<String, dynamic> data) async {

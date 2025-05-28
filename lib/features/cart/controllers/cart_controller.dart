@@ -15,15 +15,21 @@ class CartController extends ChangeNotifier {
   List<CartItem> get cartItems => _cartItems;
   String? get errorMessage => _errorMessage;
 
-  CartController({required this.cartService});
+  CartController({required this.cartService, required cartRepository});
 
   Future<void> loadCartItems() async {
     _updateState(CartState.loading);
     try {
       _cartItems = await cartService.getCartItems();
       _updateState(CartState.loaded);
-    } catch (e) {
+    } on Exception catch (e) {
       _errorMessage = e.toString();
+      
+      if (e.toString().contains('انتهت صلاحية الجلسة')) {
+        // أضف منطق تسجيل الخروج هنا
+        debugPrint('🚪 جارٍ تسجيل الخروج بسبب انتهاء الجلسة...');
+      }
+      
       _updateState(CartState.error);
     }
   }

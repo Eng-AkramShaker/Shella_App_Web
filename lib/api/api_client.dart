@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
@@ -17,23 +18,30 @@ class ApiClient with ChangeNotifier {
     updateHeaders();
   }
 
-  void updateHeaders() {
-    String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
-    _headers = {
-      'Content-Type': 'application/json',
-      'Authorization': token != null ? 'Bearer $token' : '',
-    };
-    notifyListeners();
-  }
+ void updateHeaders() {
+  token = sharedPreferences.getString(SharedPrefKeys.userToken); // ✅ بدون String? جديد
+  debugPrint('🟠 التوكن من SharedPreferences: $token');
+  _headers = {
+    'Content-Type': 'application/json',
+    'Authorization': token != null ? 'Bearer $token' : '',
+    'Accept': 'application/json',
+    'Accept-Language': 'ar',
+  };
+  debugPrint('🔄 تم تحديث الـ headers');
+  notifyListeners();
+}
 
-  Future<http.Response?> getData(String uri, {Map<String, dynamic>? query}) async {
+ Future<Response> getData(String uri) async {
     try {
-      Uri url = Uri.parse("$appBaseUrl$uri").replace(queryParameters: query);
-      final response = await http.get(url, headers: _headers);
-      return _handleResponse(response);
+      debugPrint('🔵 [API] جلب بيانات من: $uri');
+      final response = await http.get(
+        Uri.parse(uri), // تأكد من استخدام Uri.parse
+        headers: _headers,
+      );
+      return response;
     } catch (e) {
-      debugPrint('GET Error: $e');
-      return null;
+      debugPrint('🔴 [API Error] ${e.toString()}');
+      throw Exception('فشل الاتصال بالخادم: ${e.toString()}');
     }
   }
 

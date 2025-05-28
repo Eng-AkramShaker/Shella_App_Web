@@ -276,9 +276,9 @@ class AppRoutes {
                 cartRepository: context.read<CartRepository>(),
               ),
             ),
-            ChangeNotifierProvider<CartController>(
-              create: (context) => CartController(cartService: context.read<CartService>()),
-            ),
+            // ChangeNotifierProvider<CartController>(
+            //   create: (context) => CartController(cartService: context.read<CartService>()),
+            // ),
           ],
           child: const Cart_Screen(),
         ),
