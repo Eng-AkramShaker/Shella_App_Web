@@ -1,12 +1,11 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
-import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
+import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
 
 enum RequestState { initial, loading, success, error }
 
 class ProfileController extends ChangeNotifier {
-  final ProfileDetailsService profileDetailsService;
+  final ProfileDetailsServiceInterface profileDetailsService;
 
   ProfileController({required this.profileDetailsService});
 
@@ -28,7 +27,7 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      address = await profileDetailsService.fetchAddressList();
+      address = await profileDetailsService.getAddressList();
       adressstate = RequestState.success;
     } catch (e) {
       _errorMessage = e.toString();
