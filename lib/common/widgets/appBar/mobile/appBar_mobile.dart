@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
-import '../texts/custom_text.dart';
+import '../../texts/custom_text.dart';
 
 PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, IconData titleIcon) {
   return PreferredSize(

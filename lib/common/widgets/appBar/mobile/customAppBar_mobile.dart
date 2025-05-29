@@ -1,16 +1,22 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
-import '../texts/custom_text.dart';
-
-PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, IconData titleIcon) {
+PreferredSize customAppBar(BuildContext context,
+    {TextStyle? style,
+    String? title,
+    String? img,
+    IconData? icon,
+    Color? iconbackcolor,
+    Color? backgroundColor,
+    Function()? onPressed}) {
   return PreferredSize(
     preferredSize: const Size.fromHeight(80),
     child: AppBar(
-      backgroundColor: Colors.green,
+      backgroundColor: backgroundColor ?? AppColors.greenColor,
       elevation: 0,
       centerTitle: true,
       automaticallyImplyLeading: false,
@@ -24,9 +30,9 @@ PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, 
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Custom_Text(context, text: " $title ", style: font14White600W(context)),
+                  Custom_Text(context, text: " $title ", style: style ?? font14White600W(context)),
                   const SizedBox(width: 10),
-                  Icon(titleIcon, color: Colors.white, size: 22),
+                  Icon(icon, color: AppColors.wtColor, size: 22)
                 ],
               ),
             ),
@@ -35,10 +41,8 @@ PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, 
             bottom: 10,
             right: 15,
             child: IconButton(
-              icon: Icon(icon, color: AppColors.wtColor, size: 26),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              icon: Icon(Icons.arrow_back_sharp, color: iconbackcolor ?? AppColors.wtColor, size: 26),
+              onPressed: onPressed,
             ),
           ),
         ],
