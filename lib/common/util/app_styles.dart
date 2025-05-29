@@ -78,6 +78,34 @@ TextStyle font11Black400W(
   );
 }
 
+TextStyle font11Green400W(
+    BuildContext context, {
+      double? size,
+      double? lineHeight,
+    }) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_11(context),
+    color: AppColors.greenColor,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle font10Grey700W(
+    BuildContext context, {
+      double? size,
+      double? lineHeight,
+    }) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_10(context),
+    color: AppColors.gryColor_10,
+    fontWeight: FontWeight.w400,
+  );
+}
+
 TextStyle font11Black500W(
   BuildContext context, {
   double? size,

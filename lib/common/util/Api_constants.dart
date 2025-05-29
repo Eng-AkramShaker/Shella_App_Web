@@ -38,4 +38,13 @@ class Api_Constants {
 
   /// GET ALL CATEGORIES
   static const String getAllCategories = '/api/v1/categories';
+
+  /// SEARCH ITEMS
+  static const String searchItems = '/api/v1/items/item-or-store-search';
+
+  /// MOST SEARCHED
+  static const String mostSearched = '/api/v1/items/popular';
+
+  /// CART PRODUCTS
+  static const String cartProducts = '/api/v1/customer/cart/list';
 }

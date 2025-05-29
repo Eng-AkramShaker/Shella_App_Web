@@ -85,8 +85,13 @@ import 'package:shella_design/features/wallet_kaidha/screens/wallet_kaidha_scree
 import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
+import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
+import '../../features/search_filter/domain/services/searchService/search_service.dart';
+import '../../features/search_filter/screen/web/search_filter_web.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
+import '../widgets/profile/web/accountDetails/account_details.dart';
 
 class AppRoutes {
   static const String testPage = '/testPage';
@@ -118,7 +123,10 @@ class AppRoutes {
   static const String walletScreen = '/walletScreen';
   static const String walletKaidhaScreen = '/walletKaidhaScreen';
   static const String myCouponScreen = '/myCouponScreen';
+  static const String helpAndSupportMobile = '/helpAndSupportMobile';
+  static const String helpAndSupportWeb = '/helpAndSupportWeb';
   static const String helpAndSupport = '/helpAndSupport';
+  static const String searchFilterWeb = '/searchFilterWeb';
   static const String joinAsDriverOne = '/joinAsDriverOne';
   static const String joinAsDriverTwo = '/joinAsDriverTwo';
   static const String supportConversation = '/supportConversation';

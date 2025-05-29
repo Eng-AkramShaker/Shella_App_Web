@@ -15,6 +15,7 @@ class ProfileDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(

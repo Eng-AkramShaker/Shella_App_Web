@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
-import 'package:shella_design/features/search_filter/widget/category_tabs.dart';
-import 'package:shella_design/features/search_filter/widget/location_header.dart';
-import 'package:shella_design/features/search_filter/widget/most_searched_list.dart';
-import 'package:shella_design/features/search_filter/widget/search_history_section.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import '../widget/mobile/category_tabs.dart';
+import '../widget/mobile/location_header.dart';
+import '../widget/mobile/most_searched_list.dart';
+import '../widget/mobile/search_history_section.dart';
 
 class SearchFilter extends StatefulWidget {
   const SearchFilter({super.key});

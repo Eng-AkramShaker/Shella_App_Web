@@ -14,7 +14,7 @@ class SearchRepository implements SearchRepositoryInterface{
   @override
   Future<http.Response?> searchItems({value}) async {
     Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.searchItems,query: {'name': value});
-    customPrint('Search Items Response :: ${jsonDecode(response!.body)}');
+    customPrint('Search Items Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
@@ -22,7 +22,7 @@ class SearchRepository implements SearchRepositoryInterface{
   @override
   Future<http.Response?> mostSearched() async {
     Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.mostSearched);
-    customPrint('Most Searched Response :: ${jsonDecode(response!.body)}');
+    customPrint('Most Searched Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
@@ -30,7 +30,7 @@ class SearchRepository implements SearchRepositoryInterface{
   @override
   Future<http.Response?> cartProducts() async {
     Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts,query: {'guest_id': sp<SharedPreferences>().getString(Api_Constants.guestId)??''});
-    customPrint('Cart Products Response :: ${jsonDecode(response!.body)}');
+    customPrint('Cart Products Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
@@ -38,7 +38,7 @@ class SearchRepository implements SearchRepositoryInterface{
   @override
   Future<http.Response?> getAddress() async {
     Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAddress);
-    customPrint('Get Address Response :: ${jsonDecode(response!.body)}');
+    customPrint('Get Address Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
@@ -46,7 +46,7 @@ class SearchRepository implements SearchRepositoryInterface{
   @override
   Future<http.Response?> getAllCategories() async {
     Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAllCategories);
-    customPrint('Get All Categories Response :: ${jsonDecode(response!.body)}');
+    customPrint('Get All Categories Response :: ${jsonDecode(response.body)}');
     return response;
   }
 

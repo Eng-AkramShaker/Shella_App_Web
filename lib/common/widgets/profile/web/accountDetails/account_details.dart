@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
+import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
 import '../../../../../features/profile_detailes/controllers/profile_detailes_controller.dart';
 import '../../../../util/app_colors.dart';
 import '../../../appBar/web/app_bar_web.dart';
@@ -18,7 +20,7 @@ class _AccountDetailsState extends State<AccountDetails> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProfileController(),
+      create: (_) => ProfileController(profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository())),
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: PreferredSize(

@@ -7,6 +7,7 @@ import 'package:shella_design/common/util/app_styles.dart';
 Widget buildCategoryButton(BuildContext context, String text, Function() onTap, Color color) {
   return GestureDetector(
     onTap: onTap,
+    behavior: HitTestBehavior.opaque,
     child: Column(
       children: [
         Custom_Text(
@@ -17,7 +18,7 @@ Widget buildCategoryButton(BuildContext context, String text, Function() onTap, 
         ),
         AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          height: 2,
+          height: 3,
           width: MediaQuery.of(context).size.width * 0.25,
           margin: const EdgeInsets.only(top: 10),
           color: color,

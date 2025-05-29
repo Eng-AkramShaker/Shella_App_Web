@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
-import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/search_filter/domain/models/searchResultModel/search_result_model.dart';
 import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
 import '../../../common/helper/check_Logged.dart';
