@@ -125,64 +125,7 @@ List<Map<String, dynamic>> nationalities = [
 
 List<int> img = [7, 8, 2, 1];
 List<String> title = ["خدمة تخدمني", "استلام وتسليم", "المطاعم", "سوبر ماركت"];
-List<Coupon> coupons = [
-  Coupon(
-    id: 1,
-    title: "خصم 15%",
-    discount: 15,
-    expiryDate: DateTime(2024, 12, 31),
-    isAvailable: true,
-  ),
-  Coupon(
-    id: 2,
-    title: "خصم 20%",
-    discount: 20,
-    expiryDate: DateTime(2023, 10, 26),
-    isAvailable: false,
-  ),
-  Coupon(
-    id: 3,
-    title: "خصم 30%",
-    discount: 30,
-    expiryDate: DateTime(2024, 11, 30),
-    isAvailable: true,
-  ),
-  Coupon(
-    id: 4,
-    title: "خصم 50%",
-    discount: 50,
-    expiryDate: DateTime(2023, 09, 15),
-    isAvailable: false,
-  ),
-  Coupon(
-    id: 5,
-    title: "خصم 10%",
-    discount: 10,
-    expiryDate: DateTime(2024, 10, 25),
-    isAvailable: true,
-  ),
-  Coupon(
-    id: 6,
-    title: "خصم 35%",
-    discount: 35,
-    expiryDate: DateTime(2024, 11, 20),
-    isAvailable: true,
-  ),
-  Coupon(
-    id: 7,
-    title: "خصم 20%",
-    discount: 20,
-    expiryDate: DateTime(2023, 12, 10),
-    isAvailable: false,
-  ),
-  Coupon(
-    id: 8,
-    title: "خصم 50%",
-    discount: 50,
-    expiryDate: DateTime(2024, 12, 30),
-    isAvailable: true,
-  ),
-];
+
 final List<Map<String, dynamic>> orders = [
   {
     "name": "بيتزا هت 100200#",

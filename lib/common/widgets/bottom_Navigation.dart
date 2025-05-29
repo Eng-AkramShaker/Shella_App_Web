@@ -13,6 +13,10 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/features/profile_detailes/screens/profile_info.dart';
 
+import '../helper/app_routes.dart';
+import '../util/app_navigators.dart';
+import '../util/app_navigators.dart' as NavigationHelper;
+
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
 
@@ -47,7 +51,11 @@ class _MainLayoutState extends State<MainLayout> {
               selectedIndex: _selectedIndex,
               onDestinationSelected: (index) {
                 setState(() {
-                  _selectedIndex = index;
+                  if(index==4){
+                    NavigationHelper.pushNewScreen(context, AppRoutes.accountdetails);
+                  }else{
+                    _selectedIndex = index;
+                  }
                 });
               },
               labelType: NavigationRailLabelType.none,

@@ -19,6 +19,8 @@ class AppColors {
 
   static const Color wtColor_2 = Color(0xFFECECEC);
 
+  static const Color wtColor_3 = Color(0xFFEFEFEF);
+
   static const Color greenColor = Colors.green;
   static const Color wGreyColor = Color(0xFF858C83);
   static const Color darkGreyColor = Color(0xFF898888);

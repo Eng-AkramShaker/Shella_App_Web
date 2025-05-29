@@ -15,6 +15,8 @@ import 'package:shella_design/features/home/domain/services/banner_service.dart'
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
+import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
@@ -22,6 +24,8 @@ import 'package:shella_design/features/schedule_order/controller/schedule_contro
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
+
+import '../../features/my_coupon/controllers/my_coupon_controller.dart';
 
 List<SingleChildWidget> appProviders = [
   ChangeNotifierProvider(
@@ -45,4 +49,7 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
+
+  ChangeNotifierProvider(create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))..getMyCoupon()),
+
 ];

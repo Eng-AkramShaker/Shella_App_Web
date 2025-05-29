@@ -10,7 +10,11 @@ import 'package:shella_design/api/api_checker.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/models/error_response.dart';
 import 'package:shella_design/common/util/indian_app_constants.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
+import '../common/helper/app_routes.dart';
+import '../common/util/app_navigators.dart';
+import '../common/widgets/print/custom_print.dart';
 
 class ApiClient extends GetxService {
   final String appBaseUrl;
@@ -227,7 +231,10 @@ class ApiClient extends GetxService {
 
     try {
       final body = jsonDecode(response.body);
-
+      if(response.statusCode==401){
+        pushAndRemoveUntil(Navigation.currentContext, AppRoutes.Login_Mobile);
+        return response;
+      }else
       // Optional: Custom error handling if API returns structured error formats
       if (response.statusCode != 200 && body is Map<String, dynamic>) {
         if (body.containsKey('errors') && body['errors'] is List) {

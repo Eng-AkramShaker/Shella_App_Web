@@ -24,7 +24,7 @@ class ContactUsContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5), // Shadow color
+              color: Colors.grey.withValues(alpha: 0.5), // Shadow color
               spreadRadius: 0, // Spread radius
               blurRadius: 5, // Blur radius
               offset: Offset(0, 3), // Offset from the container
@@ -54,7 +54,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'اتصل بنا',
-                    style: font12Green400W(context),
+                    style: font12Green400W(context,size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +62,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: '+966-5999-777-25',
-                    style: font12Black300W(context),
+                    style: font12Black300W(context,size: 11),
                   ),
                 ],
               ),

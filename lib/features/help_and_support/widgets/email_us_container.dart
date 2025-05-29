@@ -54,7 +54,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'راسلنا عبر بريدنا الالكتروني',
-                    style: font12Green400W(context),
+                    style: font12Green400W(context,size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +62,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'shalafood@gmail.com',
-                    style: font12Black300W(context),
+                    style: font12Black300W(context,size: 11),
                   ),
                 ],
               ),

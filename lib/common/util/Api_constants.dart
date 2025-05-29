@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names, camel_case_types, file_names
 
 class Api_Constants {
+
   // ======================== Url ========================
 
   static const String appBaseUrl = 'https://shalafood.net';
@@ -26,4 +27,15 @@ class Api_Constants {
   static const String removeItemCartUri = '$appBaseUrl/api/v1/customer/cart/remove-item';
 
   static const String discountProducts = '/api/v1/items/discounted';
+  /// GET ADDRESS
+  static const String getAddress = '/api/v1/customer/address/list';
+
+  /// GET MY COUPON
+  static const String getMyCoupon = '/api/v1/coupon/list';
+
+  /// APPLY COUPON
+  static const String applyCoupon = '/api/v1/coupon/apply';
+
+  /// GET ALL CATEGORIES
+  static const String getAllCategories = '/api/v1/categories';
 }
