@@ -273,30 +273,6 @@ class AppRoutes {
     productDetails: (context) => const ProductDetailsView(),
 
     // Cart
-    cartScreen: (context) => MultiProvider(
-          providers: [
-            Provider<CartRepository>(
-              create: (context) => CartRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: Provider.of<SharedPreferences>(
-                    context,
-                  ),
-                ),
-              ),
-            ),
-            Provider<CartService>(
-              create: (context) => CartService(
-                cartRepository: context.read<CartRepository>(),
-              ),
-            ),
-            ChangeNotifierProvider<CartController>(
-              create: (context) =>
-                  CartController(cartService: context.read<CartService>()),
-            ),
-          ],
-          child: const Cart_Screen(),
-        ),
     cartScreen: (context) => ChangeNotifierProvider(
       create: (context) => CartController(cartService: CartService(cartRepository: CartRepository())),
       child: const Cart_Screen(),

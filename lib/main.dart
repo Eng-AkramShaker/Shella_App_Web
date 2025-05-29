@@ -19,7 +19,7 @@ void main() async {
   await checkIfLoggedInUser();
   runApp(
     MultiProvider(
-       providers: getAppProviders(),
+       providers: appProviders,
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
