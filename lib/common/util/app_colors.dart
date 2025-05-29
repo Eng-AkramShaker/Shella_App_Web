@@ -12,6 +12,7 @@ class AppColors {
   static const Color secondaryyellow200 = Color.fromARGB(255, 253, 210, 157);
   static const Color title = Color(0xFF6C7278);
   static const Color supTitle = Color(0xFF6C7278);
+  static const Color supListTitle = Color(0xFFC6C6C6);
 
   static const Color bgColor = Color(0xFF2D3633);
   static const Color wtColor = Colors.white;
@@ -21,6 +22,7 @@ class AppColors {
   static const Color greenColor = Colors.green;
   static const Color wGreyColor = Color(0xFF858C83);
   static const Color darkGreyColor = Color(0xFF898888);
+  static const Color dividerListColor = Color(0xFFEDEDED);
 
   static const Color gryColor = Color(0xFF616161); //  same  Colors.grey[700]
   static const Color gryColor_2 = Color(0xFF787878); //  same  Colors.grey[700]

@@ -9,6 +9,7 @@ import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ConfirmPasswordScreen extends StatelessWidget {
+
   const ConfirmPasswordScreen({super.key});
 
   @override
@@ -22,6 +23,7 @@ class ConfirmPasswordScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(
+
             Icons.arrow_back,
             size: 30,
             color: Colors.black,

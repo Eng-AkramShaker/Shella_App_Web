@@ -119,6 +119,19 @@ TextStyle font13Black400W(
     fontWeight: FontWeight.w400,
   );
 }
+TextStyle font18Black400W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_18(context),
+    color: AppColors.bgColor,
+    fontWeight: FontWeight.w400,
+  );
+}
 
 TextStyle font16SecondaryColor400W(
   BuildContext context, {
@@ -369,6 +382,19 @@ TextStyle font14SecondaryColor500W(
     fontFamily: 'ReadexPro',
     height: lineHeight ?? 1.5,
     fontSize: size ?? size_14(context),
+    color: AppColors.secondaryColor,
+    fontWeight: FontWeight.w500,
+  );
+}
+TextStyle font18SecondaryColor500W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_18(context),
     color: AppColors.secondaryColor,
     fontWeight: FontWeight.w500,
   );

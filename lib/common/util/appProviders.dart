@@ -2,6 +2,11 @@
 
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:shella_design/features/discount/controllers/discount_controller.dart';
+import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
+import 'package:shella_design/features/discount/domain/repositories/discountRepositoryInterface/discount_repository_interface.dart';
+import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
@@ -30,11 +35,14 @@ List<SingleChildWidget> appProviders = [
   ),
   ChangeNotifierProvider(create: (_) => SplashController()),
   ChangeNotifierProvider(create: (_) => HomeController()),
+  ChangeNotifierProvider(create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository())),),
   ChangeNotifierProvider(create: (_) => KaidhaFormController()),
   ChangeNotifierProvider(create: (_) => ServeMeController()),
+
   ChangeNotifierProvider(create: (_) => SearchFilterController()),
   ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
   ChangeNotifierProvider(create: (_) => OrderTrackingController()),
+
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
 ];

@@ -1,4 +1,6 @@
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

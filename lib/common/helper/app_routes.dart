@@ -16,10 +16,11 @@ import 'package:shella_design/features/Auth/screens/mobile/succsessflyCreated_mo
 import 'package:shella_design/features/Auth/screens/web/login.dart';
 import 'package:shella_design/features/Auth/screens/web/otp_screen.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
-import 'package:shella_design/features/cart/domain/repositories/cart_repository.dart';
-import 'package:shella_design/features/cart/domain/services/cart_service.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
+import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/screens/discount_screen.dart';
 import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
 import 'package:shella_design/features/home/home/home_screen.dart';
@@ -53,10 +54,11 @@ import 'package:shella_design/features/payment/screens/payment_method.dart';
 import 'package:shella_design/features/product/screens/product_details_screen.dart';
 import 'package:shella_design/features/product/screens/product_screen.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
-import 'package:shella_design/features/profile_detailes/domain/repositories/profile_detailes_repository.dart';
-import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
+import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
+import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
 import 'package:shella_design/features/profile_detailes/screens/addNewAdress.dart';
 import 'package:shella_design/features/profile_detailes/screens/adressDetailes.dart';
+import 'package:shella_design/features/profile_detailes/screens/profile_info.dart';
 import 'package:shella_design/features/return_and_earn/screens/return_and_earn_screen.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
@@ -109,7 +111,7 @@ class AppRoutes {
   static const String add_new_card_screen = '/add_new_card_screen';
   static const String statisticsScreen = '/statisticsScreen';
   static const String returnAndEarnScreen = '/returnAndEarnScreen';
-  static const String discountScreen = '/discountScreen';
+  static const discountScreen = '/discountScreen';
   static const String walletScreen = '/walletScreen';
   static const String walletKaidhaScreen = '/walletKaidhaScreen';
   static const String myCouponScreen = '/myCouponScreen';
@@ -141,6 +143,7 @@ class AppRoutes {
   static const String savedaddresses = '/savedaddresses';
   static const String myOrders = '/myOrders';
   //prifile Details
+  static const String profileInfo = '/profile_info';
   static const String addressDetails = '/addressDetails';
   static const String addaddress = '/addaddress';
 
@@ -241,6 +244,19 @@ class AppRoutes {
                 child: const Signup()),
           ),
         ),
+        //Discount
+        discountScreen: (context) => const DiscountScreen(),
+        //discountScreen: (context) => const DiscountScreen(),
+//         discountScreen: (context) => ChangeNotifierProvider.value(
+//   value: context.read<DiscountController>(), // جاي من MultiProvider
+//   child: const DiscountScreen(),
+// ),
+
+//         discountScreen: (context) => ChangeNotifierProvider(
+//   create: (_) => DiscountController(),
+//   child: const DiscountScreen(),
+// ),
+
     forgetpassword: (context) => const Forgetpassword(),
     mobilelVerification: (context) => const MobilelVerification(),
     confirmPasswordScreen: (context) => const ConfirmPasswordScreen(),
@@ -281,6 +297,10 @@ class AppRoutes {
           ],
           child: const Cart_Screen(),
         ),
+    cartScreen: (context) => ChangeNotifierProvider(
+      create: (context) => CartController(cartService: CartService(cartRepository: CartRepository())),
+      child: const Cart_Screen(),
+    ),
     cartDetails: (context) => const CartDetailsScreen(),
 
     // Orders
@@ -307,7 +327,7 @@ class AppRoutes {
     // Other Features
     statisticsScreen: (context) => const StatisticsScreen(),
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
-    discountScreen: (context) => const DiscountScreen(),
+   // discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
     myCouponScreen: (context) => const MyCouponScreen(),
@@ -330,15 +350,11 @@ class AppRoutes {
         ),
 
     //prifile Details
+    profileInfo: (context) => const ProfileInfo (),
     addressDetails: (context) => MultiProvider(
           providers: [
             Provider<ProfileRepository>(
-              create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: sp<SharedPreferences>(),
-                ),
-              ),
+              create: (context) => ProfileRepository(),
             ),
             Provider<ProfileDetailsService>(
               create: (context) => ProfileDetailsService(
@@ -347,7 +363,7 @@ class AppRoutes {
             ),
             ChangeNotifierProvider<ProfileController>(
               create: (context) => ProfileController(
-                profileDetailsService: context.read<ProfileDetailsService>(),
+                profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository()),
               ),
             ),
           ],
@@ -356,12 +372,7 @@ class AppRoutes {
     addaddress: (context) => MultiProvider(
           providers: [
             Provider<ProfileRepository>(
-              create: (context) => ProfileRepositoryImpl(
-                apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: sp<SharedPreferences>(),
-                ),
-              ),
+              create: (context) => ProfileRepository(),
             ),
             Provider<ProfileDetailsService>(
               create: (context) => ProfileDetailsService(
@@ -370,7 +381,7 @@ class AppRoutes {
             ),
             ChangeNotifierProvider<ProfileController>(
               create: (context) => ProfileController(
-                profileDetailsService: context.read<ProfileDetailsService>(),
+                profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository()),
               ),
             ),
           ],

@@ -32,7 +32,9 @@ class ProfileDetailsPage extends StatelessWidget {
       body: ListView(
         children: [
           buildProfileHeader(),
-          buildListTile('معلومات الحساب', Icons.account_circle, context, () {}),
+          buildListTile('معلومات الحساب', Icons.account_circle, context, () {
+            pushNewScreen(context, AppRoutes.profileInfo);
+          }),
           buildListTile('العناوين المحفوظة', Icons.location_on, context, () {
             pushNewScreen(
               context,
@@ -56,7 +58,7 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
           buildListTile('كود الخصم', Icons.discount, context, () {
-            pushNewScreen(context, AppRoutes.discountScreen);
+           Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
             Navigator.push(

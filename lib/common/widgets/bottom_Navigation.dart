@@ -11,6 +11,7 @@ import 'package:shella_design/features/orders/screens/order_screen/mobile_orders
 import 'package:shella_design/features/profile_detailes/screens/profile_detailes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/features/profile_detailes/screens/profile_info.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -31,6 +32,7 @@ class _MainLayoutState extends State<MainLayout> {
     FavoritePage(),
     Cart_Screen(),
     ProfileDetailsPage(),
+    ProfileInfo(),
   ];
 
   @override

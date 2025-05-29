@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
-import 'package:shella_design/features/cart/domain/services/cart_service.dart';
+import 'package:shella_design/features/cart/domain/services/cartServiceInterface/cart_service_interface.dart';
 
 enum CartState { initial, loading, loaded, error }
 
 class CartController extends ChangeNotifier {
-  final CartService cartService;
+  final CartServiceInterface cartService;
 
   CartState _state = CartState.initial;
   List<CartItem> _cartItems = [];
@@ -22,8 +22,14 @@ class CartController extends ChangeNotifier {
     try {
       _cartItems = await cartService.getCartItems();
       _updateState(CartState.loaded);
-    } catch (e) {
+    } on Exception catch (e) {
       _errorMessage = e.toString();
+      
+      if (e.toString().contains('انتهت صلاحية الجلسة')) {
+        // أضف منطق تسجيل الخروج هنا
+        debugPrint('🚪 جارٍ تسجيل الخروج بسبب انتهاء الجلسة...');
+      }
+      
       _updateState(CartState.error);
     }
   }
@@ -52,7 +58,7 @@ class CartController extends ChangeNotifier {
   Future<void> updateQuantity(String itemId, int newQuantity) async {
     _updateState(CartState.loading);
     try {
-      await cartService.updateItemQuantity(itemId, newQuantity);
+      await cartService.updateCartItem(itemId, newQuantity);
       await loadCartItems();
     } catch (e) {
       _errorMessage = e.toString();
@@ -63,7 +69,7 @@ class CartController extends ChangeNotifier {
   Future<void> removeItem(String itemId) async {
     _updateState(CartState.loading);
     try {
-      await cartService.removeItem(itemId);
+      await cartService.removeCartItem(itemId);
       await loadCartItems();
     } catch (e) {
       _errorMessage = e.toString();
