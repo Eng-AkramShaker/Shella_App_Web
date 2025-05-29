@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/features/help_and_support/widgets/address_container.dart';
 import 'package:shella_design/features/help_and_support/widgets/contact_us_container.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import '../../../../common/widgets/appBar/mobile/customAppBar_mobile.dart';
 import '../../widgets/email_us_container.dart';
 
 class HelpAndSupportScreen extends StatelessWidget {
@@ -13,7 +13,12 @@ class HelpAndSupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, title: 'المساعدة و الدعم', img: 'assets/images/help_and_support_appbar_img.png',onPressed: () => Navigator.pop(context),),
+      appBar: customAppBar(
+        context,
+        title: 'المساعدة و الدعم',
+        img: 'assets/images/help_and_support_appbar_img.png',
+        onPressed: () => Navigator.pop(context),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),
