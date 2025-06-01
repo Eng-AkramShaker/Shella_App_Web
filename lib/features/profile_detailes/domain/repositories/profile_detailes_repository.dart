@@ -22,7 +22,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<List<Address>> getAddressList() async {
     final response = await apiClient.getData(
-      Uri.parse(Api_Constants.addresslist).toString(),
+      Uri.parse(Api_Constants.addressList).toString(),
     );
 
     if (response != null) {

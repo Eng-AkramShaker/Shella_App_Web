@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/home/domain/models/store_model.dart';
-import 'package:shella_design/features/home/domain/services/store_service.dart';
+import 'package:shella_design/features/home/domain/repositories/home_repository.dart';
 
 class StoreProvider with ChangeNotifier {
-  final StoreService _storeService;
+  final HomeRepository _repository;
+
+  StoreProvider(this._repository);
 
   List<StoreModel> _stores = [];
   bool _isLoading = false;
-
-  StoreProvider(this._storeService);
 
   List<StoreModel> get stores => _stores;
   bool get isLoading => _isLoading;
@@ -18,7 +18,7 @@ class StoreProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _stores = await _storeService.fetchStores();
+      _stores = await _repository.getStores();
       for (var store in _stores) {
         debugPrint('Fetched Store ID: ${store.id}');
       }

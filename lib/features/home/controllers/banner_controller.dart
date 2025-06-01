@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/home/domain/models/banner_model.dart';
-import 'package:shella_design/features/home/domain/services/banner_service.dart';
+import 'package:shella_design/features/home/domain/repositories/home_repository.dart';
 
 class BannerProvider extends ChangeNotifier {
-  final BannerService _bannerService;
+  final HomeRepository _repository;
 
-  BannerProvider(this._bannerService);
+  BannerProvider(this._repository);
 
   List<BannerModel> _banners = [];
   List<BannerModel> get banners => _banners;
@@ -21,7 +21,7 @@ class BannerProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _banners = await _bannerService.fetchBanners();
+      _banners = await _repository.getBanners();
       _error = null;
     } catch (e) {
       _error = e.toString();

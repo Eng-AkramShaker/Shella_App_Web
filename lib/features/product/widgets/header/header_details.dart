@@ -20,7 +20,6 @@ Widget buildHeader(context) {
         ),
       ),
 
-      // الأزرار العلوية
       Positioned(
         top: 30.h,
         left: 19.w,

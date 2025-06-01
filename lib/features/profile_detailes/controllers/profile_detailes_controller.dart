@@ -18,11 +18,9 @@ class ProfileController extends ChangeNotifier {
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
-  //add address page
   int tybe = 1;
   int floor = 1;
 
-  /// Fetches the list of addresses
   Future<void> getAdress() async {
     adressstate = RequestState.loading;
     notifyListeners();
@@ -37,7 +35,6 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Adds a new address
   Future<void> addAddress(Address newAddress) async {
     adressstate = RequestState.loading;
     notifyListeners();
@@ -58,7 +55,6 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Removes an address by ID
   Future<void> removeAddress(String addressId) async {
     adressstate = RequestState.loading;
     notifyListeners();
@@ -78,7 +74,6 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Updates an existing address
   Future<void> updateAddress(Address updatedAddress) async {
     adressstate = RequestState.loading;
     notifyListeners();

@@ -6,6 +6,7 @@ import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/home/controllers/store_controller.dart';
+import 'package:shella_design/features/home/domain/repositories/home_repository.dart';
 import 'package:shella_design/features/home/domain/services/banner_service.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
@@ -18,15 +19,21 @@ import 'package:shella_design/features/search_filter/controller/search_filter_co
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 
+final homeRepository = HomeRepository(
+  bannerService: BannerService(),
+  sectionService: SectionService(),
+  storeService: StoreService(),
+);
+
 List<SingleChildWidget> appProviders = [
   ChangeNotifierProvider(
-    create: (_) => BannerProvider(BannerService())..loadBanners(),
+    create: (_) => BannerProvider(homeRepository)..loadBanners(),
   ),
   ChangeNotifierProvider(
-    create: (_) => SectionProvider(SectionService())..fetchCategories(),
+    create: (_) => SectionProvider(homeRepository)..fetchCategories(),
   ),
   ChangeNotifierProvider(
-    create: (_) => StoreProvider(StoreService())..fetchStores(),
+    create: (_) => StoreProvider(homeRepository)..fetchStores(),
   ),
   ChangeNotifierProvider(create: (_) => SplashController()),
   ChangeNotifierProvider(create: (_) => HomeController()),
