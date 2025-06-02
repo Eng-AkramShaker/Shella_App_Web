@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/Favorite/screens/favoritePage.dart';
+import 'package:shella_design/features/favorite/screens/favoritePage.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
@@ -51,9 +51,10 @@ class _MainLayoutState extends State<MainLayout> {
               selectedIndex: _selectedIndex,
               onDestinationSelected: (index) {
                 setState(() {
-                  if(index==4){
-                    NavigationHelper.pushNewScreen(context, AppRoutes.accountdetails);
-                  }else{
+                  if (index == 4) {
+                    NavigationHelper.pushNewScreen(
+                        context, AppRoutes.accountdetails);
+                  } else {
                     _selectedIndex = index;
                   }
                 });
@@ -66,20 +67,26 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 40,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index ? AppColors.primaryColor : AppColors.gryColor,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : AppColors.gryColor,
                       ),
                       const SizedBox(height: 5),
                       if (_selectedIndex == index)
                         Text(
                           _getLabel(index),
-                          style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                     ],
                   ),
@@ -109,14 +116,18 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 70,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.grey,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : Colors.grey,
                       ),
                     ],
                   ),
