@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepositoryInterface/my_coupon_repository_interface.dart';
-import 'package:shella_design/features/my_coupon/domain/services/myCouponServiceInterface/my_coupon_service_interface.dart';
+import 'package:shella_design/features/my_coupon/domain/services/my_coupon_service_interface.dart';
 
 class MyCouponServices implements MyCouponServiceInterface{
 

@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
 import '../../../../../../../../common/util/app_styles.dart';
 import '../../../../../../../../common/widgets/texts/custom_text.dart';
 
@@ -24,7 +24,7 @@ class CategoryInfoWeb extends StatelessWidget {
           SizedBox(width: width(context, 0.1),child: Custom_Text(context, text: categoryName,style: isSelected==true?font11Green400W(context,size: 12):font11Black400W(context,size: 12),textAlign: TextAlign.end)),
           SizedBox(width: 10,),
           CircleAvatar(
-            backgroundImage: NetworkImage(categoryImg),
+            backgroundImage: CachedNetworkImageProvider(categoryImg),
           )
         ],
       ),

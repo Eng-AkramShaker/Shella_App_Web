@@ -32,7 +32,7 @@ import 'package:shella_design/features/kaidha_form/screen/aliashtirak_fi_qaydiha
 import 'package:shella_design/features/kaidha_form/screen/verify_source_of_income.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
-import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
+import 'package:shella_design/features/my_coupon/domain/services/my_coupon_services.dart';
 import 'package:shella_design/features/my_coupon/screens/my_coupon_screen.dart';
 import 'package:shella_design/features/notifications/notifications.dart';
 import 'package:shella_design/features/onboarding/screen/onboarding.dart';
@@ -62,8 +62,8 @@ import 'package:shella_design/features/return_and_earn/screens/return_and_earn_s
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
-import 'package:shella_design/features/search_filter/domain/services/searchService/search_service.dart';
-import 'package:shella_design/features/search_filter/domain/services/searchServiceInterface/search_service_interface.dart';
+import 'package:shella_design/features/search_filter/domain/services/search_service.dart';
+import 'package:shella_design/features/search_filter/domain/services/search_service_interface.dart';
 import 'package:shella_design/features/search_filter/screen/mobile/search_filter_mobile.dart';
 import 'package:shella_design/features/search_filter/screen/web/search_filter_web.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
