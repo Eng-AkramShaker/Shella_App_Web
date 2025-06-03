@@ -46,8 +46,7 @@ class LoyaltyService implements MyPointsServiceInterface{
   @override
   Future<TransactionModel?> getTransactions(String offset) async{
     try{
-      Response? response =
-          await myPointsRepositoryInterface.getTransactions(offset);
+      Response? response = await myPointsRepositoryInterface.getTransactions(offset);
       if (response!.statusCode == 200) {
         return TransactionModel.fromJson(json.decode(response.body));
       } else {
