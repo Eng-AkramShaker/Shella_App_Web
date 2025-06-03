@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/my_points/widgets/offers_gride.dart';
+import 'package:shella_design/common/helper/grid_view_fix_height.dart';
+import 'package:shella_design/features/my_points/widgets/mobile/offers_gride.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/lists.dart';
-
-import '../../../common/helper/grid_view_fix_height.dart';
-
-class OffersWidgets extends StatelessWidget {
-  const OffersWidgets({super.key});
+class OffersWidgetsMobile extends StatelessWidget {
+  const OffersWidgetsMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class OffersWidgets extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         itemCount: itemsOfOffers.length, // Total number of products
         itemBuilder: (context, index) {
-          return OffersGrid(
+          return OffersGridMobile(
             offer: itemsOfOffers[index],
           );
         },

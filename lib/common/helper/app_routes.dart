@@ -86,6 +86,9 @@ import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
+import '../../features/my_points/screens/my_points_transactions_screen.dart';
+import '../../features/my_points/screens/web/my_points_web_widget.dart';
 import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/search_filter/domain/services/searchService/search_service.dart';
 import '../../features/search_filter/screen/web/search_filter_web.dart';
@@ -176,6 +179,9 @@ class AppRoutes {
   static const String carsServicesPage = '/carsServicesPage';
   static const String technicalTracking = '/technicalTracking';
   static const String reviewOfAService = '/reviewOfAService';
+  static const String myPointsTransactionsScreen = '/myPointsTransactionsScreen';
+  static const String myPointsWeb = '/myPointsWeb';
+  static const String myPointsMobile = 'myPointsMobile';
 
   // Web =========================================================================================================
 
@@ -411,6 +417,8 @@ class AppRoutes {
           child: const ReviewOfAService(),
         ),
 
+    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false,),
+    myPointsMobile: (context) => MyPointsScreenMobile(),
     // Web =========================================================================================================
 
     loginPage: (context) => const LoginPage(),
@@ -421,6 +429,7 @@ class AppRoutes {
       create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..getAllCategories(),
       child: const SearchFilterWeb(),
     ),
+    myPointsWeb: (context) => MyPointsWebWidget(),
   };
 }
 

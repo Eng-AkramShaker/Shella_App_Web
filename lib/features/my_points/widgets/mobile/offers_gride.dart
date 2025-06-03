@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/my_points/widgets/gift_image_container.dart';
-import 'package:shella_design/features/my_points/widgets/offers.dart';
-import 'package:shella_design/features/my_points/widgets/show_my_points_dialog.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/features/my_points/widgets/mobile/gift_image_container_mobile.dart';
+import 'package:shella_design/features/my_points/widgets/mobile/offers_mobile.dart';
+import 'package:shella_design/features/my_points/widgets/mobile/show_my_points_dialog_mobile.dart';
 
 // ignore: must_be_immutable
-class OffersGrid extends StatelessWidget {
+class OffersGridMobile extends StatelessWidget {
   Offers offer;
-  OffersGrid({super.key, required this.offer});
+  OffersGridMobile({super.key, required this.offer});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class OffersGrid extends StatelessWidget {
       onTap: () {
         showDialog(
           context: context,
-          builder: (context) => ShowMyPointsDialog(
+          builder: (context) => ShowMyPointsDialogMobile(
             image: offer.image,
             title: offer.title,
             buttonText: 'استخدام مقابل 600 نقطة',
@@ -33,7 +33,7 @@ class OffersGrid extends StatelessWidget {
             onTap: () {
               showDialog(
                   context: context,
-                  builder: (context) => ShowMyPointsDialog(
+                  builder: (context) => ShowMyPointsDialogMobile(
                       image: 'assets/images/congrates.png',
                       title: 'اختيار ممتاز يا نور احمد',
                       subTitle: 'لقد حصلت على 15.00 ر.س خصم',
@@ -68,7 +68,7 @@ class OffersGrid extends StatelessWidget {
           ),
         );
       },
-      child: GiftImageContainer(offer: offer),
+      child: GiftImageContainerMobile(offer: offer),
     );
   }
 }

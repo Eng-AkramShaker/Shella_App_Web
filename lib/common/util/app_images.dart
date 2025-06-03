@@ -53,7 +53,8 @@ class AppImages {
   static const String market_31 = 'assets/images/31.png';
   static const String market_32 = 'assets/images/32.png';
   static const String logo_23 = 'assets/images/23.png';
-
+  static const String loyal = 'assets/images/loyal.png';
+  static const String noDataFound = 'assets/images/no_data_found.png';
   static const String icon_44 = 'assets/images/44.png';
 
   static const String empty = 'assets/images/empty.jpg';

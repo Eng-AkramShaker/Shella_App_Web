@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/my_points/widgets/offers.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/features/my_points/widgets/mobile/offers_mobile.dart';
 
-class GiftImageContainer extends StatelessWidget {
-  const GiftImageContainer({
+class GiftImageContainerMobile extends StatelessWidget {
+  const GiftImageContainerMobile({
     super.key,
     required this.offer,
   });

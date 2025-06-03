@@ -47,4 +47,14 @@ class Api_Constants {
 
   /// CART PRODUCTS
   static const String cartProducts = '/api/v1/customer/cart/list';
+
+  static const String pointsConversionUri = '/api/v1/customer/loyalty-point/point-transfer';
+
+  static const String customerInfoUri = '/api/v1/customer/info';
+
+  static const String pointsTransactionsUri = '/api/v1/customer/loyalty-point/transactions';
+
+  static const String couponListUri = '/api/v1/coupon/list';
+
+  static const String configUri = '/api/v1/config';
 }

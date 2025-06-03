@@ -1,7 +1,6 @@
 import 'package:shella_design/features/cart/widgets/cart_item.dart';
-import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
-import 'package:shella_design/features/my_points/widgets/offers.dart';
 import 'package:shella_design/common/util/app_images.dart';
+import '../../features/my_points/widgets/mobile/offers_mobile.dart';
 
 List<CartItem> items = [
   CartItem(name: 'شاي ليبتون', description: 'عرض 35 ظرف + 5 هدية', price: 10, quantity: 1, img: AppImages.item_25),

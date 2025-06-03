@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/common/widgets/texts/text_button.dart';
 
-import '../../../common/widgets/texts/custom_text.dart';
-import '../../../common/widgets/texts/text_button.dart';
-import '../../../common/util/app_colors.dart';
-import '../../../common/util/app_styles.dart';
-import 'offers_widgets.dart';
-
-class ShowMyPointsDialog extends StatelessWidget {
+class ShowMyPointsDialogMobile extends StatelessWidget {
   final bool discount;
   final String image;
   final String title;
@@ -16,7 +14,7 @@ class ShowMyPointsDialog extends StatelessWidget {
   final String buttonText;
   final VoidCallback onTap;
 
-  const ShowMyPointsDialog(
+  const ShowMyPointsDialogMobile(
       {super.key,
       required this.image,
       required this.title,
