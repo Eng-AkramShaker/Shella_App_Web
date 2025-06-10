@@ -66,4 +66,43 @@ class AuthRepo implements AuthRepositoryInterface {
   Future<http.Response?> registration(SignUpBodyModel signUpBody) async {
     return await apiClient.postData(Api_Constants.signup, signUpBody.toJson());
   }
+
+  @override
+  Future<http.Response?> forgetPassword(String? phone) async {
+    // String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
+    var data = {
+      "phone": phone,
+      // "cm_firebase_token": token!,
+    };
+    http.Response response =
+        await apiClient.postData(Api_Constants.forgetPasswordUri, data);
+    return response;
+  }
+
+  @override
+  Future<http.Response?> resetPassword(String? resetToken, String number,
+      String password, String confirmPassword) async {
+    var data = {
+      "_method": "put",
+      "reset_token": resetToken,
+      "phone": number,
+      "password": password,
+      "confirm_password": confirmPassword
+    };
+    http.Response response =
+        await apiClient.postData(Api_Constants.resetPasswordUri, data);
+    return response;
+  }
+
+  @override
+  Future<http.Response?> verifyPhone(String? phone, String? otp) async {
+    Map<String, dynamic> data = {
+      'phone': phone,
+      'otp': otp,
+    };
+    http.Response response =
+        await apiClient.postData(Api_Constants.verifyPhoneUri, data);
+
+    return response;
+  }
 }

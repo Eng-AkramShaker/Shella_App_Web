@@ -6,12 +6,14 @@ import 'package:shella_design/common/util/app_colors.dart';
 class CustomPhoneInput extends StatelessWidget {
   final TextEditingController controller;
   final Function(PhoneNumber) onChanged;
+  final String? Function(PhoneNumber?)? validator; // ← NEW (nullable)
   final String initialCountry;
 
   const CustomPhoneInput({
     super.key,
     required this.controller,
     required this.onChanged,
+    this.validator, // ← NEW
     this.initialCountry = 'SA',
   });
 
@@ -39,13 +41,14 @@ class CustomPhoneInput extends StatelessWidget {
           initialCountryCode: initialCountry,
           dropdownIcon: Icon(Icons.arrow_drop_down, color: Colors.green),
           onChanged: onChanged,
+          validator: validator, // ← NEW
         ),
         Positioned(
           right: 110,
           top: 8,
           child: Container(
-            width: 1.5, // عرض الخط
-            height: 40, // ارتفاع الخط
+            width: 1.5,
+            height: 40,
             color: AppColors.gryColor_3,
           ),
         ),

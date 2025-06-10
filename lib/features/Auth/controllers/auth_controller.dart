@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import '../domain/models/signup_body_model.dart';
 import '../domain/services/auth_service_interface.dart';
 
 enum AuthState { initial, loading, success, error }
-
 
 class AuthController extends ChangeNotifier {
   final AuthServiceInterface authServiceInterface;
@@ -24,13 +22,23 @@ class AuthController extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  Future<ResponseModel> login({required String emailOrPhone, required String password, required String loginType, required String fieldType, bool alreadyInApp = false}) async {
+  Future<ResponseModel> login(
+      {required String emailOrPhone,
+      required String password,
+      required String loginType,
+      required String fieldType,
+      bool alreadyInApp = false}) async {
     ResponseModel? responseModel;
     _state = AuthState.loading;
     notifyListeners();
 
     try {
-      responseModel = await authServiceInterface.login(emailOrPhone: emailOrPhone, password: password, loginType: loginType, fieldType: fieldType, alreadyInApp: alreadyInApp);
+      responseModel = await authServiceInterface.login(
+          emailOrPhone: emailOrPhone,
+          password: password,
+          loginType: loginType,
+          fieldType: fieldType,
+          alreadyInApp: alreadyInApp);
       _state = AuthState.success;
       notifyListeners();
     } catch (e) {
@@ -50,33 +58,65 @@ class AuthController extends ChangeNotifier {
       responseModel = await authServiceInterface.registration(signUpBody);
       _state = AuthState.success;
       notifyListeners();
-    }catch(error){
+    } catch (error) {
       responseModel = ResponseModel(false, 'error');
       log(error.toString());
     }
     return responseModel;
   }
 
+  AuthState _verificationstate = AuthState.initial;
+  AuthState get verificationstate => _verificationstate;
 
-  // SignupState _signupState = SignupState.initial;
-  // SignupState get signupState => _signupState;
-  //
-  // Future<ResponseModel> registration(SignUpBodyModel signUpBody) async {
-  //   ResponseModel? responseModel;
-  //   _signupState = SignupState.loading;
-  //   notifyListeners();
-  //
-  //   try {
-  //     responseModel = await authService.registrationExecute(signUpBody);
-  //     _signupState = SignupState.success;
-  //     notifyListeners();
-  //   }catch (error){
-  //     _errorMessage = error.toString();
-  //     _signupState = SignupState.error;
-  //     notifyListeners();
-  //   }
-  //   return responseModel??ResponseModel(false, 'error null');
-  // }
+  String _verificationCode = '';
+  String get verificationCode => _verificationCode;
+
+  void updateVerificationCode(String query, {bool canUpdate = true}) {
+    _verificationCode = query;
+    if (canUpdate) {
+      notifyListeners();
+    }
+  }
+
+  Future<ResponseModel> forgetPassword(String? phone) async {
+    _verificationstate = AuthState.loading;
+    notifyListeners();
+    ResponseModel responseModel =
+        await authServiceInterface.forgetPassword(phone);
+    _verificationstate = AuthState.success;
+    notifyListeners();
+    return responseModel;
+  }
+
+  Future<ResponseModel> resetPassword(String? resetToken, String number,
+      String password, String confirmPassword) async {
+    _verificationstate = AuthState.loading;
+    notifyListeners();
+    ResponseModel responseModel = await authServiceInterface.resetPassword(
+        resetToken, number, password, confirmPassword);
+    _verificationstate = AuthState.success;
+    notifyListeners();
+    return responseModel;
+  }
+
+  Future<ResponseModel> verifyPhone(String phone, String otp) async {
+    _verificationstate = AuthState.loading;
+    notifyListeners();
+
+    debugPrint("\x1B[32m  /$otp   $phone  \x1B[0m");
+
+    ResponseModel? responseModel =
+        await authServiceInterface.verifyPhone(phone, otp);
+    // if (responseModel.isSuccess &&
+    //     responseModel.authResponseModel != null &&
+    //     responseModel.authResponseModel!.isExistUser == null &&
+    //     responseModel.authResponseModel!.isPersonalInfo!) {
+    //   await Get.find<ProfileController>().getUserInfo();
+    // }
+    _verificationstate = AuthState.success;
+    notifyListeners();
+    return responseModel;
+  }
 
   void resetState() {
     _state = AuthState.initial;
