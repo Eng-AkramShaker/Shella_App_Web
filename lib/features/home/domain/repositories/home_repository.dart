@@ -13,8 +13,16 @@ class HomeRepository extends HomeRepositoryInterface {
   ///-------------------------------------<<<---GET HOME CATEGORIES--->>>-------------------------------------
   @override
   Future<Response?> getHomeCategories() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getHomeCategories);
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.homeCategories);
     customPrint('Get Home Categories Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
+  ///-------------------------------------<<<---GET HOME BANNERS--->>>-------------------------------------
+  @override
+  Future<Response?> getHomeBanners() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.homeBanners);
+    customPrint('Get Home Banners Response :: ${jsonDecode(response!.body)}');
     return response;
   }
 

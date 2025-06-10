@@ -45,6 +45,9 @@ class Api_Constants {
   /// GET ALL CATEGORIES
   static const String getAllCategories = '/api/v1/categories';
 
-  /// GET HOME CATEGORIES
-  static const String getHomeCategories = '/api/v1/module';
+  /// HOME CATEGORIES
+  static const String homeCategories = '/api/v1/module';
+
+  /// HOME BANNERS
+  static const String homeBanners = '/api/v1/banners';
 }

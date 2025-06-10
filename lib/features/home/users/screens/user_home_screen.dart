@@ -11,6 +11,7 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import '../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
 import '../../widgets/mobile/home/builds/build_banner.dart';
+import '../../widgets/mobile/home/builds/build_banners_loading.dart';
 import '../../widgets/mobile/home/builds/build_category_list_view.dart';
 import '../../widgets/mobile/home/builds/build_category_loading.dart';
 import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
@@ -25,9 +26,13 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+
+  var pageController = PageController();
+
   @override
   void initState() {
     HomeController.get(context,listen: false).getHomeCategories();
+    HomeController.get(context,listen: false).getHomeBanners();
     super.initState();
   }
 
@@ -79,7 +84,9 @@ class _Home_ScreenState extends State<Home_Screen> {
               BuildCategoryLoading():
               BuildCategoryListView(),
               SizedBox(height: 22.h),
-              buildBanner(context),
+              HomeController.get(context).state==HomeState.loading||HomeController.get(context).homeBannersModel==null?
+              BuildBannersLoading():
+              buildBanner(context,controller: pageController),
               SizedBox(height: 16.h),
               buildSectionTitle_2("اشهر المطاعم", context),
               SizedBox(height: 16.h),
