@@ -13,7 +13,7 @@ class HomeRepository extends HomeRepositoryInterface {
   ///-------------------------------------<<<---GET HOME CATEGORIES--->>>-------------------------------------
   @override
   Future<Response?> getHomeCategories() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.homeCategories);
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>(),zoneId: false).getData(Api_Constants.homeCategories);
     customPrint('Get Home Categories Response :: ${jsonDecode(response!.body)}');
     return response;
   }

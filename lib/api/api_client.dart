@@ -17,8 +17,9 @@ class ApiClient with ChangeNotifier {
   final String appBaseUrl;
   late Map<String, String> _headers;
   String? token;
+  final bool? zoneId;
 
-  ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
+  ApiClient({required this.appBaseUrl, required this.sharedPreferences,this.zoneId}) {
     updateHeaders();
   }
 
@@ -29,6 +30,7 @@ class ApiClient with ChangeNotifier {
       "Accept": "application/json",
       'Content-Type': 'application/json',
       'Authorization': token != null ? 'Bearer $token' : '',
+      if(zoneId!=false)
       'zoneId': '[2,4,3,5]',
       'moduleId': '3',
       'longitude': '46.701550834948726',
