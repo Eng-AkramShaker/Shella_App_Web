@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/home/home/widgets/restaurant_Item.dart';
+import 'package:shella_design/features/home/widgets/mobile/home/restaurant_Item.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
 

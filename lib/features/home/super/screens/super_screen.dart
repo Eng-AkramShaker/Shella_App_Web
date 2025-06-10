@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
-import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import '../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
+import '../../widgets/mobile/home/builds/build_banner.dart';
+import '../../widgets/mobile/home/builds/build_category_list_view.dart';
+import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
+import '../../widgets/mobile/home/builds/build_section_title_two.dart';
 
 class SuperScreen extends StatefulWidget {
   const SuperScreen({super.key});

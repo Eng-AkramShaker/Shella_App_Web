@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import '../../../../common/widgets/images/custom_Images.dart';
@@ -12,15 +13,14 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // height: 130,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          custom_Images_asset(image: image, h: h ?? 100, w: w ?? 100),
-          Custom_Text(context, text: label, style: font11Grey400W(context)),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ClipRRect(borderRadius: BorderRadius.circular(10),child: Image.network(image,height: height(context, 0.08),fit: BoxFit.fill,errorBuilder: (context, error, stackTrace) => SizedBox(),)),
+        SizedBox(height: 5),
+        // custom_Images_asset(image: image, h: h ?? 100, w: w ?? 100),
+        Custom_Text(context, text: label, style: font11Grey400W(context)),
+      ],
     );
   }
 }

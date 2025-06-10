@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
+import 'package:shella_design/features/home/domain/repositories/home_repository.dart';
+import 'package:shella_design/features/home/domain/services/home_service.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
 import 'package:shella_design/features/my_coupon/domain/services/my_coupon_services.dart';
@@ -24,7 +26,7 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => AuthController()),
 
-  ChangeNotifierProvider(create: (_) => HomeController()),
+  ChangeNotifierProvider(create: (_) => HomeController(HomeService(HomeRepository()))),
   ChangeNotifierProvider(create: (_) => KaidhaFormController()),
   ChangeNotifierProvider(create: (_) => ServeMeController()),
 

@@ -6,16 +6,16 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
-import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
-import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_section_title_2.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
+import '../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
+import '../../widgets/mobile/home/builds/build_banner.dart';
+import '../../widgets/mobile/home/builds/build_category_list_view.dart';
+import '../../widgets/mobile/home/builds/build_category_loading.dart';
+import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
+import '../../widgets/mobile/home/builds/build_section_title_2.dart';
+import '../../widgets/mobile/home/builds/build_section_title_two.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -27,10 +27,8 @@ class Home_Screen extends StatefulWidget {
 class _Home_ScreenState extends State<Home_Screen> {
   @override
   void initState() {
+    HomeController.get(context,listen: false).getHomeCategories();
     super.initState();
-
-    final homeController = Provider.of<HomeController>(context, listen: false);
-    print("HomeController is ready: $homeController");
   }
 
   @override
@@ -60,23 +58,25 @@ class _Home_ScreenState extends State<Home_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Consumer<SplashController>(builder: (context, controller, _) {
-                return Card(
-                  color: Colors.red,
-                  child: ElevatedButton(
-                    child: const Text('data'),
-                    onPressed: () async {
-                      //
-
-                      await controller.getConfigData(context);
-                    },
-                  ),
-                );
-              }),
-
+              // Consumer<SplashController>(builder: (context, controller, _) {
+              //   return Card(
+              //     color: Colors.red,
+              //     child: ElevatedButton(
+              //       child: const Text('data'),
+              //       onPressed: () async {
+              //         //
               //
+              //         await controller.getConfigData(context);
+              //       },
+              //     ),
+              //   );
+              // }),
+              //
+              // //
               buildSectionTitle_One(context, title: "الاقسام", lapel: 'عرض الكل', underline: false),
               SizedBox(height: 16.h),
+              HomeController.get(context).state==HomeState.loading||HomeController.get(context).homeCategoriesModel==null?
+              BuildCategoryLoading():
               BuildCategoryListView(),
               SizedBox(height: 22.h),
               buildBanner(context),

@@ -1,3 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
+import 'package:shella_design/features/home/domain/services/home_service_interface.dart';
+import '../domain/models/home_categories_model.dart';
 
-class HomeController with ChangeNotifier {}
+enum HomeState {initial,loading,success,error}
+
+class HomeController with ChangeNotifier {
+
+  final HomeServiceInterface homeServiceInterface;
+  HomeController(this.homeServiceInterface);
+
+  static HomeController get(context, {listen=true}) => Provider.of<HomeController>(context,listen: listen);
+
+  /// GET STATE
+  HomeState _state = HomeState.initial;
+  HomeState get state => _state;
+
+  ///-------------------------------------<<<---APIs--->>>-------------------------------------
+
+  /// GET HOME CATEGORIES
+  List<HomeCategoriesModel>? homeCategoriesModel;
+  getHomeCategories() async {
+    try{
+      _state = HomeState.loading;
+      homeCategoriesModel=null;
+      notifyListeners();
+      homeCategoriesModel = await homeServiceInterface.getHomeCategories();
+      _state = HomeState.success;
+      notifyListeners();
+    }catch(e){
+      _state = HomeState.error;
+      notifyListeners();
+    }
+  }
+
+}
