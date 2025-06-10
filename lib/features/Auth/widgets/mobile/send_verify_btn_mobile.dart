@@ -33,7 +33,7 @@ class SendVerificationCodeButton extends StatelessWidget {
               ),
               onPressed: authController.verificationstate == AuthState.loading
                   ? null
-                  : () => _onPressedForgetPass(authController, context, code),
+                  : () => _onPressedsendcode(authController, context, code),
               child: authController.verificationstate == AuthState.loading
                   ? SizedBox(
                       width: 24.w,
@@ -52,18 +52,8 @@ class SendVerificationCodeButton extends StatelessWidget {
         ));
   }
 
-  void _onPressedForgetPass(AuthController authController, BuildContext context,
+  void _onPressedsendcode(AuthController authController, BuildContext context,
       TextEditingController code) async {
-    // String email = '';
-
-    // if (countryCode == '+966' && number.startsWith('0')) {
-    //   number = number.substring(1);
-    // }
-
-    // String numberWithCountryCode = countryCode + number;
-    // debugPrint(
-    //     "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
-
     if (code.text.isEmpty) {
       showCustomSnackBar('please enter the otp code ', context);
       return;
