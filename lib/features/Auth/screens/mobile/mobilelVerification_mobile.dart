@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/custom_pin_code_txt_field_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/resend_code_row_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/send_verify_btn_mobile.dart';
@@ -19,13 +21,15 @@ class _MobilelVerificationState extends State<MobilelVerification> {
     TextEditingController code = TextEditingController();
     Size size = MediaQuery.of(context).size;
 
-    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60 * 9; // 9 minutes
+    int endTime =
+        DateTime.now().millisecondsSinceEpoch + 1000 * 60 * 9; // 9 minutes
     void onEnd() {
       // ignore: avoid_print
       print("Countdown Finished!");
     }
 
-    CountdownTimerController controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
+    CountdownTimerController controller =
+        CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     return Scaffold(
       appBar: AppBar(
@@ -56,9 +60,13 @@ class _MobilelVerificationState extends State<MobilelVerification> {
                   width: size.width,
                   height: 10,
                 ),
-                Text(
-                  'تم ارسال رمز التحقق الى الرقم الخاص بك 96632221155+',
-                  style: font14Black400W(context),
+                Consumer<AuthController>(
+                  builder: (context, authController, _) {
+                    return Text(
+                      'تم ارسال رمز التحقق الى الرقم الخاص بك  ${authController.phone}',
+                      style: font14Black400W(context),
+                    );
+                  },
                 ),
               ],
             ),

@@ -21,6 +21,8 @@ class AuthController extends ChangeNotifier {
 
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
+  String? _phone;
+  String? get phone => _phone;
 
   Future<ResponseModel> login(
       {required String emailOrPhone,
@@ -80,6 +82,7 @@ class AuthController extends ChangeNotifier {
 
   Future<ResponseModel> forgetPassword(String? phone) async {
     _verificationstate = AuthState.loading;
+    _phone = phone;
     notifyListeners();
     ResponseModel responseModel =
         await authServiceInterface.forgetPassword(phone);
