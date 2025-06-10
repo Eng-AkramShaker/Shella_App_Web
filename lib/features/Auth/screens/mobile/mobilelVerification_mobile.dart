@@ -89,7 +89,9 @@ class _MobilelVerificationState extends State<MobilelVerification> {
             SizedBox(
               height: size.height / 20,
             ),
-            SendVerificationCodeButton(),
+            SendVerificationCodeButton(
+              code: code,
+            ),
           ],
         ),
       ),
