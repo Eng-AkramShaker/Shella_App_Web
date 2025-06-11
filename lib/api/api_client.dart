@@ -19,31 +19,51 @@ class ApiClient with ChangeNotifier {
   }
 
  void updateHeaders() {
-  token = sharedPreferences.getString(SharedPrefKeys.userToken); // ✅ بدون String? جديد
+  token = sharedPreferences.getString(SharedPrefKeys.userToken);
   debugPrint('🟠 التوكن من SharedPreferences: $token');
   _headers = {
     'Content-Type': 'application/json',
-    'Authorization': token != null ? 'Bearer $token' : '',
+    'Authorization': token != null && token!.isNotEmpty ? 'Bearer $token' : '',
     'Accept': 'application/json',
     'Accept-Language': 'ar',
+    // Make sure these are ALWAYS present in the _headers if required by API for authentication
+    'zoneId': '[2,4,3,5]', // Ensure these match Postman exactly
+    'moduleId': '3',     // Ensure these match Postman exactly
+    'X-localization': 'ar', // Ensure this matches Postman exactly
   };
-  debugPrint('🔄 تم تحديث الـ headers');
+  debugPrint('🔄 تم تحديث الـ headers: $_headers');
   notifyListeners();
 }
 
- Future<Response> getData(String uri) async {
+  // >>>>>> عدّل السطر ده <<<<<<
+  Future<http.Response> getData(String uri, {Map<String, String>? headers}) async { // أضف named parameter 'headers'
     try {
-      debugPrint('🔵 [API] جلب بيانات من: $uri');
+      Uri fullUri = Uri.parse('$uri');
+
+      // دمج الـ headers الداخلية مع أي headers إضافية تم تمريرها
+      final Map<String, String> requestHeaders = Map.from(_headers); // ابدأ بالـ headers الأساسية
+      if (headers != null) {
+        requestHeaders.addAll(headers); // أضف أو استبدل بالـ headers اللي جاية كـ parameter
+      }
+
+      debugPrint('🔵 [API] جلب بيانات من: ${fullUri.toString()}');
+      debugPrint('🔵 [API] Headers المرسلة: $requestHeaders');
+      debugPrint('📡 Sending GET request to: $fullUri');
+debugPrint('📦 Headers: $requestHeaders');
+debugPrint('🕒 Waiting for response...'); // اطبع الـ headers النهائية اللي هتتبعت
+
       final response = await http.get(
-        Uri.parse(uri), // تأكد من استخدام Uri.parse
-        headers: _headers,
-      );
+        fullUri,
+        headers: requestHeaders, // استخدم الـ headers المدمجة
+      ).timeout(Duration(seconds: 10));
       return response;
     } catch (e) {
       debugPrint('🔴 [API Error] ${e.toString()}');
       throw Exception('فشل الاتصال بالخادم: ${e.toString()}');
     }
   }
+
+
 
   Future<http.Response?> postData(String uri, dynamic body) async {
     try {

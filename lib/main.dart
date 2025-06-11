@@ -3,23 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shella_design/api/api_client.dart';
-import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
-import 'package:shella_design/features/cart/controllers/cart_controller.dart';
-import 'package:shella_design/features/cart/domain/repositories/cart_repository.dart';
-import 'package:shella_design/features/cart/domain/services/cart_service.dart';
 import 'common/util/sharedPre_constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   await checkIfLoggedInUser();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  const String baseUrl = "https://shalalfood.net"; 
+
   runApp(
     MultiProvider(
-       providers: getAppProviders(),
+       providers: getAppProviders(
+         appBaseUrl: baseUrl,
+         sharedPreferences: sharedPreferences,
+       ),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -52,10 +53,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
   //   599966674
   //   Na25526aa
