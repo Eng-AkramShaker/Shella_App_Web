@@ -7,6 +7,9 @@ import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
+
+
 
 class ApiClient with ChangeNotifier {
   final SharedPreferences sharedPreferences;
@@ -26,16 +29,18 @@ class ApiClient with ChangeNotifier {
     'Authorization': token != null && token!.isNotEmpty ? 'Bearer $token' : '',
     'Accept': 'application/json',
     'Accept-Language': 'ar',
+
     // Make sure these are ALWAYS present in the _headers if required by API for authentication
     'zoneId': '[2,4,3,5]', // Ensure these match Postman exactly
     'moduleId': '3',     // Ensure these match Postman exactly
     'X-localization': 'ar', // Ensure this matches Postman exactly
+
   };
   debugPrint('🔄 تم تحديث الـ headers: $_headers');
   notifyListeners();
 }
 
-  // >>>>>> عدّل السطر ده <<<<<<
+
   Future<http.Response> getData(String uri, {Map<String, String>? headers}) async { // أضف named parameter 'headers'
     try {
       Uri fullUri = Uri.parse('$uri');

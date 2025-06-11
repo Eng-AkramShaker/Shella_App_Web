@@ -38,7 +38,7 @@ class DiscountScreen extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 16.w,
               mainAxisSpacing: 16.h,
-              childAspectRatio: 0.6, // تعديل النسبة لتحسين الشكل
+              childAspectRatio: 0.5, // تعديل النسبة لتحسين الشكل
             ),
             itemCount: controller.products.length,
             itemBuilder: (context, index) {

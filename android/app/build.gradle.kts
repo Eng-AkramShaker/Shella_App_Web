@@ -10,7 +10,7 @@ val flutterVersionName: String by project
 android {
     namespace = "com.example.shella_design"
     compileSdk = 35
-    ndkVersion = "27.0.12077973"
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

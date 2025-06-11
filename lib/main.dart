@@ -7,7 +7,9 @@ import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
 import 'common/util/sharedPre_constants.dart';
-
+import 'package:shella_design/features/cart/controllers/cart_controller.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();

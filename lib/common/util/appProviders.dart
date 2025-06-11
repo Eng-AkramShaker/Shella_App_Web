@@ -5,8 +5,9 @@ import 'package:provider/single_child_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
-import 'package:shella_design/features/discount/domain/repositories/discount_repository.dart';
-import 'package:shella_design/features/discount/domain/services/discount_service.dart';
+import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
+import 'package:shella_design/features/discount/domain/repositories/discountRepositoryInterface/discount_repository_interface.dart';
+import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
@@ -31,12 +32,11 @@ List<SingleChildWidget> getAppProviders({ required String appBaseUrl,
   return [
     ChangeNotifierProvider(create: (_) => SplashController()),
 
+
     ChangeNotifierProvider(create: (_) => HomeController()),
-    ChangeNotifierProvider(
-      create: (_) =>
-          DiscountController(repository: DiscountRepository(DiscountService())),
-    ),
+    ChangeNotifierProvider(create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository())),),
    //Provider<ApiClient>(create: (_) => ApiClient()),
+
 
   
     ChangeNotifierProvider<ApiClient>(
