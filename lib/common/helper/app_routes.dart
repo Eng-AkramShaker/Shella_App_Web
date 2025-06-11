@@ -179,7 +179,8 @@ class AppRoutes {
   static const String carsServicesPage = '/carsServicesPage';
   static const String technicalTracking = '/technicalTracking';
   static const String reviewOfAService = '/reviewOfAService';
-  static const String myPointsTransactionsScreen = '/myPointsTransactionsScreen';
+  static const String myPointsTransactionsScreen =
+      '/myPointsTransactionsScreen';
   static const String myPointsWeb = '/myPointsWeb';
   static const String myPointsMobile = 'myPointsMobile';
 
@@ -226,44 +227,13 @@ class AppRoutes {
         create: (_) => ScheduleController(),
         child: const ScheduleOrderBottomSheet()),
     // Auth
-    Login_Mobile: (context) => Provider<AuthRepositoryInterface>(
-          create: (context) => AuthRepo(
-              apiClient: ApiClient(
-                  appBaseUrl: Api_Constants.appBaseUrl,
-                  sharedPreferences: sp<SharedPreferences>()),
-              sharedPreferences: sp<SharedPreferences>()),
-          child: Provider<AuthService>(
-            create: (context) => AuthService(
-                authRepositoryInterface:
-                    context.read<AuthRepositoryInterface>()),
-            child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(
-                    authServiceInterface: context.read<AuthService>()),
-                child: const Login_mobile()),
-          ),
-        ),
+    Login_Mobile: (context) => const Login_mobile(),
 
-    signup: (context) => Provider<AuthRepositoryInterface>(
-          create: (context) => AuthRepo(
-            apiClient: ApiClient(
-              appBaseUrl: Api_Constants.appBaseUrl,
-              sharedPreferences: sp<SharedPreferences>(),
-            ),
-            sharedPreferences: sp<SharedPreferences>(),
-          ),
-          child: Provider<AuthService>(
-            create: (context) => AuthService(
-                authRepositoryInterface:
-                    context.read<AuthRepositoryInterface>()),
-            child: ChangeNotifierProvider<AuthController>(
-                create: (context) => AuthController(
-                    authServiceInterface: context.read<AuthService>()),
-                child: const Signup()),
-          ),
-        ),
-        //Discount
-        discountScreen: (context) => const DiscountScreen(),
-        //discountScreen: (context) => const DiscountScreen(),
+    signup: (context) => const Signup(),
+
+    //Discount
+    discountScreen: (context) => const DiscountScreen(),
+    //discountScreen: (context) => const DiscountScreen(),
 //         discountScreen: (context) => ChangeNotifierProvider.value(
 //   value: context.read<DiscountController>(), // جاي من MultiProvider
 //   child: const DiscountScreen(),
@@ -291,9 +261,10 @@ class AppRoutes {
 
     // Cart
     cartScreen: (context) => ChangeNotifierProvider(
-      create: (context) => CartController(cartService: CartService(cartRepository: CartRepository())),
-      child: const Cart_Screen(),
-    ),
+          create: (context) => CartController(
+              cartService: CartService(cartRepository: CartRepository())),
+          child: const Cart_Screen(),
+        ),
     cartDetails: (context) => const CartDetailsScreen(),
 
     // Orders
@@ -320,13 +291,16 @@ class AppRoutes {
     // Other Features
     statisticsScreen: (context) => const StatisticsScreen(),
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
-   // discountScreen: (context) => const DiscountScreen(),
+    // discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
     myCouponScreen: (context) => ChangeNotifierProvider(
-      create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))..getMyCoupon(),
-      child: const MyCouponScreen(),
-    ),
+          create: (_) => MyCouponController(
+              myCouponServiceInterface: MyCouponServices(
+                  myCouponRepositoryInterface: MyCouponRepository()))
+            ..getMyCoupon(),
+          child: const MyCouponScreen(),
+        ),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverOne: (context) => const JoinAsDriverOne(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
@@ -341,12 +315,18 @@ class AppRoutes {
     // Notifications & Search
     notifications: (context) => const Notifications(),
     AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..mostSearched()..getAddress()..cartProducts()..getAllCategories(),
-      child: const SearchFilter(),
-    ),
+          create: (_) => SearchFilterController(
+              searchServiceInterface:
+                  SearchService(searchRepositoryInterface: SearchRepository()))
+            ..mostSearched()
+            ..getAddress()
+            ..cartProducts()
+            ..getAllCategories(),
+          child: const SearchFilter(),
+        ),
 
     //prifile Details
-    profileInfo: (context) => const ProfileInfo (),
+    profileInfo: (context) => const ProfileInfo(),
     addressDetails: (context) => MultiProvider(
           providers: [
             Provider<ProfileRepository>(
@@ -359,7 +339,8 @@ class AppRoutes {
             ),
             ChangeNotifierProvider<ProfileController>(
               create: (context) => ProfileController(
-                profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository()),
+                profileDetailsService: ProfileDetailsService(
+                    profileRepository: ProfileRepository()),
               ),
             ),
           ],
@@ -377,7 +358,8 @@ class AppRoutes {
             ),
             ChangeNotifierProvider<ProfileController>(
               create: (context) => ProfileController(
-                profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository()),
+                profileDetailsService: ProfileDetailsService(
+                    profileRepository: ProfileRepository()),
               ),
             ),
           ],
@@ -417,7 +399,9 @@ class AppRoutes {
           child: const ReviewOfAService(),
         ),
 
-    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false,),
+    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(
+          fromNotification: false,
+        ),
     myPointsMobile: (context) => MyPointsScreenMobile(),
     // Web =========================================================================================================
 
@@ -426,9 +410,12 @@ class AppRoutes {
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
     searchFilterWeb: (context) => ChangeNotifierProvider(
-      create: (_) => SearchFilterController(searchServiceInterface: SearchService(searchRepositoryInterface: SearchRepository()))..getAllCategories(),
-      child: const SearchFilterWeb(),
-    ),
+          create: (_) => SearchFilterController(
+              searchServiceInterface:
+                  SearchService(searchRepositoryInterface: SearchRepository()))
+            ..getAllCategories(),
+          child: const SearchFilterWeb(),
+        ),
     myPointsWeb: (context) => MyPointsWebWidget(),
   };
 }

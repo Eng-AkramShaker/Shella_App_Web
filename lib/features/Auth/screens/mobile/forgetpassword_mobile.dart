@@ -23,6 +23,7 @@ class Forgetpassword extends StatefulWidget {
 class _ForgetpasswordState extends State<Forgetpassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late TextEditingController phone;
+  String countrycode = '';
 
   @override
   void initState() {
@@ -36,26 +37,27 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     super.dispose();
   }
 
-  void _onPressedForgetPass(
-      AuthController authController, BuildContext context) async {
+  void _onPressedForgetPass(String countryCode, AuthController authController,
+      BuildContext context) async {
     if (!_formKey.currentState!.validate()) return;
 
     String number = phone.text.trim();
     // String email = '';
 
-    // if (countryCode == '+966' && number.startsWith('0')) {
-    //   number = number.substring(1);
-    // }
+    if (countryCode == '+966' && number.startsWith('0')) {
+      number = number.substring(1);
+    }
 
-    // String numberWithCountryCode = countryCode + number;
-    // debugPrint(
-    //     "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
+    String numberWithCountryCode = countryCode + number;
+    debugPrint(
+        "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
 
     if (number.isEmpty) {
       showCustomSnackBar('Invalid phone number', context);
       return;
     }
-    authController.forgetPassword(number).then(
+    authController.setphone = numberWithCountryCode;
+    authController.forgetPassword(numberWithCountryCode).then(
       (value) {
         if (value.isSuccess) {
           pushNewScreen(context, AppRoutes.mobilelVerification);
@@ -94,7 +96,9 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                 SizedBox(height: size.height / 30),
                 CustomPhoneInput(
                   controller: phone,
-                  onChanged: (phoneNumber) {},
+                  onChanged: (phoneNumber) {
+                    countrycode = phoneNumber.countryCode;
+                  },
                   validator: (value) =>
                       ValidateCheck.validateEmptyText(value.toString(), null),
                 ),
@@ -109,10 +113,11 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                       ),
-                      onPressed: authController.verificationstate ==
-                              AuthState.loading
-                          ? null
-                          : () => _onPressedForgetPass(authController, context),
+                      onPressed:
+                          authController.verificationstate == AuthState.loading
+                              ? null
+                              : () => _onPressedForgetPass(
+                                  countrycode, authController, context),
                       child:
                           authController.verificationstate == AuthState.loading
                               ? SizedBox(

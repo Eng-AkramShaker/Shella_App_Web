@@ -120,9 +120,11 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
       showCustomSnackBar('please enter the password right  ', context);
       return;
     }
+    // print(authController.user!.token ?? '');
+    print(authController.phone!);
     authController
-        .resetPassword(authController.user!.token, authController.phone!,
-            password.text.trim(), passwordComfirm.text.trim())
+        .resetPassword('', authController.phone!, password.text.trim(),
+            passwordComfirm.text.trim())
         .then(
       (value) {
         if (value.isSuccess) {

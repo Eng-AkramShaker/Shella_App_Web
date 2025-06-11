@@ -23,6 +23,9 @@ class AuthController extends ChangeNotifier {
   String? get errorMessage => _errorMessage;
   String? _phone;
   String? get phone => _phone;
+  set setphone(String? value) {
+    _phone = value;
+  }
 
   Future<ResponseModel> login(
       {required String emailOrPhone,
@@ -41,6 +44,13 @@ class AuthController extends ChangeNotifier {
           loginType: loginType,
           fieldType: fieldType,
           alreadyInApp: alreadyInApp);
+      if (responseModel.isSuccess && responseModel.authResponseModel != null) {
+        _user = User(
+          token: responseModel.authResponseModel!.token ?? '',
+          isPhoneVerified:
+              responseModel.authResponseModel!.isPhoneVerified ?? false,
+        );
+      }
       _state = AuthState.success;
       notifyListeners();
     } catch (e) {
@@ -83,11 +93,19 @@ class AuthController extends ChangeNotifier {
   Future<ResponseModel> forgetPassword(String? phone) async {
     _verificationstate = AuthState.loading;
     _phone = phone;
+    ResponseModel? responseModel;
     notifyListeners();
-    ResponseModel responseModel =
-        await authServiceInterface.forgetPassword(phone);
-    _verificationstate = AuthState.success;
-    notifyListeners();
+    try {
+      responseModel = await authServiceInterface.forgetPassword(phone);
+      _verificationstate = AuthState.success;
+      notifyListeners();
+    } catch (error) {
+      responseModel = ResponseModel(false, 'error');
+      _verificationstate = AuthState.error;
+      notifyListeners();
+      log(error.toString());
+    }
+
     return responseModel;
   }
 
@@ -95,29 +113,39 @@ class AuthController extends ChangeNotifier {
       String password, String confirmPassword) async {
     _verificationstate = AuthState.loading;
     notifyListeners();
-    ResponseModel responseModel = await authServiceInterface.resetPassword(
-        resetToken, number, password, confirmPassword);
-    _verificationstate = AuthState.success;
-    notifyListeners();
+    ResponseModel? responseModel;
+
+    try {
+      responseModel = await authServiceInterface.resetPassword(
+          resetToken, number, password, confirmPassword);
+      _verificationstate = AuthState.success;
+      notifyListeners();
+    } catch (error) {
+      responseModel = ResponseModel(false, 'error');
+      _verificationstate = AuthState.error;
+      notifyListeners();
+      log(error.toString());
+    }
+
     return responseModel;
   }
 
   Future<ResponseModel> verifyPhone(String phone, String otp) async {
     _verificationstate = AuthState.loading;
     notifyListeners();
-
+    ResponseModel? responseModel;
     debugPrint("\x1B[32m  /$otp   $phone  \x1B[0m");
+    try {
+      responseModel = await authServiceInterface.verifyPhone(phone, otp);
+      _verificationstate = AuthState.success;
+      notifyListeners();
+    } catch (error) {
+      responseModel = ResponseModel(false, 'error');
+      _verificationstate = AuthState.error;
+      notifyListeners();
+      log(error.toString());
+    }
 
-    ResponseModel? responseModel =
-        await authServiceInterface.verifyPhone(phone, otp);
-    // if (responseModel.isSuccess &&
-    //     responseModel.authResponseModel != null &&
-    //     responseModel.authResponseModel!.isExistUser == null &&
-    //     responseModel.authResponseModel!.isPersonalInfo!) {
-    //   await Get.find<ProfileController>().getUserInfo();
-    // }
-    _verificationstate = AuthState.success;
-    notifyListeners();
     return responseModel;
   }
 

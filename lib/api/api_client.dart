@@ -119,7 +119,10 @@ class ApiClient extends GetxService {
       if (kDebugMode) {
         print('⏱️ زمن الاستجابة:  (${stopwatch.elapsed.inSeconds} ثانية)');
       }
-
+      if (kDebugMode) {
+        var reponsemap = jsonDecode(response.body);
+        print("====> API response body: $reponsemap");
+      }
       return handleResponse(response, uri, handleError);
     } catch (e) {
       if (kDebugMode) {
@@ -136,12 +139,16 @@ class ApiClient extends GetxService {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri ');
-        // print('====> API Body: $body');
+        print('====> API Body: $body');
       }
       http.Response response = await http
           .post(Uri.parse(appBaseUrl + uri),
               body: jsonEncode(body), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeout ?? timeoutInSeconds));
+      if (kDebugMode) {
+        var reponsemap = jsonDecode(response.body);
+        print("====> API response body: $reponsemap");
+      }
       return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
@@ -231,10 +238,10 @@ class ApiClient extends GetxService {
 
     try {
       final body = jsonDecode(response.body);
-      if(response.statusCode==401){
+      if (response.statusCode == 401) {
         pushAndRemoveUntil(Navigation.currentContext, AppRoutes.Login_Mobile);
         return response;
-      }else
+      } else
       // Optional: Custom error handling if API returns structured error formats
       if (response.statusCode != 200 && body is Map<String, dynamic>) {
         if (body.containsKey('errors') && body['errors'] is List) {
