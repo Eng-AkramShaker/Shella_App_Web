@@ -17,6 +17,8 @@ import '../../widgets/mobile/home/builds/build_category_loading.dart';
 import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
 import '../../widgets/mobile/home/builds/build_section_title_2.dart';
 import '../../widgets/mobile/home/builds/build_section_title_two.dart';
+import '../../widgets/mobile/home/builds/build_stores.dart';
+import '../../widgets/mobile/home/builds/build_stores_loading.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -80,21 +82,22 @@ class _Home_ScreenState extends State<Home_Screen> {
               // //
               buildSectionTitle_One(context, title: "الاقسام", lapel: 'عرض الكل', underline: false),
               SizedBox(height: 16.h),
-              HomeController.get(context).state==HomeState.loading||HomeController.get(context).homeCategoriesModel==null?
+              HomeController.get(context).categoryState==HomeState.loading||HomeController.get(context).homeCategoriesModel==null?
               BuildCategoryLoading():
               BuildCategoryListView(),
               SizedBox(height: 22.h),
-              HomeController.get(context).state==HomeState.loading||HomeController.get(context).homeBannersModel==null?
+              HomeController.get(context).bannerState==HomeState.loading||HomeController.get(context).homeBannersModel==null?
               BuildBannersLoading():
               buildBanner(context,controller: pageController),
-              SizedBox(height: 16.h),
-              buildSectionTitle_2("اشهر المطاعم", context),
-              SizedBox(height: 16.h),
+              if(HomeController.get(context).popularStoresModel!=null)
               buildRestaurantGrid(context),
               SizedBox(height: 24.h),
               buildSectionTitleTow(context, title: "المطاعم القريبة منك", lapel: "المزيد", underline: true),
               SizedBox(height: 16.h),
-              buildDeliveryListView(context),
+              HomeController.get(context).storesState==HomeState.loading||HomeController.get(context).storesModel==null?
+              BuildStoresLoading():
+              BuildStores(),
+              // buildDeliveryListView(context),
               SizedBox(height: 50.h),
             ],
           ),

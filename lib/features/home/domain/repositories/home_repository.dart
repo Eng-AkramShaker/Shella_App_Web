@@ -26,4 +26,21 @@ class HomeRepository extends HomeRepositoryInterface {
     return response;
   }
 
+  ///-------------------------------------<<<---GET POPULAR STORES--->>>-------------------------------------
+  @override
+  Future<Response?> getPopularStores({String? type}) async {
+    customPrint('TYPE =====>> $type');
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.popularStores,query: {'type': type??'all'});
+    customPrint('Get Popular Stores Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
+  ///-------------------------------------<<<---GET STORES--->>>-------------------------------------
+  @override
+  Future<Response?> getStores({String? featured}) async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getStores,query: {'featured': featured??'1'});
+    customPrint('Get Stores Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
 }

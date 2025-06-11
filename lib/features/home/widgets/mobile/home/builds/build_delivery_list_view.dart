@@ -22,8 +22,6 @@ Widget buildDeliveryListView(BuildContext context) {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                //
-
                 pushNewScreen(context, AppRoutes.product);
               },
               child: Padding(
@@ -31,9 +29,7 @@ Widget buildDeliveryListView(BuildContext context) {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      // color: AppColors.greenColor,
-                      // height: 244.h,
+                    SizedBox(
                       width: width_media(context),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -48,25 +44,16 @@ Widget buildDeliveryListView(BuildContext context) {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Custom_Text(context, text: 'سوبر برغر', style: font14Black500W(context, lineHeight: 2.5)),
-
-                                    //
-
                                     Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         custom_Images_asset(image: AppImages.icon_Star, h: 18.h, w: 18.h),
-
-                                        //
                                         Custom_Text(context, text: ' 4.8 (50)', style: font14Grey400W(context, lineHeight: 2.5))
                                       ],
                                     ),
                                   ],
                                 ),
-
-                                //
-
                                 Custom_Text(context, text: 'ماكولات سريعة, برغر', style: font10Grey400W(context)),
-
                                 Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 8),
                                   child: Row(
@@ -79,7 +66,6 @@ Widget buildDeliveryListView(BuildContext context) {
                                     ],
                                   ),
                                 ),
-
                                 Row(
                                   children: [
                                     custom_Images_asset(image: AppImages.icon_disc, h: 18.h, w: 18.h),

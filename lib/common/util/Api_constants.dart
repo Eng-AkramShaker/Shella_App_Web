@@ -50,4 +50,10 @@ class Api_Constants {
 
   /// HOME BANNERS
   static const String homeBanners = '/api/v1/banners';
+
+  /// POPULAR STORES
+  static const String popularStores = '/api/v1/stores/popular';
+
+  /// GET STORES
+  static const String getStores = '/api/v1/stores/get-stores/all';
 }

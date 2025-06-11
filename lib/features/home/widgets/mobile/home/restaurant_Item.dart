@@ -1,7 +1,5 @@
-// Restaurant item widget
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/images/custom_Images.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
 class RestaurantItem extends StatelessWidget {
   final String image;
@@ -10,6 +8,10 @@ class RestaurantItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return custom_Images_asset(image: image, h: 50.h, w: 50.w);
+    return CircleAvatar(
+      backgroundColor: AppColors.wtColor,
+      radius: 27,
+      child: ClipRRect(borderRadius: BorderRadius.circular(5),child: Image.network(image,errorBuilder: (context, error, stackTrace) => SizedBox(),)),
+    );
   }
 }

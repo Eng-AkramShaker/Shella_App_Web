@@ -3,12 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
-import 'package:shella_design/features/home/controllers/home_controller.dart';
-import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/product/widgets/category/category_item.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/lists.dart';
 
 class BuildCategoryListView extends StatefulWidget {
   const BuildCategoryListView({super.key});
@@ -36,6 +32,10 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                   setState(() {
                     selectedIndex = index;
                   });
+                  customPrint('storesCount');
+                  customPrint(HomeController.get(context,listen: false).homeCategoriesModel![index].storesCount);
+                  HomeController.get(context,listen: false).getPopularStores(type: HomeController.get(context,listen: false).homeCategoriesModel![index].moduleType);
+                  HomeController.get(context,listen: false).getStores();
                 },
                 child: Padding(
                   padding: EdgeInsets.only(right: 13, left: 8),
