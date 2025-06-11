@@ -80,7 +80,16 @@ class _MobilelVerificationState extends State<MobilelVerification> {
             SizedBox(
               height: size.height / 40,
             ),
-            CustomPinCodeTextField(code: code, size: size),
+            Consumer<AuthController>(
+              builder: (context, authController, _) {
+                return CustomPinCodeTextField(
+                  code: code,
+                  size: size,
+                  onChanged: (value) =>
+                      authController.updateVerificationCode(value),
+                );
+              },
+            ),
             SizedBox(
               height: size.height / 30,
             ),

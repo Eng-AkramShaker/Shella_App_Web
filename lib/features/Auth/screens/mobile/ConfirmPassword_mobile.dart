@@ -123,8 +123,8 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
     // print(authController.user!.token ?? '');
     print(authController.phone!);
     authController
-        .resetPassword('', authController.phone!, password.text.trim(),
-            passwordComfirm.text.trim())
+        .resetPassword(authController.verificationCode, authController.phone!,
+            password.text.trim(), passwordComfirm.text.trim())
         .then(
       (value) {
         if (value.isSuccess) {

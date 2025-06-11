@@ -8,10 +8,12 @@ class CustomPinCodeTextField extends StatelessWidget {
     super.key,
     required this.code,
     required this.size,
+    this.onChanged, // nullable callback
   });
 
   final TextEditingController code;
   final Size size;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,7 @@ class CustomPinCodeTextField extends StatelessWidget {
         selectedColor: AppColors.greenColor,
       ),
       onChanged: (value) {
-        // ignore: avoid_print
-        print(value);
+        onChanged?.call(value); // use if provided
       },
       appContext: context,
       textStyle: font14Grey400W(context),
