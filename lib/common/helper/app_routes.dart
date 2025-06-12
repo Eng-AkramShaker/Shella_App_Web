@@ -24,7 +24,7 @@ import 'package:shella_design/features/help_and_support/screens/mobile/help_and_
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
-import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
+import 'package:shella_design/features/home/screens/mobile/home/user_home_screen.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';

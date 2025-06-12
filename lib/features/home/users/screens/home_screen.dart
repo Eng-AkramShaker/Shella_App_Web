@@ -4,12 +4,12 @@ import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import '../../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
-import '../../../widgets/mobile/home/builds/build_banner.dart';
-import '../../../widgets/mobile/home/builds/build_category_list_view.dart';
-import '../../../widgets/mobile/home/builds/build_delivery_list_view.dart';
-import '../../../widgets/mobile/home/builds/build_section_title_2.dart';
-import '../../../widgets/mobile/home/builds/build_section_title_two.dart';
+import '../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
+import '../../widgets/mobile/home/builds/build_banner.dart';
+import '../../widgets/mobile/home/builds/build_category_list_view.dart';
+import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
+import '../../widgets/mobile/home/builds/build_section_title_2.dart';
+import '../../widgets/mobile/home/builds/build_section_title_two.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

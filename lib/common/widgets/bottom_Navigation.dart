@@ -6,7 +6,7 @@ import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
-import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
+import 'package:shella_design/features/home/screens/mobile/home/user_home_screen.dart';
 import 'package:shella_design/features/orders/screens/order_screen/mobile_orders_screen.dart';
 import 'package:shella_design/features/profile_detailes/screens/profile_detailes.dart';
 import 'package:shella_design/common/util/app_colors.dart';

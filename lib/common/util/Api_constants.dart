@@ -56,4 +56,7 @@ class Api_Constants {
 
   /// GET STORES
   static const String getStores = '/api/v1/stores/get-stores/all';
+
+  /// GET ZONES
+  static const String zones = '/api/v1/zone/list';
 }

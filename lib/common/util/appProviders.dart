@@ -26,7 +26,7 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => AuthController()),
 
-  ChangeNotifierProvider(create: (_) => HomeController(HomeService(HomeRepository()))),
+  ChangeNotifierProvider(create: (_) => HomeController(HomeService(HomeRepository()))..getZones()),
   ChangeNotifierProvider(create: (_) => KaidhaFormController()),
   ChangeNotifierProvider(create: (_) => ServeMeController()),
 

@@ -28,18 +28,26 @@ class HomeRepository extends HomeRepositoryInterface {
 
   ///-------------------------------------<<<---GET POPULAR STORES--->>>-------------------------------------
   @override
-  Future<Response?> getPopularStores({String? type}) async {
+  Future<Response?> getPopularStores({String? type,String? moduleId}) async {
     customPrint('TYPE =====>> $type');
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.popularStores,query: {'type': type??'all'});
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>(),moduleId: moduleId).getData(Api_Constants.popularStores,query: {'type': type??'all'});
     customPrint('Get Popular Stores Response :: ${jsonDecode(response!.body)}');
     return response;
   }
 
   ///-------------------------------------<<<---GET STORES--->>>-------------------------------------
   @override
-  Future<Response?> getStores({String? featured}) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getStores,query: {'featured': featured??'1'});
+  Future<Response?> getStores({String? moduleId}) async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>(),moduleId: moduleId).getData(Api_Constants.getStores,query: {'featured': '1'});
     customPrint('Get Stores Response :: ${jsonDecode(response!.body)}');
+    return response;
+  }
+
+  ///-------------------------------------<<<---GET ZONES--->>>-------------------------------------
+  @override
+  Future<Response?> getZones() async {
+    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.zones);
+    customPrint('Get Zones Response :: ${jsonDecode(response!.body)}');
     return response;
   }
 

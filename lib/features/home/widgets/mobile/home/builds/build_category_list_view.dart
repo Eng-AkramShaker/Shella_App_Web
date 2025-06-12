@@ -6,15 +6,8 @@ import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/product/widgets/category/category_item.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
-class BuildCategoryListView extends StatefulWidget {
+class BuildCategoryListView extends StatelessWidget {
   const BuildCategoryListView({super.key});
-
-  @override
-  State<BuildCategoryListView> createState() => _BuildCategoryListViewState();
-}
-
-class _BuildCategoryListViewState extends State<BuildCategoryListView> {
-  int selectedIndex = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +15,16 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
       textDirection: TextDirection.rtl,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        reverse: true,
         child: Row(
           children: List.generate(HomeController.get(context).homeCategoriesModel!.length, (index) {
             return Padding(
               padding: EdgeInsets.only(right: 10.w, left: 3.w),
               child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                    selectedIndex = index;
-                  });
+                  HomeController.get(context,listen: false).selectCategory(index);
                   customPrint('storesCount');
                   customPrint(HomeController.get(context,listen: false).homeCategoriesModel![index].storesCount);
-                  HomeController.get(context,listen: false).getPopularStores(type: HomeController.get(context,listen: false).homeCategoriesModel![index].moduleType);
+                  HomeController.get(context,listen: false).getPopularStores(type: HomeController.get(context,listen: false).homeCategoriesModel![index].moduleType,moduleId: HomeController.get(context,listen: false).homeCategoriesModel![index].id.toString());
                   HomeController.get(context,listen: false).getStores();
                 },
                 child: Padding(
@@ -43,7 +33,7 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CategoryItem(image: HomeController.get(context).homeCategoriesModel![index].iconFullUrl??'', label: HomeController.get(context).homeCategoriesModel![index].moduleName??''),
-                      if(selectedIndex==index)
+                      if(HomeController.get(context).categoryIndex==index)
                       SizedBox(width: width(context, 0.2),child: Divider(color: AppColors.greenColor,thickness: 2.5,))
                     ],
                   ),

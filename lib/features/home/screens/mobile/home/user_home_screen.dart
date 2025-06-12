@@ -9,16 +9,16 @@ import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
-import '../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
-import '../../widgets/mobile/home/builds/build_banner.dart';
-import '../../widgets/mobile/home/builds/build_banners_loading.dart';
-import '../../widgets/mobile/home/builds/build_category_list_view.dart';
-import '../../widgets/mobile/home/builds/build_category_loading.dart';
-import '../../widgets/mobile/home/builds/build_delivery_list_view.dart';
-import '../../widgets/mobile/home/builds/build_section_title_2.dart';
-import '../../widgets/mobile/home/builds/build_section_title_two.dart';
-import '../../widgets/mobile/home/builds/build_stores.dart';
-import '../../widgets/mobile/home/builds/build_stores_loading.dart';
+import '../../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
+import '../../../widgets/mobile/home/builds/build_banner.dart';
+import '../../../widgets/mobile/home/builds/build_banners_loading.dart';
+import '../../../widgets/mobile/home/builds/build_category_list_view.dart';
+import '../../../widgets/mobile/home/builds/build_category_loading.dart';
+import '../../../widgets/mobile/home/builds/build_delivery_list_view.dart';
+import '../../../widgets/mobile/home/builds/build_section_title_2.dart';
+import '../../../widgets/mobile/home/builds/build_section_title_two.dart';
+import '../../../widgets/mobile/home/builds/build_stores.dart';
+import '../../../widgets/mobile/home/builds/build_stores_loading.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -89,11 +89,9 @@ class _Home_ScreenState extends State<Home_Screen> {
               HomeController.get(context).bannerState==HomeState.loading||HomeController.get(context).homeBannersModel==null?
               BuildBannersLoading():
               buildBanner(context,controller: pageController),
-              if(HomeController.get(context).popularStoresModel!=null)
+              if(HomeController.get(context).popularStoresModel!=null&&HomeController.get(context).isFood())
               buildRestaurantGrid(context),
               SizedBox(height: 24.h),
-              buildSectionTitleTow(context, title: "المطاعم القريبة منك", lapel: "المزيد", underline: true),
-              SizedBox(height: 16.h),
               HomeController.get(context).storesState==HomeState.loading||HomeController.get(context).storesModel==null?
               BuildStoresLoading():
               BuildStores(),
