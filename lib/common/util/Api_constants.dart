@@ -13,7 +13,6 @@ class Api_Constants {
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
   static const String updateAddressUri = '/api/v1/customer/address/update/';
-  //static const String getDiscountedProducts = '/items/discounted?type=all&offset=2&limit=50';
 
   //
 
@@ -24,5 +23,5 @@ class Api_Constants {
   static const String removeAllCartUri = '$appBaseUrl/api/v1/customer/cart/remove';
   static const String removeItemCartUri = '$appBaseUrl/api/v1/customer/cart/remove-item';
 
-  static const String discountProducts = '/api/v1/items/discounted';
+  static const String discountProducts = '$appBaseUrl/api/v1/items/discounted?type=all&offset=1&limit=50';
 }

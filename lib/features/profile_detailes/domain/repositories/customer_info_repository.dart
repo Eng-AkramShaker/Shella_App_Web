@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';

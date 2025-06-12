@@ -23,7 +23,7 @@ class DiscountController extends ChangeNotifier {
       _error = null;
       notifyListeners();
 
-      _products = await _service.fetchDiscountedProducts(offset: '2');
+      _products = await _service.fetchDiscountedProducts();
       
      // print('🟢 [Controller] Products loaded: ${_products.length} items');
       if (_products.isNotEmpty) {

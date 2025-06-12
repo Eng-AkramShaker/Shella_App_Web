@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
-import 'package:shella_design/features/discount/domain/repositories/discountRepositoryInterface/discount_repository_interface.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';

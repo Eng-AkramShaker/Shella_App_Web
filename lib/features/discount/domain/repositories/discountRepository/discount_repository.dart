@@ -1,16 +1,34 @@
-
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepositoryInterface/discount_repository_interface.dart';
-import '../../../../../api/api_client.dart';
-import '../../../../../common/helper/check_Logged.dart';
-import '../../../../../common/util/Api_constants.dart';
 
-class DiscountRepository implements DiscountRepositoryInterface{
-
+class DiscountRepository implements DiscountRepositoryInterface {
   @override
-  Future<http.Response?> fetchDiscountedProducts({offset}) async {
-    http.Response? response  = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.discountProducts,headers: {'type': 'all','offset': offset,'limit': '50'});
-    return response;
+  Future<List<dynamic>> fetchDiscountedProducts() async {
+    final apiUrl = Api_Constants.discountProducts;
+    print('Fetching discounted products from $apiUrl');
+
+    try {
+      final response = await http.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'zoneId': '[2,4,3,5]',
+          'moduleId': '3',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        final jsonData = json.decode(response.body);
+        //print('🟢 [5] تم فك التشفير بنجاح، عدد المنتجات: ${jsonData['products']?.length ?? 0}');
+        return jsonData['products'] ?? [];
+      } else {
+       // print('🔴 [6] خطأ في الرد: ${response.statusCode}');
+        throw Exception('فشل الطلب: ${response.statusCode}');
+      }
+    } catch (e) {
+    //  print('🔴 [7] خطأ في الخدمة: $e');
+      rethrow;
+    }
   }
 }

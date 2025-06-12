@@ -54,13 +54,13 @@ class ApiClient with ChangeNotifier {
       debugPrint('🔵 [API] جلب بيانات من: ${fullUri.toString()}');
       debugPrint('🔵 [API] Headers المرسلة: $requestHeaders');
       debugPrint('📡 Sending GET request to: $fullUri');
-debugPrint('📦 Headers: $requestHeaders');
-debugPrint('🕒 Waiting for response...'); // اطبع الـ headers النهائية اللي هتتبعت
+      debugPrint('📦 Headers: $requestHeaders');
+      debugPrint('🕒 Waiting for response...'); // اطبع الـ headers النهائية اللي هتتبعت
 
       final response = await http.get(
         fullUri,
         headers: requestHeaders, // استخدم الـ headers المدمجة
-      ).timeout(Duration(seconds: 10));
+      ).timeout(Duration(seconds: 50));
       return response;
     } catch (e) {
       debugPrint('🔴 [API Error] ${e.toString()}');
