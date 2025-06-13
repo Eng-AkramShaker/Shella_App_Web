@@ -3,10 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/widgets/buttons/bottom_bar_widget.dart';
-import 'package:shella_design/features/product/widgets/selection/custom_selection.dart';
-import 'package:shella_design/features/product/widgets/header/header_details.dart';
+import 'package:shella_design/features/product/widgets/mobile/selection/custom_selection.dart';
+import 'package:shella_design/features/product/widgets/mobile/header/header_details.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 

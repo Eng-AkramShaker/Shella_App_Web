@@ -51,8 +51,6 @@ import 'package:shella_design/features/orders_tracking/start_tracking_order/scre
 import 'package:shella_design/features/payment/screens/add_New_card.dart';
 import 'package:shella_design/features/payment/screens/payment.dart';
 import 'package:shella_design/features/payment/screens/payment_method.dart';
-import 'package:shella_design/features/product/screens/product_details_screen.dart';
-import 'package:shella_design/features/product/screens/product_screen.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profile_detailes_repository.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profile_detailes_service.dart';
@@ -86,6 +84,9 @@ import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/Auth/domain/services/auth_service.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+import '../../features/product/screens/mobile/product_details_screen.dart';
+import '../../features/product/screens/mobile/product_screen.dart';
+import '../../features/product/screens/mobile/stores/store_details.dart';
 import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
 import '../util/Api_constants.dart';
@@ -104,6 +105,7 @@ class AppRoutes {
   static const String hyper_screen = '/hyper_screen';
   static const String super_screen = '/super_screen';
   static const String product = '/product';
+  static const String storeDetails = '/storeDetails';
   static const String productDetails = '/product_details';
   static const String cartScreen = '/cart_screen';
   static const String cartDetails = '/cart_details';
@@ -252,6 +254,7 @@ class AppRoutes {
 
     // Product
     product: (context) => const ProductView(),
+    storeDetails: (context) => const StoreDetails(),
     productDetails: (context) => const ProductDetailsView(),
 
     // Cart

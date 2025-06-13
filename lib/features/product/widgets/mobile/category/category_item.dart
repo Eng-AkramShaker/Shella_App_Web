@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import '../../../../common/widgets/images/custom_Images.dart';
 
 class CategoryItem extends StatelessWidget {
   final String image;

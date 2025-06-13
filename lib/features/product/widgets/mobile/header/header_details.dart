@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
-import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+
+import '../images/image_circle.dart';
 
 Widget buildHeader(context) {
   return Stack(

@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/divider/custom_divider.dart';
-import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/features/product/widgets/category/category_list.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -13,8 +11,10 @@ import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import '../widgets/category/pizza_item.dart';
-import '../widgets/discount_list/discount_list.dart';
+import '../../widgets/mobile/category/category_list.dart';
+import '../../widgets/mobile/category/pizza_item.dart';
+import '../../widgets/mobile/discount_list/discount_list.dart';
+import '../../widgets/mobile/images/image_circle.dart';
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
@@ -24,6 +24,7 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,19 +41,17 @@ class _ProductViewState extends State<ProductView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildSectionTitle(context, title: "الاصناف", lapel: "المزيد"),
-                  SizedBox(height: 15.h),
                   DiscountList(),
                   SizedBox(height: 15.h),
                   SizedBox(width: width_media(context), child: CategoryList()),
                   SizedBox(height: 15.h),
                   Container(
-                      color: AppColors.gryColor_8,
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Custom_Text(context, text: "ساندويش", style: font14Black600W(context)),
-                      )),
+                    color: AppColors.gryColor_8,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Custom_Text(context, text: "ساندويش", style: font14Black600W(context)),
+                    )),
                   SizedBox(height: 15.h),
                   buildPizzaItemListView(context),
                   SizedBox(height: 50.h),
@@ -139,22 +138,22 @@ class _ProductViewState extends State<ProductView> {
   }
 }
 
-Widget buildHeaderSection(BuildContext context) {
+Widget buildHeaderSection(BuildContext context,{image,isLoading}) {
   return SizedBox(
     height: 210.h,
     child: Stack(
       alignment: Alignment.center,
       children: [
-        // header image
+        if(isLoading!=true)
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(AppImages.item_66), fit: BoxFit.fill),
+              image: DecorationImage(image: image!=null?NetworkImage(image):AssetImage(AppImages.item_66), fit: BoxFit.fill),
             ),
           ),
         ),
         Positioned(
-          top: 30.h,
+          top: 35.h,
           left: 19.w,
           right: 19.w,
           child: Row(
@@ -162,28 +161,36 @@ Widget buildHeaderSection(BuildContext context) {
             children: [
               Row(
                 children: [
-                  IconButtonCircle(
-                      icon: Icons.arrow_back_ios,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Card(
+                      color: AppColors.wtColor,
+                      shape: CircleBorder(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 7,top: 5,bottom: 5),
+                        child: Icon(Icons.arrow_back_ios,size: 20,),
+                      ),
+                    ),
+                  )
                 ],
               ),
               Row(
                 children: [
-                  IconButtonCircle(icon: Icons.search, onPressed: () {}),
+                  IconButtonCircle(icon: Icons.search,iconsize: 20, onPressed: () {}),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
-                      icon: Icons.share,
-                      onPressed: () {
-                        Share.share('url', subject: 'Sharing Text Field Content');
-                      }),
+                    icon: Icons.share,
+                    iconsize: 20,
+                    onPressed: () {
+                      Share.share('url', subject: 'Sharing Text Field Content');
+                    }),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
-                      icon: Icons.favorite_border,
-                      onPressed: () {
-                        popRoute(context);
-                      }),
+                    icon: Icons.favorite_border,
+                    iconsize: 20,
+                    onPressed: () {
+                      popRoute(context);
+                    }),
                 ],
               ),
             ],

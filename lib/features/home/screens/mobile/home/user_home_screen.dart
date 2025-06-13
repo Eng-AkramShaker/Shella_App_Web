@@ -1,22 +1,15 @@
-// ignore_for_file: unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, non_constant_identifier_names, camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import '../../../widgets/mobile/home/builds/buildSectionTitle_One.dart';
 import '../../../widgets/mobile/home/builds/build_banner.dart';
 import '../../../widgets/mobile/home/builds/build_banners_loading.dart';
 import '../../../widgets/mobile/home/builds/build_category_list_view.dart';
 import '../../../widgets/mobile/home/builds/build_category_loading.dart';
-import '../../../widgets/mobile/home/builds/build_delivery_list_view.dart';
-import '../../../widgets/mobile/home/builds/build_section_title_2.dart';
-import '../../../widgets/mobile/home/builds/build_section_title_two.dart';
 import '../../../widgets/mobile/home/builds/build_stores.dart';
 import '../../../widgets/mobile/home/builds/build_stores_loading.dart';
 
@@ -43,10 +36,10 @@ class _Home_ScreenState extends State<Home_Screen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150.h),
+        preferredSize: Size.fromHeight(110.h),
         child: Container(
           color: AppColors.primaryColor,
-          padding: EdgeInsets.only(bottom: 6.h),
+          padding: EdgeInsets.only(bottom: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -54,6 +47,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                 padding: EdgeInsets.symmetric(horizontal: 17.w),
                 child: buildSearchRow(context),
               ),
+              SizedBox(height: 10),
               buildAddressRow(context),
             ],
           ),

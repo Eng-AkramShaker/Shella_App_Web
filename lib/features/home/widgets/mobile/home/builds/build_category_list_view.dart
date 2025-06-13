@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
-import 'package:shella_design/features/product/widgets/category/category_item.dart';
+import 'package:shella_design/features/product/widgets/mobile/category/category_item.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class BuildCategoryListView extends StatelessWidget {

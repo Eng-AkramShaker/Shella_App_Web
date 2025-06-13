@@ -12,6 +12,9 @@ import 'package:shella_design/features/my_coupon/domain/services/my_coupon_servi
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
+import 'package:shella_design/features/product/controllers/product_controller.dart';
+import 'package:shella_design/features/product/domain/repositories/productRepository/product_repository.dart';
+import 'package:shella_design/features/product/domain/services/productService/product_service.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
@@ -36,6 +39,8 @@ List<SingleChildWidget> appProviders = [
 
   ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
   ChangeNotifierProvider(create: (_) => ScheduleController()),
+
+  ChangeNotifierProvider(create: (_) => ProductController(ProductService(ProductRepository()))),
 
   ChangeNotifierProvider(create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))..getMyCoupon()),
 

@@ -18,7 +18,6 @@ class AppImages {
   static const String main_cart = 'assets/icons/r2.png';
   static const String main_sitings = 'assets/icons/mo2.png';
 
-  static const String notifications = "assets/icons/notifications.png";
   static const String shape = 'assets/icons/shape.png';
   static const String icon_Star = 'assets/icons/s.png';
 
@@ -149,6 +148,7 @@ class AppImages {
   static const String market = 'assets/svg/market.svg';
   static const String carrot = 'assets/svg/carrot.svg';
   static const String fish = 'assets/svg/fish.svg';
+  static const String notifications = "assets/svg/notifications.svg";
 }
 
   

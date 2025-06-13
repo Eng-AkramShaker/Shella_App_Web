@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -12,17 +13,16 @@ Widget buildNotificationIcon(context) {
     alignment: Alignment.topRight,
     children: [
       IconButton(
-        icon: Image.asset(AppImages.notifications),
+        icon: SvgPicture.asset(AppImages.notifications),
         onPressed: () {},
       ),
       Positioned(
-        right: 5,
+        right: 10,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
             color: AppColors.wtColor,
           ),
-          child: Custom_Text(context, text: '1', color: AppColors.primaryColor),
+          child: Custom_Text(context, text: '1', color: AppColors.primaryColor,size: 11),
         ),
       ),
     ],
