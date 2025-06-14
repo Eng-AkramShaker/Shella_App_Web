@@ -8,13 +8,10 @@ import 'package:shella_design/common/helper/check_Logged.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
-import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
-import 'package:shella_design/features/discount/domain/repositories/discountRepositoryInterface/discount_repository_interface.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
-import 'package:provider/single_child_widget.dart';
 import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
@@ -25,6 +22,9 @@ import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
 import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
+import 'package:shella_design/features/orders/controllers/orders_controller.dart';
+import 'package:shella_design/features/orders/domain/repositories/orders_repository.dart';
+import 'package:shella_design/features/orders/domain/services/orders_service.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
@@ -114,4 +114,18 @@ List<SingleChildWidget> appProviders = [
         ..loadCoupons();
     },
   ),
+  ChangeNotifierProvider(
+      create: (_) => OrdersController(
+            ordersServiceInterface: OrdersService(
+              ordersRepositoryInterface: OrdersRepository(
+                sharedPreferences: sp<SharedPreferences>(),
+                apiClient: ApiClient(
+                  appBaseUrl: Api_Constants.appBaseUrl,
+                  sharedPreferences: sp<SharedPreferences>(),
+                ),
+              ),
+            ),
+          )
+            ..getHistoryOrders()
+            ..getrunningOrders()),
 ];

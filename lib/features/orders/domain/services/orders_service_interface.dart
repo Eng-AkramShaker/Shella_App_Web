@@ -1,6 +1,6 @@
-import '../../../../common/models/response_model.dart';
+import 'package:shella_design/features/orders/domain/models/orders_model.dart';
 
 abstract class OrdersServiceInterface {
-  Future<ResponseModel> getRunningOrdersService();
-  Future<ResponseModel> getRunningHistoryService();
+  Future<PaginatedOrderModel> getRunningOrdersService(int offset);
+  Future<PaginatedOrderModel> getRunningHistoryService(int offset);
 }

@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shella_design/common/models/response_model.dart';
+import 'package:shella_design/common/widgets/print/custom_print.dart';
+import 'package:shella_design/features/orders/domain/models/orders_model.dart';
 import 'package:shella_design/features/orders/domain/repositories/orders_repository_interface.dart';
 import 'package:shella_design/features/orders/domain/services/orders_service_interface.dart';
 
@@ -12,41 +14,36 @@ class OrdersService implements OrdersServiceInterface {
   OrdersService({required this.ordersRepositoryInterface});
 
   @override
-  Future<ResponseModel> getRunningOrdersService() async {
-    http.Response? response =
-        await ordersRepositoryInterface.getRunningOrders();
-    if (response != null) {
-      if (response.statusCode == 200) {
+  Future<PaginatedOrderModel> getRunningOrdersService(int offset) async {
+    try {
+      http.Response? response =
+          await ordersRepositoryInterface.getRunningOrders(offset);
+      if (response!.statusCode == 200) {
         var responsemap = jsonDecode(response.body);
-        // await _updateHeaderFunctionality(authResponse, alreadyInApp: false);
-        return ResponseModel(
-          true,
-          responsemap["message"],
-        );
+        return PaginatedOrderModel.fromJson(responsemap);
       } else {
-        return ResponseModel(false, 'error ${response.statusCode}');
+        throw Exception('Get My Orders Failed');
       }
-    } else {
-      return ResponseModel(false, 'error null}');
+    } catch (e) {
+      customPrint('Get My Orders Exception :: ${e.toString()}');
+      throw Exception('Get My Orders Exception :: ${e.toString()}');
     }
   }
 
   @override
-  Future<ResponseModel> getRunningHistoryService() async {
-    http.Response? response =
-        await ordersRepositoryInterface.getHistoryOrders();
-    if (response != null) {
-      if (response.statusCode == 200) {
+  Future<PaginatedOrderModel> getRunningHistoryService(int offset) async {
+    try {
+      http.Response? response =
+          await ordersRepositoryInterface.getHistoryOrders(offset);
+      if (response!.statusCode == 200) {
         var responsemap = jsonDecode(response.body);
-        return ResponseModel(
-          true,
-          responsemap["message"],
-        );
+        return PaginatedOrderModel.fromJson(responsemap);
       } else {
-        return ResponseModel(false, 'error ${response.statusCode}');
+        throw Exception('Get My Orders Failed');
       }
-    } else {
-      return ResponseModel(false, 'error null}');
+    } catch (e) {
+      customPrint('Get My Orders Exception :: ${e.toString()}');
+      throw Exception('Get My Orders Exception :: ${e.toString()}');
     }
   }
 }

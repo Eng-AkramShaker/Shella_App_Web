@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/helper/date_converter.dart';
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log(isLoggedInUser.toString());
+    DateConverter.init(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'شلة',

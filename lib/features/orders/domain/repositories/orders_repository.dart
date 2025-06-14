@@ -14,16 +14,16 @@ class OrdersRepository implements OrdersRepositoryInterface {
   OrdersRepository({required this.sharedPreferences, required this.apiClient});
 
   @override
-  Future<http.Response?> getRunningOrders() async {
-    http.Response response =
-        await apiClient.getData(Api_Constants.runningOrderListUri);
+  Future<http.Response?> getRunningOrders(int offset) async {
+    http.Response response = await apiClient.getData(
+        '${Api_Constants.runningOrderListUri}?offset=$offset&limit=10');
     return response;
   }
 
   @override
-  Future<http.Response?> getHistoryOrders() async {
-    http.Response response =
-        await apiClient.getData(Api_Constants.historyOrderListUri);
+  Future<http.Response?> getHistoryOrders(int offset) async {
+    http.Response response = await apiClient.getData(
+        '${Api_Constants.historyOrderListUri}?offset=$offset&limit=10');
 
     return response;
   }
