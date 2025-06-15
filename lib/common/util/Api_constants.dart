@@ -84,6 +84,7 @@ class Api_Constants {
   static const String couponListUri = '/api/v1/coupon/list';
 
   static const String configUri = '/api/v1/config';
+<<<<<<< HEAD
 =======
   static const String removeAddressUri =
       '/api/v1/customer/address/delete?address_id=';
@@ -123,5 +124,11 @@ class Api_Constants {
 
   /// STORE DETAILS
   static const String storeDetails = '/api/v1/stores/details/';
+=======
+  //Orders
+  static const String runningOrderListUri =
+      '/api/v1/customer/order/running-orders';
+  static const String historyOrderListUri = '/api/v1/customer/order/list';
+>>>>>>> 2b64772d8c1fc65082d85a9e8b139e7a53cbe86c
 }
 >>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2

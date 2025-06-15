@@ -3,11 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/orders/widgets/builds/build_lists.dart';
+import 'package:shella_design/features/orders/widgets/builds/orders_component.dart';
 import 'package:shella_design/features/orders/widgets/taps_card.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_styles.dart';
 
 class MobileOrders_Screen extends StatefulWidget {
   const MobileOrders_Screen({super.key});
@@ -16,7 +14,8 @@ class MobileOrders_Screen extends StatefulWidget {
   State<MobileOrders_Screen> createState() => _MobileOrders_ScreenState();
 }
 
-class _MobileOrders_ScreenState extends State<MobileOrders_Screen> with SingleTickerProviderStateMixin {
+class _MobileOrders_ScreenState extends State<MobileOrders_Screen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -44,14 +43,8 @@ class _MobileOrders_ScreenState extends State<MobileOrders_Screen> with SingleTi
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  buildLists(context),
-                  Center(
-                    child: Custom_Text(
-                      context,
-                      text: "لا توجد طلبات مجدولة",
-                      style: font14Black600W(context),
-                    ),
-                  ),
+                  ordersComponent(context),
+                  ordersComponent(context),
                 ],
               ),
             ),
