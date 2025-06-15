@@ -37,8 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'شلة',
       routes: AppRoutes.routes,
-      initialRoute:
-          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
 
 
   //   599966674
-  //   Na25526aa
+  //   12345678
 
 
   //  Card(
