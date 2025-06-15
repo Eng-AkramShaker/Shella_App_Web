@@ -60,4 +60,66 @@ class OrdersController with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> loadMoreRunningOrders() async {
+    if (_runningOrdersstate == OrderState.loading || runningOrders == null)
+      return;
+
+    final currentLength = runningOrders!.orders?.length ?? 0;
+    final total = runningOrders!.totalSize ?? 0;
+
+    if (currentLength >= total) return; // No more data
+
+    _runningOrdersstate = OrderState.loading;
+    notifyListeners();
+
+    try {
+      final nextPage =
+          ((currentLength / int.parse(runningOrders!.limit!)).ceil()) + 1;
+      final newData =
+          await ordersServiceInterface!.getRunningOrdersService(nextPage);
+
+      if (newData.orders != null && newData.orders!.isNotEmpty) {
+        runningOrders!.orders!.addAll(newData.orders!);
+        runningOrders!.offset = newData.offset;
+      }
+
+      _runningOrdersstate = OrderState.success;
+      notifyListeners();
+    } catch (e) {
+      _runningOrdersstate = OrderState.error;
+      notifyListeners();
+    }
+  }
+
+  Future<void> loadMoreHistoryOrders() async {
+    if (_historyOrdersstate == OrderState.loading || historyOrders == null)
+      return;
+
+    final currentLength = historyOrders!.orders?.length ?? 0;
+    final total = historyOrders!.totalSize ?? 0;
+
+    if (currentLength >= total) return; // No more data
+
+    _historyOrdersstate = OrderState.loading;
+    notifyListeners();
+
+    try {
+      final nextPage =
+          ((currentLength / int.parse(historyOrders!.limit!)).ceil()) + 1;
+      final newData =
+          await ordersServiceInterface!.getRunningHistoryService(nextPage);
+
+      if (newData.orders != null && newData.orders!.isNotEmpty) {
+        historyOrders!.orders!.addAll(newData.orders!);
+        historyOrders!.offset = newData.offset;
+      }
+
+      _historyOrdersstate = OrderState.success;
+      notifyListeners();
+    } catch (e) {
+      _historyOrdersstate = OrderState.error;
+      notifyListeners();
+    }
+  }
 }
