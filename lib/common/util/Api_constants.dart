@@ -63,6 +63,7 @@ class Api_Constants {
   /// GET ALL CATEGORIES
   static const String getAllCategories = '/api/v1/categories';
 
+<<<<<<< HEAD
   /// SEARCH ITEMS
   static const String searchItems = '/api/v1/items/item-or-store-search';
 
@@ -104,3 +105,23 @@ class Api_Constants {
   static const String categories = '/categories';
 >>>>>>> cbf245c5eb9111054d49dcebfa146b6a1ee73b83
 }
+=======
+  /// HOME CATEGORIES
+  static const String homeCategories = '/api/v1/module';
+
+  /// HOME BANNERS
+  static const String homeBanners = '/api/v1/banners';
+
+  /// POPULAR STORES
+  static const String popularStores = '/api/v1/stores/popular';
+
+  /// GET STORES
+  static const String getStores = '/api/v1/stores/get-stores/all';
+
+  /// GET ZONES
+  static const String zones = '/api/v1/zone/list';
+
+  /// STORE DETAILS
+  static const String storeDetails = '/api/v1/stores/details/';
+}
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2

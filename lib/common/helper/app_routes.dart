@@ -27,7 +27,7 @@ import 'package:shella_design/features/home/home/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
-import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
+import 'package:shella_design/features/home/screens/mobile/home/user_home_screen.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
@@ -35,7 +35,7 @@ import 'package:shella_design/features/kaidha_form/screen/aliashtirak_fi_qaydiha
 import 'package:shella_design/features/kaidha_form/screen/verify_source_of_income.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
-import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
+import 'package:shella_design/features/my_coupon/domain/services/my_coupon_services.dart';
 import 'package:shella_design/features/my_coupon/screens/my_coupon_screen.dart';
 import 'package:shella_design/features/notifications/notifications.dart';
 import 'package:shella_design/features/onboarding/screen/onboarding.dart';
@@ -54,8 +54,6 @@ import 'package:shella_design/features/orders_tracking/start_tracking_order/scre
 import 'package:shella_design/features/payment/screens/add_New_card.dart';
 import 'package:shella_design/features/payment/screens/payment.dart';
 import 'package:shella_design/features/payment/screens/payment_method.dart';
-import 'package:shella_design/features/product/screens/product_details_screen.dart';
-import 'package:shella_design/features/product/screens/product_screen.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
@@ -66,7 +64,14 @@ import 'package:shella_design/features/return_and_earn/screens/return_and_earn_s
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
+<<<<<<< HEAD
 import 'package:shella_design/features/search_filter/screen/search_filter.dart';
+=======
+import 'package:shella_design/features/search_filter/domain/services/search_service.dart';
+import 'package:shella_design/features/search_filter/domain/services/search_service_interface.dart';
+import 'package:shella_design/features/search_filter/screen/mobile/search_filter_mobile.dart';
+import 'package:shella_design/features/search_filter/screen/web/search_filter_web.dart';
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companies_workshops_page.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/carsServicespage.dart';
@@ -86,9 +91,15 @@ import 'package:shella_design/common/helper/check_Logged.dart';
 import '../../api/api_client.dart';
 import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
+<<<<<<< HEAD
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
 import '../../features/my_points/screens/my_points_transactions_screen.dart';
 import '../../features/my_points/screens/web/my_points_web_widget.dart';
+=======
+import '../../features/product/screens/mobile/product_details_screen.dart';
+import '../../features/product/screens/mobile/product_screen.dart';
+import '../../features/product/screens/mobile/stores/store_details.dart';
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/search_filter/domain/services/searchService/search_service.dart';
 import '../../features/search_filter/screen/web/search_filter_web.dart';
@@ -109,6 +120,7 @@ class AppRoutes {
   static const String hyper_screen = '/hyper_screen';
   static const String super_screen = '/super_screen';
   static const String product = '/product';
+  static const String storeDetails = '/storeDetails';
   static const String productDetails = '/product_details';
   static const String cartScreen = '/cart_screen';
   static const String cartDetails = '/cart_details';
@@ -257,7 +269,13 @@ class AppRoutes {
     super_screen: (context) => const SuperScreen(),
 
     // Product
+<<<<<<< HEAD
     // productDetails: (context) => const ProductDetailsView(),
+=======
+    product: (context) => const ProductView(),
+    storeDetails: (context) => const StoreDetails(),
+    productDetails: (context) => const ProductDetailsView(),
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 
     // Cart
     cartScreen: (context) => ChangeNotifierProvider(

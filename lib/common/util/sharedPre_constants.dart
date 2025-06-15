@@ -7,4 +7,6 @@ class SharedPrefKeys {
   static const String userToken = 'userToken';
 
   static const String searchHistory = 'searchHistory';
+
+  static const String zones = 'zones';
 }

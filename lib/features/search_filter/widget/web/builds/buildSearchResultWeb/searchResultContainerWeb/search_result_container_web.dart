@@ -57,7 +57,7 @@ class SearchResultContainerWeb extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
-                        child: Custom_Text(context, text: 'عرض المتجر',color: AppColors.wtColor,size: 12),
+                        child: Custom_Text(context, text: 'عرض المنتج',color: AppColors.wtColor,size: 12),
                       ),
                     ),
                   )

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/divider/custom_divider.dart';
-import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/widgets/LocationInfo.dart';
@@ -12,6 +11,8 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+
+import '../../product/widgets/mobile/images/image_circle.dart';
 
 class ServeMeProductView extends StatefulWidget {
   const ServeMeProductView({super.key});

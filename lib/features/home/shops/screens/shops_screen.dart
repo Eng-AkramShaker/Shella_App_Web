@@ -6,9 +6,14 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
 import 'package:shella_design/features/home/hyper/widgets/builds/build_section_title.dart';
+<<<<<<< HEAD
 
+=======
+import 'package:shella_design/common/util/app_colors.dart';
+import '../../../../common/widgets/addressRow/buildAddressRow.dart';
+import '../../widgets/mobile/home/builds/build_category_list_view.dart';
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 
 class ShopsScreen extends StatefulWidget {
   const ShopsScreen({super.key});

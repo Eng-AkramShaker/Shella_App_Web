@@ -22,7 +22,11 @@ Widget buildAddressRow(context) {
           ),
         ),
         Custom_Text(context, text: 'التوصيل الى السعودية ,شارع 112 بناء 14  ', style: font11White400W(context)),
+<<<<<<< HEAD
         Icon(Icons.keyboard_arrow_down, color: AppColors.backgroundColor, size: 22.w),
+=======
+        Icon(Icons.keyboard_arrow_down, color: AppColors.backgroundColor),
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
       ],
     ),
   );

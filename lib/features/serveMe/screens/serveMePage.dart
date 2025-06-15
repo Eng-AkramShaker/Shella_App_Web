@@ -4,7 +4,7 @@ import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/product/widgets/category/category_item.dart';
+import 'package:shella_design/features/product/widgets/mobile/category/category_item.dart';
 import 'package:shella_design/features/serveMe/screens/companiesServices/companiesServicesPage.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/individualsServicePage.dart';
 import 'package:shella_design/common/util/app_colors.dart';

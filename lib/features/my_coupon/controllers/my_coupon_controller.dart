@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
-import 'package:shella_design/features/my_coupon/domain/services/myCouponServiceInterface/my_coupon_service_interface.dart';
+import 'package:shella_design/features/my_coupon/domain/services/my_coupon_service_interface.dart';
 
 enum MyCouponState {initial,loading,success,error}
 

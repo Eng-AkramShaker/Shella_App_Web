@@ -23,6 +23,7 @@ class ApiClient extends GetxService {
   final int timeoutInSeconds = 40;
 
   String? token;
+<<<<<<< HEAD
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
@@ -60,6 +61,29 @@ class ApiClient extends GetxService {
       // addressModel?.latitude,
       // addressModel?.longitude,
     );
+=======
+  final bool? zoneId;
+  final String? moduleId;
+
+  ApiClient({required this.appBaseUrl, required this.sharedPreferences,this.zoneId,this.moduleId,}) {
+    updateHeaders();
+  }
+
+  void updateHeaders() {
+    String? token = sharedPreferences.getString(SharedPrefKeys.userToken);
+    customPrint('TOKEN =====> $token');
+    _headers = {
+      "Accept": "application/json",
+      'Content-Type': 'application/json',
+      'Authorization': token != null ? 'Bearer $token' : '',
+      if(zoneId!=false)
+      'zoneId': sharedPreferences.getString(SharedPrefKeys.zones)??'[2,3,4,5]',
+      'moduleId': moduleId??'3',
+      'longitude': '46.701550834948726',
+      'latitude': '24.604741730570755'
+    };
+    notifyListeners();
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
   }
 
   Map<String, String> updateHeader(

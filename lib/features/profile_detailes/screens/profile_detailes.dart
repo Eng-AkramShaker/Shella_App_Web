@@ -30,9 +30,13 @@ class ProfileDetailsPage extends StatelessWidget {
       body: ListView(
         children: [
           buildProfileHeader(),
+<<<<<<< HEAD
           buildListTile('معلومات الحساب', Icons.account_circle, context, () {
             pushNewScreen(context, AppRoutes.profileInfo);
           }),
+=======
+          buildListTile('  معلومات الحساب', Icons.account_circle, context, () {}),
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
           buildListTile('العناوين المحفوظة', Icons.location_on, context, () {
             pushNewScreen(
               context,

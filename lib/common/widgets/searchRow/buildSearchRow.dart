@@ -2,9 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/home/home/widgets/builds/buildNotificationIcon.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+<<<<<<< HEAD
+=======
+import '../../../features/home/widgets/mobile/home/builds/buildNotificationIcon.dart';
+import '../../helper/app_routes.dart';
+import '../../util/app_navigators.dart';
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 
 Widget buildSearchRow(BuildContext context) {
   return Row(

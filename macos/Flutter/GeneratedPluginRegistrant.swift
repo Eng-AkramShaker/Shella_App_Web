@@ -12,7 +12,11 @@ import package_info_plus
 import path_provider_foundation
 import share_plus
 import shared_preferences_foundation
+<<<<<<< HEAD
 import sqlite3_flutter_libs
+=======
+import sqflite_darwin
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 import url_launcher_macos
 import video_player_avfoundation
 import wakelock_plus
@@ -25,7 +29,11 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))
   SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
+<<<<<<< HEAD
   Sqlite3FlutterLibsPlugin.register(with: registry.registrar(forPlugin: "Sqlite3FlutterLibsPlugin"))
+=======
+  SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
+>>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
   UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
   FVPVideoPlayerPlugin.register(with: registry.registrar(forPlugin: "FVPVideoPlayerPlugin"))
   WakelockPlusMacosPlugin.register(with: registry.registrar(forPlugin: "WakelockPlusMacosPlugin"))
