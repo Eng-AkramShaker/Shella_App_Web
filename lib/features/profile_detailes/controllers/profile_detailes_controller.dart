@@ -20,8 +20,6 @@ class ProfileController extends ChangeNotifier {
   int tybe = 1;
   int floor = 1;
 
-<<<<<<< HEAD
-  /// WEP
   int _currentPage = 0;
   int _currentAddressesPage = 0;
 
@@ -43,8 +41,7 @@ class ProfileController extends ChangeNotifier {
   void changeAddressesPage() => notifyListeners();
 
   /// Fetches the list of addresses
-=======
->>>>>>> cbf245c5eb9111054d49dcebfa146b6a1ee73b83
+
   Future<void> getAdress() async {
     adressstate = RequestState.loading;
     notifyListeners();
@@ -105,8 +102,7 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.updateAddress(updatedAddress);
       if (success) {
-        int index =
-            address?.indexWhere((addr) => addr.id == updatedAddress.id) ?? -1;
+        int index = address?.indexWhere((addr) => addr.id == updatedAddress.id) ?? -1;
         if (index != -1) {
           address?[index] = updatedAddress;
         }
