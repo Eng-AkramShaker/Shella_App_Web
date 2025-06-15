@@ -257,7 +257,7 @@ class AppRoutes {
     super_screen: (context) => const SuperScreen(),
 
     // Product
-    productDetails: (context) => const ProductDetailsView(),
+    // productDetails: (context) => const ProductDetailsView(),
 
     // Cart
     cartScreen: (context) => ChangeNotifierProvider(

@@ -23,7 +23,7 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
     return Consumer<SectionProvider>(
       builder: (context, sectionProvider, _) {
         if (sectionProvider.isLoading) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (sectionProvider.errorMessage.isNotEmpty) {
@@ -31,6 +31,11 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
         }
 
         final sections = sectionProvider.categories;
+
+        if (sections.isEmpty) {
+          return const Center(child: Text("No categories available."));
+        }
+
         final SectionModel selectedCategory = sections[selectedIndex];
         final List<SectionModel> childCategories = selectedCategory.childes;
 
@@ -39,39 +44,38 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// Parent Categories (Tabs)
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                reverse: true,
                 child: Row(
                   children: List.generate(sections.length, (index) {
                     final SectionModel cat = sections[index];
+                    final bool isSelected = selectedIndex == index;
+
                     return Padding(
-                      padding: EdgeInsets.only(right: 10.w, left: 3.w),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
                             selectedIndex = index;
                           });
                         },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 13, left: 8),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CategoryItem(
-                                image: cat.imageFullUrl ?? AppImages.empty,
-                                label: cat.name,
-                              ),
-                              SizedBox(height: 7),
-                              Container(
-                                height: 3,
-                                width: _getTextWidth(context, cat.name) * 1.3,
-                                color: selectedIndex == index
-                                    ? AppColors.greenColor
-                                    : Colors.transparent,
-                              ),
-                            ],
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CategoryItem(
+                              image: cat.imageFullUrl ?? AppImages.empty,
+                              label: cat.name,
+                            ),
+                            SizedBox(height: 6.h),
+                            Container(
+                              height: 3.h,
+                              width: _getTextWidth(context, cat.name) * 1.3,
+                              color: isSelected
+                                  ? AppColors.greenColor
+                                  : Colors.transparent,
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -79,14 +83,11 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                 ),
               ),
 
-              // Optional spacing
               SizedBox(height: 12.h),
 
-              // Child categories
               if (childCategories.isNotEmpty)
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  reverse: true,
                   child: Row(
                     children: childCategories.map((child) {
                       return Padding(

@@ -4,10 +4,10 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/features/product/domain/models/product_model.dart';
+import 'package:shella_design/features/product/domain/models/store_details_model.dart';
 
 class ProductItem extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
   final VoidCallback onTap;
 
   const ProductItem({super.key, required this.product, required this.onTap});
@@ -27,7 +27,7 @@ class ProductItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // -------- Text Info
+            // Text Info
             Flexible(
               flex: 3,
               child: Padding(
@@ -48,13 +48,13 @@ class ProductItem extends StatelessWidget {
               ),
             ),
 
-            // -------- Image
+            // Image
             Expanded(
               flex: 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
-                  product.image,
+                  product.imageUrl,
                   height: 100.h,
                   width: 100.w,
                   fit: BoxFit.cover,

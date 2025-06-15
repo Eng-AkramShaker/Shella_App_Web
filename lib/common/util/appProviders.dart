@@ -19,6 +19,7 @@ import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/home/controllers/store_controller.dart';
+import 'package:shella_design/features/home/domain/repositories/home_repository.dart';
 import 'package:shella_design/features/home/domain/services/banner_service.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
@@ -33,11 +34,19 @@ import 'package:shella_design/features/search_filter/controller/search_filter_co
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 
+<<<<<<< HEAD
 import '../../features/my_coupon/controllers/my_coupon_controller.dart';
 import '../../features/my_points/controllers/my_points_controller.dart';
 import '../../features/my_points/domain/repositories/my_points_repository.dart';
 import '../../features/my_points/domain/services/my_points_service.dart';
 import '../../features/splash/domain/services/splash_service.dart';
+=======
+final homeRepository = HomeRepository(
+  bannerService: BannerService(),
+  sectionService: SectionService(),
+  storeService: StoreService(),
+);
+>>>>>>> cbf245c5eb9111054d49dcebfa146b6a1ee73b83
 
 List<SingleChildWidget> appProviders = [
   ChangeNotifierProvider<AuthController>(
@@ -77,13 +86,13 @@ List<SingleChildWidget> appProviders = [
   //   ),
   // ),
   ChangeNotifierProvider(
-    create: (_) => BannerProvider(BannerService())..loadBanners(),
+    create: (_) => BannerProvider(homeRepository)..loadBanners(),
   ),
   ChangeNotifierProvider(
-    create: (_) => SectionProvider(SectionService())..fetchCategories(),
+    create: (_) => SectionProvider(homeRepository)..fetchCategories(),
   ),
   ChangeNotifierProvider(
-    create: (_) => StoreProvider(StoreService())..fetchStores(),
+    create: (_) => StoreProvider(homeRepository)..fetchStores(),
   ),
   ChangeNotifierProvider(
       create: (_) => SplashController(SplashService())..loadConfig()),
