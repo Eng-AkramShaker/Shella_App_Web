@@ -50,13 +50,10 @@ dependencies:
   easy_debounce: ^2.0.3
   flutter_rating_bar: ^4.0.1
   shimmer: ^3.0.0
-<<<<<<< HEAD
   animated_flip_counter: ^0.3.4
   phone_numbers_parser: ^9.0.3
-=======
   cached_network_image: ^3.4.1
   carousel_slider: ^5.1.1
->>>>>>> 553c97d575268581ec96d36898f02f23b52e19c2
 
 dev_dependencies:
   flutter_test:
