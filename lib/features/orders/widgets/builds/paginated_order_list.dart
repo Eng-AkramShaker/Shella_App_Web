@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/widgets/loading/loading.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/controllers/orders_controller.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_order_card.dart';
-import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class PaginatedOrderList extends StatefulWidget {
   const PaginatedOrderList({super.key});
@@ -23,7 +25,6 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
 
     final orderProvider = OrdersController.get(context, listen: false);
 
-    // Fetch the first page if not already loaded
     if (orderProvider.runningOrders == null ||
         orderProvider.runningOrders!.orders!.isEmpty) {
       orderProvider.getrunningOrders();
@@ -34,11 +35,12 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
 
       final currentLength = provider.runningOrders?.orders?.length ?? 0;
       final total = provider.runningOrders?.totalSize ?? 0;
-      final isLoading = provider.runningOrdersstate == OrderState.loading;
+      final isLoadMoreInProgress =
+          provider.loadMoreRunningState == OrderState.loading;
 
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 200 &&
-          !isLoading &&
+          !isLoadMoreInProgress &&
           currentLength < total) {
         provider.loadMoreRunningOrders();
       }
@@ -56,11 +58,17 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
     return Consumer<OrdersController>(
       builder: (context, provider, _) {
         final orders = provider.runningOrders?.orders ?? [];
-        final isLoading = provider.runningOrdersstate == OrderState.loading;
-        final isInitial = provider.runningOrdersstate == OrderState.initial;
+        final isInitialLoading =
+            provider.runningOrdersstate == OrderState.loading ||
+                provider.runningOrdersstate == OrderState.initial;
+        final isLoadMoreLoading =
+            provider.loadMoreRunningState == OrderState.loading;
 
-        if (orders.isEmpty && (isLoading || isInitial)) {
-          return const Center(child: CircularProgressIndicator());
+        if (orders.isEmpty && isInitialLoading) {
+          return const Center(
+              child: Loading(
+            color: AppColors.primaryColor,
+          ));
         }
 
         if (orders.isEmpty) {
@@ -73,26 +81,31 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
           );
         }
 
-        return ListView.builder(
-          controller: _scrollController,
-          padding: const EdgeInsets.only(bottom: 10),
-          itemCount: orders.length + (isLoading ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index == orders.length) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Center(child: CircularProgressIndicator()),
-              );
-            }
-
-            final order = orders[index];
-            return InkWell(
-              onTap: () {
-                pushNewScreen(context, AppRoutes.step_one_service_screen);
-              },
-              child: buildOrderCard(order, context),
-            );
-          },
+        return Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                controller: _scrollController,
+                physics: BouncingScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: 10),
+                itemCount: orders.length,
+                itemBuilder: (context, index) {
+                  final order = orders[index];
+                  return InkWell(
+                    onTap: () {
+                      pushNewScreen(context, AppRoutes.orderdetails);
+                    },
+                    child: buildOrderCard(order, context),
+                  );
+                },
+              ),
+            ),
+            (isLoadMoreLoading)
+                ? Loading(
+                    color: AppColors.primaryColor,
+                  )
+                : SizedBox.shrink(),
+          ],
         );
       },
     );

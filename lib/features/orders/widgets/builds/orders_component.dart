@@ -12,22 +12,20 @@ Widget ordersComponent(BuildContext context) {
   return Consumer<OrdersController>(
     builder: (context, ordersController, child) {
       if (ordersController.runningOrdersstate == OrderState.success) {
-        return SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 5.h),
-              Custom_Text(context,
-                  text: "مطاعم", style: font14Black600W(context)),
-              PaginatedOrderList(),
-              Custom_Text(
-                context,
-                text: "سوبر ماركت",
-                style: font14Black600W(context),
-              ),
-              PaginatedOrderList(),
-            ],
-          ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 5.h),
+            Custom_Text(context,
+                text: "مطاعم", style: font14Black600W(context)),
+            Expanded(child: PaginatedOrderList()),
+            Custom_Text(
+              context,
+              text: "سوبر ماركت",
+              style: font14Black600W(context),
+            ),
+            Expanded(child: PaginatedOrderList()),
+          ],
         );
       } else {
         return Loading(
