@@ -9,27 +9,20 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/controllers/orders_controller.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_order_card.dart';
 
-class PaginatedOrderList extends StatefulWidget {
-  const PaginatedOrderList({super.key});
+class RunningPaginatedOrderList extends StatefulWidget {
+  const RunningPaginatedOrderList({super.key});
 
   @override
-  State<PaginatedOrderList> createState() => _PaginatedOrderListState();
+  State<RunningPaginatedOrderList> createState() =>
+      _RunningPaginatedOrderListState();
 }
 
-class _PaginatedOrderListState extends State<PaginatedOrderList> {
+class _RunningPaginatedOrderListState extends State<RunningPaginatedOrderList> {
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-
-    final orderProvider = OrdersController.get(context, listen: false);
-
-    if (orderProvider.runningOrders == null ||
-        orderProvider.runningOrders!.orders!.isEmpty) {
-      orderProvider.getrunningOrders();
-    }
-
     _scrollController.addListener(() {
       final provider = OrdersController.get(context, listen: false);
 
@@ -56,15 +49,10 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
   @override
   Widget build(BuildContext context) {
     return Consumer<OrdersController>(
-      builder: (context, provider, _) {
-        final orders = provider.runningOrders?.orders ?? [];
-        final isInitialLoading =
-            provider.runningOrdersstate == OrderState.loading ||
-                provider.runningOrdersstate == OrderState.initial;
-        final isLoadMoreLoading =
-            provider.loadMoreRunningState == OrderState.loading;
+      builder: (context, ordersController, _) {
+        final orders = ordersController.runningOrders?.orders ?? [];
 
-        if (orders.isEmpty && isInitialLoading) {
+        if (ordersController.runningOrdersstate == OrderState.loading) {
           return const Center(
               child: Loading(
             color: AppColors.primaryColor,
@@ -100,7 +88,7 @@ class _PaginatedOrderListState extends State<PaginatedOrderList> {
                 },
               ),
             ),
-            (isLoadMoreLoading)
+            (ordersController.loadMoreRunningState == OrderState.loading)
                 ? Loading(
                     color: AppColors.primaryColor,
                   )

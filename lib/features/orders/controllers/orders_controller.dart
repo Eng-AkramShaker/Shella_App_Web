@@ -48,15 +48,18 @@ class OrdersController with ChangeNotifier {
 
       PaginatedOrderModel lrunningOrders =
           await ordersServiceInterface!.getRunningOrdersService(1);
+      runningOrders = PaginatedOrderModel(
+        offset: lrunningOrders.offset,
+        limit: lrunningOrders.limit,
+        totalSize: lrunningOrders.totalSize,
+        orders: [],
+      );
       for (var item in lrunningOrders.orders!) {
         if (item.createdAt.toString() == item.scheduleAt.toString()) {
-          runningOrders!.orders ??= [];
           runningOrders!.orders!.add(item);
-          runningOrders!.offset = lrunningOrders.offset;
-          runningOrders!.limit = lrunningOrders.limit;
-          runningOrders!.totalSize = lrunningOrders.totalSize;
         }
       }
+
       _runningOrdersstate = OrderState.success;
       notifyListeners();
     } catch (e) {
@@ -89,15 +92,18 @@ class OrdersController with ChangeNotifier {
 
       PaginatedOrderModel lscheduleOrders =
           await ordersServiceInterface!.getRunningOrdersService(1);
+      scheduleOrders = PaginatedOrderModel(
+        offset: lscheduleOrders.offset,
+        limit: lscheduleOrders.limit,
+        totalSize: lscheduleOrders.totalSize,
+        orders: [],
+      );
       for (var item in lscheduleOrders.orders!) {
         if (item.createdAt.toString() != item.scheduleAt.toString()) {
-          scheduleOrders!.orders ??= [];
           scheduleOrders!.orders!.add(item);
-          scheduleOrders!.offset = lscheduleOrders.offset;
-          scheduleOrders!.limit = lscheduleOrders.limit;
-          scheduleOrders!.totalSize = lscheduleOrders.totalSize;
         }
       }
+
       _scheduleOrdersstate = OrderState.success;
       notifyListeners();
     } catch (e) {
