@@ -249,9 +249,9 @@
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///C:/Users/Akramm/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.1.0",
+      "rootUri": "file:///C:/Users/Akramm/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.6"
     },
     {
       "name": "flutter_switch",
@@ -824,7 +824,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-06-15T17:09:47.984850Z",
+  "generated": "2025-06-17T18:53:32.402509Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///C:/Src/flutter",
