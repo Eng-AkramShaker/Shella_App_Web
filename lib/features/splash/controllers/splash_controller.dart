@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/splash/domain/models/config_model.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
 
@@ -9,10 +8,7 @@ class SplashController extends ChangeNotifier {
   final SplashService splashService;
   //final ApiClient? apiClient;
 
-  SplashController(
-      this.splashService,
-      // this.apiClient
-      );
+  SplashController(this.splashService);
 
   ConfigModel? _configModel;
   ConfigModel? get configModel => _configModel;
@@ -36,11 +32,11 @@ class SplashController extends ChangeNotifier {
   //   final response = await apiClient!.getData('https://shalafood.net/api/v1/config');
   // }
 
-  Future<void> loadConfig()async{
+  Future<void> loadConfig() async {
     _loading = true;
     _error = null;
     notifyListeners();
-    try{
+    try {
       _configModel = await splashService.getConfig();
     } catch (e) {
       _error = e.toString();
