@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/features/orders/widgets/builds/orders_component.dart';
+import 'package:shella_design/features/orders/widgets/builds/history/history_orders_component.dart';
+import 'package:shella_design/features/orders/widgets/builds/running/running_orders_component.dart';
+import 'package:shella_design/features/orders/widgets/builds/schedule/schedule_orders_component.dart';
 import 'package:shella_design/features/orders/widgets/taps_card.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
@@ -21,7 +23,7 @@ class _MobileOrders_ScreenState extends State<MobileOrders_Screen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -43,8 +45,9 @@ class _MobileOrders_ScreenState extends State<MobileOrders_Screen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  ordersComponent(context),
-                  ordersComponent(context),
+                  runningOrdersComponent(context),
+                  scheduleOrdersComponent(context),
+                  historyOrdersComponent(context),
                 ],
               ),
             ),

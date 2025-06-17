@@ -31,7 +31,7 @@ Widget buildOrderCard(OrderModel orderItem, BuildContext context) {
             child: custom_Images_asset(
               image: logo,
               h: height_media(context),
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.contain,
               w: 65.w,
             ),
           ),

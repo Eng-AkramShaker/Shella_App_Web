@@ -127,5 +127,6 @@ List<SingleChildWidget> appProviders = [
             ),
           )
             ..getHistoryOrders()
-            ..getrunningOrders()),
+            ..getrunningOrders()
+            ..getScheduleOrders()),
 ];
