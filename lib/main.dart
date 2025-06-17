@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
@@ -24,14 +25,11 @@ void main() async {
   await checkIfLoggedInUser();
 
   final sharedPreferences = await SharedPreferences.getInstance();
-  const String baseUrl = "https://shalalfood.net";
+  const String baseUrl = Api_Constants.appBaseUrl;
 
   runApp(
     MultiProvider(
-      providers: [
-        ...getAppProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
-        ...appProviders,
-      ],
+      providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -57,10 +55,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'شلة',
-      theme: ThemeData(
-        fontFamily: 'Tajawal',
-        useMaterial3: true,
-      ),
+      theme: ThemeData(fontFamily: 'Tajawal', useMaterial3: true),
       routes: AppRoutes.routes,
       initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {

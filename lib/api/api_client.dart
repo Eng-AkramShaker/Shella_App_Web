@@ -13,7 +13,7 @@ import 'package:shella_design/common/util/sharedPre_constants.dart';
 import '../common/helper/app_routes.dart';
 import '../common/util/app_navigators.dart';
 
-class ApiClient extends ChangeNotifier {
+class ApiClient {
   final String appBaseUrl;
   final SharedPreferences sharedPreferences;
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr;

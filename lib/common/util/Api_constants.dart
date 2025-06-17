@@ -3,9 +3,12 @@
 class Api_Constants {
   // ======================== Url ========================
   static const String appBaseUrl = 'https://shalafood.net';
+
   static String token = 'guest';
+
   static String customerInfo = '$appBaseUrl/api/v1/customer/info';
   static String joinAsDriver = '$appBaseUrl/api/v1/auth/delivery-man/store';
+
   static String login = '/api/v1/auth/login';
   static String signup = '/api/v1/auth/sign-up';
   static const String forgetPasswordUri = '/api/v1/auth/forgot-password';
