@@ -1,171 +1,242 @@
 // ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:shella_design/api/api_checker.dart';
+import 'package:shella_design/common/models/error_response.dart';
+import 'package:shella_design/common/util/indian_app_constants.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
-// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
+import '../common/helper/app_routes.dart';
+import '../common/util/app_navigators.dart';
 
-
-
-class ApiClient with ChangeNotifier {
-  final SharedPreferences sharedPreferences;
+class ApiClient extends GetxService {
   final String appBaseUrl;
-  late Map<String, String> _headers;
+  final SharedPreferences sharedPreferences;
+  static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
+  final int timeoutInSeconds = 40;
+
   String? token;
+  late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
-    updateHeaders();
+    token = sharedPreferences.getString(SharedPrefKeys.userToken);
+    if (kDebugMode) {
+      print('Token: $token');
+    }
+    // AddressModel? addressModel;
+    // try {
+    //   addressModel = AddressModel.fromJson(
+    //       jsonDecode(sharedPreferences.getString(AppConstants.userAddress)!));
+    // } catch (_) {}
+    // int? moduleID;
+    // if (GetPlatform.isWeb &&
+    //     sharedPreferences.containsKey(AppConstants.moduleId)) {
+    //   try {
+    //     moduleID = ModuleModel.fromJson(
+    //             jsonDecode(sharedPreferences.getString(AppConstants.moduleId)!))
+    //         .id;
+    //   } catch (_) {}
+    // }
+    updateHeader(
+      token,
+      [],
+      [],
+      'ar',
+      0,
+      '1',
+      '1',
+      // addressModel?.zoneIds,
+      // addressModel?.areaIds,
+
+      // sharedPreferences.getString(AppConstants.languageCode),
+      // moduleID,
+      // addressModel?.latitude,
+      // addressModel?.longitude,
+    );
   }
 
- void updateHeaders() {
-  token = sharedPreferences.getString(SharedPrefKeys.userToken);
-  debugPrint('🟠 التوكن من SharedPreferences: $token');
-  _headers = {
-    'Content-Type': 'application/json',
-    'Authorization': token != null && token!.isNotEmpty ? 'Bearer $token' : '',
-    'Accept': 'application/json',
-    'Accept-Language': 'ar',
+  Map<String, String> updateHeader(String? token, List<int>? zoneIDs, List<int>? operationIds, String? languageCode, int? moduleID,
+      String? latitude, String? longitude,
+      {bool setHeader = true}) {
+    Map<String, String> header = {};
 
-    // Make sure these are ALWAYS present in the _headers if required by API for authentication
-    'zoneId': '[2,4,3,5]', // Ensure these match Postman exactly
-    'moduleId': '3',     // Ensure these match Postman exactly
-    'X-localization': 'ar', // Ensure this matches Postman exactly
+    if (moduleID != null || sharedPreferences.getString(AppConstants.cacheModuleId) != null) {
+      // header.addAll({
+      //   AppConstants.moduleId:
+      //       '${moduleID ?? ModuleModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.cacheModuleId)!)).id}'
+      // });
+    }
+    header.addAll({
+      'Content-Type': 'application/json; charset=UTF-8',
+      AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
 
-  };
-  debugPrint('🔄 تم تحديث الـ headers: $_headers');
-  notifyListeners();
-}
+      ///this will add in ride module
+      // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
+      AppConstants.localizationKey: languageCode ?? 'ar',
+      AppConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
+      AppConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
+      'Authorization': 'Bearer $token'
+    });
+    if (setHeader) {
+      _mainHeaders = header;
+    }
+    return header;
+  }
 
+  Map<String, String> getHeader() => _mainHeaders;
 
-  Future<http.Response> getData(String uri, {Map<String, String>? headers}) async { // أضف named parameter 'headers'
+  Future<http.Response> getData(String uri,
+      {Map<String, dynamic>? query, Map<String, String>? headers, bool handleError = true}) async {
     try {
-      Uri fullUri = Uri.parse('$uri');
-
-      // دمج الـ headers الداخلية مع أي headers إضافية تم تمريرها
-      final Map<String, String> requestHeaders = Map.from(_headers); // ابدأ بالـ headers الأساسية
-      if (headers != null) {
-        requestHeaders.addAll(headers); // أضف أو استبدل بالـ headers اللي جاية كـ parameter
+      if (kDebugMode) {
+        print('====> API Call: $uri  ');
       }
 
-      debugPrint('🔵 [API] جلب بيانات من: ${fullUri.toString()}');
-      debugPrint('🔵 [API] Headers المرسلة: $requestHeaders');
-      debugPrint('📡 Sending GET request to: $fullUri');
-      debugPrint('📦 Headers: $requestHeaders');
-      debugPrint('🕒 Waiting for response...'); // اطبع الـ headers النهائية اللي هتتبعت
+      final stopwatch = Stopwatch()..start();
 
-      final response = await http.get(
-        fullUri,
-        headers: requestHeaders, // استخدم الـ headers المدمجة
-      ).timeout(Duration(seconds: 50));
-      return response;
+      http.Response response =
+          await http.get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders).timeout(Duration(seconds: timeoutInSeconds));
+
+      stopwatch.stop();
+
+      if (kDebugMode) {
+        print('⏱️ زمن الاستجابة:  (${stopwatch.elapsed.inSeconds} ثانية)');
+      }
+      if (kDebugMode) {
+        var reponsemap = jsonDecode(response.body);
+        print("====> API response body: $reponsemap");
+      }
+      return handleResponse(response, uri, handleError);
     } catch (e) {
-      debugPrint('🔴 [API Error] ${e.toString()}');
-      throw Exception('فشل الاتصال بالخادم: ${e.toString()}');
+      if (kDebugMode) {
+        print('❌ خطأ في الاتصال: ${e.toString()}');
+      }
+      return http.Response('error', 1);
     }
   }
 
-
-
-  Future<http.Response?> postData(String uri, dynamic body) async {
+  Future<http.Response> postData(String uri, dynamic body,
+      {Map<String, String>? headers, int? timeout, bool handleError = true}) async {
     try {
-      final response = await http.post(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-        body: jsonEncode(body),
-      );
-      log('${(_handleResponse(response)) == null}55555');
-      return _handleResponse(response);
+      if (kDebugMode) {
+        print('====> API Call: $uri ');
+        print('====> API Body: $body');
+      }
+      http.Response response = await http
+          .post(Uri.parse(appBaseUrl + uri), body: jsonEncode(body), headers: headers ?? _mainHeaders)
+          .timeout(Duration(seconds: timeout ?? timeoutInSeconds));
+      if (kDebugMode) {
+        var reponsemap = jsonDecode(response.body);
+        print("====> API response body: $reponsemap");
+      }
+      return handleResponse(response, uri, handleError);
     } catch (e) {
-      log(e.toString());
-      debugPrint('POST Error: $e');
-      return null;
+      return http.Response('error', 1);
     }
   }
 
-  Future<http.Response?> putData(String uri, dynamic body) async {
+  //
+
+  Future<http.Response> postMultipartData(String uri, Map<String, String> body, List<MultipartBody> multipartBody,
+      {Map<String, String>? headers, bool handleError = true}) async {
     try {
-      final response = await http.put(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-        body: jsonEncode(body),
-      );
-      return _handleResponse(response);
+      if (kDebugMode) {
+        print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
+        // print('====> API Body: $body with ${multipartBody.length} picture');
+      }
+      http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
+      request.headers.addAll(headers ?? _mainHeaders);
+      for (MultipartBody multipart in multipartBody) {
+        if (multipart.file != null) {
+          Uint8List list = await multipart.file!.readAsBytes();
+          request.files.add(http.MultipartFile(
+            multipart.key,
+            multipart.file!.readAsBytes().asStream(),
+            list.length,
+            filename: '${DateTime.now().toString()}.png',
+          ));
+        }
+      }
+      Map<String, String> newBody = {};
+      body.forEach((s, i) {
+        if (i.isNotEmpty) {
+          newBody.addAll({s: i});
+        }
+      });
+      request.fields.addAll(newBody);
+      http.Response response = await http.Response.fromStream(await request.send());
+      return handleResponse(response, uri, handleError);
     } catch (e) {
-      debugPrint('PUT Error: $e');
-      return null;
+      return http.Response('error', 1);
     }
   }
 
-  Future<http.Response?> deleteData(String uri) async {
+  Future<http.Response> putData(String uri, dynamic body, {Map<String, String>? headers, bool handleError = true}) async {
     try {
-      final response = await http.delete(
-        Uri.parse("$appBaseUrl$uri"),
-        headers: _headers,
-      );
-      return _handleResponse(response);
+      if (kDebugMode) {
+        print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
+        print('====> API Body: $body');
+      }
+      http.Response response = await http
+          .put(
+            Uri.parse(appBaseUrl + uri),
+            body: jsonEncode(body),
+            headers: headers ?? _mainHeaders,
+          )
+          .timeout(Duration(seconds: timeoutInSeconds));
+      return handleResponse(response, uri, handleError);
     } catch (e) {
-      debugPrint('DELETE Error: $e');
-      return null;
+      return http.Response('error', 1);
     }
   }
 
-Future<http.Response?> postMultipartData(
-    String uri, Map<String, String> body, List<MultipartBody> multipartBody) async {
-  try {
-    debugPrint('🚀 [API] URL الكامل: ${appBaseUrl + uri}');
-    debugPrint('🚀 [API] الهيدرز: $_headers');
-    debugPrint('🚀 [API] البيانات النصية المرسلة: $body');
-    debugPrint('🚀 [API] الملفات المرفقة: ${multipartBody.length}');
+  Future<http.Response> deleteData(String uri, {Map<String, String>? headers, bool handleError = true}) async {
+    try {
+      if (kDebugMode) {
+        print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
+      }
+      http.Response response = await http
+          .delete(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
+          .timeout(Duration(seconds: timeoutInSeconds));
+      return handleResponse(response, uri, handleError);
+    } catch (e) {
+      return http.Response('error', 1);
+    }
+  }
 
-    var request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri)); 
-    request.headers.addAll(_headers);
+  http.Response handleResponse(http.Response response, String uri, bool handleError) {
+    if (kDebugMode) {
+      print('====> API Call: $uri ');
+      print('..====>>> API Response: [${response.statusCode}] $uri');
+    }
 
-    for (MultipartBody multipart in multipartBody) {
-      if (multipart.file != null) {
-        Uint8List list = await multipart.file!.readAsBytes();
-        debugPrint('🚀 [API] إرفاق ملف ${multipart.key} بحجم ${list.length} بايت');
-        
-        request.files.add(http.MultipartFile(
-          multipart.key,
-          multipart.file!.readAsBytes().asStream(), 
-          list.length,
-          filename: '${DateTime.now().toString()}.png',
-        ));
+    try {
+      final body = jsonDecode(response.body);
+      if (response.statusCode == 401) {
+        pushAndRemoveUntil(Navigation.currentContext, AppRoutes.Login_Mobile);
+        return response;
+      } else
+      // Optional: Custom error handling if API returns structured error formats
+      if (response.statusCode != 200 && body is Map<String, dynamic>) {
+        if (body.containsKey('errors') && body['errors'] is List) {
+          final errorResponse = ErrorResponse.fromJson(body);
+          final errorMsg = errorResponse.errors?.first.message ?? 'Unknown error';
+          throw Exception(errorMsg);
+        } else if (body.containsKey('message')) {
+          throw Exception(body['message']);
+        }
+      }
+    } catch (e) {
+      if (handleError) {
+        ApiChecker.checkApi(response); // Or pass `response` if your checker supports `http.Response`
       }
     }
-    request.fields.addAll(body);
 
-    debugPrint('🚀 [API] البدء في إرسال الريكويست...');
-
-    http.StreamedResponse streamedResponse = await request.send();
-
-    debugPrint('🚀 [API] تم إرسال الريكويست، في انتظار الاستجابة...');
-
-    final response = await http.Response.fromStream(streamedResponse);
-    debugPrint('🚀 [API] كود الاستجابة: ${response.statusCode}');
-    debugPrint('🚀 [API] نص الاستجابة: ${response.body}');
-    debugPrint('🚀 [API] كود الاستجابة بعد التحويل: ${response?.statusCode}');
-debugPrint('🚀 [API] الهيئة النهائية للجواب: ${response?.body}');
-
-    return _handleResponse(response);
-  } catch (e) {
-    debugPrint('❌ [API] خطأ في إرسال البيانات: $e');
-    return null;
-  }
-}
-
-  // ============================
-
-  http.Response? _handleResponse(http.Response response) {
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-      return response;
-    } else {
-      debugPrint("API Error: ${response.statusCode} - ${response.body}");
-      return null;
-    }
+    return response;
   }
 }
 

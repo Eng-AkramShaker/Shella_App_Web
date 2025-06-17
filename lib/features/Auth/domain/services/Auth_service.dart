@@ -12,41 +12,41 @@ class AuthService implements AuthServiceInterface {
   final AuthRepositoryInterface authRepositoryInterface;
 
   AuthService({required this.authRepositoryInterface});
-
-  // Future<User> loginExecute(String phone, String password) async {
-  //   final loginRequest = LoginRequest(phone: phone, password: password);
-  //   final loginResponse = await authRepository.login(loginRequest);
-  //
-  //   authRepository.saveUserToken(loginResponse.token);
-  //   return User(
-  //     token: loginResponse.token,
-  //     isPhoneVerified: loginResponse.isPhoneVerified == 1,
-  //   );
-  // }
-
-
-
   @override
-  Future<ResponseModel> login({required String emailOrPhone, required String password, required String loginType, required String fieldType, bool alreadyInApp = false}) async{
-    http.Response? response = await authRepositoryInterface.login(emailOrPhone: emailOrPhone, password: password, loginType: loginType, fieldType: fieldType);
-    if(response != null){
-      if(response.statusCode == 200){
-        AuthResponseModel authResponse =AuthResponseModel.fromJson(jsonDecode(response.body));
-        await _updateHeaderFunctionality(authResponse, alreadyInApp: alreadyInApp);
-        return ResponseModel(true, authResponse.token??'',authResponseModel: authResponse);
+  Future<ResponseModel> login(
+      {required String emailOrPhone,
+      required String password,
+      required String loginType,
+      required String fieldType,
+      bool alreadyInApp = false}) async {
+    http.Response? response = await authRepositoryInterface.login(
+        emailOrPhone: emailOrPhone,
+        password: password,
+        loginType: loginType,
+        fieldType: fieldType);
+    if (response != null) {
+      if (response.statusCode == 200) {
+        AuthResponseModel authResponse =
+            AuthResponseModel.fromJson(jsonDecode(response.body));
+        await _updateHeaderFunctionality(authResponse,
+            alreadyInApp: alreadyInApp);
+        return ResponseModel(true, authResponse.token ?? '',
+            authResponseModel: authResponse);
       } else {
         log('eerr');
         return ResponseModel(false, 'error');
       }
-    }else {
+    } else {
       log('errrrrr');
       return ResponseModel(false, 'error');
     }
   }
 
-  Future<void> _updateHeaderFunctionality(AuthResponseModel authResponse, {bool alreadyInApp = false}) async {
+  Future<void> _updateHeaderFunctionality(AuthResponseModel authResponse,
+      {bool alreadyInApp = false}) async {
     log('message');
-    await authRepositoryInterface.saveUserToken(authResponse.token??'', alreadyInApp: alreadyInApp);
+    await authRepositoryInterface.saveUserToken(authResponse.token ?? '',
+        alreadyInApp: alreadyInApp);
     // if(authResponse.isEmailVerified! && authResponse.isPhoneVerified! && authResponse.isPersonalInfo! && authResponse.token != null && authResponse.isExistUser == null) {
     //   authRepositoryInterface.saveUserToken(authResponse.token??'', alreadyInApp: alreadyInApp);
     //   await authRepositoryInterface.updateToken();
@@ -56,21 +56,81 @@ class AuthService implements AuthServiceInterface {
 
   @override
   Future<ResponseModel> registration(SignUpBodyModel signUpBody) async {
-    http.Response? response = await authRepositoryInterface.registration(
-        signUpBody);
-    if (response != null){
+    http.Response? response =
+        await authRepositoryInterface.registration(signUpBody);
+    if (response != null) {
       if (response.statusCode == 200) {
-        AuthResponseModel authResponse = AuthResponseModel.fromJson(
-            jsonDecode(response.body));
+        AuthResponseModel authResponse =
+            AuthResponseModel.fromJson(jsonDecode(response.body));
         await _updateHeaderFunctionality(authResponse, alreadyInApp: false);
-        return ResponseModel(
-            true, authResponse.token ?? '', authResponseModel: authResponse);
+        return ResponseModel(true, authResponse.token ?? '',
+            authResponseModel: authResponse);
       } else {
         return ResponseModel(false, 'error ${response.statusCode}');
       }
-  }else {
+    } else {
       return ResponseModel(false, 'error null}');
     }
   }
 
+  @override
+  Future<ResponseModel> forgetPassword(String? phone) async {
+    http.Response? response =
+        await authRepositoryInterface.forgetPassword(phone);
+    if (response != null) {
+      if (response.statusCode == 200) {
+        var responsemap = jsonDecode(response.body);
+        // await _updateHeaderFunctionality(authResponse, alreadyInApp: false);
+        return ResponseModel(
+          true,
+          responsemap["message"],
+        );
+      } else {
+        return ResponseModel(false, 'error ${response.statusCode}');
+      }
+    } else {
+      return ResponseModel(false, 'error null}');
+    }
+  }
+
+  @override
+  Future<ResponseModel> resetPassword(String? resetToken, String number,
+      String password, String confirmPassword) async {
+    http.Response? response = await authRepositoryInterface.resetPassword(
+        resetToken, number, password, confirmPassword);
+    if (response != null) {
+      if (response.statusCode == 200) {
+        var responsemap = jsonDecode(response.body);
+        // await _updateHeaderFunctionality(authResponse, alreadyInApp: false);
+        return ResponseModel(
+          true,
+          responsemap["message"],
+        );
+      } else {
+        return ResponseModel(false, 'error ${response.statusCode}');
+      }
+    } else {
+      return ResponseModel(false, 'error null}');
+    }
+  }
+
+  @override
+  Future<ResponseModel> verifyPhone(String? phone, String? otp) async {
+    http.Response? response =
+        await authRepositoryInterface.verifyPhone(phone, otp);
+    if (response != null) {
+      if (response.statusCode == 200) {
+        var responsemap = jsonDecode(response.body);
+        // await _updateHeaderFunctionality(authResponse, alreadyInApp: false);
+        return ResponseModel(
+          true,
+          responsemap["message"],
+        );
+      } else {
+        return ResponseModel(false, 'error ${response.statusCode}');
+      }
+    } else {
+      return ResponseModel(false, 'error null}');
+    }
+  }
 }

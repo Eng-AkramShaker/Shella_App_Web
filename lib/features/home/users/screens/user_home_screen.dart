@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
@@ -11,7 +12,6 @@ import 'package:shella_design/features/home/home/widgets/builds/build_category_l
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_2.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -64,16 +64,10 @@ class _Home_ScreenState extends State<Home_Screen> {
               SizedBox(height: 22.h),
               buildBanner(context),
               SizedBox(height: 16.h),
-              buildSectionTitle_2("اشهر المطاعم", context),
-              SizedBox(height: 16.h),
-              buildRestaurantGrid(context),
-              SizedBox(height: 24.h),
-              buildSectionTitleTow(
-                context,
-                title: "المطاعم القريبة منك",
-                lapel: "المزيد",
-                underline: true,
-              ),
+              buildSectionTitleTow(context,
+                  title: "المتاجر القريبة منك",
+                  lapel: "المزيد",
+                  underline: true),
               SizedBox(height: 16.h),
               buildDeliveryListView(context),
               SizedBox(height: 50.h),

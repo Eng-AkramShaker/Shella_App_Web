@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/my_coupon/screens/my_coupon_screen.dart';
-import 'package:shella_design/features/my_points/screens/my_points_screen.dart';
 import 'package:shella_design/features/profile_detailes/screens/language_selection_page.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
-
 import '../../../common/helper/app_routes.dart';
 
 class ProfileDetailsPage extends StatelessWidget {
@@ -15,6 +12,7 @@ class ProfileDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWideScreen = MediaQuery.of(context).size.width > 600;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -61,16 +59,13 @@ class ProfileDetailsPage extends StatelessWidget {
            Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyCouponScreen()),
-            );
+            isWideScreen==true?
+            pushNewScreen(context, AppRoutes.accountdetails):
+            pushNewScreen(context, AppRoutes.myCouponScreen);
           }),
           buildListTile('نقاطي', Icons.stars_sharp, context, () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyPointsScreen()),
-            );
+            isWideScreen ? pushNewScreen(context,AppRoutes.myPointsWeb):
+            pushNewScreen(context, AppRoutes.myPointsMobile);
           }),
           buildListTile('الرجوع والكسب', Icons.group, context, () {
             pushNewScreen(context, AppRoutes.returnAndEarnScreen);

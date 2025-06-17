@@ -62,7 +62,9 @@ class _Login_mobileState extends State<Login_mobile> {
                     // Show an error message to the user
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(controller.errorMessage ?? 'Login Failed')),
+                        SnackBar(
+                            content: Text(
+                                controller.errorMessage ?? 'Login Failed')),
                       );
                     });
                   }
@@ -111,7 +113,9 @@ class _Login_mobileState extends State<Login_mobile> {
                             });
                           },
                           icon: Icon(
-                            isHidden ? Icons.remove_red_eye_outlined : Icons.visibility_off_outlined,
+                            isHidden
+                                ? Icons.remove_red_eye_outlined
+                                : Icons.visibility_off_outlined,
                           ),
                         ),
                       ),
@@ -119,7 +123,10 @@ class _Login_mobileState extends State<Login_mobile> {
                       RememberMeRow(),
                       halfHightSizedBox(size),
                       LoginButton(
-                          formKey: formKey, phoneController: phoneController, passwordController: passwordController, size: size),
+                          formKey: formKey,
+                          phoneController: phoneController,
+                          passwordController: passwordController,
+                          size: size),
                       halfHightSizedBox(size),
                       SignUpButton(size: size),
                       SizedBox(

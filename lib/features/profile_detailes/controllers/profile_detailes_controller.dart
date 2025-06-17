@@ -21,6 +21,27 @@ class ProfileController extends ChangeNotifier {
   int tybe = 1;
   int floor = 1;
 
+  /// WEP
+  int _currentPage = 0;
+  int _currentAddressesPage = 0;
+
+  // Getters
+  int get currentPage => _currentPage;
+  int get currentAddressesPage => _currentAddressesPage;
+
+  // Setters
+  void setCurrentAddressesPage(int value) {
+    _currentAddressesPage = value;
+    notifyListeners();
+  }
+
+  void changePage(int index) {
+    _currentPage = index;
+    notifyListeners();
+  }
+
+  void changeAddressesPage() => notifyListeners();
+
   /// Fetches the list of addresses
   Future<void> getAdress() async {
     adressstate = RequestState.loading;

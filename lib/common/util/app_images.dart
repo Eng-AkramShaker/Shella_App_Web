@@ -53,10 +53,11 @@ class AppImages {
   static const String market_31 = 'assets/images/31.png';
   static const String market_32 = 'assets/images/32.png';
   static const String logo_23 = 'assets/images/23.png';
-
+  static const String loyal = 'assets/images/loyal.png';
+  static const String noDataFound = 'assets/images/no_data_found.png';
   static const String icon_44 = 'assets/images/44.png';
 
-  static const String empty = 'assets/images/empty.png';
+  static const String empty = 'assets/images/empty.jpg';
 
   static const String item_25 = 'assets/images/25.png';
 
@@ -81,6 +82,8 @@ class AppImages {
 
   static const String baner = 'assets/images/3.png';
   static const String baner_2 = 'assets/images/baner_2.png';
+
+  static const String helpAndSupport = 'assets/images/Help.png';
 
   static const String item_66 = 'assets/images/66.jpeg';
 
@@ -137,6 +140,16 @@ class AppImages {
   static const String alfaris = 'assets/images/130.png';
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
+
+  ///======================== SVG ========================
+  static const String cIcon = 'assets/svg/c.svg';
+  static const String pharmacy = 'assets/svg/pharmacy.svg';
+  static const String view1 = 'assets/svg/view1.svg';
+  static const String view2 = 'assets/svg/view2.svg';
+  static const String food = 'assets/svg/food.svg';
+  static const String market = 'assets/svg/market.svg';
+  static const String carrot = 'assets/svg/carrot.svg';
+  static const String fish = 'assets/svg/fish.svg';
 
   //
 }
