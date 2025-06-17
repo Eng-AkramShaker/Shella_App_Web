@@ -42,6 +42,14 @@ class TapsCard extends StatelessWidget {
               style: font14Black600W(context),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Custom_Text(
+              context,
+              text: "منتهي",
+              style: font14Black600W(context),
+            ),
+          ),
         ],
       ),
     );

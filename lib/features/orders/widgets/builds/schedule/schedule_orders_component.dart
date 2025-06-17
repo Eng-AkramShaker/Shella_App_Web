@@ -13,14 +13,14 @@ Widget scheduleOrdersComponent(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 5.h),
-          Custom_Text(context, text: "مطاعم", style: font14Black600W(context)),
+          // Custom_Text(context, text: "مطاعم", style: font14Black600W(context)),
           Expanded(child: SchedulePaginatedOrderList()),
-          Custom_Text(
-            context,
-            text: "سوبر ماركت",
-            style: font14Black600W(context),
-          ),
-          Expanded(child: SchedulePaginatedOrderList()),
+          // Custom_Text(
+          //   context,
+          //   text: "سوبر ماركت",
+          //   style: font14Black600W(context),
+          // ),
+          // Expanded(child: SchedulePaginatedOrderList()),
         ],
       );
     },
