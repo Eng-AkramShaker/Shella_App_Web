@@ -2,10 +2,10 @@
 
 class Api_Constants {
   // ======================== Url ========================
-
   static const String appBaseUrl = 'https://shalafood.net';
   static String token = 'guest';
-
+    static String customerInfo = '$appBaseUrl/api/v1/customer/info';
+    static String joinAsDriver = '$appBaseUrl/api/v1/auth/delivery-man/store';
   static String login = '/api/v1/auth/login';
   static String signup = '/api/v1/auth/sign-up';
   static const String forgetPasswordUri = '/api/v1/auth/forgot-password';
@@ -18,7 +18,6 @@ class Api_Constants {
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
   static const String updateAddressUri = '/api/v1/customer/address/update/';
-  //static const String getDiscountedProducts = '/items/discounted?type=all&offset=2&limit=50';
 
   //
 
@@ -31,6 +30,9 @@ class Api_Constants {
       '$appBaseUrl/api/v1/customer/cart/remove';
   static const String removeItemCartUri =
       '$appBaseUrl/api/v1/customer/cart/remove-item';
+
+
+  static const String discountProducts = '$appBaseUrl/api/v1/items/discounted?type=all&offset=1&limit=50';
 
   static const String discountProducts = '/api/v1/items/discounted';
 
@@ -70,4 +72,5 @@ class Api_Constants {
   static const String runningOrderListUri =
       '/api/v1/customer/order/running-orders';
   static const String historyOrderListUri = '/api/v1/customer/order/list';
+
 }
