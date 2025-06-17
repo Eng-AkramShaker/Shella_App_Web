@@ -23,6 +23,8 @@ class CustomTextField extends StatelessWidget {
   final Color? suffixColor;
   final double? borderWidth;
   final Color? enableBorderColor;
+   final Function(String)? onChanged;
+  
 
   const CustomTextField({
     Key? key,
@@ -43,6 +45,7 @@ class CustomTextField extends StatelessWidget {
     this.horizontalPadding,
     this.borderWidth,
     this.enableBorderColor,
+    this.onChanged
   }) : super(key: key);
 
   @override

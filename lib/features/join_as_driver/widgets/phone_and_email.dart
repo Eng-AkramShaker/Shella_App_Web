@@ -1,95 +1,89 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 
 import '../../../common/widgets/textField/custom_textfield_2.dart';
+class PhoneAndEmail extends StatelessWidget {
+  final TextEditingController phoneController;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
 
-class PhoneAndEmail extends StatefulWidget {
-  const PhoneAndEmail({super.key});
+  final bool showPass;
+  final VoidCallback onToggleVisible;
 
-  @override
-  State<PhoneAndEmail> createState() => _PhoneAndEmailState();
-}
-
-class _PhoneAndEmailState extends State<PhoneAndEmail> {
-  bool showPassword = false;
-  final TextEditingController phoneController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  const PhoneAndEmail({super.key,
+    required this.phoneController,
+    required this.emailController,
+    required this.passwordController,
+    required this.confirmPasswordController,
+    required this.showPass,
+    required this.onToggleVisible,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Custom_Text(context, text: 'رقم الهاتف', style: font14Black500W(context)),
-        SizedBox(
-          height: 10,
-        ),
-        CustomPhoneInput(controller: phoneController, onChanged: (number) {}),
-        SizedBox(
-          height: 10.h,
-        ),
-        Custom_Text(context, text: 'البريد الالكتروني', style: font14Black500W(context)),
-        SizedBox(
-          height: 10,
-        ),
+        Custom_Text(context, text:'رقم الهاتف'),
+        SizedBox(height: 10.h),
+  CustomPhoneInput(
+  controller: phoneController,
+  onChanged: (phone) {
+    final complete = phone.countryCode + phone.number;
+    context.read<DriverRegisterController>().setPhone(complete);
+    debugPrint('✅ تم تحديد التليفون الكامل مرة أخرى: $complete'); 
+  },
+),
+        SizedBox(height: 10.h),
+        Custom_Text(context, text:'البريد الإلكتروني'),
+        SizedBox(height: 10.h),
         CustomTextField(
-          labelText: 'ادخل بريدك الالكتروني',
+          controller: emailController,
+          labelText:'ادخل بريدك الإلكتروني',
           borderColor: AppColors.gryColor_5,
           prefixIcon: Icon(Icons.email_outlined),
           keyboardType: TextInputType.emailAddress,
+          onChanged: (val) {
+            context.read<DriverRegisterController>().setEmail(val.toString());
+          },
         ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Custom_Text(context, text: 'كلمة المرور', style: font14Black500W(context)),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10.h),
+        Custom_Text(context, text:'كلمة المرور'),
+        SizedBox(height: 10.h),
         CustomTextField(
-          labelText: 'كلمة المرور',
+          controller: passwordController,
+          labelText:'كلمة المرور',
           suffixColor: AppColors.gryColor_5,
           borderColor: AppColors.gryColor_5,
-          prefixIcon: Icon(Icons.email_outlined),
-          keyboardType: TextInputType.emailAddress,
-          obscureText: showPassword,
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(showPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
+          prefixIcon: Icon(Icons.lock),
+          keyboardType: TextInputType.text,
+          obscureText: showPass,
+          suffixIcon: IconButton(onPressed: onToggleVisible, icon: Icon(showPass ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
+          onChanged: (val) {
+            context.read<DriverRegisterController>().setPassword(val);
+          },
         ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Custom_Text(context, text: 'ادخل كلمة المرور مرة اخرى', style: font14Black500W(context)),
-        SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: 10.h),
+        Custom_Text(context, text:'ادخل كلمة المرور مرة اخرى'),
+        SizedBox(height: 10.h),
         CustomTextField(
-          labelText: 'كلمة المرور',
+          controller: confirmPasswordController,
+          labelText:'كلمة المرور',
           suffixColor: AppColors.gryColor_5,
           borderColor: AppColors.gryColor_5,
-          prefixIcon: Icon(Icons.email_outlined),
-          keyboardType: TextInputType.emailAddress,
-          obscureText: showPassword,
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(showPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
-        )
+          prefixIcon: Icon(Icons.lock),
+          keyboardType: TextInputType.text,
+          obscureText: showPass,
+          suffixIcon: IconButton(onPressed: onToggleVisible, icon: Icon(showPass ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
+          onChanged: (val) {
+          },
+        ),
       ],
     );
   }

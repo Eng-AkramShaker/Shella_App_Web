@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:developer';
+
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +10,11 @@ import 'package:shella_design/features/discount/controllers/discount_controller.
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
+import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
+import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositiory/join_as_driver_repositories.dart';
+import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositioryInterface/join_as_driver_repositiory_interface.dart';
+import 'package:shella_design/features/join_as_driver/domain/services/joinAsDriverServices/join_as_driver_services.dart';
+import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
 import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
@@ -28,22 +35,54 @@ import 'package:shella_design/features/splash/controllers/splash_controller.dart
 List<SingleChildWidget> getAppProviders({ required String appBaseUrl,
   required SharedPreferences sharedPreferences,}) {
   
-  return [
-    ChangeNotifierProvider(create: (_) => SplashController()),
-
-
-    ChangeNotifierProvider(create: (_) => HomeController()),
-    ChangeNotifierProvider(create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository())),),
-   //Provider<ApiClient>(create: (_) => ApiClient()),
-
-
-  
+ return [
+    /// 🔹 ApiClient لازم يكون أول واحد
     ChangeNotifierProvider<ApiClient>(
       create: (_) => ApiClient(
         appBaseUrl: appBaseUrl,
         sharedPreferences: sharedPreferences,
       ),
     ),
+
+    /// 🔹 Repositories و Services و Controllers الخاصة بـ Driver Register
+  //   Provider<DriverRegisterRepositoryInterface>(
+  //     create: (context) => DriverRegisterRepositoryImpl(
+  //       apiClient: context.read<ApiClient>(),
+  //     ),
+  //   ),
+  //   Provider<DriverRegisterService>(
+  //     create: (context) => DriverRegisterService(
+  //       driverRegisterRepositoryInterface:
+  //           context.read<DriverRegisterRepositoryInterface>(),
+  //     ),
+  //   ),
+  //   ChangeNotifierProvider<DriverRegisterController>(
+  // create: (context) => DriverRegisterController(
+  //   context.read<DriverRegisterService>(),
+  // ),),
+  // في الويدجت:
+// ChangeNotifierProvider(
+//   create: (_) => DriverRegisterController()), 
+
+        // ChangeNotifierProvider(create: (_) => DriverRegisterController(
+        //   service: DriverRegisterServiceImpl(
+        //     repository: DriverRegisterRepositoryImpl(),
+        //   ),
+        // )),
+        ChangeNotifierProvider(
+      create: (context) => DriverRegisterController(
+        deliveryManService: DeliveryManService(DeliveryManRepository()) 
+      ),
+    ),
+    /// باقي الـ Providers كالعادة
+    ChangeNotifierProvider(create: (_) => SplashController()),
+    ChangeNotifierProvider(create: (_) => HomeController()),
+    ChangeNotifierProvider(
+      create: (_) => DiscountController(
+        service: DiscountService(discountRepositoryInterface: DiscountRepository()),
+      ),
+    ),
+
     Provider<CustomerRepositoryInterface>(
       create: (context) => CustomerRepository(
         apiClient: context.read<ApiClient>(),
@@ -59,15 +98,13 @@ List<SingleChildWidget> getAppProviders({ required String appBaseUrl,
         service: context.read<CustomerService>(),
       )..fetchCustomerData(),
     ),
+
     ChangeNotifierProvider(create: (_) => KaidhaFormController()),
     ChangeNotifierProvider(create: (_) => ServeMeController()),
-
     ChangeNotifierProvider(create: (_) => SearchFilterController()),
     ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
     ChangeNotifierProvider(create: (_) => OrderTrackingController()),
-
     ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
     ChangeNotifierProvider(create: (_) => ScheduleController()),
-    // نفس قائمة الـ Providers هنا
   ];
 }

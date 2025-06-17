@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
@@ -113,34 +112,50 @@ class ApiClient with ChangeNotifier {
     }
   }
 
-  Future<http.Response?> postMultipartData(String uri, Map<String, String> body, List<MultipartBody> multipartBody) async {
-    try {
-      var request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
-      request.headers.addAll(_headers);
+Future<http.Response?> postMultipartData(
+    String uri, Map<String, String> body, List<MultipartBody> multipartBody) async {
+  try {
+    debugPrint('🚀 [API] URL الكامل: ${appBaseUrl + uri}');
+    debugPrint('🚀 [API] الهيدرز: $_headers');
+    debugPrint('🚀 [API] البيانات النصية المرسلة: $body');
+    debugPrint('🚀 [API] الملفات المرفقة: ${multipartBody.length}');
 
-      for (MultipartBody multipart in multipartBody) {
-        if (multipart.file != null) {
-          Uint8List list = await multipart.file!.readAsBytes();
-          request.files.add(http.MultipartFile(
-            multipart.key,
-            multipart.file!.readAsBytes().asStream(),
-            list.length,
-            filename: '${DateTime.now().toString()}.png',
-          ));
-        }
+    var request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri)); 
+    request.headers.addAll(_headers);
+
+    for (MultipartBody multipart in multipartBody) {
+      if (multipart.file != null) {
+        Uint8List list = await multipart.file!.readAsBytes();
+        debugPrint('🚀 [API] إرفاق ملف ${multipart.key} بحجم ${list.length} بايت');
+        
+        request.files.add(http.MultipartFile(
+          multipart.key,
+          multipart.file!.readAsBytes().asStream(), 
+          list.length,
+          filename: '${DateTime.now().toString()}.png',
+        ));
       }
-
-      request.fields.addAll(body);
-      http.StreamedResponse streamedResponse = await request.send();
-      final response = await http.Response.fromStream(streamedResponse);
-
-      debugPrint(response.body);
-      return _handleResponse(response);
-    } catch (e) {
-      debugPrint('Multipart POST Error: $e');
-      return null;
     }
+    request.fields.addAll(body);
+
+    debugPrint('🚀 [API] البدء في إرسال الريكويست...');
+
+    http.StreamedResponse streamedResponse = await request.send();
+
+    debugPrint('🚀 [API] تم إرسال الريكويست، في انتظار الاستجابة...');
+
+    final response = await http.Response.fromStream(streamedResponse);
+    debugPrint('🚀 [API] كود الاستجابة: ${response.statusCode}');
+    debugPrint('🚀 [API] نص الاستجابة: ${response.body}');
+    debugPrint('🚀 [API] كود الاستجابة بعد التحويل: ${response?.statusCode}');
+debugPrint('🚀 [API] الهيئة النهائية للجواب: ${response?.body}');
+
+    return _handleResponse(response);
+  } catch (e) {
+    debugPrint('❌ [API] خطأ في إرسال البيانات: $e');
+    return null;
   }
+}
 
   // ============================
 

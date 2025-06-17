@@ -291,7 +291,7 @@ class AppRoutes {
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
     myCouponScreen: (context) => const MyCouponScreen(),
     helpAndSupport: (context) => const HelpAndSupportScreen(),
-    joinAsDriverOne: (context) => const JoinAsDriverOne(),
+    joinAsDriverOne: (context) =>  JoinAsDriverOne(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
     supportConversation: (context) => const SupportConversationScreen(),
     seveMePage: (context) => const Servemepage(),
