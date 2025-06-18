@@ -17,7 +17,7 @@ Widget buildOrderCard(OrderModel orderItem, BuildContext context) {
   String name = isParcel ? 'parcel' : (orderItem.store?.name ?? '');
   String id = "#${orderItem.id}";
 
-  // String date = DateConverter.dateTimeStringToDateTime(orderItem.createdAt!);
+  String date = DateConverter.isoStringToReadableString(orderItem.createdAt!);
 
   return Card(
     color: AppColors.wtColor,
@@ -59,7 +59,7 @@ Widget buildOrderCard(OrderModel orderItem, BuildContext context) {
                 ),
                 Custom_Text(
                   context,
-                  text: orderItem.createdAt!,
+                  text: date,
                   style: font12Grey400W(context),
                 ),
               ],
