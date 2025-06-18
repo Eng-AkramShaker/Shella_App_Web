@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_info_button.dart';
+import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/profile_detailes/widgets/formate_date_info.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_info_list.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -9,14 +11,6 @@ class ProfileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = [
-      {'title': 'الاسم بالكامل', 'value': 'نورا احمد'},
-      {'title': 'رقم الهاتف', 'value': '0096266544884'},
-      {'title': 'تاريخ الميلاد', 'value': '12/12/1990'},
-      {'title': 'البريد الإلكتروني', 'value': 'Mailto@mailto.com'},
-      {'title': 'كلمة المرور', 'value': '***********'},
-    ];
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -31,20 +25,31 @@ class ProfileInfo extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20.h),
-          Expanded(
-            child: profile_info_list(items: items),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.w),
-            child: profile_info_button()),
-        ],
+      body: Consumer<CustomerController>(
+        builder: (context, provider, _) {
+          if (provider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final customer = provider.customer;
+          if (customer == null) {
+            return const Center(child: Text("لا توجد بيانات")); 
+          }
+          final items = [
+            {'title': 'الاسم بالكامل', 'value': customer.fullName},
+            {'title': 'رقم الهاتف', 'value': customer.phone},
+            {'title': 'تاريخ الميلاد', 'value': formatDate(customer.createdAt)},
+            {'title': 'البريد الإلكتروني', 'value': customer.email},
+            {'title': 'كلمة المرور', 'value': '***********'},
+          ];
+          return profile_info_list(items: items);
+        },
       ),
     );
   }
 }
+
+
+
 
 
 

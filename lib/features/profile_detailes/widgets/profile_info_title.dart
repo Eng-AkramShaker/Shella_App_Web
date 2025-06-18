@@ -51,10 +51,5 @@ class ProfileInfoTile extends StatelessWidget {
         ],
       ),
     );
-    // return ListTile(
-    //   trailing: const Icon(Icons.arrow_back_ios,size:16,color: AppColors.wGreyColor,),
-    //   title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 15)),
-    //   subtitle: Text(value, style: const TextStyle(color: AppColors.supListTitle,fontSize: 14,fontWeight: FontWeight.w400)),
-    // );
   }
 }
