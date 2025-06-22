@@ -294,6 +294,11 @@ class AppRoutes {
     // discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
+
+    myCouponScreen: (context) => const MyCouponScreen(),
+    helpAndSupport: (context) => const HelpAndSupportScreen(),
+    joinAsDriverOne: (context) =>  JoinAsDriverOne(),
+
     myCouponScreen: (context) => ChangeNotifierProvider(
           create: (_) => MyCouponController(
               myCouponServiceInterface: MyCouponServices(
@@ -303,6 +308,7 @@ class AppRoutes {
         ),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverOne: (context) => const JoinAsDriverOne(),
+
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
     supportConversation: (context) => const SupportConversationScreen(),
     seveMePage: (context) => const Servemepage(),
