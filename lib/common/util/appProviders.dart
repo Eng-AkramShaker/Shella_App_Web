@@ -52,24 +52,23 @@ List<SingleChildWidget> appProviders({
 }) {
   //
 
-  // === Core Dependencies ===
   final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
 
   // === Repositories & Services ===
   final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
   final authService = AuthService(authRepositoryInterface: authRepo);
-
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
-
   final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
-
   final notificationRepo = NotificationRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final notificationService = NotificationService(notificationRepositoryInterface: notificationRepo);
 
+  // ====================================================================================================================================
+
   return [
     // === Core ===
+
     Provider<ApiClient>.value(value: apiClient),
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
@@ -86,13 +85,16 @@ List<SingleChildWidget> appProviders({
     ChangeNotifierProvider(create: (_) => HomeController()),
 
     // === Discount ===
+
     ChangeNotifierProvider(
         create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository()))),
 
     // === Join as Driver ===
+
     ChangeNotifierProvider(create: (_) => DriverRegisterController(deliveryManService: DeliveryManService(DeliveryManRepository()))),
 
     // === Orders ===
+
     ChangeNotifierProvider(
       create: (_) => OrdersController(ordersServiceInterface: ordersService)
         ..getHistoryOrders()
