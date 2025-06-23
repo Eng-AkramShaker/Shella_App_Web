@@ -13,23 +13,19 @@ import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import 'package:shella_design/common/helper/date_converter.dart';
 
-// ✅ تأكد أن هذه الملفات تحتوي فقط على تعريفات Provider اللازمة
-import 'package:shella_design/features/cart/controllers/cart_controller.dart';
-import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
-import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await init();
-  await checkIfLoggedInUser();
 
   final sharedPreferences = await SharedPreferences.getInstance();
   const String baseUrl = Api_Constants.appBaseUrl;
 
+  await init();
+  await checkIfLoggedInUser();
+
   runApp(
     MultiProvider(
-      providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+      providers: appProviders(
+          appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -57,7 +53,8 @@ class MyApp extends StatelessWidget {
       title: 'شلة',
       theme: ThemeData(fontFamily: 'Tajawal', useMaterial3: true),
       routes: AppRoutes.routes,
-      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      initialRoute:
+          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -74,14 +71,3 @@ class MyApp extends StatelessWidget {
   //   12345678
 
 
-  //  Card(
-  //     color: Colors.red,
-  //     child: ElevatedButton(
-  //       child: const Text('data'),
-  //       onPressed: () async {
-  //         Get.find<CategoryController>().getCategoryList(true);
-  //     },
-  //    ),
-  //  ),
-
-  
