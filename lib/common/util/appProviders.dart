@@ -4,10 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
-<<<<<<< HEAD
-import 'package:shella_design/common/util/Api_constants.dart';
-=======
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
@@ -31,12 +27,9 @@ import 'package:shella_design/features/my_coupon/domain/services/myCouponService
 import 'package:shella_design/features/my_points/controllers/my_points_controller.dart';
 import 'package:shella_design/features/my_points/domain/repositories/my_points_repository.dart';
 import 'package:shella_design/features/my_points/domain/services/my_points_service.dart';
-<<<<<<< HEAD
-=======
 import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
 import 'package:shella_design/features/notifications/domain/repositories/notification_repository.dart';
 import 'package:shella_design/features/notifications/domain/services/notification_service.dart';
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
 import 'package:shella_design/features/orders/controllers/orders_controller.dart';
 import 'package:shella_design/features/orders/domain/repositories/orders_repository.dart';
 import 'package:shella_design/features/orders/domain/services/orders_service.dart';
@@ -53,14 +46,6 @@ import 'package:shella_design/features/serveMe/controllers/serve_me_controller.d
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
 
-<<<<<<< HEAD
-List<SingleChildWidget> appProviders({required String appBaseUrl, required SharedPreferences sharedPreferences}) {
-  //
-
-  final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
-
-  final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
-=======
 List<SingleChildWidget> appProviders(
     {required String appBaseUrl,
     required SharedPreferences sharedPreferences}) {
@@ -71,21 +56,11 @@ List<SingleChildWidget> appProviders(
 
   final authRepo =
       AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
   final authService = AuthService(authRepositoryInterface: authRepo);
 
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
 
-<<<<<<< HEAD
-  final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
-  final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
-
-  return [
-    Provider<ApiClient>.value(value: apiClient),
-    Provider<ApiClient>(create: (_) => ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences)),
-    Provider<ApiClient>(create: (_) => ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences)),
-=======
   final ordersRepo = OrdersRepository(
       sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
@@ -101,24 +76,11 @@ List<SingleChildWidget> appProviders(
     Provider<ApiClient>(
         create: (_) => ApiClient(
             appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences)),
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
 
     //
 
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
-<<<<<<< HEAD
-    ChangeNotifierProvider<AuthController>(create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider<SplashController>(create: (_) => SplashController(SplashService())..loadConfig()),
-    ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
-    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()),
-    ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
-    ChangeNotifierProvider(create: (_) => HomeController()),
-    ChangeNotifierProvider(
-        create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository()))),
-    ChangeNotifierProvider(create: (_) => DriverRegisterController(deliveryManService: DeliveryManService(DeliveryManRepository()))),
-    ChangeNotifierProvider(create: (_) => CustomerController(service: customerService)..fetchCustomerData()),
-=======
     ChangeNotifierProvider<AuthController>(
         create: (_) => AuthController(authServiceInterface: authService)),
     ChangeNotifierProvider<SplashController>(
@@ -140,7 +102,6 @@ List<SingleChildWidget> appProviders(
     ChangeNotifierProvider(
         create: (_) =>
             CustomerController(service: customerService)..fetchCustomerData()),
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
     ChangeNotifierProvider(create: (_) => KaidhaFormController()),
     ChangeNotifierProvider(create: (_) => ServeMeController()),
     ChangeNotifierProvider(create: (_) => SearchFilterController()),
@@ -149,13 +110,6 @@ List<SingleChildWidget> appProviders(
     ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
     ChangeNotifierProvider(create: (_) => ScheduleController()),
     ChangeNotifierProvider(
-<<<<<<< HEAD
-      create: (_) => MyCouponController(myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()))
-        ..getMyCoupon(),
-    ),
-    ChangeNotifierProvider(
-      create: (_) => LoyaltyProvider(LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
-=======
       create: (_) => MyCouponController(
           myCouponServiceInterface: MyCouponServices(
               myCouponRepositoryInterface: MyCouponRepository()))
@@ -164,7 +118,6 @@ List<SingleChildWidget> appProviders(
     ChangeNotifierProvider(
       create: (_) => LoyaltyProvider(
           LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
         ..loadProfile()
         ..loadCoupons(),
     ),
@@ -174,11 +127,8 @@ List<SingleChildWidget> appProviders(
         ..getrunningOrders()
         ..getScheduleOrders(),
     ),
-<<<<<<< HEAD
-=======
     ChangeNotifierProvider(
         create: (_) => NotificationsController(
             notificationServiceInterface: notificationService)),
->>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
   ];
 }
