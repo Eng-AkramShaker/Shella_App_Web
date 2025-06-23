@@ -1,9 +1,14 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
 import 'package:shella_design/common/util/appProviders.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
@@ -14,6 +19,7 @@ import 'package:shella_design/common/helper/date_converter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+<<<<<<< HEAD
   await init();
   await checkIfLoggedInUser();
 
@@ -23,6 +29,18 @@ void main() async {
   runApp(
     MultiProvider(
       providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+=======
+  final sharedPreferences = await SharedPreferences.getInstance();
+  const String baseUrl = Api_Constants.appBaseUrl;
+
+  await init();
+  await checkIfLoggedInUser();
+
+  runApp(
+    MultiProvider(
+      providers: appProviders(
+          appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+>>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -42,6 +60,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     log(isLoggedInUser.toString());
 
+<<<<<<< HEAD
+=======
+    // ✅ تهيئة المحول الزمني
+>>>>>>> c8e1746084cd043a3b9eece5f7e39cc05ceef464
     DateConverter.init(context);
 
     return MaterialApp(
@@ -49,7 +71,8 @@ class MyApp extends StatelessWidget {
       title: 'شلة',
       theme: ThemeData(fontFamily: 'Tajawal', useMaterial3: true),
       routes: AppRoutes.routes,
-      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      initialRoute:
+          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -66,14 +89,3 @@ class MyApp extends StatelessWidget {
   //   12345678
 
 
-  //  Card(
-  //     color: Colors.red,
-  //     child: ElevatedButton(
-  //       child: const Text('data'),
-  //       onPressed: () async {
-  //         Get.find<CategoryController>().getCategoryList(true);
-  //     },
-  //    ),
-  //  ),
-
-  

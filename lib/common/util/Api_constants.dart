@@ -65,4 +65,6 @@ class Api_Constants {
   //Orders
   static const String runningOrderListUri = '/api/v1/customer/order/running-orders';
   static const String historyOrderListUri = '/api/v1/customer/order/list';
+  //notifications
+  static const String notificationUri = '/api/v1/customer/notifications';
 }

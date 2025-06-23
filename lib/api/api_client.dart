@@ -49,6 +49,7 @@ class ApiClient {
       0,
       '1',
       '1',
+      setHeader: true,
       // addressModel?.zoneIds,
       // addressModel?.areaIds,
 

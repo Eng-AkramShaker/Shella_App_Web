@@ -49,16 +49,6 @@ class AuthRepo implements AuthRepositoryInterface {
 
   @override
   Future<bool> saveUserToken(String token, {bool alreadyInApp = false}) async {
-    //apiClient.token = token;
-    // if(alreadyInApp && sharedPreferences.getString(AppConstants.userAddress) != null){
-    //   AddressModel? addressModel = AddressModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.userAddress)!));
-    //   apiClient.updateHeader(
-    //     token, addressModel.zoneIds, addressModel.areaIds, sharedPreferences.getString(AppConstants.languageCode),
-    //     ModuleHelper.getModule()?.id, addressModel.latitude, addressModel.longitude,
-    //   );
-    // }else{
-    //   apiClient.updateHeader(token, null, null, sharedPreferences.getString(AppConstants.languageCode), ModuleHelper.getModule()?.id, null, null);
-    // }
     return await sharedPreferences.setString(SharedPrefKeys.userToken, token);
   }
 
