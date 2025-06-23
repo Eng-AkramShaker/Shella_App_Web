@@ -16,11 +16,11 @@ import 'package:shella_design/common/helper/date_converter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await init();
-  await checkIfLoggedInUser();
-
   final sharedPreferences = await SharedPreferences.getInstance();
   const String baseUrl = Api_Constants.appBaseUrl;
+
+  await init();
+  await checkIfLoggedInUser();
 
   runApp(
     MultiProvider(
