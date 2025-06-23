@@ -46,89 +46,86 @@ import 'package:shella_design/features/serveMe/controllers/serve_me_controller.d
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
 
-List<SingleChildWidget> appProviders(
-    {required String appBaseUrl,
-    required SharedPreferences sharedPreferences}) {
+List<SingleChildWidget> appProviders({
+  required String appBaseUrl,
+  required SharedPreferences sharedPreferences,
+}) {
   //
 
-  final apiClient =
-      ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
+  final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
 
-  final authRepo =
-      AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
+  // === Repositories & Services ===
+  final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
   final authService = AuthService(authRepositoryInterface: authRepo);
-
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
-
-  final ordersRepo = OrdersRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
+  final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
-  final notificationRepository = NotificationRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
-  final notificationService = NotificationService(
-      notificationRepositoryInterface: notificationRepository);
+  final notificationRepo = NotificationRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
+  final notificationService = NotificationService(notificationRepositoryInterface: notificationRepo);
+
+  // ====================================================================================================================================
+
   return [
+    // === Core ===
+
     Provider<ApiClient>.value(value: apiClient),
-    Provider<ApiClient>(
-        create: (_) => ApiClient(
-            appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences)),
-    Provider<ApiClient>(
-        create: (_) => ApiClient(
-            appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences)),
-
-    //
-
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
-    ChangeNotifierProvider<AuthController>(
-        create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider<SplashController>(
-        create: (_) => SplashController(SplashService())..loadConfig()),
-    ChangeNotifierProvider(
-        create: (_) => BannerProvider(BannerService())..loadBanners()),
-    ChangeNotifierProvider(
-        create: (_) => SectionProvider(SectionService())..fetchCategories()),
-    ChangeNotifierProvider(
-        create: (_) => StoreProvider(StoreService())..fetchStores()),
+
+    // === Controllers ===
+    ChangeNotifierProvider(create: (_) => SplashController(SplashService())..loadConfig()),
+    ChangeNotifierProvider(create: (_) => AuthController(authServiceInterface: authService)),
+    ChangeNotifierProvider(create: (_) => CustomerController(service: customerService)..fetchCustomerData()),
+
+    // === Home ===
+    ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
+    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()),
+    ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
+
+    // === Discount ===
+
     ChangeNotifierProvider(
-        create: (_) => DiscountController(
-            service: DiscountService(
-                discountRepositoryInterface: DiscountRepository()))),
-    ChangeNotifierProvider(
-        create: (_) => DriverRegisterController(
-            deliveryManService: DeliveryManService(DeliveryManRepository()))),
-    ChangeNotifierProvider(
-        create: (_) =>
-            CustomerController(service: customerService)..fetchCustomerData()),
-    ChangeNotifierProvider(create: (_) => KaidhaFormController()),
-    ChangeNotifierProvider(create: (_) => ServeMeController()),
-    ChangeNotifierProvider(create: (_) => SearchFilterController()),
-    ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
-    ChangeNotifierProvider(create: (_) => OrderTrackingController()),
-    ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
-    ChangeNotifierProvider(create: (_) => ScheduleController()),
-    ChangeNotifierProvider(
-      create: (_) => MyCouponController(
-          myCouponServiceInterface: MyCouponServices(
-              myCouponRepositoryInterface: MyCouponRepository()))
-        ..getMyCoupon(),
-    ),
-    ChangeNotifierProvider(
-      create: (_) => LoyaltyProvider(
-          LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
-        ..loadProfile()
-        ..loadCoupons(),
-    ),
+        create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository()))),
+
+    // === Join as Driver ===
+
+    ChangeNotifierProvider(create: (_) => DriverRegisterController(deliveryManService: DeliveryManService(DeliveryManRepository()))),
+
+    // === Orders ===
+
     ChangeNotifierProvider(
       create: (_) => OrdersController(ordersServiceInterface: ordersService)
         ..getHistoryOrders()
         ..getrunningOrders()
         ..getScheduleOrders(),
     ),
+    ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
+    ChangeNotifierProvider(create: (_) => OrderTrackingController()),
+    ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
+
+    // === Notifications ===
+    ChangeNotifierProvider(create: (_) => NotificationsController(notificationServiceInterface: notificationService)),
+
+    // === My Coupon ===
     ChangeNotifierProvider(
-        create: (_) => NotificationsController(
-            notificationServiceInterface: notificationService)),
+      create: (_) => MyCouponController(
+        myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()),
+      )..getMyCoupon(),
+    ),
+
+    // === My Points ===
+    ChangeNotifierProvider(
+      create: (_) => LoyaltyProvider(LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
+        ..loadProfile()
+        ..loadCoupons(),
+    ),
+
+    // === Others ===
+    ChangeNotifierProvider(create: (_) => KaidhaFormController()),
+    ChangeNotifierProvider(create: (_) => ServeMeController()),
+    ChangeNotifierProvider(create: (_) => SearchFilterController()),
+    ChangeNotifierProvider(create: (_) => ScheduleController()),
   ];
 }
