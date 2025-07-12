@@ -1,0 +1,12 @@
+{
+    "app_title": "اختيار اللغة",
+    "select_language_prompt": "الرجاء اختيار اللغة",
+    "language_arabic": "العربية",
+    "arabic_greeting_example": "مرحباً، كيف يمكنني المساعدة؟",
+    "language_english": "English Language",
+    "english_greeting_example": "Hello, how can I help you؟",
+    "save_button_text": "حفظ",
+    "back_button_tooltip": "رجوع",
+    "current_language": "العربية",
+    "language": "اللغة"
+}

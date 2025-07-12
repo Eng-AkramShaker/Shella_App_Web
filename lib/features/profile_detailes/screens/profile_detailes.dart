@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/profile_detailes/screens/language_selection_page.dart';
@@ -40,12 +41,15 @@ class ProfileDetailsPage extends StatelessWidget {
             );
           }),
           buildListTile('المفضلة لديك', Icons.favorite_border, context, () {}),
-          buildListTile('اللغة', Icons.language, context, () {
+          buildListTile('language'.tr(), Icons.language, context, () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LanguageSelectionPage()),
             );
-          }, trailing: Text('العربية')),
+          },
+              trailing: Text(
+                "current_language".tr(),
+              )),
           buildListTile('إحصائياتي', Icons.insert_chart, context, () {
             pushNewScreen(context, AppRoutes.statisticsScreen);
           }),
@@ -56,16 +60,17 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
           buildListTile('كود الخصم', Icons.discount, context, () {
-           Navigator.pushNamed(context, AppRoutes.discountScreen);
+            Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
           buildListTile('قسائمي', Icons.local_offer, context, () {
-            isWideScreen==true?
-            pushNewScreen(context, AppRoutes.accountdetails):
-            pushNewScreen(context, AppRoutes.myCouponScreen);
+            isWideScreen == true
+                ? pushNewScreen(context, AppRoutes.accountdetails)
+                : pushNewScreen(context, AppRoutes.myCouponScreen);
           }),
           buildListTile('نقاطي', Icons.stars_sharp, context, () {
-            isWideScreen ? pushNewScreen(context,AppRoutes.myPointsWeb):
-            pushNewScreen(context, AppRoutes.myPointsMobile);
+            isWideScreen
+                ? pushNewScreen(context, AppRoutes.myPointsWeb)
+                : pushNewScreen(context, AppRoutes.myPointsMobile);
           }),
           buildListTile('الرجوع والكسب', Icons.group, context, () {
             pushNewScreen(context, AppRoutes.returnAndEarnScreen);
@@ -74,7 +79,8 @@ class ProfileDetailsPage extends StatelessWidget {
             pushNewScreen(context, AppRoutes.joinAsDriverOne);
           }),
           buildListTile('سياسة الخصوصية', Icons.privacy_tip, context, () {}),
-          buildListTile('الحصول على المساعدة', Icons.help_outline, context, () {}),
+          buildListTile(
+              'الحصول على المساعدة', Icons.help_outline, context, () {}),
           buildListTile('الشروط والأحكام', Icons.rule, context, () {}),
           buildListTile('سياسة الاسترداد', Icons.replay, context, () {}),
           buildListTile('المساعدة والدعم', Icons.support_agent, context, () {
@@ -83,7 +89,9 @@ class ProfileDetailsPage extends StatelessWidget {
           buildListTile('الدردشة المباشرة', Icons.chat, context, () {
             pushNewScreen(context, AppRoutes.supportConversation);
           }),
-          buildListTile('تسجيل الخروج', Icons.power_settings_new, context, () {}, color: Colors.red),
+          buildListTile(
+              'تسجيل الخروج', Icons.power_settings_new, context, () {},
+              color: Colors.red),
         ],
       ),
     );

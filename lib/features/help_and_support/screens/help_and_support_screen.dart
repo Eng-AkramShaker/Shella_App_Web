@@ -15,7 +15,12 @@ class HelpAndSupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, title: 'المساعدة و الدعم', img: 'assets/images/help_and_support_appbar_img.png',onPressed: () => customPrint('ddd'),),
+      appBar: customAppBar(
+        context,
+        title: 'المساعدة و الدعم',
+        img: 'assets/images/help_and_support_appbar_img.png',
+        onPressed: () => Navigator.pop(context),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),

@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/drop_choice/drop_choice.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 
-class TypeOfWorkRow extends StatelessWidget {
+class TypeOfWorkRow extends StatefulWidget {
   const TypeOfWorkRow({
     super.key,
   });
 
+  @override
+  State<TypeOfWorkRow> createState() => _TypeOfWorkRowState();
+}
+
+class _TypeOfWorkRowState extends State<TypeOfWorkRow> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -16,6 +24,7 @@ class TypeOfWorkRow extends StatelessWidget {
       children: [
         Expanded(
           child: DropChoice(
+            provider: context.read<DriverRegisterController>().setEarning,
             title: 'حدد نوع العمل',
             titleChoiceOne: 'مستقل',
             titleChoiceTwo: 'راتب',
@@ -28,6 +37,7 @@ class TypeOfWorkRow extends StatelessWidget {
         ),
         Expanded(
           child: DropChoice(
+            provider: context.read<DriverRegisterController>().setZoneId,
             title: 'Demo Zone',
             titleChoiceOne: 'Portsaid',
             titleChoiceTwo: 'طويق',

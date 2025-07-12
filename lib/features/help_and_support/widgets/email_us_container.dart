@@ -14,7 +14,7 @@ class EmailUsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        String email = 'example@example.com';
+        String email = 'shalafood@gmail.com';
         String url = 'mailto:$email?}';
         await launchUrl(Uri.parse(url));
       },
@@ -36,14 +36,12 @@ class EmailUsContainer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppColors.greenColor)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.greenColor)),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.mail_outline,
-                    color: AppColors.greenColor,
-                  ),
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset('assets/icons/email.png')),
               ),
               SizedBox(
                 width: 10.w,
@@ -54,7 +52,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'راسلنا عبر بريدنا الالكتروني',
-                    style: font12Green400W(context,size: 11),
+                    style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +60,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'shalafood@gmail.com',
-                    style: font12Black300W(context,size: 11),
+                    style: font12Black300W(context, size: 11),
                   ),
                 ],
               ),

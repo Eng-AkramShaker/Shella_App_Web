@@ -14,7 +14,8 @@ class AddressContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=48.8584,2.2945'; // Eiffel Tower
+        String googleMapsUrl =
+            'https://www.google.com/maps/search/?api=1&query=48.8584,2.2945'; // Eiffel Tower
         await launchUrl(Uri.parse(googleMapsUrl));
       },
       child: Container(
@@ -35,12 +36,15 @@ class AddressContainer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppColors.greenColor)),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.greenColor),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.location_on_outlined,
-                    color: AppColors.greenColor,
+                  child: Image.asset(
+                    'assets/icons/address1.png',
+                    // color: AppColors.greenColor,
                   ),
                 ),
               ),
@@ -51,13 +55,13 @@ class AddressContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'عناويننا',
-                    style: font12Green400W(context,size: 11),
+                    style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(height: 10.h),
                   Custom_Text(
                     context,
                     text: 'ksa, saudi arabia , umm al hammam',
-                    style: font12Black300W(context,size: 11),
+                    style: font12Black300W(context, size: 11),
                   ),
                 ],
               ),

@@ -1,0 +1,12 @@
+{
+    "app_title": "Language Selector",
+    "select_language_prompt": "Please select a language",
+    "language_arabic": "العربية",
+    "arabic_greeting_example": "Hello, how can I help you?",
+    "language_english": "English Language",
+    "english_greeting_example": "Hello, how can I help you?",
+    "save_button_text": "Save",
+    "back_button_tooltip": "Back",
+    "current_language": "English",
+    "language": "language"
+}

@@ -14,7 +14,8 @@ class ContactUsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        String phoneNumber = '+15551234567'; // Replace with the actual phone number
+        String phoneNumber =
+            '+966599977725'; // Replace with the actual phone number
         String url = 'tel:$phoneNumber';
         await launchUrl(Uri.parse(url));
       },
@@ -36,13 +37,12 @@ class ContactUsContainer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppColors.greenColor)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.greenColor)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.call_outlined,
-                    color: AppColors.greenColor,
-                  ),
+                  child: Image.asset('assets/icons/call.png'),
                 ),
               ),
               SizedBox(
@@ -54,7 +54,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'اتصل بنا',
-                    style: font12Green400W(context,size: 11),
+                    style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +62,7 @@ class ContactUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: '+966-5999-777-25',
-                    style: font12Black300W(context,size: 11),
+                    style: font12Black300W(context, size: 11),
                   ),
                 ],
               ),
