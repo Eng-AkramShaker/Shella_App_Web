@@ -39,8 +39,7 @@ class AppImages {
   static const String icon_card = 'assets/icons/card.png';
 
   // ======================== Images ========================
-  static const String individualsService =
-      'assets/images/IndividualsService.png';
+  static const String individualsService = 'assets/images/IndividualsService.png';
   static const String fRAME31 = 'assets/images/FRAME (3) 1.png';
   static const String Plumbingservices = 'assets/images/Plumbingservices.png';
   static const String res_4 = 'assets/images/4.png';
@@ -128,10 +127,8 @@ class AppImages {
   //
   static const String logo = 'assets/images/logo.png';
   static const String forgetpassword = 'assets/images/6430775 1.png';
-  static const String comfirempassord =
-      'assets/images/create-new-password-isolated-cartoon-vector-illustrations-2XXWJ11 1.png';
-  static const String comfirmpasswordchanged =
-      'assets/images/Illustration Success.png';
+  static const String comfirempassord = 'assets/images/create-new-password-isolated-cartoon-vector-illustrations-2XXWJ11 1.png';
+  static const String comfirmpasswordchanged = 'assets/images/Illustration Success.png';
   static const String blureimage = 'assets/images/Frame 160.png';
   static const String correctsign = 'assets/images/111.png';
   static const String ramadan = 'assets/images/112.png';

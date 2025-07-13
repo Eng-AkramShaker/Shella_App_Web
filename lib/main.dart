@@ -49,7 +49,10 @@ class MyApp extends StatelessWidget {
       title: 'شلة',
       theme: ThemeData(fontFamily: 'Tajawal', useMaterial3: true),
       routes: AppRoutes.routes,
-      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      // initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+
+      initialRoute: AppRoutes.address_details_service_screen,
+
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
