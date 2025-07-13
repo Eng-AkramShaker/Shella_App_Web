@@ -52,6 +52,8 @@ dependencies:
   shimmer: ^3.0.0
   animated_flip_counter: ^0.3.4
   phone_numbers_parser: ^9.0.3
+  flutter_spinkit:
+  google_maps_flutter:
 
 dev_dependencies:
   flutter_test:

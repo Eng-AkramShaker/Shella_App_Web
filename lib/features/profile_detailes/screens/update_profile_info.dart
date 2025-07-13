@@ -1,0 +1,232 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+
+import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
+
+import '../../../common/helper/app_routes.dart';
+import '../../../common/util/app_navigators.dart';
+
+class UpdateProfileInfoPage extends StatefulWidget {
+  const UpdateProfileInfoPage({super.key});
+
+  @override
+  State<UpdateProfileInfoPage> createState() => _UpdateProfileInfoPageState();
+}
+
+class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
+  late TextEditingController _fullNameController;
+  late TextEditingController _phoneController;
+  late TextEditingController _birthDateController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  bool _hasChanges = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final customer =
+        Provider.of<CustomerController>(context, listen: false).customer;
+    _fullNameController = TextEditingController(text: customer?.fullName ?? '');
+    _phoneController = TextEditingController(text: customer?.phone ?? '');
+    _birthDateController = TextEditingController(text: "01/01/2000");
+    _emailController = TextEditingController(text: customer?.email ?? '');
+    _passwordController = TextEditingController(text: "********");
+
+    _fullNameController.addListener(_checkForChanges);
+    _phoneController.addListener(_checkForChanges);
+    _emailController.addListener(_checkForChanges);
+  }
+
+  void _checkForChanges() {
+    final customer =
+        Provider.of<CustomerController>(context, listen: false).customer;
+
+    final hasTextChanges =
+        _fullNameController.text != (customer?.fullName ?? '') ||
+            _phoneController.text != (customer?.phone ?? '') ||
+            _emailController.text != (customer?.email ?? '');
+
+    setState(() {
+      _hasChanges = hasTextChanges;
+    });
+  }
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _phoneController.dispose();
+    _birthDateController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.greenColor,
+        title: Text(
+          'تحديث الملف الشخصي',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 60.r,
+              backgroundColor: AppColors.wGreyColor,
+              child: Icon(
+                Icons.person,
+                size: 50.r,
+                color: AppColors.wtColor,
+              ),
+            ),
+
+            SizedBox(height: 30.h),
+
+            _buildTextField(_fullNameController, 'الاسم الكامل', Icons.person),
+            SizedBox(height: 20.h),
+            _buildTextField(_phoneController, 'رقم الهاتف', Icons.phone),
+            SizedBox(height: 20.h),
+
+            _buildTextField(_emailController, 'البريد الالكتروني', Icons.email),
+            SizedBox(height: 20.h),
+
+            GestureDetector(
+              onTap: () {
+                pushNewScreen(context, AppRoutes.confirmPasswordScreen);
+              },
+              child: _buildTextField(
+                  _passwordController, 'كلمة المرور', Icons.password,
+                  enabled: false),
+            ),
+            SizedBox(height: 40.h),
+
+            // Save button
+            Consumer<CustomerController>(
+              builder: (context, controller, _) {
+                return ProfileButton(
+                  title: "حفظ التغييرات",
+                  isLoading: controller.isLoading,
+                  onTap: () => _saveChange(context, controller),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(
+      TextEditingController controller, String label, IconData icon,
+      {bool enabled = true}) {
+    return TextFormField(
+      enabled: enabled,
+      controller: controller,
+      validator: (value) {
+        if (label.contains('البريد') && value!.isEmpty) {
+          return 'هذا الحقل مطلوب';
+        }
+        return null;
+      },
+      cursorColor: AppColors.greenColor,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          fontSize: 16.sp,
+          color: AppColors.wGreyColor,
+        ),
+        prefixIcon: Icon(icon, color: AppColors.greenColor),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: AppColors.wGreyColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: AppColors.wGreyColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: AppColors.greenColor),
+        ),
+      ),
+    );
+  }
+
+  void _saveChange(
+    BuildContext context,
+    CustomerController controller,
+  ) async {
+    if (!_hasChanges) {
+      Navigator.pop(context);
+      return;
+    }
+    // final rootNavigator = Navigator.of(context, rootNavigator: true);
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    if (_emailController.text.isEmpty) {
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('البريد الإلكتروني مطلوب'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+    final updateData = {
+      'full_name': _fullNameController.text,
+      'phone': _phoneController.text,
+      'email': _emailController.text,
+      // Add other fields as needed
+    };
+    try {
+      final success = await controller.updateProfileInfo(updateData);
+
+      navigator.pop();
+
+      if (success) {
+        navigator.pop();
+        Provider.of<CustomerController>(context, listen: false)
+            .fetchCustomerData();
+      } else {
+        messenger.showSnackBar(
+          SnackBar(
+            content: Text('فشل في تحديث البيانات'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      // Close loading dialog
+      navigator.pop();
+
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('حدث خطأ: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+
+    // await controller.updateProfileInfo(updateData);
+    //
+    // controller.updateProfileInfo(updateData).then((_) {
+    //   navigator.pop(); // Go back to profile info page
+    // });
+  }
+}

@@ -4,8 +4,8 @@ class Address {
   final String contactPersonName;
   final String contactPersonNumber;
   final String address;
-  final dynamic latitude;
-  final dynamic longitude;
+  final String latitude;
+  final String longitude;
   final int userId;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -32,6 +32,10 @@ class Address {
     this.road,
     this.house,
   });
+
+  String get stringId => id.toString();
+
+  String get idString => id.toString();
 
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(

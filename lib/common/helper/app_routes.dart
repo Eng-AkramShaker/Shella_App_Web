@@ -89,6 +89,8 @@ import '../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
 import '../../features/my_points/screens/my_points_transactions_screen.dart';
 import '../../features/my_points/screens/web/my_points_web_widget.dart';
+import '../../features/profile_detailes/domain/models/profile_detailes_model.dart';
+import '../../features/profile_detailes/screens/update_profile_info.dart';
 import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/search_filter/domain/services/searchService/search_service.dart';
 import '../../features/search_filter/screen/web/search_filter_web.dart';
@@ -156,8 +158,10 @@ class AppRoutes {
   static const String accountdetails = '/accountdetails';
   static const String savedaddresses = '/savedaddresses';
   static const String myOrders = '/myOrders';
+
   //prifile Details
   static const String profileInfo = '/profile_info';
+  static const String updateProfileInfoPage = '/update_profile_info_page';
   static const String addressDetails = '/addressDetails';
   static const String addaddress = '/addaddress';
 
@@ -171,8 +175,10 @@ class AppRoutes {
       '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
+
   // static const String infoOfService = '/infoOfService';
   static const String confirmReservation = '/confirmReservation';
+
   // static const String serviceInfoPage = '/serviceInfoPage';
   static const String choiseATechnincal = '/choiseATechnincal';
   static const String technicianDetailsScreen = '/technicianDetailsScreen';
@@ -297,7 +303,7 @@ class AppRoutes {
 
     myCouponScreen: (context) => const MyCouponScreen(),
     helpAndSupport: (context) => const HelpAndSupportScreen(),
-    joinAsDriverOne: (context) =>  JoinAsDriverOne(),
+    joinAsDriverOne: (context) => JoinAsDriverOne(),
 
     myCouponScreen: (context) => ChangeNotifierProvider(
           create: (_) => MyCouponController(
@@ -333,6 +339,12 @@ class AppRoutes {
 
     //prifile Details
     profileInfo: (context) => const ProfileInfo(),
+    updateProfileInfoPage: (context) => const UpdateProfileInfoPage(),
+    // addressDetails: (context) => const AddressDetailsPage(),
+    //
+    // addaddress: (context) => AddNewAddressScreen(
+    //       editAddress: ModalRoute.of(context)?.settings.arguments as Address?,
+    //     ),
     addressDetails: (context) => MultiProvider(
           providers: [
             Provider<ProfileRepository>(

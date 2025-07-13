@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
@@ -10,13 +12,17 @@ class ProfileController extends ChangeNotifier {
   ProfileController({required this.profileDetailsService});
 
   RequestState adressstate = RequestState.initial;
+
   RequestState get adresstate => adressstate;
 
   List<Address>? address;
+
   List<Address>? get getedaddress => address;
 
   String? _errorMessage;
+
   String? get errorMessage => _errorMessage;
+
   //add address page
   int tybe = 1;
   int floor = 1;
@@ -27,6 +33,7 @@ class ProfileController extends ChangeNotifier {
 
   // Getters
   int get currentPage => _currentPage;
+
   int get currentAddressesPage => _currentAddressesPage;
 
   // Setters
@@ -65,7 +72,7 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.addAddress(newAddress);
       if (success) {
-        address?.add(newAddress);
+        // address?.add(newAddress);
         adressstate = RequestState.success;
         getAdress();
       } else {
@@ -86,16 +93,31 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.removeAddress(addressId);
       if (success) {
-        address?.removeWhere((addr) => addr.id == addressId);
+        print("?/////////////////////////// $addressId");
+        //address?.removeWhere((addr) => addr.stringId == addressId);
+        // address?.removeWhere((addr) => addr.idString == addressId);
+        address?.removeWhere((addr) => addr.id.toString() == addressId);
         adressstate = RequestState.success;
+        await getAdress();
       } else {
         throw Exception("Failed to remove address");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      // _errorMessage = "Failed to delete address: ${e.toString()}";
+      _errorMessage = _parseErrorMessage(e);
       adressstate = RequestState.error;
     }
+
+    print('Delete Error Details: $e');
+
     notifyListeners();
+  }
+
+  String _parseErrorMessage(dynamic e) {
+    if (e is Exception) {
+      return e.toString().replaceFirst('Exception: ', '');
+    }
+    return 'Delete failed: ${e.toString()}';
   }
 
   /// Updates an existing address
@@ -132,10 +154,24 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetOperationState() {
+    if (adressstate != RequestState.initial) {
+      adressstate = RequestState.initial;
+      _errorMessage = null;
+      notifyListeners();
+    }
+  }
+
   /// Resets the controller state
   void resetState() {
     adressstate = RequestState.initial;
-    address = [];
+    address = null;
+    _errorMessage = null;
+    notifyListeners();
+  }
+
+  void resetAddState() {
+    adressstate = RequestState.initial;
     _errorMessage = null;
     notifyListeners();
   }

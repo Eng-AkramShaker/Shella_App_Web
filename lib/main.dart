@@ -11,6 +11,8 @@ import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import 'package:shella_design/common/helper/date_converter.dart';
 
+import 'common/util/app_colors.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,7 +24,8 @@ void main() async {
 
   runApp(
     MultiProvider(
-      providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+      providers: appProviders(
+          appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -47,9 +50,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'شلة',
-      theme: ThemeData(fontFamily: 'Tajawal', useMaterial3: true),
+      theme: ThemeData(
+        fontFamily: 'Tajawal',
+        useMaterial3: true,
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: AppColors.greenColor.withValues(alpha: 0.4),
+          cursorColor: AppColors.greenColor,
+          selectionHandleColor: AppColors.greenColor,
+        ),
+      ),
       routes: AppRoutes.routes,
-      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+      initialRoute:
+          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -61,8 +73,5 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-  //   599966674
-  //   12345678
-
-
+//   599966674
+//   12345678
