@@ -28,8 +28,9 @@ class AvailableCouponWidget extends StatelessWidget {
               ],
             ),
           ),
-        ):
-        Expanded(
+        )
+       
+        : Expanded(
           child: ListView.builder(
             shrinkWrap: true,
             padding: EdgeInsets.zero,
@@ -39,6 +40,42 @@ class AvailableCouponWidget extends StatelessWidget {
             },
           ),
         ),
+    SizedBox(height: 62,),
+            Container(
+            width: double.infinity,
+            height: 55,
+            decoration: BoxDecoration(
+              color: AppColors.greenColor,
+              borderRadius: BorderRadius.circular(8)
+            ),
+            child: TextButton(
+              onPressed: (){
+                if(ResponsiveLayout.isWeb()){
+                  showDialog(
+                    context: context,
+                    builder: (context) =>AlertDialog(
+                      contentPadding: EdgeInsets.zero,
+                      content: CouponInputDialog(),
+                   
+                    )
+                  );
+                }else {
+                  showModalBottomSheet<String>(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (BuildContext context){
+                    return CouponInputDialog();
+           
+                  
+                  }
+                );
+                }
+              },
+              child: Custom_Text(context, text: 'إضافة قسمية جديدة',style: font14White500W(context)),
+            ),
+                   )
+        
       ],
     );
   }

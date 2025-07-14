@@ -70,7 +70,7 @@ class ApiClient {
       String? longitude,
       {bool setHeader = true}) {
     Map<String, String> header = {};
-
+    
     if (moduleID != null ||
         sharedPreferences.getString(AppConstants.cacheModuleId) != null) {
       // header.addAll({
@@ -80,8 +80,8 @@ class ApiClient {
     }
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
-      AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
-
+      AppConstants.zoneId: zoneIDs != null && zoneIDs.isNotEmpty ? jsonEncode(zoneIDs) : jsonEncode([2,3,4,5]),
+      AppConstants.moduleId: moduleID != null && moduleID!= 0 ? jsonEncode(moduleID) : jsonEncode(3),
       ///this will add in ride module
       // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
       AppConstants.localizationKey: languageCode ?? 'ar',
@@ -107,11 +107,11 @@ class ApiClient {
       }
 
       final stopwatch = Stopwatch()..start();
-
-      http.Response response = await http
-          .get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
+            
+            http.Response response= await http
+          .get(Uri.parse(appBaseUrl + uri).replace(queryParameters: query), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
-
+       
       stopwatch.stop();
 
       if (kDebugMode) {

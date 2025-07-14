@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -17,52 +18,46 @@ class ProductItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 105.h,
-        width: width_media(context),
+        height: 121.h,
+        width: width_media(context), 
         margin: EdgeInsets.only(bottom: 24.h),
         decoration: BoxDecoration(
           color: AppColors.backgroundColor,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // -------- Text Info
-            Flexible(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Custom_Text(context,
-                        text: product.name, style: font14Black500W(context)),
-                    Custom_Text(
-                      context,
-                      text: "${product.price} ريال",
-                      style: font10SecondaryColor600W(context),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
+        
             // -------- Image
             Expanded(
-              flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  product.image,
-                  height: 100.h,
-                  width: 100.w,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.image_not_supported),
+             flex: 4,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.white
+                  )
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    product.image,
+                    height: 100.h,
+                    width: 100.w,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) =>
+                        const Icon(Icons.image_not_supported),
+                  ),
                 ),
               ),
             ),
+            SizedBox(height: 5,),
+            Expanded(
+              flex: 1,
+              child: Custom_Text(context, text: product.unit,style: font10Black400W(context) ) ,
+            )
           ],
         ),
       ),

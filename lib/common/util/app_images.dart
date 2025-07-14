@@ -140,6 +140,8 @@ class AppImages {
   static const String alfaris = 'assets/images/130.png';
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
+  static const String storeOffer= 'assets/images/storeOffer.png';
+  static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';

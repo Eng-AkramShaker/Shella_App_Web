@@ -85,49 +85,11 @@ Widget buildDeliveryListView(BuildContext context) {
                       ),
                       Custom_Text(
                         context,
-                        text: store.address,
+                        text: store.module!.moduleType ?? "",
                         style: font10Grey400W(context),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Row(
-                          children: [
-                            custom_Images_asset(
-                              image: AppImages.icon_time,
-                              h: 18,
-                              w: 18,
-                            ),
-                            const SizedBox(width: 8),
-                            Custom_Text(
-                              context,
-                              text:
-                                  '${store.deliveryTime} - ${store.delivery ? "توصيل متاح" : "لا يوجد توصيل"}',
-                              style: font10Grey400W(context),
-                            ),
-                            const SizedBox(width: 8),
-                            const Icon(
-                              Icons.delivery_dining,
-                              color: AppColors.secondaryColor,
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          custom_Images_asset(
-                            image: AppImages.icon_disc,
-                            h: 18,
-                            w: 18,
-                          ),
-                          const SizedBox(width: 8),
-                          Custom_Text(
-                            context,
-                            text: 'خصم يصل إلى 25% عند اول طلب',
-                            style: font10Grey400W(context),
-                          ),
-                        ],
-                      ),
+                     
+                    
                     ],
                   ),
                 ),
