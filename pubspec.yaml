@@ -54,6 +54,7 @@ dependencies:
   phone_numbers_parser: ^9.0.3
   flutter_spinkit:
   google_maps_flutter:
+  geolocator:
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_divider.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
 
@@ -23,9 +24,9 @@ Widget buildProfileHeader(onTap) {
               children: [
                 Text(provider.toExternalReference!),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () => provider.fetchCustomerData(),
-                  child: const Text('إعادة المحاولة'),
+                ProfileButton(
+                  title: 'إعادة المحاولة',
+                  onTap: () => provider.fetchCustomerData(),
                 ),
               ],
             ),

@@ -72,6 +72,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor,
+        // iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           'تحديث الملف الشخصي',
           style: TextStyle(
@@ -176,7 +177,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
       Navigator.pop(context);
       return;
     }
-    // final rootNavigator = Navigator.of(context, rootNavigator: true);
+
     final navigator = Navigator.of(context);
     final messenger = ScaffoldMessenger.of(context);
     if (_emailController.text.isEmpty) {
@@ -192,7 +193,6 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
       'full_name': _fullNameController.text,
       'phone': _phoneController.text,
       'email': _emailController.text,
-      // Add other fields as needed
     };
     try {
       final success = await controller.updateProfileInfo(updateData);

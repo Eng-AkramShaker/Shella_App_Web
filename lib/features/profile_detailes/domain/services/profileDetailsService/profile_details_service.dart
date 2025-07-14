@@ -53,27 +53,15 @@ class ProfileDetailsService implements ProfileDetailsServiceInterface {
       Response? response = await profileRepository.removeAddress(addressId);
       if (response == null) throw Exception('Null response');
       final body = jsonDecode(response.body);
-      // if (response!.statusCode == 200) {
-      //   if (kDebugMode) {
-      //     print('Remove Address Response :: ${response.body}');
-      //   }
-      //   return true;
-      // } else {
-      //   throw Exception('Remove Address Failed');
-      // }
 
       if (response.statusCode == 200) {
         return true;
       } else if (response.statusCode == 404) {
-        throw Exception(body['message'] ?? 'Address not found');
+        throw Exception('العنوان غير موجود');
       } else {
         throw Exception('HTTP ${response.statusCode}: ${body['message']}');
       }
     } catch (e) {
-      // if (kDebugMode) {
-      //   print('Remove Address Exception :: ${e.toString()}');
-      // }
-      // throw Exception('Remove Address Exception :: ${e.toString()}');
       if (kDebugMode) print('Remove Address Error: $e');
       rethrow;
     }
@@ -89,13 +77,13 @@ class ProfileDetailsService implements ProfileDetailsServiceInterface {
         }
         return true;
       } else {
-        throw Exception('Update Address Failed');
+        throw Exception('فشل في تعديل العنوان');
       }
     } catch (e) {
       if (kDebugMode) {
         print('Update Address Exception :: ${e.toString()}');
       }
-      throw Exception('Update Address Exception :: ${e.toString()}');
+      throw Exception('فشل في الاتصال');
     }
   }
 

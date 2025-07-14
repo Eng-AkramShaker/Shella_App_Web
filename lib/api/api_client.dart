@@ -223,14 +223,23 @@ class ApiClient {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         print('====> API Body: $body');
       }
-      http.Response response = await http
-          .put(
-            Uri.parse(appBaseUrl + uri),
-            body: jsonEncode(body),
-            headers: headers ?? _mainHeaders,
-          )
-          .timeout(Duration(seconds: timeoutInSeconds));
+      initHeader();
+      final fullUri = Uri.parse(appBaseUrl + uri);
+      final request = http.Request('PUT', fullUri);
+      request.headers.addAll(headers ?? _mainHeaders);
+
+      request.body = jsonEncode(body);
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
       return handleResponse(response, uri, handleError);
+      // http.Response response = await http
+      //     .put(
+      //       Uri.parse(appBaseUrl + uri),
+      //       body: jsonEncode(body),
+      //       headers: headers ?? _mainHeaders,
+      //     )
+      //     .timeout(Duration(seconds: timeoutInSeconds));
+      // return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
     }

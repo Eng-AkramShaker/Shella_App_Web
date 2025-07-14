@@ -7,6 +7,7 @@ import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepositoryInterface/profile_details_repository_interface.dart';
 import '../../../../../api/api_client.dart';
 import '../../../../../common/helper/check_Logged.dart';
+import '../../../../../common/util/sharedPre_constants.dart';
 
 class ProfileRepository implements ProfileDetailsRepositoryInterface {
   @override
@@ -30,20 +31,14 @@ class ProfileRepository implements ProfileDetailsRepositoryInterface {
   @override
   Future<http.Response?> removeAddress(String addressId) async {
     final params = {'address_id': addressId};
-    final url =
-        Uri.https('shalafood.net', '/api/v1/customer/address/delete', params);
+
+    final url = Uri.parse(Api_Constants.removeAddressUri)
+        .replace(queryParameters: {'address_id': addressId}).toString();
+
     return await ApiClient(
-            appBaseUrl: '', // Leave empty since we're building full URL
+            appBaseUrl: Api_Constants.appBaseUrl,
             sharedPreferences: sp<SharedPreferences>())
-        .deleteData(url.toString());
-    // final uri =
-    //     Uri.parse(Api_Constants.appBaseUrl + Api_Constants.removeAddressUri)
-    //         .replace(queryParameters: {'address_id': addressId}).toString();
-    // Response? response = await ApiClient(
-    //         appBaseUrl: Api_Constants.appBaseUrl,
-    //         sharedPreferences: sp<SharedPreferences>())
-    //     .deleteData(uri);
-    // return response;
+        .deleteData(url);
   }
 
   @override
@@ -53,9 +48,15 @@ class ProfileRepository implements ProfileDetailsRepositoryInterface {
             sharedPreferences: sp<SharedPreferences>())
         .putData(
       '${Api_Constants.updateAddressUri}/${address.id}',
-      jsonEncode(
-        address.toJson(),
-      ),
+      address.toJson(),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':
+            'Bearer ${sp<SharedPreferences>().getString(SharedPrefKeys.userToken)}',
+      },
+      // jsonEncode(
+      //   address.toJson(),
+      // ),
     );
     return response;
   }

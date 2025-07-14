@@ -36,37 +36,37 @@ class CustomerController extends ChangeNotifier {
         toExternalReference = 'فشل في تحميل بيانات العميل.';
       }
     } catch (e) {
-      toExternalReference = 'خطأ غير متوقع: $e';
+      toExternalReference = 'حدثت مشكلة في الاتصال!';
     }
   }
 
-  void showEditDialog(
-    BuildContext context,
-    String fieldTitle,
-    String currentValue,
-    Function(String) onSave,
-  ) {
-    TextEditingController controller =
-        TextEditingController(text: currentValue);
-
-    CustomDialog.showCustomDialog(
-            context: context,
-            title: 'تعديل $fieldTitle',
-            customContent: TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-            onConfirm: () {})
-        .then((confirmed) {
-      if (confirmed == true) {
-        onSave(controller.text);
-      }
-    });
-  }
+  // void showEditDialog(
+  //   BuildContext context,
+  //   String fieldTitle,
+  //   String currentValue,
+  //   Function(String) onSave,
+  // ) {
+  //   TextEditingController controller =
+  //       TextEditingController(text: currentValue);
+  //
+  //   CustomDialog.showCustomDialog(
+  //           context: context,
+  //           title: 'تعديل $fieldTitle',
+  //           customContent: TextField(
+  //             controller: controller,
+  //             decoration: InputDecoration(
+  //               border: OutlineInputBorder(
+  //                 borderRadius: BorderRadius.circular(12),
+  //               ),
+  //             ),
+  //           ),
+  //           onConfirm: () {})
+  //       .then((confirmed) {
+  //     if (confirmed == true) {
+  //       onSave(controller.text);
+  //     }
+  //   });
+  // }
 
   Future<bool> updateProfileInfo(Map<String, dynamic> data) async {
     try {

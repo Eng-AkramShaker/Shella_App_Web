@@ -2,7 +2,8 @@
 
 class Api_Constants {
   // ======================== Url ========================
-  static const String appBaseUrl = 'https://shalafood.net';
+  // static const String appBaseUrl = 'https://shalafood.net';
+  static const String appBaseUrl = 'https://shellafood.com';
 
   static String token = 'guest';
 
@@ -24,7 +25,7 @@ class Api_Constants {
   static const String removeAddressUri =
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
-  static const String updateAddressUri = '/api/v1/customer/address/update/';
+  static const String updateAddressUri = '/api/v1/customer/address/update';
 
   //
 

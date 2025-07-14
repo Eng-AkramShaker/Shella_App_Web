@@ -24,6 +24,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor,
+        // iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           'معلومات الحساب',
           style: TextStyle(

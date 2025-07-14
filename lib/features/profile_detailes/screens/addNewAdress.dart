@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
@@ -10,9 +11,7 @@ import 'package:shella_design/features/profile_detailes/widgets/locationTag.dart
 import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
 import 'package:shella_design/features/profile_detailes/widgets/selectableButton.dart';
 import 'package:shella_design/features/profile_detailes/widgets/textField.dart';
-import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
   final Address? editAddress;
@@ -25,59 +24,140 @@ class AddNewAddressScreen extends StatefulWidget {
 
 class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   Address? editAddress;
+  late final ProfileController _controller;
   final TextEditingController adressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController streetController = TextEditingController();
   LatLng? selectedLocation;
-
-  // late GoogleMapController mapController;
-  // Set<Marker> markers = {};
-  // CameraPosition? initialCameraPosition;
-  // bool _loadingLocation = false;
+  bool _isInitialized = false;
+  bool _isEditing = false;
+  GoogleMapController? _mapController;
+  double _zoomLevel = 16.0;
 
   @override
   void initState() {
     super.initState();
+    _controller = Provider.of<ProfileController>(context, listen: false);
+    _controller.resetOperationState();
+    _isEditing = widget.editAddress != null;
+    if (!_isEditing) {
+      selectedLocation = const LatLng(24.7136, 46.6753);
+    }
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final controller = context.read<ProfileController>();
-      controller.resetOperationState();
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      _initializeForm();
+      _isInitialized = true;
+    }
+  }
 
-      final args = ModalRoute.of(context)?.settings.arguments;
-      if (args != null && args is Address) {
-        _initializeForm(args);
-      } else {
-        selectedLocation = const LatLng(24.7136, 46.6753);
+  void _initializeForm() {
+    if (widget.editAddress != null) {
+      final addressArg = widget.editAddress!;
+
+      adressController.text = addressArg.address;
+      phoneController.text = addressArg.contactPersonNumber;
+      nameController.text = addressArg.contactPersonName;
+      streetController.text = addressArg.road ?? '';
+
+      double? lat = double.tryParse(addressArg.latitude);
+      double? lng = double.tryParse(addressArg.longitude);
+      if (lat != null && lng != null) {
+        setState(() {
+          selectedLocation = LatLng(lat, lng);
+        });
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_mapController != null && selectedLocation != null) {
+            _mapController!.animateCamera(
+              CameraUpdate.newLatLngZoom(selectedLocation!, _zoomLevel),
+            );
+          }
+        });
       }
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (addressArg.addressType == 'عمل') {
+          _controller.updateTybe(2);
+        } else if (addressArg.addressType == 'إضافة') {
+          _controller.updateTybe(3);
+        } else {
+          _controller.updateTybe(1);
+        }
+
+        _controller.updatefloor(addressArg.floor == 'أرضية' ? 2 : 1);
+      });
+    } else {
+      selectedLocation = const LatLng(24.7136, 46.6753);
+    }
+  }
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('خدمات الموقع معطلة. يرجى تفعيلها')),
+      );
+      return;
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('تم رفض أذونات الموقع')),
+        );
+        return;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تم رفض أذونات الموقع بشكل دائم')),
+      );
+      return;
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+    setState(() {
+      selectedLocation = LatLng(position.latitude, position.longitude);
+    });
+
+    _mapController?.animateCamera(
+      CameraUpdate.newLatLngZoom(selectedLocation!, _zoomLevel),
+    );
+  }
+
+  void _pinCurrentLocation() {
+    if (_mapController != null && selectedLocation != null) {
+      setState(() {
+        selectedLocation = selectedLocation;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تم تثبيت الموقع بنجاح')),
+      );
+    }
+  }
+
+  void _zoomIn() {
+    _mapController?.animateCamera(CameraUpdate.zoomIn());
+    setState(() {
+      _zoomLevel = _zoomLevel + 1;
     });
   }
 
-  void _initializeForm(Address address) {
-    final controller = context.read<ProfileController>();
-
-    adressController.text = address.address;
-    phoneController.text = address.contactPersonNumber;
-    nameController.text = address.contactPersonName;
-    streetController.text = address.road ?? '';
-
-    double? lat = double.tryParse(address.latitude);
-    double? lng = double.tryParse(address.longitude);
-    if (lat != null && lng != null) {
-      selectedLocation = LatLng(lat, lng);
-    }
-
-    // Set type
-    if (address.addressType == 'عمل') {
-      controller.updateTybe(2);
-    } else if (address.addressType == 'إضافة') {
-      controller.updateTybe(3);
-    } else {
-      controller.updateTybe(1);
-    }
-
-    // Set floor
-    controller.updatefloor(address.floor == 'أرضية' ? 2 : 1);
+  void _zoomOut() {
+    _mapController?.animateCamera(CameraUpdate.zoomOut());
+    setState(() {
+      _zoomLevel = _zoomLevel - 1;
+    });
   }
 
   @override
@@ -86,6 +166,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     phoneController.dispose();
     nameController.dispose();
     streetController.dispose();
+    _mapController?.dispose();
     super.dispose();
   }
 
@@ -97,8 +178,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height / 15),
         child: GreanAppBar(
-          text:
-              widget.editAddress != null ? "تعديل العنوان" : "إضافة عنوان جديد",
+          text: _isEditing ? "تعديل العنوان" : "إضافة عنوان جديد",
           icon: Icons.location_on,
         ),
       ),
@@ -108,7 +188,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           if (adressState == RequestState.success) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               context.read<ProfileController>().resetOperationState();
-              pushReplacementNamedRoute(context, AppRoutes.addressDetails);
+              Navigator.of(context).pop(true);
             });
             return const Center(
                 child: ProfileLoading(color: AppColors.primaryColor));
@@ -137,53 +217,110 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Stack(
+                children: [
+                  Container(
+                    height: size.height / 3,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 2),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.r),
+                      child: GoogleMap(
+                        initialCameraPosition: CameraPosition(
+                          target: selectedLocation ??
+                              const LatLng(24.7136, 46.6753),
+                          zoom: _zoomLevel,
+                        ),
+                        onMapCreated: (GoogleMapController controller) {
+                          _mapController = controller;
+                          if (selectedLocation != null) {
+                            controller.animateCamera(
+                              CameraUpdate.newLatLngZoom(
+                                  selectedLocation!, _zoomLevel),
+                            );
+                          }
+                        },
+                        onTap: (LatLng location) {
+                          setState(() {
+                            selectedLocation = location;
+                          });
+                        },
+                        markers: {
+                          if (selectedLocation != null)
+                            Marker(
+                              markerId: const MarkerId('selected_location'),
+                              position: selectedLocation!,
+                            ),
+                        },
+                        rotateGesturesEnabled: true,
+                        scrollGesturesEnabled: true,
+                        zoomGesturesEnabled: true,
+                        tiltGesturesEnabled: true,
+                        myLocationButtonEnabled: false,
+                        zoomControlsEnabled: false,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 10.h,
+                    left: 10.w,
+                    child: Column(
+                      children: [
+                        FloatingActionButton.small(
+                          heroTag: 'location_btn',
+                          backgroundColor: Colors.white,
+                          onPressed: _getCurrentLocation,
+                          child: const Icon(Icons.my_location,
+                              color: AppColors.primaryColor),
+                        ),
+                        SizedBox(height: 10.h),
+                        FloatingActionButton.small(
+                          heroTag: 'pin_btn',
+                          backgroundColor: AppColors.primaryColor,
+                          onPressed: _pinCurrentLocation,
+                          child: const Icon(Icons.location_pin,
+                              color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 10.h,
+                    right: 10.w,
+                    child: Column(
+                      children: [
+                        FloatingActionButton.small(
+                          heroTag: 'zoom_in_btn',
+                          backgroundColor: Colors.white,
+                          onPressed: _zoomIn,
+                          child: const Icon(Icons.add,
+                              color: AppColors.primaryColor),
+                        ),
+                        SizedBox(height: 10.h),
+                        FloatingActionButton.small(
+                          heroTag: 'zoom_out_btn',
+                          backgroundColor: Colors.white,
+                          onPressed: _zoomOut,
+                          child: const Icon(Icons.remove,
+                              color: AppColors.primaryColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h),
               Text(
-                "أضف عنوانًا جديدًا",
+                _isEditing ? "تعديل العنوان" : "أضف عنوانًا جديدًا",
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 10.h),
-              // Container(
-              //   height: size.height / 4,
-              //   decoration: BoxDecoration(
-              //     border: Border.all(color: Colors.green, width: 2.w),
-              //     borderRadius: BorderRadius.circular(10),
-              //   ),
-              //   child: ClipRRect(
-              //     borderRadius: BorderRadius.circular(10),
-              //     child: GoogleMap(
-              //       initialCameraPosition: CameraPosition(
-              //         target:
-              //             selectedLocation ?? const LatLng(24.7136, 46.6753),
-              //         zoom: 14.0,
-              //       ),
-              //       // onMapCreated: (controller) {
-              //       //   mapController = controller;
-              //       // },
-              //       onMapCreated: _onMapCreated,
-              //       markers: markers,
-              //       myLocationEnabled: true,
-              //       myLocationButtonEnabled: true,
-              //       compassEnabled: true,
-              //       mapType: MapType.normal,
-              //       onTap: _onMapTapped,
-              //
-              //       // onTap: (LatLng latLng) {
-              //       //   setState(() {
-              //       //     selectedLocation = latLng;
-              //       //     markers = {
-              //       //       Marker(
-              //       //         markerId: MarkerId('selected-location'),
-              //       //         position: latLng,
-              //       //       ),
-              //       //     };
-              //       //   });
-              //       // },
-              //     ),
-              //   ),
-              // ),
               SizedBox(height: 10.h),
               Consumer<ProfileController>(
                 builder: (context, controller, _) => Column(
@@ -320,15 +457,15 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                                 : 'أخرى';
 
                         final address = Address(
-                          id: widget.editAddress?.id ?? 0,
+                          id: _isEditing ? widget.editAddress!.id : 0,
                           addressType: addressType,
                           contactPersonName: nameController.text,
                           contactPersonNumber: phoneController.text,
                           address: adressController.text,
                           latitude: selectedLocation!.latitude.toString(),
                           longitude: selectedLocation!.longitude.toString(),
-                          userId: widget.editAddress?.userId ?? 0,
-                          createdAt: DateTime.now(),
+                          userId: _isEditing ? widget.editAddress!.userId : 0,
+                          createdAt: editAddress?.createdAt ?? DateTime.now(),
                           updatedAt: DateTime.now(),
                           zoneId: 1,
                           zoneIds: [],
@@ -336,28 +473,10 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           road: streetController.text,
                         );
 
-                        // controller.addAddress(
-                        //   Address(
-                        //     id: widget.editAddress?.id ?? 0,
-                        //     addressType: addressType,
-                        //     contactPersonName: nameController.text,
-                        //     contactPersonNumber: phoneController.text,
-                        //     address: adressController.text,
-                        //     latitude: selectedLocation!.latitude.toString(),
-                        //     longitude: selectedLocation!.longitude.toString(),
-                        //     userId: widget.editAddress?.userId ?? 0,
-                        //     createdAt: DateTime.now(),
-                        //     updatedAt: DateTime.now(),
-                        //     zoneId: 1,
-                        //     zoneIds: [],
-                        //     floor: controller.floor == 1 ? 'منزل' : 'أرضية',
-                        //     road: streetController.text,
-                        //   ),
-                        // );
-                        if (widget.editAddress != null) {
-                          controller.updateAddress(address); // Update existing
+                        if (_isEditing) {
+                          _controller.updateAddress(address);
                         } else {
-                          controller.addAddress(address); // Create new
+                          _controller.addAddress(address);
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -365,9 +484,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         minimumSize: Size(double.infinity, 50),
                       ),
                       child: Text(
-                          widget.editAddress != null
-                              ? "تحديث العنوان" // Update Address
-                              : "حفظ العنوان",
+                          editAddress != null ? "تحديث العنوان" : "حفظ العنوان",
                           style: const TextStyle(
                               fontSize: 18, color: Colors.white)),
                     ),
@@ -381,145 +498,3 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     );
   }
 }
-
-// GoogleMap(
-//                   initialCameraPosition: CameraPosition(
-//                     target: selectedLocation!,
-//                     zoom: 16.0,
-//                   ),
-//                   minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
-//                   onMapCreated: (controller) {
-//                     mapController = controller;
-//                     setState(() {
-//                       markers.add(
-//                         Marker(
-//                           markerId: const MarkerId('selectedLocation'),
-//                           position: selectedLocation!,
-//                         ),
-//                       );
-//                     });
-//                   },
-//                   markers: markers,
-//                   onTap: (LatLng location) {
-//                     setState(() {
-//                       selectedLocation = location;
-//                       markers.clear();
-//                       markers.add(
-//                         Marker(
-//                           markerId: const MarkerId('selectedLocation'),
-//                           position: location,
-//                         ),
-//                       );
-//                     });
-//                   },
-//                   myLocationEnabled: true,
-//                   myLocationButtonEnabled: true,
-//                 )
-//////////
-// if (widget.editAddress != null) {
-//   double? lat = double.tryParse(widget.editAddress!.latitude);
-//   double? lng = double.tryParse(widget.editAddress!.longitude);
-//   if (lat != null && lng != null) {
-//     selectedLocation = LatLng(lat, lng);
-//     initialCameraPosition = CameraPosition(
-//       target: selectedLocation!,
-//       zoom: 14.0,
-//     );
-//   }
-// } else {
-//   // selectedLocation = const LatLng(24.7136, 46.6753); // Default location
-//   // initialCameraPosition = CameraPosition(
-//   //   target: selectedLocation!,
-//   //   zoom: 14.0,
-//   // );
-//   _getCurrentLocation();
-// }
-
-// Future<void> _getCurrentLocation() async {
-//   setState(() => _loadingLocation = true);
-//
-//   try {
-//     Position position = await Geolocator.getCurrentPosition(
-//         desiredAccuracy: LocationAccuracy.high);
-//
-//     setState(() {
-//       selectedLocation = LatLng(position.latitude, position.longitude);
-//       initialCameraPosition = CameraPosition(
-//         target: selectedLocation!,
-//         zoom: 14.0,
-//       );
-//     });
-//   } catch (e) {
-//     print("Error getting location: $e");
-//     // Fallback to default location
-//     selectedLocation = const LatLng(24.7136, 46.6753);
-//     initialCameraPosition = CameraPosition(
-//       target: selectedLocation!,
-//       zoom: 14.0,
-//     );
-//   } finally {
-//     setState(() => _loadingLocation = false);
-//   }
-// }
-// void _setInitialSelections(Address address, ProfileController controller) {
-//   // Set type
-//   if (address.addressType == 'عمل') {
-//     controller.updateTybe(2);
-//   } else if (address.addressType == 'إضافة') {
-//     controller.updateTybe(3);
-//   } else {
-//     controller.updateTybe(1);
-//   }
-//
-//   // Set floor
-//   controller.updatefloor(address.floor == 'أرضية' ? 2 : 1);
-// }
-//
-// void _onMapCreated(GoogleMapController controller) {
-//   mapController = controller;
-//   _updateMarker();
-// }
-//
-// void _onMapTapped(LatLng location) {
-//   setState(() {
-//     selectedLocation = location;
-//     _updateMarker();
-//   });
-// }
-
-// void _updateMarker() {
-//   if (selectedLocation != null) {
-//     markers.clear();
-//     markers.add(
-//       Marker(
-//         markerId: const MarkerId('selectedLocation'),
-//         position: selectedLocation!,
-//         infoWindow: const InfoWindow(title: 'موقع التسليم'),
-//       ),
-//     );
-//   }
-// }
-//
-// void _goToCurrentLocation() async {
-//   setState(() => _loadingLocation = true);
-//   try {
-//     Position position = await Geolocator.getCurrentPosition(
-//         desiredAccuracy: LocationAccuracy.high);
-//
-//     mapController.animateCamera(CameraUpdate.newCameraPosition(
-//       CameraPosition(
-//         target: LatLng(position.latitude, position.longitude),
-//         zoom: 14.0,
-//       ),
-//     ));
-//
-//     setState(() {
-//       selectedLocation = LatLng(position.latitude, position.longitude);
-//       _updateMarker();
-//     });
-//   } catch (e) {
-//     print("Error getting location: $e");
-//   } finally {
-//     setState(() => _loadingLocation = false);
-//   }
-// }

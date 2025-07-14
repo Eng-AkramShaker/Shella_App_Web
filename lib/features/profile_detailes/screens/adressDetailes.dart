@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/AdressCard.dart';
 import 'package:shella_design/features/profile_detailes/widgets/greanappbar.dart';
-import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
-
 import '../domain/models/profile_detailes_model.dart';
 import 'addNewAdress.dart';
 
@@ -47,19 +44,12 @@ class AddressDetailsPage extends StatelessWidget {
               }
 
               if (controller.adressstate == RequestState.error) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(controller.errorMessage ?? 'فشلت العملية'),
-                    ),
-                  );
-                });
+                WidgetsBinding.instance.addPostFrameCallback((_) {});
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.error_outline,
-                          color: Colors.red, size: 50),
+                      Icon(Icons.error_outline, color: Colors.red, size: 40.w),
                       const SizedBox(height: 20),
                       Text(
                         controller.errorMessage ?? 'فشل حذف العنوان',
@@ -73,6 +63,39 @@ class AddressDetailsPage extends StatelessWidget {
                             controller.resetState();
                             controller.getAdress();
                           }),
+                    ],
+                  ),
+                );
+              }
+              if (controller.getedaddress == null ||
+                  controller.getedaddress!.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.location_off,
+                        size: 60.w,
+                        color: Colors.grey[400],
+                      ),
+                      SizedBox(height: 20.h),
+                      Text(
+                        'لا توجد عناوين بعد',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        'اضغط على الزر (+) لإضافة عنوان جديد',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.grey[500],
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ],
                   ),
                 );
@@ -104,40 +127,44 @@ class AddressDetailsPage extends StatelessWidget {
   }
 
   void _navigateToEditScreen(BuildContext context, Address address) {
-    Navigator.pushNamed(
+    Navigator.push(
       context,
-      AppRoutes.addaddress,
-      arguments: address,
-    );
+      MaterialPageRoute(
+        builder: (context) => AddNewAddressScreen(editAddress: address),
+      ),
+    ).then((result) {
+      if (result == true) {
+        context.read<ProfileController>().getAdress();
+      }
+    });
   }
 
   void _navigateToAddScreen(BuildContext context) {
-    Navigator.pushNamed(
+    Navigator.push(
       context,
-      AppRoutes.addaddress,
-    );
-  }
-
-  Widget buildMapPlaceholder(Size size) {
-    // return Image.asset("assets/images/map_image.png");
-
-    return Opacity(
-      opacity: 0.2,
-      child: Container(
-          height: size.height / 2.25,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage("assets/images/map_image.png"),
-            ),
-          )),
-    );
-    // child: GoogleMap(
-    //   onMapCreated: _onMapCreated,
-    //   initialCameraPosition: CameraPosition(target: _center, zoom: 14.0),
-    //   markers: {Marker(markerId: MarkerId('selectedLocation'), position: _center)},
-    // ),
-    // );
+      MaterialPageRoute(builder: (context) => AddNewAddressScreen()),
+    ).then((result) {
+      if (result == true) {
+        context.read<ProfileController>().getAdress();
+      }
+    });
   }
 }
+
+// Widget buildMapPlaceholder(Size size) {
+//
+//
+//   return Opacity(
+//     opacity: 0.2,
+//     child: Container(
+//         height: size.height / 2.25,
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(10),
+//           image: DecorationImage(
+//             fit: BoxFit.cover,
+//             image: AssetImage("assets/images/map_image.png"),
+//           ),
+//         )),
+//   );
+// }
+//

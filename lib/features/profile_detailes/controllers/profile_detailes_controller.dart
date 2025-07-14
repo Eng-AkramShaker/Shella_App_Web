@@ -58,7 +58,8 @@ class ProfileController extends ChangeNotifier {
       address = await profileDetailsService.getAddressList();
       adressstate = RequestState.success;
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
+
       adressstate = RequestState.error;
     }
     notifyListeners();
@@ -72,14 +73,14 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.addAddress(newAddress);
       if (success) {
-        // address?.add(newAddress);
+        address?.add(newAddress);
         adressstate = RequestState.success;
-        getAdress();
+        // getAdress();
       } else {
-        throw Exception("Failed to add address");
+        throw Exception("فشل في إضافة العنوان");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
     notifyListeners();
@@ -93,31 +94,18 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.removeAddress(addressId);
       if (success) {
-        print("?/////////////////////////// $addressId");
-        //address?.removeWhere((addr) => addr.stringId == addressId);
-        // address?.removeWhere((addr) => addr.idString == addressId);
         address?.removeWhere((addr) => addr.id.toString() == addressId);
         adressstate = RequestState.success;
         await getAdress();
       } else {
-        throw Exception("Failed to remove address");
+        throw Exception("فشل في حذف العنوان");
       }
     } catch (e) {
-      // _errorMessage = "Failed to delete address: ${e.toString()}";
-      _errorMessage = _parseErrorMessage(e);
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
 
-    print('Delete Error Details: $e');
-
     notifyListeners();
-  }
-
-  String _parseErrorMessage(dynamic e) {
-    if (e is Exception) {
-      return e.toString().replaceFirst('Exception: ', '');
-    }
-    return 'Delete failed: ${e.toString()}';
   }
 
   /// Updates an existing address
@@ -128,17 +116,16 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.updateAddress(updatedAddress);
       if (success) {
-        int index =
-            address?.indexWhere((addr) => addr.id == updatedAddress.id) ?? -1;
+        int index = address?.indexWhere((a) => a.id == updatedAddress.id) ?? -1;
         if (index != -1) {
           address?[index] = updatedAddress;
         }
         adressstate = RequestState.success;
       } else {
-        throw Exception("Failed to update address");
+        throw Exception("فشل في تعديل العنوان");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
     notifyListeners();

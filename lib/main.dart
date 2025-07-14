@@ -51,14 +51,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'شلة',
       theme: ThemeData(
-        fontFamily: 'Tajawal',
-        useMaterial3: true,
-        textSelectionTheme: TextSelectionThemeData(
-          selectionColor: AppColors.greenColor.withValues(alpha: 0.4),
-          cursorColor: AppColors.greenColor,
-          selectionHandleColor: AppColors.greenColor,
-        ),
-      ),
+          fontFamily: 'Tajawal',
+          useMaterial3: true,
+          textSelectionTheme: TextSelectionThemeData(
+            selectionColor: AppColors.greenColor.withValues(alpha: 0.4),
+            cursorColor: AppColors.greenColor,
+            selectionHandleColor: AppColors.greenColor,
+          ),
+          appBarTheme: AppBarTheme(
+            iconTheme: IconThemeData(color: Colors.white),
+          )),
       routes: AppRoutes.routes,
       initialRoute:
           isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
