@@ -24,8 +24,7 @@ void main() async {
 
   runApp(
     MultiProvider(
-      providers: appProviders(
-          appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+      providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -62,15 +61,7 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
           )),
       routes: AppRoutes.routes,
-<<<<<<< HEAD
-      // initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
-
-      initialRoute: AppRoutes.address_details_service_screen,
-
-=======
-      initialRoute:
-          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
->>>>>>> 8bcbce71f41ef04554aa65673bc06b835f023b2e
+      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
