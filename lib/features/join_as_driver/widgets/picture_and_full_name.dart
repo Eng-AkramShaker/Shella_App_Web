@@ -38,24 +38,19 @@ class PictureAndFullName extends StatelessWidget {
                   child: Container(
                       width: 150.w,
                       height: 110.h,
-                      padding: profilePicture == null
-                          ? EdgeInsets.all(25.sp)
-                          : EdgeInsets.all(8),
+                      padding: profilePicture == null ? EdgeInsets.all(25.sp) : EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Icon(Icons.camera_alt_outlined,
-                              color: AppColors.gryColor_5),
+                          Icon(Icons.camera_alt_outlined, color: AppColors.gryColor_5),
                           Custom_Text(context,
-                              textAlign: TextAlign.center,
-                              text: 'تحميل صورة الملف\nالشخصي',
-                              style: font11Grey400W(context)),
+                              textAlign: TextAlign.center, text: 'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
                         ],
                       )))
               : Center(
                   child: SizedBox(
                     height: 130,
                     child: ClipRRect(
-                      borderRadius: BorderRadiusGeometry.circular(12),
+                      borderRadius: BorderRadius.circular(12),
                       child: Image.file(
                         profilePicture!,
                         fit: BoxFit.fill,

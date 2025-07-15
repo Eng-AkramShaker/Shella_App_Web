@@ -37,14 +37,11 @@ class UploadProfilePhotoDotted extends StatelessWidget {
                       color: AppColors.gryColor_5,
                     ),
                     Custom_Text(context,
-                        textAlign: TextAlign.center,
-                        text: 'تحميل صورة الملف\nالشخصي',
-                        style: font11Grey400W(context)),
+                        textAlign: TextAlign.center, text: 'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
                     if (licensePicture != null)
                       Padding(
                         padding: EdgeInsets.only(top: 10),
-                        child: Image.file(licensePicture!,
-                            height: 70, fit: BoxFit.cover),
+                        child: Image.file(licensePicture!, height: 70, fit: BoxFit.cover),
                       )
                   ],
                 ),
@@ -54,7 +51,7 @@ class UploadProfilePhotoDotted extends StatelessWidget {
               child: SizedBox(
                 height: 130,
                 child: ClipRRect(
-                  borderRadius: BorderRadiusGeometry.circular(12),
+                  borderRadius: BorderRadius.circular(12),
                   child: Image.file(
                     licensePicture!,
                     fit: BoxFit.fill,
