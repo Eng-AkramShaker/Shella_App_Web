@@ -67,8 +67,7 @@ class AddressDetailsPage extends StatelessWidget {
                   ),
                 );
               }
-              if (controller.getedaddress == null ||
-                  controller.getedaddress!.isEmpty) {
+              if (controller.getedaddress == null || controller.getedaddress!.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,10 +104,8 @@ class AddressDetailsPage extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return AdressCard(
                     address: controller.getedaddress![index],
-                    onDelete: () => controller.removeAddress(
-                        controller.getedaddress![index].idString),
-                    onEdit: () => _navigateToEditScreen(
-                        context, controller.getedaddress![index]),
+                    onDelete: () => controller.removeAddress(controller.getedaddress![index].idString),
+                    onEdit: () => _navigateToEditScreen(context, controller.getedaddress![index]),
                   );
                 },
               );
@@ -150,21 +147,3 @@ class AddressDetailsPage extends StatelessWidget {
     });
   }
 }
-
-// Widget buildMapPlaceholder(Size size) {
-//
-//
-//   return Opacity(
-//     opacity: 0.2,
-//     child: Container(
-//         height: size.height / 2.25,
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(10),
-//           image: DecorationImage(
-//             fit: BoxFit.cover,
-//             image: AssetImage("assets/images/map_image.png"),
-//           ),
-//         )),
-//   );
-// }
-//
