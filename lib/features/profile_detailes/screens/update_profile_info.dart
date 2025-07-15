@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -33,7 +34,6 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
         Provider.of<CustomerController>(context, listen: false).customer;
     _fullNameController = TextEditingController(text: customer?.fullName ?? '');
     _phoneController = TextEditingController(text: customer?.phone ?? '');
-    _birthDateController = TextEditingController(text: "01/01/2000");
     _emailController = TextEditingController(text: customer?.email ?? '');
     _passwordController = TextEditingController(text: "********");
 
@@ -43,8 +43,8 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   }
 
   void _checkForChanges() {
-    final customer =
-        Provider.of<CustomerController>(context, listen: false).customer;
+    final controller = Provider.of<CustomerController>(context, listen: false);
+    final customer = controller.customer;
 
     final hasTextChanges =
         _fullNameController.text != (customer?.fullName ?? '') ||
@@ -60,11 +60,62 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   void dispose() {
     _fullNameController.dispose();
     _phoneController.dispose();
-    _birthDateController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
+
+  // ImageProvider? _getProfileImage(CustomerController controller) {
+  //   if (controller.selectedImage != null) {
+  //     return FileImage(controller.selectedImage!);
+  //   } else if (controller.customer?.image != null && !controller.removeImage) {
+  //     return NetworkImage(controller.customer!.image!);
+  //   }
+  //   return null;
+  // }
+
+  // void _showImagePickerSheet(
+  //     BuildContext context, CustomerController controller) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) => SafeArea(
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           if (controller.customer?.image != null ||
+  //               controller.selectedImage != null)
+  //             ListTile(
+  //               leading: Icon(Icons.delete, color: Colors.red),
+  //               title: Text('حذف الصورة', style: TextStyle(color: Colors.red)),
+  //               onTap: () {
+  //                 controller.removeImageF();
+  //                 _checkForChanges();
+  //                 Navigator.pop(context);
+  //               },
+  //             ),
+  //           ListTile(
+  //             leading: Icon(Icons.photo_library),
+  //             title: Text('اختيار من المعرض'),
+  //             onTap: () {
+  //               controller.pickImage(ImageSource.gallery);
+  //               _checkForChanges();
+  //               Navigator.pop(context);
+  //             },
+  //           ),
+  //           ListTile(
+  //             leading: Icon(Icons.camera_alt),
+  //             title: Text('فتح الكاميرا'),
+  //             onTap: () {
+  //               controller.pickImage(ImageSource.camera);
+  //               _checkForChanges();
+  //               Navigator.pop(context);
+  //             },
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +268,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
       messenger.showSnackBar(
         SnackBar(
-          content: Text('حدث خطأ: $e'),
+          content: Text('حدثت  مشكلة في الاتصال'),
           backgroundColor: Colors.red,
         ),
       );

@@ -33,6 +33,10 @@
     <string>This app needs access to your location to show your position on the map</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>This app needs access to your location to show your position on the map</string>
+    <key>NSCameraUsageDescription</key>
+    <string>To take an image</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>To chose an image from gallery</string
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
@@ -12,6 +11,8 @@ import 'package:shella_design/features/profile_detailes/widgets/profile_loading.
 import 'package:shella_design/features/profile_detailes/widgets/selectableButton.dart';
 import 'package:shella_design/features/profile_detailes/widgets/textField.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import '../controllers/map_controller.dart';
+import '../widgets/map_widget.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
   final Address? editAddress;
@@ -25,15 +26,14 @@ class AddNewAddressScreen extends StatefulWidget {
 class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   Address? editAddress;
   late final ProfileController _controller;
-  final TextEditingController adressController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController streetController = TextEditingController();
-  LatLng? selectedLocation;
+  late MapController _mapController;
+
   bool _isInitialized = false;
   bool _isEditing = false;
-  GoogleMapController? _mapController;
-  double _zoomLevel = 16.0;
 
   @override
   void initState() {
@@ -41,9 +41,9 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     _controller = Provider.of<ProfileController>(context, listen: false);
     _controller.resetOperationState();
     _isEditing = widget.editAddress != null;
-    if (!_isEditing) {
-      selectedLocation = const LatLng(24.7136, 46.6753);
-    }
+    _mapController = MapController(
+      initialLocation: _isEditing ? null : const LatLng(24.7136, 46.6753),
+    );
   }
 
   @override
@@ -59,24 +59,16 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     if (widget.editAddress != null) {
       final addressArg = widget.editAddress!;
 
-      adressController.text = addressArg.address;
+      addressController.text = addressArg.address;
       phoneController.text = addressArg.contactPersonNumber;
       nameController.text = addressArg.contactPersonName;
       streetController.text = addressArg.road ?? '';
 
       double? lat = double.tryParse(addressArg.latitude);
       double? lng = double.tryParse(addressArg.longitude);
+
       if (lat != null && lng != null) {
-        setState(() {
-          selectedLocation = LatLng(lat, lng);
-        });
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (_mapController != null && selectedLocation != null) {
-            _mapController!.animateCamera(
-              CameraUpdate.newLatLngZoom(selectedLocation!, _zoomLevel),
-            );
-          }
-        });
+        _mapController.setSelectedLocation(LatLng(lat, lng));
       }
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -91,82 +83,17 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
         _controller.updatefloor(addressArg.floor == 'أرضية' ? 2 : 1);
       });
     } else {
-      selectedLocation = const LatLng(24.7136, 46.6753);
+      _mapController.setSelectedLocation(const LatLng(24.7136, 46.6753));
     }
-  }
-
-  Future<void> _getCurrentLocation() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('خدمات الموقع معطلة. يرجى تفعيلها')),
-      );
-      return;
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('تم رفض أذونات الموقع')),
-        );
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم رفض أذونات الموقع بشكل دائم')),
-      );
-      return;
-    }
-
-    Position position = await Geolocator.getCurrentPosition();
-    setState(() {
-      selectedLocation = LatLng(position.latitude, position.longitude);
-    });
-
-    _mapController?.animateCamera(
-      CameraUpdate.newLatLngZoom(selectedLocation!, _zoomLevel),
-    );
-  }
-
-  void _pinCurrentLocation() {
-    if (_mapController != null && selectedLocation != null) {
-      setState(() {
-        selectedLocation = selectedLocation;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم تثبيت الموقع بنجاح')),
-      );
-    }
-  }
-
-  void _zoomIn() {
-    _mapController?.animateCamera(CameraUpdate.zoomIn());
-    setState(() {
-      _zoomLevel = _zoomLevel + 1;
-    });
-  }
-
-  void _zoomOut() {
-    _mapController?.animateCamera(CameraUpdate.zoomOut());
-    setState(() {
-      _zoomLevel = _zoomLevel - 1;
-    });
   }
 
   @override
   void dispose() {
-    adressController.dispose();
+    addressController.dispose();
     phoneController.dispose();
     nameController.dispose();
     streetController.dispose();
-    _mapController?.dispose();
+    _mapController.dispose();
     super.dispose();
   }
 
@@ -217,100 +144,9 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    height: size.height / 3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      border:
-                          Border.all(color: AppColors.primaryColor, width: 2),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                          target: selectedLocation ??
-                              const LatLng(24.7136, 46.6753),
-                          zoom: _zoomLevel,
-                        ),
-                        onMapCreated: (GoogleMapController controller) {
-                          _mapController = controller;
-                          if (selectedLocation != null) {
-                            controller.animateCamera(
-                              CameraUpdate.newLatLngZoom(
-                                  selectedLocation!, _zoomLevel),
-                            );
-                          }
-                        },
-                        onTap: (LatLng location) {
-                          setState(() {
-                            selectedLocation = location;
-                          });
-                        },
-                        markers: {
-                          if (selectedLocation != null)
-                            Marker(
-                              markerId: const MarkerId('selected_location'),
-                              position: selectedLocation!,
-                            ),
-                        },
-                        rotateGesturesEnabled: true,
-                        scrollGesturesEnabled: true,
-                        zoomGesturesEnabled: true,
-                        tiltGesturesEnabled: true,
-                        myLocationButtonEnabled: false,
-                        zoomControlsEnabled: false,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10.h,
-                    left: 10.w,
-                    child: Column(
-                      children: [
-                        FloatingActionButton.small(
-                          heroTag: 'location_btn',
-                          backgroundColor: Colors.white,
-                          onPressed: _getCurrentLocation,
-                          child: const Icon(Icons.my_location,
-                              color: AppColors.primaryColor),
-                        ),
-                        SizedBox(height: 10.h),
-                        FloatingActionButton.small(
-                          heroTag: 'pin_btn',
-                          backgroundColor: AppColors.primaryColor,
-                          onPressed: _pinCurrentLocation,
-                          child: const Icon(Icons.location_pin,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    top: 10.h,
-                    right: 10.w,
-                    child: Column(
-                      children: [
-                        FloatingActionButton.small(
-                          heroTag: 'zoom_in_btn',
-                          backgroundColor: Colors.white,
-                          onPressed: _zoomIn,
-                          child: const Icon(Icons.add,
-                              color: AppColors.primaryColor),
-                        ),
-                        SizedBox(height: 10.h),
-                        FloatingActionButton.small(
-                          heroTag: 'zoom_out_btn',
-                          backgroundColor: Colors.white,
-                          onPressed: _zoomOut,
-                          child: const Icon(Icons.remove,
-                              color: AppColors.primaryColor),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              ChangeNotifierProvider.value(
+                value: _mapController,
+                child: MapWidget(),
               ),
               SizedBox(height: 20.h),
               Text(
@@ -377,7 +213,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     textField(
                       label: "عنوان التسليم",
                       hint: "الرياض , السعودية",
-                      controller: adressController,
+                      controller: addressController,
                     ),
                     SizedBox(height: 10),
                     textField(
@@ -436,14 +272,14 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       onPressed: () {
                         if (nameController.text.isEmpty ||
                             phoneController.text.isEmpty ||
-                            adressController.text.isEmpty) {
+                            addressController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('يرجى ملء جميع الحقول المطلوبة')),
                           );
                           return;
                         }
-                        if (selectedLocation == null) {
+                        if (_mapController.selectedLocation == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('يرجى تحديد الموقع على الخريطة')),
@@ -461,9 +297,11 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           addressType: addressType,
                           contactPersonName: nameController.text,
                           contactPersonNumber: phoneController.text,
-                          address: adressController.text,
-                          latitude: selectedLocation!.latitude.toString(),
-                          longitude: selectedLocation!.longitude.toString(),
+                          address: addressController.text,
+                          latitude: _mapController.selectedLocation!.latitude
+                              .toString(),
+                          longitude: _mapController.selectedLocation!.longitude
+                              .toString(),
                           userId: _isEditing ? widget.editAddress!.userId : 0,
                           createdAt: editAddress?.createdAt ?? DateTime.now(),
                           updatedAt: DateTime.now(),

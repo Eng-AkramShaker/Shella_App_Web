@@ -8,7 +8,8 @@ class Api_Constants {
   static String token = 'guest';
 
   static String customerInfo = '/api/v1/customer/info';
-  static String updateCustomerInfo = '/api/v1/customer/update-profile';
+  static String updateCustomerInfo =
+      '$appBaseUrl/api/v1/customer/update-profile';
   static String removeAccount = '/api/v1/customer/remove-account';
 
   static String joinAsDriver = '$appBaseUrl/api/v1/auth/delivery-man/store';
