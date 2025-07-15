@@ -62,7 +62,9 @@ class WalletKaidhaScreen extends StatelessWidget {
 
               // payment button
               TextButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  //
+                },
                 text: 'الدفع الآن',
                 backgroundColor: AppColors.secondaryColor,
                 textStyle: font13White400W(context),

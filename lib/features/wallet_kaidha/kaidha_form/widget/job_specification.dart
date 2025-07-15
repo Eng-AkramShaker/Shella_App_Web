@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
-import 'package:shella_design/features/kaidha_form/widget/builds/build_radio_option.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/widget/builds/build_radio_option.dart';
 
 class JobSpecification extends StatelessWidget {
   const JobSpecification({super.key});
@@ -61,6 +61,4 @@ class JobSpecification extends StatelessWidget {
       ],
     );
   }
-
-
 }

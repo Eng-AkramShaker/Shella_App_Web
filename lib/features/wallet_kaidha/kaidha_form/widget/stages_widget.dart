@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
-import 'package:shella_design/features/kaidha_form/widget/builds/build_dynamic_driver.dart';
-import 'package:shella_design/features/kaidha_form/widget/builds/build_stage_icon.dart';
-
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/widget/builds/build_dynamic_driver.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/widget/builds/build_stage_icon.dart';
 
 class StagesWidget extends StatelessWidget {
   const StagesWidget({super.key});
@@ -56,7 +55,4 @@ class StagesWidget extends StatelessWidget {
       ],
     );
   }
-
-
-
 }
