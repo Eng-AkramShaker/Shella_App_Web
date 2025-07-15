@@ -1,14 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/svg_icon_widget.dart';
+import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
 import 'package:shella_design/features/profile_detailes/screens/language_selection_page.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile.dart';
+import 'package:shella_design/features/profile_detailes/widgets/profile_divider.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_navigators.dart';
-import '../../../common/helper/app_routes.dart';
 
-class ProfileDetailsPage extends StatelessWidget {
-  const ProfileDetailsPage({super.key});
+import '../../../common/helper/app_routes.dart';
+import '../../../main.dart';
+import '../controllers/custome_info_controller.dart';
+
+class ProfileDetailsPage extends StatefulWidget {
+  const ProfileDetailsPage({
+    super.key,
+  });
+
+  @override
+  State<ProfileDetailsPage> createState() => _ProfileDetailsPageState();
+}
+
+class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     _loadCustomerData();
+  //   });
+  // }
+  //
+  // void _loadCustomerData() {
+  //   final controller = Provider.of<CustomerController>(context, listen: false);
+  //   controller.fetchCustomerData();
+  //   if (controller.customer == null) {
+  //     controller.fetchCustomerData();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -29,61 +60,205 @@ class ProfileDetailsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          buildProfileHeader(),
-          buildListTile('معلومات الحساب', Icons.account_circle, context, () {
+          buildProfileHeader(() {
             pushNewScreen(context, AppRoutes.profileInfo);
           }),
-          buildListTile('العناوين المحفوظة', Icons.location_on, context, () {
+          ProfileDivider(),
+          buildListTile(
+              'العناوين المحفوظة', Icon(Icons.location_on_outlined), context,
+              () {
             pushNewScreen(
               context,
               AppRoutes.addressDetails,
             );
           }),
-          buildListTile('المفضلة لديك', Icons.favorite_border, context, () {}),
-          buildListTile('اللغة', Icons.language, context, () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LanguageSelectionPage()),
-            );
-          }, trailing: Text('العربية')),
-          buildListTile('إحصائياتي', Icons.insert_chart, context, () {
+          ProfileDivider(),
+          buildListTile(
+              'المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
+          ProfileDivider(),
+          buildListTile(
+            'اللغة',
+            Icon(Icons.language),
+            context,
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => LanguageSelectionPage()),
+              );
+            },
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'العربية',
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: AppColors.wGreyColor,
+                )
+              ],
+            ),
+          ),
+          ProfileDivider(),
+          buildListTile(
+              'إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context,
+              () {
             pushNewScreen(context, AppRoutes.statisticsScreen);
           }),
-          buildListTile('محفظتي', Icons.account_balance_wallet, context, () {
-            pushNewScreen(context, AppRoutes.walletScreen);
-          }),
-          buildListTile('محفظة قيدها', Icons.wallet_giftcard, context, () {
+          ProfileDivider(),
+          buildListTile(
+            'محفظتي',
+            SvgIcon(iconTitle: AppImages.wallet),
+            context,
+            () {
+              pushNewScreen(context, AppRoutes.walletScreen);
+            },
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '0',
+                  style: TextStyle(fontSize: 14.sp),
+                ),
+                SizedBox(
+                  width: 8.w,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: AppColors.wGreyColor,
+                )
+              ],
+            ),
+          ),
+          ProfileDivider(),
+          buildListTile(
+              'الاشتراك في قيدها', Icon(Icons.account_circle_outlined), context,
+              () {
             pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
-          buildListTile('كود الخصم', Icons.discount, context, () {
-           Navigator.pushNamed(context, AppRoutes.discountScreen);
+          ProfileDivider(),
+          buildListTile(
+              'محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
-          buildListTile('قسائمي', Icons.local_offer, context, () {
-            isWideScreen==true?
-            pushNewScreen(context, AppRoutes.accountdetails):
-            pushNewScreen(context, AppRoutes.myCouponScreen);
+          ProfileDivider(),
+          buildListTile(
+              'بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            pushNewScreen(context, AppRoutes.walletKaidhaScreen);
           }),
-          buildListTile('نقاطي', Icons.stars_sharp, context, () {
-            isWideScreen ? pushNewScreen(context,AppRoutes.myPointsWeb):
-            pushNewScreen(context, AppRoutes.myPointsMobile);
+          ProfileDivider(),
+          buildListTile(
+              'كود الخصم', SvgIcon(iconTitle: AppImages.discountSvg), context,
+              () {
+            Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
-          buildListTile('الرجوع والكسب', Icons.group, context, () {
+          ProfileDivider(),
+          buildListTile(
+              'قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context,
+              () {
+            isWideScreen == true
+                ? pushNewScreen(context, AppRoutes.accountdetails)
+                : pushNewScreen(context, AppRoutes.myCouponScreen);
+          }),
+          ProfileDivider(),
+          buildListTile(
+              'الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context,
+              () {
             pushNewScreen(context, AppRoutes.returnAndEarnScreen);
           }),
-          buildListTile('انضم كرجل توصيل', Icons.delivery_dining, context, () {
+          ProfileDivider(),
+          buildListTile(
+              'نقاطي', SvgIcon(iconTitle: AppImages.myPoints), context, () {
+            isWideScreen
+                ? pushNewScreen(context, AppRoutes.myPointsWeb)
+                : pushNewScreen(context, AppRoutes.myPointsMobile);
+          }),
+          ProfileDivider(),
+          buildListTile(
+              'انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context,
+              () {
             pushNewScreen(context, AppRoutes.joinAsDriverOne);
           }),
-          buildListTile('سياسة الخصوصية', Icons.privacy_tip, context, () {}),
-          buildListTile('الحصول على المساعدة', Icons.help_outline, context, () {}),
-          buildListTile('الشروط والأحكام', Icons.rule, context, () {}),
-          buildListTile('سياسة الاسترداد', Icons.replay, context, () {}),
-          buildListTile('المساعدة والدعم', Icons.support_agent, context, () {
+          ProfileDivider(),
+          buildListTile(
+            'سياسة الخصوصية',
+            Icon(Icons.privacy_tip_outlined),
+            context,
+            () {},
+          ),
+          ProfileDivider(),
+          buildListTile(
+            'الحصول على المساعدة',
+            Icon(Icons.help_outline),
+            context,
+            () {},
+          ),
+          ProfileDivider(),
+          buildListTile(
+            'الشروط والأحكام',
+            Icon(Icons.list_alt_outlined),
+            context,
+            () {},
+          ),
+          ProfileDivider(),
+          buildListTile(
+            'سياسة الاسترداد',
+            SvgIcon(iconTitle: AppImages.refundPolicy),
+            context,
+            () {},
+          ),
+          ProfileDivider(),
+          buildListTile(
+              'المساعدة والدعم', SvgIcon(iconTitle: AppImages.support), context,
+              () {
             pushNewScreen(context, AppRoutes.helpAndSupport);
           }),
-          buildListTile('الدردشة المباشرة', Icons.chat, context, () {
+          ProfileDivider(),
+          buildListTile(
+              'الدردشة المباشرة', Icon(Icons.comment_outlined), context, () {
             pushNewScreen(context, AppRoutes.supportConversation);
           }),
-          buildListTile('تسجيل الخروج', Icons.power_settings_new, context, () {}, color: Colors.red),
+          ProfileDivider(),
+          Consumer<NotificationsController>(builder: (context, controller, _) {
+            return buildListTile(
+              'الاشعارات',
+              Icon(Icons.notifications_none_outlined),
+              context,
+              () {},
+              trailing: Switch(
+                value: controller.notificationsEnabled,
+                onChanged: (value) {
+                  controller.toggleNotifications(value);
+                },
+                activeColor: AppColors.greenColor,
+                inactiveThumbColor: Colors.grey[300],
+                inactiveTrackColor: Colors.grey[400],
+                activeTrackColor: AppColors.greenColor.withOpacity(0.3),
+              ),
+            );
+          }),
+          ProfileDivider(),
+          buildListTile(
+            'تسجيل الخروج',
+            Icon(
+              Icons.power_settings_new,
+              color: AppColors.greenColor,
+            ),
+            context,
+            () {},
+            color: Colors.red,
+            trailing: SizedBox(
+              height: 1,
+              width: 1,
+            ),
+          ),
         ],
       ),
     );

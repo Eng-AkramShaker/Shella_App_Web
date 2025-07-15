@@ -1,61 +1,61 @@
-
 class CustomerModel {
-  final int id;
-  final String fName;
-  final String lName;
-  final String phone;
-  final String email;
-  final String image;
-  final bool isPhoneVerified;
+  final int? id;
+  final String? fName;
+  final String? lName;
+  final String? phone;
+  final String? email;
+  final String? image;
+  final bool? isPhoneVerified;
   final String? emailVerifiedAt;
-  final String createdAt;
-  final String updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
   final String? firebaseToken;
-  final int status;
-  final int orderCount;
-  final String loginMedium;
+  final int? status;
+  final int? orderCount;
+  final String? loginMedium;
   final String? socialId;
-  final int zoneId;
-  final double walletBalance;
-  final int loyaltyPoint;
-  final String refCode;
-  final String languageKey;
+  final int? zoneId;
+  final double? walletBalance;
+  final int? loyaltyPoint;
+  final String? refCode;
+  final String? languageKey;
   final String? refBy;
   final String? tempToken;
-  //final List<String> moduleIds;
-  final bool isEmailVerified;
-  final bool isFromPos;
-  final String fullName;
-  final String imageFullUrl;
+
+  //final List<String>? moduleIds;
+  final bool? isEmailVerified;
+  final bool? isFromPos;
+  final String? fullName;
+  final String? imageFullUrl;
 
   CustomerModel({
-    required this.id,
-    required this.fName,
-    required this.lName,
-    required this.phone,
-    required this.email,
-    required this.image,
-    required this.isPhoneVerified,
-    required this.emailVerifiedAt,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.firebaseToken,
-    required this.status,
-    required this.orderCount,
-    required this.loginMedium,
-    required this.socialId,
-    required this.zoneId,
-    required this.walletBalance,
-    required this.loyaltyPoint,
-    required this.refCode,
-    required this.languageKey,
-    required this.refBy,
-    required this.tempToken,
-    //required this.moduleIds,
-    required this.isEmailVerified,
-    required this.isFromPos,
-    required this.fullName,
-    required this.imageFullUrl,
+    this.id,
+    this.fName,
+    this.lName,
+    this.phone,
+    this.email,
+    this.image,
+    this.isPhoneVerified,
+    this.emailVerifiedAt,
+    this.createdAt,
+    this.updatedAt,
+    this.firebaseToken,
+    this.status,
+    this.orderCount,
+    this.loginMedium,
+    this.socialId,
+    this.zoneId,
+    this.walletBalance,
+    this.loyaltyPoint,
+    this.refCode,
+    this.languageKey,
+    this.refBy,
+    this.tempToken,
+    //this.moduleIds,
+    this.isEmailVerified,
+    this.isFromPos,
+    this.fullName,
+    this.imageFullUrl,
   });
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) {
@@ -66,7 +66,9 @@ class CustomerModel {
       phone: json['phone'],
       email: json['email'],
       image: json['image'],
-      isPhoneVerified: json['is_phone_verified'] == 1,
+      isPhoneVerified: json['is_phone_verified'] != null
+          ? json['is_phone_verified'] == 1
+          : null,
       emailVerifiedAt: json['email_verified_at'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
@@ -76,14 +78,18 @@ class CustomerModel {
       loginMedium: json['login_medium'],
       socialId: json['social_id'],
       zoneId: json['zone_id'],
-      walletBalance: (json['wallet_balance'] as num).toDouble(),
+      walletBalance: json['wallet_balance'] != null
+          ? (json['wallet_balance'] as num).toDouble()
+          : null,
       loyaltyPoint: json['loyalty_point'],
       refCode: json['ref_code'],
       languageKey: json['current_language_key'],
       refBy: json['ref_by'],
       tempToken: json['temp_token'],
-      isEmailVerified: json['is_email_verified'] == 1,
-      isFromPos: json['is_from_pos'] == 1,
+      isEmailVerified: json['is_email_verified'] != null
+          ? json['is_email_verified'] == 1
+          : null,
+      isFromPos: json['is_from_pos'] != null ? json['is_from_pos'] == 1 : null,
       fullName: json['full_name'],
       imageFullUrl: json['image_full_url'],
     );

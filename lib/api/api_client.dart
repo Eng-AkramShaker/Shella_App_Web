@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,8 +23,29 @@ class ApiClient {
   String? token;
   late Map<String, String> _mainHeaders;
 
+  initHeader() {
+    token = sharedPreferences.getString(SharedPrefKeys.userToken);
+    if (kDebugMode) {
+      print('Token: $token');
+    }
+    if (token == null || token!.split('.').length != 3) {
+      throw Exception('Invalid JWT format');
+    }
+    updateHeader(
+      token,
+      [],
+      [],
+      'ar',
+      0,
+      '1',
+      '1',
+      setHeader: true,
+    );
+  }
+
   ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
     token = sharedPreferences.getString(SharedPrefKeys.userToken);
+
     if (kDebugMode) {
       print('Token: $token');
     }
@@ -87,7 +109,8 @@ class ApiClient {
       AppConstants.localizationKey: languageCode ?? 'ar',
       AppConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
       AppConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
-      'Authorization': 'Bearer $token'
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
     });
     if (setHeader) {
       _mainHeaders = header;
@@ -105,13 +128,14 @@ class ApiClient {
       if (kDebugMode) {
         print('====> API Call: $uri  ');
       }
-
+      initHeader();
       final stopwatch = Stopwatch()..start();
 
       http.Response response = await http
           .get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
-
+      print(
+          "//////////////////////////////////////////////////// ${response.request?.headers}");
       stopwatch.stop();
 
       if (kDebugMode) {
@@ -199,14 +223,23 @@ class ApiClient {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         print('====> API Body: $body');
       }
-      http.Response response = await http
-          .put(
-            Uri.parse(appBaseUrl + uri),
-            body: jsonEncode(body),
-            headers: headers ?? _mainHeaders,
-          )
-          .timeout(Duration(seconds: timeoutInSeconds));
+      initHeader();
+      final fullUri = Uri.parse(appBaseUrl + uri);
+      final request = http.Request('PUT', fullUri);
+      request.headers.addAll(headers ?? _mainHeaders);
+
+      request.body = jsonEncode(body);
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
       return handleResponse(response, uri, handleError);
+      // http.Response response = await http
+      //     .put(
+      //       Uri.parse(appBaseUrl + uri),
+      //       body: jsonEncode(body),
+      //       headers: headers ?? _mainHeaders,
+      //     )
+      //     .timeout(Duration(seconds: timeoutInSeconds));
+      // return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
     }
@@ -218,12 +251,15 @@ class ApiClient {
       if (kDebugMode) {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
       }
+      initHeader();
       http.Response response = await http
           .delete(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
-      return handleResponse(response, uri, handleError);
+      print('✅ اكتمل طلب DELETE - status: ${response.statusCode}');
+      print('📝 محتوى الاستجابة: ${response.body}');
+      return response;
     } catch (e) {
-      return http.Response('error', 1);
+      throw HttpException('DELETE failed: ${e.toString()}');
     }
   }
 
@@ -250,6 +286,15 @@ class ApiClient {
         } else if (body.containsKey('message')) {
           throw Exception(body['message']);
         }
+      } else if (response.statusCode >= 400) {
+        final body = jsonDecode(response.body);
+        if (body is Map<String, dynamic>) {
+          throw Exception(body['message'] ?? 'Request failed');
+        }
+      }
+      if (response.statusCode == 404) {
+        final body = jsonDecode(response.body);
+        throw Exception(body['message'] ?? 'Address not found');
       }
     } catch (e) {
       if (handleError) {
