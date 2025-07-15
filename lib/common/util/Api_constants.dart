@@ -2,11 +2,15 @@
 
 class Api_Constants {
   // ======================== Url ========================
-  static const String appBaseUrl = 'https://shalafood.net';
+  // static const String appBaseUrl = 'https://shalafood.net';
+  static const String appBaseUrl = 'https://shellafood.com';
 
   static String token = 'guest';
 
-  static String customerInfo = '$appBaseUrl/api/v1/customer/info';
+  static String customerInfo = '/api/v1/customer/info';
+  static String updateCustomerInfo = '/api/v1/customer/update-profile';
+  static String removeAccount = '/api/v1/customer/remove-account';
+
   static String joinAsDriver = '$appBaseUrl/api/v1/auth/delivery-man/store';
 
   static String login = '/api/v1/auth/login';
@@ -14,13 +18,14 @@ class Api_Constants {
   static const String forgetPasswordUri = '/api/v1/auth/forgot-password';
   static const String verifyPhoneUri = '/api/v1/auth/verify-phone';
   static const String resetPasswordUri = '/api/v1/auth/reset-password';
+
   //
   static const String guestId = '6ammart_guest_id';
   static String addresslist = '/api/v1/customer/address/list';
   static const String removeAddressUri =
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
-  static const String updateAddressUri = '/api/v1/customer/address/update/';
+  static const String updateAddressUri = '/api/v1/customer/address/update';
 
   //
 
@@ -68,10 +73,12 @@ class Api_Constants {
   static const String couponListUri = '/api/v1/coupon/list';
 
   static const String configUri = '/api/v1/config';
+
   //Orders
   static const String runningOrderListUri =
       '/api/v1/customer/order/running-orders';
   static const String historyOrderListUri = '/api/v1/customer/order/list';
+
   //notifications
   static const String notificationUri = '/api/v1/customer/notifications';
 }

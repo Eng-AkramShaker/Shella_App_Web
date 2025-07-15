@@ -7,30 +7,57 @@ import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepositoryInterface/profile_details_repository_interface.dart';
 import '../../../../../api/api_client.dart';
 import '../../../../../common/helper/check_Logged.dart';
+import '../../../../../common/util/sharedPre_constants.dart';
 
 class ProfileRepository implements ProfileDetailsRepositoryInterface {
-
   @override
   Future<http.Response?> getAddressList() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.addresslist);
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .getData(Api_Constants.addresslist);
     return response;
   }
 
   @override
   Future<http.Response?> addAddress(Address address) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).postData(Api_Constants.addAddressUri,address.toJson());
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .postData(Api_Constants.addAddressUri, address.toJson());
     return response;
   }
 
   @override
   Future<http.Response?> removeAddress(String addressId) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).deleteData('${Api_Constants.removeAddressUri}/$addressId');
-    return response;
+    final params = {'address_id': addressId};
+
+    final url = Uri.parse(Api_Constants.removeAddressUri)
+        .replace(queryParameters: {'address_id': addressId}).toString();
+
+    return await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .deleteData(url);
   }
 
   @override
   Future<http.Response?> updateAddress(Address address) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).putData('${Api_Constants.updateAddressUri}/${address.id}',jsonEncode(address.toJson()));
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .putData(
+      '${Api_Constants.updateAddressUri}/${address.id}',
+      address.toJson(),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':
+            'Bearer ${sp<SharedPreferences>().getString(SharedPrefKeys.userToken)}',
+      },
+      // jsonEncode(
+      //   address.toJson(),
+      // ),
+    );
     return response;
   }
 }

@@ -6,6 +6,15 @@ import 'package:shella_design/features/notifications/domain/services/notificatio
 enum NotificatiosState { initial, loading, success, error }
 
 class NotificationsController with ChangeNotifier {
+  bool _notificationsEnabled = true;
+
+  bool get notificationsEnabled => _notificationsEnabled;
+
+  void toggleNotifications(bool value) {
+    _notificationsEnabled = value;
+    notifyListeners();
+  }
+
   final NotificationServiceInterface? notificationServiceInterface;
 
   NotificationsController({this.notificationServiceInterface});
@@ -15,6 +24,7 @@ class NotificationsController with ChangeNotifier {
 
   /// STATE VARIABLES
   NotificatiosState _notificatiosState = NotificatiosState.initial;
+
   NotificatiosState get notificatiosState => _notificatiosState;
 
   /// Notifications Data
