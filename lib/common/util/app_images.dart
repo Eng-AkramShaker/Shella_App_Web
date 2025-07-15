@@ -150,9 +150,16 @@ class AppImages {
   static const String market = 'assets/svg/market.svg';
   static const String carrot = 'assets/svg/carrot.svg';
   static const String fish = 'assets/svg/fish.svg';
+  static const String discountSvg = 'assets/svg/discount.svg';
+  static const String myPoints = 'assets/svg/my_points.svg';
+  static const String people = 'assets/svg/people.svg';
+  static const String refundPolicy = 'assets/svg/refund_policy.svg';
+  static const String statistics = 'assets/svg/statistics.svg';
+  static const String wallet = 'assets/svg/wallet.svg';
+  static const String support = 'assets/svg/support.svg';
+  static const String profileCoupon = 'assets/svg/coupon.svg';
 
-  //
+//
 }
 
-  
 //  AppImages.item_10
