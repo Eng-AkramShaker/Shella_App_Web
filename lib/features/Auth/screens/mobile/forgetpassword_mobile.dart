@@ -75,7 +75,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => popRoute(context),
           icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
         ),
       ),

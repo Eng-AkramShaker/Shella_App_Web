@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_custom_app_bar.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_mobile.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
@@ -30,18 +31,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            size: 30,
-            color: Colors.black,
-          ),
-        ),
-      ),
+      appBar: buildCustomAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_18(context)),
         child: Column(

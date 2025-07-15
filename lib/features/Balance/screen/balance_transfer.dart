@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/Balance/controller/balance_controller.dart';
@@ -39,23 +40,24 @@ class BalanceTransfer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const HeaderSection(
-              headtext: 'تحويل رصيد',
-              bodytext: 'مبلغ التحويل',
+            HeaderSection(
+              headtext: MainAppConstants.balanceTransfer,
+              bodytext: MainAppConstants.transferAmount,
             ),
             const SizedBox(height: 16),
             buildAmountButtonsRow(controller, false),
             const SizedBox(height: 16),
             AmountInputField(
               controller: controller,
-              hintText: 'مبلغ التحويل',
+              hintText: MainAppConstants.transferAmount,
               textcontroller: controller.transferamount,
             ),
             const SizedBox(height: 16),
             buildMaxAmountText(context),
             const Spacer(),
             Custom_Text(context,
-                text: "ادخل رقم هاتف صاحب الحساب التي تود التحويل له", style: font10Black400W(context, size: size_12(context))),
+                text: MainAppConstants.enterPhoneAccountHolder,
+                style: font10Black400W(context, size: size_12(context))),
             const SizedBox(height: 10),
             CustomPhoneInput(
               controller: controller.phone,

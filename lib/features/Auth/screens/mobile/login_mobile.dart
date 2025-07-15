@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
+import 'package:shella_design/common/widgets/loading/green_loading_circle.dart';
+
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/login_button_mobile.dart';
@@ -53,19 +56,17 @@ class _Login_mobileState extends State<Login_mobile> {
                 builder: (context, controller, _) {
                   // Listen to the controller's state to show loading or errors
                   if (controller.state == AuthState.loading) {
-                    return Center(
-                        child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ));
+                    return GreenLoadingCircle();
                   }
                   if (controller.state == AuthState.error) {
                     // Show an error message to the user
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(
-                                controller.errorMessage ?? 'Login Failed')),
-                      );
+                      showCustomSnackBar(controller.errorMessage, context);
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //       content: Text(
+                      //           controller.errorMessage ?? 'Login Failed')),
+                      // );
                     });
                   }
 

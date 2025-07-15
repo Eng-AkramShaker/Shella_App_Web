@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_constants.dart';
+
+import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_sign_up_mobile.dart';
@@ -61,9 +64,11 @@ class _SignupState extends State<Signup> {
               if (controller.state == AuthState.error) {
                 // Show an error message to the user
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(controller.errorMessage ?? 'Signup Failed')),
-                  );
+                  showCustomSnackBar(
+                      controller.errorMessage ?? 'Signup Failed', context);
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(content: Text(controller.errorMessage ?? 'Signup Failed')),
+                  // );
                 });
               }
 
@@ -77,21 +82,26 @@ class _SignupState extends State<Signup> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(child: Text("إنشاء حساب جديد", style: font18Black600W(context))),
+                  Center(
+                      child: Text(MainAppConstants.createNewAccount,
+                          style: font18Black600W(context))),
                   const SizedBox(height: 10),
-                  Center(child: Text("الرجاء ادخال البيانات المطلوبة بالاسفل", style: font14Black400W(context))),
+                  Center(
+                      child: Text(MainAppConstants.pleaseFilldetailsDown,
+                          style: font14Black400W(context))),
                   SizedBox(height: size.height / 30),
-                  buildLabel("الاسم بالكامل", context),
-                  buildTextField("ادخل اسمك بالكامل", nameController),
+                  buildLabel(MainAppConstants.fullName, context),
+                  buildTextField(MainAppConstants.typeFullName, nameController),
                   SizedBox(
                     height: size.height / 40,
                   ),
                   buildLabel("الايميل", context),
-                  buildTextField("ادخل ايميلك بالكامل", emailController),
+                  buildTextField(
+                      MainAppConstants.typeFullEmail, emailController),
                   SizedBox(
                     height: size.height / 40,
                   ),
-                  buildLabel("رقم الهاتف", context),
+                  buildLabel(MainAppConstants.phoneNumber, context),
                   buildPhoneField(phoneController),
                   SizedBox(
                     height: size.height / 40,
@@ -102,7 +112,8 @@ class _SignupState extends State<Signup> {
                     height: size.height / 40,
                   ),
                   buildLabel("ادخل كلمة المرور مرة أخرى", context),
-                  buildPasswordFieldSignUp("كلمة المرور", confirmPasswordController),
+                  buildPasswordFieldSignUp(
+                      "كلمة المرور", confirmPasswordController),
                   SizedBox(
                     height: size.height / 40,
                   ),
@@ -117,7 +128,7 @@ class _SignupState extends State<Signup> {
                         },
                         activeColor: AppColors.greenColor,
                       ),
-                      Text("اوافق على الشروط والأحكام وسياسة الخصوصية"),
+                      Text(MainAppConstants.iAcceptTermsCondition),
                     ],
                   ),
                   SizedBox(
