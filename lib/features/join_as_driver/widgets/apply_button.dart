@@ -5,7 +5,9 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ApplyButton extends StatelessWidget {
+  final void Function() onTap;
   const ApplyButton({
+    required this.onTap,
     super.key,
   });
 
@@ -14,11 +16,13 @@ class ApplyButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 55.h,
-      decoration: BoxDecoration(color: AppColors.greenColor, borderRadius: BorderRadius.circular(8.r)),
+      decoration: BoxDecoration(
+          color: AppColors.greenColor,
+          borderRadius: BorderRadius.circular(8.r)),
       child: Custom_Text_Button(
         context,
         text_style: font14White500W(context),
-        onPressed: () {},
+        onPressed: onTap,
         text: 'يقدم',
       ),
     );

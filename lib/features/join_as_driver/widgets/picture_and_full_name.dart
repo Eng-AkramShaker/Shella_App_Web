@@ -8,17 +8,19 @@ import 'package:shella_design/features/join_as_driver/controllers/join_as_driver
 import '../../../common/widgets/texts/custom_text.dart';
 import '../../../common/util/app_colors.dart';
 import '../../../common/util/app_styles.dart';
+
 class PictureAndFullName extends StatelessWidget {
   final File? profilePicture;
   final VoidCallback onSelectPicture;
   final TextEditingController firstNameController;
   final TextEditingController lastNameController;
 
-  const PictureAndFullName({super.key, 
-    this.profilePicture, 
-    required this.onSelectPicture, 
-    required this.firstNameController, 
-    required this.lastNameController});
+  const PictureAndFullName(
+      {super.key,
+      this.profilePicture,
+      required this.onSelectPicture,
+      required this.firstNameController,
+      required this.lastNameController});
 
   @override
   Widget build(BuildContext context) {
@@ -26,28 +28,41 @@ class PictureAndFullName extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onSelectPicture,
-          child: DottedBorder(
-            borderType: BorderType.RRect,
-            strokeWidth: 1,
-            dashPattern: [6, 3],
-            color: AppColors.gryColor_5,
-            radius: Radius.circular(30.r),
-            child: Container(
-              width: 150.w,
-              padding: EdgeInsets.all(25.sp),
-              child: Column(
-                children: [
-                   Icon(Icons.camera_alt_outlined, color: AppColors.gryColor_5),
-                   Custom_Text(context, textAlign: TextAlign.center, text:'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
-                   if (profilePicture != null)
-                     Padding(
-                       padding: EdgeInsets.only(top: 10),
-                       child: Image.file(profilePicture!, height: 70, fit: BoxFit.cover),
-                     )
-                ],
-              )
-            )
-          )
+          child: profilePicture == null
+              ? DottedBorder(
+                  borderType: BorderType.RRect,
+                  strokeWidth: 1,
+                  dashPattern: [6, 3],
+                  color: AppColors.gryColor_5,
+                  radius: Radius.circular(30.r),
+                  child: Container(
+                      width: 150.w,
+                      height: 110.h,
+                      padding: profilePicture == null
+                          ? EdgeInsets.all(25.sp)
+                          : EdgeInsets.all(8),
+                      child: Column(
+                        children: [
+                          Icon(Icons.camera_alt_outlined,
+                              color: AppColors.gryColor_5),
+                          Custom_Text(context,
+                              textAlign: TextAlign.center,
+                              text: 'تحميل صورة الملف\nالشخصي',
+                              style: font11Grey400W(context)),
+                        ],
+                      )))
+              : Center(
+                  child: SizedBox(
+                    height: 130,
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(12),
+                      child: Image.file(
+                        profilePicture!,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                ),
         ),
         SizedBox(height: 20.h),
         Row(
@@ -56,10 +71,10 @@ class PictureAndFullName extends StatelessWidget {
               child: CustomTextField(
                 controller: firstNameController,
                 borderColor: AppColors.gryColor_5,
-                labelText:'الاسم الأول',
+                labelText: 'الاسم الأول',
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 onChanged: (val) {
-                   context.read<DriverRegisterController>().setFirstName(val);
+                  context.read<DriverRegisterController>().setFirstName(val);
                 },
               ),
             ),
@@ -68,10 +83,10 @@ class PictureAndFullName extends StatelessWidget {
               child: CustomTextField(
                 controller: lastNameController,
                 borderColor: AppColors.gryColor_5,
-                labelText:'اسم العائلة',
+                labelText: 'اسم العائلة',
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 onChanged: (val) {
-                   context.read<DriverRegisterController>().setLastName(val);
+                  context.read<DriverRegisterController>().setLastName(val);
                 },
               ),
             )
