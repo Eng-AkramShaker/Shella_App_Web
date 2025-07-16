@@ -1,19 +1,20 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
-final GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
+final navigatorKey = GlobalKey<NavigatorState>();
 
-Route<dynamic>? onGenerateRoute(RouteSettings settings)=> null;
+class nav {
+  static get _Nav => navigatorKey.currentState!;
 
-class Navigation{
+  static Future push(String route, {Object? args}) => _Nav.pushNamed(route, arguments: args);
 
-  static BuildContext currentContext = navigatorKey.currentContext!;
+  static Future replace(String route, {Object? args}) => _Nav.pushReplacementNamed(route, arguments: args);
 
-  static Future<dynamic> push(Widget page) => navigatorKey.currentState!.push(MaterialPageRoute(builder: (_) =>page));
+  static Future pushAndRemoveUnti(String route, {Object? args}) => _Nav.pushNamedAndRemoveUntil(route, (r) => false, arguments: args);
 
-  static Future<dynamic> pushAndRemoveUntil(Widget page) => navigatorKey.currentState!.pushAndRemoveUntil(MaterialPageRoute(builder: (_) =>page),(_)=> false,);
+  static Future untilFirst(String route, {Object? args}) => _Nav.pushNamedAndRemoveUntil(route, (r) => r.isFirst, arguments: args);
 
-  static Future<dynamic> navigateAndPopUntilFirstPage(Widget page) => navigatorKey.currentState!.pushAndRemoveUntil(MaterialPageRoute(builder: (_) =>page),(route) => route.isFirst);
-
-  static Future<dynamic> pushReplacement(Widget page) => navigatorKey.currentState!.pushReplacement(MaterialPageRoute(builder: (_) =>page));
-
+  static void back() => _Nav.pop();
 }

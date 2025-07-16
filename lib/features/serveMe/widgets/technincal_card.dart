@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart'; // assuming this is what you're using
 
 class TechnincalCard extends StatelessWidget {
@@ -99,7 +99,7 @@ class TechnincalCard extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      pushNewScreen(context, AppRoutes.technicianDetailsScreen);
+                      nav.push(AppRoutes.technicianDetailsScreen);
                     },
                     icon: Icon(Icons.check, color: Colors.green, size: 20.sp),
                   ),

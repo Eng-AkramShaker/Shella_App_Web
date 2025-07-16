@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import 'package:shella_design/features/profile_detailes/controllers/custome_info
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
 
 import '../../../common/helper/app_routes.dart';
-import '../../../common/util/app_navigators.dart';
 
 class UpdateProfileInfoPage extends StatefulWidget {
   const UpdateProfileInfoPage({super.key});
@@ -29,8 +29,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   @override
   void initState() {
     super.initState();
-    final customer =
-        Provider.of<CustomerController>(context, listen: false).customer;
+    final customer = Provider.of<CustomerController>(context, listen: false).customer;
     _fullNameController = TextEditingController(text: customer?.fullName ?? '');
     _phoneController = TextEditingController(text: customer?.phone ?? '');
     _birthDateController = TextEditingController(text: "01/01/2000");
@@ -43,13 +42,11 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   }
 
   void _checkForChanges() {
-    final customer =
-        Provider.of<CustomerController>(context, listen: false).customer;
+    final customer = Provider.of<CustomerController>(context, listen: false).customer;
 
-    final hasTextChanges =
-        _fullNameController.text != (customer?.fullName ?? '') ||
-            _phoneController.text != (customer?.phone ?? '') ||
-            _emailController.text != (customer?.email ?? '');
+    final hasTextChanges = _fullNameController.text != (customer?.fullName ?? '') ||
+        _phoneController.text != (customer?.phone ?? '') ||
+        _emailController.text != (customer?.email ?? '');
 
     setState(() {
       _hasChanges = hasTextChanges;
@@ -109,11 +106,9 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
             GestureDetector(
               onTap: () {
-                pushNewScreen(context, AppRoutes.confirmPasswordScreen);
+                nav.push(AppRoutes.confirmPasswordScreen);
               },
-              child: _buildTextField(
-                  _passwordController, 'كلمة المرور', Icons.password,
-                  enabled: false),
+              child: _buildTextField(_passwordController, 'كلمة المرور', Icons.password, enabled: false),
             ),
             SizedBox(height: 40.h),
 
@@ -133,9 +128,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
     );
   }
 
-  Widget _buildTextField(
-      TextEditingController controller, String label, IconData icon,
-      {bool enabled = true}) {
+  Widget _buildTextField(TextEditingController controller, String label, IconData icon, {bool enabled = true}) {
     return TextFormField(
       enabled: enabled,
       controller: controller,
@@ -201,8 +194,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
       if (success) {
         navigator.pop();
-        Provider.of<CustomerController>(context, listen: false)
-            .fetchCustomerData();
+        Provider.of<CustomerController>(context, listen: false).fetchCustomerData();
       } else {
         messenger.showSnackBar(
           SnackBar(

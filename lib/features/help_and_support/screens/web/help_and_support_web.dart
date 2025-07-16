@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../common/util/app_colors.dart';
@@ -14,7 +15,7 @@ class HelpAndSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width(context, 1)>600?width(context, 0.7):width(context, 0.9),
+      width: width(context, 1) > 600 ? width(context, 0.7) : width(context, 0.9),
       child: Card(
         color: AppColors.backgroundColor,
         shape: RoundedRectangleBorder(
@@ -30,16 +31,16 @@ class HelpAndSupport extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              custom_Images_asset(
-                image: AppImages.helpAndSupport,
-                h: height(context, 0.3),
-                w: width(context, 0.6),
-                fit: BoxFit.fill),
+              custom_Images_asset(image: AppImages.helpAndSupport, h: height(context, 0.3), w: width(context, 0.6), fit: BoxFit.fill),
               SizedBox(height: 30),
               AddressContainer(),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               ContactUsContainer(),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               EmailUsContainer(),
             ],
           ),

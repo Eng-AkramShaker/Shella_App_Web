@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../util/app_colors.dart';
@@ -25,31 +26,31 @@ class FooterLogoSection extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: "شلة منشأة سعودية مرخصة من قبل وزارة التجارة لممارسة النشاط التسويقي للغير و بيع التجزئة والجملو للافراد والمنشئات بسجل تجاري رقم",
-                  style: TextStyle(
-                    color: AppColors.bgColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "1009128112",
-                      style: TextStyle(
-                        color: AppColors.greenColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
+                    text:
+                        "شلة منشأة سعودية مرخصة من قبل وزارة التجارة لممارسة النشاط التسويقي للغير و بيع التجزئة والجملو للافراد والمنشئات بسجل تجاري رقم",
+                    style: TextStyle(
+                      color: AppColors.bgColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
                     ),
-                    TextSpan(
-                      text: "برأس مال 50 مليون ريال سعودي",
-                      style: TextStyle(
-                        color: AppColors.bgColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                    children: [
+                      TextSpan(
+                        text: "1009128112",
+                        style: TextStyle(
+                          color: AppColors.greenColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
-                  ]
-                ),
+                      TextSpan(
+                        text: "برأس مال 50 مليون ريال سعودي",
+                        style: TextStyle(
+                          color: AppColors.bgColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ]),
               ],
             ),
             textAlign: TextAlign.start,

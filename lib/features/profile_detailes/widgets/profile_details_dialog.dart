@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
@@ -24,8 +25,7 @@ class CustomDialog extends StatelessWidget {
     required this.onCancel,
     this.confirmColor = AppColors.greenColor,
     this.cancelColor = AppColors.gryColor_2,
-  }) : assert(content != null || customContent != null,
-            'يجب توفير إما محتوى نصي أو محتوى مخصص');
+  }) : assert(content != null || customContent != null, 'يجب توفير إما محتوى نصي أو محتوى مخصص');
 
   @override
   Widget build(BuildContext context) {

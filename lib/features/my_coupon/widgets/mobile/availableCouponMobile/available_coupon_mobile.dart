@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/button/custom_button.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
@@ -49,11 +50,15 @@ class AvailableCouponMobile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Custom_Text(context,text: discount.toString(), style: font16SecondaryColor400W(context,size: 17).copyWith(color: AppColors.secondaryColor)),
+                          Custom_Text(context,
+                              text: discount.toString(),
+                              style: font16SecondaryColor400W(context, size: 17).copyWith(color: AppColors.secondaryColor)),
                           SizedBox(
                             height: 10.h,
                           ),
-                          Custom_Text(context,text: 'بدون حد ادنى', style: font12SecondaryColor400W(context,size: 14).copyWith(color: AppColors.secondaryColor)),
+                          Custom_Text(context,
+                              text: 'بدون حد ادنى',
+                              style: font12SecondaryColor400W(context, size: 14).copyWith(color: AppColors.secondaryColor)),
                         ],
                       ),
                     ),
@@ -66,29 +71,61 @@ class AvailableCouponMobile extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Custom_Text(context, text: 'خصم  30% وفر حتى 20 ر.س', style: font12Black400W(context,size: 10).copyWith(color:  AppColors.bgColor)),
+                          Custom_Text(context,
+                              text: 'خصم  30% وفر حتى 20 ر.س',
+                              style: font12Black400W(context, size: 10).copyWith(color: AppColors.bgColor)),
                           SizedBox(
                             height: 10.h,
                           ),
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: Border.all(width: 1, color: AppColors.secondaryColor)),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Custom_Text(context, text: 'طلبات التوصيل فقط', style: font6SecondaryColor400W(context,size: 8).copyWith(color:  AppColors.secondaryColor)),
+                              child: Custom_Text(context,
+                                  text: 'طلبات التوصيل فقط',
+                                  style: font6SecondaryColor400W(context, size: 8).copyWith(color: AppColors.secondaryColor)),
                             ),
                           ),
-                          SizedBox(height: 5.h,),
-                          Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
-                            child: Padding(padding: const EdgeInsets.all(8.0), child: Custom_Text(context, text: 'خصم يصل الى 20ر.س', style: font6SecondaryColor400W(context,size: 8).copyWith(color:  AppColors.secondaryColor)),),
+                          SizedBox(
+                            height: 5.h,
                           ),
-                          SizedBox(height: 10.h,),
-                          Custom_Text(context, text: 'صالح حتى $expiredDate', style: font8Black400W(context,size: 10).copyWith(color:  AppColors.bgColor)),
-                          if(MyCouponController.get(context).availableCoupons![index].storeId!=null)
-                          Padding(
-                            padding: EdgeInsets.only(left: 10,right: width(context, 0.35)),
-                            child: CustomButton(onTap: () => MyCouponController.get(context,listen: false).applyCoupon(code: MyCouponController.get(context,listen: false).availableCoupons![index].code,storeId: MyCouponController.get(context,listen: false).availableCoupons![index].storeId),height: 27,width: width(context, 0.17),text: 'استخدام',color: AppColors.secondaryColor,colorTxt: AppColors.wtColor,textSize: 13.sp,isLoading: MyCouponController.get(context).applyCouponState==MyCouponState.loading,loadingColor: AppColors.wtColor,loadingSize: 15,),
-                          )
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Custom_Text(context,
+                                  text: 'خصم يصل الى 20ر.س',
+                                  style: font6SecondaryColor400W(context, size: 8).copyWith(color: AppColors.secondaryColor)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Custom_Text(context,
+                              text: 'صالح حتى $expiredDate',
+                              style: font8Black400W(context, size: 10).copyWith(color: AppColors.bgColor)),
+                          if (MyCouponController.get(context).availableCoupons![index].storeId != null)
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, right: width(context, 0.35)),
+                              child: CustomButton(
+                                onTap: () => MyCouponController.get(context, listen: false).applyCoupon(
+                                    code: MyCouponController.get(context, listen: false).availableCoupons![index].code,
+                                    storeId: MyCouponController.get(context, listen: false).availableCoupons![index].storeId),
+                                height: 27,
+                                width: width(context, 0.17),
+                                text: 'استخدام',
+                                color: AppColors.secondaryColor,
+                                colorTxt: AppColors.wtColor,
+                                textSize: 13.sp,
+                                isLoading: MyCouponController.get(context).applyCouponState == MyCouponState.loading,
+                                loadingColor: AppColors.wtColor,
+                                loadingSize: 15,
+                              ),
+                            )
                         ],
                       ),
                     ),

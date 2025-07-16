@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/loading/loading.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/controllers/orders_controller.dart';
@@ -13,8 +14,7 @@ class HistoryPaginatedOrderList extends StatefulWidget {
   const HistoryPaginatedOrderList({super.key});
 
   @override
-  State<HistoryPaginatedOrderList> createState() =>
-      _HistoryPaginatedOrderListState();
+  State<HistoryPaginatedOrderList> createState() => _HistoryPaginatedOrderListState();
 }
 
 class _HistoryPaginatedOrderListState extends State<HistoryPaginatedOrderList> {
@@ -28,11 +28,9 @@ class _HistoryPaginatedOrderListState extends State<HistoryPaginatedOrderList> {
 
       final currentLength = provider.historyOrders?.orders?.length ?? 0;
       final total = provider.historyOrders?.totalSize ?? 0;
-      final isLoadMoreInProgress =
-          provider.loadMoreHistoryState == OrderState.loading;
+      final isLoadMoreInProgress = provider.loadMoreHistoryState == OrderState.loading;
 
-      if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 200 &&
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200 &&
           !isLoadMoreInProgress &&
           currentLength < total) {
         provider.loadMoreHistoryOrders();
@@ -81,7 +79,7 @@ class _HistoryPaginatedOrderListState extends State<HistoryPaginatedOrderList> {
                   final order = orders[index];
                   return InkWell(
                     onTap: () {
-                      pushNewScreen(context, AppRoutes.orderdetails);
+                      nav.push(AppRoutes.orderdetails);
                     },
                     child: buildOrderCard(order, context),
                   );

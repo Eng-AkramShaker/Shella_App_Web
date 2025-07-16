@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -51,8 +52,7 @@ class NotificationCard extends StatelessWidget {
                     children: [
                       Custom_Text(
                         context,
-                        text:
-                            'اشتري 2 بيتزا فصول اربعة بسعر واحدة \n من بيتزا هت واحصل على توصيل مجاني',
+                        text: 'اشتري 2 بيتزا فصول اربعة بسعر واحدة \n من بيتزا هت واحصل على توصيل مجاني',
                         style: font10Black300W(context, size: size_12(context)),
                       ),
                       Custom_Text(

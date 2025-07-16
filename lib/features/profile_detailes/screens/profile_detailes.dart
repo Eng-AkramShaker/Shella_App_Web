@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -9,11 +10,8 @@ import 'package:shella_design/features/profile_detailes/widgets/profile_ListTile
 import 'package:shella_design/features/profile_detailes/widgets/profile_divider.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 import '../../../common/helper/app_routes.dart';
-import '../../../main.dart';
-import '../controllers/custome_info_controller.dart';
 
 class ProfileDetailsPage extends StatefulWidget {
   const ProfileDetailsPage({
@@ -61,20 +59,16 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
       body: ListView(
         children: [
           buildProfileHeader(() {
-            pushNewScreen(context, AppRoutes.profileInfo);
+            nav.push(AppRoutes.profileInfo);
           }),
           ProfileDivider(),
-          buildListTile(
-              'العناوين المحفوظة', Icon(Icons.location_on_outlined), context,
-              () {
-            pushNewScreen(
-              context,
+          buildListTile('العناوين المحفوظة', Icon(Icons.location_on_outlined), context, () {
+            nav.push(
               AppRoutes.addressDetails,
             );
           }),
           ProfileDivider(),
-          buildListTile(
-              'المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
+          buildListTile('المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
           ProfileDivider(),
           buildListTile(
             'اللغة',
@@ -83,8 +77,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => LanguageSelectionPage()),
+                MaterialPageRoute(builder: (context) => LanguageSelectionPage()),
               );
             },
             trailing: Row(
@@ -106,10 +99,8 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             ),
           ),
           ProfileDivider(),
-          buildListTile(
-              'إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context,
-              () {
-            pushNewScreen(context, AppRoutes.statisticsScreen);
+          buildListTile('إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context, () {
+            nav.push(AppRoutes.statisticsScreen);
           }),
           ProfileDivider(),
           buildListTile(
@@ -117,7 +108,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             SvgIcon(iconTitle: AppImages.wallet),
             context,
             () {
-              pushNewScreen(context, AppRoutes.walletScreen);
+              nav.push(AppRoutes.walletScreen);
             },
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -138,53 +129,36 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             ),
           ),
           ProfileDivider(),
-          buildListTile(
-              'الاشتراك في قيدها', Icon(Icons.account_circle_outlined), context,
-              () {
-            pushNewScreen(context, AppRoutes.walletKaidhaScreen);
+          buildListTile('الاشتراك في قيدها', Icon(Icons.account_circle_outlined), context, () {
+            nav.push(AppRoutes.walletKaidhaScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context, () {
-            pushNewScreen(context, AppRoutes.walletKaidhaScreen);
+          buildListTile('محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            nav.push(AppRoutes.walletKaidhaScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
-            pushNewScreen(context, AppRoutes.walletKaidhaScreen);
+          buildListTile('بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            nav.push(AppRoutes.walletKaidhaScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'كود الخصم', SvgIcon(iconTitle: AppImages.discountSvg), context,
-              () {
+          buildListTile('كود الخصم', SvgIcon(iconTitle: AppImages.discountSvg), context, () {
             Navigator.pushNamed(context, AppRoutes.discountScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context,
-              () {
-            isWideScreen == true
-                ? pushNewScreen(context, AppRoutes.accountdetails)
-                : pushNewScreen(context, AppRoutes.myCouponScreen);
+          buildListTile('قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context, () {
+            isWideScreen == true ? nav.push(AppRoutes.accountdetails) : nav.push(AppRoutes.myCouponScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context,
-              () {
-            pushNewScreen(context, AppRoutes.returnAndEarnScreen);
+          buildListTile('الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context, () {
+            nav.push(AppRoutes.returnAndEarnScreen);
           }),
           ProfileDivider(),
-          buildListTile(
-              'نقاطي', SvgIcon(iconTitle: AppImages.myPoints), context, () {
-            isWideScreen
-                ? pushNewScreen(context, AppRoutes.myPointsWeb)
-                : pushNewScreen(context, AppRoutes.myPointsMobile);
+          buildListTile('نقاطي', SvgIcon(iconTitle: AppImages.myPoints), context, () {
+            isWideScreen ? nav.push(AppRoutes.myPointsWeb) : nav.push(AppRoutes.myPointsMobile);
           }),
           ProfileDivider(),
-          buildListTile(
-              'انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context,
-              () {
-            pushNewScreen(context, AppRoutes.joinAsDriverOne);
+          buildListTile('انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context, () {
+            nav.push(AppRoutes.joinAsDriverOne);
           }),
           ProfileDivider(),
           buildListTile(
@@ -215,15 +189,12 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             () {},
           ),
           ProfileDivider(),
-          buildListTile(
-              'المساعدة والدعم', SvgIcon(iconTitle: AppImages.support), context,
-              () {
-            pushNewScreen(context, AppRoutes.helpAndSupport);
+          buildListTile('المساعدة والدعم', SvgIcon(iconTitle: AppImages.support), context, () {
+            nav.push(AppRoutes.helpAndSupport);
           }),
           ProfileDivider(),
-          buildListTile(
-              'الدردشة المباشرة', Icon(Icons.comment_outlined), context, () {
-            pushNewScreen(context, AppRoutes.supportConversation);
+          buildListTile('الدردشة المباشرة', Icon(Icons.comment_outlined), context, () {
+            nav.push(AppRoutes.supportConversation);
           }),
           ProfileDivider(),
           Consumer<NotificationsController>(builder: (context, controller, _) {

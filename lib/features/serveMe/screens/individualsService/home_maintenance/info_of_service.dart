@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
@@ -7,7 +8,6 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class InfoOfService extends StatelessWidget {
@@ -24,7 +24,7 @@ class InfoOfService extends StatelessWidget {
         style: font12White600W(context, size: size_14(context)),
         title: name,
         onPressed: () {
-          popRoute(context);
+          nav.back();
         },
         icon: Icons.settings,
       ),
@@ -295,7 +295,7 @@ class InfoOfService extends StatelessWidget {
               title: "اختار الفني",
               style: font10White400W(context, size: size_14(context)),
               onPressed: () {
-                pushNewScreen(context, AppRoutes.choiseATechnincal);
+                nav.push(AppRoutes.choiseATechnincal);
               },
             ),
           ),

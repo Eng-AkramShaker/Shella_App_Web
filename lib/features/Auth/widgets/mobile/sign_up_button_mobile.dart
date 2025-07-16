@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
@@ -15,7 +16,7 @@ class SignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        pushNewScreen(context, AppRoutes.signup);
+        nav.push(AppRoutes.signup);
       },
       style: OutlinedButton.styleFrom(
         minimumSize: Size(

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/cart/widgets/builds/build_item_details.dart';
 import 'package:shella_design/features/cart/widgets/cart_item.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 Widget buildCartItem(CartItem item, int index, BuildContext context) {
   return InkWell(
     onTap: () {
       //
 
-      pushNewScreen(context, AppRoutes.cartDetails);
+      nav.push(AppRoutes.cartDetails);
     },
     child: Card(
       color: AppColors.wtColor,

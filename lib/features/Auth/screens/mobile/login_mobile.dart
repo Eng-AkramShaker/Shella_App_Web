@@ -1,7 +1,9 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
@@ -13,7 +15,6 @@ import 'package:shella_design/features/Auth/widgets/mobile/text_divider_mobile.d
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/sizes.dart';
 import '../../controllers/auth_controller.dart';
 
@@ -62,9 +63,7 @@ class _Login_mobileState extends State<Login_mobile> {
                     // Show an error message to the user
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(
-                                controller.errorMessage ?? 'Login Failed')),
+                        SnackBar(content: Text(controller.errorMessage ?? 'Login Failed')),
                       );
                     });
                   }
@@ -72,7 +71,7 @@ class _Login_mobileState extends State<Login_mobile> {
                   if (controller.state == AuthState.success) {
                     // Navigate to the main layout after successful login
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      pushAndRemoveUntil(context, AppRoutes.mainLayout);
+                      nav.pushAndRemoveUnti(AppRoutes.mainLayout);
                     });
                     return SizedBox.shrink(); // Don't show anything further
                   }
@@ -113,9 +112,7 @@ class _Login_mobileState extends State<Login_mobile> {
                             });
                           },
                           icon: Icon(
-                            isHidden
-                                ? Icons.remove_red_eye_outlined
-                                : Icons.visibility_off_outlined,
+                            isHidden ? Icons.remove_red_eye_outlined : Icons.visibility_off_outlined,
                           ),
                         ),
                       ),
@@ -123,10 +120,7 @@ class _Login_mobileState extends State<Login_mobile> {
                       RememberMeRow(),
                       halfHightSizedBox(size),
                       LoginButton(
-                          formKey: formKey,
-                          phoneController: phoneController,
-                          passwordController: passwordController,
-                          size: size),
+                          formKey: formKey, phoneController: phoneController, passwordController: passwordController, size: size),
                       halfHightSizedBox(size),
                       SignUpButton(size: size),
                       SizedBox(

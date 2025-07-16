@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_sign_up_mobile.dart';
@@ -8,7 +10,6 @@ import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_t
 import 'package:shella_design/features/Auth/widgets/mobile/sign_up_account_btn_mobile.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class Signup extends StatefulWidget {
@@ -70,7 +71,7 @@ class _SignupState extends State<Signup> {
               if (controller.state == AuthState.success) {
                 // Navigate to the main layout after successful login
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  pushAndRemoveUntil(context, AppRoutes.Login_Mobile);
+                  nav.pushAndRemoveUnti(AppRoutes.Login_Mobile);
                 });
                 return SizedBox.shrink();
               }

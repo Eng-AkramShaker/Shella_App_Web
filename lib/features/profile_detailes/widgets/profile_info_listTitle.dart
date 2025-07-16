@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
 
-Widget buildProfileInfoItem(
-    String title, String subtitle, BuildContext context, VoidCallback onTap,
+Widget buildProfileInfoItem(String title, String subtitle, BuildContext context, VoidCallback onTap,
     {Widget? trailing, Color color = AppColors.title}) {
   return ListTile(
     title: Text(

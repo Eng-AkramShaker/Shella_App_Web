@@ -1,12 +1,12 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 
 class PriceConverter {
-static late SplashController _splash;
-
+  static late SplashController _splash;
 
   static void init(BuildContext context) {
     _splash = Provider.of<SplashController>(context, listen: false);
@@ -55,7 +55,7 @@ static late SplashController _splash;
       child: AnimatedFlipCounter(
         duration: const Duration(milliseconds: 500),
         value: toFixed(price!, digits: 2),
-        textStyle: textStyle ?? TextStyle(fontSize: 16,color: Colors.black),
+        textStyle: textStyle ?? TextStyle(fontSize: 16, color: Colors.black),
         fractionDigits: forDM ? 0 : _splash.configModel!.digitAfterDecimalPoint!,
         prefix: isRightSide ? '' : '${_splash.configModel!.currencySymbol!} ',
         suffix: isRightSide ? '${_splash.configModel!.currencySymbol!} ' : '',

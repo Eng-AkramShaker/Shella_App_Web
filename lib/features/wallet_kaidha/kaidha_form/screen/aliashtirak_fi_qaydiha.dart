@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/widget/personal_information.dart';
@@ -6,7 +7,6 @@ import 'package:shella_design/features/wallet_kaidha/kaidha_form/widget/stages_w
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class AliashtirakFiQaydiha extends StatefulWidget {
@@ -25,7 +25,7 @@ class _AliashtirakFiQaydihaState extends State<AliashtirakFiQaydiha> {
             style: font12White600W(context, size: size_14(context)),
             title: "الاشتراك في قيدها",
             icon: Icons.account_circle_outlined, onPressed: () {
-          popRoute(context);
+          nav.back();
         }),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -42,7 +42,7 @@ class _AliashtirakFiQaydihaState extends State<AliashtirakFiQaydiha> {
                 style: font14SecondaryColor500W(context, size: size_12(context))),
             SizedBox(height: 20),
             custom_Button(context, h: 50, title: "توقيع العقد", onPressed: () {
-              pushNewScreen(context, AppRoutes.verifySourceOfIncome);
+              nav.push(AppRoutes.verifySourceOfIncome);
             }, style: font12White500W(context, size: size_12(context))),
             SizedBox(height: 40),
           ]),

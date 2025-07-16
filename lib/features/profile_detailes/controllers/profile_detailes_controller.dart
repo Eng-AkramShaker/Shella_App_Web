@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
 
@@ -16,7 +17,6 @@ class ProfileController extends ChangeNotifier {
   RequestState get adresstate => adressstate;
 
   List<Address>? address;
-
   List<Address>? get getedaddress => address;
 
   String? _errorMessage;

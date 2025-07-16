@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import '../../../../util/app_colors.dart';
 import '../../../../util/app_dimensions.dart';
 import '../../../../util/app_styles.dart';
@@ -42,9 +43,7 @@ class NavItemWidget extends StatelessWidget {
               child: Custom_Text(
                 context,
                 text: item.title,
-                style: isSelected
-                    ? font12Green300W(context, size: size_4(context))
-                    : font12Grey400W(context, size: size_4(context)),
+                style: isSelected ? font12Green300W(context, size: size_4(context)) : font12Grey400W(context, size: size_4(context)),
               ),
             ),
             const SizedBox(height: 5),

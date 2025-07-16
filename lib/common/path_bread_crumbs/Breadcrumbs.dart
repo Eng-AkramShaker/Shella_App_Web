@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class Breadcrumbs extends StatelessWidget {
   final List<List> paths;
@@ -21,7 +22,7 @@ class Breadcrumbs extends StatelessWidget {
           return Row(
             children: [
               GestureDetector(
-                onTap: () => pushNewScreen(context, path[0]),
+                onTap: () => nav.push(path[0]),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: Custom_Text(

@@ -1,6 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api, unused_import
+// ignore_for_file: library_private_types_in_public_api, unused_import, library_prefixes
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/favorite/screens/favoritePage.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
@@ -14,8 +16,6 @@ import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/features/profile_detailes/screens/profile_info.dart';
 
 import '../helper/app_routes.dart';
-import '../util/app_navigators.dart';
-import '../util/app_navigators.dart' as NavigationHelper;
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -31,7 +31,7 @@ class _MainLayoutState extends State<MainLayout> {
     // Super_Screen(),
     // Hyper_Screen(),
     // ShopsScreen(),
-    Home_Screen(),
+    Users_Home_Screen(),
     MobileOrders_Screen(),
     FavoritePage(),
     Cart_Screen(),
@@ -52,8 +52,7 @@ class _MainLayoutState extends State<MainLayout> {
               onDestinationSelected: (index) {
                 setState(() {
                   if (index == 4) {
-                    NavigationHelper.pushNewScreen(
-                        context, AppRoutes.accountdetails);
+                    nav.push(AppRoutes.accountdetails);
                   } else {
                     _selectedIndex = index;
                   }
@@ -67,26 +66,20 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 40,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.transparent,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : AppColors.gryColor,
+                        color: _selectedIndex == index ? AppColors.primaryColor : AppColors.gryColor,
                       ),
                       const SizedBox(height: 5),
                       if (_selectedIndex == index)
                         Text(
                           _getLabel(index),
-                          style: const TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
+                          style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
                         ),
                     ],
                   ),
@@ -116,18 +109,14 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 70,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.transparent,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index
-                            ? AppColors.primaryColor
-                            : Colors.grey,
+                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.grey,
                       ),
                     ],
                   ),

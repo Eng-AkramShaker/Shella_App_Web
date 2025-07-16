@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -36,8 +37,7 @@ class ProductItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Custom_Text(context,
-                        text: product.name, style: font14Black500W(context)),
+                    Custom_Text(context, text: product.name, style: font14Black500W(context)),
                     Custom_Text(
                       context,
                       text: "${product.price} ريال",
@@ -58,8 +58,7 @@ class ProductItem extends StatelessWidget {
                   height: 100.h,
                   width: 100.w,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) =>
-                      const Icon(Icons.image_not_supported),
+                  errorBuilder: (_, __, ___) => const Icon(Icons.image_not_supported),
                 ),
               ),
             ),

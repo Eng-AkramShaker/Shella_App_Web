@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OtpActionsRow extends StatelessWidget {
@@ -25,7 +26,7 @@ class OtpActionsRow extends StatelessWidget {
             minimumSize: Size(100.w, 40.h),
           ),
           onPressed: onClose,
-          child: Text('إغلاق', style: TextStyle(fontSize: 14.sp,color: Colors.black)),
+          child: Text('إغلاق', style: TextStyle(fontSize: 14.sp, color: Colors.black)),
         ),
         OutlinedButton(
           style: OutlinedButton.styleFrom(
@@ -36,7 +37,7 @@ class OtpActionsRow extends StatelessWidget {
             minimumSize: Size(100.w, 40.h),
           ),
           onPressed: onSubmit,
-          child: Text('ارسال', style: TextStyle(fontSize: 14.sp,color: Colors.black)),
+          child: Text('ارسال', style: TextStyle(fontSize: 14.sp, color: Colors.black)),
         ),
       ],
     );

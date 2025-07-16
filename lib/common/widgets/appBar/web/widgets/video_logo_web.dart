@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../util/app_colors.dart';
 import '../../../../util/app_images.dart';
@@ -52,11 +53,11 @@ class _VideoLogoWidgetState extends State<VideoLogoWidget> {
         child: _isInitialized
             ? VideoPlayer(_controller)
             : custom_Images_asset(
-          image: AppImages.logo,
-          h: 50,
-          w: 111,
-          fit: BoxFit.fill,
-        ),
+                image: AppImages.logo,
+                h: 50,
+                w: 111,
+                fit: BoxFit.fill,
+              ),
       ),
     );
   }

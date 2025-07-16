@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 Widget buildDelivery(BuildContext context) {
@@ -17,7 +18,7 @@ Widget buildDelivery(BuildContext context) {
       children: [
         InkWell(
           onTap: () {
-            pushNewScreen(context, AppRoutes.step_tow_service_screen);
+            nav.push(AppRoutes.step_tow_service_screen);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,7 +30,7 @@ Widget buildDelivery(BuildContext context) {
         ),
         InkWell(
           onTap: () {
-            pushNewScreen(context, AppRoutes.step_tow_service_screen);
+            nav.push(AppRoutes.step_tow_service_screen);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

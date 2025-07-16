@@ -1,11 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 
@@ -52,18 +53,17 @@ class SendVerificationCodeButton extends StatelessWidget {
         ));
   }
 
-  void _onPressedsendcode(AuthController authController, BuildContext context,
-      TextEditingController code) async {
+  void _onPressedsendcode(AuthController authController, BuildContext context, TextEditingController code) async {
     if (code.text.isEmpty) {
-      showCustomSnackBar('please enter the otp code ', context);
+      showCustomSnackBar(context, 'please enter the otp code ');
       return;
     }
     authController.verifyPhone(authController.phone!, code.text.trim()).then(
       (value) {
         if (value.isSuccess) {
-          pushNewScreen(context, AppRoutes.confirmPasswordScreen);
+          nav.push(AppRoutes.confirmPasswordScreen);
         } else {
-          showCustomSnackBar(value.message, context);
+          showCustomSnackBar(context, value.message);
         }
       },
     );

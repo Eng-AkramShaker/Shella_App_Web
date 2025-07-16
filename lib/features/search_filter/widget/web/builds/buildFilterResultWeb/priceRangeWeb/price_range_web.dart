@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../../../common/util/app_colors.dart';
 import '../../../../../../../common/util/app_styles.dart';
@@ -13,9 +14,13 @@ class PriceRangeWeb extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        SizedBox(height: 10,),
-        Custom_Text(context, text: 'نطاق السعر',style: font11Black400W(context,size: 13)),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
+        Custom_Text(context, text: 'نطاق السعر', style: font11Black400W(context, size: 13)),
+        SizedBox(
+          height: 10,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

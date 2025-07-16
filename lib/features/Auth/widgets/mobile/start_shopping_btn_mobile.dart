@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 class StartShoppingButton extends StatelessWidget {
   const StartShoppingButton({
@@ -22,7 +23,7 @@ class StartShoppingButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 15),
         ),
         onPressed: () {
-          pushAndRemoveUntil(context, AppRoutes.mainLayout);
+          nav.pushAndRemoveUnti(AppRoutes.mainLayout);
         },
         child: Text(
           "بدء التسوق",

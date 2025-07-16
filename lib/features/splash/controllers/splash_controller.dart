@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/splash/domain/models/config_model.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
 

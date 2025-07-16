@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
@@ -10,7 +11,6 @@ import 'package:shella_design/features/serveMe/widgets/LocationInfo.dart';
 import 'package:shella_design/features/serveMe/widgets/StoreproductCard.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ServeMeProductView extends StatefulWidget {
@@ -191,7 +191,7 @@ Widget buildHeaderSection(BuildContext context) {
                   IconButtonCircle(
                       icon: Icons.favorite_border,
                       onPressed: () {
-                        popRoute(context);
+                        nav.back();
                       }),
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -28,9 +29,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     final picker = ImagePicker();
     final photo = await picker.pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      context
-          .read<DriverRegisterController>()
-          .setLicensePicture(File(photo.path));
+      context.read<DriverRegisterController>().setLicensePicture(File(photo.path));
       debugPrint('✅ تم تحديد صورة الشهادة : $photo');
       setState(() {
         licenseImage = File(photo.path);
@@ -38,8 +37,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     }
   }
 
-  final TextEditingController identityNumberController =
-      TextEditingController();
+  final TextEditingController identityNumberController = TextEditingController();
   bool acceptConditions = false;
 
   @override
@@ -49,9 +47,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
   }
 
   Future<void> _register(BuildContext context) async {
-    context
-        .read<DriverRegisterController>()
-        .setIdentityNumber(identityNumberController.text);
+    context.read<DriverRegisterController>().setIdentityNumber(identityNumberController.text);
 
     final controller = context.read<DriverRegisterController>();
 
@@ -63,8 +59,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
         controller.vechileId.isEmpty ||
         controller.identityType.isEmpty ||
         controller.identityNumber.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: const Text('Please fill all fields!')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Please fill all fields!')));
       debugPrint('❌ بيانات غير مكتملة للتسجيل');
       return;
     }
@@ -124,8 +119,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                 height: 30.h,
               ),
               DropChoice(
-                provider:
-                    context.read<DriverRegisterController>().setIdentityType,
+                provider: context.read<DriverRegisterController>().setIdentityType,
                 title: 'حدد نوع الرخصة',
                 titleChoiceOne: 'جواز سفر',
                 titleChoiceTwo: 'رخصة قيادة',
@@ -170,9 +164,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                           acceptConditions = value ?? false;
                         });
                       }),
-                  Custom_Text(context,
-                      text: 'اوافق على الشروط والأحكام وسياسة الخصوصية',
-                      style: font11Grey400W(context))
+                  Custom_Text(context, text: 'اوافق على الشروط والأحكام وسياسة الخصوصية', style: font11Grey400W(context))
                 ],
               ),
               ApplyButton(

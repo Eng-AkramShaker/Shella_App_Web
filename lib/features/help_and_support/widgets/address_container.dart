@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -51,13 +52,13 @@ class AddressContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'عناويننا',
-                    style: font12Green400W(context,size: 11),
+                    style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(height: 10.h),
                   Custom_Text(
                     context,
                     text: 'ksa, saudi arabia , umm al hammam',
-                    style: font12Black300W(context,size: 11),
+                    style: font12Black300W(context, size: 11),
                   ),
                 ],
               ),

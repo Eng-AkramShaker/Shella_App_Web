@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
@@ -22,9 +23,7 @@ class CouponContainerWeb extends StatelessWidget {
       child: Container(
         height: ResponsiveLayout.isWeb() ? 86.h : 45.h,
         decoration: BoxDecoration(
-            color: ResponsiveLayout.isWeb()
-                ? AppColors.lightBlue
-                : AppColors.backgroundColor,
+            color: ResponsiveLayout.isWeb() ? AppColors.lightBlue : AppColors.backgroundColor,
             borderRadius: BorderRadius.circular(6.r),
             border: Border.all(width: 1, color: AppColors.gryColor_6)),
         child: Padding(
@@ -38,14 +37,16 @@ class CouponContainerWeb extends StatelessWidget {
               SizedBox(
                 width: 5.w,
               ),
-              Custom_Text(context,
-                  text: '${loyaltyProvider.couponsCount} قسيمة', style: font12Black400W(context)),
+              Custom_Text(context, text: '${loyaltyProvider.couponsCount} قسيمة', style: font12Black400W(context)),
             ],
           ),
         ),
       ),
     );
   }
-    Widget _loadingIndicator() => const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,));
 
+  Widget _loadingIndicator() => const Center(
+          child: CircularProgressIndicator(
+        color: AppColors.primaryColor,
+      ));
 }
