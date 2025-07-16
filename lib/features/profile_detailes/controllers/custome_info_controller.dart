@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/customer_info_services.dart';
@@ -77,9 +80,8 @@ class CustomerController extends ChangeNotifier {
         'phone': data['phone'],
         'email': data['email'],
       };
-      final shouldUpdate = apiData['name'] != customer?.fullName ||
-          apiData['phone'] != customer?.phone ||
-          apiData['email'] != customer?.email;
+      final shouldUpdate =
+          apiData['name'] != customer?.fullName || apiData['phone'] != customer?.phone || apiData['email'] != customer?.email;
 
       if (!shouldUpdate) {
         _isLoading = false;
@@ -117,8 +119,7 @@ class CustomerController extends ChangeNotifier {
 
       final success = await service.deleteAccount();
       if (success) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, AppRoutes.loginPage, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginPage, (route) => false);
       } else {
         throw Exception('فشل في حذف الحساب');
       }

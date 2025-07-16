@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/discount/domain/models/discount_model.dart';
+
 class DiscountGridContent extends StatelessWidget {
   const DiscountGridContent({
     super.key,
@@ -28,13 +30,12 @@ class DiscountGridContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product Image 
+          // Product Image
           Container(
             height: 120.h,
             width: double.infinity,
             child: ClipRRect(
-              borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(16.w)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16.w)),
               child: Image.network(
                 product.image,
                 fit: BoxFit.contain,
@@ -47,13 +48,12 @@ class DiscountGridContent extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Discount Badge
           Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 8.w, vertical: 4.h),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: AppColors.greenColor,
                   borderRadius: BorderRadius.circular(8.w),
@@ -61,7 +61,7 @@ class DiscountGridContent extends StatelessWidget {
                 child: Text(
                   'خصم ${((product.price - product.finalPrice) / product.price * 100).toStringAsFixed(0)}%',
                   style: TextStyle(
-                    color:  Colors.white,
+                    color: Colors.white,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -69,7 +69,7 @@ class DiscountGridContent extends StatelessWidget {
               ),
             ],
           ),
-          
+
           // Product Details
           Padding(
             padding: EdgeInsets.all(12.w),
@@ -83,12 +83,12 @@ class DiscountGridContent extends StatelessWidget {
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),
-                  maxLines: 2, // 
+                  maxLines: 2, //
                   overflow: TextOverflow.ellipsis,
                 ),
-                
+
                 SizedBox(height: 4.h),
-                
+
                 // Store Name
                 Text(
                   product.storeName,
@@ -97,9 +97,9 @@ class DiscountGridContent extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                
+
                 SizedBox(height: 8.h),
-                
+
                 // Price
                 Row(
                   children: [
@@ -112,9 +112,9 @@ class DiscountGridContent extends StatelessWidget {
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                    
+
                     SizedBox(width: 8.w),
-                    
+
                     // Discounted Price
                     Text(
                       '${product.finalPrice.toStringAsFixed(2)} ر.س',
@@ -126,9 +126,9 @@ class DiscountGridContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 8.h),
-                
+
                 // Available Stock
                 Text(
                   'الكمية المتاحة: ${product.stock}',

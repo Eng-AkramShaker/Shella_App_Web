@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
@@ -11,7 +13,6 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
@@ -84,27 +85,25 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                         backgroundColor: AppColors.greenColor,
                         padding: const EdgeInsets.symmetric(vertical: 15),
                       ),
-                      onPressed:
-                          authController.verificationstate == AuthState.loading
-                              ? null
-                              : () => _onPressedChangePassword(
-                                    authController,
-                                    context,
-                                  ),
-                      child:
-                          authController.verificationstate == AuthState.loading
-                              ? SizedBox(
-                                  width: 24.w,
-                                  height: 24.h,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 3,
-                                  ),
-                                )
-                              : Text(
-                                  "حفظ",
-                                  style: font14White600W(context),
-                                ),
+                      onPressed: authController.verificationstate == AuthState.loading
+                          ? null
+                          : () => _onPressedChangePassword(
+                                authController,
+                                context,
+                              ),
+                      child: authController.verificationstate == AuthState.loading
+                          ? SizedBox(
+                              width: 24.w,
+                              height: 24.h,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 3,
+                              ),
+                            )
+                          : Text(
+                              "حفظ",
+                              style: font14White600W(context),
+                            ),
                     );
                   },
                 )),
@@ -114,23 +113,21 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
     );
   }
 
-  void _onPressedChangePassword(
-      AuthController authController, BuildContext context) async {
+  void _onPressedChangePassword(AuthController authController, BuildContext context) async {
     if (password.text.isEmpty || passwordComfirm.text.isEmpty) {
-      showCustomSnackBar('please enter the password right  ', context);
+      showCustomSnackBar(context, 'please enter the password right  ');
       return;
     }
     // print(authController.user!.token ?? '');
     print(authController.phone!);
     authController
-        .resetPassword(authController.verificationCode, authController.phone!,
-            password.text.trim(), passwordComfirm.text.trim())
+        .resetPassword(authController.verificationCode, authController.phone!, password.text.trim(), passwordComfirm.text.trim())
         .then(
       (value) {
         if (value.isSuccess) {
-          pushNewScreen(context, AppRoutes.passwordResetSuccessScreen);
+          nav.push(AppRoutes.passwordResetSuccessScreen);
         } else {
-          showCustomSnackBar(value.message, context);
+          showCustomSnackBar(context, value.message);
         }
       },
     );

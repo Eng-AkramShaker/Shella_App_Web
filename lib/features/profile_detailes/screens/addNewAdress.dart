@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -190,8 +191,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
               context.read<ProfileController>().resetOperationState();
               Navigator.of(context).pop(true);
             });
-            return const Center(
-                child: ProfileLoading(color: AppColors.primaryColor));
+            return const Center(child: ProfileLoading(color: AppColors.primaryColor));
           }
           if (adressState == RequestState.loading) {
             return const Center(
@@ -223,23 +223,20 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     height: size.height / 3,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
-                      border:
-                          Border.all(color: AppColors.primaryColor, width: 2),
+                      border: Border.all(color: AppColors.primaryColor, width: 2),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10.r),
                       child: GoogleMap(
                         initialCameraPosition: CameraPosition(
-                          target: selectedLocation ??
-                              const LatLng(24.7136, 46.6753),
+                          target: selectedLocation ?? const LatLng(24.7136, 46.6753),
                           zoom: _zoomLevel,
                         ),
                         onMapCreated: (GoogleMapController controller) {
                           _mapController = controller;
                           if (selectedLocation != null) {
                             controller.animateCamera(
-                              CameraUpdate.newLatLngZoom(
-                                  selectedLocation!, _zoomLevel),
+                              CameraUpdate.newLatLngZoom(selectedLocation!, _zoomLevel),
                             );
                           }
                         },
@@ -273,16 +270,14 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           heroTag: 'location_btn',
                           backgroundColor: Colors.white,
                           onPressed: _getCurrentLocation,
-                          child: const Icon(Icons.my_location,
-                              color: AppColors.primaryColor),
+                          child: const Icon(Icons.my_location, color: AppColors.primaryColor),
                         ),
                         SizedBox(height: 10.h),
                         FloatingActionButton.small(
                           heroTag: 'pin_btn',
                           backgroundColor: AppColors.primaryColor,
                           onPressed: _pinCurrentLocation,
-                          child: const Icon(Icons.location_pin,
-                              color: Colors.white),
+                          child: const Icon(Icons.location_pin, color: Colors.white),
                         ),
                       ],
                     ),
@@ -296,16 +291,14 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           heroTag: 'zoom_in_btn',
                           backgroundColor: Colors.white,
                           onPressed: _zoomIn,
-                          child: const Icon(Icons.add,
-                              color: AppColors.primaryColor),
+                          child: const Icon(Icons.add, color: AppColors.primaryColor),
                         ),
                         SizedBox(height: 10.h),
                         FloatingActionButton.small(
                           heroTag: 'zoom_out_btn',
                           backgroundColor: Colors.white,
                           onPressed: _zoomOut,
-                          child: const Icon(Icons.remove,
-                              color: AppColors.primaryColor),
+                          child: const Icon(Icons.remove, color: AppColors.primaryColor),
                         ),
                       ],
                     ),
@@ -326,9 +319,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                 builder: (context, controller, _) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("تسمية الموقع",
-                        style: TextStyle(
-                            fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                    Text("تسمية الموقع", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -340,9 +331,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.home,
                             label: "منزل",
-                            color: (controller.tybe == 1)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 1) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -353,9 +342,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.work,
                             label: "عمل",
-                            color: (controller.tybe == 2)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 2) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10.w),
@@ -366,9 +353,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           child: locationTag(
                             icon: Icons.add,
                             label: "إضافة",
-                            color: (controller.tybe == 3)
-                                ? AppColors.primaryColor
-                                : AppColors.darkGreyColor,
+                            color: (controller.tybe == 3) ? AppColors.primaryColor : AppColors.darkGreyColor,
                           ),
                         ),
                       ],
@@ -412,9 +397,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           },
                           child: selectableButton(
                             "منزل (اختياري)",
-                            (controller.floor == 1)
-                                ? AppColors.greenColor
-                                : AppColors.darkGreyColor,
+                            (controller.floor == 1) ? AppColors.greenColor : AppColors.darkGreyColor,
                           ),
                         ),
                         SizedBox(width: 10),
@@ -424,9 +407,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                           },
                           child: selectableButton(
                             "أرضية (اختياري)",
-                            (controller.floor == 2)
-                                ? AppColors.greenColor
-                                : AppColors.darkGreyColor,
+                            (controller.floor == 2) ? AppColors.greenColor : AppColors.darkGreyColor,
                           ),
                         ),
                       ],
@@ -434,19 +415,15 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        if (nameController.text.isEmpty ||
-                            phoneController.text.isEmpty ||
-                            adressController.text.isEmpty) {
+                        if (nameController.text.isEmpty || phoneController.text.isEmpty || adressController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('يرجى ملء جميع الحقول المطلوبة')),
+                            const SnackBar(content: Text('يرجى ملء جميع الحقول المطلوبة')),
                           );
                           return;
                         }
                         if (selectedLocation == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('يرجى تحديد الموقع على الخريطة')),
+                            const SnackBar(content: Text('يرجى تحديد الموقع على الخريطة')),
                           );
                           return;
                         }
@@ -483,10 +460,8 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         backgroundColor: Colors.green,
                         minimumSize: Size(double.infinity, 50),
                       ),
-                      child: Text(
-                          editAddress != null ? "تحديث العنوان" : "حفظ العنوان",
-                          style: const TextStyle(
-                              fontSize: 18, color: Colors.white)),
+                      child: Text(editAddress != null ? "تحديث العنوان" : "حفظ العنوان",
+                          style: const TextStyle(fontSize: 18, color: Colors.white)),
                     ),
                   ],
                 ),

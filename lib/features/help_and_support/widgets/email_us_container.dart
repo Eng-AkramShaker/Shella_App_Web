@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -54,7 +55,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'راسلنا عبر بريدنا الالكتروني',
-                    style: font12Green400W(context,size: 11),
+                    style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -62,7 +63,7 @@ class EmailUsContainer extends StatelessWidget {
                   Custom_Text(
                     context,
                     text: 'shalafood@gmail.com',
-                    style: font12Black300W(context,size: 11),
+                    style: font12Black300W(context, size: 11),
                   ),
                 ],
               ),

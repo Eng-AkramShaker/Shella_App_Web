@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/nav_item_web.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/search_app_bar_web.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/video_logo_web.dart';
 import '../../../helper/app_routes.dart';
 import '../../../util/app_colors.dart';
-import '../../../util/app_navigators.dart' as NavigationHelper;
 import '../../gap/width/width.dart';
 import 'navBarState/nav_bar_state_web.dart';
 
@@ -27,10 +28,12 @@ class WebHomeApppar extends StatelessWidget {
 
     switch (index) {
       case 0:
-        NavigationHelper.pushNewScreen(context, AppRoutes.webHome);
+        nav.push(AppRoutes.webHome);
+
         break;
       case 1:
-        NavigationHelper.pushNewScreen(context, AppRoutes.myOrders);
+        nav.push(AppRoutes.webHome);
+
         break;
       // case 2:
       //   showDialog(
@@ -39,10 +42,12 @@ class WebHomeApppar extends StatelessWidget {
       //   );
       //   break;
       case 3:
-        NavigationHelper.pushNewScreen(context, AppRoutes.accountdetails);
+        nav.push(AppRoutes.accountdetails);
+
         break;
       case 4:
-        NavigationHelper.pushNewScreen(context, AppRoutes.contactUs);
+        nav.push(AppRoutes.contactUs);
+
         break;
       case 5:
         break;
@@ -71,13 +76,15 @@ class WebHomeApppar extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   Expanded(
-                    child: SearchAppBar(isSearchScreen: isSearchScreen,),
+                    child: SearchAppBar(
+                      isSearchScreen: isSearchScreen,
+                    ),
                   ),
                   const SizedBox(width: 20),
                   Row(
                     children: List.generate(
                       _navItems.length,
-                          (index) => Padding(
+                      (index) => Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: SizedBox(
                           height: 50,

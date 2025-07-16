@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 
@@ -79,10 +80,10 @@ TextStyle font11Black400W(
 }
 
 TextStyle font11Green400W(
-    BuildContext context, {
-      double? size,
-      double? lineHeight,
-    }) {
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
   return TextStyle(
     fontFamily: 'ReadexPro',
     height: lineHeight ?? 1.5,
@@ -93,10 +94,10 @@ TextStyle font11Green400W(
 }
 
 TextStyle font10Grey700W(
-    BuildContext context, {
-      double? size,
-      double? lineHeight,
-    }) {
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
   return TextStyle(
     fontFamily: 'ReadexPro',
     height: lineHeight ?? 1.5,
@@ -147,6 +148,7 @@ TextStyle font13Black400W(
     fontWeight: FontWeight.w400,
   );
 }
+
 TextStyle font18Black400W(
   BuildContext context, {
   double? size,
@@ -414,6 +416,7 @@ TextStyle font14SecondaryColor500W(
     fontWeight: FontWeight.w500,
   );
 }
+
 TextStyle font18SecondaryColor500W(
   BuildContext context, {
   double? size,

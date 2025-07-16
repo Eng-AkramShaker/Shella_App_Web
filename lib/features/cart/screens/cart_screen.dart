@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, avoid_unnecessary_containers, camel_case_types, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/divider/divider_2.dart';

@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 
 class CustomToast extends StatelessWidget {
@@ -45,12 +48,8 @@ class CustomToast extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  isError
-                      ? CupertinoIcons.multiply_circle_fill
-                      : Icons.check_circle,
-                  color: isError
-                      ? const Color(0xffFF9090).withOpacity(0.5)
-                      : const Color(0xff039D55),
+                  isError ? CupertinoIcons.multiply_circle_fill : Icons.check_circle,
+                  color: isError ? const Color(0xffFF9090).withOpacity(0.5) : const Color(0xff039D55),
                   size: 20,
                 ),
                 const SizedBox(width: 10),

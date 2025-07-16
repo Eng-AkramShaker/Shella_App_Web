@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -7,7 +10,6 @@ import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.
 import 'package:shella_design/features/profile_detailes/widgets/profile_divider.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
 import '../../../common/helper/app_routes.dart';
-import '../../../common/util/app_navigators.dart';
 import '../widgets/profile_info_listTitle.dart';
 
 class ProfileInfo extends StatefulWidget {
@@ -37,9 +39,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
         actions: [
           Container(
             margin: EdgeInsets.only(left: 15, bottom: 5),
-            decoration: BoxDecoration(
-                color: AppColors.wtColor,
-                borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppColors.wtColor, borderRadius: BorderRadius.circular(12)),
             child: IconButton(
               splashColor: AppColors.wtColor,
               padding: EdgeInsets.zero,
@@ -49,8 +49,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 color: AppColors.greenColor,
                 size: 24,
               ),
-              onPressed: () =>
-                  pushNewScreen(context, AppRoutes.updateProfileInfoPage),
+              onPressed: () => nav.push(AppRoutes.updateProfileInfoPage),
             ),
           )
         ],
@@ -73,8 +72,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       body: Consumer<CustomerController>(
         builder: (context, provider, _) {
           if (provider.isLoading) {
-            return const Center(
-                child: ProfileLoading(color: AppColors.greenColor));
+            return const Center(child: ProfileLoading(color: AppColors.greenColor));
           }
           if (provider.toExternalReference != null) {
             return Center(
@@ -139,8 +137,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 "كلمة المرور",
                 "********",
                 context,
-                () => pushNewScreen(
-                    context, AppRoutes.passwordResetSuccessScreen),
+                () => nav.push(AppRoutes.passwordResetSuccessScreen),
               ),
               ProfileDivider(),
             ],

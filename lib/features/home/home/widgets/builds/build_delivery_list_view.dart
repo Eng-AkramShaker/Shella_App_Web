@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -100,8 +101,7 @@ Widget buildDeliveryListView(BuildContext context) {
                             const SizedBox(width: 8),
                             Custom_Text(
                               context,
-                              text:
-                                  '${store.deliveryTime} - ${store.delivery ? "توصيل متاح" : "لا يوجد توصيل"}',
+                              text: '${store.deliveryTime} - ${store.delivery ? "توصيل متاح" : "لا يوجد توصيل"}',
                               style: font10Grey400W(context),
                             ),
                             const SizedBox(width: 8),

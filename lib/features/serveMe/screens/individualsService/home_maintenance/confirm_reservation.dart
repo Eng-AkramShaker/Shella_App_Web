@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
@@ -13,7 +14,6 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ConfirmReservation extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
     return Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: customAppBar(context, style: font12White600W(context, size: size_14(context)), title: "تاكيد الحجز", onPressed: () {
-          popRoute(context);
+          nav.back();
         }),
         body: ListView(children: [
           ServiceEvaluation(
@@ -56,7 +56,7 @@ class _ConfirmReservationState extends State<ConfirmReservation> {
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
             child: custom_Button(context, h: 45, title: "تاكيد الحجز", style: font10White400W(context, size: size_14(context)),
                 onPressed: () {
-              pushNewScreen(context, AppRoutes.bookingConfirmationSuccess);
+              nav.push(AppRoutes.bookingConfirmationSuccess);
             }),
           )
         ]));

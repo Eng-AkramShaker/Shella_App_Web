@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     _controller.addListener(() {
       if (_controller.value.position == _controller.value.duration) {
-        pushAndRemoveUntil(context, AppRoutes.onBoarding);
+        nav.pushAndRemoveUnti(AppRoutes.onBoarding);
       }
     });
   }

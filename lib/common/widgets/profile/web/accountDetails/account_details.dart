@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';

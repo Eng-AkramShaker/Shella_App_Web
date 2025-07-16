@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 Widget buildLanguageOption({
   required String title,
@@ -9,8 +10,7 @@ Widget buildLanguageOption({
     decoration: BoxDecoration(
       color: isSelected ? Colors.white : Colors.grey[100],
       borderRadius: BorderRadius.circular(10),
-      border: Border.all(
-          color: isSelected ? Colors.green : Colors.transparent, width: 2),
+      border: Border.all(color: isSelected ? Colors.green : Colors.transparent, width: 2),
     ),
     padding: EdgeInsets.all(16),
     child: Column(

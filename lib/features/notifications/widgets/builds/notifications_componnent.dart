@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -11,8 +12,7 @@ class NotificationsComponnent extends StatefulWidget {
   const NotificationsComponnent({super.key});
 
   @override
-  State<NotificationsComponnent> createState() =>
-      _NotificationsComponnentState();
+  State<NotificationsComponnent> createState() => _NotificationsComponnentState();
 }
 
 class _NotificationsComponnentState extends State<NotificationsComponnent> {
@@ -50,8 +50,7 @@ class _NotificationsComponnentState extends State<NotificationsComponnent> {
       builder: (context, notificationsController, _) {
         final notifications = notificationsController.myNotifications ?? [];
 
-        if (notificationsController.notificatiosState ==
-            NotificatiosState.loading) {
+        if (notificationsController.notificatiosState == NotificatiosState.loading) {
           return const Center(
               child: Loading(
             color: AppColors.primaryColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/appBar/appBar.dart';
@@ -16,8 +17,7 @@ class DiscountScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(
-          context, 'كود الخصم', Icons.arrow_back_sharp, Icons.percent),
+      appBar: custom_AppBar(context, 'كود الخصم', Icons.arrow_back_sharp, Icons.percent),
       body: Consumer<DiscountController>(
         builder: (context, controller, _) {
           if (controller.isLoading) {
@@ -51,5 +51,3 @@ class DiscountScreen extends StatelessWidget {
     );
   }
 }
-
-

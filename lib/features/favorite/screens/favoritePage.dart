@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -12,8 +13,7 @@ class FavoritePage extends StatefulWidget {
   _FavoritePageState createState() => _FavoritePageState();
 }
 
-class _FavoritePageState extends State<FavoritePage>
-    with SingleTickerProviderStateMixin {
+class _FavoritePageState extends State<FavoritePage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -33,14 +33,11 @@ class _FavoritePageState extends State<FavoritePage>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Custom_Text(context,
-            text: 'المفضلة', style: font14White600W(context)),
+        title: Custom_Text(context, text: 'المفضلة', style: font14White600W(context)),
         centerTitle: true,
         bottom: TabBar(
-          unselectedLabelStyle:
-              TextStyle(color: AppColors.backgroundColor, fontSize: 14.sp),
-          labelStyle:
-              TextStyle(color: AppColors.backgroundColor, fontSize: 18.sp),
+          unselectedLabelStyle: TextStyle(color: AppColors.backgroundColor, fontSize: 14.sp),
+          labelStyle: TextStyle(color: AppColors.backgroundColor, fontSize: 18.sp),
           controller: _tabController,
           labelColor: AppColors.backgroundColor,
           unselectedLabelColor: AppColors.backgroundColor,

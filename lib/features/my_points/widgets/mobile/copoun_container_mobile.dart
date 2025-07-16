@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -42,5 +43,9 @@ class CopounContainerMobile extends StatelessWidget {
       ),
     );
   }
-  Widget _loadingIndicator() => const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,));
+
+  Widget _loadingIndicator() => const Center(
+          child: CircularProgressIndicator(
+        color: AppColors.primaryColor,
+      ));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -25,17 +26,17 @@ class SearchHistorySection extends StatelessWidget {
         children: [
           Custom_Text(context, text: "بحثت مسبقا عن", style: font10Grey400W(context, size: size_12(context))),
           ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            reverse: true,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: (){
-                Provider.of<SearchFilterController>(context,listen: false).setSearchValue(value: previousSearches[index],index: index);
-              },
-              behavior: HitTestBehavior.opaque,
-              child: buildSearchItem(context, previousSearches[index],index)),
-            itemCount: previousSearches.length
-          ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              reverse: true,
+              itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Provider.of<SearchFilterController>(context, listen: false)
+                        .setSearchValue(value: previousSearches[index], index: index);
+                  },
+                  behavior: HitTestBehavior.opaque,
+                  child: buildSearchItem(context, previousSearches[index], index)),
+              itemCount: previousSearches.length),
         ],
       ),
     );

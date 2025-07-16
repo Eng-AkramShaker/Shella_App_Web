@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/notifications/domain/models/notification_model.dart';
 import 'package:shella_design/features/notifications/domain/services/notification_service_interface.dart';
@@ -19,8 +20,7 @@ class NotificationsController with ChangeNotifier {
 
   NotificationsController({this.notificationServiceInterface});
 
-  static NotificationsController get(context, {listen = true}) =>
-      Provider.of<NotificationsController>(context, listen: listen);
+  static NotificationsController get(context, {listen = true}) => Provider.of<NotificationsController>(context, listen: listen);
 
   /// STATE VARIABLES
   NotificatiosState _notificatiosState = NotificatiosState.initial;
@@ -38,8 +38,7 @@ class NotificationsController with ChangeNotifier {
       _notificatiosState = NotificatiosState.loading;
       notifyListeners();
       print("getMyNotificatios");
-      myNotifications =
-          await notificationServiceInterface!.getNotificationList();
+      myNotifications = await notificationServiceInterface!.getNotificationList();
       print(myNotifications!.first);
 
       _notificatiosState = NotificatiosState.success;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
@@ -49,13 +50,9 @@ Widget buildProfileHeader(onTap) {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: customer.imageFullUrl != null
-                        ? NetworkImage(customer.imageFullUrl ?? "")
-                        : null,
+                    backgroundImage: customer.imageFullUrl != null ? NetworkImage(customer.imageFullUrl ?? "") : null,
                     backgroundColor: Colors.grey[300],
-                    child: customer.imageFullUrl == null
-                        ? Icon(Icons.person, size: 40, color: Colors.grey[600])
-                        : null,
+                    child: customer.imageFullUrl == null ? Icon(Icons.person, size: 40, color: Colors.grey[600]) : null,
                   ),
                   const SizedBox(width: 12),
                   Column(
