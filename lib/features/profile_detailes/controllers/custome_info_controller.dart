@@ -40,35 +40,11 @@ class CustomerController extends ChangeNotifier {
     }
   }
 
-  // void showEditDialog(
-  //   BuildContext context,
-  //   String fieldTitle,
-  //   String currentValue,
-  //   Function(String) onSave,
-  // ) {
-  //   TextEditingController controller =
-  //       TextEditingController(text: currentValue);
-  //
-  //   CustomDialog.showCustomDialog(
-  //           context: context,
-  //           title: 'تعديل $fieldTitle',
-  //           customContent: TextField(
-  //             controller: controller,
-  //             decoration: InputDecoration(
-  //               border: OutlineInputBorder(
-  //                 borderRadius: BorderRadius.circular(12),
-  //               ),
-  //             ),
-  //           ),
-  //           onConfirm: () {})
-  //       .then((confirmed) {
-  //     if (confirmed == true) {
-  //       onSave(controller.text);
-  //     }
-  //   });
-  // }
-
-  Future<bool> updateProfileInfo(Map<String, dynamic> data) async {
+  Future<bool> updateProfileInfo(
+    Map<String, dynamic> data, {
+    XFile? imageFile,
+    bool isImageRemoved = false,
+  }) async {
     try {
       _isLoading = true;
       notifyListeners();
@@ -77,29 +53,41 @@ class CustomerController extends ChangeNotifier {
         'phone': data['phone'],
         'email': data['email'],
       };
+      if (isImageRemoved) {
+        apiData['image'] = 'DELETE';
+      }
+      print("🚀 إرسال بيانات التحديث: $apiData");
       final shouldUpdate = apiData['name'] != customer?.fullName ||
           apiData['phone'] != customer?.phone ||
-          apiData['email'] != customer?.email;
+          apiData['email'] != customer?.email ||
+          imageFile != null ||
+          isImageRemoved;
 
       if (!shouldUpdate) {
-        _isLoading = false;
-        notifyListeners();
-        return true; // No changes needed
+        // _isLoading = false;
+        // notifyListeners();
+        return true;
       }
-      final updatedCustomer = await service.updateCustomerInfo(apiData);
-      // final updateData = {
-      //   'name': field,
-      //   'value': newValue,
-      // };
-
-      // final updatedCustomer = await service.updateCustomerInfo(updateData);
-
+      ////// final updatedCustomer = await service.updateCustomerInfo(apiData);
+      CustomerModel? updatedCustomer;
+      if (imageFile != null) {
+        updatedCustomer = await service.updateCustomerInfoWithImage(
+          apiData,
+          imageFile: imageFile,
+        );
+      } else if (isImageRemoved) {
+        apiData['image'] = ''; // إشارة لحذف الصورة
+        updatedCustomer = await service.updateCustomerInfo(apiData);
+      } else {
+        updatedCustomer = await service.updateCustomerInfo(apiData);
+      }
       if (updatedCustomer != null) {
         customer = updatedCustomer;
         // await fetchCustomerData();
         print('تم التحديث بنجاح');
         return true;
       }
+      print('❌ لم يتم التحديث - response null');
       return false;
     } catch (e) {
       print('حدث خطأ: ${e.toString()}');

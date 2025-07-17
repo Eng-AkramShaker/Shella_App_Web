@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:get/get_connect/http/src/response/response.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';
@@ -33,22 +35,83 @@ class CustomerRepository implements CustomerRepositoryInterface {
 
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
+
       if (jsonBody.containsKey('customer')) {
         return CustomerModel.fromJson(jsonBody['customer']);
       } else if (jsonBody.containsKey('data')) {
         return CustomerModel.fromJson(jsonBody['data']);
       } else {
-        // If the API returns only a message, we need to refetch the customer data
         return await getCustomerInfo();
       }
     } else {
       final errorBody = jsonDecode(response.body);
       final errors = errorBody['errors'] as List<dynamic>;
-      final errorMessages = errors.map((e) => e['message']).join(', ');
-      throw Exception('فشل في تحديث الملف الشخصي');
+      // final errorMessages = errors.map((e) => e['message']).join(', ');
+      // throw Exception('فشل في تحديث الملف الشخصي');
+      final errorMessage = errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
+      throw Exception(errorMessage);
     }
 
     // return CustomerModel.fromJson(jsonBody);
+  }
+
+  Future<String> _fileToBase64(XFile file) async {
+    final bytes = await file.readAsBytes();
+    return base64Encode(bytes);
+  }
+
+  @override
+  Future<CustomerModel> updateCustomerInfoWithImage(
+    Map<String, dynamic> data, {
+    required XFile imageFile,
+  }) async {
+    final bytes = await imageFile.readAsBytes();
+    final base64Image = base64Encode(bytes);
+    // final base64Image = await _fileToBase64(imageFile);
+    data['image'] = base64Image;
+    final uri = Uri.parse(Api_Constants.updateCustomerInfo);
+
+    Map<String, String> stringData = {};
+    data.forEach((key, value) {
+      stringData[key] = value.toString();
+    });
+
+    List<MultipartBody> multipartBody = [MultipartBody('image', imageFile)];
+
+    final response = await apiClient.postMultipartData(
+      uri.toString(),
+      stringData,
+      multipartBody,
+    );
+
+    return _handleUpdateResponse(response);
+  }
+
+  CustomerModel _handleUpdateResponse(dynamic response) {
+    try {
+      if (response is http.Response) {
+        if (response.statusCode == 200) {
+          final jsonBody = jsonDecode(response.body);
+          if (jsonBody.containsKey('customer')) {
+            return CustomerModel.fromJson(jsonBody['customer']);
+          } else if (jsonBody.containsKey('data')) {
+            return CustomerModel.fromJson(jsonBody['data']);
+          } else {
+            throw Exception('Unexpected response format');
+          }
+        } else {
+          final errorBody = jsonDecode(response.body);
+          final errorMessage =
+              errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
+          throw Exception(errorMessage);
+        }
+      } else {
+        throw Exception('Invalid response type');
+      }
+    } catch (e) {
+      print('❌ خطأ في معالجة الرد: ${e.toString()}');
+      throw Exception('فشل في معالجة استجابة الخادم');
+    }
   }
 
   @override

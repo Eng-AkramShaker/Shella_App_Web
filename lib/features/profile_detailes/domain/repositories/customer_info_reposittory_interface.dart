@@ -1,3 +1,4 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';
 
 abstract class CustomerRepositoryInterface {
@@ -6,4 +7,7 @@ abstract class CustomerRepositoryInterface {
   Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data);
 
   Future<bool> deleteAccount();
+
+  Future<CustomerModel?> updateCustomerInfoWithImage(Map<String, dynamic> data,
+      {required XFile imageFile});
 }

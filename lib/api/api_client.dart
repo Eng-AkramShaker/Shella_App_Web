@@ -29,8 +29,9 @@ class ApiClient {
       print('Token: $token');
     }
     if (token == null || token!.split('.').length != 3) {
-      throw Exception('Invalid JWT format');
+      print('❌ JWT غير صالح أو غير موجود');
     }
+
     updateHeader(
       token,
       [],
@@ -49,20 +50,7 @@ class ApiClient {
     if (kDebugMode) {
       print('Token: $token');
     }
-    // AddressModel? addressModel;
-    // try {
-    //   addressModel = AddressModel.fromJson(
-    //       jsonDecode(sharedPreferences.getString(AppConstants.userAddress)!));
-    // } catch (_) {}
-    // int? moduleID;
-    // if (GetPlatform.isWeb &&
-    //     sharedPreferences.containsKey(AppConstants.moduleId)) {
-    //   try {
-    //     moduleID = ModuleModel.fromJson(
-    //             jsonDecode(sharedPreferences.getString(AppConstants.moduleId)!))
-    //         .id;
-    //   } catch (_) {}
-    // }
+
     updateHeader(
       token,
       [],
@@ -72,13 +60,6 @@ class ApiClient {
       '1',
       '1',
       setHeader: true,
-      // addressModel?.zoneIds,
-      // addressModel?.areaIds,
-
-      // sharedPreferences.getString(AppConstants.languageCode),
-      // moduleID,
-      // addressModel?.latitude,
-      // addressModel?.longitude,
     );
   }
 
@@ -92,20 +73,11 @@ class ApiClient {
       String? longitude,
       {bool setHeader = true}) {
     Map<String, String> header = {};
-
     if (moduleID != null ||
-        sharedPreferences.getString(AppConstants.cacheModuleId) != null) {
-      // header.addAll({
-      //   AppConstants.moduleId:
-      //       '${moduleID ?? ModuleModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.cacheModuleId)!)).id}'
-      // });
-    }
+        sharedPreferences.getString(AppConstants.cacheModuleId) != null) {}
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
       AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
-
-      ///this will add in ride module
-      // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
       AppConstants.localizationKey: languageCode ?? 'ar',
       AppConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
       AppConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
@@ -177,8 +149,6 @@ class ApiClient {
     }
   }
 
-  //
-
   Future<http.Response> postMultipartData(
       String uri, Map<String, String> body, List<MultipartBody> multipartBody,
       {Map<String, String>? headers, bool handleError = true}) async {
@@ -187,6 +157,7 @@ class ApiClient {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         // print('====> API Body: $body with ${multipartBody.length} picture');
       }
+
       http.MultipartRequest request =
           http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
       request.headers.addAll(headers ?? _mainHeaders);
@@ -210,8 +181,13 @@ class ApiClient {
       request.fields.addAll(newBody);
       http.Response response =
           await http.Response.fromStream(await request.send());
-      return handleResponse(response, uri, handleError);
+      print('✅ اكتمل طلب POST Multipart - status: ${response.statusCode}');
+      print('📝 محتوى الاستجابة: ${response.body}');
+
+      // return handleResponse(response, uri, handleError);
+      return response;
     } catch (e) {
+      print('❌ خطأ في POST Multipart: ${e.toString()}');
       return http.Response('error', 1);
     }
   }
@@ -232,14 +208,6 @@ class ApiClient {
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       return handleResponse(response, uri, handleError);
-      // http.Response response = await http
-      //     .put(
-      //       Uri.parse(appBaseUrl + uri),
-      //       body: jsonEncode(body),
-      //       headers: headers ?? _mainHeaders,
-      //     )
-      //     .timeout(Duration(seconds: timeoutInSeconds));
-      // return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
     }
@@ -298,8 +266,7 @@ class ApiClient {
       }
     } catch (e) {
       if (handleError) {
-        ApiChecker.checkApi(
-            response); // Or pass `response` if your checker supports `http.Response`
+        ApiChecker.checkApi(response);
       }
     }
 

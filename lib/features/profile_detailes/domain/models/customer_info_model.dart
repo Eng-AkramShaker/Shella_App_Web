@@ -26,7 +26,13 @@ class CustomerModel {
   final bool? isEmailVerified;
   final bool? isFromPos;
   final String? fullName;
-  final String? imageFullUrl;
+  late final String? imageFullUrl;
+
+  String? get safeImageFullUrl {
+    if (imageFullUrl == null || imageFullUrl!.isEmpty) return null;
+
+    return imageFullUrl;
+  }
 
   CustomerModel({
     this.id,

@@ -1,13 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-
+import 'package:shella_design/common/util/indian_app_constants.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
-
 import '../../../common/helper/app_routes.dart';
 import '../../../common/util/app_navigators.dart';
 
@@ -21,10 +21,11 @@ class UpdateProfileInfoPage extends StatefulWidget {
 class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   late TextEditingController _fullNameController;
   late TextEditingController _phoneController;
-  late TextEditingController _birthDateController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
+  XFile? _pickedImage;
+  bool _isImageRemoved = false;
   bool _hasChanges = false;
 
   @override
@@ -52,7 +53,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
             _emailController.text != (customer?.email ?? '');
 
     setState(() {
-      _hasChanges = hasTextChanges;
+      _hasChanges = hasTextChanges || _pickedImage != null || _isImageRemoved;
     });
   }
 
@@ -65,57 +66,67 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
     super.dispose();
   }
 
-  // ImageProvider? _getProfileImage(CustomerController controller) {
-  //   if (controller.selectedImage != null) {
-  //     return FileImage(controller.selectedImage!);
-  //   } else if (controller.customer?.image != null && !controller.removeImage) {
-  //     return NetworkImage(controller.customer!.image!);
-  //   }
-  //   return null;
-  // }
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: source);
+    if (pickedImage != null) {
+      setState(() {
+        _pickedImage = pickedImage;
+        _isImageRemoved = false;
+        _hasChanges = true;
+      });
+    }
+  }
 
-  // void _showImagePickerSheet(
-  //     BuildContext context, CustomerController controller) {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     builder: (context) => SafeArea(
-  //       child: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           if (controller.customer?.image != null ||
-  //               controller.selectedImage != null)
-  //             ListTile(
-  //               leading: Icon(Icons.delete, color: Colors.red),
-  //               title: Text('حذف الصورة', style: TextStyle(color: Colors.red)),
-  //               onTap: () {
-  //                 controller.removeImageF();
-  //                 _checkForChanges();
-  //                 Navigator.pop(context);
-  //               },
-  //             ),
-  //           ListTile(
-  //             leading: Icon(Icons.photo_library),
-  //             title: Text('اختيار من المعرض'),
-  //             onTap: () {
-  //               controller.pickImage(ImageSource.gallery);
-  //               _checkForChanges();
-  //               Navigator.pop(context);
-  //             },
-  //           ),
-  //           ListTile(
-  //             leading: Icon(Icons.camera_alt),
-  //             title: Text('فتح الكاميرا'),
-  //             onTap: () {
-  //               controller.pickImage(ImageSource.camera);
-  //               _checkForChanges();
-  //               Navigator.pop(context);
-  //             },
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  void _removeImage() {
+    setState(() {
+      _pickedImage = null;
+      _isImageRemoved = true;
+      _hasChanges = true;
+    });
+    Navigator.pop(context);
+  }
+
+  void _showImagePickerBottomSheet() {
+    final customer =
+        Provider.of<CustomerController>(context, listen: false).customer;
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (customer?.image != null || _pickedImage != null) ...[
+                ListTile(
+                  leading: Icon(Icons.delete, color: Colors.red),
+                  title: Text('حذف الصورة'),
+                  onTap: _removeImage,
+                ),
+                Divider(),
+              ],
+              ListTile(
+                leading: Icon(Icons.photo_library),
+                title: Text('اختيار من المعرض'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.gallery);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.camera_alt),
+                title: Text('فتح الكاميرا'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.camera);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,16 +149,32 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 60.r,
-              backgroundColor: AppColors.wGreyColor,
-              child: Icon(
-                Icons.person,
-                size: 50.r,
-                color: AppColors.wtColor,
-              ),
+            GestureDetector(
+              onTap: _showImagePickerBottomSheet,
+              child: Consumer<CustomerController>(
+                  builder: (context, controller, _) {
+                final customer = controller.customer;
+                return CircleAvatar(
+                  radius: 60.r,
+                  backgroundColor: AppColors.wGreyColor,
+                  backgroundImage: _pickedImage != null
+                      ? FileImage(File(_pickedImage!.path))
+                      : (customer?.image != null && !_isImageRemoved)
+                          ? NetworkImage(
+                                  '${AppConstants.baseUrl}/storage/profile/${customer!.image}')
+                              as ImageProvider
+                          : null,
+                  child: _pickedImage == null &&
+                          (customer?.image == null || _isImageRemoved)
+                      ? Icon(
+                          Icons.person,
+                          size: 50.r,
+                          color: AppColors.wtColor,
+                        )
+                      : null,
+                );
+              }),
             ),
-
             SizedBox(height: 30.h),
 
             _buildTextField(_fullNameController, 'الاسم الكامل', Icons.person),
@@ -229,7 +256,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
       return;
     }
 
-    final navigator = Navigator.of(context);
+    // final navigator = Navigator.of(context);
     final messenger = ScaffoldMessenger.of(context);
     if (_emailController.text.isEmpty) {
       messenger.showSnackBar(
@@ -246,25 +273,27 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
       'email': _emailController.text,
     };
     try {
-      final success = await controller.updateProfileInfo(updateData);
-
-      navigator.pop();
+      final success = await controller.updateProfileInfo(
+        updateData,
+        imageFile: _pickedImage,
+        isImageRemoved: _isImageRemoved,
+      );
 
       if (success) {
-        navigator.pop();
+        Navigator.pop(context);
         Provider.of<CustomerController>(context, listen: false)
             .fetchCustomerData();
+        Navigator.pop(context);
       } else {
         messenger.showSnackBar(
           SnackBar(
-            content: Text('فشل في تحديث البيانات'),
+            content: Text('فشل في تحديث البلبليليلليلبيانات'),
             backgroundColor: Colors.red,
           ),
         );
       }
     } catch (e) {
-      // Close loading dialog
-      navigator.pop();
+      // navigator.pop();
 
       messenger.showSnackBar(
         SnackBar(
@@ -273,11 +302,5 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
         ),
       );
     }
-
-    // await controller.updateProfileInfo(updateData);
-    //
-    // controller.updateProfileInfo(updateData).then((_) {
-    //   navigator.pop(); // Go back to profile info page
-    // });
   }
 }
