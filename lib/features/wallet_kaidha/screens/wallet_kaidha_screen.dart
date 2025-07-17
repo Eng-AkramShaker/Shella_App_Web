@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/appBar.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
@@ -62,7 +63,9 @@ class WalletKaidhaScreen extends StatelessWidget {
 
               // payment button
               TextButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  //
+                },
                 text: 'الدفع الآن',
                 backgroundColor: AppColors.secondaryColor,
                 textStyle: font13White400W(context),

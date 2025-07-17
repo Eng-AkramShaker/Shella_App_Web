@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
@@ -6,9 +7,14 @@ import 'package:shella_design/common/util/app_colors.dart';
 
 class AdressCard extends StatelessWidget {
   final Address address;
+  final VoidCallback onDelete;
+  final VoidCallback onEdit;
+
   const AdressCard({
     super.key,
     required this.address,
+    required this.onDelete,
+    required this.onEdit,
   });
 
   @override
@@ -38,11 +44,8 @@ class AdressCard extends StatelessWidget {
                       text: address.addressType,
                       size: 18,
                     ),
-                    Custom_Text(
-                      context,
-                      text: address.address,
-                      size: 16,
-                    ),
+                    Custom_Text(context,
+                        text: "${address.address},${address.contactPersonNumber}", size: 14, color: AppColors.supListTitle),
                   ],
                 ),
               ),
@@ -50,18 +53,18 @@ class AdressCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(
-                    Icons.mode_edit_outlined,
+                  IconButton(
+                    icon: Icon(Icons.mode_edit_outline_rounded, size: 30.r),
                     color: AppColors.greenColor,
-                    size: 30.r,
+                    onPressed: onEdit,
                   ),
                   SizedBox(
                     width: 5.w,
                   ),
-                  Icon(
-                    Icons.delete_outline_rounded,
+                  IconButton(
+                    icon: Icon(Icons.delete_outline_rounded, size: 30.r),
                     color: AppColors.greenColor,
-                    size: 30.r,
+                    onPressed: onDelete,
                   ),
                 ],
               ),

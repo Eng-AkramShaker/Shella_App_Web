@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
 
@@ -10,13 +13,16 @@ class ProfileController extends ChangeNotifier {
   ProfileController({required this.profileDetailsService});
 
   RequestState adressstate = RequestState.initial;
+
   RequestState get adresstate => adressstate;
 
   List<Address>? address;
   List<Address>? get getedaddress => address;
 
   String? _errorMessage;
+
   String? get errorMessage => _errorMessage;
+
   //add address page
   int tybe = 1;
   int floor = 1;
@@ -27,6 +33,7 @@ class ProfileController extends ChangeNotifier {
 
   // Getters
   int get currentPage => _currentPage;
+
   int get currentAddressesPage => _currentAddressesPage;
 
   // Setters
@@ -51,7 +58,8 @@ class ProfileController extends ChangeNotifier {
       address = await profileDetailsService.getAddressList();
       adressstate = RequestState.success;
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
+
       adressstate = RequestState.error;
     }
     notifyListeners();
@@ -67,12 +75,12 @@ class ProfileController extends ChangeNotifier {
       if (success) {
         address?.add(newAddress);
         adressstate = RequestState.success;
-        getAdress();
+        // getAdress();
       } else {
-        throw Exception("Failed to add address");
+        throw Exception("فشل في إضافة العنوان");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
     notifyListeners();
@@ -86,15 +94,17 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.removeAddress(addressId);
       if (success) {
-        address?.removeWhere((addr) => addr.id == addressId);
+        address?.removeWhere((addr) => addr.id.toString() == addressId);
         adressstate = RequestState.success;
+        await getAdress();
       } else {
-        throw Exception("Failed to remove address");
+        throw Exception("فشل في حذف العنوان");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
+
     notifyListeners();
   }
 
@@ -106,17 +116,16 @@ class ProfileController extends ChangeNotifier {
     try {
       bool success = await profileDetailsService.updateAddress(updatedAddress);
       if (success) {
-        int index =
-            address?.indexWhere((addr) => addr.id == updatedAddress.id) ?? -1;
+        int index = address?.indexWhere((a) => a.id == updatedAddress.id) ?? -1;
         if (index != -1) {
           address?[index] = updatedAddress;
         }
         adressstate = RequestState.success;
       } else {
-        throw Exception("Failed to update address");
+        throw Exception("فشل في تعديل العنوان");
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = "فشل في الاتصال";
       adressstate = RequestState.error;
     }
     notifyListeners();
@@ -132,10 +141,24 @@ class ProfileController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetOperationState() {
+    if (adressstate != RequestState.initial) {
+      adressstate = RequestState.initial;
+      _errorMessage = null;
+      notifyListeners();
+    }
+  }
+
   /// Resets the controller state
   void resetState() {
     adressstate = RequestState.initial;
-    address = [];
+    address = null;
+    _errorMessage = null;
+    notifyListeners();
+  }
+
+  void resetAddState() {
+    adressstate = RequestState.initial;
     _errorMessage = null;
     notifyListeners();
   }

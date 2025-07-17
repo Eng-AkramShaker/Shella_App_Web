@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import '../../../../../../common/util/app_dimensions.dart';
 import '../../../../../../common/util/app_styles.dart';
 import '../../../../../../common/widgets/texts/custom_text.dart';
@@ -13,7 +14,7 @@ class BuildMostSearched extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
           child: Custom_Text(context, text: "الأكثر بحثآ", style: font10Grey400W(context, size: size_12(context))),
         ),
         MostSearchedList()

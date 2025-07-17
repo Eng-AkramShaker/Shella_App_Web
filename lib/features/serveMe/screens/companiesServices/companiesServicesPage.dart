@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class Companiesservicespage extends StatelessWidget {
   const Companiesservicespage({super.key});
@@ -40,7 +40,7 @@ class Companiesservicespage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      pushNewScreen(context, AppRoutes.companiesWorkshopsPage1);
+                      nav.push(AppRoutes.companiesWorkshopsPage1);
                     },
                     child: Column(
                       children: [

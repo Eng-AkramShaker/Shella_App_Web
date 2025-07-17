@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class BottomBar_PymentScren extends StatelessWidget {
   const BottomBar_PymentScren({super.key});
@@ -20,7 +20,7 @@ class BottomBar_PymentScren extends StatelessWidget {
             title: 'إتمام الطلب',
             h: 45.h,
             onPressed: () {
-              pushNewScreen(context, AppRoutes.payment_method_screen);
+              nav.push(AppRoutes.payment_method_screen);
             },
           ),
         ],

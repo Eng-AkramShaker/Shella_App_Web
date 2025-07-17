@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 class SignInAsGuest extends StatelessWidget {
   const SignInAsGuest({
@@ -12,7 +13,7 @@ class SignInAsGuest extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        pushAndRemoveUntil(context, AppRoutes.mainLayout);
+        nav.pushAndRemoveUnti(AppRoutes.mainLayout);
       },
       style: OutlinedButton.styleFrom(
         side: BorderSide(color: Colors.green),

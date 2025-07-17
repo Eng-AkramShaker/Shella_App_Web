@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/helper/date_converter.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
@@ -11,9 +12,7 @@ import 'package:shella_design/common/util/app_styles.dart';
 
 Widget buildOrderCard(OrderModel orderItem, BuildContext context) {
   bool isParcel = orderItem.orderType == 'parcel';
-  String logo = isParcel
-      ? (orderItem.parcelCategory?.imageFullUrl ?? '')
-      : (orderItem.store?.logoFullUrl ?? '');
+  String logo = isParcel ? (orderItem.parcelCategory?.imageFullUrl ?? '') : (orderItem.store?.logoFullUrl ?? '');
   String name = isParcel ? 'parcel' : (orderItem.store?.name ?? '');
   String id = "#${orderItem.id}";
 

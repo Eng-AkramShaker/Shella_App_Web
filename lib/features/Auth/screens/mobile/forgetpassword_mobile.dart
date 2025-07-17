@@ -1,13 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/validate_check.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
@@ -37,8 +38,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     super.dispose();
   }
 
-  void _onPressedForgetPass(String countryCode, AuthController authController,
-      BuildContext context) async {
+  void _onPressedForgetPass(String countryCode, AuthController authController, BuildContext context) async {
     if (!_formKey.currentState!.validate()) return;
 
     String number = phone.text.trim();
@@ -49,20 +49,19 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     }
 
     String numberWithCountryCode = countryCode + number;
-    debugPrint(
-        "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
+    debugPrint("\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
 
     if (number.isEmpty) {
-      showCustomSnackBar('Invalid phone number', context);
+      showCustomSnackBar(context, 'Invalid phone number');
       return;
     }
     authController.setphone = numberWithCountryCode;
     authController.forgetPassword(numberWithCountryCode).then(
       (value) {
         if (value.isSuccess) {
-          pushNewScreen(context, AppRoutes.mobilelVerification);
+          nav.push(AppRoutes.mobilelVerification);
         } else {
-          showCustomSnackBar(value.message, context);
+          showCustomSnackBar(context, value.message);
         }
       },
     );
@@ -99,8 +98,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                   onChanged: (phoneNumber) {
                     countrycode = phoneNumber.countryCode;
                   },
-                  validator: (value) =>
-                      ValidateCheck.validateEmptyText(value.toString(), null),
+                  validator: (value) => ValidateCheck.validateEmptyText(value.toString(), null),
                 ),
                 SizedBox(height: size.height / 10),
                 Consumer<AuthController>(
@@ -113,26 +111,23 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                           borderRadius: BorderRadius.circular(15.r),
                         ),
                       ),
-                      onPressed:
-                          authController.verificationstate == AuthState.loading
-                              ? null
-                              : () => _onPressedForgetPass(
-                                  countrycode, authController, context),
-                      child:
-                          authController.verificationstate == AuthState.loading
-                              ? SizedBox(
-                                  width: 24.w,
-                                  height: 24.h,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 3,
-                                  ),
-                                )
-                              : Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 30.r,
-                                ),
+                      onPressed: authController.verificationstate == AuthState.loading
+                          ? null
+                          : () => _onPressedForgetPass(countrycode, authController, context),
+                      child: authController.verificationstate == AuthState.loading
+                          ? SizedBox(
+                              width: 24.w,
+                              height: 24.h,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 3,
+                              ),
+                            )
+                          : Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 30.r,
+                            ),
                     );
                   },
                 ),

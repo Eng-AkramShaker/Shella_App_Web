@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/button/custom_button.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
@@ -46,9 +47,15 @@ class AvailableCouponContainerWeb extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Custom_Text(context,text: '$discount % خصم', style: font16SecondaryColor400W(context,size: 17).copyWith(color: AppColors.secondaryColor)),
-                          SizedBox(height: 10.h,),
-                          Custom_Text(context,text: 'بدون حد ادنى', style: font12SecondaryColor400W(context,size: 12).copyWith(color: AppColors.secondaryColor)),
+                          Custom_Text(context,
+                              text: '$discount % خصم',
+                              style: font16SecondaryColor400W(context, size: 17).copyWith(color: AppColors.secondaryColor)),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Custom_Text(context,
+                              text: 'بدون حد ادنى',
+                              style: font12SecondaryColor400W(context, size: 12).copyWith(color: AppColors.secondaryColor)),
                         ],
                       ),
                     ),
@@ -56,7 +63,7 @@ class AvailableCouponContainerWeb extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,26 +71,41 @@ class AvailableCouponContainerWeb extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(child: Custom_Text(context, text: 'خصم $discount% وفر حتى 20 ر.س', style: font12Black400W(context,size: 14).copyWith(color: AppColors.bgColor))),
-                              Custom_Text(context, text: 'صالح حتى $expiredDate', style: font8Black400W(context,size: 12).copyWith(color: AppColors.bgColor)),
+                              Expanded(
+                                  child: Custom_Text(context,
+                                      text: 'خصم $discount% وفر حتى 20 ر.س',
+                                      style: font12Black400W(context, size: 14).copyWith(color: AppColors.bgColor))),
+                              Custom_Text(context,
+                                  text: 'صالح حتى $expiredDate',
+                                  style: font8Black400W(context, size: 12).copyWith(color: AppColors.bgColor)),
                             ],
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: Border.all(width: 1, color: AppColors.secondaryColor)),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Custom_Text(context, text: 'طلبات التوصيل فقط', style: font6SecondaryColor400W(context,size: 10).copyWith(color: AppColors.secondaryColor)),
+                              child: Custom_Text(context,
+                                  text: 'طلبات التوصيل فقط',
+                                  style: font6SecondaryColor400W(context, size: 10).copyWith(color: AppColors.secondaryColor)),
                             ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.secondaryColor)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: Border.all(width: 1, color: AppColors.secondaryColor)),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Custom_Text(context,text: 'خصم يصل الى 20ر.س', style: font6SecondaryColor400W(context,size: 10).copyWith(color: AppColors.secondaryColor)),
+                              child: Custom_Text(context,
+                                  text: 'خصم يصل الى 20ر.س',
+                                  style: font6SecondaryColor400W(context, size: 10).copyWith(color: AppColors.secondaryColor)),
                             ),
                           ),
                           SizedBox(
@@ -92,9 +114,15 @@ class AvailableCouponContainerWeb extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: Align(
-                              alignment: AlignmentDirectional.bottomEnd,
-                              child: CustomButton(height: 30,width: width(context, 0.13),text: 'استخدام',colorBorder: AppColors.secondaryColor,colorTxt: AppColors.secondaryColor,textSize: 13,)
-                            ),
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: CustomButton(
+                                  height: 30,
+                                  width: width(context, 0.13),
+                                  text: 'استخدام',
+                                  colorBorder: AppColors.secondaryColor,
+                                  colorTxt: AppColors.secondaryColor,
+                                  textSize: 13,
+                                )),
                           ),
                         ],
                       ),

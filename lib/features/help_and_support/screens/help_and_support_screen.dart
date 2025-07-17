@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/help_and_support/widgets/address_container.dart';
@@ -15,7 +16,12 @@ class HelpAndSupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, title: 'المساعدة و الدعم', img: 'assets/images/help_and_support_appbar_img.png',onPressed: () => customPrint('ddd'),),
+      appBar: customAppBar(
+        context,
+        title: 'المساعدة و الدعم',
+        img: 'assets/images/help_and_support_appbar_img.png',
+        onPressed: () => customPrint('ddd'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import '../../../common/models/response_model.dart';
 import '../domain/models/login_model.dart';
 import '../domain/models/signup_body_model.dart';
@@ -39,16 +40,11 @@ class AuthController extends ChangeNotifier {
 
     try {
       responseModel = await authServiceInterface.login(
-          emailOrPhone: emailOrPhone,
-          password: password,
-          loginType: loginType,
-          fieldType: fieldType,
-          alreadyInApp: alreadyInApp);
+          emailOrPhone: emailOrPhone, password: password, loginType: loginType, fieldType: fieldType, alreadyInApp: alreadyInApp);
       if (responseModel.isSuccess && responseModel.authResponseModel != null) {
         _user = User(
           token: responseModel.authResponseModel!.token ?? '',
-          isPhoneVerified:
-              responseModel.authResponseModel!.isPhoneVerified ?? false,
+          isPhoneVerified: responseModel.authResponseModel!.isPhoneVerified ?? false,
         );
       }
       _state = AuthState.success;
@@ -109,15 +105,13 @@ class AuthController extends ChangeNotifier {
     return responseModel;
   }
 
-  Future<ResponseModel> resetPassword(String? resetToken, String number,
-      String password, String confirmPassword) async {
+  Future<ResponseModel> resetPassword(String? resetToken, String number, String password, String confirmPassword) async {
     _verificationstate = AuthState.loading;
     notifyListeners();
     ResponseModel? responseModel;
 
     try {
-      responseModel = await authServiceInterface.resetPassword(
-          resetToken, number, password, confirmPassword);
+      responseModel = await authServiceInterface.resetPassword(resetToken, number, password, confirmPassword);
       _verificationstate = AuthState.success;
       notifyListeners();
     } catch (error) {

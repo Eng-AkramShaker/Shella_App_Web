@@ -2,11 +2,15 @@
 
 class Api_Constants {
   // ======================== Url ========================
-  static const String appBaseUrl = 'https://shalafood.net';
+  // static const String appBaseUrl = 'https://shalafood.net';
+  static const String appBaseUrl = 'https://shellafood.com';
 
   static String token = 'guest';
 
-  static String customerInfo = '$appBaseUrl/api/v1/customer/info';
+  static String customerInfo = '/api/v1/customer/info';
+  static String updateCustomerInfo = '/api/v1/customer/update-profile';
+  static String removeAccount = '/api/v1/customer/remove-account';
+
   static String joinAsDriver = '$appBaseUrl/api/v1/auth/delivery-man/store';
 
   static String login = '/api/v1/auth/login';
@@ -20,7 +24,7 @@ class Api_Constants {
   static const String removeAddressUri =
       '/api/v1/customer/address/delete?address_id=';
   static const String addAddressUri = '/api/v1/customer/address/add';
-  static const String updateAddressUri = '/api/v1/customer/address/update/';
+  static const String updateAddressUri = '/api/v1/customer/address/update';
 
   //
 

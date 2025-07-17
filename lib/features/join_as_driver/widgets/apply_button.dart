@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ApplyButton extends StatelessWidget {
+  final void Function() onTap;
   const ApplyButton({
+    required this.onTap,
     super.key,
   });
 
@@ -18,7 +21,7 @@ class ApplyButton extends StatelessWidget {
       child: Custom_Text_Button(
         context,
         text_style: font14White500W(context),
-        onPressed: () {},
+        onPressed: onTap,
         text: 'يقدم',
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
@@ -21,15 +22,13 @@ class _MobilelVerificationState extends State<MobilelVerification> {
     TextEditingController code = TextEditingController();
     Size size = MediaQuery.of(context).size;
 
-    int endTime =
-        DateTime.now().millisecondsSinceEpoch + 1000 * 60 * 9; // 9 minutes
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60 * 9; // 9 minutes
     void onEnd() {
       // ignore: avoid_print
       print("Countdown Finished!");
     }
 
-    CountdownTimerController controller =
-        CountdownTimerController(endTime: endTime, onEnd: onEnd);
+    CountdownTimerController controller = CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     return Scaffold(
       appBar: AppBar(
@@ -85,8 +84,7 @@ class _MobilelVerificationState extends State<MobilelVerification> {
                 return CustomPinCodeTextField(
                   code: code,
                   size: size,
-                  onChanged: (value) =>
-                      authController.updateVerificationCode(value),
+                  onChanged: (value) => authController.updateVerificationCode(value),
                 );
               },
             ),

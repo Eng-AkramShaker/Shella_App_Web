@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
@@ -15,7 +16,6 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 // تعريف Provider (إذا كان هنالك حاجة لإدارة الحالة)
@@ -40,7 +40,7 @@ class MobilePayment extends StatelessWidget {
           context,
           title: 'تفاصيل الدفع',
           img: AppImages.icon_v,
-          onPressed: () => popRoute(context),
+          onPressed: () => nav.back(),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -68,7 +68,7 @@ class MobilePayment extends StatelessWidget {
                   style: font11White400W(context),
                   onPressed: () {
                     // استخدم pushNewScreen هنا
-                    pushNewScreen(context, AppRoutes.payment_method_screen);
+                    nav.push(AppRoutes.payment_method_screen);
                   },
                 ),
                 paymentSwitch(),

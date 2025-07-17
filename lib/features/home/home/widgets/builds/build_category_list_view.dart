@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -66,9 +67,7 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                               Container(
                                 height: 3,
                                 width: _getTextWidth(context, cat.name) * 1.3,
-                                color: selectedIndex == index
-                                    ? AppColors.greenColor
-                                    : Colors.transparent,
+                                color: selectedIndex == index ? AppColors.greenColor : Colors.transparent,
                               ),
                             ],
                           ),

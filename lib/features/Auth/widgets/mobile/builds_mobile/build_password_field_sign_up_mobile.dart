@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
-Widget buildPasswordFieldSignUp(
-    String hintTexts, TextEditingController controller) {
+Widget buildPasswordFieldSignUp(String hintTexts, TextEditingController controller) {
   return TextField(
     controller: controller,
     obscureText: true,

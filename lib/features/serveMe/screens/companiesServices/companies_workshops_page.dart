@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/SectionTitle_Tow.dart';
 import 'package:shella_design/features/serveMe/widgets/StoreCard.dart';
@@ -40,8 +41,7 @@ class CompaniesWorkshopsPage extends StatelessWidget {
                   hintStyle: const TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 ),
                 textDirection: TextDirection.rtl,
               ),

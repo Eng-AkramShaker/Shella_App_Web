@@ -1,6 +1,7 @@
-// import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';import 'package:shella_design/common/util/navigation/navigation.dart';
 // ignore_for_file: use_super_parameters, file_names
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -26,8 +27,7 @@ class CustomTextField extends StatelessWidget {
   final double? height;
   final Color? enableBorderColor;
 
-   final Function(String)? onChanged;
-  
+  final Function(String)? onChanged;
 
   const CustomTextField({
     Key? key,
@@ -48,10 +48,9 @@ class CustomTextField extends StatelessWidget {
     this.horizontalPadding,
     this.borderWidth,
     this.enableBorderColor,
-
-
-    this.onChanged, this.width,this.height,
-
+    this.onChanged,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -83,17 +82,18 @@ class CustomTextField extends StatelessWidget {
             enabledBorder: dottedBorder ?? false
                 ? OutlineInputBorder(borderSide: BorderSide.none)
                 : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
-                borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
-            focusedBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(radius?.r?? 8.r),borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
+                    borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
+                    borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(radius?.r ?? 8.r),
+                borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
             border: dottedBorder ?? false
                 ? OutlineInputBorder(borderSide: BorderSide.none)
                 : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  width: borderWidth ?? 1,
-                )),
+                    borderRadius: BorderRadius.circular(10.r),
+                    borderSide: BorderSide(
+                      width: borderWidth ?? 1,
+                    )),
           ),
         ),
       ),

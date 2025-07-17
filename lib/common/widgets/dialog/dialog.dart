@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -52,13 +53,16 @@ class _CouponInputDialogState extends State<CouponInputDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    child: custom_Button(context, title: 'إضافة', onPressed: () {}, buttoncolor: AppColors.greenColor, h: 40.h, style: font13White400W(context)),
+                    child: custom_Button(context,
+                        title: 'إضافة', onPressed: () {}, buttoncolor: AppColors.greenColor, h: 40.h, style: font13White400W(context)),
                   ),
                   SizedBox(
                     width: 20,
                   ),
                   Expanded(
-                    child: custom_Button(context,title: 'إلغاء', onPressed: () {Navigator.pop(context);}, buttoncolor: AppColors.wtColor, h: 40.h, style: font13Black400W(context)),
+                    child: custom_Button(context, title: 'إلغاء', onPressed: () {
+                      Navigator.pop(context);
+                    }, buttoncolor: AppColors.wtColor, h: 40.h, style: font13Black400W(context)),
                   ),
                 ],
               ),
