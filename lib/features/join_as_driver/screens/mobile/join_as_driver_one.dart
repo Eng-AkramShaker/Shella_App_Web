@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -31,7 +30,8 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   bool showPass = true;
 
@@ -39,7 +39,9 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
     final picker = ImagePicker();
     final photo = await picker.pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      context.read<DriverRegisterController>().setProfilePicture(File(photo.path));
+      context
+          .read<DriverRegisterController>()
+          .setProfilePicture(File(photo.path));
       debugPrint('✅ تم تحديد اصورة : $photo');
       setState(() {
         profilePicture = File(photo.path);
@@ -48,11 +50,17 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
   }
 
   void _naviagteToNextPage(BuildContext context) {
-    context.read<DriverRegisterController>().setFirstName(firstNameController.text);
-    context.read<DriverRegisterController>().setLastName(lastNameController.text);
+    context
+        .read<DriverRegisterController>()
+        .setFirstName(firstNameController.text);
+    context
+        .read<DriverRegisterController>()
+        .setLastName(lastNameController.text);
     context.read<DriverRegisterController>().setEmail(emailController.text);
 
-    context.read<DriverRegisterController>().setPassword(passwordController.text);
+    context
+        .read<DriverRegisterController>()
+        .setPassword(passwordController.text);
 
     final controller = context.read<DriverRegisterController>();
 
@@ -64,7 +72,8 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
         controller.phone.isEmpty ||
         controller.email.isEmpty ||
         controller.password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Please fill all fields!')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: const Text('Please fill all fields!')));
       debugPrint('❌ بيانات غير مكتملة للتسجيل');
       return;
     }
@@ -94,7 +103,7 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
           context,
           title: 'انضم كرجل توصيل',
           img: 'assets/images/join_as_driver_appbar_img.png',
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => nav.back,
         ),
         body: SingleChildScrollView(
             padding: EdgeInsets.all(16.0.sp),
@@ -124,7 +133,9 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
                 Container(
                     width: double.infinity,
                     height: 55.h,
-                    decoration: BoxDecoration(color: AppColors.greenColor, borderRadius: BorderRadius.circular(8.r)),
+                    decoration: BoxDecoration(
+                        color: AppColors.greenColor,
+                        borderRadius: BorderRadius.circular(8.r)),
                     child: Custom_Text_Button(
                       context,
                       text_style: font14White500W(context),

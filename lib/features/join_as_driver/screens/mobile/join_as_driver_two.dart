@@ -1,19 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/drop_choice/drop_choice.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
-import 'package:shella_design/features/join_as_driver/widgets/apply_button.dart';
-import 'package:shella_design/features/join_as_driver/widgets/type_of_work_row.dart';
-import 'package:shella_design/features/join_as_driver/widgets/upload_profile_dotted.dart';
+import 'package:shella_design/features/join_as_driver/widgets/build/mobile/build_row_conditions.dart';
+import 'package:shella_design/features/join_as_driver/widgets/mobile/apply_button.dart';
+import 'package:shella_design/features/join_as_driver/widgets/mobile/type_of_work_row.dart';
+import 'package:shella_design/features/join_as_driver/widgets/mobile/upload_profile_dotted.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import '../../../common/widgets/textField/custom_textfield_2.dart';
-import '../../../common/util/app_colors.dart';
+import '../../../../common/widgets/textField/custom_textfield_2.dart';
+import '../../../../common/util/app_colors.dart';
 
 class JoinAsDriverTwo extends StatefulWidget {
   const JoinAsDriverTwo({super.key});
@@ -29,7 +31,9 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     final picker = ImagePicker();
     final photo = await picker.pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      context.read<DriverRegisterController>().setLicensePicture(File(photo.path));
+      context
+          .read<DriverRegisterController>()
+          .setLicensePicture(File(photo.path));
       debugPrint('✅ تم تحديد صورة الشهادة : $photo');
       setState(() {
         licenseImage = File(photo.path);
@@ -37,7 +41,8 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     }
   }
 
-  final TextEditingController identityNumberController = TextEditingController();
+  final TextEditingController identityNumberController =
+      TextEditingController();
   bool acceptConditions = false;
 
   @override
@@ -47,7 +52,9 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
   }
 
   Future<void> _register(BuildContext context) async {
-    context.read<DriverRegisterController>().setIdentityNumber(identityNumberController.text);
+    context
+        .read<DriverRegisterController>()
+        .setIdentityNumber(identityNumberController.text);
 
     final controller = context.read<DriverRegisterController>();
 
@@ -59,7 +66,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
         controller.vechileId.isEmpty ||
         controller.identityType.isEmpty ||
         controller.identityNumber.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text('Please fill all fields!')));
+      showCustomSnackBar('❌ بيانات غير مكتملة للتسجيل', isError: true);
       debugPrint('❌ بيانات غير مكتملة للتسجيل');
       return;
     }
@@ -67,14 +74,11 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
 
     if (success) {
       debugPrint('✅ تم تسجيل الدليفري مان');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('تم تسجيل الدليفري مان')),
-      );
+      showCustomSnackBar('تم تسجيل الدليفري مان', isError: false);
     } else {
       debugPrint('❌فشل التسجيل تاكد من ملئ جميع الخانات ');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌فشل التسجيل تاكد من ملئ جميع الخانات '),
-      ));
+      showCustomSnackBar('❌فشل التسجيل تاكد من ملئ جميع الخانات ',
+          isError: true);
     }
   }
 
@@ -87,7 +91,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
         backgroundColor: AppColors.backgroundColor,
         title: Custom_Text(
           context,
-          text: 'الرجاء ملئ الاستمارة ',
+          text: MainAppConstants.pleasefillForm,
           style: font14Black400W(context),
         ),
         centerTitle: true,
@@ -106,9 +110,9 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
               ),
               DropChoice(
                 provider: context.read<DriverRegisterController>().setVechileId,
-                title: 'حدد نوع المركبة',
-                titleChoiceOne: 'دراجة نارية',
-                titleChoiceTwo: 'مركبة',
+                title: MainAppConstants.SelectVechileType,
+                titleChoiceOne: MainAppConstants.motorcycle,
+                titleChoiceTwo: MainAppConstants.vechile,
                 height: 31.h,
                 width: double.infinity,
                 titleBackgroundColor: AppColors.gryColor_5.withOpacity(.5),
@@ -119,10 +123,11 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                 height: 30.h,
               ),
               DropChoice(
-                provider: context.read<DriverRegisterController>().setIdentityType,
-                title: 'حدد نوع الرخصة',
-                titleChoiceOne: 'جواز سفر',
-                titleChoiceTwo: 'رخصة قيادة',
+                provider:
+                    context.read<DriverRegisterController>().setIdentityType,
+                title: MainAppConstants.selectLicenseType,
+                titleChoiceOne: MainAppConstants.passport,
+                titleChoiceTwo: MainAppConstants.drivingLicense,
                 height: 31.h,
                 width: double.infinity,
                 titleBackgroundColor: AppColors.gryColor_5.withOpacity(.5),
@@ -134,7 +139,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
               ),
               Custom_Text(
                 context,
-                text: 'رقم الهوية',
+                text: MainAppConstants.idNumber,
                 style: font14Black500W(context),
               ),
               SizedBox(
@@ -153,19 +158,14 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                 licensePicture: licenseImage,
                 onTap: () => _selectLicnsePicture(context),
               ),
-              Row(
-                children: [
-                  Checkbox(
-                      value: acceptConditions,
-                      checkColor: AppColors.backgroundColor,
-                      activeColor: AppColors.greenColor,
-                      onChanged: (value) {
-                        setState(() {
-                          acceptConditions = value ?? false;
-                        });
-                      }),
-                  Custom_Text(context, text: 'اوافق على الشروط والأحكام وسياسة الخصوصية', style: font11Grey400W(context))
-                ],
+              buildRowCOnditions(
+                context,
+                value: acceptConditions,
+                onChanged: (value) {
+                  setState(() {
+                    acceptConditions = value ?? false;
+                  });
+                },
               ),
               ApplyButton(
                 onTap: () => _register(context),

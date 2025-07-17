@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_constants.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/features/Balance/controller/balance_controller.dart';
-import 'package:shella_design/features/Balance/widget/amount_input_field.dart';
-import 'package:shella_design/features/Balance/widget/builds/build_amount_btns_row.dart';
-import 'package:shella_design/features/Balance/widget/builds/build_max_account_text.dart';
-import 'package:shella_design/features/Balance/widget/header_section.dart';
-import 'package:shella_design/features/Balance/widget/submit_button.dart';
+import 'package:shella_design/features/Balance/widget/mobile/amount_input_field.dart';
+import 'package:shella_design/features/Balance/widget/builds/mobile/build_amount_btns_row.dart';
+import 'package:shella_design/features/Balance/widget/builds/mobile/build_max_account_text.dart';
+import 'package:shella_design/features/Balance/widget/mobile/header_section.dart';
+import 'package:shella_design/features/Balance/widget/mobile/submit_button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class AddCredit extends StatelessWidget {
@@ -30,7 +31,7 @@ class AddCredit extends StatelessWidget {
     return Consumer<BalanceController>(
       builder: (context, controller, child) {
         return Container(
-          width: MediaQuery.of(context).size.width,
+          width: width_media(context),
           height: 350,
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -38,15 +39,15 @@ class AddCredit extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const HeaderSection(
-                headtext: 'إضافة رصيد',
-                bodytext: 'مبلغ الشحن',
+                headtext: MainAppConstants.addBalance,
+                bodytext: MainAppConstants.shippingAmount,
               ),
               const SizedBox(height: 16),
               buildAmountButtonsRow(controller, true),
               const SizedBox(height: 16),
               AmountInputField(
                 controller: controller,
-                hintText: 'مبلغ الشحن',
+                hintText: MainAppConstants.shippingAmount,
                 textcontroller: controller.additionamount,
               ),
               const SizedBox(height: 16),

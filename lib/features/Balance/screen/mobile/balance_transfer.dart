@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/Balance/controller/balance_controller.dart';
-import 'package:shella_design/features/Balance/widget/amount_input_field.dart';
-import 'package:shella_design/features/Balance/widget/builds/build_amount_btns_row.dart';
-import 'package:shella_design/features/Balance/widget/builds/build_max_account_text.dart';
-import 'package:shella_design/features/Balance/widget/header_section.dart';
-import 'package:shella_design/features/Balance/widget/submit_button.dart';
+import 'package:shella_design/features/Balance/widget/mobile/amount_input_field.dart';
+import 'package:shella_design/features/Balance/widget/builds/mobile/build_amount_btns_row.dart';
+import 'package:shella_design/features/Balance/widget/builds/mobile/build_max_account_text.dart';
+import 'package:shella_design/features/Balance/widget/mobile/header_section.dart';
+import 'package:shella_design/features/Balance/widget/mobile/submit_button.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:provider/provider.dart';
@@ -40,23 +40,24 @@ class BalanceTransfer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const HeaderSection(
-              headtext: 'تحويل رصيد',
-              bodytext: 'مبلغ التحويل',
+            HeaderSection(
+              headtext: MainAppConstants.balanceTransfer,
+              bodytext: MainAppConstants.transferAmount,
             ),
             const SizedBox(height: 16),
             buildAmountButtonsRow(controller, false),
             const SizedBox(height: 16),
             AmountInputField(
               controller: controller,
-              hintText: 'مبلغ التحويل',
+              hintText: MainAppConstants.transferAmount,
               textcontroller: controller.transferamount,
             ),
             const SizedBox(height: 16),
             buildMaxAmountText(context),
             const Spacer(),
             Custom_Text(context,
-                text: "ادخل رقم هاتف صاحب الحساب التي تود التحويل له", style: font10Black400W(context, size: size_12(context))),
+                text: MainAppConstants.enterPhoneAccountHolder,
+                style: font10Black400W(context, size: size_12(context))),
             const SizedBox(height: 10),
             CustomPhoneInput(
               controller: controller.phone,
