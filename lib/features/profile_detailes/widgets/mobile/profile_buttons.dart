@@ -57,9 +57,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
 
-import '../../../common/util/app_colors.dart';
+import '../../../../common/util/app_colors.dart';
 
 class ProfileButton extends StatelessWidget {
   ProfileButton({

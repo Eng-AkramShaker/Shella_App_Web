@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_buttons.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class CustomDialog extends StatelessWidget {

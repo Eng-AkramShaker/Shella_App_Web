@@ -157,7 +157,7 @@ class ApiClient {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         // print('====> API Body: $body with ${multipartBody.length} picture');
       }
-
+      initHeader();
       http.MultipartRequest request =
           http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
       request.headers.addAll(headers ?? _mainHeaders);
@@ -187,7 +187,8 @@ class ApiClient {
       // return handleResponse(response, uri, handleError);
       return response;
     } catch (e) {
-      print('❌ خطأ في POST Multipart: ${e.toString()}');
+      print(
+          '❌ //////////////////////////////////////////////خطأ في POST Multipart: ${e.toString()}');
       return http.Response('error', 1);
     }
   }

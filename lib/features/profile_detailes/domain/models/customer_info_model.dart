@@ -4,7 +4,7 @@ class CustomerModel {
   final String? lName;
   final String? phone;
   final String? email;
-  final String? image;
+  late final String? image;
   final bool? isPhoneVerified;
   final String? emailVerifiedAt;
   final String? createdAt;

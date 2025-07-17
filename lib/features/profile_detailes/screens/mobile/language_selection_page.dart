@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/features/profile_detailes/widgets/languageOption.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/languageOption.dart';
 
 class LanguageSelectionPage extends StatelessWidget {
   const LanguageSelectionPage({super.key});
@@ -48,11 +48,11 @@ class LanguageSelectionPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.greenColor,
-                minimumSize: Size(double.infinity, 50.h),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r),
-              )),
+                  backgroundColor: AppColors.greenColor,
+                  minimumSize: Size(double.infinity, 50.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.r),
+                  )),
               child: Text(
                 'حفظ',
                 style: TextStyle(fontSize: 18, color: Colors.white),

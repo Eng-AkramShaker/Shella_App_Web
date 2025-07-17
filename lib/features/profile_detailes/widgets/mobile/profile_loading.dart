@@ -9,9 +9,11 @@ class ProfileLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SpinKitThreeBounce(
-      color: color,
-      size: size,
+    return Center(
+      child: SpinKitThreeBounce(
+        color: color,
+        size: size,
+      ),
     );
   }
 }

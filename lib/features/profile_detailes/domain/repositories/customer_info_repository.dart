@@ -1,5 +1,8 @@
 import 'dart:convert';
-import 'package:get/get_connect/http/src/response/response.dart' as http;
+
+// import 'package:get/get_connect/http/src/multipart/multipart_file.dart' as http;
+import 'package:http/http.dart' as http;
+
 import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
@@ -32,10 +35,8 @@ class CustomerRepository implements CustomerRepositoryInterface {
       uri.toString(),
       data,
     );
-
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
-
       if (jsonBody.containsKey('customer')) {
         return CustomerModel.fromJson(jsonBody['customer']);
       } else if (jsonBody.containsKey('data')) {
@@ -46,18 +47,11 @@ class CustomerRepository implements CustomerRepositoryInterface {
     } else {
       final errorBody = jsonDecode(response.body);
       final errors = errorBody['errors'] as List<dynamic>;
-      // final errorMessages = errors.map((e) => e['message']).join(', ');
-      // throw Exception('فشل في تحديث الملف الشخصي');
       final errorMessage = errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
       throw Exception(errorMessage);
     }
 
     // return CustomerModel.fromJson(jsonBody);
-  }
-
-  Future<String> _fileToBase64(XFile file) async {
-    final bytes = await file.readAsBytes();
-    return base64Encode(bytes);
   }
 
   @override
@@ -87,7 +81,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
     return _handleUpdateResponse(response);
   }
 
-  CustomerModel _handleUpdateResponse(dynamic response) {
+  Future<CustomerModel> _handleUpdateResponse(dynamic response) async {
     try {
       if (response is http.Response) {
         if (response.statusCode == 200) {
@@ -97,7 +91,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
           } else if (jsonBody.containsKey('data')) {
             return CustomerModel.fromJson(jsonBody['data']);
           } else {
-            throw Exception('Unexpected response format');
+            return await getCustomerInfo();
           }
         } else {
           final errorBody = jsonDecode(response.body);
@@ -109,7 +103,8 @@ class CustomerRepository implements CustomerRepositoryInterface {
         throw Exception('Invalid response type');
       }
     } catch (e) {
-      print('❌ خطأ في معالجة الرد: ${e.toString()}');
+      print(
+          '❌ /////////////////////////////////////////////خطأ في معالجة الرد: ${e.toString()}');
       throw Exception('فشل في معالجة استجابة الخادم');
     }
   }

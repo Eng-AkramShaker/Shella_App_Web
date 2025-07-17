@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
-import '../controllers/map_controller.dart';
+import '../../controllers/map_controller.dart';
 
 class MapWidget extends StatelessWidget {
   const MapWidget({

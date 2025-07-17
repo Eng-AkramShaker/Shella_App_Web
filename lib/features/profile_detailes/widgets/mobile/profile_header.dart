@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_buttons.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_divider.dart';
-import 'package:shella_design/features/profile_detailes/widgets/profile_loading.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_buttons.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_divider.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
 
-import '../../../common/util/app_colors.dart';
+import '../../../../common/util/app_colors.dart';
 
 Widget buildProfileHeader(onTap) {
   return Consumer<CustomerController>(

@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/AdressCard.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/build_empty_address.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/address_error_widget.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/builds_mobile_address/build_appBar.dart';
+import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
+
+class AddressDetailsPage extends StatelessWidget {
+  const AddressDetailsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(80, size.height / 15),
+        child: buildAppBar(),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Consumer<ProfileController>(
+              builder: (context, controller, _) {
+                if (controller.addressState == RequestState.initial) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    controller.getAddress();
+                  });
+                  return ProfileLoading(color: AppColors.primaryColor);
+                }
+
+                if (controller.addressState == RequestState.loading) {
+                  return ProfileLoading(color: AppColors.primaryColor);
+                }
+
+                if (controller.addressState == RequestState.error) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {});
+                  return AddressErrorWidget(controller: controller);
+                }
+                if (controller.getAddresses == null ||
+                    controller.getAddresses!.isEmpty) {
+                  return EmptyAddressWidget();
+                }
+                return ListView.builder(
+                  itemCount: controller.getAddresses!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AdressCard(
+                      address: controller.getAddresses![index],
+                      onDelete: () => controller.removeAddress(
+                          controller.getAddresses![index].idString),
+                      onEdit: () => controller.navigateToEditScreen(
+                          context, controller.getAddresses![index]),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton:
+          Consumer<ProfileController>(builder: (context, controller, _) {
+        return FloatingActionButton(
+          backgroundColor: Colors.green,
+          child: Icon(Icons.add, color: Colors.white),
+          onPressed: () {
+            controller.navigateToAddScreen(context);
+          },
+        );
+      }),
+    );
+  }
+}
