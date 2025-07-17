@@ -106,6 +106,9 @@ class AppImages {
   static const String test = 'assets/images/105.png';
   static const String customerservice = 'assets/images/106.png';
   static const String discount = 'assets/images/107.png';
+    static const String discount2 = 'assets/images/discount.png';
+    static const String addIcon= 'assets/images/addIcon.png';
+
   static const String order2 = 'assets/images/100.png';
   static const String mark = 'assets/images/101.png';
   static const String success = 'assets/images/109.png';

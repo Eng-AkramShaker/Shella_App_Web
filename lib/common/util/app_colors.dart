@@ -47,4 +47,6 @@ class AppColors {
   static const Color yalColor = Color(0xFFFA9D2B);
   static const Color lightBlue = Color(0xFFE5F6EE);
   static const Color gold = Color.fromARGB(255, 250, 242, 43);
+   static const  Color yal2Color = Color(0xFFEBF942);
+
 }

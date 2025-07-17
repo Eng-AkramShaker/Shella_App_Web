@@ -5,10 +5,12 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/divider/custom_divider.dart';
+import 'package:shella_design/features/discount/screens/discount_screen.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/domain/models/store_model.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/home/widgets/category_Item.dart';
+import 'package:shella_design/features/home/users/screens/SuperMarketDiscounts.dart';
 import 'package:shella_design/features/product/controllers/product_controller.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
@@ -115,10 +117,20 @@ SectionProvider _provider = SectionProvider(_service);
                               );
                             }
                             final category = provider.categories[index];
-                            return CategoryItem(
-                              image: category.imageFullUrl ?? AppImages.empty,
-                              label: category.name,
-                            
+                            return InkWell(
+                              onTap: () {
+                                    Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => SuperMarketDiscounts()
+              ),
+            );
+                              },
+                              child: CategoryItem(
+                                image: category.imageFullUrl ?? AppImages.empty,
+                                label: category.name,
+                              
+                              ),
                             );
                           },
                         ),
@@ -283,9 +295,11 @@ SectionProvider _provider = SectionProvider(_service);
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    widget.store.coverPhotoUrl),
+                    widget.store.coverPhotoUrl
+                    ),
                   /// for test  "https://mediaassets.cbre.com/cdn/-/media/project/cbre/shared-site/menat/saudi-arabia/articles/saudi-arabia-market-review-q2-2024/ksaq22024_report_image.png?iar=0&rev=e2547eb45e9b46eab325aac9f13e5303&key=articlehero-wideimage&device=desktop"),
                   fit: BoxFit.fill,
+
                 ),
               ),
             ),

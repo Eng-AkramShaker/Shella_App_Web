@@ -81,23 +81,23 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
               // Optional spacing
               SizedBox(height: 12.h),
 
-              // Child categories
-              if (childCategories.isNotEmpty)
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  reverse: true,
-                  child: Row(
-                    children: childCategories.map((child) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6.w),
-                        child: CategoryItem(
-                          image: child.imageFullUrl ?? AppImages.empty,
-                          label: child.name,
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
+              //////////////// Child categories////////////////////
+              // if (childCategories.isNotEmpty)
+              //   SingleChildScrollView(
+              //     scrollDirection: Axis.horizontal,
+              //     reverse: true,
+              //     child: Row(
+              //       children: childCategories.map((child) {
+              //         return Padding(
+              //           padding: EdgeInsets.symmetric(horizontal: 6.w),
+              //           child: CategoryItem(
+              //             image: child.imageFullUrl ?? AppImages.empty,
+              //             label: child.name,
+              //           ),
+              //         );
+              //       }).toList(),
+              //     ),
+              //   ),
             ],
           ),
         );
