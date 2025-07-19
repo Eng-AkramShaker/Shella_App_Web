@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 import 'package:shella_design/common/util/app_images.dart';
 
 class StoreModel {
@@ -90,4 +89,4 @@ class Module{
     }
 
 }
->>>>>>> Stashed changes
+

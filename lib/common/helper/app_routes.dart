@@ -1,13 +1,8 @@
-<<<<<<< Updated upstream
-=======
 // ignore_for_file: constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/widgets/bottom_Navigation.dart';
-import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
-import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
-import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
 import 'package:shella_design/features/Auth/screens/mobile/ConfirmPassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/forgetpassword_mobile.dart';
 import 'package:shella_design/features/Auth/screens/mobile/login_mobile.dart';
@@ -22,20 +17,17 @@ import 'package:shella_design/features/cart/domain/repositories/cartRepository/c
 import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/cart_screen.dart';
-import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/screens/discount_screen.dart';
 import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
 import 'package:shella_design/features/home/home/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
-import 'package:shella_design/features/home/users/screens/SuperMarketDiscounts.dart';
-import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
-import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
-import 'package:shella_design/features/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
-import 'package:shella_design/features/kaidha_form/screen/verify_source_of_income.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/verify_source_of_income.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
 import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
@@ -58,7 +50,6 @@ import 'package:shella_design/features/payment/screens/add_New_card.dart';
 import 'package:shella_design/features/payment/screens/payment.dart';
 import 'package:shella_design/features/payment/screens/payment_method.dart';
 import 'package:shella_design/features/product/screens/product_details_screen.dart';
-import 'package:shella_design/features/product/screens/product_screen.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
@@ -85,18 +76,15 @@ import 'package:shella_design/features/serveMe/screens/serve_product_screen.dart
 import 'package:shella_design/features/support_conversation/screens/support_conversation_screen.dart';
 import 'package:shella_design/features/wallet/screens/wallet_screen.dart';
 import 'package:shella_design/features/wallet_kaidha/screens/wallet_kaidha_screen.dart';
-import 'package:shella_design/common/helper/check_Logged.dart';
-import '../../api/api_client.dart';
-import '../../features/Auth/domain/repositories/auth_repo.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
 import '../../features/my_points/screens/my_points_transactions_screen.dart';
 import '../../features/my_points/screens/web/my_points_web_widget.dart';
+import '../../features/profile_detailes/screens/update_profile_info.dart';
 import '../../features/search_filter/domain/repositories/searchRepository/search_repository.dart';
 import '../../features/search_filter/domain/services/searchService/search_service.dart';
 import '../../features/search_filter/screen/web/search_filter_web.dart';
 import '../../features/statistics/screens/statistics_screen.dart';
-import '../util/Api_constants.dart';
 import '../widgets/profile/web/accountDetails/account_details.dart';
 
 class AppRoutes {
@@ -118,8 +106,7 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String step_one_service_screen = '/step_one_service_screen';
   static const String step_tow_service_screen = '/step_tow_service_screen';
-  static const String address_details_service_screen =
-      '/address_details_service_screen';
+  static const String address_details_service_screen = '/address_details_service_screen';
   static const String payment_screen = '/payment_screen';
   static const String payment_method_screen = '/payment_method_screen';
   static const String add_new_card_screen = '/add_new_card_screen';
@@ -149,8 +136,7 @@ class AppRoutes {
   static const String forgetpassword = '/forgetpassword';
   static const String mobilelVerification = '/mobilelVerification';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
-  static const String passwordResetSuccessScreen =
-      '/passwordResetSuccessScreen';
+  static const String passwordResetSuccessScreen = '/passwordResetSuccessScreen';
   static const String succsessflycreated = '/succsessflycreated';
   static const String orderdetails = '/orderdetails';
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
@@ -159,8 +145,10 @@ class AppRoutes {
   static const String accountdetails = '/accountdetails';
   static const String savedaddresses = '/savedaddresses';
   static const String myOrders = '/myOrders';
+
   //prifile Details
   static const String profileInfo = '/profile_info';
+  static const String updateProfileInfoPage = '/update_profile_info_page';
   static const String addressDetails = '/addressDetails';
   static const String addaddress = '/addaddress';
 
@@ -170,24 +158,22 @@ class AppRoutes {
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
-  static const String bookingConfirmationSuccess =
-      '/bookingConfirmationSuccess';
+  static const String bookingConfirmationSuccess = '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
+
   // static const String infoOfService = '/infoOfService';
   static const String confirmReservation = '/confirmReservation';
+
   // static const String serviceInfoPage = '/serviceInfoPage';
   static const String choiseATechnincal = '/choiseATechnincal';
   static const String technicianDetailsScreen = '/technicianDetailsScreen';
   static const String carsServicesPage = '/carsServicesPage';
   static const String technicalTracking = '/technicalTracking';
   static const String reviewOfAService = '/reviewOfAService';
-  static const String myPointsTransactionsScreen =
-      '/myPointsTransactionsScreen';
+  static const String myPointsTransactionsScreen = '/myPointsTransactionsScreen';
   static const String myPointsWeb = '/myPointsWeb';
   static const String myPointsMobile = 'myPointsMobile';
-    static const String superMarketDiscounts = '/superMarketDiscounts';
-
 
   // Web =========================================================================================================
 
@@ -224,34 +210,12 @@ class AppRoutes {
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
 
   // App =========================================================================================================
-
   static final Map<String, Widget Function(BuildContext)> routes = {
-    // Main Layout
     mainLayout: (context) => const MainLayout(),
-    scheduleOrderBottomSheet: (context) => ChangeNotifierProvider(
-        create: (_) => ScheduleController(),
-        child: const ScheduleOrderBottomSheet()),
+
     // Auth
     Login_Mobile: (context) => const Login_mobile(),
-
     signup: (context) => const Signup(),
-
-    //Discount
-    discountScreen: (context) => const DiscountScreen(),
-
-    superMarketDiscounts:(context) => const SuperMarketDiscounts(),
-
-    //discountScreen: (context) => const DiscountScreen(),
-//         discountScreen: (context) => ChangeNotifierProvider.value(
-//   value: context.read<DiscountController>(), // جاي من MultiProvider
-//   child: const DiscountScreen(),
-// ),
-
-//         discountScreen: (context) => ChangeNotifierProvider(
-//   create: (_) => DiscountController(),
-//   child: const DiscountScreen(),
-// ),
-
     forgetpassword: (context) => const Forgetpassword(),
     mobilelVerification: (context) => const MobilelVerification(),
     confirmPasswordScreen: (context) => const ConfirmPasswordScreen(),
@@ -268,28 +232,17 @@ class AppRoutes {
     productDetails: (context) => const ProductDetailsView(),
 
     // Cart
-    cartScreen: (context) => ChangeNotifierProvider(
-          create: (context) => CartController(
-              cartService: CartService(cartRepository: CartRepository())),
-          child: const Cart_Screen(),
-        ),
+    cartScreen: (context) => const Cart_Screen(),
     cartDetails: (context) => const CartDetailsScreen(),
 
     // Orders
     ordersScreen: (context) => const OrdersPage(),
     step_one_service_screen: (context) => const Step_One_Service_Screen(),
     step_tow_service_screen: (context) => const Step_Tow_Service_Screen(),
-    address_details_service_screen: (context) =>
-        const Address_Details_Service_Screen(),
-    order_tracking: (context) => ChangeNotifierProvider(
-        create: (_) => OrderTrackingController(), child: const OrderTracking()),
-    start_tracking_order: (context) => ChangeNotifierProvider(
-        create: (_) => StartTrackingOrderController(),
-        child: const StartTrackingOrder()),
-    orderdetails: (context) => ChangeNotifierProvider(
-          create: (_) => OrderDetailsConroller(),
-          child: const OrderDetails(),
-        ),
+    address_details_service_screen: (context) => const Address_Details_Service_Screen(),
+    order_tracking: (context) => const OrderTracking(),
+    start_tracking_order: (context) => const StartTrackingOrder(),
+    orderdetails: (context) => const OrderDetails(),
 
     // Payment
     payment_screen: (context) => const Payment_Screen(),
@@ -299,24 +252,11 @@ class AppRoutes {
     // Other Features
     statisticsScreen: (context) => const StatisticsScreen(),
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
-    // discountScreen: (context) => const DiscountScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
-
-    myCouponScreen: (context) => const MyCouponScreen(),
     helpAndSupport: (context) => const HelpAndSupportScreen(),
-    joinAsDriverOne: (context) =>  JoinAsDriverOne(),
-
-    myCouponScreen: (context) => ChangeNotifierProvider(
-          create: (_) => MyCouponController(
-              myCouponServiceInterface: MyCouponServices(
-                  myCouponRepositoryInterface: MyCouponRepository()))
-            ..getMyCoupon(),
-          child: const MyCouponScreen(),
-        ),
+    joinAsDriverOne: (context) => JoinAsDriverOne(),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
-    joinAsDriverOne: (context) => const JoinAsDriverOne(),
-
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
     supportConversation: (context) => const SupportConversationScreen(),
     seveMePage: (context) => const Servemepage(),
@@ -328,111 +268,41 @@ class AppRoutes {
 
     // Notifications & Search
     notifications: (context) => const Notifications(),
-    AppRoutes.searchfilter: (context) => ChangeNotifierProvider(
-          create: (_) => SearchFilterController(
-              searchServiceInterface:
-                  SearchService(searchRepositoryInterface: SearchRepository()))
-            ..mostSearched()
-            ..getAddress()
-            ..cartProducts()
-            ..getAllCategories(),
-          child: const SearchFilter(),
-        ),
+    searchfilter: (context) => const SearchFilter(),
 
-    //prifile Details
+    // Profile
     profileInfo: (context) => const ProfileInfo(),
-    addressDetails: (context) => MultiProvider(
-          providers: [
-            Provider<ProfileRepository>(
-              create: (context) => ProfileRepository(),
-            ),
-            Provider<ProfileDetailsService>(
-              create: (context) => ProfileDetailsService(
-                profileRepository: context.read<ProfileRepository>(),
-              ),
-            ),
-            ChangeNotifierProvider<ProfileController>(
-              create: (context) => ProfileController(
-                profileDetailsService: ProfileDetailsService(
-                    profileRepository: ProfileRepository()),
-              ),
-            ),
-          ],
-          child: const AddressDetailsPage(),
-        ),
-    addaddress: (context) => MultiProvider(
-          providers: [
-            Provider<ProfileRepository>(
-              create: (context) => ProfileRepository(),
-            ),
-            Provider<ProfileDetailsService>(
-              create: (context) => ProfileDetailsService(
-                profileRepository: context.read<ProfileRepository>(),
-              ),
-            ),
-            ChangeNotifierProvider<ProfileController>(
-              create: (context) => ProfileController(
-                profileDetailsService: ProfileDetailsService(
-                    profileRepository: ProfileRepository()),
-              ),
-            ),
-          ],
-          child: const AddNewAddressScreen(),
-        ),
+    updateProfileInfoPage: (context) => const UpdateProfileInfoPage(),
+    addressDetails: (context) => const AddressDetailsPage(),
+    addaddress: (context) => const AddNewAddressScreen(),
 
-    // kaidha form
-    AppRoutes.aliashtirakFiQaydiha: (context) => ChangeNotifierProvider(
-          create: (_) => KaidhaFormController(),
-          child: const AliashtirakFiQaydiha(),
-        ),
+    // Kaidha
+    aliashtirakFiQaydiha: (context) => const AliashtirakFiQaydiha(),
+    verifySourceOfIncome: (context) => const VerifySourceOfIncome(),
 
-    AppRoutes.verifySourceOfIncome: (context) => ChangeNotifierProvider(
-          create: (_) => KaidhaFormController(),
-          child: const VerifySourceOfIncome(),
-        ),
-
-    // individualsService
+    // Services
     homeservicespage: (context) => const Homeservicespage(),
     bookingConfirmationSuccess: (context) => const BookingConfirmationSuccess(),
     technicalTracking: (context) => const TechnicalTracking(),
-
-    // infoOfService: (context) => const InfoOfService(),
-    AppRoutes.confirmReservation: (context) => ChangeNotifierProvider(
-          create: (_) => ServeMeController(),
-          child: const ConfirmReservation(),
-        ),
-    // serviceInfoPage: (context) => const ServiceInfoPage(),
+    confirmReservation: (context) => const ConfirmReservation(),
     choiseATechnincal: (context) => const ChoiseATechnincal(),
     companiesWorkshopsPage1: (context) => const CompaniesWorkshopsPage(),
     serveMeProductView: (context) => const ServeMeProductView(),
     technicianDetailsScreen: (context) => const TechnicianDetailsScreen(),
     carsServicesPage: (context) => const CarsServicesPage(),
+    reviewOfAService: (context) => const ReviewOfAService(),
 
-    AppRoutes.reviewOfAService: (context) => ChangeNotifierProvider(
-          create: (_) => ServeMeController(),
-          child: const ReviewOfAService(),
-        ),
-
-    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(
-          fromNotification: false,
-        ),
+    // My Coupon & Points
+    myCouponScreen: (context) => const MyCouponScreen(),
+    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false),
     myPointsMobile: (context) => MyPointsScreenMobile(),
-    // Web =========================================================================================================
 
+    // Web
     loginPage: (context) => const LoginPage(),
     otpPage: (context) => OtpScreen(),
     helpAndSupportWeb: (context) => HelpAndSupport(),
     accountdetails: (context) => const AccountDetails(),
-    searchFilterWeb: (context) => ChangeNotifierProvider(
-          create: (_) => SearchFilterController(
-              searchServiceInterface:
-                  SearchService(searchRepositoryInterface: SearchRepository()))
-            ..getAllCategories(),
-          child: const SearchFilterWeb(),
-        ),
+    searchFilterWeb: (context) => const SearchFilterWeb(),
     myPointsWeb: (context) => MyPointsWebWidget(),
   };
 }
-
-//  pushNewScreen(AppRoutes.step_tow_service_screen);
->>>>>>> Stashed changes

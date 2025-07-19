@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/my_points/widgets/mobile/offers_widgets_mobile.dart';
@@ -63,4 +62,4 @@ class MyPointsMobileWidget extends StatelessWidget {
     );
   }
 }
->>>>>>> Stashed changes
+

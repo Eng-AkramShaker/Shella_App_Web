@@ -14,7 +14,7 @@ class SectionService {
 
     var request = http.Request(
       'GET',
-      Uri.parse('https://shalafood.net/api/v1/categories'),
+      Uri.parse('https://shellafood.com/api/v1/categories'),
     );
 
     request.headers.addAll(headers);

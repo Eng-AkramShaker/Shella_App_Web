@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shella_design/main.dart';
+import 'package:shimmer/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

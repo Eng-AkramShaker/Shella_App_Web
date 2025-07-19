@@ -12,7 +12,7 @@ class StoreService {
 
   Future<List<StoreModel>> fetchStores() async {
     var url = Uri.parse(
-        'https://shalafood.net/api/v1/stores/get-stores/all?offset=1&limit=50');
+        'https://shellafood.com/api/v1/stores/get-stores/all?offset=1&limit=50');
     final response = await http.get(url, headers: _headers);
 
     if (response.statusCode == 200) {

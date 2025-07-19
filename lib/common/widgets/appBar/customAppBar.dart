@@ -37,8 +37,7 @@ PreferredSize customAppBar(BuildContext context,
                   const SizedBox(width: 10),
                   Image.asset(img??AppImages.empty,width: 20,height: 18,alignment: Alignment.bottomCenter),
 
-                  const SizedBox(width: 10),
-                  Custom_Text(context, text: " $title ", style: style ?? font14White600W(context)),
+                
                   const SizedBox(width: 10),
                   Icon(icon, color: AppColors.wtColor, size: 22)
                 ],
