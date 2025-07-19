@@ -7,7 +7,7 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 
-import '../../../common/widgets/textField/custom_textfield_2.dart';
+import '../../../../common/widgets/textField/custom_textfield_2.dart';
 
 class PhoneAndEmail extends StatelessWidget {
   final TextEditingController phoneController;

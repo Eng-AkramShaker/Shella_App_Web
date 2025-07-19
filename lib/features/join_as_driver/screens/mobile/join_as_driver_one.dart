@@ -11,9 +11,9 @@ import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
-import 'package:shella_design/features/join_as_driver/widgets/phone_and_email.dart';
-import 'package:shella_design/features/join_as_driver/widgets/picture_and_full_name.dart';
-import '../../../common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/features/join_as_driver/widgets/mobile/phone_and_email.dart';
+import 'package:shella_design/features/join_as_driver/widgets/mobile/picture_and_full_name.dart';
+import '../../../../common/widgets/appBar/customAppBar.dart';
 
 class JoinAsDriverOne extends StatefulWidget {
   const JoinAsDriverOne({super.key});

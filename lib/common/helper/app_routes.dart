@@ -17,14 +17,14 @@ import 'package:shella_design/features/cart/domain/repositories/cartRepository/c
 import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/cart/screens/mobile/cart_details_screen.dart';
 import 'package:shella_design/features/cart/screens/mobile/cart_screen.dart';
-import 'package:shella_design/features/discount/screens/discount_screen.dart';
-import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
-import 'package:shella_design/features/home/home/home_screen.dart';
+import 'package:shella_design/features/discount/screens/mobile/discount_screen.dart';
+import 'package:shella_design/features/help_and_support/screens/mobile/help_and_support_mobile.dart';
+import 'package:shella_design/features/home/home/mobile/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
-import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
-import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
+import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_one.dart';
+import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_two.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/verify_source_of_income.dart';
@@ -259,7 +259,7 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
-    helpAndSupport: (context) => const HelpAndSupportScreen(),
+    helpAndSupport: (context) => const HelpAndSupport(),
     joinAsDriverOne: (context) => JoinAsDriverOne(),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),

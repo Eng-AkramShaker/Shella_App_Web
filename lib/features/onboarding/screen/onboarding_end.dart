@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/features/onboarding/widget/custombutton.dart';
@@ -31,7 +31,7 @@ class OnboardingEnd extends StatelessWidget {
                 height: 62,
                 width: MediaQuery.of(context).size.width,
                 child: CustomButtonOnBoarding(
-                  text: "إبدأ",
+                  text: MainAppConstants.start,
                   onPressed: () {
                     nav.push(AppRoutes.Login_Mobile);
                   },

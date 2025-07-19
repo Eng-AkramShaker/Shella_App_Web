@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -15,7 +16,8 @@ class ContactUsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        String phoneNumber = '+15551234567'; // Replace with the actual phone number
+        String phoneNumber =
+            '+966599977725'; // Replace with the actual phone number
         String url = 'tel:$phoneNumber';
         await launchUrl(Uri.parse(url));
       },
@@ -37,7 +39,9 @@ class ContactUsContainer extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: AppColors.greenColor)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.greenColor)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
@@ -54,7 +58,7 @@ class ContactUsContainer extends StatelessWidget {
                 children: [
                   Custom_Text(
                     context,
-                    text: 'اتصل بنا',
+                    text: MainAppConstants.callUs,
                     style: font12Green400W(context, size: 11),
                   ),
                   SizedBox(

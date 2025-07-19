@@ -35,6 +35,20 @@ class MainAppConstants {
       "يمكنك الدخول مجدداً عن طريق كلمة المرور الجديدة";
   static const String ucanExploreApp =
       'يمكنك تصفح التطبيق الــآن مع اخر العروض والخصومات';
+  static const String discountCode = 'كود الخصم';
+  static const String favorite = 'المفضلة';
+  static const String products = 'المنتجات';
+  static const String favoriteProductsList = 'قائمة المنتجات المفضلة';
+  static const String listFavoriteStores = 'قائمة المتاجر المفضلة';
+  static const String allStores = 'كل المتاجر';
+  static const String helpAndSupport = 'المساعدة والدعم';
+  static const String ourAddresses = 'عناويننا';
+  static const String callUs = 'اتصل بنا';
+  static const String contatctUsThrowEmail = 'راسلنا عبر بريدنا الالكتروني';
+  static const String myPoints = 'نقاطي';
+  static const String ramadanOffers = 'عروض رمضان';
+  static const String start = 'ابدأ';
+  static const String next = 'التالي';
 
   // ------------- credit --------------
   static const String addBalance = 'إضافة رصيد';
@@ -51,4 +65,16 @@ class MainAppConstants {
   static const String vechile = 'مركبة';
   static const String selectLicenseType = 'حدد نوع الرخصة';
   static const String passport = 'جواز السفر';
+  static const String drivingLicense = 'رخصة قيادة';
+  static const String idNumber = 'رقم الهوية';
+
+  // ---------- Home ------------------
+  static const String sections = 'الاقسام';
+  static const String viewAll = 'عرض الكل';
+  static const String mostRestaurants = 'أشهر المطاعم';
+  static const String nearbyRestaturants = 'المطاعم القريبة منك';
+  static const String more = 'المزيد';
+  static const String availableDelivery = 'توصيل متاح';
+  static const String noDelivery = 'لايوجد توصيل';
+  static const String discount25FirstOrder = 'خصم يصل إلى 25% عند اول طلب';
 }

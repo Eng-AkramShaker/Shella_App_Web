@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/onboarding/controller/onboarding_controller.dart';
 import 'package:shella_design/features/onboarding/controller/static.dart';
@@ -21,7 +20,9 @@ class CustomDotControllerOnBoarding extends StatelessWidget {
               duration: const Duration(milliseconds: 800),
               height: 6,
               decoration: BoxDecoration(
-                color: provider.currentPage == index ? AppColors.primaryColor : Colors.white,
+                color: provider.currentPage == index
+                    ? AppColors.primaryColor
+                    : Colors.white,
                 borderRadius: BorderRadius.circular(2),
                 border: Border.all(color: AppColors.primaryColor),
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -12,13 +11,16 @@ import 'package:shella_design/features/my_points/widgets/my_points_history_widge
 
 class MyPointsTransactionsScreen extends StatefulWidget {
   final bool fromNotification;
-  const MyPointsTransactionsScreen({Key? key, required this.fromNotification}) : super(key: key);
+  const MyPointsTransactionsScreen({Key? key, required this.fromNotification})
+      : super(key: key);
 
   @override
-  _MyPointsTransactionsScreenState createState() => _MyPointsTransactionsScreenState();
+  _MyPointsTransactionsScreenState createState() =>
+      _MyPointsTransactionsScreenState();
 }
 
-class _MyPointsTransactionsScreenState extends State<MyPointsTransactionsScreen> {
+class _MyPointsTransactionsScreenState
+    extends State<MyPointsTransactionsScreen> {
   late final ScrollController _scrollController;
 
   @override
@@ -34,12 +36,14 @@ class _MyPointsTransactionsScreenState extends State<MyPointsTransactionsScreen>
 
   void _onScroll() {
     final prov = context.read<LoyaltyProvider>();
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent &&
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent &&
         !prov.isLoading &&
         prov.offset * 10 < (prov.pageSize ?? 0)) {
       prov.setOffset(prov.offset + 1);
       prov.showBottomLoader();
-      prov.getLoyaltyTransactionList(context.read<LoyaltyProvider>().offset.toString(), false);
+      prov.getLoyaltyTransactionList(
+          context.read<LoyaltyProvider>().offset.toString(), false);
     }
   }
 
@@ -62,7 +66,8 @@ class _MyPointsTransactionsScreenState extends State<MyPointsTransactionsScreen>
                 preferredSize: const Size.fromHeight(80.0),
                 child: WebHomeApppar(),
               )
-            : customAppBar(context, title: 'نقاطي', img: 'assets/images/my-points-appbar.png'),
+            : customAppBar(context,
+                title: 'نقاطي', img: 'assets/images/my-points-appbar.png'),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: !ResponsiveLayout.isWeb()
             ? FloatingActionButton.extended(
@@ -96,7 +101,8 @@ class _MyPointsTransactionsScreenState extends State<MyPointsTransactionsScreen>
                               width: 1170, // fixed
                               child: ResponsiveLayout.isWeb()
                                   ? Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           flex: 4,

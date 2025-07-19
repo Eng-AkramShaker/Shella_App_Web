@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/features/favorite/screens/favoritePage.dart';
+import 'package:shella_design/features/favorite/screens/mobile/favoritePage.dart';
 import 'package:shella_design/features/cart/screens/mobile/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';

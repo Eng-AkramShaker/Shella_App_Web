@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:shella_design/api/api_checker.dart';
 import 'package:shella_design/common/models/error_response.dart';
-import 'package:shella_design/common/util/indian_app_constants.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
+
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import '../common/helper/app_routes.dart';
@@ -81,12 +82,19 @@ class ApiClient {
     );
   }
 
-  Map<String, String> updateHeader(String? token, List<int>? zoneIDs, List<int>? operationIds, String? languageCode, int? moduleID,
-      String? latitude, String? longitude,
+  Map<String, String> updateHeader(
+      String? token,
+      List<int>? zoneIDs,
+      List<int>? operationIds,
+      String? languageCode,
+      int? moduleID,
+      String? latitude,
+      String? longitude,
       {bool setHeader = true}) {
     Map<String, String> header = {};
 
-    if (moduleID != null || sharedPreferences.getString(AppConstants.cacheModuleId) != null) {
+    if (moduleID != null ||
+        sharedPreferences.getString(Api_Constants.cacheModuleId) != null) {
       // header.addAll({
       //   AppConstants.moduleId:
       //       '${moduleID ?? ModuleModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.cacheModuleId)!)).id}'
@@ -94,13 +102,13 @@ class ApiClient {
     }
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
-      AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
+      Api_Constants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
 
       ///this will add in ride module
       // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
-      AppConstants.localizationKey: languageCode ?? 'ar',
-      AppConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
-      AppConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
+      Api_Constants.localizationKey: languageCode ?? 'ar',
+      Api_Constants.latitude: latitude != null ? jsonEncode(latitude) : '',
+      Api_Constants.longitude: longitude != null ? jsonEncode(longitude) : '',
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     });
@@ -113,7 +121,9 @@ class ApiClient {
   Map<String, String> getHeader() => _mainHeaders;
 
   Future<http.Response> getData(String uri,
-      {Map<String, dynamic>? query, Map<String, String>? headers, bool handleError = true}) async {
+      {Map<String, dynamic>? query,
+      Map<String, String>? headers,
+      bool handleError = true}) async {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri  ');
@@ -121,9 +131,11 @@ class ApiClient {
       initHeader();
       final stopwatch = Stopwatch()..start();
 
-      http.Response response =
-          await http.get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders).timeout(Duration(seconds: timeoutInSeconds));
-      print("//////////////////////////////////////////////////// ${response.request?.headers}");
+      http.Response response = await http
+          .get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
+          .timeout(Duration(seconds: timeoutInSeconds));
+      print(
+          "//////////////////////////////////////////////////// ${response.request?.headers}");
       stopwatch.stop();
 
       if (kDebugMode) {
@@ -143,14 +155,17 @@ class ApiClient {
   }
 
   Future<http.Response> postData(String uri, dynamic body,
-      {Map<String, String>? headers, int? timeout, bool handleError = true}) async {
+      {Map<String, String>? headers,
+      int? timeout,
+      bool handleError = true}) async {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri ');
         print('====> API Body: $body');
       }
       http.Response response = await http
-          .post(Uri.parse(appBaseUrl + uri), body: jsonEncode(body), headers: headers ?? _mainHeaders)
+          .post(Uri.parse(appBaseUrl + uri),
+              body: jsonEncode(body), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeout ?? timeoutInSeconds));
       if (kDebugMode) {
         var reponsemap = jsonDecode(response.body);
@@ -164,14 +179,16 @@ class ApiClient {
 
   //
 
-  Future<http.Response> postMultipartData(String uri, Map<String, String> body, List<MultipartBody> multipartBody,
+  Future<http.Response> postMultipartData(
+      String uri, Map<String, String> body, List<MultipartBody> multipartBody,
       {Map<String, String>? headers, bool handleError = true}) async {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         // print('====> API Body: $body with ${multipartBody.length} picture');
       }
-      http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
+      http.MultipartRequest request =
+          http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
       request.headers.addAll(headers ?? _mainHeaders);
       for (MultipartBody multipart in multipartBody) {
         if (multipart.file != null) {
@@ -191,14 +208,16 @@ class ApiClient {
         }
       });
       request.fields.addAll(newBody);
-      http.Response response = await http.Response.fromStream(await request.send());
+      http.Response response =
+          await http.Response.fromStream(await request.send());
       return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
     }
   }
 
-  Future<http.Response> putData(String uri, dynamic body, {Map<String, String>? headers, bool handleError = true}) async {
+  Future<http.Response> putData(String uri, dynamic body,
+      {Map<String, String>? headers, bool handleError = true}) async {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
@@ -226,7 +245,8 @@ class ApiClient {
     }
   }
 
-  Future<http.Response> deleteData(String uri, {Map<String, String>? headers, bool handleError = true}) async {
+  Future<http.Response> deleteData(String uri,
+      {Map<String, String>? headers, bool handleError = true}) async {
     try {
       if (kDebugMode) {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
@@ -243,7 +263,8 @@ class ApiClient {
     }
   }
 
-  http.Response handleResponse(http.Response response, String uri, bool handleError) {
+  http.Response handleResponse(
+      http.Response response, String uri, bool handleError) {
     if (kDebugMode) {
       print('====> API Call: $uri ');
       print('..====>>> API Response: [${response.statusCode}] $uri');
@@ -260,7 +281,8 @@ class ApiClient {
       if (response.statusCode != 200 && body is Map<String, dynamic>) {
         if (body.containsKey('errors') && body['errors'] is List) {
           final errorResponse = ErrorResponse.fromJson(body);
-          final errorMsg = errorResponse.errors?.first.message ?? 'Unknown error';
+          final errorMsg =
+              errorResponse.errors?.first.message ?? 'Unknown error';
           throw Exception(errorMsg);
         } else if (body.containsKey('message')) {
           throw Exception(body['message']);
@@ -277,7 +299,8 @@ class ApiClient {
       }
     } catch (e) {
       if (handleError) {
-        ApiChecker.checkApi(response); // Or pass `response` if your checker supports `http.Response`
+        ApiChecker.checkApi(
+            response); // Or pass `response` if your checker supports `http.Response`
       }
     }
 

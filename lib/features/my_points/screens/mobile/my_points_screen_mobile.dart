@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/my_points/screens/mobile/my_points_mobile_widget.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 
