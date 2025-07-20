@@ -126,6 +126,10 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
+    static const String burger = 'assets/images/im1.png';
+        static const String pizza = 'assets/images/im4.png';
+
+
 
   //
   static const String logo = 'assets/images/logo.png';
@@ -160,6 +164,11 @@ class AppImages {
   static const String wallet = 'assets/svg/wallet.svg';
   static const String support = 'assets/svg/support.svg';
   static const String profileCoupon = 'assets/svg/coupon.svg';
+  static const String percent='assets/svg/percent.svg';
+    static const String sale='assets/svg/sale.svg';
+      static const String done='assets/svg/done.svg';
+
+
 
 //
 }

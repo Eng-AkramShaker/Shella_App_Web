@@ -23,6 +23,7 @@ import 'package:shella_design/features/home/home/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
+import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
@@ -131,6 +132,7 @@ class AppRoutes {
   static const String notifications = '/notifications';
   static const String searchfilter = '/searchfilter';
   static const String seveMePage = '/seveMePage';
+  static const String restaurantDetails='/restaurantDetails';
 
   static const String signup = '/signup';
   static const String forgetpassword = '/forgetpassword';
@@ -296,6 +298,10 @@ class AppRoutes {
     myCouponScreen: (context) => const MyCouponScreen(),
     myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false),
     myPointsMobile: (context) => MyPointsScreenMobile(),
+
+    //Restaurant
+
+    restaurantDetails:(context) =>  RestaurantDetails(),
 
     // Web
     loginPage: (context) => const LoginPage(),

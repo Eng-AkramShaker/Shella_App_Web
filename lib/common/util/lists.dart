@@ -127,6 +127,24 @@ List<String> title = ["خدمة تخدمني", "استلام وتسليم", "ا�
 
 List<String> discountsTypes=["الكل","عرض الحزم","العناية الشخصية", "المثلجات"];
 
+final List<Map<String,dynamic>> categories=[
+  {
+     "name":"السندويش",
+     "image":"assets/images/9.png"
+  },
+  {
+   "name":"البيتزا",
+  "image":"assets/images/19.png"
+
+  },
+  {
+  "name":"المشروبات",
+  "image":"assets/images/20.png"
+
+  }
+
+];
+
 final List<Map<String,dynamic>> discounts =[
 
   {
