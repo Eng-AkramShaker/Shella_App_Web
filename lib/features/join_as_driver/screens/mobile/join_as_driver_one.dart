@@ -103,7 +103,9 @@ class _JoinAsDriverOneState extends State<JoinAsDriverOne> {
           context,
           title: 'انضم كرجل توصيل',
           img: 'assets/images/join_as_driver_appbar_img.png',
-          onPressed: () => nav.back,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         body: SingleChildScrollView(
             padding: EdgeInsets.all(16.0.sp),
