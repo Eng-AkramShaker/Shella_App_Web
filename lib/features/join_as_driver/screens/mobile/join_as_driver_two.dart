@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/drop_choice/drop_choice.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/green_loading_circle.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 import 'package:shella_design/features/join_as_driver/widgets/build/mobile/build_row_conditions.dart';
@@ -66,16 +67,21 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
         controller.vechileId.isEmpty ||
         controller.identityType.isEmpty ||
         controller.identityNumber.isEmpty) {
-      showCustomSnackBar('❌ بيانات غير مكتملة للتسجيل', isError: true);
+      // showCustomSnackBar('❌ بيانات غير مكتملة للتسجيل', isError: true);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('بيانات غير مكتملة')));
       debugPrint('❌ بيانات غير مكتملة للتسجيل');
       return;
     }
+    controller.isLoading == true;
     bool success = await controller.registerDriver();
 
     if (success) {
+      controller.isLoading = false;
       debugPrint('✅ تم تسجيل الدليفري مان');
       showCustomSnackBar('تم تسجيل الدليفري مان', isError: false);
     } else {
+      controller.isLoading = false;
       debugPrint('❌فشل التسجيل تاكد من ملئ جميع الخانات ');
       showCustomSnackBar('❌فشل التسجيل تاكد من ملئ جميع الخانات ',
           isError: true);
@@ -167,9 +173,11 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                   });
                 },
               ),
-              ApplyButton(
-                onTap: () => _register(context),
-              )
+              context.read<DriverRegisterController>().isLoading == true
+                  ? GreenLoadingCircle()
+                  : ApplyButton(
+                      onTap: () => _register(context),
+                    )
             ],
           ),
         ),

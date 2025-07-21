@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/nav_item_web.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/search_app_bar_web.dart';
 import 'package:shella_design/common/widgets/appBar/web/widgets/video_logo_web.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/my_coupon/domain/models/my_coupon_models.dart';
@@ -12,7 +11,8 @@ class MyCouponController with ChangeNotifier {
 
   MyCouponController({this.myCouponServiceInterface});
 
-  static MyCouponController get(context, {listen = true}) => Provider.of<MyCouponController>(context, listen: listen);
+  static MyCouponController get(context, {listen = true}) =>
+      Provider.of<MyCouponController>(context, listen: listen);
 
   /// GET STATE
   MyCouponState _state = MyCouponState.initial;
@@ -24,10 +24,16 @@ class MyCouponController with ChangeNotifier {
   List<MyCouponModel>? availableCoupons;
   List<MyCouponModel>? unAvailableCoupons;
   getAvailableCoupons() {
-    availableCoupons =
-        myCouponModel!.where((element) => (DateTime.now().isAfter(DateTime.parse(element.expireDate!)) == false)).toList();
-    unAvailableCoupons =
-        myCouponModel!.where((element) => (DateTime.now().isAfter(DateTime.parse(element.expireDate!)) == true)).toList();
+    availableCoupons = myCouponModel!
+        .where((element) =>
+            (DateTime.now().isAfter(DateTime.parse(element.expireDate!)) ==
+                false))
+        .toList();
+    unAvailableCoupons = myCouponModel!
+        .where((element) =>
+            (DateTime.now().isAfter(DateTime.parse(element.expireDate!)) ==
+                true))
+        .toList();
     notifyListeners();
   }
 

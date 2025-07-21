@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/widgets/bottom_bar.dart';
@@ -17,10 +16,13 @@ class Address_Details_Service_Screen extends StatefulWidget {
   const Address_Details_Service_Screen({super.key});
 
   @override
-  State<Address_Details_Service_Screen> createState() => _Address_Details_Service_ScreenState();
+  State<Address_Details_Service_Screen> createState() =>
+      _Address_Details_Service_ScreenState();
 }
 
-class _Address_Details_Service_ScreenState extends State<Address_Details_Service_Screen> with SingleTickerProviderStateMixin {
+class _Address_Details_Service_ScreenState
+    extends State<Address_Details_Service_Screen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController notesController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -54,7 +56,9 @@ class _Address_Details_Service_ScreenState extends State<Address_Details_Service
                 children: [
                   buildInfoSection(context, notesController, phoneController),
                   Center(
-                    child: Custom_Text(context, text: "لا توجد طلبات مجدولة", style: font14Black400W(context)),
+                    child: Custom_Text(context,
+                        text: "لا توجد طلبات مجدولة",
+                        style: font14Black400W(context)),
                   ),
                 ],
               ),

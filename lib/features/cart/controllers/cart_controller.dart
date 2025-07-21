@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
 import 'package:shella_design/features/cart/domain/services/cartServiceInterface/cart_service_interface.dart';
 

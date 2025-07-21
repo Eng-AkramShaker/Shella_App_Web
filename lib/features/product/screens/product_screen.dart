@@ -4,7 +4,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
-import 'package:shella_design/common/widgets/divider/custom_divider.dart';
+import 'package:shella_design/common/widgets/divider/custom_dashed_divider.dart';
 import 'package:shella_design/features/home/domain/models/store_model.dart';
 import 'package:shella_design/features/product/controllers/product_controller.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -36,7 +36,8 @@ class _ProductViewState extends State<ProductView> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
       if (_provider.hasMore && !_provider.isLoading) {
         _provider.loadProducts();
       }
@@ -68,7 +69,9 @@ class _ProductViewState extends State<ProductView> {
                       : ListView.builder(
                           controller: _scrollController,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: provider.hasMore ? provider.products.length + 1 : provider.products.length,
+                          itemCount: provider.hasMore
+                              ? provider.products.length + 1
+                              : provider.products.length,
                           itemBuilder: (context, index) {
                             if (index == provider.products.length) {
                               // Loader at the end for pagination
@@ -91,7 +94,11 @@ class _ProductViewState extends State<ProductView> {
                 ),
 
                 // Header Section
-                Positioned(top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
+                Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: buildHeaderSection(context)),
 
                 // Store Info
                 Positioned(
@@ -107,15 +114,19 @@ class _ProductViewState extends State<ProductView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Custom_Text(context, text: widget.store.name, style: font14Black600W(context)),
+                          Custom_Text(context,
+                              text: widget.store.name,
+                              style: font14Black600W(context)),
                           const SizedBox(height: 10),
                           Custom_Text(
                             context,
-                            text: "وقت التوصيل: ${widget.store.deliveryTime} دقيقة",
+                            text:
+                                "وقت التوصيل: ${widget.store.deliveryTime} دقيقة",
                             style: font11Black600W(context),
                           ),
                           const SizedBox(height: 15),
-                          Custom_Divider(dashed: true, color: AppColors.gryColor_4),
+                          Custom_Divider(
+                              dashed: true, color: AppColors.gryColor_4),
                           const SizedBox(height: 12),
                           Custom_Text(
                             context,
@@ -220,7 +231,8 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
-  Widget buildSectionTitle(BuildContext context, {required String title, String? lapel}) {
+  Widget buildSectionTitle(BuildContext context,
+      {required String title, String? lapel}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(

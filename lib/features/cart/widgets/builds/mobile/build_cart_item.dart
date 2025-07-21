@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/cart/widgets/builds/mobile/build_item_details.dart';
 import 'package:shella_design/features/cart/widgets/mobile/cart_item.dart';
 import 'package:shella_design/common/helper/app_routes.dart';

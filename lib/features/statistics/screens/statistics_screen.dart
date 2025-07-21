@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/appBar/appBar.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/features/statistics/widgets/most_purchased_products.dart';
 import 'package:shella_design/features/statistics/widgets/statistics_kaidha_and_container_details.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -13,7 +12,8 @@ class StatisticsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, 'إحصائياتي', Icons.arrow_back_sharp, Icons.shopping_bag_outlined),
+      appBar: custom_AppBar(context, 'إحصائياتي', Icons.arrow_back_sharp,
+          Icons.shopping_bag_outlined),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_constants.dart';
-import 'package:shella_design/common/widgets/appBar/appBar.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/widgets/mobile/discount_content.dart';
 import 'package:shella_design/features/discount/widgets/mobile/discount_grid_view.dart';

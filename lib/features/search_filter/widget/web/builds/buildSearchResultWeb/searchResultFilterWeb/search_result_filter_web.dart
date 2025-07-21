@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../../common/util/app_colors.dart';
 import '../../../../../../../common/util/app_images.dart';
 import '../../../../../../../common/util/app_styles.dart';
-import '../../../../../../../common/widgets/button/custom_button.dart';
+import '../../../../../../../common/widgets/loading_progress/custom_button.dart';
 import '../../../../../../../common/widgets/gap/width/width.dart';
 import '../../../../../../../common/widgets/texts/custom_text.dart';
 import '../../../../../controller/search_filter_controller.dart';
@@ -21,10 +21,13 @@ class SearchResultFilterWeb extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Custom_Text(context, text: 'نتائج البحث', style: font18Black700W(context, size: 15)),
+              Custom_Text(context,
+                  text: 'نتائج البحث',
+                  style: font18Black700W(context, size: 15)),
               SizedBox(height: 5),
               Custom_Text(context,
-                  text: 'تم العثور على ${SearchFilterController.get(context).searchResultModel!.items!.length} نتيجة',
+                  text:
+                      'تم العثور على ${SearchFilterController.get(context).searchResultModel!.items!.length} نتيجة',
                   color: AppColors.darkGreyColor),
             ],
           ),
@@ -33,16 +36,28 @@ class SearchResultFilterWeb extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             MouseRegion(
-                onHover: (event) => SearchFilterController.get(context, listen: false).checkHoverView(true, true),
-                onExit: (event) => SearchFilterController.get(context, listen: false).checkHoverView(false, true),
+                onHover: (event) =>
+                    SearchFilterController.get(context, listen: false)
+                        .checkHoverView(true, true),
+                onExit: (event) =>
+                    SearchFilterController.get(context, listen: false)
+                        .checkHoverView(false, true),
                 child: GestureDetector(
-                    onTap: () => SearchFilterController.get(context, listen: false).setListView(true),
+                    onTap: () =>
+                        SearchFilterController.get(context, listen: false)
+                            .setListView(true),
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: SearchFilterController.get(context).isHoverView == true &&
-                                          SearchFilterController.get(context).isListViewIcon == true ||
-                                      SearchFilterController.get(context).isListView == true
+                              color: SearchFilterController.get(context)
+                                                  .isHoverView ==
+                                              true &&
+                                          SearchFilterController.get(context)
+                                                  .isListViewIcon ==
+                                              true ||
+                                      SearchFilterController.get(context)
+                                              .isListView ==
+                                          true
                                   ? AppColors.greenColor
                                   : AppColors.gryColor_3),
                           borderRadius: BorderRadius.circular(5)),
@@ -56,16 +71,28 @@ class SearchResultFilterWeb extends StatelessWidget {
               width: 10,
             ),
             MouseRegion(
-                onHover: (event) => SearchFilterController.get(context, listen: false).checkHoverView(true, false),
-                onExit: (event) => SearchFilterController.get(context, listen: false).checkHoverView(false, false),
+                onHover: (event) =>
+                    SearchFilterController.get(context, listen: false)
+                        .checkHoverView(true, false),
+                onExit: (event) =>
+                    SearchFilterController.get(context, listen: false)
+                        .checkHoverView(false, false),
                 child: GestureDetector(
-                    onTap: () => SearchFilterController.get(context, listen: false).setListView(false),
+                    onTap: () =>
+                        SearchFilterController.get(context, listen: false)
+                            .setListView(false),
                     child: Container(
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: SearchFilterController.get(context).isHoverView == true &&
-                                          SearchFilterController.get(context).isListViewIcon == false ||
-                                      SearchFilterController.get(context).isListView == false
+                              color: SearchFilterController.get(context)
+                                                  .isHoverView ==
+                                              true &&
+                                          SearchFilterController.get(context)
+                                                  .isListViewIcon ==
+                                              false ||
+                                      SearchFilterController.get(context)
+                                              .isListView ==
+                                          false
                                   ? AppColors.greenColor
                                   : AppColors.gryColor_3),
                           borderRadius: BorderRadius.circular(5)),

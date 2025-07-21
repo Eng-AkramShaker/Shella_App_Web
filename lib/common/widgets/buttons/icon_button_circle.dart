@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class IconButtonCircle extends StatelessWidget {
@@ -34,7 +33,8 @@ class IconButtonCircle extends StatelessWidget {
           width: width ?? 30,
           height: height ?? 30,
           alignment: Alignment.center,
-          child: Icon(icon, color: iconcolor ?? Colors.black, size: iconsize ?? 24),
+          child: Icon(icon,
+              color: iconcolor ?? Colors.black, size: iconsize ?? 24),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/orders/domain/models/orders_model.dart';
 import 'package:shella_design/features/orders/domain/services/orders_service_interface.dart';
@@ -11,7 +10,8 @@ class OrdersController with ChangeNotifier {
 
   OrdersController({this.ordersServiceInterface});
 
-  static OrdersController get(context, {listen = true}) => Provider.of<OrdersController>(context, listen: listen);
+  static OrdersController get(context, {listen = true}) =>
+      Provider.of<OrdersController>(context, listen: listen);
 
   /// STATE VARIABLES
   OrderState _runningOrdersstate = OrderState.initial;
@@ -46,7 +46,8 @@ class OrdersController with ChangeNotifier {
       _runningOrdersstate = OrderState.loading;
       notifyListeners();
 
-      PaginatedOrderModel lrunningOrders = await ordersServiceInterface!.getRunningOrdersService(1);
+      PaginatedOrderModel lrunningOrders =
+          await ordersServiceInterface!.getRunningOrdersService(1);
       runningOrders = PaginatedOrderModel(
         offset: lrunningOrders.offset,
         limit: lrunningOrders.limit,
@@ -89,7 +90,8 @@ class OrdersController with ChangeNotifier {
       _scheduleOrdersstate = OrderState.loading;
       notifyListeners();
 
-      PaginatedOrderModel lscheduleOrders = await ordersServiceInterface!.getRunningOrdersService(1);
+      PaginatedOrderModel lscheduleOrders =
+          await ordersServiceInterface!.getRunningOrdersService(1);
       scheduleOrders = PaginatedOrderModel(
         offset: lscheduleOrders.offset,
         limit: lscheduleOrders.limit,
@@ -125,8 +127,10 @@ class OrdersController with ChangeNotifier {
     notifyListeners();
 
     try {
-      final nextPage = ((currentLength / int.parse(runningOrders!.limit!)).ceil()) + 1;
-      final newData = await ordersServiceInterface!.getRunningOrdersService(nextPage);
+      final nextPage =
+          ((currentLength / int.parse(runningOrders!.limit!)).ceil()) + 1;
+      final newData =
+          await ordersServiceInterface!.getRunningOrdersService(nextPage);
       if (newData.orders != null && newData.orders!.isNotEmpty) {
         for (var item in newData.orders!) {
           if (item.createdAt.toString() == item.scheduleAt.toString()) {
@@ -162,8 +166,10 @@ class OrdersController with ChangeNotifier {
     notifyListeners();
 
     try {
-      final nextPage = ((currentLength / int.parse(historyOrders!.limit!)).ceil()) + 1;
-      final newData = await ordersServiceInterface!.getRunningHistoryService(nextPage);
+      final nextPage =
+          ((currentLength / int.parse(historyOrders!.limit!)).ceil()) + 1;
+      final newData =
+          await ordersServiceInterface!.getRunningHistoryService(nextPage);
 
       if (newData.orders != null && newData.orders!.isNotEmpty) {
         historyOrders!.orders!.addAll(newData.orders!);
@@ -180,7 +186,8 @@ class OrdersController with ChangeNotifier {
 
   /// LOAD MORE Schedule Orders
   Future<void> loadMoreScheduleOrders() async {
-    if (_loadMoreScheduleState == OrderState.loading || scheduleOrders == null) {
+    if (_loadMoreScheduleState == OrderState.loading ||
+        scheduleOrders == null) {
       return;
     }
 
@@ -193,8 +200,10 @@ class OrdersController with ChangeNotifier {
     notifyListeners();
 
     try {
-      final nextPage = ((currentLength / int.parse(scheduleOrders!.limit!)).ceil()) + 1;
-      final newData = await ordersServiceInterface!.getRunningOrdersService(nextPage);
+      final nextPage =
+          ((currentLength / int.parse(scheduleOrders!.limit!)).ceil()) + 1;
+      final newData =
+          await ordersServiceInterface!.getRunningOrdersService(nextPage);
 
       if (newData.orders != null && newData.orders!.isNotEmpty) {
         for (var item in newData.orders!) {

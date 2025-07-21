@@ -11,7 +11,6 @@ import 'package:shella_design/features/payment/widgets/bottomBar_pyment.dart';
 import 'package:shella_design/features/payment/widgets/paymentOption.dart';
 import 'package:shella_design/features/payment/widgets/paymentSummaryRow.dart';
 import 'package:shella_design/features/payment/widgets/paymentSwitch.dart';
-import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -137,7 +136,8 @@ class MobilePayment extends StatelessWidget {
                               context: context,
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
-                              builder: (context) => const ScheduleOrderBottomSheet(),
+                              builder: (context) =>
+                                  const ScheduleOrderBottomSheet(),
                             );
                           },
                         ),
@@ -151,7 +151,8 @@ class MobilePayment extends StatelessWidget {
 
                 Custom_Text(
                   context,
-                  text: 'بتنفيذ طلبك فإنك توافق على الشروط والأحكام . يشمل 15% قيمة الضريبة',
+                  text:
+                      'بتنفيذ طلبك فإنك توافق على الشروط والأحكام . يشمل 15% قيمة الضريبة',
                   style: font10Black600W(context),
                 ),
                 SizedBox(height: 16.h),

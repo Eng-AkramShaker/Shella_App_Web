@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
@@ -17,7 +16,8 @@ class Breadcrumbs extends StatelessWidget {
       child: Row(
         children: List.generate(paths.length, (index) {
           final path = paths[index];
-          final isLast = index == paths.length - 1; // Check if it's the last item
+          final isLast =
+              index == paths.length - 1; // Check if it's the last item
 
           return Row(
             children: [

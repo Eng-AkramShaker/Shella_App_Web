@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class LoginActionButtonsRow extends StatelessWidget {
@@ -22,7 +21,8 @@ class LoginActionButtonsRow extends StatelessWidget {
               backgroundColor: AppColors.backgroundColor,
               side: BorderSide(color: Colors.grey[400]!),
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
             ),
             child: const Text(
               'إغلاق',
@@ -37,7 +37,8 @@ class LoginActionButtonsRow extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6),
                 )),
-            child: const Text('تسجيل دخول', style: TextStyle(fontSize: 14, color: Colors.black)))
+            child: const Text('تسجيل دخول',
+                style: TextStyle(fontSize: 14, color: Colors.black)))
       ],
     );
   }

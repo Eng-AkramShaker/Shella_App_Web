@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -26,7 +25,9 @@ class AvailableCouponWeb extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset('assets/images/my_coupon_not_found.png'),
-                        Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context, size: 12))
+                        Custom_Text(context,
+                            text: 'ليس لديك اي قسائم حاليآ',
+                            style: font12Grey400W(context, size: 12))
                       ],
                     ),
                   ),
@@ -34,17 +35,26 @@ class AvailableCouponWeb extends StatelessWidget {
               : ListView.builder(
                   shrinkWrap: true,
                   padding: EdgeInsets.zero,
-                  itemCount: MyCouponController.get(context).availableCoupons!.length,
+                  itemCount:
+                      MyCouponController.get(context).availableCoupons!.length,
                   itemBuilder: (context, index) {
                     return width(context, 1) < 700
                         ? AvailableCouponMobile(
                             index: index,
-                            discount: MyCouponController.get(context).availableCoupons![index].discount,
-                            expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,
+                            discount: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .discount,
+                            expiredDate: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .expireDate,
                           )
                         : AvailableCouponContainerWeb(
-                            discount: MyCouponController.get(context).availableCoupons![index].discount,
-                            expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,
+                            discount: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .discount,
+                            expiredDate: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .expireDate,
                           );
                   },
                 ),

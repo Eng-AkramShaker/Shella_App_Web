@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
@@ -39,12 +38,17 @@ class PictureAndFullName extends StatelessWidget {
                   child: Container(
                       width: 150.w,
                       height: 110.h,
-                      padding: profilePicture == null ? EdgeInsets.all(25.sp) : EdgeInsets.all(8),
+                      padding: profilePicture == null
+                          ? EdgeInsets.all(25.sp)
+                          : EdgeInsets.all(8),
                       child: Column(
                         children: [
-                          Icon(Icons.camera_alt_outlined, color: AppColors.gryColor_5),
+                          Icon(Icons.camera_alt_outlined,
+                              color: AppColors.gryColor_5),
                           Custom_Text(context,
-                              textAlign: TextAlign.center, text: 'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
+                              textAlign: TextAlign.center,
+                              text: 'تحميل صورة الملف\nالشخصي',
+                              style: font11Grey400W(context)),
                         ],
                       )))
               : Center(

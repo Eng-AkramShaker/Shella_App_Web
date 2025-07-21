@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import '../loading/loading.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/loading.dart';
 import '../texts/custom_text.dart';
 
 class CustomButton extends StatelessWidget {
@@ -80,7 +79,8 @@ class CustomButton extends StatelessWidget {
                       : isSelected == false
                           ? null
                           : colorBorder != null
-                              ? Border.all(color: colorBorder!, width: borderWidth ?? 1)
+                              ? Border.all(
+                                  color: colorBorder!, width: borderWidth ?? 1)
                               : null,
                   gradient: isGradient == true
                       ? LinearGradient(colors: [
@@ -90,7 +90,8 @@ class CustomButton extends StatelessWidget {
                       : null),
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.only(right: paddingRight ?? 0, left: paddingLeft ?? 0),
+                  padding: EdgeInsets.only(
+                      right: paddingRight ?? 0, left: paddingLeft ?? 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

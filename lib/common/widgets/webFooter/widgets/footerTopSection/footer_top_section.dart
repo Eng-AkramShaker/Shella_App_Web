@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../util/app_colors.dart';
@@ -20,12 +19,16 @@ class FooterTopSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Custom_Text(context, text: 'حمل التطبيق ', color: AppColors.bgColor, size: 16.sp),
+                  Custom_Text(context,
+                      text: 'حمل التطبيق ',
+                      color: AppColors.bgColor,
+                      size: 16.sp),
                   SizedBox(height: 8.h),
                   SizedBox(
                     child: Custom_Text(
                       context,
-                      text: 'احصل على كل ما تحتاجه من المطعام والسوبر ماركت والمزيد مع خدماتنا المميزة',
+                      text:
+                          'احصل على كل ما تحتاجه من المطعام والسوبر ماركت والمزيد مع خدماتنا المميزة',
                       size: 13.sp,
                       color: AppColors.darkGreyColor,
                       maxLines: 3,
@@ -38,7 +41,9 @@ class FooterTopSection extends StatelessWidget {
             )
           : Row(
               children: [
-                Custom_Text(context, text: 'حمل التطبيق ', style: font10Black400W(context, size: 20)),
+                Custom_Text(context,
+                    text: 'حمل التطبيق ',
+                    style: font10Black400W(context, size: 20)),
                 SizedBox(
                   width: 10,
                 ),
@@ -46,7 +51,8 @@ class FooterTopSection extends StatelessWidget {
                   width: width(context, 0.5),
                   child: Custom_Text(
                     context,
-                    text: 'احصل على كل ما تحتاجه من المطعام والسوبر ماركت والمزيد مع خدماتنا المميزة',
+                    text:
+                        'احصل على كل ما تحتاجه من المطعام والسوبر ماركت والمزيد مع خدماتنا المميزة',
                     style: font10Grey700W(context, size: 12),
                     textAlign: TextAlign.start,
                   ),

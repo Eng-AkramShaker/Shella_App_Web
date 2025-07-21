@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class CustomButton extends StatelessWidget {
@@ -40,7 +39,8 @@ class CustomButton extends StatelessWidget {
           : transparent
               ? Colors.transparent
               : color ?? Theme.of(context).primaryColor,
-      minimumSize: Size(width != null ? width! : 1170, height != null ? height! : 50),
+      minimumSize:
+          Size(width != null ? width! : 1170, height != null ? height! : 50),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius),
@@ -57,38 +57,54 @@ class CustomButton extends StatelessWidget {
                 style: flatButtonStyle,
                 child: isLoading
                     ? Center(
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          const SizedBox(
-                            height: 15,
-                            width: 15,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                              strokeWidth: 2,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Text('loading', style: font14White500W(context).copyWith(color: Colors.white)),
-                        ]),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const SizedBox(
+                                height: 15,
+                                width: 15,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text('loading',
+                                  style: font14White500W(context)
+                                      .copyWith(color: Colors.white)),
+                            ]),
                       )
-                    : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                        icon != null
-                            ? Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: Icon(icon, color: transparent ? Theme.of(context).primaryColor : Theme.of(context).cardColor),
-                              )
-                            : const SizedBox(),
-                        Text(buttonText,
-                            textAlign: TextAlign.center,
-                            style: isBold
-                                ? font18Black700W(context).copyWith(
-                                    color: textColor ?? (transparent ? Theme.of(context).primaryColor : Colors.white),
-                                    fontSize: fontSize ?? 16,
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                            icon != null
+                                ? Padding(
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: Icon(icon,
+                                        color: transparent
+                                            ? Theme.of(context).primaryColor
+                                            : Theme.of(context).cardColor),
                                   )
-                                : font12Black400W(context).copyWith(
-                                    color: textColor ?? (transparent ? Theme.of(context).primaryColor : Colors.white),
-                                    fontSize: fontSize ?? 16,
-                                  )),
-                      ]),
+                                : const SizedBox(),
+                            Text(buttonText,
+                                textAlign: TextAlign.center,
+                                style: isBold
+                                    ? font18Black700W(context).copyWith(
+                                        color: textColor ??
+                                            (transparent
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white),
+                                        fontSize: fontSize ?? 16,
+                                      )
+                                    : font12Black400W(context).copyWith(
+                                        color: textColor ??
+                                            (transparent
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white),
+                                        fontSize: fontSize ?? 16,
+                                      )),
+                          ]),
               ),
             )));
   }

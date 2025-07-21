@@ -38,6 +38,7 @@ class AuthRepo implements AuthRepositoryInterface {
   }
 
   @override
+  // ignore: override_on_non_overriding_member
   String getSharedPrefGuestId() {
     return sharedPreferences.getString(Api_Constants.guestId) ?? "";
   }

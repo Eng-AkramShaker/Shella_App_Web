@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
-import 'package:shella_design/common/widgets/custom_snacbar.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/features/my_points/controllers/my_points_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
@@ -14,7 +14,8 @@ class LoyaltyBottomSheetWidget extends StatefulWidget {
   const LoyaltyBottomSheetWidget({super.key, required this.amount});
 
   @override
-  _LoyaltyBottomSheetWidgetState createState() => _LoyaltyBottomSheetWidgetState();
+  _LoyaltyBottomSheetWidgetState createState() =>
+      _LoyaltyBottomSheetWidgetState();
 }
 
 class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
@@ -73,18 +74,25 @@ class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
                     onPressed: () {
                       final text = _amountController.text.trim();
                       if (text.isEmpty) {
-                        Navigator.of(context).pop();
-                        showCustomSnackBar(context, 'input_field_is_empty');
+                        nav.back;
+                        showCustomSnackBar('input_field_is_empty',
+                            isError: true);
                         return;
                       }
                       final value = int.tryParse(text) ?? 0;
-                      final available = context.read<LoyaltyProvider>().user?.loyaltyPoint ?? 0;
+                      final available =
+                          context.read<LoyaltyProvider>().user?.loyaltyPoint ??
+                              0;
                       if (value < minPoints) {
-                        Navigator.of(context).pop();
-                        showCustomSnackBar(context, 'please_exchange_more_than $minPoints points');
+                        nav.back;
+                        showCustomSnackBar(
+                            'please_exchange_more_than $minPoints points',
+                            isError: true);
                       } else if (value > available) {
-                        Navigator.of(context).pop();
-                        showCustomSnackBar(context, 'you_do_not_have_enough_point_to_exchange');
+                        nav.back;
+                        showCustomSnackBar(
+                            'you_do_not_have_enough_point_to_exchange',
+                            isError: true);
                       } else {
                         loyalty.convertPoints(value);
                       }
@@ -99,7 +107,7 @@ class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
             right: 8,
             child: IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => nav.back,
             ),
           ),
         ],

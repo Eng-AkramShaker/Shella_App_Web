@@ -1,7 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:shella_design/features/join_as_driver/domain/models/join_as_driver_model.dart';
 import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositioryInterface/join_as_driver_repositiory_interface.dart';
@@ -10,7 +8,8 @@ class DeliveryManRepository implements DeliveryManRepositoryInterface {
   @override
   Future<bool> registerDeliveryMan(DeliveryManBody deliveryManBody) async {
     try {
-      var uri = Uri.parse('https://shellafood.com/api/v1/auth/delivery-man/store');
+      var uri =
+          Uri.parse('https://shellafood.com/api/v1/auth/delivery-man/store');
       var request = http.MultipartRequest('POST', uri)
         ..fields['f_name'] = deliveryManBody.fName
         ..fields['l_name'] = deliveryManBody.lName
@@ -22,8 +21,10 @@ class DeliveryManRepository implements DeliveryManRepositoryInterface {
         ..fields['earning'] = deliveryManBody.earning
         ..fields['zone_id'] = deliveryManBody.zoneId
         ..fields['vehicle_id'] = deliveryManBody.vehicleId
-        ..files.add(await http.MultipartFile.fromPath('identity_image', deliveryManBody.imagePathProfile))
-        ..files.add(await http.MultipartFile.fromPath('driving_license_image', deliveryManBody.licenseImagePath));
+        ..files.add(await http.MultipartFile.fromPath(
+            'identity_image', deliveryManBody.imagePathProfile))
+        ..files.add(await http.MultipartFile.fromPath(
+            'driving_license_image', deliveryManBody.licenseImagePath));
       print('--- MultipartRequest Started ---');
       print('URL: $uri');
       print('Method: POST');

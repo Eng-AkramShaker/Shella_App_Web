@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class Custom_Divider extends StatelessWidget {
@@ -38,7 +37,8 @@ class Custom_Divider extends StatelessWidget {
       builder: (context, constraints) {
         final double dashWidth = 5.0;
         final double dashSpace = 3.0;
-        final int dashCount = (constraints.constrainWidth() / (dashWidth + dashSpace)).floor();
+        final int dashCount =
+            (constraints.constrainWidth() / (dashWidth + dashSpace)).floor();
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

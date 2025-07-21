@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../common/widgets/texts/custom_text.dart';
@@ -28,17 +27,21 @@ class SupportConversationScreen extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(8.sp),
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColors.gryColor_5, width: 1))),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: AppColors.gryColor_5, width: 1))),
             child: Row(
               children: [
                 Stack(
                   alignment: AlignmentDirectional.bottomStart,
                   children: [
-                    Image.asset('assets/images/free-chat-support-icon-1721-thumb 1.png'),
+                    Image.asset(
+                        'assets/images/free-chat-support-icon-1721-thumb 1.png'),
                     Container(
                       width: 8.w,
                       height: 8.w,
-                      decoration: BoxDecoration(color: AppColors.greenColor, shape: BoxShape.circle),
+                      decoration: BoxDecoration(
+                          color: AppColors.greenColor, shape: BoxShape.circle),
                     )
                   ],
                 ),
@@ -63,7 +66,10 @@ class SupportConversationScreen extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                IconButton(onPressed: () {}, icon: Icon(Icons.cancel_outlined, color: AppColors.gryColor_5))
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.cancel_outlined,
+                        color: AppColors.gryColor_5))
               ],
             ),
           ),

@@ -3,7 +3,7 @@ import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/common/widgets/button/loading/green_loading_circle.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/green_loading_circle.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';

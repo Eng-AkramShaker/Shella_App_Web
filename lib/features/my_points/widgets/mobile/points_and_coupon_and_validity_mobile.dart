@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/my_points/controllers/my_points_controller.dart';
 import 'package:shella_design/features/my_points/widgets/mobile/copoun_container_mobile.dart';
@@ -16,10 +15,12 @@ class PointsAndCouponAndValidityMobile extends StatefulWidget {
   const PointsAndCouponAndValidityMobile({super.key});
 
   @override
-  _PointsAndCouponAndValidityMobileState createState() => _PointsAndCouponAndValidityMobileState();
+  _PointsAndCouponAndValidityMobileState createState() =>
+      _PointsAndCouponAndValidityMobileState();
 }
 
-class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndValidityMobile> {
+class _PointsAndCouponAndValidityMobileState
+    extends State<PointsAndCouponAndValidityMobile> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -105,7 +106,8 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
                     Custom_Text(
                       context,
                       text: 'عرض السجل',
-                      style: font8Black400W(context).copyWith(color: const Color(0xFF868986)),
+                      style: font8Black400W(context)
+                          .copyWith(color: const Color(0xFF868986)),
                     ),
                   ],
                 ),

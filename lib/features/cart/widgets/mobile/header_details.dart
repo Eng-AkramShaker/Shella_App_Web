@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
@@ -34,7 +33,8 @@ Widget buildHeader_Cart_details(BuildContext context, {required String img}) {
             height: 210.h,
             width: width_media(context),
             color: AppColors.backgroundColor,
-            child: custom_Images_asset(image: img, h: 100.h, w: 100.w, fit: BoxFit.none),
+            child: custom_Images_asset(
+                image: img, h: 100.h, w: 100.w, fit: BoxFit.none),
           ),
         ),
         Positioned(
@@ -57,7 +57,8 @@ Widget buildHeader_Cart_details(BuildContext context, {required String img}) {
                     SizedBox(width: 15.w),
                     ImageCircle(img: AppImages.logo_23),
                     SizedBox(width: 5.w),
-                    Custom_Text(context, text: " ماركت جرير", style: font13Green500W(context)),
+                    Custom_Text(context,
+                        text: " ماركت جرير", style: font13Green500W(context)),
                   ],
                 ),
                 Row(

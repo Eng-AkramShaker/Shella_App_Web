@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -8,7 +7,8 @@ import 'package:shella_design/common/util/app_styles.dart';
 class HeaderSection extends StatelessWidget {
   final String headtext;
   final String bodytext;
-  const HeaderSection({super.key, required this.headtext, required this.bodytext});
+  const HeaderSection(
+      {super.key, required this.headtext, required this.bodytext});
 
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/common/widgets/loading/loading.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/loading.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/orders/controllers/orders_controller.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_order_card.dart';
@@ -14,10 +13,12 @@ class SchedulePaginatedOrderList extends StatefulWidget {
   const SchedulePaginatedOrderList({super.key});
 
   @override
-  State<SchedulePaginatedOrderList> createState() => _SchedulePaginatedOrderListState();
+  State<SchedulePaginatedOrderList> createState() =>
+      _SchedulePaginatedOrderListState();
 }
 
-class _SchedulePaginatedOrderListState extends State<SchedulePaginatedOrderList> {
+class _SchedulePaginatedOrderListState
+    extends State<SchedulePaginatedOrderList> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -28,9 +29,11 @@ class _SchedulePaginatedOrderListState extends State<SchedulePaginatedOrderList>
 
       final currentLength = provider.scheduleOrders?.orders?.length ?? 0;
       final total = provider.scheduleOrders?.totalSize ?? 0;
-      final isLoadMoreInProgress = provider.loadMoreScheduleState == OrderState.loading;
+      final isLoadMoreInProgress =
+          provider.loadMoreScheduleState == OrderState.loading;
 
-      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200 &&
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 200 &&
           !isLoadMoreInProgress &&
           currentLength < total) {
         provider.loadMoreScheduleOrders();

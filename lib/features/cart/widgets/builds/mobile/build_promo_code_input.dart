@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -36,8 +35,10 @@ Widget buildPromoCodeInput(BuildContext context) {
           ),
           child: TextButton(
             onPressed: () {},
-            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 20)),
-            child: Custom_Text(context, text: 'إدخال', style: font14White400W(context)),
+            style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 20)),
+            child: Custom_Text(context,
+                text: 'إدخال', style: font14White400W(context)),
           ),
         ),
         const SizedBox(width: 10),

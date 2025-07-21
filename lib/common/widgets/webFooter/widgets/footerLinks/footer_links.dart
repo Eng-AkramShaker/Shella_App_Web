@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import '../../../../helper/app_routes.dart';
 import '../../../../util/app_colors.dart';
 import '../../../../util/app_styles.dart';
@@ -18,7 +17,8 @@ class FooterLinks extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Custom_Text(context, text: title, style: font12Green400W(context, size: 16)),
+        Custom_Text(context,
+            text: title, style: font12Green400W(context, size: 16)),
         SizedBox(height: 16.h),
         ...items.map(
           (item) => Padding(
@@ -36,7 +36,10 @@ class FooterLinks extends StatelessWidget {
                     color: AppColors.bgColor,
                   ),
                   SizedBox(width: 5),
-                  Flexible(child: Custom_Text(context, text: item, style: font10Black400W(context, size: 14))),
+                  Flexible(
+                      child: Custom_Text(context,
+                          text: item,
+                          style: font10Black400W(context, size: 14))),
                 ],
               ),
             ),

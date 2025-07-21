@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/loading/loading.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/loading.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import '../../../../common/util/app_colors.dart';
 import '../../../../common/widgets/appBar/customAppBar.dart';
@@ -30,7 +29,8 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
         img: 'assets/images/coupon1.png',
         onPressed: () => Navigator.pop(context),
       ),
-      body: MyCouponController.get(context).state == MyCouponState.loading || MyCouponController.get(context).myCouponModel == null
+      body: MyCouponController.get(context).state == MyCouponState.loading ||
+              MyCouponController.get(context).myCouponModel == null
           ? Loading()
           : Center(
               child: Padding(
@@ -43,7 +43,8 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
                         borderRadius: BorderRadius.circular(8.r),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withValues(alpha: 0.5), // Shadow color
+                            color: Colors.grey
+                                .withValues(alpha: 0.5), // Shadow color
                             spreadRadius: 0, // Spread radius
                             blurRadius: 5, // Blur radius
                             offset: Offset(0, 3), // Offset from the container
@@ -77,7 +78,10 @@ class _MyCouponMobileWidgetState extends State<MyCouponMobileWidget> {
                         ),
                       ),
                     ),
-                    if (index == 0) Expanded(child: AvailableCouponWidget()) else Expanded(child: ExpiredCouponWidget())
+                    if (index == 0)
+                      Expanded(child: AvailableCouponWidget())
+                    else
+                      Expanded(child: ExpiredCouponWidget())
                   ],
                 ),
               ),

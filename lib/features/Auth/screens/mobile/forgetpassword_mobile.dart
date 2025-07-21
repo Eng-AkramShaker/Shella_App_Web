@@ -8,7 +8,7 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/validate_check.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/common/widgets/custom_snacbar.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
@@ -55,7 +55,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
 
     if (number.isEmpty) {
-      showCustomSnackBar(context, 'Invalid phone number');
+      showCustomSnackBar('Invalid phone number', isError: true);
       return;
     }
     authController.setphone = numberWithCountryCode;
@@ -64,7 +64,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         if (value.isSuccess) {
           nav.push(AppRoutes.mobilelVerification);
         } else {
-          showCustomSnackBar(context, value.message);
+          showCustomSnackBar(value.message, isError: false);
         }
       },
     );

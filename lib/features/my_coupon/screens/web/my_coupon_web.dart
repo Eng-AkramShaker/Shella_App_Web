@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/widgets/web/expiredCouponWeb/expired_coupon_web.dart';
 import '../../../../common/util/app_colors.dart';
-import '../../../../common/widgets/gap/height/height.dart';
 import '../../widgets/mobile/available_container.dart';
 import '../../widgets/mobile/expired_container.dart';
 import '../../widgets/web/availableCouponWeb/available_coupon_web.dart';
@@ -22,7 +20,8 @@ class _MyCouponWebState extends State<MyCouponWeb> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width(context, 1) > 600 ? width(context, 0.7) : width(context, 0.9),
+      width:
+          width(context, 1) > 600 ? width(context, 0.7) : width(context, 0.9),
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 16.0),
@@ -69,10 +68,12 @@ class _MyCouponWebState extends State<MyCouponWeb> {
                 ),
               ),
               SizedBox(height: 10),
-              MyCouponController.get(context).state == MyCouponState.loading || MyCouponController.get(context).myCouponModel == null
+              MyCouponController.get(context).state == MyCouponState.loading ||
+                      MyCouponController.get(context).myCouponModel == null
                   ? LinearProgressIndicator(
                       color: AppColors.greenColor,
-                      backgroundColor: AppColors.greenColor.withValues(alpha: 0.2),
+                      backgroundColor:
+                          AppColors.greenColor.withValues(alpha: 0.2),
                     )
                   : (index == 0)
                       ? AvailableCouponWeb()

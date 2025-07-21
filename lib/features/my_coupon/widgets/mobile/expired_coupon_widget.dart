@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/my_coupon/widgets/mobile/unavailableCouponMobile/unavailable_coupon_mobile.dart';
 import '../../../../common/util/app_styles.dart';
 import '../../../../common/widgets/texts/custom_text.dart';
@@ -18,7 +17,9 @@ class ExpiredCouponWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/my_coupon_not_found.png'),
-                  Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context))
+                  Custom_Text(context,
+                      text: 'ليس لديك اي قسائم حاليآ',
+                      style: font12Grey400W(context))
                 ],
               ),
             ),
@@ -28,12 +29,17 @@ class ExpiredCouponWidget extends StatelessWidget {
               ListView.builder(
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
-                itemCount: MyCouponController.get(context).unAvailableCoupons!.length,
+                itemCount:
+                    MyCouponController.get(context).unAvailableCoupons!.length,
                 itemBuilder: (context, index) {
                   return UnavailableCouponMobile(
                     index: index,
-                    discount: MyCouponController.get(context).unAvailableCoupons![index].discount,
-                    expiredDate: MyCouponController.get(context).unAvailableCoupons![index].expireDate,
+                    discount: MyCouponController.get(context)
+                        .unAvailableCoupons![index]
+                        .discount,
+                    expiredDate: MyCouponController.get(context)
+                        .unAvailableCoupons![index]
+                        .expireDate,
                   );
                 },
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_icons.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -18,7 +17,8 @@ class LoginHeaderRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: onBack, icon: SvgIcon(iconTitle: AppIcons.backLogin)),
+        IconButton(
+            onPressed: onBack, icon: SvgIcon(iconTitle: AppIcons.backLogin)),
         const Spacer(),
         Text(
           title,

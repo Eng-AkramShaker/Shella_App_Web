@@ -5,7 +5,6 @@ import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
@@ -68,13 +67,17 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
 
               //
 
-              buildSectionTitle_One(context, title: "الاقسام", lapel: 'عرض الكل', underline: false),
+              buildSectionTitle_One(context,
+                  title: "الاقسام", lapel: 'عرض الكل', underline: false),
               SizedBox(height: 16.h),
               BuildCategoryListView(),
               SizedBox(height: 22.h),
               buildBanner(context),
               SizedBox(height: 16.h),
-              buildSectionTitleTow(context, title: "المتاجر القريبة منك", lapel: "المزيد", underline: true),
+              buildSectionTitleTow(context,
+                  title: "المتاجر القريبة منك",
+                  lapel: "المزيد",
+                  underline: true),
               SizedBox(height: 16.h),
               buildDeliveryListView(context),
               SizedBox(height: 50.h),

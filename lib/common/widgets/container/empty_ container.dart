@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 Widget Container_Empty({
@@ -21,7 +20,9 @@ Widget Container_Empty({
     decoration: BoxDecoration(
       color: color,
       borderRadius: BorderRadius.all(Radius.circular(circular ?? 7)),
-      border: border ? Border.all(color: color_border ?? AppColors.gryColor_2) : null,
+      border: border
+          ? Border.all(color: color_border ?? AppColors.gryColor_2)
+          : null,
     ),
     child: Center(
       child: child,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
-Widget buildPasswordField(String hintText, {TextEditingController? controller}) {
+Widget buildPasswordField(String hintText,
+    {TextEditingController? controller}) {
   return TextField(
     controller: controller,
     obscureText: true,

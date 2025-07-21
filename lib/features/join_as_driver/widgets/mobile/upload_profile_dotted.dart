@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -38,11 +37,14 @@ class UploadProfilePhotoDotted extends StatelessWidget {
                       color: AppColors.gryColor_5,
                     ),
                     Custom_Text(context,
-                        textAlign: TextAlign.center, text: 'تحميل صورة الملف\nالشخصي', style: font11Grey400W(context)),
+                        textAlign: TextAlign.center,
+                        text: 'تحميل صورة الملف\nالشخصي',
+                        style: font11Grey400W(context)),
                     if (licensePicture != null)
                       Padding(
                         padding: EdgeInsets.only(top: 10),
-                        child: Image.file(licensePicture!, height: 70, fit: BoxFit.cover),
+                        child: Image.file(licensePicture!,
+                            height: 70, fit: BoxFit.cover),
                       )
                   ],
                 ),

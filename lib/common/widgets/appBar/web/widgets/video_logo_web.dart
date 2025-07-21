@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:video_player/video_player.dart';
 import '../../../../util/app_colors.dart';
 import '../../../../util/app_images.dart';

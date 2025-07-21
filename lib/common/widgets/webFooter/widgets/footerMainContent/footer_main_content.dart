@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../footerLinks/footer_links.dart';
 import '../footerLogoSection/footer_logo_section.dart';
@@ -8,7 +7,8 @@ class FooterMainContent extends StatelessWidget {
   final bool isMobile;
   final bool isTab;
 
-  const FooterMainContent({super.key, required this.isMobile, required this.isTab});
+  const FooterMainContent(
+      {super.key, required this.isMobile, required this.isTab});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,20 @@ class FooterMainContent extends StatelessWidget {
         "الشركة": ["عن شلة", "الوظائف", "الأسئلة وأجوبة", "الشريعة الإسلامية"]
       },
       {
-        "القانونية": ["شروط قيدها", "سياسة الخصوصية", "الشروط والاحكام", "الإبلاغ عن المخالفات"]
+        "القانونية": [
+          "شروط قيدها",
+          "سياسة الخصوصية",
+          "الشروط والاحكام",
+          "الإبلاغ عن المخالفات"
+        ]
       },
       {
-        "التطبيق": ["الإنضمام كعامل توصيل", "الإنضمام كشريك تاجر", "الإنضمام كمندوب خدمة", "الإنضمام كمستثمر معنا"]
+        "التطبيق": [
+          "الإنضمام كعامل توصيل",
+          "الإنضمام كشريك تاجر",
+          "الإنضمام كمندوب خدمة",
+          "الإنضمام كمستثمر معنا"
+        ]
       },
       {
         "خدمة العملاء": ["قرارات العملاء", "تواصل معنا"]
@@ -35,7 +45,8 @@ class FooterMainContent extends StatelessWidget {
               children: [
                 const FooterLogoSection(),
                 SizedBox(height: 20.h),
-                ...linkData.map((map) => FooterLinks(title: map.keys.first, items: map.values.first)),
+                ...linkData.map((map) => FooterLinks(
+                    title: map.keys.first, items: map.values.first)),
               ],
             )
           : SizedBox(
@@ -44,7 +55,8 @@ class FooterMainContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const FooterLogoSection(),
-                  ...linkData.map((map) => FooterLinks(title: map.keys.first, items: map.values.first)),
+                  ...linkData.map((map) => FooterLinks(
+                      title: map.keys.first, items: map.values.first)),
                 ],
               ),
             ),

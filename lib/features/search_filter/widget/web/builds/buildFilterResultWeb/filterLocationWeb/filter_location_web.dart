@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/widgets/button/custom_button.dart';
+import 'package:shella_design/common/widgets/loading_progress/custom_button.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../../../common/util/app_styles.dart';
 import '../../../../../../../common/widgets/texts/custom_text.dart';
@@ -17,7 +17,8 @@ class FilterLocationWeb extends StatelessWidget {
         SizedBox(
           height: 17,
         ),
-        Custom_Text(context, text: 'الموقع', style: font11Black400W(context, size: 13)),
+        Custom_Text(context,
+            text: 'الموقع', style: font11Black400W(context, size: 13)),
         SizedBox(
           height: 17,
         ),

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/common/widgets/custom_snacbar.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_custom_app_bar.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
@@ -70,7 +70,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   void _onPressedChangePassword(
       AuthController authController, BuildContext context) async {
     if (password.text.isEmpty || passwordComfirm.text.isEmpty) {
-      showCustomSnackBar(context, 'please enter the password right  ');
+      showCustomSnackBar('please enter the password right  ', isError: true);
       return;
     }
     // print(authController.user!.token ?? '');
@@ -83,7 +83,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
         if (value.isSuccess) {
           nav.push(AppRoutes.passwordResetSuccessScreen);
         } else {
-          showCustomSnackBar(context, value.message);
+          showCustomSnackBar(value.message, isError: false);
         }
       },
     );

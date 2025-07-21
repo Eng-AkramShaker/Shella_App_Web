@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
@@ -67,8 +66,11 @@ class PhoneAndEmail extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           keyboardType: TextInputType.text,
           obscureText: showPass,
-          suffixIcon:
-              IconButton(onPressed: onToggleVisible, icon: Icon(showPass ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
+          suffixIcon: IconButton(
+              onPressed: onToggleVisible,
+              icon: Icon(showPass
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined)),
           onChanged: (val) {
             context.read<DriverRegisterController>().setPassword(val);
           },
@@ -84,8 +86,11 @@ class PhoneAndEmail extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           keyboardType: TextInputType.text,
           obscureText: showPass,
-          suffixIcon:
-              IconButton(onPressed: onToggleVisible, icon: Icon(showPass ? Icons.visibility_outlined : Icons.visibility_off_outlined)),
+          suffixIcon: IconButton(
+              onPressed: onToggleVisible,
+              icon: Icon(showPass
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined)),
           onChanged: (val) {},
         ),
       ],

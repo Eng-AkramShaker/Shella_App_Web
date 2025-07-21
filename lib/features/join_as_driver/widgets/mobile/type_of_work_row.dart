@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/drop_choice/drop_choice.dart';
 import 'package:shella_design/common/util/app_colors.dart';
