@@ -1,10 +1,11 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
@@ -35,7 +36,7 @@ class Dialog_Credit extends StatelessWidget {
             context,
             title: "تم",
             style: font12White500W(context, size: size_12(context)),
-            onPressed: () => Get.back(),
+            onPressed: () => nav.back(),
           )
         ],
       ),

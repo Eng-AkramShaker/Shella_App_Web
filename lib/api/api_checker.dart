@@ -1,9 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 
 class ApiChecker {
-  static void checkApi(http.Response response, {bool getXSnackBar = false}) {
+  static void checkApi(BuildContext context, http.Response response, {bool getXSnackBar = false}) {
     String? errorMessage;
 
     try {
@@ -28,7 +31,7 @@ class ApiChecker {
       // });
     } else {
       if (errorMessage != 'The guest id field is required.') {
-        showCustomSnackBar(errorMessage ?? 'Unknown error');
+        showCustomSnackBar(context, errorMessage ?? 'Unknown error');
         print("checkApi >>>>>>>>>>>>>>   $errorMessage");
       }
     }

@@ -2,7 +2,8 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -33,7 +34,7 @@ class _Contract_ReviewScreenState extends State<Contract_ReviewScreen> {
     });
 
     try {
-      final pdfModel = Get.find<KaidhaSubscription_Controller>().contract_Pdf_Model;
+      final pdfModel = Provider.of<KaidhaSubscription_Controller>(context, listen: false).contract_Pdf_Model;
 
       print("حجم الملف: ${pdfModel?.fileSize}");
 
@@ -67,8 +68,8 @@ class _Contract_ReviewScreenState extends State<Contract_ReviewScreen> {
     }
 
     if (_errorMessage != null) {
-      return GetBuilder<KaidhaSubscription_Controller>(
-        builder: (KaidhaSubController) {
+      return Consumer<KaidhaSubscription_Controller>(
+        builder: (context, KaidhaSubController, _) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

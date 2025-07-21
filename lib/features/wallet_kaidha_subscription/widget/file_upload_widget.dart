@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -20,7 +20,7 @@ class FileUploadWithNameWidget extends StatefulWidget {
 class _FileUploadWithNameWidgetState extends State<FileUploadWithNameWidget> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
       return Column(
         children: [
           // TextField لإدخال الاسم

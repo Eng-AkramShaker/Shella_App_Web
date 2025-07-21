@@ -1,11 +1,12 @@
 // ignore_for_file: camel_case_types, file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
@@ -29,8 +30,8 @@ class Befor_Pdf_Screen extends StatelessWidget {
     required this.house_type,
   });
 
-  factory Befor_Pdf_Screen.fromArguments() {
-    final args = Get.arguments as Map<String, dynamic>? ?? {};
+  factory Befor_Pdf_Screen.fromArguments(context) {
+    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>? ?? {};
 
     return Befor_Pdf_Screen(
       time: args['time'] ?? '',
@@ -66,7 +67,7 @@ class Befor_Pdf_Screen extends StatelessWidget {
         title: "العقد",
         icon: Icons.arrow_back_sharp,
         img_icon: AppImages.KiadaWalletSubscription,
-        onPressed: () => Get.back(),
+        onPressed: () => nav.back(),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -39,8 +39,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     super.dispose();
   }
 
-  void _onPressedForgetPass(String countryCode, AuthController authController,
-      BuildContext context) async {
+  void _onPressedForgetPass(String countryCode, AuthController authController, BuildContext context) async {
     if (!_formKey.currentState!.validate()) return;
 
     String number = phone.text.trim();
@@ -51,11 +50,10 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     }
 
     String numberWithCountryCode = countryCode + number;
-    debugPrint(
-        "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
+    debugPrint("\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
 
     if (number.isEmpty) {
-      showCustomSnackBar('Invalid phone number', isError: true);
+      showCustomSnackBar(context, 'Invalid phone number', isError: true);
       return;
     }
     authController.setphone = numberWithCountryCode;
@@ -64,7 +62,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         if (value.isSuccess) {
           nav.push(AppRoutes.mobilelVerification);
         } else {
-          showCustomSnackBar(value.message, isError: false);
+          showCustomSnackBar(context, value.message, isError: false);
         }
       },
     );
@@ -96,34 +94,30 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                   onChanged: (phoneNumber) {
                     countrycode = phoneNumber.countryCode;
                   },
-                  validator: (value) =>
-                      ValidateCheck.validateEmptyText(value.toString(), null),
+                  validator: (value) => ValidateCheck.validateEmptyText(value.toString(), null),
                 ),
                 SizedBox(height: size.height / 10),
                 Consumer<AuthController>(
                   builder: (context, authController, _) {
                     return ForgetPasswordActionButton(
                       authController: authController,
-                      onPressed:
-                          authController.verificationstate == AuthState.loading
-                              ? null
-                              : () => _onPressedForgetPass(
-                                  countrycode, authController, context),
-                      child:
-                          authController.verificationstate == AuthState.loading
-                              ? SizedBox(
-                                  width: 24.w,
-                                  height: 24.h,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 3,
-                                  ),
-                                )
-                              : Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 30.r,
-                                ),
+                      onPressed: authController.verificationstate == AuthState.loading
+                          ? null
+                          : () => _onPressedForgetPass(countrycode, authController, context),
+                      child: authController.verificationstate == AuthState.loading
+                          ? SizedBox(
+                              width: 24.w,
+                              height: 24.h,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 3,
+                              ),
+                            )
+                          : Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 30.r,
+                            ),
                     );
                     // return ElevatedButton(
                     //   style: ElevatedButton.styleFrom(

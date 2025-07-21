@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
@@ -9,7 +10,8 @@ class JobSpecification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final kaidhaFormController = Get.find<KaidhaSubscription_Controller>();
+    final kaidhaFormController = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
+
     return Column(
       children: [
         _buildRadioOption(
@@ -20,7 +22,7 @@ class JobSpecification extends StatelessWidget {
           value: "government employee",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            kaidhaFormController.updatejobSpecification(value!);
+            // kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -32,7 +34,7 @@ class JobSpecification extends StatelessWidget {
           value: "private sector employee",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            kaidhaFormController.updatejobSpecification(value!);
+            // kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -44,7 +46,7 @@ class JobSpecification extends StatelessWidget {
           value: "self-employed",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            kaidhaFormController.updatejobSpecification(value!);
+            // kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -56,7 +58,7 @@ class JobSpecification extends StatelessWidget {
           value: "retired",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            kaidhaFormController.updatejobSpecification(value!);
+            // kaidhaFormController.updatejobSpecification(value!);
           },
         ),
       ],

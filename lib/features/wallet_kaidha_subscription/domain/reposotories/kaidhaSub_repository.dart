@@ -117,10 +117,10 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
         } else {
           firstError = '4حدث خطأ غير معروف';
         }
-        showCustomSnackBar(firstError);
+        showCustomSnackBar(context, firstError);
         return false;
       } else {
-        showCustomSnackBar("الرجاء أعد المحاوله في وقت أخر");
+        showCustomSnackBar(context, "الرجاء أعد المحاوله في وقت أخر");
         return false;
       }
     }
@@ -214,14 +214,14 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
     Response? response;
 
-    // await apiClient.postData(ApiConstants.pay_creditUri, data);
+    // await apiClient.postData(context,ApiConstants.pay_creditUri, data);
 
     // if (response.statusCode == 200 || response.statusCode == 201) {
     //   getWalletKaidh();
 
-    //   showCustomSnackBar("${response.body["message"]}", isError: false);
+    //    showCustomSnackBar(context,"${response.body["message"]}", isError: false);
     // } else {
-    //   showCustomSnackBar("فشل شحن المبلغ");
+    //    showCustomSnackBar(context,"فشل شحن المبلغ");
     // }
 
     return response!;
@@ -236,7 +236,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
     };
 
     Response? response;
-    // Response response = await apiClient.postData(ApiConstants.pay_debitUri, data);
+    // Response response = await apiClient.postData(context,ApiConstants.pay_debitUri, data);
 
     if (response!.statusCode == 200 || response.statusCode == 201) {
       getWalletKaidh();
@@ -246,7 +246,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
       return false;
     } else {
-      showCustomSnackBar("فشل الشراء ");
+      showCustomSnackBar(context, "فشل الشراء ");
       return false;
     }
   }
@@ -271,7 +271,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       // إرسال الطلب
 
       Response? response;
-      // Response response = await apiClient.postData(AppConstants.nafath_checkStatusUri, data);
+      // Response response = await apiClient.postData(context,AppConstants.nafath_checkStatusUri, data);
 
       if ((response!.statusCode == 200 || response.statusCode == 201) && response.body != null) {
         NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(response.body);
@@ -296,26 +296,26 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
     try {
       if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
-        showCustomSnackBar("رقم الهوية غير صالح");
+        showCustomSnackBar(context, "رقم الهوية غير صالح");
       }
 
       Map<String, String> data = {'national_id': nationalId};
       Response? response;
 
-      // Response response = await apiClient.postData(AppConstants.nafath_initiateUri, data);
+      // Response response = await apiClient.postData(context,AppConstants.nafath_initiateUri, data);
 
       if ((response!.statusCode == 200 || response.statusCode == 201)) {
         model = NafathRandomModel.fromJson(response.body);
 
         return model;
       } else if (response.statusCode == 422) {
-        showCustomSnackBar("رقم الهوية غير صحيح أو مرفوض");
+        showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
       } else {
-        showCustomSnackBar("رقم الهوية غير صحيح أو مرفوض");
+        showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
         return model;
       }
     } catch (e) {
-      showCustomSnackBar("رقم الهوية غير صحيح أو مرفوض");
+      showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
 
       return model;
     }
@@ -340,7 +340,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'neighborhood': neighborhood,
       'house_type': houseType,
     };
-    // await apiClient.postData(AppConstants.nafath_signUri, payload);
+    // await apiClient.postData(context,AppConstants.nafath_signUri, payload);
 
     Response? response;
     return response!;

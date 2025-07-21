@@ -1,14 +1,12 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
-import 'package:get/get.dart';
 
 class PriceConverter {
-  //
-
-  static String convertPrice(double? price,
+  static String convertPrice(BuildContext context, double? price,
       {double? discount,
       String? discountType,
       bool forDM = false,
@@ -22,55 +20,51 @@ class PriceConverter {
         price = price! - ((discount / 100) * price);
       }
     }
-    bool isRightSide = Get.find<SplashController>().configModel!.currencySymbolDirection == 'right';
-    // الرمز الرسمي للريال السعودي:
-    String currencySymbol = Get.find<SplashController>().configModel!.currencySymbol ?? "ر.س";
+
+    final splashCtrl = Provider.of<SplashController>(context, listen: false);
+    bool isRightSide = splashCtrl.configModel?.currencySymbolDirection == 'right';
+    String currencySymbol = splashCtrl.configModel?.currencySymbol ?? "ر.س";
 
     if (forTaxi && price! > 100000) {
-      return '${isRightSide ? '' : ' '}'
-          '${intl.NumberFormat.compact().format(price)}'
-          '${isRightSide ? '  ' : ''}';
+      return '${isRightSide ? '' : ' '}${intl.NumberFormat.compact().format(price)}${isRightSide ? '  ' : ''}';
     }
 
-    return isRightSide ? '${price!.toStringAsFixed(2)} ' : '  ${price!.toStringAsFixed(2)}';
+    return isRightSide ? '${price!.toStringAsFixed(2)} $currencySymbol' : '$currencySymbol ${price!.toStringAsFixed(2)}';
   }
 
   static Widget convertPrice2(
+    BuildContext context,
     double? price, {
     double? discount,
     String? discountType,
     TextStyle? textStyle,
     String? prefixText,
   }) {
-    if (price == null) {
-      return const SizedBox();
-    }
+    if (price == null) return const SizedBox();
 
     double discountedPrice = price;
-
     bool hasDiscount = false;
 
-    // حساب السعر بعد الخصم إذا وجد
     if (discount != null && discountType != null) {
       if (discountType == 'amount') {
         discountedPrice = price - discount;
       } else if (discountType == 'percent') {
         discountedPrice = price - (discount / 100) * price;
       }
-
       hasDiscount = discountedPrice < price;
     }
 
     String formattedPrice = discountedPrice.toStringAsFixed(2);
     String originalPrice = price.toStringAsFixed(2);
 
+    final splashCtrl = Provider.of<SplashController>(context, listen: false);
+    String currencySymbol = splashCtrl.configModel?.currencySymbol ?? "ر.س";
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (prefixText != null) Text(prefixText, style: textStyle),
-
-        /// السعر الأصلي مع خط (إذا فيه خصم)
         if (hasDiscount) ...[
           Text(
             originalPrice,
@@ -83,18 +77,21 @@ class PriceConverter {
           Image.asset(AppImages.sar, width: 15, height: 15),
           const SizedBox(width: 5),
         ],
-
-        /// السعر بعد الخصم (واضح)
         Text(formattedPrice, style: textStyle),
-
         const SizedBox(width: 5),
         Image.asset(AppImages.sar, width: 15, height: 15),
       ],
     );
   }
 
-  static Widget convertAnimationPrice(double? price,
-      {double? discount, String? discountType, bool forDM = false, TextStyle? textStyle}) {
+  static Widget convertAnimationPrice(
+    BuildContext context,
+    double? price, {
+    double? discount,
+    String? discountType,
+    bool forDM = false,
+    TextStyle? textStyle,
+  }) {
     if (discount != null && discountType != null) {
       if (discountType == 'amount') {
         price = price! - discount;
@@ -102,16 +99,21 @@ class PriceConverter {
         price = price! - ((discount / 100) * price);
       }
     }
-    bool isRightSide = Get.find<SplashController>().configModel!.currencySymbolDirection == 'right';
+
+    final splashCtrl = Provider.of<SplashController>(context, listen: false);
+    bool isRightSide = splashCtrl.configModel?.currencySymbolDirection == 'right';
+    String currencySymbol = splashCtrl.configModel?.currencySymbol ?? "ر.س";
+    int fractionDigits = splashCtrl.configModel?.digitAfterDecimalPoint ?? 2;
+
     return Directionality(
       textDirection: TextDirection.ltr,
       child: AnimatedFlipCounter(
         duration: const Duration(milliseconds: 500),
         value: toFixed(price!, digits: 2),
         textStyle: textStyle,
-        fractionDigits: forDM ? 0 : Get.find<SplashController>().configModel!.digitAfterDecimalPoint!,
-        prefix: isRightSide ? '' : '${Get.find<SplashController>().configModel!.currencySymbol!} ',
-        suffix: isRightSide ? '${Get.find<SplashController>().configModel!.currencySymbol!} ' : '',
+        fractionDigits: forDM ? 0 : fractionDigits,
+        prefix: isRightSide ? '' : '$currencySymbol ',
+        suffix: isRightSide ? ' $currencySymbol' : '',
       ),
     );
   }
@@ -138,8 +140,10 @@ class PriceConverter {
     return calculatedAmount;
   }
 
-  static String percentageCalculation(String price, String discount, String discountType) {
-    return '$discount${discountType == 'percent' ? '%' : Get.find<SplashController>().configModel!.currencySymbol} OFF';
+  static String percentageCalculation(BuildContext context, String price, String discount, String discountType) {
+    final splashCtrl = Provider.of<SplashController>(context, listen: false);
+    String currencySymbol = splashCtrl.configModel?.currencySymbol ?? "ر.س";
+    return '$discount${discountType == 'percent' ? '%' : currencySymbol} OFF';
   }
 
   static double toFixed(double val, {int digits = 2}) {

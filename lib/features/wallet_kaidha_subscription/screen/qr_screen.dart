@@ -1,10 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, library_private_types_in_public_api, deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
@@ -36,7 +38,7 @@ class _Qr_ScreenState extends State<Qr_Screen> {
         icon: Icons.arrow_back_sharp,
         img_icon: AppImages.qr,
         onPressed: () {
-          Get.back();
+          nav.back();
         },
       ),
       body: Column(
@@ -94,7 +96,7 @@ class _Qr_ScreenState extends State<Qr_Screen> {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             setState(() {
               otpCode = code;
-              Get.find<KaidhaSubscription_Controller>().qr.text = code;
+              Provider.of<KaidhaSubscription_Controller>(context, listen: false).qr.text = code;
             });
           });
         }

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -22,7 +22,7 @@ class _Step_2_ScreenState extends State<Step_2_Screen> {
   int? selectedDay;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
       return Padding(
         padding: const EdgeInsets.all(12.0),
         child: KaidhaSubController.isLoading_OTP

@@ -2,17 +2,17 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
+
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
-import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/kaidhaSub_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/nafath_checkStatus_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/nafath_random_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/wallet_kaidha_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/services/kaidhaSub_service_interface.dart';
 
-class KaidhaSubscription_Controller extends GetxController implements GetxService {
+class KaidhaSubscription_Controller extends ChangeNotifier {
   //
 
   final kaidhaSub_ServiceInterface kaidhaSubServiceInterface;
@@ -146,75 +146,75 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
   // =====================================================================================
 
-  void update_isShow() {
+  void notifyListeners_isShow() {
     _isShow = false;
-    update();
+    notifyListeners();
   }
 
-  void updatejobSpecification(String newjobSpecification) {
+  void notifyListenersjobSpecification(String newjobSpecification) {
     jobSpecification = newjobSpecification;
-    update();
+    notifyListeners();
   }
 
-  void updateInstallments(String newinstallments) {
+  void notifyListenersInstallments(String newinstallments) {
     Installments = newinstallments;
-    update();
+    notifyListeners();
   }
 
-  void updateMaritalStatus(String newStatus) {
+  void notifyListenersMaritalStatus(String newStatus) {
     marital_status = newStatus;
-    update();
+    notifyListeners();
   }
 
-  void updateCity(String updatecity) {
-    city = updatecity;
-    update();
+  void notifyListenersCity(String notifyListenerscity) {
+    city = notifyListenerscity;
+    notifyListeners();
   }
 
-  void updateHousetype(String newhousetype) {
+  void notifyListenersHousetype(String newhousetype) {
     house_type = newhousetype;
-    update();
+    notifyListeners();
   }
 
-  void updateBirthDate(String newDate) {
+  void notifyListenersBirthDate(String newDate) {
     birthDate = newDate;
-    update();
+    notifyListeners();
   }
 
-  void updateExpirationDate(String newexpirationDate) {
+  void notifyListenersExpirationDate(String newexpirationDate) {
     end_date = newexpirationDate;
-    update();
+    notifyListeners();
   }
 
   set isLoading(bool value) {
     _isLoading = value;
-    update();
+    notifyListeners();
   }
 
   void nextStage(BuildContext context, {bool isNext = true}) {
     if (isNext) {
       if (_currentStage < 3) {
         _currentStage++;
-        update();
+        notifyListeners();
       }
     } else {
       if (_currentStage > 1) {
         _currentStage--;
-        update();
+        notifyListeners();
       }
     }
   }
 
   void backStage() {
     _currentStage = 1;
-    update();
+    notifyListeners();
   }
 
   // =====
 
   void onChange_another_amount(String amount) {
     another_amount.text = amount;
-    update();
+    notifyListeners();
   }
 
   // Nafath   dialog    ================================================================================================
@@ -242,7 +242,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
   Future<NafathCheckStatusModel?> Nafath_send_checkStatus(BuildContext context, String nationalId) async {
     _nafath_checkStatus = null;
     _isLoading_Status = true;
-    update();
+    notifyListeners();
 
     final onValue = await kaidhaSubServiceInterface.Nafath_send_checkStatus(context, nationalId);
 
@@ -253,23 +253,23 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
         debugPrint("\x1B[32m  /${onValue.status}  \x1B[0m");
 
         _isShow = true;
-        update();
+        notifyListeners();
 
-        showCustomSnackBar("لقد تم تحقق المصادقة بنجاح", isError: false);
+        showCustomSnackBar(context, "لقد تم تحقق المصادقة بنجاح", isError: false);
       } else {
         _isShow = false;
-        update();
-        showCustomSnackBar("لم تقم بالمصادقة من داخل تطبيق نفاذ");
+        notifyListeners();
+        showCustomSnackBar(context, "لم تقم بالمصادقة من داخل تطبيق نفاذ");
       }
     } else {
       _isShow = false;
-      update();
-      showCustomSnackBar("حدث خطأ أثناء التحقق من المصادقة");
+      notifyListeners();
+      showCustomSnackBar(context, "حدث خطأ أثناء التحقق من المصادقة");
     }
 
     _isLoading_Status = false;
 
-    update();
+    notifyListeners();
     return _nafath_checkStatus;
   }
 
@@ -280,13 +280,13 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
     _nafath_national_id = null;
     _isLoading_OTP = true;
-    update();
+    notifyListeners();
 
     _nafath_national_id = await kaidhaSubServiceInterface.Nafath_send_National_Id(context, nationalId);
 
     _isLoading_OTP = false;
 
-    update();
+    notifyListeners();
     return null;
   }
 
@@ -300,7 +300,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     String house_type,
   ) async {
     _isLoading = true;
-    update();
+    notifyListeners();
 
     debugPrint("\x1B[32m  /$national_id  \x1B[0m");
     debugPrint("\x1B[32m city /$city  \x1B[0m");
@@ -316,7 +316,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     } finally {
       _nafath_checkStatus = null;
       _isLoading = false;
-      update();
+      notifyListeners();
     }
   }
 
@@ -324,7 +324,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
   void pickFileWithName(BuildContext context) async {
     if (imgName_Controller.text.trim().isEmpty) {
-      showCustomSnackBar('يرجى إدخال الاسم');
+      showCustomSnackBar(context, 'يرجى إدخال الاسم');
 
       return;
     }
@@ -336,7 +336,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
     if (result != null) {
       All_files.add(NamedFile(name: imgName_Controller.text.trim(), file: result.files.first));
-      update();
+      notifyListeners();
     }
 
     imgName_Controller.clear();
@@ -344,14 +344,14 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
   void removeFile(int index) {
     All_files.removeAt(index);
-    update();
+    notifyListeners();
   }
 
 //  ----------------------------------------------------------------------------
 
   Future get_Wallet_Kaidh() async {
     isLoading_wallet = true;
-    update();
+    notifyListeners();
 
     try {
       walletKaidhaModel = await kaidhaSubServiceInterface.getWalletKaidh();
@@ -359,14 +359,14 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
       print("Error fetching wallet: $e");
     }
     isLoading_wallet = false;
-    update();
+    notifyListeners();
   }
 
   // ---------------------------------------------------------------------------
 
   Future Submit_Store_Info(context) async {
     _isLoading_Status = true;
-    update();
+    notifyListeners();
 
     // final address = AddressHelper.getUserAddressFromSharedPref();
 
@@ -419,7 +419,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     _nafath_checkStatus = null;
     _isLoading_Status = false;
     _isShow = false;
-    update();
+    notifyListeners();
   }
 
   //
@@ -430,7 +430,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
   //   //
 
   //   _isLoading = true;
-  //   update();
+  //   notifyListeners();
 
   //   if (checkoutController.select_payment_Methods != null) {
   //     bool isSuccess = await checkoutController.Pay(context, "$amount");
@@ -439,15 +439,15 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
   //     if (isSuccess == true) {
   //       checkoutController.select_payment_Methods = null;
 
-  //       update();
+  //       notifyListeners();
   //     }
 
   //     _isLoading = false;
-  //     update();
+  //     notifyListeners();
   //     return isSuccess;
   //   } else {
   //     _isLoading = false;
-  //     update();
+  //     notifyListeners();
   //     return false;
   //   }
   // }
@@ -456,7 +456,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
   Future<void> get_Pdf() async {
     _isLoading_Show_Pdf = true;
-    update();
+    notifyListeners();
 
     try {
       get_Wallet_Kaidh();
@@ -465,7 +465,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
       print("خطأ في تحميل PDF: ");
     } finally {
       _isLoading_Show_Pdf = false;
-      update();
+      notifyListeners();
     }
   }
 
@@ -473,7 +473,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
   Future Send_Pay_Credit(context, double total) async {
     _isLoading = true;
-    update();
+    notifyListeners();
 
     // CheckoutController checkoutController = Get.find<CheckoutController>();
 
@@ -481,9 +481,9 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
     // checkoutController.selectedButton = 1;
 
-    // update();
+    // notifyListeners();
 
-    // checkoutController.setPaymentMethod(0, isUpdate: true);
+    // checkoutController.setPaymentMethod(0, isnotifyListeners: true);
 
     // if (checkoutController.isKaidhaPay == true) {
     //   //"قيدها"
@@ -503,7 +503,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     //   bool isPaymentSuccessful = await checkoutController.Pay(context, "$total");
 
     //   if (isPaymentSuccessful == false) {
-    //     showCustomSnackBar("فشلت عملية الشحن قم بالمحاولة ثانيا ");
+    //      showCustomSnackBar(context,"فشلت عملية الشحن قم بالمحاولة ثانيا ");
 
     //     return "";
     //   } else {
@@ -514,7 +514,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     // ----------------------------------------------------------------------------------------------
 
     _isLoading = false;
-    update();
+    notifyListeners();
   }
 
   // شراء   =============================================
@@ -541,7 +541,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     isEndDateEmpty = end_date.isEmpty;
     isSalaryDayEmpty = end_date.isEmpty;
 
-    update();
+    notifyListeners();
 
     if (isFirstNameEmpty) {
       FocusScope.of(context).requestFocus(firstNameFocus);
@@ -562,7 +562,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     if (birthDate.isEmpty) {
       {
         isBirthDateEmpty = true;
-        update();
+        notifyListeners();
 
         Scrollable.ensureVisible(
           birthDateKey.currentContext!,
@@ -575,11 +575,11 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
     if (nationality.isEmpty) {
       isNationalityEmpty = true;
-      update();
+      notifyListeners();
     }
     if (nationality.isEmpty) {
       isNationalityEmpty = true;
-      update();
+      notifyListeners();
 
       // التمرير إلى العنصر
       Scrollable.ensureVisible(
@@ -592,12 +592,12 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     }
 
     if (isMaritalStatusEmpty) {
-      showCustomSnackBar("يرجى تحديد الحالة الاجتماعية");
+      showCustomSnackBar(context, "يرجى تحديد الحالة الاجتماعية");
       return;
     }
     if (number_of_family_members.text.isEmpty) {
       isNumberOfFamilyEmpty = true;
-      update();
+      notifyListeners();
 
       Scrollable.ensureVisible(
         numberKey.currentContext!,
@@ -614,7 +614,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     }
     if (end_date.isEmpty) {
       isEndDateEmpty = true;
-      update();
+      notifyListeners();
 
       Scrollable.ensureVisible(
         endDateKey.currentContext!,
@@ -636,7 +636,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     }
     if (total_salary.text.isEmpty) {
       isTotalSalaryEmpty = true;
-      update();
+      notifyListeners();
       Scrollable.ensureVisible(
         totalSalaryKey.currentContext!,
         duration: Duration(milliseconds: 500),
@@ -656,7 +656,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     if (jobSpecification.isEmpty || salary_day.text.isEmpty || monthlyIncome.text.isEmpty) {
       if (salary_day.text.isEmpty) {
         isSalaryDayEmpty = true;
-        update();
+        notifyListeners();
 
         // التمرير والتركيز على حقل يوم الراتب
         if (salaryDayFocus.hasFocus == false) {
@@ -676,7 +676,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
 
       if (monthlyIncome.text.isEmpty) {
         isMonthlyIncomeEmpty = true;
-        update();
+        notifyListeners();
 
         if (!monthlyIncomeFocus.hasFocus) {
           monthlyIncomeFocus.requestFocus();
@@ -696,7 +696,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     }
 
     if (All_files.isEmpty) {
-      showCustomSnackBar("لم يتم حفظ اي مستند");
+      showCustomSnackBar(context, "لم يتم حفظ اي مستند");
       return;
     }
 
@@ -755,7 +755,7 @@ class KaidhaSubscription_Controller extends GetxController implements GetxServic
     isEndDateEmpty = false;
     isMonthlyIncomeEmpty = false;
 
-    // Call update to refresh UI if using GetX
-    update();
+    // Call notifyListeners to refresh UI if using GetX
+    notifyListeners();
   }
 }

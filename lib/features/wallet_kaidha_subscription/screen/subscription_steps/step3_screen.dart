@@ -1,11 +1,13 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, use_build_context_synchronously, camel_case_types, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
@@ -68,8 +70,8 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
     //
 
-    return GetBuilder<KaidhaSubscription_Controller>(
-      builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(
+      builder: (context, KaidhaSubController, _) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -195,17 +197,21 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                               buttonText: "استعراض العقد قبل التوقيع ",
                               onPressed: () async {
                                 //
-                                KaidhaSubController.update_isShow();
-                                Get.to(
-                                  () => Befor_Pdf_Screen(
-                                    time: timeNow,
-                                    day: dayNow,
-                                    name:
-                                        "${KaidhaSubController.firstname.text} ${KaidhaSubController.fathername.text} ${KaidhaSubController.grandfathername.text} ${KaidhaSubController.last_name.text}",
-                                    identityNumber: KaidhaSubController.identity_card_number.text.toString(),
-                                    nationality: KaidhaSubController.nationality.toString(),
-                                    neighborhood: KaidhaSubController.neighborhood.text.toString(),
-                                    house_type: KaidhaSubController.house_type.toString(),
+                                // KaidhaSubController.update_isShow();
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Befor_Pdf_Screen(
+                                      time: timeNow,
+                                      day: dayNow,
+                                      name:
+                                          "${KaidhaSubController.firstname.text} ${KaidhaSubController.fathername.text} ${KaidhaSubController.grandfathername.text} ${KaidhaSubController.last_name.text}",
+                                      identityNumber: KaidhaSubController.identity_card_number.text.toString(),
+                                      nationality: KaidhaSubController.nationality.toString(),
+                                      neighborhood: KaidhaSubController.neighborhood.text.toString(),
+                                      house_type: KaidhaSubController.house_type.toString(),
+                                    ),
                                   ),
                                 );
                               },
@@ -263,11 +269,11 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                                           } else if (onValue.statusCode == 404) {
                                             //
 
-                                            KaidhaSubController.update_isShow();
+                                            // KaidhaSubController.update_isShow();
 
-                                            showCustomSnackBar("اعد المحاوله مره اخري في وقت لاحق");
+                                            showCustomSnackBar(context, "اعد المحاوله مره اخري في وقت لاحق");
                                           } else {
-                                            KaidhaSubController.update_isShow();
+                                            // KaidhaSubController.update_isShow();
                                           }
                                         },
                                       );

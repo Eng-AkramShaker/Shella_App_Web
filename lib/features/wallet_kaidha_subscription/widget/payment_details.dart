@@ -77,6 +77,7 @@ class PaymentDetails extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PriceConverter.convertPrice2(
+                      context,
                       double.parse(wallet.creditLimit!),
                       textStyle: font11Black400W(context),
                     ),
@@ -101,6 +102,7 @@ class PaymentDetails extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         PriceConverter.convertPrice2(
+                          context,
                           double.parse(wallet.availableBalance!.toString()),
                           textStyle: font13Grey400W(context),
                         ),
@@ -184,6 +186,7 @@ class PaymentDetailsShimmer extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PriceConverter.convertPrice2(
+                      context,
                       0.00,
                       textStyle: font11Black400W(context),
                       prefixText: 'ر.س ',
@@ -209,6 +212,7 @@ class PaymentDetailsShimmer extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         PriceConverter.convertPrice2(
+                          context,
                           0.00,
                           textStyle: font13Grey400W(context),
                         ),

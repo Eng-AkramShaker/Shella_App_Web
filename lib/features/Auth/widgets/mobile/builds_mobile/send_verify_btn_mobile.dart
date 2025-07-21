@@ -52,10 +52,9 @@ class SendVerificationCodeButton extends StatelessWidget {
         ));
   }
 
-  void _onPressedsendcode(AuthController authController, BuildContext context,
-      TextEditingController code) async {
+  void _onPressedsendcode(AuthController authController, BuildContext context, TextEditingController code) async {
     if (code.text.isEmpty) {
-      showCustomSnackBar('please enter the otp code ', isError: true);
+      showCustomSnackBar(context, 'please enter the otp code ', isError: true);
       return;
     }
     authController.verifyPhone(authController.phone!, code.text.trim()).then(
@@ -63,7 +62,7 @@ class SendVerificationCodeButton extends StatelessWidget {
         if (value.isSuccess) {
           nav.push(AppRoutes.confirmPasswordScreen);
         } else {
-          showCustomSnackBar(value.message, isError: false);
+          showCustomSnackBar(context, value.message, isError: false);
         }
       },
     );

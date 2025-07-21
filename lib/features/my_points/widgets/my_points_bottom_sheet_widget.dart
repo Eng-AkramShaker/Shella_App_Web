@@ -14,8 +14,7 @@ class LoyaltyBottomSheetWidget extends StatefulWidget {
   const LoyaltyBottomSheetWidget({super.key, required this.amount});
 
   @override
-  _LoyaltyBottomSheetWidgetState createState() =>
-      _LoyaltyBottomSheetWidgetState();
+  _LoyaltyBottomSheetWidgetState createState() => _LoyaltyBottomSheetWidgetState();
 }
 
 class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
@@ -75,24 +74,17 @@ class _LoyaltyBottomSheetWidgetState extends State<LoyaltyBottomSheetWidget> {
                       final text = _amountController.text.trim();
                       if (text.isEmpty) {
                         nav.back;
-                        showCustomSnackBar('input_field_is_empty',
-                            isError: true);
+                        showCustomSnackBar(context, 'input_field_is_empty', isError: true);
                         return;
                       }
                       final value = int.tryParse(text) ?? 0;
-                      final available =
-                          context.read<LoyaltyProvider>().user?.loyaltyPoint ??
-                              0;
+                      final available = context.read<LoyaltyProvider>().user?.loyaltyPoint ?? 0;
                       if (value < minPoints) {
                         nav.back;
-                        showCustomSnackBar(
-                            'please_exchange_more_than $minPoints points',
-                            isError: true);
+                        showCustomSnackBar(context, 'please_exchange_more_than $minPoints points', isError: true);
                       } else if (value > available) {
                         nav.back;
-                        showCustomSnackBar(
-                            'you_do_not_have_enough_point_to_exchange',
-                            isError: true);
+                        showCustomSnackBar(context, 'you_do_not_have_enough_point_to_exchange', isError: true);
                       } else {
                         loyalty.convertPoints(value);
                       }

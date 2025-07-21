@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -11,8 +12,8 @@ class StagesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(
-      builder: (controller) {
+    return Consumer<KaidhaSubscription_Controller>(
+      builder: (context, KaidhaSubController, _) {
         return Column(
           children: [
             SizedBox(
@@ -24,27 +25,27 @@ class StagesWidget extends StatelessWidget {
                     child: _buildStageIcon(
                       Icons.menu,
                       1,
-                      controller,
+                      KaidhaSubController,
                       "المعلومات الشخصية\nوالعقد",
                       context,
                     ),
                   ),
-                  _buildDynamicDivider(controller.currentStage > 1),
+                  _buildDynamicDivider(KaidhaSubController.currentStage > 1),
                   Expanded(
                     child: _buildStageIcon(
                       Icons.money,
                       2,
-                      controller,
+                      KaidhaSubController,
                       "التحقق من مصدر\nالدخل",
                       context,
                     ),
                   ),
-                  _buildDynamicDivider(controller.currentStage > 2),
+                  _buildDynamicDivider(KaidhaSubController.currentStage > 2),
                   Expanded(
                     child: _buildStageIcon(
                       Icons.notifications_active_outlined,
                       3,
-                      controller,
+                      KaidhaSubController,
                       "تأكيد ومراجعة\nالعقد",
                       context,
                     ),

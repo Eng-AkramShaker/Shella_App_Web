@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -25,13 +27,15 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
   @override
   void initState() {
     super.initState();
-    getDate();
+    getDate(context);
   }
 
-  void getDate() async {
+  void getDate(BuildContext context) async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Get.find<KaidhaSubscription_Controller>().get_Wallet_Kaidh();
-      Get.find<KaidhaSubscription_Controller>().another_amount.text = "0.00";
+      final controller = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
+
+      await controller.get_Wallet_Kaidh();
+      controller.another_amount.text = "0.00";
 
       if (mounted) {
         setState(() {});
@@ -49,7 +53,7 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
         icon: Icons.arrow_back_sharp,
         titleIcon: Icons.account_balance_wallet_outlined,
       ),
-      body: GetBuilder<KaidhaSubscription_Controller>(builder: (KaidhaSubController) {
+      body: Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
         return SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(16),
@@ -115,7 +119,7 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
 
                                     //       if (KaidhaSubController.another_amount == null ||
                                     //           KaidhaSubController.another_amount.text == "0.00") {
-                                    //         showCustomSnackBar(" لم يتم ادخال اي مبلغ بعد ...");
+                                    //          showCustomSnackBar(context," لم يتم ادخال اي مبلغ بعد ...");
 
                                     //         return;
                                     //       }
@@ -145,7 +149,7 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
 //                     KaidhaSubController.walletKaidhaModel == null
 
 
-// void showCustomSnackBar(String message, {bool isError = true, int? showDuration}) {
+// void  showCustomSnackBar(context,String message, {bool isError = true, int? showDuration}) {
 
 //   Get.dialog(
 //     Center(

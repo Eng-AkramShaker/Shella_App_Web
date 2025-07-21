@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
-import 'package:shella_design/features/search_filter/domain/models/mostSearchedModel/most_searched_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/show_pdf_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/step1_screen.dart';
@@ -27,20 +29,21 @@ class _KiadaWalletSubscriptionScreenState extends State<KiadaWalletSubscriptionS
   @override
   void initState() {
     super.initState();
-    getDate();
+    getDate(context);
   }
 
-  getDate() async {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Get.find<KaidhaSubscription_Controller>().get_Wallet_Kaidh();
-      Get.find<KaidhaSubscription_Controller>().get_Pdf();
+  getDate(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final controller = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
+      controller.get_Wallet_Kaidh();
+      controller.get_Pdf();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(
-      builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(
+      builder: (context, KaidhaSubController, _) {
         // ✅ تمرير لأعلى فقط عند الوصول إلى المرحلة 2
         if (KaidhaSubController.currentStage == 2) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -59,7 +62,7 @@ class _KiadaWalletSubscriptionScreenState extends State<KiadaWalletSubscriptionS
             img_icon: AppImages.KiadaWalletSubscription,
             onPressed: () {
               if (KaidhaSubController.currentStage == 1) {
-                Get.back();
+                nav.back();
               } else {
                 KaidhaSubController.nextStage(context, isNext: false);
               }

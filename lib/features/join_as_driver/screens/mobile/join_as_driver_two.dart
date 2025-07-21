@@ -32,9 +32,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     final picker = ImagePicker();
     final photo = await picker.pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      context
-          .read<DriverRegisterController>()
-          .setLicensePicture(File(photo.path));
+      context.read<DriverRegisterController>().setLicensePicture(File(photo.path));
       debugPrint('✅ تم تحديد صورة الشهادة : $photo');
       setState(() {
         licenseImage = File(photo.path);
@@ -42,8 +40,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     }
   }
 
-  final TextEditingController identityNumberController =
-      TextEditingController();
+  final TextEditingController identityNumberController = TextEditingController();
   bool acceptConditions = false;
 
   @override
@@ -53,9 +50,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
   }
 
   Future<void> _register(BuildContext context) async {
-    context
-        .read<DriverRegisterController>()
-        .setIdentityNumber(identityNumberController.text);
+    context.read<DriverRegisterController>().setIdentityNumber(identityNumberController.text);
 
     final controller = context.read<DriverRegisterController>();
 
@@ -67,9 +62,8 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
         controller.vechileId.isEmpty ||
         controller.identityType.isEmpty ||
         controller.identityNumber.isEmpty) {
-      // showCustomSnackBar('❌ بيانات غير مكتملة للتسجيل', isError: true);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('بيانات غير مكتملة')));
+      //  showCustomSnackBar(context,'❌ بيانات غير مكتملة للتسجيل', isError: true);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('بيانات غير مكتملة')));
       debugPrint('❌ بيانات غير مكتملة للتسجيل');
       return;
     }
@@ -79,12 +73,11 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
     if (success) {
       controller.isLoading = false;
       debugPrint('✅ تم تسجيل الدليفري مان');
-      showCustomSnackBar('تم تسجيل الدليفري مان', isError: false);
+      showCustomSnackBar(context, 'تم تسجيل الدليفري مان', isError: false);
     } else {
       controller.isLoading = false;
       debugPrint('❌فشل التسجيل تاكد من ملئ جميع الخانات ');
-      showCustomSnackBar('❌فشل التسجيل تاكد من ملئ جميع الخانات ',
-          isError: true);
+      showCustomSnackBar(context, '❌فشل التسجيل تاكد من ملئ جميع الخانات ', isError: true);
     }
   }
 
@@ -129,8 +122,7 @@ class _JoinAsDriverTwoState extends State<JoinAsDriverTwo> {
                 height: 30.h,
               ),
               DropChoice(
-                provider:
-                    context.read<DriverRegisterController>().setIdentityType,
+                provider: context.read<DriverRegisterController>().setIdentityType,
                 title: MainAppConstants.selectLicenseType,
                 titleChoiceOne: MainAppConstants.passport,
                 titleChoiceTwo: MainAppConstants.drivingLicense,

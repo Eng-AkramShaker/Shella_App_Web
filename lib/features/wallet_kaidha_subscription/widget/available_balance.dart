@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/price_converter.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -31,7 +32,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         'amount': double.parse(widget.wallet.minimumDueLimit!.toString()),
       },
     ];
-    return GetBuilder<KaidhaSubscription_Controller>(builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -67,7 +68,7 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                                     children: [
                                       Custom_Text(context, text: list[index]['title'], style: font13Black400W(context)),
                                       SizedBox(height: 5),
-                                      PriceConverter.convertPrice2(list[index]['amount'])
+                                      PriceConverter.convertPrice2(context, list[index]['amount'])
                                     ],
                                   ),
                                 ),

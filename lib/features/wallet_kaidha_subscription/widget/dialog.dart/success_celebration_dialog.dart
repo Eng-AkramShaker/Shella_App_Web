@@ -5,7 +5,7 @@ import 'package:confetti/confetti.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'dart:math';
 
-import 'package:get/get.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 class Success_Celebration_dialog extends StatefulWidget {
   const Success_Celebration_dialog({super.key});
@@ -93,7 +93,7 @@ class _SuccessCelebrationWidgetState extends State<SuccessCelebrationWidget> {
 
     Future.delayed(const Duration(seconds: 6), () {
       if (mounted) {
-        Get.back();
+        nav.back();
       }
     });
   }

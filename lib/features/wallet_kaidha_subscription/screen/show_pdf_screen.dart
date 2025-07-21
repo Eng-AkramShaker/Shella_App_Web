@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, use_build_context_synchronously, camel_case_types, deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
@@ -17,8 +17,8 @@ class Show_Pdf_Screen extends StatefulWidget {
 class _Show_Pdf_ScreenState extends State<Show_Pdf_Screen> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(
-      builder: (KaidhaSubController) {
+    return Consumer<KaidhaSubscription_Controller>(
+      builder: (context, KaidhaSubController, _) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

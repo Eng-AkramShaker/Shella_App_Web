@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 
 class PersonalInformation extends StatefulWidget {
@@ -66,7 +66,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
       {'name': 'تركي', 'code': 'TR', 'flag': '🇹🇷'},
     ];
 
-    return GetBuilder<KaidhaSubscription_Controller>(builder: (KaidhaSub_Controller) {
+    return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSub_Controller, _) {
       return Form(
         key: KaidhaSub_Controller.formstate,
         child: Column(
@@ -298,7 +298,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
   }
 
   Widget _buildInstallments(BuildContext context) {
-    final KaidhaSub_Controller = Get.find<KaidhaSubscription_Controller>();
+    final KaidhaSub_Controller = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +316,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "yes",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                KaidhaSub_Controller.updateInstallments(value!);
+                // KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
             _buildRadioOption(
@@ -325,7 +325,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "no",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                KaidhaSub_Controller.updateInstallments(value!);
+                // KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
           ],
@@ -335,7 +335,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
   }
 
   Widget _buildMaritalStatusRadio(BuildContext context) {
-    final KaidhaSub_Controller = Get.find<KaidhaSubscription_Controller>();
+    final KaidhaSub_Controller = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +353,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "single",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                KaidhaSub_Controller.updateMaritalStatus(value!);
+                // KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -362,7 +362,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "married",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                KaidhaSub_Controller.updateMaritalStatus(value!);
+                // KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -371,7 +371,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "divorced",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                KaidhaSub_Controller.updateMaritalStatus(value!);
+                // KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
           ],
@@ -381,8 +381,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
   }
 
   Widget _buildHouseType(BuildContext context) {
-    return GetBuilder<KaidhaSubscription_Controller>(
-      builder: (c) => Column(
+    return Consumer<KaidhaSubscription_Controller>(
+      builder: (context, KaidhaSubController, _) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Custom_Text(context, text: "نوع المنزل", style: font11Black600W(context, size: size_14(context))),
@@ -390,8 +390,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 context: context,
                 label: type,
                 value: type,
-                groupValue: c.house_type,
-                onChanged: (v) => c.updateHousetype(v!),
+                groupValue: KaidhaSubController.house_type,
+                onChanged: (v) {
+                  // KaidhaSubController.updateHousetype(v!);
+                },
               )),
         ],
       ),
@@ -642,12 +644,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
     if (picked != null) {
       final String formattedDate =
           "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      controller.updateBirthDate(formattedDate);
+      // controller.updateBirthDate(formattedDate);
     }
   }
 
   Widget _buildExpirationDateField(BuildContext context, {String? text}) {
-    final KaidhaSub_Controller = Get.find<KaidhaSubscription_Controller>();
+    final KaidhaSub_Controller = Provider.of<KaidhaSubscription_Controller>(context, listen: false);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -732,7 +734,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
     if (picked != null) {
       final formattedDate = "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      Get.find<KaidhaSubscription_Controller>().updateExpirationDate(formattedDate);
+      // Get.find<KaidhaSubscription_Controller>().updateExpirationDate(formattedDate);
     }
   }
 }
