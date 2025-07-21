@@ -15,6 +15,8 @@ import 'package:shella_design/features/restaurant/screens/mobile/restaurant_deta
 
 import 'common/util/app_colors.dart';
 
+// the start of application
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
