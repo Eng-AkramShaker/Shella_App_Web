@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/profile_detailes/domain/services/customer_info_services.dart';
-import '../../../common/helper/app_routes.dart';
+
 import '../widgets/mobile/profile_details_dialog.dart';
 
 class CustomerController extends ChangeNotifier {
@@ -42,7 +43,7 @@ class CustomerController extends ChangeNotifier {
     try {
       final result = await service.getCustomerInfo();
       if (result != null) {
-        print("✅ تم جلب البيانات: ${result.fullName}");
+        // print("✅ تم جلب البيانات: ${result.fullName}");
         customer = result;
         notifyListeners();
       } else {
@@ -80,7 +81,6 @@ class CustomerController extends ChangeNotifier {
       } else {
         updatedCustomer = await service.updateCustomerInfo(apiData);
       }
-      print("🚀 إرسال بيانات التحديث: $apiData");
 
       // if (imageFile != null) {
       //   updatedCustomer = await service.updateCustomerInfoWithImage(
@@ -96,11 +96,11 @@ class CustomerController extends ChangeNotifier {
         _pickedImage = null;
         _isImageRemoved = false;
 
-        print('تم التحديث بنجاح');
+        // print('تم التحديث بنجاح');
 
         return true;
       }
-      print('❌ لم يتم التحديث - response null');
+      // print('❌ لم يتم التحديث - response null');
       return false;
     } catch (e) {
       print('حدث خطأ: ${e.toString()}');
@@ -175,7 +175,7 @@ class CustomerController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Options Choose Image
+  /// Options Choose Image
   void showImagePickerBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,

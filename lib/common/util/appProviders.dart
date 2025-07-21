@@ -7,6 +7,9 @@ import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
+import 'package:shella_design/features/cart/controllers/cart_controller.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
@@ -58,7 +61,7 @@ List<SingleChildWidget> appProviders({
 
   final apiClient =
       ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
-
+  // apiClient.setModuleId(3);
   // === Repositories & Services ===
   final authRepo =
       AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
@@ -72,6 +75,9 @@ List<SingleChildWidget> appProviders({
       sharedPreferences: sharedPreferences, apiClient: apiClient);
   final notificationService =
       NotificationService(notificationRepositoryInterface: notificationRepo);
+
+  final cartRepo = CartRepository(apiClient: apiClient);
+  final cartService = CartService(cartRepository: cartRepo);
 
   // ====================================================================================================================================
 
@@ -113,6 +119,10 @@ List<SingleChildWidget> appProviders({
         create: (_) => DiscountController(
             service: DiscountService(
                 discountRepositoryInterface: DiscountRepository()))),
+    // === Cart ===
+    ChangeNotifierProvider(
+      create: (_) => CartController(cartService: cartService),
+    ),
 
     // === Join as Driver ===
 

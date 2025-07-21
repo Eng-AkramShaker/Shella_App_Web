@@ -1,8 +1,5 @@
 import 'dart:convert';
-
-// import 'package:get/get_connect/http/src/multipart/multipart_file.dart' as http;
 import 'package:http/http.dart' as http;
-
 import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
@@ -50,8 +47,6 @@ class CustomerRepository implements CustomerRepositoryInterface {
       final errorMessage = errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
       throw Exception(errorMessage);
     }
-
-    // return CustomerModel.fromJson(jsonBody);
   }
 
   @override
@@ -69,15 +64,12 @@ class CustomerRepository implements CustomerRepositoryInterface {
     data.forEach((key, value) {
       stringData[key] = value.toString();
     });
-
     List<MultipartBody> multipartBody = [MultipartBody('image', imageFile)];
-
     final response = await apiClient.postMultipartData(
       uri.toString(),
       stringData,
       multipartBody,
     );
-
     return _handleUpdateResponse(response);
   }
 
@@ -103,8 +95,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
         throw Exception('Invalid response type');
       }
     } catch (e) {
-      print(
-          '❌ /////////////////////////////////////////////خطأ في معالجة الرد: ${e.toString()}');
+      print('❌خطأ في معالجة الرد: ${e.toString()}');
       throw Exception('فشل في معالجة استجابة الخادم');
     }
   }

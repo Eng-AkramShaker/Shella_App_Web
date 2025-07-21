@@ -1,8 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_dimensions.dart';
+
 import 'package:shella_design/common/util/app_styles.dart';
 
 Text Custom_Text(
@@ -19,13 +20,15 @@ Text Custom_Text(
   return Text(
     text,
     textAlign: textAlign,
-    overflow: textOverFlow,
+    overflow: textOverFlow ?? TextOverflow.clip,
     maxLines: maxLines,
+    softWrap: true,
     style: style ??
         font10Black400W(context).copyWith(
-          fontSize: size ?? size_10(context),
+          fontSize: size ?? 10.sp,
           color: color ?? AppColors.bgColor,
-          decoration: underline ? TextDecoration.underline : TextDecoration.none,
+          decoration:
+              underline ? TextDecoration.underline : TextDecoration.none,
         ),
   );
 }

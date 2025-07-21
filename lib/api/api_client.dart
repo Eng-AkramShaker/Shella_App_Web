@@ -20,6 +20,8 @@ class ApiClient {
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
   final int timeoutInSeconds = 40;
 
+  // int? moduleId;
+
   String? token;
   late Map<String, String> _mainHeaders;
 
@@ -75,6 +77,9 @@ class ApiClient {
     Map<String, String> header = {};
     if (moduleID != null ||
         sharedPreferences.getString(AppConstants.cacheModuleId) != null) {}
+    // if (moduleID != null) {
+    //   header['moduleId'] = moduleID.toString();
+    // }
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
       AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
@@ -89,6 +94,20 @@ class ApiClient {
     }
     return header;
   }
+
+  // void setModuleId(int id) {
+  //   moduleId = id;
+  //   updateHeader(
+  //     token,
+  //     [],
+  //     [],
+  //     'ar',
+  //     moduleId,
+  //     '1',
+  //     '1',
+  //     setHeader: true,
+  //   );
+  // }
 
   Map<String, String> getHeader() => _mainHeaders;
 

@@ -5,42 +5,78 @@ import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/cart/domain/repositories/cartRepositoryInterface/cart_repository_interface.dart';
 import '../../../../../common/helper/check_Logged.dart';
+import '../../../../../common/util/sharedPre_constants.dart';
 
 class CartRepository implements CartRepositoryInterface {
+  final ApiClient apiClient;
+
+  CartRepository({required this.apiClient});
 
   @override
- Future<http.Response?> getCartItems() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getCartListUri);
+  Future<http.Response?> getCartItems() async {
+    final newHeader = {...apiClient.getHeader(), "moduleId": "3"};
+
+    Response? response = await ApiClient(
+      appBaseUrl: Api_Constants.appBaseUrl,
+      sharedPreferences: sp<SharedPreferences>(),
+    ).getData(Api_Constants.getCartListUri, headers: newHeader);
     return response;
   }
 
   @override
-  Future<http.Response?> addToCart({String? itemId, int? quantity, List<String>? variations, List<String>? addOns,}) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).postData(Api_Constants.addCartUri,
-        {
-          'item_id': itemId,
-          'quantity': quantity,
-          'variation': variations,
-          'add_ons': addOns,
-        });
+  Future<http.Response?> addToCart({
+    int? itemId,
+    int? quantity,
+    double? price,
+    List<String>? variations,
+    List<String>? addOns,
+  }) async {
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .postData(Api_Constants.addCartUri, {
+      'item_id': itemId,
+      'quantity': quantity,
+      'price': price,
+      'variation': variations ?? [],
+      'add_ons': addOns ?? [],
+    });
     return response;
   }
 
   @override
-  Future<http.Response?> updateCartItem(String itemId, int quantity) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).putData(Api_Constants.updateCartUri, {'item_id': itemId, 'quantity': quantity});
+  Future<http.Response?> updateCartItem(
+      int itemId, int quantity, double price) async {
+    final newHeader = {...apiClient.getHeader(), "moduleId": "3"};
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .postData('${Api_Constants.updateCartUri}?cart_id=$itemId',
+            {'quantity': quantity, 'price': price},
+            headers: newHeader);
     return response;
   }
 
   @override
-  Future<http.Response?> removeCartItem(String itemId) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).deleteData('${Api_Constants.removeItemCartUri}/$itemId');
+  Future<http.Response?> removeCartItem(int itemId) async {
+    print(
+        '//////////////////////////////////////${Api_Constants.removeItemCartUri}?cart_id=$itemId ');
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .deleteData('${Api_Constants.removeItemCartUri}?guest_id=$itemId');
+
+    print(
+        '//////////////////////////////////////${Api_Constants.removeItemCartUri}?cart_id=$itemId ');
     return response;
   }
 
   @override
   Future<http.Response?> clearCart() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).deleteData(Api_Constants.removeItemCartUri);
+    Response? response = await ApiClient(
+            appBaseUrl: Api_Constants.appBaseUrl,
+            sharedPreferences: sp<SharedPreferences>())
+        .deleteData(Api_Constants.removeItemCartUri);
     return response;
   }
 }

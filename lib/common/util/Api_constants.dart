@@ -31,14 +31,11 @@ class Api_Constants {
   //
 
   /// Cart
-  static const String getCartListUri =
-      'https://shalafood.net/api/v1/customer/cart/list';
-  static const String addCartUri = '$appBaseUrl/api/v1/customer/cart/add';
-  static const String updateCartUri = '$appBaseUrl/api/v1/customer/cart/update';
-  static const String removeAllCartUri =
-      '$appBaseUrl/api/v1/customer/cart/remove';
-  static const String removeItemCartUri =
-      '$appBaseUrl/api/v1/customer/cart/remove-item';
+  static const String getCartListUri = '/api/v1/customer/cart/list';
+  static const String addCartUri = '/api/v1/customer/cart/add';
+  static const String updateCartUri = '/api/v1/customer/cart/update';
+  static const String removeAllCartUri = '/api/v1/customer/cart/remove';
+  static const String removeItemCartUri = '/api/v1/customer/cart/remove-item';
 
   static const String discountProducts = '/api/v1/items/discounted';
 

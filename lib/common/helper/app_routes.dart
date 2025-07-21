@@ -267,11 +267,12 @@ class AppRoutes {
     productDetails: (context) => const ProductDetailsView(),
 
     // Cart
-    cartScreen: (context) => ChangeNotifierProvider(
-          create: (context) => CartController(
-              cartService: CartService(cartRepository: CartRepository())),
-          child: const Cart_Screen(),
-        ),
+    // cartScreen: (context) => ChangeNotifierProvider(
+    //       create: (context) => CartController(
+    //           cartService: CartService(cartRepository: CartRepository())),
+    //       child: const Cart_Screen(),
+    //     ),
+    cartScreen: (context) => const Cart_Screen(),
     cartDetails: (context) => const CartDetailsScreen(),
 
     // Orders
