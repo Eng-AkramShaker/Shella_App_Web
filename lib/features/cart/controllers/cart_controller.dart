@@ -16,11 +16,13 @@ class CartController extends ChangeNotifier {
 
   // double _total = 0.0;
   CartItem? _selectedItem;
-  Map<int, bool> _updatingItems = {};
+  Map<int, bool> updatingItems = {};
   Map<int, bool> _itemLoading = {};
   final double _delivery = 15.0;
   Map<int, int> _tempQuantities = {};
+
   Map<int, String> _tempNotes = {};
+  bool _isAddToCartLoading = false;
 
   /// Getters
   CartItem? get selectedItem => _selectedItem;
@@ -43,11 +45,18 @@ class CartController extends ChangeNotifier {
 
   int get cartItemCount => _cartItems.length;
 
+  bool get isAddToCartLoading => _isAddToCartLoading;
+
   // double get total => _total;
 
   CartController({required this.cartService});
 
-  bool isUpdating(int itemId) => _updatingItems[itemId] ?? false;
+  bool isUpdating(int itemId) => updatingItems[itemId] ?? false;
+
+  void setAddToCartLoading(bool val) {
+    _isAddToCartLoading = val;
+    notifyListeners();
+  }
 
   void setTempQuantity(int itemId, int quantity) {
     _tempQuantities[itemId] = quantity;
@@ -82,6 +91,14 @@ class CartController extends ChangeNotifier {
     if (current > 1) {
       setTempQuantity(itemId, current - 1);
     }
+  }
+
+  void updateLocalTotals() {
+    _subtotal =
+        _cartItems.fold(0, (sum, item) => sum + (item.price! * item.quantity!));
+
+    final uniqueItemTaxes = _cartItems.map((e) => e.item?.tax ?? 0.0).toSet();
+    _tax = uniqueItemTaxes.fold(0.0, (sum, t) => sum + t);
   }
 
   /// Get Selected Item
@@ -146,24 +163,28 @@ class CartController extends ChangeNotifier {
   }
 
   Future<void> updateQuantity(int itemId, int newQuantity, double price) async {
-    // _updateState(CartState.loading);
-    _updatingItems[itemId] = true;
+    updatingItems[itemId] = true;
     notifyListeners();
     try {
       await cartService.updateCartItem(itemId, newQuantity, price);
-      await loadCartItems();
+
+      // await loadCartItems();
+      final index = _cartItems.indexWhere((e) => e.id == itemId);
+      if (index != -1) {
+        updateItemQuantity(index, newQuantity);
+      }
     } catch (e) {
       _errorMessage = e.toString();
       _updateState(CartState.error);
     } finally {
-      _updatingItems[itemId] = false;
+      updatingItems[itemId] = false;
       notifyListeners();
     }
   }
 
   void updateItemQuantity(int index, int newQuantity) {
     final item = _cartItems[index];
-    // _cartItems[index].quantity = newQuantity;
+
     _cartItems[index] = item.copyWith(quantity: newQuantity);
     _subtotal =
         _cartItems.fold(0, (sum, item) => sum + (item.price! * item.quantity!));

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/loading/custom_loading.dart';
 import 'package:shella_design/features/profile_detailes/controllers/map_controller.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/builds_mobile_address/build_add_address_body.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/greanappbar.dart';
-import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 class AddNewAddressScreen extends StatefulWidget {
@@ -88,10 +88,10 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
               context.read<ProfileController>().resetOperationState();
               Navigator.of(context).pop(true);
             });
-            return ProfileLoading(color: AppColors.primaryColor);
+            return CustomLoading(color: AppColors.primaryColor);
           }
           if (addressState == RequestState.loading) {
-            return ProfileLoading(color: AppColors.primaryColor);
+            return CustomLoading(color: AppColors.primaryColor);
           }
           if (addressState == RequestState.error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {

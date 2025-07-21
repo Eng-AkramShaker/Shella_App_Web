@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/loading/custom_loading.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_buttons.dart';
-import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_divider.dart';
-import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
-
-import '../../../../common/util/app_colors.dart';
 
 Widget buildProfileHeader(onTap) {
   return Consumer<CustomerController>(
@@ -13,7 +11,7 @@ Widget buildProfileHeader(onTap) {
       final customer = provider.customer;
 
       if (provider.isLoading) {
-        return const Center(child: ProfileLoading(color: AppColors.greenColor));
+        return const Center(child: CustomLoading(color: AppColors.greenColor));
       }
       if (provider.toExternalReference != null) {
         return Center(

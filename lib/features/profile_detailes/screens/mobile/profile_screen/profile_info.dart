@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/loading/custom_loading.dart';
 import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mobile_profile/build_action_appBar.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mobile_profile/build_delete_account_button.dart';
@@ -8,7 +9,6 @@ import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mob
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mobile_profile/build_no_data.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mobile_profile/build_profile_info_body.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_mobile_profile/build_title_text.dart';
-import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
 
 class ProfileInfo extends StatefulWidget {
   const ProfileInfo({super.key});
@@ -37,7 +37,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       body: Consumer<CustomerController>(
         builder: (context, provider, _) {
           if (provider.isLoading) {
-            return ProfileLoading(color: AppColors.greenColor);
+            return CustomLoading(color: AppColors.greenColor);
           }
           if (provider.toExternalReference != null) {
             return buildErrorWidget(provider);

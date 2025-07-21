@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
 
-import '../../../../../common/util/app_colors.dart';
-
 Widget buildQuantityControls(CartItem cartItem, CartController controller) {
   final tempQuantity = controller.getTempQuantity(cartItem.id!);
-  // final isMax = cartItem.item?.stock != null &&
-  //     cartItem.quantity != null &&
-  //     cartItem.quantity! >= cartItem.item!.stock!;
+
   final isMax =
       cartItem.item?.stock != null && tempQuantity >= cartItem.item!.stock!;
   final isMin = cartItem.quantity != null && cartItem.quantity! <= 1;

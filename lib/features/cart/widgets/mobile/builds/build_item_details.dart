@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-
+import 'package:shella_design/features/cart/widgets/mobile/builds/build_details_control.dart';
 import 'package:shella_design/features/cart/widgets/mobile/counter_iconButton.dart';
 
 class BuildItemDetails extends StatefulWidget {
@@ -72,109 +71,11 @@ class _BuildItemDetailsState extends State<BuildItemDetails> {
           ),
           SizedBox(
             width: 94.w,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                custom_Images_asset(
-                    image: widget.cartItem.item?.image ?? "",
-                    h: 80.h,
-                    w: 90.w,
-                    fit: BoxFit.fill),
-                Container(
-                  color: AppColors.wtColor,
-                  width: double.infinity,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        // onTap:
-                        // _isUpdating
-                        //     ? null
-                        //     : () => _safeUpdate(() => controller
-                        //         .increaseQuantity(widget.cartItem.id!)),
-                        //    () {
-                        // controller
-                        //     .increaseQuantity(widget.cartItem.itemId!);
-                        //  },
-                        onTap: isLoading
-                            ? null
-                            : () {
-                                controller
-                                    .increaseQuantity(widget.cartItem.id!);
-                              },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.secondaryColor,
-                            border: Border.all(
-                                color: AppColors.secondaryColor, width: 2),
-                            shape: BoxShape.circle,
-                          ),
-                          constraints: BoxConstraints(),
-                          child: Icon(
-                            Icons.add,
-                            color: AppColors.wtColor,
-                          ),
-                        ),
-                      ),
-                      isLoading
-                          ? SizedBox(
-                              width: 20.w,
-                              height: 20.h,
-                              child: const CircularProgressIndicator(
-                                  strokeWidth: 2),
-                            )
-                          : Custom_Text(context,
-                              text: '${widget.cartItem.quantity}',
-                              style: font14Black500W(context)),
-                      InkWell(
-                        //    onTap:
-                        // _isUpdating
-                        //     ? null
-                        //     : () => _safeUpdate(() => controller
-                        //         .decreaseQuantity(widget.cartItem.id!)),
-                        //  () {
-                        // controller
-                        //     .decreaseQuantity(widget.cartItem.itemId!);
-                        // },
-                        onTap: isLoading
-                            ? null
-                            : () => controller
-                                .decreaseQuantity(widget.cartItem.id!),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.secondaryColor, width: 2),
-                            shape: BoxShape.circle,
-                          ),
-                          constraints: BoxConstraints(),
-                          child: Icon(Icons.remove),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 3.h),
-              ],
-            ),
+            child: buildDetailsControl(
+                context, widget.cartItem, controller, isLoading),
           ),
         ],
       );
     });
   }
-//
-// Future<void> _safeUpdate(Future<void> Function() action) async {
-//   setState(() => _isUpdating = true);
-//   try {
-//     await action();
-//   } catch (e) {
-//     // عرض رسالة خطأ للمستخدم
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('حدث خطأ: ${e.toString()}')),
-//     );
-//   } finally {
-//     setState(() => _isUpdating = false);
-//   }
-// }
 }

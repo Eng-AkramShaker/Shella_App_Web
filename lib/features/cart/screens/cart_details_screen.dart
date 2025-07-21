@@ -74,7 +74,10 @@ class _CartDetailsScreenState extends State<CartDetailsScreen> {
                   // CustomRichText(item: item),
 
                   SizedBox(height: 8.h),
-
+                  Custom_Text(context,
+                      text: item.item?.description ?? "",
+                      style: font14Black600W(context, lineHeight: 3)),
+                  SizedBox(height: 5.h),
                   Custom_Text(context,
                       text: "${item.price} ريال",
                       style: font14SecondaryColor500W(context)),

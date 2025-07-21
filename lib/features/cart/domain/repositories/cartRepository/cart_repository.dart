@@ -34,7 +34,7 @@ class CartRepository implements CartRepositoryInterface {
     Response? response = await ApiClient(
             appBaseUrl: Api_Constants.appBaseUrl,
             sharedPreferences: sp<SharedPreferences>())
-        .postData(Api_Constants.addCartUri, {
+        .postData('${Api_Constants.addCartUri}?cart_id=$itemId', {
       'item_id': itemId,
       'quantity': quantity,
       'price': price,
@@ -64,7 +64,7 @@ class CartRepository implements CartRepositoryInterface {
     Response? response = await ApiClient(
             appBaseUrl: Api_Constants.appBaseUrl,
             sharedPreferences: sp<SharedPreferences>())
-        .deleteData('${Api_Constants.removeItemCartUri}?guest_id=$itemId');
+        .deleteData('${Api_Constants.removeItemCartUri}?cart_id=$itemId');
 
     print(
         '//////////////////////////////////////${Api_Constants.removeItemCartUri}?cart_id=$itemId ');

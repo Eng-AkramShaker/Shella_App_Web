@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/loading/custom_loading.dart';
 import 'package:shella_design/features/profile_detailes/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/AdressCard.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/build_empty_address.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/address_error_widget.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/builds_mobile_address/build_appBar.dart';
-import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_loading.dart';
 
 class AddressDetailsPage extends StatelessWidget {
   const AddressDetailsPage({super.key});
@@ -28,11 +28,11 @@ class AddressDetailsPage extends StatelessWidget {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     controller.getAddress();
                   });
-                  return ProfileLoading(color: AppColors.primaryColor);
+                  return CustomLoading(color: AppColors.primaryColor);
                 }
 
                 if (controller.addressState == RequestState.loading) {
-                  return ProfileLoading(color: AppColors.primaryColor);
+                  return CustomLoading(color: AppColors.primaryColor);
                 }
 
                 if (controller.addressState == RequestState.error) {
