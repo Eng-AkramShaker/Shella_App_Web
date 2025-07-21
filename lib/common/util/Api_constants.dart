@@ -94,7 +94,6 @@ class Api_Constants {
   static const String couponListUri = '/api/v1/coupon/list';
 
   static const String configUri = '/api/v1/config';
-
   //Orders
   static const String orderDetailsUri =
       '/api/v1/customer/order/details?order_id=';

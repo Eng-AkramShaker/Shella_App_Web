@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/divider/custom_dashed_divider.dart';
+import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/domain/models/store_model.dart';
+import 'package:shella_design/features/home/domain/services/section_service.dart';
+import 'package:shella_design/features/home/home/widgets/category_Item.dart';
+import 'package:shella_design/features/home/users/screens/SuperMarketDiscounts.dart';
 import 'package:shella_design/features/product/controllers/product_controller.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/features/product/widgets/category/product_item.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ProductView extends StatefulWidget {
@@ -23,24 +28,26 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  late ProductProvider _provider;
+  SectionService _service = SectionService();
+
   late ScrollController _scrollController;
+
+  bool endOfPage = false;
 
   @override
   void initState() {
     super.initState();
-    _provider = ProductProvider(storeId: widget.store.id);
+    //   _provider = ProductProvider(storeId: widget.store.id);
+    SectionProvider _provider = SectionProvider(_service);
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
-    _provider.loadProducts();
+    // _provider.loadProducts();
   }
 
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      if (_provider.hasMore && !_provider.isLoading) {
-        _provider.loadProducts();
-      }
+      endOfPage = true;
     }
   }
 
@@ -52,132 +59,202 @@ class _ProductViewState extends State<ProductView> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ProductProvider>.value(
-      value: _provider,
-      child: Consumer<ProductProvider>(
-        builder: (context, provider, _) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            body: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Scroll Content
-                Positioned.fill(
-                  top: MediaQuery.of(context).size.height * 0.4,
-                  child: provider.isLoading && provider.products.isEmpty
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          controller: _scrollController,
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          itemCount: provider.hasMore
-                              ? provider.products.length + 1
-                              : provider.products.length,
-                          itemBuilder: (context, index) {
-                            if (index == provider.products.length) {
-                              // Loader at the end for pagination
-                              return const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              );
-                            }
-                            final product = provider.products[index];
-                            return ProductItem(
-                              product: product,
-                              onTap: () {
-                                nav.push(AppRoutes.productDetails);
-                              },
-                            );
-                          },
-                        ),
+    return Consumer<SectionProvider>(
+      builder: (context, provider, _) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            alignment: Alignment.center,
+            children: [
+              // image of advertisment
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.4,
+                child: Container(
+                  height: 126,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                          image: AssetImage(AppImages.storeOffer),
+                          fit: BoxFit.cover)),
                 ),
-
-                // Header Section
-                Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: buildHeaderSection(context)),
-
-                // Store Info
-                Positioned(
-                  top: 150,
-                  child: Card(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+              ),
+              // Scroll Content
+              Positioned.fill(
+                top: MediaQuery.of(context).size.height * 0.6,
+                child: provider.isLoading && provider.categories.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : GridView.builder(
+                        controller: _scrollController,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, // 3 items per row
+                          crossAxisSpacing: 2,
+                          mainAxisSpacing: 2,
+                          childAspectRatio: 1, // Square items
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        itemCount: provider.categories.length,
+                        itemBuilder: (context, index) {
+                          if (index == provider.categories.length) {
+                            // Loader at the end for pagination
+                            return const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            );
+                          }
+                          final category = provider.categories[index];
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SuperMarketDiscounts()),
+                              );
+                            },
+                            child: CategoryItem(
+                              image: category.imageFullUrl ?? AppImages.empty,
+                              label: category.name,
+                            ),
+                          );
+                        },
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Custom_Text(context,
-                              text: widget.store.name,
-                              style: font14Black600W(context)),
-                          const SizedBox(height: 10),
-                          Custom_Text(
-                            context,
-                            text:
-                                "وقت التوصيل: ${widget.store.deliveryTime} دقيقة",
-                            style: font11Black600W(context),
-                          ),
-                          const SizedBox(height: 15),
-                          Custom_Divider(
-                              dashed: true, color: AppColors.gryColor_4),
-                          const SizedBox(height: 12),
-                          Custom_Text(
-                            context,
-                            text: "العنوان: ${widget.store.address}",
-                            style: font10Grey600W(context),
-                          ),
-                        ],
+              ),
+
+              /////////// // footer store offer image   /////////
+              endOfPage == true
+                  ? Positioned(
+                      top: MediaQuery.of(context).size.height * 0.8,
+                      child: Container(
+                        height: 126,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                                image: AssetImage(AppImages.footerStoreImge),
+                                fit: BoxFit.cover)),
                       ),
+                    )
+                  : Container(),
+
+              // Header Section
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: buildHeaderSection(context)),
+
+              // Store Info
+              Positioned(
+                top: 150,
+                child: Card(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Custom_Text(context,
+                            text: widget.store.name,
+                            style: font14Black600W(context)),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Custom_Text(
+                              context,
+                              text: "${widget.store.module!.moduleType}",
+                              style: font6SecondaryColor400W(context, size: 12),
+                            ),
+                            Custom_Text(context,
+                                text: widget.store.currentOpeningTime ??
+                                    "10:00 Pm",
+                                style: font12Black400W(context)),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Custom_Text(
+                              context,
+                              text: "قيمة التوصيل",
+                              style: font12Black400W(context),
+                            ),
+                            Custom_Text(
+                              context,
+                              text: " المسافة",
+                              style: font12Black400W(context),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Custom_Text(
+                              context,
+                              text: "${widget.store.deliveryFeeTax}",
+                              style: font6SecondaryColor400W(context, size: 12),
+                            ),
+                            Custom_Text(
+                              context,
+                              text: "${widget.store.distance}",
+                              style: font12Black400W(context),
+                            ),
+                          ],
+                        )
+                      ],
                     ),
                   ),
                 ),
+              ),
 
-                // Store Logo
-                Positioned(
-                  top: 130,
-                  left: MediaQuery.of(context).size.width * 0.05,
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.network(
-                          widget.store.logoUrl,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => const Icon(Icons.store),
-                        ),
+              // Store Logo
+              Positioned(
+                top: 130,
+                left: MediaQuery.of(context).size.width * 0.45,
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        widget.store.logoUrl,
+
+                        ///url for test  "https://mediaassets.cbre.com/cdn/-/media/project/cbre/shared-site/menat/saudi-arabia/articles/saudi-arabia-market-review-q2-2024/ksaq22024_report_image.png?iar=0&rev=e2547eb45e9b46eab325aac9f13e5303&key=articlehero-wideimage&device=desktop",
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(Icons.store),
                       ),
-                      Positioned(
-                        bottom: 5,
-                        right: 5,
-                        child: Container(
-                          width: 15,
-                          height: 15,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.greenColor,
-                            border: Border.fromBorderSide(
-                              BorderSide(color: Colors.white, width: 2),
-                            ),
+                    ),
+                    Positioned(
+                      bottom: 5,
+                      right: 5,
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.greenColor,
+                          border: Border.fromBorderSide(
+                            BorderSide(color: Colors.white, width: 2),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -192,6 +269,8 @@ class _ProductViewState extends State<ProductView> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(widget.store.coverPhotoUrl),
+
+                  /// for test  "https://mediaassets.cbre.com/cdn/-/media/project/cbre/shared-site/menat/saudi-arabia/articles/saudi-arabia-market-review-q2-2024/ksaq22024_report_image.png?iar=0&rev=e2547eb45e9b46eab325aac9f13e5303&key=articlehero-wideimage&device=desktop"),
                   fit: BoxFit.fill,
                 ),
               ),

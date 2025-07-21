@@ -90,7 +90,7 @@ List<SingleChildWidget> appProviders({
 
     // Home
     ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
-    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()),
+    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()..fetchModules()),
     ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
 

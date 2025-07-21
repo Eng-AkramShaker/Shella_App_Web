@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -31,9 +32,13 @@ PreferredSize customAppBar(BuildContext context,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  const SizedBox(width: 20),
                   Custom_Text(context,
                       text: " $title ",
                       style: style ?? font14White600W(context)),
+                  const SizedBox(width: 10),
+                  Image.asset(img ?? AppImages.empty,
+                      width: 20, height: 18, alignment: Alignment.bottomCenter),
                   const SizedBox(width: 10),
                   Icon(icon, color: AppColors.wtColor, size: 22)
                 ],

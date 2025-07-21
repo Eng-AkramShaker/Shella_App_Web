@@ -16,8 +16,10 @@ class MyPointsMobileWidget extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: customAppBar(context,
-          title: MainAppConstants.myPoints,
-          img: 'assets/images/my-points-appbar.png'),
+          title: 'نقاطي',
+          img: 'assets/images/my-points-appbar.png', onPressed: () {
+        Navigator.of(context).pop();
+      }),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(

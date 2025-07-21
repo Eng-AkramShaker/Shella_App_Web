@@ -1,6 +1,10 @@
 // ignore_for_file: unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, non_constant_identifier_names, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
+import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
@@ -53,6 +57,16 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              buildSectionTitle_One(
+                context,
+                title: "الاقسام",
+                lapel: 'عرض الكل',
+                underline: false,
+              ),
+              SizedBox(height: 16.h),
+              BuildCategoryListView(),
+              // SizedBox(height: 22.h),
+              // buildBanner(context),
               Card(
                 color: Colors.red,
                 child: ElevatedButton(
@@ -65,14 +79,6 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 ),
               ),
 
-              //
-
-              buildSectionTitle_One(context,
-                  title: "الاقسام", lapel: 'عرض الكل', underline: false),
-              SizedBox(height: 16.h),
-              BuildCategoryListView(),
-              SizedBox(height: 22.h),
-              buildBanner(context),
               SizedBox(height: 16.h),
               buildSectionTitleTow(context,
                   title: "المتاجر القريبة منك",
