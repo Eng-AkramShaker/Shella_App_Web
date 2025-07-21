@@ -8,81 +8,74 @@ import 'package:shella_design/features/my_points/domain/repositories/my_points_r
 import 'package:shella_design/features/my_points/domain/services/my_points_service_interface.dart';
 import 'package:shella_design/features/my_points/domain/models/userinfo_model.dart';
 
-class LoyaltyService implements MyPointsServiceInterface{
+class LoyaltyService implements MyPointsServiceInterface {
   final MyPointsRepositoryInterface myPointsRepositoryInterface;
   LoyaltyService({required this.myPointsRepositoryInterface});
   @override
-  Future<void> convertPoints(int points) async{
-    try{
-      Response? response =
-          await myPointsRepositoryInterface.convertPoints(points);
+  Future<void> convertPoints(int points) async {
+    try {
+      Response? response = await myPointsRepositoryInterface.convertPoints(points);
       if (response!.statusCode == 200) {
         return jsonDecode(response.body);
       } else {
         throw Exception('Converting Points Failed');
       }
-    }catch(e){
+    } catch (e) {
       customPrint('Convert Points Exception :: ${e.toString()}');
       throw Exception('Convert Points Exception :: ${e.toString()}');
     }
   }
 
   @override
-  Future<UserInfoModel> fetchUserProfile() async{
-    try{
-      Response? response =
-          await myPointsRepositoryInterface.fetchUserProfile();
+  Future<UserInfoModel> fetchUserProfile() async {
+    try {
+      Response? response = await myPointsRepositoryInterface.fetchUserProfile();
       if (response!.statusCode == 200) {
         return UserInfoModel.fromJson(json.decode(response.body));
       } else {
         throw Exception('Fetching User Profile Failed');
       }
-    }catch(e){
+    } catch (e) {
       customPrint('Fetching User Profile Exception :: ${e.toString()}');
       throw Exception('Fetching User Profile Exception :: ${e.toString()}');
     }
   }
 
   @override
-  Future<TransactionModel?> getTransactions(String offset) async{
-    try{
+  Future<TransactionModel?> getTransactions(String offset) async {
+    try {
       Response? response = await myPointsRepositoryInterface.getTransactions(offset);
       if (response!.statusCode == 200) {
         return TransactionModel.fromJson(json.decode(response.body));
       } else {
         throw Exception('Get Points Transactions Failed');
       }
-    }catch(e){
+    } catch (e) {
       customPrint('Get Points Transactions Exception :: ${e.toString()}');
       throw Exception('Get Points Transactions Exception :: ${e.toString()}');
     }
   }
 
   @override
-  Future<List<CouponModel>> getCouponsList() async{
-    try{
-      Response? response =
-          await myPointsRepositoryInterface.getCouponsList();
+  Future<List<CouponModel>> getCouponsList() async {
+    try {
+      Response? response = await myPointsRepositoryInterface.getCouponsList();
       if (response!.statusCode == 200) {
         final rawList = json.decode(response.body) as List<dynamic>;
-        return rawList
-            .map((item) => CouponModel.fromJson(item as Map<String, dynamic>))
-            .toList();
+        return rawList.map((item) => CouponModel.fromJson(item as Map<String, dynamic>)).toList();
       } else {
         throw Exception('Get Coupons Failed');
       }
-    }catch(e){
+    } catch (e) {
       customPrint('Get Coupons Exception :: ${e.toString()}');
       throw Exception('Get Coupons Exception :: ${e.toString()}');
     }
   }
-
 }
 
 // import 'dart:convert';
 // import 'package:http/http.dart' as http;
-// import 'package:shella_design/common/util/Api_constants.dart';
-// import 'package:shella_design/features/my_points/domain/models/transaction_model.dart';
+//  // import 'package:shella_design/features/my_points/domain/models/transaction_model.dart';
 // import 'package:shella_design/features/profile_detailes/domain/models/userinfo_model.dart';
 //
 // class LoyaltyService {
@@ -91,7 +84,7 @@ class LoyaltyService implements MyPointsServiceInterface{
 //  */
 //   Future<UserInfoModel> fetchUserProfile() async {
 //     final response = await http.get(
-//       Uri.parse(Api_Constants.customerInfoUri),
+//       Uri.parse(ApiConstants.customerInfoUri),
 //       headers: _headers,
 //     );
 //
@@ -103,7 +96,7 @@ class LoyaltyService implements MyPointsServiceInterface{
 //
 //   Future<void> convertPoints(int points) async {
 //     final response = await http.post(
-//       Uri.parse(Api_Constants.pointsConversionUri),
+//       Uri.parse(ApiConstants.pointsConversionUri),
 //       headers: _formHeaders,
 //       body: {'point': points.toString()},
 //     );
@@ -115,7 +108,7 @@ class LoyaltyService implements MyPointsServiceInterface{
 //
 //   Future<TransactionModel?> getTransactions(String offset) async{
 //     final response = await http.get(
-//       Uri.parse('${Api_Constants.pointsTransactionsUri}?limit=10&offset=$offset'),
+//       Uri.parse('${ApiConstants.pointsTransactionsUri}?limit=10&offset=$offset'),
 //       headers: _headers,
 //     );
 //     if(response.statusCode == 200){
@@ -131,13 +124,13 @@ class LoyaltyService implements MyPointsServiceInterface{
 //     'X-localization': 'en',
 //     'zoneId': '[2]',
 //     'moduleId': '3',
-//     'Authorization': 'Bearer ${Api_Constants.token}'
+//     'Authorization': 'Bearer ${ApiConstants.token}'
 //   };
 //
 //   Map<String, String> get _formHeaders => {
 //     'Accept': 'application/json',
 //     'Content-Type': 'application/x-www-form-urlencoded',
 //     'X-localization': 'en',
-//     'Authorization': 'Bearer ${Api_Constants.token}'
+//     'Authorization': 'Bearer ${ApiConstants.token}'
 //   };
 // }

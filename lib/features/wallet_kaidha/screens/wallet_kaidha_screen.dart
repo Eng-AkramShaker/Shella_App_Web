@@ -16,8 +16,12 @@ class WalletKaidhaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, 'محفظة قيدها', Icons.arrow_back_sharp,
-          Icons.account_balance_wallet_outlined),
+      appBar: custom_AppBar(
+        context,
+        title: 'محفظة قيدها',
+        icon: Icons.arrow_back_sharp,
+        titleIcon: Icons.account_balance_wallet_outlined,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),

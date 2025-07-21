@@ -2,9 +2,9 @@
 
 import 'dart:developer';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/Auth/domain/models/signup_body_model.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
-import 'package:shella_design/common/util/Api_constants.dart';
 
 import '../../../../api/api_client.dart';
 import '../../../../common/util/sharedPre_constants.dart';
@@ -34,18 +34,18 @@ class AuthRepo implements AuthRepositoryInterface {
     if (guestId.isNotEmpty) {
       data.addAll({"guest_id": guestId});
     }
-    return await apiClient.postData(Api_Constants.login, data);
+    return await apiClient.postData(ApiConstants.login, data);
   }
 
   @override
   // ignore: override_on_non_overriding_member
   String getSharedPrefGuestId() {
-    return sharedPreferences.getString(Api_Constants.guestId) ?? "";
+    return sharedPreferences.getString(ApiConstants.guestId) ?? "";
   }
 
   @override
   Future<bool> clearSharedPrefGuestId() async {
-    return await sharedPreferences.remove(Api_Constants.guestId);
+    return await sharedPreferences.remove(ApiConstants.guestId);
   }
 
   @override
@@ -55,7 +55,7 @@ class AuthRepo implements AuthRepositoryInterface {
 
   @override
   Future<http.Response?> registration(SignUpBodyModel signUpBody) async {
-    return await apiClient.postData(Api_Constants.signup, signUpBody.toJson());
+    return await apiClient.postData(ApiConstants.signup, signUpBody.toJson());
   }
 
   @override
@@ -65,14 +65,12 @@ class AuthRepo implements AuthRepositoryInterface {
       "phone": phone,
       // "cm_firebase_token": token!,
     };
-    http.Response response =
-        await apiClient.postData(Api_Constants.forgetPasswordUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.forgetPasswordUri, data);
     return response;
   }
 
   @override
-  Future<http.Response?> resetPassword(String? resetToken, String number,
-      String password, String confirmPassword) async {
+  Future<http.Response?> resetPassword(String? resetToken, String number, String password, String confirmPassword) async {
     var data = {
       "_method": "put",
       "reset_token": resetToken,
@@ -80,8 +78,7 @@ class AuthRepo implements AuthRepositoryInterface {
       "password": password,
       "confirm_password": confirmPassword
     };
-    http.Response response =
-        await apiClient.postData(Api_Constants.resetPasswordUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.resetPasswordUri, data);
     return response;
   }
 
@@ -91,8 +88,7 @@ class AuthRepo implements AuthRepositoryInterface {
       'phone': phone,
       'otp': otp,
     };
-    http.Response response =
-        await apiClient.postData(Api_Constants.verifyPhoneUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.verifyPhoneUri, data);
 
     return response;
   }

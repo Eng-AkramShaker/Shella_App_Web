@@ -11,7 +11,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
 
   @override
   Future<CustomerModel> getCustomerInfo() async {
-    final uri = Uri.parse(Api_Constants.customerInfo);
+    final uri = Uri.parse(ApiConstants.customerInfo);
     final response = await apiClient.getData(
       uri.toString(),
     );
@@ -25,7 +25,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
 
   @override
   Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data) async {
-    final uri = Uri.parse(Api_Constants.updateCustomerInfo);
+    final uri = Uri.parse(ApiConstants.updateCustomerInfo);
     final response = await apiClient.postData(
       uri.toString(),
       data,
@@ -54,7 +54,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
   @override
   Future<bool> deleteAccount() async {
     try {
-      final uri = Uri.parse(Api_Constants.removeAccount);
+      final uri = Uri.parse(ApiConstants.removeAccount);
 
       final response = await apiClient.deleteData(uri.toString());
 
