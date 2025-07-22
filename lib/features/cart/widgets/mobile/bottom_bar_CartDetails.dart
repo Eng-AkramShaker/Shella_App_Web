@@ -14,6 +14,10 @@ import 'package:shella_design/common/util/app_styles.dart';
 import '../../controllers/cart_controller.dart';
 // import 'builds/build_quantity_controls.dart';
 
+import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+
 class BottomBar_CartDetails extends StatelessWidget {
   const BottomBar_CartDetails({super.key});
 

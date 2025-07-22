@@ -10,6 +10,7 @@ import 'package:shella_design/features/cart/widgets/builds/mobile/build_promo_co
 import 'package:shella_design/features/cart/widgets/builds/mobile/build_summary_row.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/lists.dart';
+import 'package:shella_design/features/cart/widgets/cart_item.dart';
 
 class Cart_Screen extends StatefulWidget {
   const Cart_Screen({super.key});
@@ -30,8 +31,12 @@ class _Cart_ScreenState extends State<Cart_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+<<<<<<<< HEAD:lib/features/cart/screens/mobile/cart_screen.dart
               for (int index = 0; index < items.length; index++)
                 buildCartItem(items[index], index, context),
+========
+              for (int index = 0; index < items.length; index++) buildCartItem(items[index] as CartItem, index, context),
+>>>>>>>> Moufed-Debo:lib/features/cart/screens/cart_screen.dart
               buildPromoCodeInput(context),
 
               //

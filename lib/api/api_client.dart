@@ -102,7 +102,12 @@ class ApiClient {
     }
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
-      Api_Constants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
+      Api_Constants.zoneId: zoneIDs != null && zoneIDs.isNotEmpty
+          ? jsonEncode(zoneIDs)
+          : jsonEncode([2, 3, 4, 5]),
+      Api_Constants.moduleId: moduleID != null && moduleID != 0
+          ? jsonEncode(moduleID)
+          : jsonEncode(3),
 
       ///this will add in ride module
       // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
@@ -132,7 +137,8 @@ class ApiClient {
       final stopwatch = Stopwatch()..start();
 
       http.Response response = await http
-          .get(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
+          .get(Uri.parse(appBaseUrl + uri).replace(queryParameters: query),
+              headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
       print(
           "//////////////////////////////////////////////////// ${response.request?.headers}");
