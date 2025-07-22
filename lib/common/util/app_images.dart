@@ -106,6 +106,9 @@ class AppImages {
   static const String test = 'assets/images/105.png';
   static const String customerservice = 'assets/images/106.png';
   static const String discount = 'assets/images/107.png';
+    static const String discount2 = 'assets/images/discount.png';
+    static const String addIcon= 'assets/images/addIcon.png';
+
   static const String order2 = 'assets/images/100.png';
   static const String mark = 'assets/images/101.png';
   static const String success = 'assets/images/109.png';
@@ -124,6 +127,14 @@ class AppImages {
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
 
+  static const String walletIcon = 'assets/image/wallet_icon.png';
+
+    static const String burger = 'assets/images/im1.png';
+        static const String pizza = 'assets/images/im4.png';
+
+
+
+
   //
   static const String logo = 'assets/images/logo.png';
   static const String forgetpassword = 'assets/images/6430775 1.png';
@@ -137,6 +148,20 @@ class AppImages {
   static const String alfaris = 'assets/images/130.png';
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
+  static const String storeOffer= 'assets/images/storeOffer.png';
+  static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
+
+  static const String qr = 'assets/image/qr.png';
+  static const String sar = 'assets/image/sar.png';
+  static const String activate_wallet = 'assets/image/activate_wallet.png';
+
+  static const String workIcon = 'assets/image/work_icon.png';
+  static const String homeIcon = 'assets/image/home_icon.png';
+  static const String otherIcon = 'assets/image/other_icon.png';
+
+  // ======================== Kiada Wallet Subscription ========================
+
+  static const String KiadaWalletSubscription = 'assets/image/KiadaWalletSubscription.png';
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';
@@ -155,6 +180,11 @@ class AppImages {
   static const String wallet = 'assets/svg/wallet.svg';
   static const String support = 'assets/svg/support.svg';
   static const String profileCoupon = 'assets/svg/coupon.svg';
+  static const String percent='assets/svg/percent.svg';
+    static const String sale='assets/svg/sale.svg';
+      static const String done='assets/svg/done.svg';
+
+
 
 //
 }

@@ -3,17 +3,17 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import '../../../../../common/helper/check_Logged.dart';
-import '../../../../../common/util/Api_constants.dart';
 import '../../../../../common/widgets/print/custom_print.dart';
 import '../searchRepositoryInterface/search_repository_interface.dart';
 
-class SearchRepository implements SearchRepositoryInterface{
-
+class SearchRepository implements SearchRepositoryInterface {
   ///-------------------------------------<<<---SEARCH ITEMS--->>>-------------------------------------
   @override
   Future<http.Response?> searchItems({value}) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.searchItems,query: {'name': value});
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.searchItems, query: {'name': value});
     customPrint('Search Items Response :: ${jsonDecode(response.body)}');
     return response;
   }
@@ -21,7 +21,8 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---MOST SEARCHED--->>>-------------------------------------
   @override
   Future<http.Response?> mostSearched() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.mostSearched);
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.mostSearched);
     customPrint('Most Searched Response :: ${jsonDecode(response.body)}');
     return response;
   }
@@ -29,7 +30,8 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---CART PRODUCTS--->>>-------------------------------------
   @override
   Future<http.Response?> cartProducts() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.cartProducts,query: {'guest_id': sp<SharedPreferences>().getString(Api_Constants.guestId)??''});
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.cartProducts, query: {'guest_id': sp<SharedPreferences>().getString(ApiConstants.guestId) ?? ''});
     customPrint('Cart Products Response :: ${jsonDecode(response.body)}');
     return response;
   }
@@ -37,7 +39,8 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---GET ADDRESS--->>>-------------------------------------
   @override
   Future<http.Response?> getAddress() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAddress);
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.getAddress);
     customPrint('Get Address Response :: ${jsonDecode(response.body)}');
     return response;
   }
@@ -45,10 +48,9 @@ class SearchRepository implements SearchRepositoryInterface{
   ///-------------------------------------<<<---GET ALL CATEGORIES--->>>-------------------------------------
   @override
   Future<http.Response?> getAllCategories() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getAllCategories);
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.getAllCategories);
     customPrint('Get All Categories Response :: ${jsonDecode(response.body)}');
     return response;
   }
-
-
 }

@@ -67,23 +67,21 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
     );
   }
 
-  void _onPressedChangePassword(
-      AuthController authController, BuildContext context) async {
+  void _onPressedChangePassword(AuthController authController, BuildContext context) async {
     if (password.text.isEmpty || passwordComfirm.text.isEmpty) {
-      showCustomSnackBar('please enter the password right  ', isError: true);
+      showCustomSnackBar(context, 'please enter the password right  ', isError: true);
       return;
     }
     // print(authController.user!.token ?? '');
     print(authController.phone!);
     authController
-        .resetPassword(authController.verificationCode, authController.phone!,
-            password.text.trim(), passwordComfirm.text.trim())
+        .resetPassword(authController.verificationCode, authController.phone!, password.text.trim(), passwordComfirm.text.trim())
         .then(
       (value) {
         if (value.isSuccess) {
           nav.push(AppRoutes.passwordResetSuccessScreen);
         } else {
-          showCustomSnackBar(value.message, isError: false);
+          showCustomSnackBar(context, value.message, isError: false);
         }
       },
     );

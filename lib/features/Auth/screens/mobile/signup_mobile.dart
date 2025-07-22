@@ -50,8 +50,7 @@ class _SignupState extends State<Signup> {
               if (controller.state == AuthState.error) {
                 // Show an error message to the user
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  showCustomSnackBar(controller.errorMessage ?? 'Signup Failed',
-                      isError: true);
+                  showCustomSnackBar(context, controller.errorMessage ?? 'Signup Failed', isError: true);
                 });
               }
 
@@ -65,13 +64,9 @@ class _SignupState extends State<Signup> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                      child: Text(MainAppConstants.createNewAccount,
-                          style: font18Black600W(context))),
+                  Center(child: Text(MainAppConstants.createNewAccount, style: font18Black600W(context))),
                   const SizedBox(height: 10),
-                  Center(
-                      child: Text(MainAppConstants.pleaseFilldetailsDown,
-                          style: font14Black400W(context))),
+                  Center(child: Text(MainAppConstants.pleaseFilldetailsDown, style: font14Black400W(context))),
                   SizedBox(height: size.height / 30),
                   buildLabel(MainAppConstants.fullName, context),
                   buildTextField(MainAppConstants.typeFullName, nameController),
@@ -79,8 +74,7 @@ class _SignupState extends State<Signup> {
                     height: size.height / 40,
                   ),
                   buildLabel(MainAppConstants.email, context),
-                  buildTextField(
-                      MainAppConstants.typeFullEmail, emailController),
+                  buildTextField(MainAppConstants.typeFullEmail, emailController),
                   SizedBox(
                     height: size.height / 40,
                   ),
@@ -90,14 +84,12 @@ class _SignupState extends State<Signup> {
                     height: size.height / 40,
                   ),
                   buildLabel(MainAppConstants.pass, context),
-                  buildPasswordFieldSignUp(
-                      MainAppConstants.pass, passwordController),
+                  buildPasswordFieldSignUp(MainAppConstants.pass, passwordController),
                   SizedBox(
                     height: size.height / 40,
                   ),
                   buildLabel(MainAppConstants.typeAgainPassword, context),
-                  buildPasswordFieldSignUp(
-                      MainAppConstants.pass, confirmPasswordController),
+                  buildPasswordFieldSignUp(MainAppConstants.pass, confirmPasswordController),
                   SizedBox(
                     height: size.height / 40,
                   ),

@@ -6,7 +6,7 @@ import 'package:shella_design/features/discount/domain/repositories/discountRepo
 class DiscountRepository implements DiscountRepositoryInterface {
   @override
   Future<List<dynamic>> fetchDiscountedProducts() async {
-    final apiUrl = Api_Constants.discountProducts;
+    final apiUrl = ApiConstants.discountProducts;
     print('Fetching discounted products from $apiUrl');
 
     try {
@@ -23,11 +23,11 @@ class DiscountRepository implements DiscountRepositoryInterface {
         //print('🟢 [5] تم فك التشفير بنجاح، عدد المنتجات: ${jsonData['products']?.length ?? 0}');
         return jsonData['products'] ?? [];
       } else {
-       // print('🔴 [6] خطأ في الرد: ${response.statusCode}');
+        // print('🔴 [6] خطأ في الرد: ${response.statusCode}');
         throw Exception('فشل الطلب: ${response.statusCode}');
       }
     } catch (e) {
-    //  print('🔴 [7] خطأ في الخدمة: $e');
+      //  print('🔴 [7] خطأ في الخدمة: $e');
       rethrow;
     }
   }

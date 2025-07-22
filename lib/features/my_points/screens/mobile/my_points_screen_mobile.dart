@@ -5,8 +5,7 @@ import 'package:shella_design/common/helper/responsive_helper.dart';
 class MyPointsScreenMobile extends StatelessWidget {
   const MyPointsScreenMobile({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  @override  Widget build(BuildContext context) {
     return ResponsiveLayout(mobileBody: MyPointsMobileWidget());
   }
 }

@@ -11,13 +11,11 @@ class NotificationRepository implements NotificationRepositoryInterface {
   final ApiClient apiClient;
   final SharedPreferences sharedPreferences;
 
-  NotificationRepository(
-      {required this.sharedPreferences, required this.apiClient});
+  NotificationRepository({required this.sharedPreferences, required this.apiClient});
 
   @override
   Future<http.Response?> getNotificationList() async {
-    http.Response response =
-        await apiClient.getData(Api_Constants.notificationUri);
+    http.Response response = await apiClient.getData(ApiConstants.notificationUri);
     return response;
   }
 }

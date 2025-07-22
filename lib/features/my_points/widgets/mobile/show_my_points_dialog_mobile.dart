@@ -27,6 +27,7 @@ class ShowMyPointsDialogMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+          
       backgroundColor: AppColors.backgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.r), // Adjust the radius as needed
@@ -36,17 +37,27 @@ class ShowMyPointsDialogMobile extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Image.asset(
-              image,
-              fit: BoxFit.fill,
-              height: 200.h,
-            ),
+          Stack(
+            children:[ Container(
+              width: double.infinity,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Image.asset(
+                image,
+                fit: BoxFit.fill,
+                height: 200.h,
+              ),
+            ),   
+               IconButton(
+                onPressed: (){
+                  Navigator.of(context).pop();
+              
+              }, icon: Icon(Icons.close,color: Colors.black,) 
+              ,
+            )           
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -91,11 +102,14 @@ class ShowMyPointsDialogMobile extends StatelessWidget {
                         height: 0.h,
                       ),
                 discount
-                    ? Custom_Text(
-                        context,
-                        text: 'عدد النقاط حاليآ : 1500 نقطة',
-                        style: font10Grey500W(context),
-                      )
+                    ? Center(
+                      child: Custom_Text(
+                          context,
+                          
+                          text: 'عدد النقاط حاليآ : 1500 نقطة',
+                          style: font10Grey500W(context),
+                        ),
+                    )
                     : Container(),
                 discount
                     ? SizedBox(

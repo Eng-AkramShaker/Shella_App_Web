@@ -12,8 +12,12 @@ class StatisticsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, 'إحصائياتي', Icons.arrow_back_sharp,
-          Icons.shopping_bag_outlined),
+      appBar: custom_AppBar(
+        context,
+        title: 'إحصائياتي',
+        icon: Icons.arrow_back_sharp,
+        titleIcon: Icons.shopping_bag_outlined,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),
