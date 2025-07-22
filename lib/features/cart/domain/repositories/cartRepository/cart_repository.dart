@@ -7,40 +7,48 @@ import 'package:shella_design/features/cart/domain/repositories/cartRepositoryIn
 import '../../../../../common/helper/check_Logged.dart';
 
 class CartRepository implements CartRepositoryInterface {
-
   @override
- Future<http.Response?> getCartItems() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).getData(Api_Constants.getCartListUri);
+  Future<http.Response?> getCartItems() async {
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .getData(ApiConstants.getCartListUri);
     return response;
   }
 
   @override
-  Future<http.Response?> addToCart({String? itemId, int? quantity, List<String>? variations, List<String>? addOns,}) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).postData(Api_Constants.addCartUri,
-        {
-          'item_id': itemId,
-          'quantity': quantity,
-          'variation': variations,
-          'add_ons': addOns,
-        });
+  Future<http.Response?> addToCart({
+    String? itemId,
+    int? quantity,
+    List<String>? variations,
+    List<String>? addOns,
+  }) async {
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .postData(ApiConstants.addCartUri, {
+      'item_id': itemId,
+      'quantity': quantity,
+      'variation': variations,
+      'add_ons': addOns,
+    });
     return response;
   }
 
   @override
   Future<http.Response?> updateCartItem(String itemId, int quantity) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).putData(Api_Constants.updateCartUri, {'item_id': itemId, 'quantity': quantity});
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .putData(ApiConstants.updateCartUri, {'item_id': itemId, 'quantity': quantity});
     return response;
   }
 
   @override
   Future<http.Response?> removeCartItem(String itemId) async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).deleteData('${Api_Constants.removeItemCartUri}/$itemId');
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .deleteData('${ApiConstants.removeItemCartUri}/$itemId');
     return response;
   }
 
   @override
   Future<http.Response?> clearCart() async {
-    Response? response = await ApiClient(appBaseUrl: Api_Constants.appBaseUrl,sharedPreferences: sp<SharedPreferences>()).deleteData(Api_Constants.removeItemCartUri);
+    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+        .deleteData(ApiConstants.removeItemCartUri);
     return response;
   }
 }

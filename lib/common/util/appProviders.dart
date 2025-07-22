@@ -20,7 +20,6 @@ import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositiory/join_as_driver_repositories.dart';
 import 'package:shella_design/features/join_as_driver/domain/services/joinAsDriverServices/join_as_driver_services.dart';
-import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
 import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
@@ -36,18 +35,21 @@ import 'package:shella_design/features/orders/domain/services/orders_service.dar
 import 'package:shella_design/features/orders_tracking/order_details/controller/order_details_conroller.dart';
 import 'package:shella_design/features/orders_tracking/order_tracking/controller/order_tracking_controller.dart';
 import 'package:shella_design/features/orders_tracking/start_tracking_order/controller/start_tracking_order_controller.dart';
-import 'package:shella_design/features/profile_detailes/controllers/custome_info_controller.dart';
-import 'package:shella_design/features/profile_detailes/domain/repositories/customer_info_repository.dart';
-import 'package:shella_design/features/profile_detailes/domain/repositories/customer_info_reposittory_interface.dart';
-import 'package:shella_design/features/profile_detailes/domain/services/customer_info_services.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/settings/domain/repositories/customer_info_repository.dart';
+import 'package:shella_design/features/settings/domain/repositories/customer_info_reposittory_interface.dart';
+import 'package:shella_design/features/settings/domain/services/customer_info_services.dart';
 import 'package:shella_design/features/schedule_order/controller/schedule_controller.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
-import '../../features/profile_detailes/controllers/profile_detailes_controller.dart';
-import '../../features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
-import '../../features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/domain/reposotories/kaidhaSub_repository.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/domain/services/kaidhaSub_service.dart';
+import '../../features/settings/controllers/profile_detailes_controller.dart';
+import '../../features/settings/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
+import '../../features/settings/domain/services/profileDetailsService/profile_details_service.dart';
 
 List<SingleChildWidget> appProviders({
   required String appBaseUrl,
@@ -57,20 +59,29 @@ List<SingleChildWidget> appProviders({
 
   final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
 
+  //  auth   =======
   final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
   final authService = AuthService(authRepositoryInterface: authRepo);
 
+  //  customer   =======
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
 
+  //  orders   =======
   final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
 
+  //  notification   =======
   final notificationRepo = NotificationRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final notificationService = NotificationService(notificationRepositoryInterface: notificationRepo);
 
+  //  profile  =======
   final profileRepo = ProfileRepository();
   final profileService = ProfileDetailsService(profileRepository: profileRepo);
+
+  //  wallet Kaidha Subscription   =======
+  final walletKaidhaSubscriptionRepo = KaidhaSubRepository(apiClient: apiClient);
+  final walletKaidhaSubscriptionService = kaidhaSubService(kaidhaSubRepositoryinterface: walletKaidhaSubscriptionRepo);
 
   return [
     //        Provider  ======================================================================================
@@ -131,9 +142,12 @@ List<SingleChildWidget> appProviders({
     ),
 
     // Others
-    ChangeNotifierProvider(create: (_) => KaidhaFormController()),
     ChangeNotifierProvider(create: (_) => ServeMeController()),
     ChangeNotifierProvider(create: (_) => SearchFilterController()),
     ChangeNotifierProvider(create: (_) => ScheduleController()),
+
+    //  wallet Kaidha Subscription   =======
+
+    ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
   ];
 }

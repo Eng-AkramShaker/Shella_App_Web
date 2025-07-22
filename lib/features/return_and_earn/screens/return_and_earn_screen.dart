@@ -13,8 +13,12 @@ class ReturnAndEarnScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: custom_AppBar(context, 'الرجوع و الكسب', Icons.arrow_back_sharp,
-          Icons.person_outline_outlined),
+      appBar: custom_AppBar(
+        context,
+        title: 'الرجوع و الكسب',
+        icon: Icons.arrow_back_sharp,
+        titleIcon: Icons.person_outline_outlined,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0.sp),
@@ -24,12 +28,9 @@ class ReturnAndEarnScreen extends StatelessWidget {
             children: [
               Image.asset('assets/images/return_and_earn.png'),
               SizedBox(height: 25.h),
-              Custom_Text(context,
-                  text: 'كسب المال على كل إحالة',
-                  style: font13Grey400W(context)),
+              Custom_Text(context, text: 'كسب المال على كل إحالة', style: font13Grey400W(context)),
               SizedBox(height: 5.h),
-              Custom_Text(context,
-                  text: '1 إحالة = 20.0 ر.س', style: font13Black400W(context)),
+              Custom_Text(context, text: '1 إحالة = 20.0 ر.س', style: font13Black400W(context)),
               SizedBox(height: 60.h),
               InviteFriendsTextAndPersonalCode()
             ],

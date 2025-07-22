@@ -15,15 +15,13 @@ class OrdersRepository implements OrdersRepositoryInterface {
 
   @override
   Future<http.Response?> getRunningOrders(int offset) async {
-    http.Response response = await apiClient.getData(
-        '${Api_Constants.runningOrderListUri}?offset=$offset&limit=10');
+    http.Response response = await apiClient.getData('${ApiConstants.runningOrderListUri}?offset=$offset&limit=10');
     return response;
   }
 
   @override
   Future<http.Response?> getHistoryOrders(int offset) async {
-    http.Response response = await apiClient.getData(
-        '${Api_Constants.historyOrderListUri}?offset=$offset&limit=10');
+    http.Response response = await apiClient.getData('${ApiConstants.historyOrderListUri}?offset=$offset&limit=10');
 
     return response;
   }

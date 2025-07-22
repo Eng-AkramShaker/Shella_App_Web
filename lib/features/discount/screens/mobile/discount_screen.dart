@@ -17,8 +17,12 @@ class DiscountScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: custom_AppBar(context, MainAppConstants.discountCode,
-          Icons.arrow_back_sharp, Icons.percent),
+      appBar: custom_AppBar(
+        context,
+        title: MainAppConstants.discountCode,
+        icon: Icons.arrow_back_sharp,
+        titleIcon: Icons.percent,
+      ),
       body: Consumer<DiscountController>(
         builder: (context, controller, _) {
           if (controller.isLoading) {

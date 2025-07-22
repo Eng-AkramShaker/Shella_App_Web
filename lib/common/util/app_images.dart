@@ -126,8 +126,12 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
+
+  static const String walletIcon = 'assets/image/wallet_icon.png';
+
     static const String burger = 'assets/images/im1.png';
         static const String pizza = 'assets/images/im4.png';
+
 
 
 
@@ -146,6 +150,18 @@ class AppImages {
   static const String map2 = 'assets/images/map2.png';
   static const String storeOffer= 'assets/images/storeOffer.png';
   static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
+
+  static const String qr = 'assets/image/qr.png';
+  static const String sar = 'assets/image/sar.png';
+  static const String activate_wallet = 'assets/image/activate_wallet.png';
+
+  static const String workIcon = 'assets/image/work_icon.png';
+  static const String homeIcon = 'assets/image/home_icon.png';
+  static const String otherIcon = 'assets/image/other_icon.png';
+
+  // ======================== Kiada Wallet Subscription ========================
+
+  static const String KiadaWalletSubscription = 'assets/image/KiadaWalletSubscription.png';
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';

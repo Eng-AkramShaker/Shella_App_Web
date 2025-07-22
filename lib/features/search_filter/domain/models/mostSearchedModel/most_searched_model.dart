@@ -14,14 +14,14 @@ class MostSearchedModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["total_size"] = totalSize;
-    _data["limit"] = limit;
-    _data["offset"] = offset;
-    if(products != null) {
-      _data["products"] = products?.map((e) => e.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["total_size"] = totalSize;
+    data["limit"] = limit;
+    data["offset"] = offset;
+    if (products != null) {
+      data["products"] = products?.map((e) => e.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -100,7 +100,80 @@ class Products {
   Module? module;
   dynamic ecommerceItemDetails;
 
-  Products({this.id, this.name, this.description, this.image, this.categoryId, this.categoryIds, this.variations, this.addOns, this.attributes, this.choiceOptions, this.pMargin, this.cost, this.price, this.catExclude, this.storeExclude, this.tax, this.taxClassId, this.taxCal, this.taxType, this.discount, this.discountType, this.availableTimeStarts, this.availableTimeEnds, this.veg, this.status, this.storeId, this.createdAt, this.updatedAt, this.orderCount, this.avgRating, this.ratingCount, this.moduleId, this.itemSiteId, this.stock, this.unitId, this.images, this.foodVariations, this.slug, this.recommended, this.organic, this.maximumCartQuantity, this.isApproved, this.isHalal, this.itemCode, this.storeSiteId, this.tempAvailable, this.moduleType, this.storeName, this.isCampaign, this.zoneId, this.flashSale, this.storeDiscount, this.scheduleOrder, this.deliveryTime, this.freeDelivery, this.unit, this.minDeliveryTime, this.maxDeliveryTime, this.commonConditionId, this.brandId, this.isBasic, this.isPrescriptionRequired, this.halalTagStatus, this.nutritionsName, this.allergiesName, this.genericName, this.unitType, this.imageFullUrl, this.imagesFullUrl, this.storage, this.translations, this.module, this.ecommerceItemDetails});
+  Products(
+      {this.id,
+      this.name,
+      this.description,
+      this.image,
+      this.categoryId,
+      this.categoryIds,
+      this.variations,
+      this.addOns,
+      this.attributes,
+      this.choiceOptions,
+      this.pMargin,
+      this.cost,
+      this.price,
+      this.catExclude,
+      this.storeExclude,
+      this.tax,
+      this.taxClassId,
+      this.taxCal,
+      this.taxType,
+      this.discount,
+      this.discountType,
+      this.availableTimeStarts,
+      this.availableTimeEnds,
+      this.veg,
+      this.status,
+      this.storeId,
+      this.createdAt,
+      this.updatedAt,
+      this.orderCount,
+      this.avgRating,
+      this.ratingCount,
+      this.moduleId,
+      this.itemSiteId,
+      this.stock,
+      this.unitId,
+      this.images,
+      this.foodVariations,
+      this.slug,
+      this.recommended,
+      this.organic,
+      this.maximumCartQuantity,
+      this.isApproved,
+      this.isHalal,
+      this.itemCode,
+      this.storeSiteId,
+      this.tempAvailable,
+      this.moduleType,
+      this.storeName,
+      this.isCampaign,
+      this.zoneId,
+      this.flashSale,
+      this.storeDiscount,
+      this.scheduleOrder,
+      this.deliveryTime,
+      this.freeDelivery,
+      this.unit,
+      this.minDeliveryTime,
+      this.maxDeliveryTime,
+      this.commonConditionId,
+      this.brandId,
+      this.isBasic,
+      this.isPrescriptionRequired,
+      this.halalTagStatus,
+      this.nutritionsName,
+      this.allergiesName,
+      this.genericName,
+      this.unitType,
+      this.imageFullUrl,
+      this.imagesFullUrl,
+      this.storage,
+      this.translations,
+      this.module,
+      this.ecommerceItemDetails});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -179,111 +252,111 @@ class Products {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["name"] = name;
-    _data["description"] = description;
-    _data["image"] = image;
-    _data["category_id"] = categoryId;
-    if(categoryIds != null) {
-      _data["category_ids"] = categoryIds;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["name"] = name;
+    data["description"] = description;
+    data["image"] = image;
+    data["category_id"] = categoryId;
+    if (categoryIds != null) {
+      data["category_ids"] = categoryIds;
     }
-    if(variations != null) {
-      _data["variations"] = variations;
+    if (variations != null) {
+      data["variations"] = variations;
     }
-    if(addOns != null) {
-      _data["add_ons"] = addOns;
+    if (addOns != null) {
+      data["add_ons"] = addOns;
     }
-    if(attributes != null) {
-      _data["attributes"] = attributes;
+    if (attributes != null) {
+      data["attributes"] = attributes;
     }
-    if(choiceOptions != null) {
-      _data["choice_options"] = choiceOptions;
+    if (choiceOptions != null) {
+      data["choice_options"] = choiceOptions;
     }
-    _data["p_margin"] = pMargin;
-    _data["cost"] = cost;
-    _data["price"] = price;
-    _data["cat_exclude"] = catExclude;
-    _data["store_exclude"] = storeExclude;
-    _data["tax"] = tax;
-    _data["tax_class_id"] = taxClassId;
-    _data["tax_cal"] = taxCal;
-    _data["tax_type"] = taxType;
-    _data["discount"] = discount;
-    _data["discount_type"] = discountType;
-    _data["available_time_starts"] = availableTimeStarts;
-    _data["available_time_ends"] = availableTimeEnds;
-    _data["veg"] = veg;
-    _data["status"] = status;
-    _data["store_id"] = storeId;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    _data["order_count"] = orderCount;
-    _data["avg_rating"] = avgRating;
-    _data["rating_count"] = ratingCount;
-    _data["module_id"] = moduleId;
-    _data["item_site_id"] = itemSiteId;
-    _data["stock"] = stock;
-    _data["unit_id"] = unitId;
-    if(images != null) {
-      _data["images"] = images?.map((e) => e.toJson()).toList();
+    data["p_margin"] = pMargin;
+    data["cost"] = cost;
+    data["price"] = price;
+    data["cat_exclude"] = catExclude;
+    data["store_exclude"] = storeExclude;
+    data["tax"] = tax;
+    data["tax_class_id"] = taxClassId;
+    data["tax_cal"] = taxCal;
+    data["tax_type"] = taxType;
+    data["discount"] = discount;
+    data["discount_type"] = discountType;
+    data["available_time_starts"] = availableTimeStarts;
+    data["available_time_ends"] = availableTimeEnds;
+    data["veg"] = veg;
+    data["status"] = status;
+    data["store_id"] = storeId;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    data["order_count"] = orderCount;
+    data["avg_rating"] = avgRating;
+    data["rating_count"] = ratingCount;
+    data["module_id"] = moduleId;
+    data["item_site_id"] = itemSiteId;
+    data["stock"] = stock;
+    data["unit_id"] = unitId;
+    if (images != null) {
+      data["images"] = images?.map((e) => e.toJson()).toList();
     }
-    if(foodVariations != null) {
-      _data["food_variations"] = foodVariations;
+    if (foodVariations != null) {
+      data["food_variations"] = foodVariations;
     }
-    _data["slug"] = slug;
-    _data["recommended"] = recommended;
-    _data["organic"] = organic;
-    _data["maximum_cart_quantity"] = maximumCartQuantity;
-    _data["is_approved"] = isApproved;
-    _data["is_halal"] = isHalal;
-    _data["item_code"] = itemCode;
-    _data["store_site_id"] = storeSiteId;
-    _data["temp_available"] = tempAvailable;
-    _data["module_type"] = moduleType;
-    _data["store_name"] = storeName;
-    _data["is_campaign"] = isCampaign;
-    _data["zone_id"] = zoneId;
-    _data["flash_sale"] = flashSale;
-    _data["store_discount"] = storeDiscount;
-    _data["schedule_order"] = scheduleOrder;
-    _data["delivery_time"] = deliveryTime;
-    _data["free_delivery"] = freeDelivery;
-    if(unit != null) {
-      _data["unit"] = unit?.toJson();
+    data["slug"] = slug;
+    data["recommended"] = recommended;
+    data["organic"] = organic;
+    data["maximum_cart_quantity"] = maximumCartQuantity;
+    data["is_approved"] = isApproved;
+    data["is_halal"] = isHalal;
+    data["item_code"] = itemCode;
+    data["store_site_id"] = storeSiteId;
+    data["temp_available"] = tempAvailable;
+    data["module_type"] = moduleType;
+    data["store_name"] = storeName;
+    data["is_campaign"] = isCampaign;
+    data["zone_id"] = zoneId;
+    data["flash_sale"] = flashSale;
+    data["store_discount"] = storeDiscount;
+    data["schedule_order"] = scheduleOrder;
+    data["delivery_time"] = deliveryTime;
+    data["free_delivery"] = freeDelivery;
+    if (unit != null) {
+      data["unit"] = unit?.toJson();
     }
-    _data["min_delivery_time"] = minDeliveryTime;
-    _data["max_delivery_time"] = maxDeliveryTime;
-    _data["common_condition_id"] = commonConditionId;
-    _data["brand_id"] = brandId;
-    _data["is_basic"] = isBasic;
-    _data["is_prescription_required"] = isPrescriptionRequired;
-    _data["halal_tag_status"] = halalTagStatus;
-    if(nutritionsName != null) {
-      _data["nutritions_name"] = nutritionsName;
+    data["min_delivery_time"] = minDeliveryTime;
+    data["max_delivery_time"] = maxDeliveryTime;
+    data["common_condition_id"] = commonConditionId;
+    data["brand_id"] = brandId;
+    data["is_basic"] = isBasic;
+    data["is_prescription_required"] = isPrescriptionRequired;
+    data["halal_tag_status"] = halalTagStatus;
+    if (nutritionsName != null) {
+      data["nutritions_name"] = nutritionsName;
     }
-    if(allergiesName != null) {
-      _data["allergies_name"] = allergiesName;
+    if (allergiesName != null) {
+      data["allergies_name"] = allergiesName;
     }
-    if(genericName != null) {
-      _data["generic_name"] = genericName;
+    if (genericName != null) {
+      data["generic_name"] = genericName;
     }
-    _data["unit_type"] = unitType;
-    _data["image_full_url"] = imageFullUrl;
-    if(imagesFullUrl != null) {
-      _data["images_full_url"] = imagesFullUrl;
+    data["unit_type"] = unitType;
+    data["image_full_url"] = imageFullUrl;
+    if (imagesFullUrl != null) {
+      data["images_full_url"] = imagesFullUrl;
     }
-    if(storage != null) {
-      _data["storage"] = storage?.map((e) => e.toJson()).toList();
+    if (storage != null) {
+      data["storage"] = storage?.map((e) => e.toJson()).toList();
     }
-    if(translations != null) {
-      _data["translations"] = translations;
+    if (translations != null) {
+      data["translations"] = translations;
     }
-    if(module != null) {
-      _data["module"] = module?.toJson();
+    if (module != null) {
+      data["module"] = module?.toJson();
     }
-    _data["ecommerce_item_details"] = ecommerceItemDetails;
-    return _data;
+    data["ecommerce_item_details"] = ecommerceItemDetails;
+    return data;
   }
 }
 
@@ -305,7 +378,23 @@ class Module {
   List<Storage1>? storage;
   List<Translations1>? translations;
 
-  Module({this.id, this.moduleName, this.moduleType, this.thumbnail, this.status, this.storesCount, this.createdAt, this.updatedAt, this.icon, this.themeId, this.description, this.allZoneService, this.iconFullUrl, this.thumbnailFullUrl, this.storage, this.translations});
+  Module(
+      {this.id,
+      this.moduleName,
+      this.moduleType,
+      this.thumbnail,
+      this.status,
+      this.storesCount,
+      this.createdAt,
+      this.updatedAt,
+      this.icon,
+      this.themeId,
+      this.description,
+      this.allZoneService,
+      this.iconFullUrl,
+      this.thumbnailFullUrl,
+      this.storage,
+      this.translations});
 
   Module.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -327,28 +416,28 @@ class Module {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["module_name"] = moduleName;
-    _data["module_type"] = moduleType;
-    _data["thumbnail"] = thumbnail;
-    _data["status"] = status;
-    _data["stores_count"] = storesCount;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    _data["icon"] = icon;
-    _data["theme_id"] = themeId;
-    _data["description"] = description;
-    _data["all_zone_service"] = allZoneService;
-    _data["icon_full_url"] = iconFullUrl;
-    _data["thumbnail_full_url"] = thumbnailFullUrl;
-    if(storage != null) {
-      _data["storage"] = storage?.map((e) => e.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["module_name"] = moduleName;
+    data["module_type"] = moduleType;
+    data["thumbnail"] = thumbnail;
+    data["status"] = status;
+    data["stores_count"] = storesCount;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    data["icon"] = icon;
+    data["theme_id"] = themeId;
+    data["description"] = description;
+    data["all_zone_service"] = allZoneService;
+    data["icon_full_url"] = iconFullUrl;
+    data["thumbnail_full_url"] = thumbnailFullUrl;
+    if (storage != null) {
+      data["storage"] = storage?.map((e) => e.toJson()).toList();
     }
-    if(translations != null) {
-      _data["translations"] = translations?.map((e) => e.toJson()).toList();
+    if (translations != null) {
+      data["translations"] = translations?.map((e) => e.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -362,7 +451,8 @@ class Translations1 {
   dynamic createdAt;
   dynamic updatedAt;
 
-  Translations1({this.id, this.translationableType, this.translationableId, this.locale, this.key, this.value, this.createdAt, this.updatedAt});
+  Translations1(
+      {this.id, this.translationableType, this.translationableId, this.locale, this.key, this.value, this.createdAt, this.updatedAt});
 
   Translations1.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -376,16 +466,16 @@ class Translations1 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["translationable_type"] = translationableType;
-    _data["translationable_id"] = translationableId;
-    _data["locale"] = locale;
-    _data["key"] = key;
-    _data["value"] = value;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["translationable_type"] = translationableType;
+    data["translationable_id"] = translationableId;
+    data["locale"] = locale;
+    data["key"] = key;
+    data["value"] = value;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }
 
@@ -411,15 +501,15 @@ class Storage1 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["data_type"] = dataType;
-    _data["data_id"] = dataId;
-    _data["key"] = key;
-    _data["value"] = value;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["data_type"] = dataType;
+    data["data_id"] = dataId;
+    data["key"] = key;
+    data["value"] = value;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }
 
@@ -445,15 +535,15 @@ class Storage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["data_type"] = dataType;
-    _data["data_id"] = dataId;
-    _data["key"] = key;
-    _data["value"] = value;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["data_type"] = dataType;
+    data["data_id"] = dataId;
+    data["key"] = key;
+    data["value"] = value;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }
 
@@ -475,15 +565,15 @@ class Unit {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["unit"] = unit;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    if(translations != null) {
-      _data["translations"] = translations?.map((e) => e.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["unit"] = unit;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    if (translations != null) {
+      data["translations"] = translations?.map((e) => e.toJson()).toList();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -497,7 +587,8 @@ class Translations {
   dynamic createdAt;
   dynamic updatedAt;
 
-  Translations({this.id, this.translationableType, this.translationableId, this.locale, this.key, this.value, this.createdAt, this.updatedAt});
+  Translations(
+      {this.id, this.translationableType, this.translationableId, this.locale, this.key, this.value, this.createdAt, this.updatedAt});
 
   Translations.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -511,16 +602,16 @@ class Translations {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["translationable_type"] = translationableType;
-    _data["translationable_id"] = translationableId;
-    _data["locale"] = locale;
-    _data["key"] = key;
-    _data["value"] = value;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["translationable_type"] = translationableType;
+    data["translationable_id"] = translationableId;
+    data["locale"] = locale;
+    data["key"] = key;
+    data["value"] = value;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }
 
@@ -536,9 +627,9 @@ class Images {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["img"] = img;
-    _data["storage"] = storage;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["img"] = img;
+    data["storage"] = storage;
+    return data;
   }
 }

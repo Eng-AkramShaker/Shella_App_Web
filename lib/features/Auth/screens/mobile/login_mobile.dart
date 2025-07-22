@@ -60,9 +60,7 @@ class _Login_mobileState extends State<Login_mobile> {
                   if (controller.state == AuthState.error) {
                     // Show an error message to the user
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      showCustomSnackBar(
-                          controller.errorMessage ?? 'Login Failed',
-                          isError: true);
+                      showCustomSnackBar(context, controller.errorMessage ?? 'Login Failed', isError: true);
                     });
                   }
 
@@ -110,9 +108,7 @@ class _Login_mobileState extends State<Login_mobile> {
                             });
                           },
                           icon: Icon(
-                            isHidden
-                                ? Icons.remove_red_eye_outlined
-                                : Icons.visibility_off_outlined,
+                            isHidden ? Icons.remove_red_eye_outlined : Icons.visibility_off_outlined,
                           ),
                         ),
                       ),
@@ -120,10 +116,7 @@ class _Login_mobileState extends State<Login_mobile> {
                       RememberMeRow(),
                       halfHightSizedBox(size),
                       LoginButton(
-                          formKey: formKey,
-                          phoneController: phoneController,
-                          passwordController: passwordController,
-                          size: size),
+                          formKey: formKey, phoneController: phoneController, passwordController: passwordController, size: size),
                       halfHightSizedBox(size),
                       SignUpButton(size: size),
                       SizedBox(
