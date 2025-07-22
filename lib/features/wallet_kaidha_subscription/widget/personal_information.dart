@@ -7,6 +7,8 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/settings/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 
 class PersonalInformation extends StatefulWidget {
@@ -65,7 +67,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
       {'name': 'تركي', 'code': 'TR', 'flag': '🇹🇷'},
     ];
 
-    return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSub_Controller, _) {
+    return Consumer3<KaidhaSubscription_Controller, ProfileController, AddressController>(
+        builder: (context, KaidhaSub_Controller, profController, addressController, _) {
       return Form(
         key: KaidhaSub_Controller.formstate,
         child: Column(
@@ -238,7 +241,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
             Padding(
               padding: const EdgeInsets.only(right: 17),
               child: Text(
-                " Get.find<ProfileController>().User_Model!.phone.toString()",
+                profController.user!.phone.toString(),
                 textAlign: TextAlign.center,
                 style: font14Black500W(context),
               ),

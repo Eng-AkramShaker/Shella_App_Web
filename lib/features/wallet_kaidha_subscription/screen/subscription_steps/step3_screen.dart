@@ -117,7 +117,7 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                                           const SizedBox(height: 20),
                                           Text(
                                             ' قم بأدخال هذا الكود الي تطبيق نفاذ',
-                                            style: font18Black400W(context),
+                                            style: font14Black400W(context),
                                           ),
                                         ],
                                       ),

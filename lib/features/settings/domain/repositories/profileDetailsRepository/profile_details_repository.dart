@@ -12,15 +12,14 @@ import '../../../../../common/util/sharedPre_constants.dart';
 class ProfileRepository implements ProfileDetailsRepositoryInterface {
   @override
   Future<http.Response?> getAddressList() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.addresslist);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.addresslist);
     return response;
   }
 
   @override
   Future<http.Response?> addAddress(Address address) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .postData(ApiConstants.addAddressUri, address.toJson());
+    Response? response =
+        await ApiClient(sharedPreferences: sp<SharedPreferences>()).postData(ApiConstants.addAddressUri, address.toJson());
     return response;
   }
 
@@ -30,12 +29,12 @@ class ProfileRepository implements ProfileDetailsRepositoryInterface {
 
     final url = Uri.parse(ApiConstants.removeAddressUri).replace(queryParameters: {'address_id': addressId}).toString();
 
-    return await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()).deleteData(url);
+    return await ApiClient(sharedPreferences: sp<SharedPreferences>()).deleteData(url);
   }
 
   @override
   Future<http.Response?> updateAddress(Address address) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>()).putData(
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).putData(
       '${ApiConstants.updateAddressUri}/${address.id}',
       address.toJson(),
       headers: {

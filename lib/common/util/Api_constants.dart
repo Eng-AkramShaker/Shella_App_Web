@@ -42,17 +42,23 @@ class ApiConstants {
   static const String addAddressUri = '/api/v1/customer/address/add';
   static const String updateAddressUri = '/api/v1/customer/address/update';
 
-  //
+  // qidha-wallet
 
-  /// Cart
-  // static const String getCartListUri =
-  //     'https://shalafood.net/api/v1/customer/cart/list';
-  // static const String addCartUri = '$appBaseUrl/api/v1/customer/cart/add';
-  // static const String updateCartUri = '$appBaseUrl/api/v1/customer/cart/update';
-  // static const String removeAllCartUri =
-  //     '$appBaseUrl/api/v1/customer/cart/remove';
-  // static const String removeItemCartUri =
-  //     '$appBaseUrl/api/v1/customer/cart/remove-item';
+  static const String store_qidhaUri = '/api/qidha-wallet/store';
+  static const String get_walletUri = '/api/qidha-wallet/get-wallet';
+
+  static const String get_delegateUri = '/api/v1/customer/delegate/get-delegate-status';
+
+  static const String send_delegateUri = '/api/v1/customer/delegate/store';
+
+  static const String pay_creditUri = '/api/qidha-wallet/credit'; // شحن الرصيد
+  static const String pay_debitUri = '/api/qidha-wallet/debit'; // شراء
+
+  static const String nafath_initiateUri = '/api/qidha-wallet/nafath/initiate';
+  static const String nafath_checkStatusUri = '/api/qidha-wallet/nafath/checkStatus';
+  static const String nafath_signUri = '/api/qidha-wallet/nafath/sign';
+
+  //
 
   static const String getCartListUri = '/api/v1/customer/cart/list';
   static const String addCartUri = '/api/v1/customer/cart/add';
@@ -115,16 +121,6 @@ class ApiConstants {
   static const String tokenUri = '/api/v1/customer/cm-firebase-token';
 
   static const String placeOrderUri = '/api/v1/customer/order/place';
-
-  static const String store_qidhaUri = '/api/qidha-wallet/store';
-  static const String get_walletUri = '/api/qidha-wallet/get-wallet';
-
-  static const String get_delegateUri = '/api/v1/customer/delegate/get-delegate-status';
-
-  static const String send_delegateUri = '/api/v1/customer/delegate/store';
-
-  static const String pay_creditUri = '/api/qidha-wallet/credit'; // شحن الرصيد
-  static const String pay_debitUri = '/api/qidha-wallet/debit';
 
   static const String placePrescriptionOrderUri = '/api/v1/customer/order/prescription/place';
   static const String addressListUri = '/api/v1/customer/address/list';
@@ -209,8 +205,6 @@ class ApiConstants {
 
   static const String topRatedVehiclesListUri = '/api/v1/vehicles/top-rated/list';
   static const String bandListUri = '/api/v1/vehicles/brand/list';
-
-  // static const String taxiCouponApplyUri = '/api/v1/coupon/apply/taxi?code=';
 
   static const String tripPlaceUri = '/api/v1/trip/place';
   static const String runningTripUri = '/api/v1/trip/list';
@@ -365,13 +359,6 @@ class ApiConstants {
     'come_with_no_sound'.tr(),
   ];
 
-  // static List<ChooseUsModel> whyChooseUsList = [
-  //   ChooseUsModel(icon: Images.landingTrusted, title: 'trusted_by_customers_and_store_owners'),
-  //   ChooseUsModel(icon: Images.landingStores, title: 'thousands_of_stores'),
-  //   ChooseUsModel(icon: Images.landingExcellent, title: 'excellent_shopping_experience'),
-  //   ChooseUsModel(icon: Images.landingCheckout, title: 'easy_checkout_and_payment_system'),
-  // ];
-
   /// order status..
   static const String pending = 'pending';
   static const String accepted = 'accepted';
@@ -388,13 +375,6 @@ class ApiConstants {
   static const String ecommerce = 'ecommerce';
   static const String grocery = 'grocery';
   static const String taxi = 'rental';
-
-  // static List<LanguageModel> languages = [
-  //   LanguageModel(imageUrl: Images.english, languageName: 'English', countryCode: 'US', languageCode: 'en'),
-  //   LanguageModel(imageUrl: Images.arabic, languageName: 'عربى', countryCode: 'SA', languageCode: 'ar'),
-  //   LanguageModel(imageUrl: Images.spanish, languageName: 'Spanish', countryCode: 'ES', languageCode: 'es'),
-  //   LanguageModel(imageUrl: Images.bengali, languageName: 'Bengali', countryCode: 'BN', languageCode: 'bn'),
-  // ];
 
   static List<String> joinDropdown = ['join_us', 'become_a_seller', 'become_a_delivery_man'];
 

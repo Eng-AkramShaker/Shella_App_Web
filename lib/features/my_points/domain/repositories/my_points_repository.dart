@@ -1,4 +1,4 @@
-import 'package:http/src/response.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
@@ -10,32 +10,28 @@ import 'dart:convert';
 class MyPointsRepository implements MyPointsRepositoryInterface {
   @override
   Future<Response?> convertPoints(int points) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.pointsConversionUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.pointsConversionUri);
     customPrint('Convert Points Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
   @override
   Future<Response?> fetchUserProfile() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.customerInfoUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.customerInfoUri);
     customPrint('Fetch User Profile Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
   @override
   Future<Response?> getTransactions(String offset) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.pointsTransactionsUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.pointsTransactionsUri);
     customPrint('Get Points Transactions Response :: ${jsonDecode(response.body)}');
     return response;
   }
 
   @override
   Future<Response?> getCouponsList() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.couponListUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.couponListUri);
     customPrint('Get Coupons Response :: ${jsonDecode(response.body)}');
     return response;
   }

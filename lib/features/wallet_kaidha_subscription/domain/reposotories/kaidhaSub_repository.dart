@@ -131,24 +131,32 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
   @override
   Future<WalletKaidhaModel?> getWalletKaidh({bool forceRefresh = false}) async {
+    // 1. التحقق من وجود التوكن
     if (apiClient.token == null || apiClient.token!.isEmpty) {
       print("⚠️ لا يوجد توكن. لن يتم تنفيذ طلب المحفظة.");
       return null;
     }
 
-    // try {
-    //   Response response = await apiClient.getData(ApiConstants.get_walletUri);
+    // 2. إذا كان هناك كاش مسبق ولم يُطلب تحديث صريح، استخدم الكاش
+    if (!forceRefresh && _walletKaidhaCache != null) {
+      print("📦 إرجاع البيانات من الكاش.");
+      return _walletKaidhaCache;
+    }
 
-    //   if (response.statusCode == 200 || response.statusCode == 201 && response.body != null) {
-    //     _walletKaidhaCache = WalletKaidhaModel.fromJson(response.body);
-    //     print("✅ محفظه قيدها: ${_walletKaidhaCache!.wallet?.status}");
-    //     return _walletKaidhaCache;
-    //   } else {
-    //     print("❌ فشل استرجاع المحفظة: كود ${response.statusCode}");
-    //   }
-    // } catch (e) {
-    //   print("❌ استثناء أثناء استرجاع المحفظة: $e");
-    // }
+    try {
+      final response = await apiClient.getData(ApiConstants.get_walletUri);
+
+      if ((response.statusCode == 200 || response.statusCode == 201) && response.body is Map<String, dynamic>) {
+        _walletKaidhaCache = WalletKaidhaModel.fromJson(response.body as Map<String, dynamic>);
+        print("✅ تم تحميل محفظة قيدها بنجاح: ${_walletKaidhaCache!.wallet?.status}");
+        return _walletKaidhaCache;
+      } else {
+        print("❌ فشل استرجاع المحفظة: كود ${response.statusCode}، الرد: ${response.body}");
+      }
+    } catch (e, stackTrace) {
+      print("❌ استثناء أثناء استرجاع المحفظة: $e");
+      print("🧵 StackTrace: $stackTrace");
+    }
 
     return null;
   }
@@ -212,19 +220,18 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'amount': total,
     };
 
-    Response? response;
+    Response? response = await apiClient.postData(ApiConstants.pay_creditUri, data);
 
-    // await apiClient.postData(context,ApiConstants.pay_creditUri, data);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      getWalletKaidh();
 
-    // if (response.statusCode == 200 || response.statusCode == 201) {
-    //   getWalletKaidh();
+      final decodedBody = jsonDecode(response.body);
+      showCustomSnackBar(context, decodedBody["message"], isError: false);
+    } else {
+      showCustomSnackBar(context, "فشل شحن المبلغ");
+    }
 
-    //    showCustomSnackBar(context,"${response.body["message"]}", isError: false);
-    // } else {
-    //    showCustomSnackBar(context,"فشل شحن المبلغ");
-    // }
-
-    return response!;
+    return response;
   }
 
   //  شراء  debi  =====================================================================================================
@@ -235,10 +242,9 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'amount': total,
     };
 
-    Response? response;
-    // Response response = await apiClient.postData(context,ApiConstants.pay_debitUri, data);
+    Response response = await apiClient.postData(ApiConstants.pay_debitUri, data);
 
-    if (response!.statusCode == 200 || response.statusCode == 201) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       getWalletKaidh();
       return true;
     } else if (response.statusCode == 429) {
@@ -270,10 +276,9 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
       // إرسال الطلب
 
-      Response? response;
-      // Response response = await apiClient.postData(context,AppConstants.nafath_checkStatusUri, data);
+      Response response = await apiClient.postData(ApiConstants.nafath_checkStatusUri, data);
 
-      if ((response!.statusCode == 200 || response.statusCode == 201)) {
+      if ((response.statusCode == 200 || response.statusCode == 201)) {
         NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(response.body as Map<String, dynamic>);
 
         print("✅ حالة Nafath: ${response.body}");
@@ -293,32 +298,30 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
   Future<NafathRandomModel?> Nafath_send_National_Id(BuildContext context, String nationalId) async {
     NafathRandomModel model = NafathRandomModel();
-
+    debugPrint("\x1B[32m     ///55     \x1B[0m");
     try {
       if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
         showCustomSnackBar(context, "رقم الهوية غير صالح");
+        return null;
       }
 
       Map<String, String> data = {'national_id': nationalId};
-      Response? response;
 
-      // Response response = await apiClient.postData(context,AppConstants.nafath_initiateUri, data);
+      Response response = await apiClient.postData(ApiConstants.nafath_initiateUri, data);
 
-      if ((response!.statusCode == 200 || response.statusCode == 201)) {
-        model = NafathRandomModel.fromJson(response.body as Map<String, dynamic>);
-
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final jsonMap = jsonDecode(response.body);
+        model = NafathRandomModel.fromJson(jsonMap);
         return model;
       } else if (response.statusCode == 422) {
         showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
       } else {
-        showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
-        return model;
+        showCustomSnackBar(context, "فشل في المعالجة، الرجاء المحاولة لاحقًا");
       }
     } catch (e) {
-      showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
-
-      return model;
+      showCustomSnackBar(context, "حدث خطأ أثناء الاتصال بالخادم");
     }
+
     return null;
   }
 
@@ -340,7 +343,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'neighborhood': neighborhood,
       'house_type': houseType,
     };
-    // await apiClient.postData(context,AppConstants.nafath_signUri, payload);
+    await apiClient.postData(ApiConstants.nafath_signUri, payload);
 
     Response? response;
     return response!;
