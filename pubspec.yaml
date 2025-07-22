@@ -55,13 +55,13 @@ dependencies:
   flutter_spinkit:
   google_maps_flutter:
   geolocator:
-  pdf: ^3.11.3
 
   qr_code_scanner_plus: ^2.0.10+1
   syncfusion_flutter_pdfviewer: ^29.1.38
   confetti: ^0.8.0
   animated_text_kit: ^4.2.3
   easy_localization: ^3.0.7+1
+  awesome_dialog: ^3.1.0
 
 dev_dependencies:
   flutter_test:

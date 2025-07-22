@@ -1,11 +1,19 @@
 // ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable, use_build_context_synchronously
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
+import 'package:shella_design/common/widgets/dialog/confirmation_dialog.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/settings/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/kaidhaSub_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/nafath_checkStatus_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/nafath_random_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/wallet_kaidha_model.dart';
@@ -221,19 +229,15 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
   Future onChange_dialog(BuildContext context, String nationalId) async {
     //
 
-    // Get.dialog(
-    //   barrierDismissible: false,
-    //   ConfirmationDialog(
-    //     icon: Images.warning,
-    //     title: "هل قمت بالمصادقة داخل تطبيق نفاذ ؟",
-    //     description: "هذه مرحه تحقق هل تم تأكيد الكود بنجاح أم لا ",
-    //     onYesPressed: () async {
-    //       //
-    //       Get.back();
-    //       await Nafath_send_checkStatus(context, nationalId);
-    //     },
-    //   ),
-    // );
+    showConfirmationDialog(
+      context: context,
+      title: "هل قمت بالمصادقة داخل تطبيق نفاذ ؟",
+      description: "هذه مرحه تحقق هل تم تأكيد الكود بنجاح أم لا ",
+      onConfirmed: () async {
+        //
+        await Nafath_send_checkStatus(context, nationalId);
+      },
+    );
   }
 
   // Status  ==========
@@ -363,57 +367,47 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   // ---------------------------------------------------------------------------
 
-  Future Submit_Store_Info(context) async {
+  Future Submit_Store_Info(context, String address, String mobile) async {
     _isLoading_Status = true;
     notifyListeners();
 
-    // final address = AddressHelper.getUserAddressFromSharedPref();
+    KaidhaSubModel kaidhaSub = KaidhaSubModel(
+      first_name: firstname.text,
+      father_name: fathername.text,
+      grandfather_name: grandfathername.text,
+      last_name: last_name.text,
+      birth_date: birthDate,
+      national_id: nationality,
+      marital_status: marital_status,
+      number_of_family_members: number_of_family_members.text,
+      identity_card_number: identity_card_number.text,
+      end_date: end_date,
+      mobile: mobile,
+      house_type: 'apartment',
+      city: 'damascus',
+      neighborhood: address,
+      name_of_employer: name_of_employer.text,
+      total_salary: total_salary.text,
+      installments: Installments,
+      source_of_income: 'government',
+      monthly_amount: monthlyIncome.text,
+      salary_day: "2",
+    );
 
-    // KaidhaSubModel kaidhaSub = KaidhaSubModel(
-    //   first_name: firstname.text,
-    //   father_name: fathername.text,
-    //   grandfather_name: grandfathername.text,
-    //   last_name: last_name.text,
-    //   birth_date: birthDate,
-    //   national_id: nationality,
-    //   marital_status: marital_status,
-    //   number_of_family_members: number_of_family_members.text,
-    //   identity_card_number: identity_card_number.text,
-    //   end_date: end_date,
-    //   mobile: phoneController.text.isEmpty ? Get.find<ProfileController>().userInfoModel!.phone.toString() : phoneController.text,
+    await kaidhaSubServiceInterface.Stor_info(context, kaidhaSub, All_files).then((value) async {
+      //
 
-    //   house_type: 'apartment',
-    //   city: 'damascus',
+      debugPrint("\x1B[32m     Submit_Store_Info  $value      \x1B[0m");
 
-    //   neighborhood: address!.address.toString() ?? "",
+      if (value == true) {
+        backStage();
+        nav.push(AppRoutes.main_subscription);
 
-    //   name_of_employer: name_of_employer.text,
-    //   total_salary: total_salary.text,
-    //   installments: Installments,
-    //   source_of_income: 'government',
-
-    //   // source_of_income: jobSpecification,
-
-    //   monthly_amount: monthlyIncome.text,
-    //   // salary_day: salary_day.text,
-    //   salary_day: "2",
-
-    // );
-
-    // await kaidhaSubServiceInterface.Stor_info(context, kaidhaSub, All_files).then((value) async {
-    //   //
-
-    //   debugPrint("\x1B[32m     Submit_Store_Info  $value      \x1B[0m");
-
-    //   if (value == true) {
-    //     backStage();
-    //     Get.toNamed(RouteHelper.getKiadaWalletSubscription());
-
-    //     clearForm();
-    //     await get_Wallet_Kaidh();
-    //     await get_Pdf();
-    //   }
-    // });
+        clearForm();
+        await get_Wallet_Kaidh();
+        await get_Pdf();
+      }
+    });
 
     _nafath_checkStatus = null;
     _isLoading_Status = false;

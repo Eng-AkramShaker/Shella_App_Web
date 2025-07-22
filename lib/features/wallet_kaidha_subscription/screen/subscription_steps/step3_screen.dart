@@ -10,6 +10,8 @@ import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
+import 'package:shella_design/features/settings/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/widget/before_Pdf.dart';
 import 'package:intl/intl.dart';
@@ -70,8 +72,8 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
     //
 
-    return Consumer<KaidhaSubscription_Controller>(
-      builder: (context, KaidhaSubController, _) {
+    return Consumer3<KaidhaSubscription_Controller, ProfileController, AddressController>(
+      builder: (context, KaidhaSubController, profController, addressController, _) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -233,8 +235,6 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                                   //
 
                                   await KaidhaSubController.onChange_dialog(context, KaidhaSubController.identity_card_number.text);
-
-                                  // await KaidhaSubController.onChange_dialog(context, KaidhaSubController.identity_card_number.text);
                                 },
                               ),
                             ),
@@ -265,15 +265,16 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                                           debugPrint("\x1B[32m  Nafath_send_All_Data   ${onValue!.statusCode}  \x1B[0m");
 
                                           if (onValue.statusCode == 200 || onValue.statusCode == 201) {
-                                            await KaidhaSubController.Submit_Store_Info(context);
+                                            await KaidhaSubController.Submit_Store_Info(
+                                                context, addressController.address![0].address, profController.user!.phone!);
                                           } else if (onValue.statusCode == 404) {
                                             //
 
-                                            // KaidhaSubController.update_isShow();
+                                            KaidhaSubController.update_isShow();
 
                                             showCustomSnackBar(context, "اعد المحاوله مره اخري في وقت لاحق");
                                           } else {
-                                            // KaidhaSubController.update_isShow();
+                                            KaidhaSubController.update_isShow();
                                           }
                                         },
                                       );

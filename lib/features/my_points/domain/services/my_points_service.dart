@@ -27,11 +27,11 @@ class LoyaltyService implements MyPointsServiceInterface {
   }
 
   @override
-  Future<UserInfoModel> fetchUserProfile() async {
+  Future<User_Model> fetchUserProfile() async {
     try {
       Response? response = await myPointsRepositoryInterface.fetchUserProfile();
       if (response!.statusCode == 200) {
-        return UserInfoModel.fromJson(json.decode(response.body));
+        return User_Model.fromJson(json.decode(response.body));
       } else {
         throw Exception('Fetching User Profile Failed');
       }
@@ -82,14 +82,14 @@ class LoyaltyService implements MyPointsServiceInterface {
 //   /* static const String _baseUrl = 'https://shalafood.net/api/v1';
 //   final String _token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiMzM5NTVjMGEzYTExNjkzY2JhN2EwMmQyNGNiOWY4MTVjYTM3NjE2NTMxY2YxZmUxMGU2M2NhOTYwM2E0ZjZjODYyZjQwMWM2YTAyMTZlMTMiLCJpYXQiOjE3NDc1NjM4NzMuNzA1MzIsIm5iZiI6MTc0NzU2Mzg3My43MDUzMjIsImV4cCI6MTc3OTA5OTg3My43MDM2MzQsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.osb5PVuZCBUGxDjXhJZYHp22G49x4m0DzkTRXRYidNTkl54qOJ_qV5tP0GqSbyK648xiM0692_0D8JOviurtXGHWIwkTEuf82CvpUkXVi7wQLAlAVFH7YkXmo8goKtiGgJiLPHnpbjZYCd6Q0SAW1tX4XjckqTV07cKGa8qKEmw2de5jHdX1VF7RmSiHOwzSAu1aSyf18-2u6umJyx8kn_ydHMfh5Z8-U9EMU2LrPAFteSXJ7iPReb8ad-msiDQcRt3Pnv8QMMhXxPLTEl-FAeAuNQou95vPZEM5Kz04PVwfYcDSoHTCi1UPYB_wEVsUtonzo-1QehcrbCOMSpZ4ZFC_xcCdacJRviau9InbCEGDknzD8A3TFyBZxoZRExBMaCzuVRBSbvrxGEW5X6FvJWofGqh7JtvyMZ325dk_gai2-sKcUpCirCQeZqMbmdcbqEDO4S42vmBaZi8Mzsg6cb7GSwHw8ua24lXSKZtdYHEEeK5Myf-Hm4b5K19GM7c5LbM9dTbEWq3DYaxrjoRkgPEGjXoqn8f2QHYODBl8yECMZSahc60X0qeTbkwJmZ0x8TfLJCm0KmyzmkEkkjjAfnEY1_4olmlw8tqQbsDuHc84msB7gR1F7O3-TADvO_p4efiHV4YtVClr-gjAgaFV2PeNbX9VQpQ_NGHmGg_qn4s';
 //  */
-//   Future<UserInfoModel> fetchUserProfile() async {
+//   Future<User_Model> fetchUserProfile() async {
 //     final response = await http.get(
 //       Uri.parse(ApiConstants.customerInfoUri),
 //       headers: _headers,
 //     );
 //
 //     if (response.statusCode == 200) {
-//       return UserInfoModel.fromJson(json.decode(response.body));
+//       return User_Model.fromJson(json.decode(response.body));
 //     }
 //     throw Exception('Failed to load profile: ${response.statusCode}');
 //   }

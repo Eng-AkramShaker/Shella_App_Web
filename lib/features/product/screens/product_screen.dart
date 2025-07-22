@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
-import 'package:shella_design/common/widgets/divider/custom_dashed_divider.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/domain/models/store_model.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/home/widgets/category_Item.dart';
 import 'package:shella_design/features/home/users/screens/SuperMarketDiscounts.dart';
-import 'package:shella_design/features/product/controllers/product_controller.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
-import 'package:shella_design/features/product/widgets/category/product_item.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ProductView extends StatefulWidget {
@@ -28,7 +23,7 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  SectionService _service = SectionService();
+  final SectionService _service = SectionService();
 
   late ScrollController _scrollController;
 
@@ -38,15 +33,14 @@ class _ProductViewState extends State<ProductView> {
   void initState() {
     super.initState();
     //   _provider = ProductProvider(storeId: widget.store.id);
-    SectionProvider _provider = SectionProvider(_service);
+    SectionProvider provider = SectionProvider(_service);
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
     // _provider.loadProducts();
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent - 200) {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
       endOfPage = true;
     }
   }
@@ -74,9 +68,7 @@ class _ProductViewState extends State<ProductView> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                          image: AssetImage(AppImages.storeOffer),
-                          fit: BoxFit.cover)),
+                      image: DecorationImage(image: AssetImage(AppImages.storeOffer), fit: BoxFit.cover)),
                 ),
               ),
               // Scroll Content
@@ -109,8 +101,7 @@ class _ProductViewState extends State<ProductView> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (_) => SuperMarketDiscounts()),
+                                MaterialPageRoute(builder: (_) => SuperMarketDiscounts()),
                               );
                             },
                             child: CategoryItem(
@@ -131,19 +122,13 @@ class _ProductViewState extends State<ProductView> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            image: DecorationImage(
-                                image: AssetImage(AppImages.footerStoreImge),
-                                fit: BoxFit.cover)),
+                            image: DecorationImage(image: AssetImage(AppImages.footerStoreImge), fit: BoxFit.cover)),
                       ),
                     )
                   : Container(),
 
               // Header Section
-              Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: buildHeaderSection(context)),
+              Positioned(top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
 
               // Store Info
               Positioned(
@@ -159,9 +144,7 @@ class _ProductViewState extends State<ProductView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Custom_Text(context,
-                            text: widget.store.name,
-                            style: font14Black600W(context)),
+                        Custom_Text(context, text: widget.store.name, style: font14Black600W(context)),
                         const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,10 +154,7 @@ class _ProductViewState extends State<ProductView> {
                               text: "${widget.store.module!.moduleType}",
                               style: font6SecondaryColor400W(context, size: 12),
                             ),
-                            Custom_Text(context,
-                                text: widget.store.currentOpeningTime ??
-                                    "10:00 Pm",
-                                style: font12Black400W(context)),
+                            Custom_Text(context, text: widget.store.currentOpeningTime ?? "10:00 Pm", style: font12Black400W(context)),
                           ],
                         ),
                         const SizedBox(height: 15),
@@ -310,8 +290,7 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
-  Widget buildSectionTitle(BuildContext context,
-      {required String title, String? lapel}) {
+  Widget buildSectionTitle(BuildContext context, {required String title, String? lapel}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(

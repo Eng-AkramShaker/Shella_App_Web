@@ -25,7 +25,7 @@ class AddNewAddressScreen extends StatefulWidget {
 
 class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   Address? editAddress;
-  late final ProfileController _controller;
+  late final AddressController _controller;
   final TextEditingController adressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -39,7 +39,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = Provider.of<ProfileController>(context, listen: false);
+    _controller = Provider.of<AddressController>(context, listen: false);
     _controller.resetOperationState();
     _isEditing = widget.editAddress != null;
     if (!_isEditing) {
@@ -183,12 +183,12 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           icon: Icons.location_on,
         ),
       ),
-      body: Selector<ProfileController, RequestState>(
+      body: Selector<AddressController, RequestState>(
         selector: (_, controller) => controller.adressstate,
         builder: (context, adressState, child) {
           if (adressState == RequestState.success) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.read<ProfileController>().resetOperationState();
+              context.read<AddressController>().resetOperationState();
               Navigator.of(context).pop(true);
             });
             return const Center(child: ProfileLoading(color: AppColors.primaryColor));
@@ -200,12 +200,12 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           }
           if (adressState == RequestState.error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              final error = context.read<ProfileController>().errorMessage;
+              final error = context.read<AddressController>().errorMessage;
               if (error != null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(error)),
                 );
-                context.read<ProfileController>().resetAddState();
+                context.read<AddressController>().resetAddState();
               }
             });
           }
@@ -315,7 +315,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
               ),
               SizedBox(height: 10.h),
               SizedBox(height: 10.h),
-              Consumer<ProfileController>(
+              Consumer<AddressController>(
                 builder: (context, controller, _) => Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -326,7 +326,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            context.read<ProfileController>().updateTybe(1);
+                            context.read<AddressController>().updateTybe(1);
                           },
                           child: locationTag(
                             icon: Icons.home,
@@ -337,7 +337,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         SizedBox(width: 10.w),
                         InkWell(
                           onTap: () {
-                            context.read<ProfileController>().updateTybe(2);
+                            context.read<AddressController>().updateTybe(2);
                           },
                           child: locationTag(
                             icon: Icons.work,
@@ -348,7 +348,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         SizedBox(width: 10.w),
                         InkWell(
                           onTap: () {
-                            context.read<ProfileController>().updateTybe(3);
+                            context.read<AddressController>().updateTybe(3);
                           },
                           child: locationTag(
                             icon: Icons.add,
@@ -393,7 +393,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            context.read<ProfileController>().updatefloor(1);
+                            context.read<AddressController>().updatefloor(1);
                           },
                           child: selectableButton(
                             "منزل (اختياري)",
@@ -403,7 +403,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                         SizedBox(width: 10),
                         InkWell(
                           onTap: () {
-                            context.read<ProfileController>().updatefloor(2);
+                            context.read<AddressController>().updatefloor(2);
                           },
                           child: selectableButton(
                             "أرضية (اختياري)",

@@ -92,16 +92,19 @@ List<SingleChildWidget> appProviders({
 
     ChangeNotifierProvider(create: (_) => SplashController(SplashService())..loadConfig()),
     ChangeNotifierProvider(create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider(create: (_) => CustomerController(service: customerService)..fetchCustomerData()),
+    ChangeNotifierProvider(create: (_) => ProfileController(service: customerService)..fetchUserData()),
 
     /// ✅ تم إضافة ملفات البروفايل هنا
     Provider<ProfileRepository>.value(value: profileRepo),
     Provider<ProfileDetailsService>.value(value: profileService),
-    ChangeNotifierProvider(create: (_) => ProfileController(profileDetailsService: profileService)),
+    ChangeNotifierProvider(create: (_) => AddressController(profileDetailsService: profileService)),
 
     // Home
     ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
-    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()..fetchModules()),
+    ChangeNotifierProvider(
+        create: (_) => SectionProvider(SectionService())
+          ..fetchCategories()
+          ..fetchModules()),
     ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
 
@@ -148,6 +151,7 @@ List<SingleChildWidget> appProviders({
 
     //  wallet Kaidha Subscription   =======
 
+    ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
     ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
   ];
 }

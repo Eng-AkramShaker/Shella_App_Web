@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, avoid_print
 
 import 'dart:convert';
 import 'package:shella_design/api/api_client.dart';
@@ -12,33 +12,33 @@ class CustomerRepository implements CustomerRepositoryInterface {
   CustomerRepository({required this.apiClient});
 
   @override
-  Future<CustomerModel> getCustomerInfo() async {
+  Future<User_Model> getUserInfo() async {
     final uri = Uri.parse(ApiConstants.customerInfo);
     final response = await apiClient.getData(
       uri.toString(),
     );
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
-      return CustomerModel.fromJson(jsonBody);
+      return User_Model.fromJson(jsonBody);
     } else {
       throw Exception('Failed to load customer data');
     }
   }
 
   @override
-  Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data) async {
+  Future<User_Model> updatedUserInfo(Map<String, dynamic> data) async {
     final uri = Uri.parse(ApiConstants.updateCustomerInfo);
     final response = await apiClient.postData(uri.toString(), data);
 
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
       if (jsonBody.containsKey('customer')) {
-        return CustomerModel.fromJson(jsonBody['customer']);
+        return User_Model.fromJson(jsonBody['customer']);
       } else if (jsonBody.containsKey('data')) {
-        return CustomerModel.fromJson(jsonBody['data']);
+        return User_Model.fromJson(jsonBody['data']);
       } else {
         // If the API returns only a message, we need to refetch the customer data
-        return await getCustomerInfo();
+        return await getUserInfo();
       }
     } else {
       final errorBody = jsonDecode(response.body);
@@ -47,7 +47,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
       throw Exception('فشل في تحديث الملف الشخصي');
     }
 
-    // return CustomerModel.fromJson(jsonBody);
+    // return  User_Model.fromJson(jsonBody);
   }
 
   @override

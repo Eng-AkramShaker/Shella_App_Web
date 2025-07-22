@@ -56,7 +56,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Consumer<CustomerController>(builder: (context, provider, _) {
+        child: Consumer<ProfileController>(builder: (context, provider, _) {
           return ProfileButton(
             title: "حذف الحساب",
             textFontSize: 16,
@@ -69,7 +69,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           );
         }),
       ),
-      body: Consumer<CustomerController>(
+      body: Consumer<ProfileController>(
         builder: (context, provider, _) {
           if (provider.isLoading) {
             return const Center(child: ProfileLoading(color: AppColors.greenColor));
@@ -83,21 +83,21 @@ class _ProfileInfoState extends State<ProfileInfo> {
                   const SizedBox(height: 10),
                   ProfileButton(
                     title: 'إعادة المحاولة',
-                    onTap: () => provider.fetchCustomerData(),
+                    onTap: () => provider.fetchUserData(),
                   ),
                 ],
               ),
             );
           }
-          final customer = provider.customer;
-          if (customer == null) {
+          final user = provider.user;
+          if (user == null) {
             return const Center(child: Text("لا توجد بيانات"));
           }
           // final items = [
-          //   {'title': 'الاسم بالكامل', 'value': customer.fullName},
-          //   {'title': 'رقم الهاتف', 'value': customer.phone},
-          //   {'title': 'تاريخ الميلاد', 'value': formatDate(customer.createdAt)},
-          //   {'title': 'البريد الإلكتروني', 'value': customer.email},
+          //   {'title': 'الاسم بالكامل', 'value': user.fullName},
+          //   {'title': 'رقم الهاتف', 'value': user.phone},
+          //   {'title': 'تاريخ الميلاد', 'value': formatDate(user.createdAt)},
+          //   {'title': 'البريد الإلكتروني', 'value': user.email},
           //   {'title': 'كلمة المرور', 'value': '***********'},
           // ];
           //
@@ -107,14 +107,14 @@ class _ProfileInfoState extends State<ProfileInfo> {
             children: [
               buildProfileInfoItem(
                 "الاسم الكامل",
-                customer.fullName ?? "",
+                user.fullName ?? "",
                 context,
                 () {},
               ),
               ProfileDivider(),
               buildProfileInfoItem(
                 "رقم الهاتف",
-                customer.phone ?? "",
+                user.phone ?? "",
                 context,
                 () {},
               ),
@@ -128,7 +128,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
               ProfileDivider(),
               buildProfileInfoItem(
                 "البريد الالكتروني",
-                customer.email ?? "لا يوجد إيميل",
+                user.email ?? "لا يوجد إيميل",
                 context,
                 () {},
               ),
