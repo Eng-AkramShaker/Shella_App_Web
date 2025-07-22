@@ -9,8 +9,7 @@ import '../../../../../common/helper/check_Logged.dart';
 class CartRepository implements CartRepositoryInterface {
   @override
   Future<http.Response?> getCartItems() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.getCartListUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.getCartListUri);
     return response;
   }
 
@@ -21,8 +20,7 @@ class CartRepository implements CartRepositoryInterface {
     List<String>? variations,
     List<String>? addOns,
   }) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .postData(ApiConstants.addCartUri, {
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).postData(ApiConstants.addCartUri, {
       'item_id': itemId,
       'quantity': quantity,
       'variation': variations,
@@ -33,22 +31,21 @@ class CartRepository implements CartRepositoryInterface {
 
   @override
   Future<http.Response?> updateCartItem(String itemId, int quantity) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>())
         .putData(ApiConstants.updateCartUri, {'item_id': itemId, 'quantity': quantity});
     return response;
   }
 
   @override
   Future<http.Response?> removeCartItem(String itemId) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .deleteData('${ApiConstants.removeItemCartUri}/$itemId');
+    Response? response =
+        await ApiClient(sharedPreferences: sp<SharedPreferences>()).deleteData('${ApiConstants.removeItemCartUri}/$itemId');
     return response;
   }
 
   @override
   Future<http.Response?> clearCart() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .deleteData(ApiConstants.removeItemCartUri);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).deleteData(ApiConstants.removeItemCartUri);
     return response;
   }
 }

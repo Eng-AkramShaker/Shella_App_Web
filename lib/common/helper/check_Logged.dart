@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/api/api_client.dart';
-import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import 'package:shella_design/common/helper/shared_pref_helper.dart';
 
@@ -13,7 +12,6 @@ Future<void> init() async {
   // Register ApiProvider, waiting for SharedPreferences to be available
   sp.registerSingleton<ApiClient>(
     ApiClient(
-      appBaseUrl: ApiConstants.appBaseUrl,
       sharedPreferences: await sp.getAsync<SharedPreferences>(), // Use getAsync
     ),
   );

@@ -57,7 +57,7 @@ List<SingleChildWidget> appProviders({
 }) {
   // Repository   & Service  ================================================================================
 
-  final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
+  final apiClient = ApiClient(sharedPreferences: sharedPreferences);
 
   //  auth   =======
   final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);

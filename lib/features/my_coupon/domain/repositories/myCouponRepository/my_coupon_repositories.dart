@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/src/response.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../api/api_client.dart';
 import '../../../../../common/helper/check_Logged.dart';
@@ -11,8 +11,7 @@ class MyCouponRepository implements MyCouponRepositoryInterface {
   ///-------------------------------------<<<---GET MY COUPON--->>>-------------------------------------
   @override
   Future<Response?> getMyCoupon() async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
-        .getData(ApiConstants.getMyCoupon);
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>()).getData(ApiConstants.getMyCoupon);
     customPrint('Get My Coupon Response :: ${jsonDecode(response.body)}');
     return response;
   }
@@ -20,7 +19,7 @@ class MyCouponRepository implements MyCouponRepositoryInterface {
   ///-------------------------------------<<<---APPLY COUPON--->>>-------------------------------------
   @override
   Future<Response?> applyCoupon({code, storeId}) async {
-    Response? response = await ApiClient(appBaseUrl: ApiConstants.appBaseUrl, sharedPreferences: sp<SharedPreferences>())
+    Response? response = await ApiClient(sharedPreferences: sp<SharedPreferences>())
         .getData(ApiConstants.applyCoupon, query: {'code': code, 'store_id': storeId.toString()});
     customPrint('Apply Coupon Response :: ${jsonDecode(response.body)}');
     return response;

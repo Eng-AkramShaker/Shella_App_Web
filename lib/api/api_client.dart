@@ -14,7 +14,6 @@ import 'package:shella_design/common/util/sharedPre_constants.dart';
 import '../common/helper/app_routes.dart';
 
 class ApiClient {
-  final String appBaseUrl;
   final SharedPreferences sharedPreferences;
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr();
   final int timeoutInSeconds = 40;
@@ -42,43 +41,14 @@ class ApiClient {
     );
   }
 
-  ApiClient({required this.appBaseUrl, required this.sharedPreferences}) {
+  ApiClient({required this.sharedPreferences}) {
     token = sharedPreferences.getString(SharedPrefKeys.userToken);
 
     if (kDebugMode) {
       print('Token: $token');
     }
-    // AddressModel? addressModel;
-    // try {
-    //   addressModel = AddressModel.fromJson(
-    //       jsonDecode(sharedPreferences.getString(AppConstants.userAddress)!));
-    // } catch (_) {}
-    // int? moduleID;
-    // if (GetPlatform.isWeb &&
-    //     sharedPreferences.containsKey(AppConstants.moduleId)) {
-    //   try {
-    //     moduleID = ModuleModel.fromJson(
-    //             jsonDecode(sharedPreferences.getString(AppConstants.moduleId)!))
-    //         .id;
-    //   } catch (_) {}
-    // }
-    updateHeader(
-      token,
-      [],
-      [],
-      'ar',
-      0,
-      '1',
-      '1',
-      setHeader: true,
-      // addressModel?.zoneIds,
-      // addressModel?.areaIds,
 
-      // sharedPreferences.getString(AppConstants.languageCode),
-      // moduleID,
-      // addressModel?.latitude,
-      // addressModel?.longitude,
-    );
+    updateHeader(token, [], [], 'ar', 0, '1', '1', setHeader: true);
   }
 
   Map<String, String> updateHeader(String? token, List<int>? zoneIDs, List<int>? operationIds, String? languageCode, int? moduleID,
@@ -86,20 +56,11 @@ class ApiClient {
       {bool setHeader = true}) {
     Map<String, String> header = {};
 
-    if (moduleID != null || sharedPreferences.getString(ApiConstants.cacheModuleId) != null) {
-      // header.addAll({
-      //   AppConstants.moduleId:
-      //       '${moduleID ?? ModuleModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.cacheModuleId)!)).id}'
-      // });
-    }
+    if (moduleID != null || sharedPreferences.getString(ApiConstants.cacheModuleId) != null) {}
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
-
       ApiConstants.zoneId: zoneIDs != null && zoneIDs.isNotEmpty ? jsonEncode(zoneIDs) : jsonEncode([2, 3, 4, 5]),
       ApiConstants.moduleId: moduleID != null && moduleID != 0 ? jsonEncode(moduleID) : jsonEncode(3),
-
-      ///this will add in ride module
-      // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
       ApiConstants.localizationKey: languageCode ?? 'ar',
       ApiConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
       ApiConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
@@ -124,7 +85,7 @@ class ApiClient {
       final stopwatch = Stopwatch()..start();
 
       http.Response response = await http
-          .get(Uri.parse(appBaseUrl + uri).replace(queryParameters: query), headers: headers ?? _mainHeaders)
+          .get(Uri.parse(ApiConstants.appBaseUrl + uri).replace(queryParameters: query), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
       print("//////////////////////////////////////////////////// ${response.request?.headers}");
       stopwatch.stop();
@@ -153,7 +114,7 @@ class ApiClient {
         print('====> API Body: $body');
       }
       http.Response response = await http
-          .post(Uri.parse(appBaseUrl + uri), body: jsonEncode(body), headers: headers ?? _mainHeaders)
+          .post(Uri.parse(ApiConstants.appBaseUrl + uri), body: jsonEncode(body), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeout ?? timeoutInSeconds));
       if (kDebugMode) {
         var reponsemap = jsonDecode(response.body);
@@ -174,7 +135,7 @@ class ApiClient {
         print('====> API Call: $uri\nHeader: ${headers ?? _mainHeaders}');
         // print('====> API Body: $body with ${multipartBody.length} picture');
       }
-      http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(appBaseUrl + uri));
+      http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse(ApiConstants.appBaseUrl + uri));
       request.headers.addAll(headers ?? _mainHeaders);
       for (MultipartBody multipart in multipartBody) {
         if (multipart.file != null) {
@@ -208,7 +169,7 @@ class ApiClient {
         print('====> API Body: $body');
       }
       initHeader();
-      final fullUri = Uri.parse(appBaseUrl + uri);
+      final fullUri = Uri.parse(ApiConstants.appBaseUrl + uri);
       final request = http.Request('PUT', fullUri);
       request.headers.addAll(headers ?? _mainHeaders);
 
@@ -218,7 +179,7 @@ class ApiClient {
       return handleResponse(response, uri, handleError);
       // http.Response response = await http
       //     .put(
-      //       Uri.parse(appBaseUrl + uri),
+      //       Uri.parse(ApiConstants.appBaseUrl + uri),
       //       body: jsonEncode(body),
       //       headers: headers ?? _mainHeaders,
       //     )
@@ -236,7 +197,7 @@ class ApiClient {
       }
       initHeader();
       http.Response response = await http
-          .delete(Uri.parse(appBaseUrl + uri), headers: headers ?? _mainHeaders)
+          .delete(Uri.parse(ApiConstants.appBaseUrl + uri), headers: headers ?? _mainHeaders)
           .timeout(Duration(seconds: timeoutInSeconds));
       print('✅ اكتمل طلب DELETE - status: ${response.statusCode}');
       print('📝 محتوى الاستجابة: ${response.body}');
