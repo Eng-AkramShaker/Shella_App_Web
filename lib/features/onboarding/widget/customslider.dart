@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/onboarding/controller/onboarding_controller.dart';
@@ -60,7 +60,7 @@ class CustomSliderOnBoarding extends StatelessWidget {
                       onPressed: () {
                         provider.next(context);
                       },
-                      text: 'التالي',
+                      text: MainAppConstants.next,
                     ),
                   ],
                 ),

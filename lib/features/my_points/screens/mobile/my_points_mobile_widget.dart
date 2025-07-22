@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/features/my_points/widgets/mobile/offers_widgets_mobile.dart';
 import '../../../../common/widgets/appBar/customAppBar.dart';
 import '../../../../common/widgets/texts/custom_text.dart';
@@ -15,13 +15,11 @@ class MyPointsMobileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: customAppBar(context, 
-      title: 'نقاطي',
-       img: 'assets/images/my-points-appbar.png',
-       onPressed: (){
+      appBar: customAppBar(context,
+          title: 'نقاطي',
+          img: 'assets/images/my-points-appbar.png', onPressed: () {
         Navigator.of(context).pop();
-       }
-       ),
+      }),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -40,7 +38,7 @@ class MyPointsMobileWidget extends StatelessWidget {
                     SizedBox(height: 20.h),
                     Custom_Text(
                       context,
-                      text: 'عروض رمضان',
+                      text: MainAppConstants.ramadanOffers,
                       style: font14Black500W(context),
                     ),
                     SizedBox(height: 10.h),
@@ -62,4 +60,3 @@ class MyPointsMobileWidget extends StatelessWidget {
     );
   }
 }
-

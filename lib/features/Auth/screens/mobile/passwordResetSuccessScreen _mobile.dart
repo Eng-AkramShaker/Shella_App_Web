@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/password_reset_button.dart';
 
 class PasswordResetSuccessScreen extends StatelessWidget {
   const PasswordResetSuccessScreen({super.key});
@@ -15,18 +16,7 @@ class PasswordResetSuccessScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            size: 30,
-            color: Colors.black,
-          ),
-        ),
-      ),
+      appBar: customAppBar(context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
@@ -43,36 +33,19 @@ class PasswordResetSuccessScreen extends StatelessWidget {
             ),
             SizedBox(height: size_16(context)),
             Text(
-              "تم تغيير كلمة المرور بنجاح",
+              MainAppConstants.passwordChangedSuccefully,
               style: font18Black600W(context),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: size_16(context)),
             Text(
-              "يمكنك الدخول مجدداً عن طريق كلمة المرور الجديدة",
+              MainAppConstants.uCanLoginAgainThrowNewPassword,
               style: font14Grey400W(context),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: size_18(context)),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  backgroundColor: AppColors.greenColor,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                ),
-                onPressed: () {
-                  nav.pushAndRemoveUnti(AppRoutes.Login_Mobile);
-                },
-                child: Text(
-                  "تم",
-                  style: font14White600W(context),
-                ),
-              ),
-            ),
+            passwordResetButton(context,
+                onPressed: () => nav.pushAndRemoveUnti(AppRoutes.Login_Mobile)),
           ],
         ),
       ),

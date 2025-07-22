@@ -1,7 +1,6 @@
 // ignore_for_file: unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
@@ -49,9 +48,13 @@ class _HyperScreenState extends State<HyperScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(padding: EdgeInsets.symmetric(horizontal: 17.w), child: buildSearchRow(context)),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17.w),
+                  child: buildSearchRow(context)),
               SizedBox(height: 14.h),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 11.w), child: buildAddressRow(context)),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 11.w),
+                  child: buildAddressRow(context)),
               SizedBox(height: 3.h),
             ],
           ),
@@ -63,7 +66,8 @@ class _HyperScreenState extends State<HyperScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              buildSectionTitle(context, title: "الاقسام", lapel: 'عرض الكل', underline: false),
+              buildSectionTitle(context,
+                  title: "الاقسام", lapel: 'عرض الكل', underline: false),
               SizedBox(height: 16.h),
               BuildCategoryListView(),
               SizedBox(height: 16.h),

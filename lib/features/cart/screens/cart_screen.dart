@@ -11,6 +11,7 @@ import 'package:shella_design/features/cart/widgets/builds/build_promo_code_inpu
 import 'package:shella_design/features/cart/widgets/builds/build_summary_row.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/lists.dart';
+import 'package:shella_design/features/cart/widgets/cart_item.dart';
 
 class Cart_Screen extends StatefulWidget {
   const Cart_Screen({super.key});
@@ -31,7 +32,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (int index = 0; index < items.length; index++) buildCartItem(items[index], index, context),
+              for (int index = 0; index < items.length; index++) buildCartItem(items[index] as CartItem, index, context),
               buildPromoCodeInput(context),
 
               //

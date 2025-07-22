@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../features/profile_detailes/controllers/profile_detailes_controller.dart';
@@ -18,7 +17,8 @@ class AccountInformationColumn1 extends StatefulWidget {
   });
 
   @override
-  State<AccountInformationColumn1> createState() => _AccountInformationColumn1State();
+  State<AccountInformationColumn1> createState() =>
+      _AccountInformationColumn1State();
 }
 
 class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
@@ -65,8 +65,9 @@ class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
                     width: MediaQuery.of(context).size.width,
                     child: Custom_Text_Button(context,
                         borderRadius: 10,
-                        backgroundColor:
-                            index == controller.currentPage ? Color.fromARGB(255, 229, 246, 238) : AppColors.backgroundColor,
+                        backgroundColor: index == controller.currentPage
+                            ? Color.fromARGB(255, 229, 246, 238)
+                            : AppColors.backgroundColor,
                         text: title[index], onPressed: () {
                       if (title[index] == "تسجيل الخروج") {
                         nav.pushAndRemoveUnti(AppRoutes.loginPage);
@@ -76,8 +77,10 @@ class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
                       controller.changePage(index);
                     },
                         text_style: index == controller.currentPage
-                            ? font13Green500W(context, size: width(context, 1) > 600 ? 20 : 14)
-                            : font10Black400W(context, size: width(context, 1) > 600 ? 20 : 14)),
+                            ? font13Green500W(context,
+                                size: width(context, 1) > 600 ? 20 : 14)
+                            : font10Black400W(context,
+                                size: width(context, 1) > 600 ? 20 : 14)),
                   );
                 },
               ),

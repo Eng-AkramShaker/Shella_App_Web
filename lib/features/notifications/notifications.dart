@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
-import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
 import 'package:shella_design/features/notifications/widgets/builds/notifications_componnent.dart';
-import 'package:shella_design/features/notifications/widgets/notification_card.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});

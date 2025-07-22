@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/features/my_points/widgets/web/offers_widgets_web.dart';
@@ -18,7 +17,8 @@ class _MyPointsWebWidgetState extends State<MyPointsWebWidget> {
     // Instead of a fixed 950.w, we clamp to max 950.w but allow it to shrink on narrower screens:
     final availableWidth = MediaQuery.of(context).size.width;
     final double maxPanelWidth = 750.w;
-    final double panelWidth = availableWidth >= maxPanelWidth ? maxPanelWidth : availableWidth * 0.7;
+    final double panelWidth =
+        availableWidth >= maxPanelWidth ? maxPanelWidth : availableWidth * 0.7;
 
     return Center(
       child: Container(

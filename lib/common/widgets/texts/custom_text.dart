@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -26,7 +25,8 @@ Text Custom_Text(
         font10Black400W(context).copyWith(
           fontSize: size ?? size_10(context),
           color: color ?? AppColors.bgColor,
-          decoration: underline ? TextDecoration.underline : TextDecoration.none,
+          decoration:
+              underline ? TextDecoration.underline : TextDecoration.none,
         ),
   );
 }

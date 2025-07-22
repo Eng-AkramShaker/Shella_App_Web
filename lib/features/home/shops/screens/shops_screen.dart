@@ -1,11 +1,8 @@
 // ignore_for_file: unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
@@ -70,7 +67,8 @@ class _ShopsScreenState extends State<ShopsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              buildSectionTitle(context, title: "الاقسام", lapel: 'عرض الكل', underline: false),
+              buildSectionTitle(context,
+                  title: "الاقسام", lapel: 'عرض الكل', underline: false),
               SizedBox(height: 16.h),
               BuildCategoryListView(),
               SizedBox(height: 16.h),

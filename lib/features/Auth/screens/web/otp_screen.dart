@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_body_web.dart';
 
 class OtpScreen extends StatelessWidget {

@@ -1,7 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_action_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/otp_fields_web.dart';
@@ -25,7 +24,8 @@ class _BodyOtpState extends State<BodyOtp> {
   @override
   void initState() {
     super.initState();
-    _controllers = List.generate(BodyOtp._codeLength, (_) => TextEditingController());
+    _controllers =
+        List.generate(BodyOtp._codeLength, (_) => TextEditingController());
     _focusNodes = List.generate(BodyOtp._codeLength, (_) => FocusNode());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _focusNodes.first.requestFocus();
@@ -107,7 +107,10 @@ class _BodyOtpState extends State<BodyOtp> {
                   onPressed: () {},
                   child: Text(
                     'إعادة ارسال رمز التأكيد',
-                    style: TextStyle(fontSize: 16.sp, color: Colors.white, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

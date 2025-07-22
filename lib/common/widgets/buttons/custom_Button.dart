@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -23,12 +22,14 @@ Widget custom_Button(BuildContext context,
         backgroundColor: buttoncolor ?? AppColors.greenColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: border_color ?? AppColors.greenColor, width: 1.5),
+          side: BorderSide(
+              color: border_color ?? AppColors.greenColor, width: 1.5),
         ),
         padding: EdgeInsets.zero,
       ),
       onPressed: onPressed,
-      child: Custom_Text(context, text: title, style: style ?? font14White400W(context)),
+      child: Custom_Text(context,
+          text: title, style: style ?? font14White400W(context)),
     ),
   );
 }

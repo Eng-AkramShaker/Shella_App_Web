@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/webFooter/widgets/footerBottomSection/footer_button_section.dart';
 import 'package:shella_design/common/widgets/webFooter/widgets/footerMainContent/footer_main_content.dart';

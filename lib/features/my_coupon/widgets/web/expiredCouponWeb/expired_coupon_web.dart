@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
 import '../../../../../common/util/app_styles.dart';
 import '../../../../../common/widgets/texts/custom_text.dart';
@@ -21,7 +20,9 @@ class ExpiredCouponWeb extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset('assets/images/my_coupon_not_found.png'),
-                      Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context, size: 12))
+                      Custom_Text(context,
+                          text: 'ليس لديك اي قسائم حاليآ',
+                          style: font12Grey400W(context, size: 12))
                     ],
                   ),
                 ),
@@ -29,11 +30,16 @@ class ExpiredCouponWeb extends StatelessWidget {
             : ListView.builder(
                 shrinkWrap: true,
                 padding: EdgeInsets.zero,
-                itemCount: MyCouponController.get(context).unAvailableCoupons!.length,
+                itemCount:
+                    MyCouponController.get(context).unAvailableCoupons!.length,
                 itemBuilder: (context, index) {
                   return ExpiredCouponContainerWeb(
-                    discount: MyCouponController.get(context).unAvailableCoupons![index].discount,
-                    expiredDate: MyCouponController.get(context).unAvailableCoupons![index].expireDate,
+                    discount: MyCouponController.get(context)
+                        .unAvailableCoupons![index]
+                        .discount,
+                    expiredDate: MyCouponController.get(context)
+                        .unAvailableCoupons![index]
+                        .expireDate,
                   );
                 },
               ),

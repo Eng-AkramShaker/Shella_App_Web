@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/util/app_constants.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/features/help_and_support/widgets/address_container.dart';
-import 'package:shella_design/features/help_and_support/widgets/contact_us_container.dart';
+import 'package:shella_design/features/help_and_support/widgets/mobile/address_container.dart';
+import 'package:shella_design/features/help_and_support/widgets/mobile/contact_us_container.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import '../../widgets/email_us_container.dart';
+import '../../widgets/mobile/email_us_container.dart';
 
 class HelpAndSupportScreen extends StatelessWidget {
   const HelpAndSupportScreen({super.key});
@@ -16,9 +17,9 @@ class HelpAndSupportScreen extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       appBar: customAppBar(
         context,
-        title: 'المساعدة و الدعم',
+        title: MainAppConstants.helpAndSupport,
         img: 'assets/images/help_and_support_appbar_img.png',
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => nav.back,
       ),
       body: SingleChildScrollView(
         child: Padding(

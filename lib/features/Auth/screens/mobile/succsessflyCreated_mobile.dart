@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/start_shopping_btn_mobile.dart';
+import 'package:shella_design/common/util/app_constants.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/start_shopping_btn_mobile.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -29,13 +29,13 @@ class Succsessflycreated extends StatelessWidget {
             ),
             SizedBox(height: size_16(context)),
             Text(
-              "تم إنشاء الحساب بنجاح",
+              MainAppConstants.regiterSuccefully,
               style: font18Green500W(context),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: size_16(context)),
             Text(
-              "يمكنك تصفح التطبيق الــآن مع اخر العروض والخصومات",
+              MainAppConstants.ucanExploreApp,
               style: font14Grey400W(context),
               textAlign: TextAlign.center,
             ),

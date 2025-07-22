@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -89,8 +89,46 @@ Widget buildDeliveryListView(BuildContext context) {
                         text: store.module!.moduleType ?? "",
                         style: font10Grey400W(context),
                       ),
-                     
-                    
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          children: [
+                            custom_Images_asset(
+                              image: AppImages.icon_time,
+                              h: 18,
+                              w: 18,
+                            ),
+                            const SizedBox(width: 8),
+                            Custom_Text(
+                              context,
+                              text:
+                                  '${store.deliveryTime} - ${store.delivery ? MainAppConstants.availableDelivery : MainAppConstants.noDelivery}',
+                              style: font10Grey400W(context),
+                            ),
+                            const SizedBox(width: 8),
+                            const Icon(
+                              Icons.delivery_dining,
+                              color: AppColors.secondaryColor,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          custom_Images_asset(
+                            image: AppImages.icon_disc,
+                            h: 18,
+                            w: 18,
+                          ),
+                          const SizedBox(width: 8),
+                          Custom_Text(
+                            context,
+                            text: MainAppConstants.discount25FirstOrder,
+                            style: font10Grey400W(context),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

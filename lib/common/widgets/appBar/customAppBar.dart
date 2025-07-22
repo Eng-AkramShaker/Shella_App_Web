@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -33,11 +33,12 @@ PreferredSize customAppBar(BuildContext context,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(width: 20),
-                  Custom_Text(context, text: " $title ", style: style ?? font14White600W(context)),
+                  Custom_Text(context,
+                      text: " $title ",
+                      style: style ?? font14White600W(context)),
                   const SizedBox(width: 10),
-                  Image.asset(img??AppImages.empty,width: 20,height: 18,alignment: Alignment.bottomCenter),
-
-                
+                  Image.asset(img ?? AppImages.empty,
+                      width: 20, height: 18, alignment: Alignment.bottomCenter),
                   const SizedBox(width: 10),
                   Icon(icon, color: AppColors.wtColor, size: 22)
                 ],
@@ -48,7 +49,8 @@ PreferredSize customAppBar(BuildContext context,
             bottom: 10,
             right: 15,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_sharp, color: iconbackcolor ?? AppColors.wtColor, size: 26),
+              icon: Icon(Icons.arrow_back_sharp,
+                  color: iconbackcolor ?? AppColors.wtColor, size: 26),
               onPressed: onPressed,
             ),
           ),

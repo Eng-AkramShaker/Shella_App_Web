@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
-import 'package:shella_design/features/home/domain/models/section_model.dart';
 import 'package:shella_design/features/product/widgets/category/category_item.dart';
 import 'package:shella_design/features/search_filter/domain/models/mostSearchedModel/most_searched_model.dart';
 
@@ -32,10 +30,10 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
           return Center(child: Text(sectionProvider.errorMessage));
         }
 
-      //  final sections = sectionProvider.categories;
-       final modules= sectionProvider.modules;
+        //  final sections = sectionProvider.categories;
+        final modules = sectionProvider.modules;
         //final SectionModel selectedCategory = sections[selectedIndex];
-      //  final List<SectionModel> childCategories = selectedCategory.childes;
+        //  final List<SectionModel> childCategories = selectedCategory.childes;
 
         return Directionality(
           textDirection: TextDirection.rtl,
@@ -62,16 +60,20 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               CategoryItem(
-                             //   image: cat.imageFullUrl ?? AppImages.empty,
-                             image: mod.thumbnailFullUrl ?? AppImages.empty,
-                             label: mod.moduleName ?? "name",
-                              //  label: cat.name,
+                                //   image: cat.imageFullUrl ?? AppImages.empty,
+                                image: mod.thumbnailFullUrl ?? AppImages.empty,
+                                label: mod.moduleName ?? "name",
+                                //  label: cat.name,
                               ),
                               SizedBox(height: 7),
                               Container(
                                 height: 3,
-                                width: _getTextWidth(context, mod.moduleName ?? "") * 1.3,
-                                color: selectedIndex == index ? AppColors.greenColor : Colors.transparent,
+                                width: _getTextWidth(
+                                        context, mod.moduleName ?? "") *
+                                    1.3,
+                                color: selectedIndex == index
+                                    ? AppColors.greenColor
+                                    : Colors.transparent,
                               ),
                             ],
                           ),

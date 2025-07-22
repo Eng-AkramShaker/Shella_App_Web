@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
@@ -37,13 +36,17 @@ class BottomBarWidget extends StatelessWidget {
                     children: [
                       Icon(Icons.shopping_cart, color: Colors.white, size: 20),
                       SizedBox(width: 6),
-                      Custom_Text(context, text: "أضف إلى السلة", style: font14White400W(context)),
+                      Custom_Text(context,
+                          text: "أضف إلى السلة",
+                          style: font14White400W(context)),
                     ],
                   ),
-                  Custom_Text(context, text: "|", style: font14White400W(context)),
+                  Custom_Text(context,
+                      text: "|", style: font14White400W(context)),
                   Row(
                     children: [
-                      Custom_Text(context, text: "50 ريال", style: font14White400W(context)),
+                      Custom_Text(context,
+                          text: "50 ريال", style: font14White400W(context)),
                       SizedBox(width: 5),
                       Icon(Icons.money, color: Colors.white, size: 20),
                     ],

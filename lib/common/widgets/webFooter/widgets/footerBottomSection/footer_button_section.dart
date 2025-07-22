@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,7 +19,9 @@ class FooterBottomSection extends StatelessWidget {
         children: [
           SvgPicture.asset(AppImages.cIcon),
           SizedBox(width: 5),
-          Custom_Text(context, text: 'ShellaKsa 2024', style: font10Black400W(context, size: 12)),
+          Custom_Text(context,
+              text: 'ShellaKsa 2024',
+              style: font10Black400W(context, size: 12)),
           Spacer(),
           Row(
             children: [

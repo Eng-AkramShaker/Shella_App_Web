@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/home/domain/models/banner_model.dart';
 import 'package:shella_design/features/home/domain/services/banner_service.dart';
 

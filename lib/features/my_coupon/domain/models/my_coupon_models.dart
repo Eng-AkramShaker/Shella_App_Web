@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_question_mark
+
 class MyCouponModel {
   int? id;
   String? title;
@@ -26,29 +28,29 @@ class MyCouponModel {
 
   MyCouponModel(
       {this.id,
-        this.title,
-        this.code,
-        this.startDate,
-        this.expireDate,
-        this.minPurchase,
-        this.maxDiscount,
-        this.discount,
-        this.discountType,
-        this.couponType,
-        this.limit,
-        this.status,
-        this.createdAt,
-        this.updatedAt,
-        this.data,
-        this.totalUses,
-        this.moduleId,
-        this.createdBy,
-        this.customerId,
-        this.slug,
-        this.storeId,
-        this.delegateId,
-        this.referralCommission,
-        this.store});
+      this.title,
+      this.code,
+      this.startDate,
+      this.expireDate,
+      this.minPurchase,
+      this.maxDiscount,
+      this.discount,
+      this.discountType,
+      this.couponType,
+      this.limit,
+      this.status,
+      this.createdAt,
+      this.updatedAt,
+      this.data,
+      this.totalUses,
+      this.moduleId,
+      this.createdBy,
+      this.customerId,
+      this.slug,
+      this.storeId,
+      this.delegateId,
+      this.referralCommission,
+      this.store});
 
   MyCouponModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -115,6 +117,7 @@ class Store {
   bool? gstStatus;
   String? gstCode;
   Null? logoFullUrl;
+
   Null? coverPhotoFullUrl;
   Null? metaImageFullUrl;
   List<Translations>? translations;
@@ -122,14 +125,14 @@ class Store {
 
   Store(
       {this.id,
-        this.name,
-        this.gstStatus,
-        this.gstCode,
-        this.logoFullUrl,
-        this.coverPhotoFullUrl,
-        this.metaImageFullUrl,
-        this.translations,
-        this.storage});
+      this.name,
+      this.gstStatus,
+      this.gstCode,
+      this.logoFullUrl,
+      this.coverPhotoFullUrl,
+      this.metaImageFullUrl,
+      this.translations,
+      this.storage});
 
   Store.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -184,13 +187,13 @@ class Translations {
 
   Translations(
       {this.id,
-        this.translationableType,
-        this.translationableId,
-        this.locale,
-        this.key,
-        this.value,
-        this.createdAt,
-        this.updatedAt});
+      this.translationableType,
+      this.translationableId,
+      this.locale,
+      this.key,
+      this.value,
+      this.createdAt,
+      this.updatedAt});
 
   Translations.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -228,12 +231,12 @@ class Storage {
 
   Storage(
       {this.id,
-        this.dataType,
-        this.dataId,
-        this.key,
-        this.value,
-        this.createdAt,
-        this.updatedAt});
+      this.dataType,
+      this.dataId,
+      this.key,
+      this.value,
+      this.createdAt,
+      this.updatedAt});
 
   Storage.fromJson(Map<String, dynamic> json) {
     id = json['id'];

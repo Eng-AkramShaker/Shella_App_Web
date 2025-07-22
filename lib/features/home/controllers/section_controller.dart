@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/home/domain/models/section_model.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/search_filter/domain/models/mostSearchedModel/most_searched_model.dart';

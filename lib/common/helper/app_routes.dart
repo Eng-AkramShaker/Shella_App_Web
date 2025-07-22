@@ -15,17 +15,17 @@ import 'package:shella_design/features/Auth/screens/web/otp_screen.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
 import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
 import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
-import 'package:shella_design/features/cart/screens/cart_details_screen.dart';
-import 'package:shella_design/features/cart/screens/cart_screen.dart';
-import 'package:shella_design/features/discount/screens/discount_screen.dart';
-import 'package:shella_design/features/help_and_support/screens/help_and_support_screen.dart';
-import 'package:shella_design/features/home/home/home_screen.dart';
+import 'package:shella_design/features/cart/screens/mobile/cart_details_screen.dart';
+import 'package:shella_design/features/cart/screens/mobile/cart_screen.dart';
+import 'package:shella_design/features/discount/screens/mobile/discount_screen.dart';
+import 'package:shella_design/features/help_and_support/screens/mobile/help_and_support_mobile.dart';
+import 'package:shella_design/features/home/home/mobile/home_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
+import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_one.dart';
+import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_two.dart';
 import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
-import 'package:shella_design/features/join_as_driver/screens/join_as_driver_one.dart';
-import 'package:shella_design/features/join_as_driver/screens/join_as_driver_two.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/verify_source_of_income.dart';
@@ -107,7 +107,8 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String step_one_service_screen = '/step_one_service_screen';
   static const String step_tow_service_screen = '/step_tow_service_screen';
-  static const String address_details_service_screen = '/address_details_service_screen';
+  static const String address_details_service_screen =
+      '/address_details_service_screen';
   static const String payment_screen = '/payment_screen';
   static const String payment_method_screen = '/payment_method_screen';
   static const String add_new_card_screen = '/add_new_card_screen';
@@ -132,13 +133,14 @@ class AppRoutes {
   static const String notifications = '/notifications';
   static const String searchfilter = '/searchfilter';
   static const String seveMePage = '/seveMePage';
-  static const String restaurantDetails='/restaurantDetails';
+  static const String restaurantDetails = '/restaurantDetails';
 
   static const String signup = '/signup';
   static const String forgetpassword = '/forgetpassword';
   static const String mobilelVerification = '/mobilelVerification';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
-  static const String passwordResetSuccessScreen = '/passwordResetSuccessScreen';
+  static const String passwordResetSuccessScreen =
+      '/passwordResetSuccessScreen';
   static const String succsessflycreated = '/succsessflycreated';
   static const String orderdetails = '/orderdetails';
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
@@ -160,7 +162,8 @@ class AppRoutes {
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
-  static const String bookingConfirmationSuccess = '/bookingConfirmationSuccess';
+  static const String bookingConfirmationSuccess =
+      '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
 
@@ -173,7 +176,8 @@ class AppRoutes {
   static const String carsServicesPage = '/carsServicesPage';
   static const String technicalTracking = '/technicalTracking';
   static const String reviewOfAService = '/reviewOfAService';
-  static const String myPointsTransactionsScreen = '/myPointsTransactionsScreen';
+  static const String myPointsTransactionsScreen =
+      '/myPointsTransactionsScreen';
   static const String myPointsWeb = '/myPointsWeb';
   static const String myPointsMobile = 'myPointsMobile';
 
@@ -241,7 +245,8 @@ class AppRoutes {
     ordersScreen: (context) => const OrdersPage(),
     step_one_service_screen: (context) => const Step_One_Service_Screen(),
     step_tow_service_screen: (context) => const Step_Tow_Service_Screen(),
-    address_details_service_screen: (context) => const Address_Details_Service_Screen(),
+    address_details_service_screen: (context) =>
+        const Address_Details_Service_Screen(),
     order_tracking: (context) => const OrderTracking(),
     start_tracking_order: (context) => const StartTrackingOrder(),
     orderdetails: (context) => const OrderDetails(),
@@ -256,7 +261,7 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
     walletKaidhaScreen: (context) => const WalletKaidhaScreen(),
-    helpAndSupport: (context) => const HelpAndSupportScreen(),
+    helpAndSupport: (context) => const HelpAndSupport(),
     joinAsDriverOne: (context) => JoinAsDriverOne(),
     helpAndSupportMobile: (context) => const HelpAndSupportScreen(),
     joinAsDriverTwo: (context) => const JoinAsDriverTwo(),
@@ -296,12 +301,13 @@ class AppRoutes {
 
     // My Coupon & Points
     myCouponScreen: (context) => const MyCouponScreen(),
-    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false),
+    myPointsTransactionsScreen: (context) =>
+        MyPointsTransactionsScreen(fromNotification: false),
     myPointsMobile: (context) => MyPointsScreenMobile(),
 
     //Restaurant
 
-    restaurantDetails:(context) =>  RestaurantDetails(),
+    restaurantDetails: (context) => RestaurantDetails(),
 
     // Web
     loginPage: (context) => const LoginPage(),

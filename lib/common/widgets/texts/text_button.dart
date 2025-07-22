@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_text.dart';
@@ -38,12 +37,16 @@ class TextButtonWidget extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius.r),
           color: backgroundColor,
-          border: Border.all(color: borderColor ?? Colors.transparent, width: borderWidth ?? 0)),
+          border: Border.all(
+              color: borderColor ?? Colors.transparent,
+              width: borderWidth ?? 0)),
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: verticalPadd ?? 16, horizontal: horizontalPadd ?? 16),
+        padding: EdgeInsets.symmetric(
+            vertical: verticalPadd ?? 16, horizontal: horizontalPadd ?? 16),
         child: TextButton(
           onPressed: onPressed,
-          style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
+          style:
+              ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
           child: Custom_Text(context, text: text, style: textStyle),
         ),
       ),

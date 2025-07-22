@@ -1,7 +1,6 @@
 // import 'package:flutter/material.dart';import 'package:shella_design/common/util/navigation/navigation.dart';
 // ignore_for_file: use_super_parameters, file_names
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -78,15 +77,21 @@ class CustomTextField extends StatelessWidget {
             prefixIcon: prefixIcon,
             prefixIconColor: AppColors.gryColor_5,
             labelStyle: font12Grey400W(context),
-            contentPadding: EdgeInsets.symmetric(vertical: padding ?? 20, horizontal: horizontalPadding ?? 20),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: padding ?? 20, horizontal: horizontalPadding ?? 20),
             enabledBorder: dottedBorder ?? false
                 ? OutlineInputBorder(borderSide: BorderSide.none)
                 : OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(radius != null ? radius!.r : 8.r),
-                    borderSide: BorderSide(color: borderColor ?? AppColors.bgColor, width: borderWidth ?? 1)),
+                    borderRadius:
+                        BorderRadius.circular(radius != null ? radius!.r : 8.r),
+                    borderSide: BorderSide(
+                        color: borderColor ?? AppColors.bgColor,
+                        width: borderWidth ?? 1)),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(radius?.r ?? 8.r),
-                borderSide: BorderSide(color: enableBorderColor ?? AppColors.greenColor, width: borderWidth ?? 1)),
+                borderSide: BorderSide(
+                    color: enableBorderColor ?? AppColors.greenColor,
+                    width: borderWidth ?? 1)),
             border: dottedBorder ?? false
                 ? OutlineInputBorder(borderSide: BorderSide.none)
                 : OutlineInputBorder(
