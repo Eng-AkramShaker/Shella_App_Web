@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable
+// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable, use_build_context_synchronously
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -651,7 +651,7 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   void validate_Fields_Screen_2(BuildContext context, String nationalId) async {
     //
-    // nextStage(context, isNext: true);
+    nextStage(context, isNext: true);
 
     if (jobSpecification.isEmpty || salary_day.text.isEmpty || monthlyIncome.text.isEmpty) {
       if (salary_day.text.isEmpty) {
@@ -755,7 +755,6 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     isEndDateEmpty = false;
     isMonthlyIncomeEmpty = false;
 
-    // Call notifyListeners to refresh UI if using GetX
     notifyListeners();
   }
 }
