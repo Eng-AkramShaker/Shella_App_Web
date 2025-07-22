@@ -35,6 +35,7 @@ import 'package:shella_design/features/payment/screens/add_New_card.dart';
 import 'package:shella_design/features/payment/screens/payment.dart';
 import 'package:shella_design/features/payment/screens/payment_method.dart';
 import 'package:shella_design/features/product/screens/product_details_screen.dart';
+import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
 import 'package:shella_design/features/settings/screens/addNewAdress.dart';
 import 'package:shella_design/features/settings/screens/adressDetailes.dart';
 import 'package:shella_design/features/settings/screens/profile_info.dart';
