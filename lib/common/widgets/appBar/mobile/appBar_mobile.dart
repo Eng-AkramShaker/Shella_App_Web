@@ -3,10 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 
 import '../../texts/custom_text.dart';
 
-PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, IconData titleIcon) {
+PreferredSize custom_AppBar(
+    BuildContext context, String? title, IconData icon, IconData titleIcon) {
   return PreferredSize(
     preferredSize: const Size.fromHeight(80),
     child: AppBar(
@@ -24,7 +26,8 @@ PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, 
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Custom_Text(context, text: " $title ", style: font14White600W(context)),
+                  Custom_Text(context,
+                      text: " $title ", style: font14White600W(context)),
                   const SizedBox(width: 10),
                   Icon(titleIcon, color: Colors.white, size: 22),
                 ],
@@ -37,7 +40,7 @@ PreferredSize custom_AppBar(BuildContext context, String? title, IconData icon, 
             child: IconButton(
               icon: Icon(icon, color: AppColors.wtColor, size: 26),
               onPressed: () {
-                Navigator.of(context).pop();
+                nav.back();
               },
             ),
           ),

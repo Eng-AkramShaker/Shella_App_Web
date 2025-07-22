@@ -19,7 +19,9 @@ class FooterBottomSection extends StatelessWidget {
         children: [
           SvgPicture.asset(AppImages.cIcon),
           SizedBox(width: 5),
-          Custom_Text(context, text: 'ShellaKsa 2024', style: font10Black400W(context, size: 12)),
+          Custom_Text(context,
+              text: 'ShellaKsa 2024',
+              style: font10Black400W(context, size: 12)),
           Spacer(),
           Row(
             children: [

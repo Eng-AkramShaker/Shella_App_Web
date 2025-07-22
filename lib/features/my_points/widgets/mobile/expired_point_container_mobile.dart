@@ -13,7 +13,9 @@ class ExpiredPointContainerMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.orangeColor)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.r),
+          border: Border.all(width: 1, color: AppColors.orangeColor)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(

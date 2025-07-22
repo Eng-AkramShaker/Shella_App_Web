@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
-import 'package:shella_design/common/widgets/divider/custom_divider.dart';
+import 'package:shella_design/common/widgets/divider/custom_dashed_divider.dart';
 import 'package:shella_design/features/product/widgets/images/image_circle.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -10,7 +11,6 @@ import 'package:shella_design/features/serveMe/widgets/LocationInfo.dart';
 import 'package:shella_design/features/serveMe/widgets/StoreproductCard.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ServeMeProductView extends StatefulWidget {
@@ -45,7 +45,8 @@ class _ServeMeProductViewState extends State<ServeMeProductView> {
                   LocationInfo(
                     icon: Icons.access_time,
                     title: 'ساعات العمل',
-                    content: 'السبت - الخميس: 9:00 صباحاً - 11:00 مساءً\nالجمعة: 2:00 مساءً - 11:00 مساءً',
+                    content:
+                        'السبت - الخميس: 9:00 صباحاً - 11:00 مساءً\nالجمعة: 2:00 مساءً - 11:00 مساءً',
                   ),
                   const SizedBox(height: 12),
                   LocationInfo(
@@ -80,7 +81,8 @@ class _ServeMeProductViewState extends State<ServeMeProductView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 10.h),
-                    Custom_Text(context, text: 'متجر العراب', style: font14Black600W(context)),
+                    Custom_Text(context,
+                        text: 'متجر العراب', style: font14Black600W(context)),
                     SizedBox(height: 8.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,16 +107,23 @@ class _ServeMeProductViewState extends State<ServeMeProductView> {
                       children: [
                         Column(
                           children: [
-                            Custom_Text(context, text: "قيمة التوصيل", style: font11Black600W(context)),
+                            Custom_Text(context,
+                                text: "قيمة التوصيل",
+                                style: font11Black600W(context)),
                             SizedBox(height: 8.h),
-                            Custom_Text(context, text: "25 ريال", style: font10SecondaryColor600W(context)),
+                            Custom_Text(context,
+                                text: "25 ريال",
+                                style: font10SecondaryColor600W(context)),
                           ],
                         ),
                         Column(
                           children: [
-                            Custom_Text(context, text: "المسافة", style: font11Black600W(context)),
+                            Custom_Text(context,
+                                text: "المسافة",
+                                style: font11Black600W(context)),
                             SizedBox(height: 8.h),
-                            Custom_Text(context, text: "15 كم", style: font10Grey600W(context)),
+                            Custom_Text(context,
+                                text: "15 كم", style: font10Grey600W(context)),
                           ],
                         ),
                       ],
@@ -136,7 +145,8 @@ class _ServeMeProductViewState extends State<ServeMeProductView> {
                   child: Container(
                     width: 10.w,
                     height: 10.h,
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.greenColor),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.greenColor),
                   ),
                 ),
               ],
@@ -158,7 +168,8 @@ Widget buildHeaderSection(BuildContext context) {
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage(AppImages.fRAME31), fit: BoxFit.fill),
+              image: DecorationImage(
+                  image: AssetImage(AppImages.fRAME31), fit: BoxFit.fill),
             ),
           ),
         ),
@@ -185,13 +196,14 @@ Widget buildHeaderSection(BuildContext context) {
                   IconButtonCircle(
                       icon: Icons.share,
                       onPressed: () {
-                        Share.share('url', subject: 'Sharing Text Field Content');
+                        Share.share('url',
+                            subject: 'Sharing Text Field Content');
                       }),
                   SizedBox(width: 12.w),
                   IconButtonCircle(
                       icon: Icons.favorite_border,
                       onPressed: () {
-                        popRoute(context);
+                        nav.back();
                       }),
                 ],
               ),
@@ -223,7 +235,13 @@ Widget buildSectionTitle(context, {required title, String? lapel}) {
 }
 
 Widget _buildCategoryFilters() {
-  final List<String> categories = ['الكل', 'أدوات', 'معدات', 'صحية', 'كهربائية'];
+  final List<String> categories = [
+    'الكل',
+    'أدوات',
+    'معدات',
+    'صحية',
+    'كهربائية'
+  ];
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: categories.map((cat) {

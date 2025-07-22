@@ -32,7 +32,8 @@ TextButton Custom_Text_Button(
     child: Stack(
       clipBehavior: Clip.none,
       children: [
-        Custom_Text(context, text: text ?? '', style: text_style ?? font14Black500W(context)),
+        Custom_Text(context,
+            text: text ?? '', style: text_style ?? font14Black500W(context)),
         if (underline)
           Positioned(
             left: 0,

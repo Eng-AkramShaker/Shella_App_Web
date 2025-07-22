@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/buttons/icon_button_circle.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -7,7 +9,6 @@ import 'package:shella_design/features/orders_tracking/order_tracking/controller
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
@@ -69,7 +70,7 @@ class OrderDetailsWidget extends StatelessWidget {
           height: 30,
           child: InkWell(
             onTap: () {
-              pushNewScreen(context, orderTrackingController.storeRouts);
+              nav.push(orderTrackingController.storeRouts);
             },
             child: Row(
               children: [

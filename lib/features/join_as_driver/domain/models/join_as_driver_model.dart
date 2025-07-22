@@ -1,4 +1,5 @@
 class DeliveryManBody {
+  final String licenseImagePath;
   final String fName;
   final String lName;
   final String phone;
@@ -6,12 +7,15 @@ class DeliveryManBody {
   final String password;
   final String identityType;
   final String identityNumber;
- // final int earning;
-  final int zoneId;
-  //final int vehicleId;
-  final String imagePath; // path to photo on phone
+  final String earning;
+  final String zoneId;
+  final String vehicleId;
+  final String imagePathProfile; // path to photo on phone
 
-  DeliveryManBody({ 
+  DeliveryManBody({
+    required this.licenseImagePath,
+    required this.vehicleId,
+    required this.earning,
     required this.fName,
     required this.lName,
     required this.phone,
@@ -22,7 +26,6 @@ class DeliveryManBody {
     //required this.earning,
     required this.zoneId,
     //required this.vehicleId,
-    required this.imagePath,
+    required this.imagePathProfile,
   });
 }
-

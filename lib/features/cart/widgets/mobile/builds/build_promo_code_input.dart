@@ -35,8 +35,10 @@ Widget buildPromoCodeInput(BuildContext context) {
           ),
           child: TextButton(
             onPressed: () {},
-            style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 20)),
-            child: Custom_Text(context, text: 'إدخال', style: font14White400W(context)),
+            style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 20)),
+            child: Custom_Text(context,
+                text: 'إدخال', style: font14White400W(context)),
           ),
         ),
         const SizedBox(width: 10),

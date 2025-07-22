@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shella_design/common/helper/grid_view_fix_height.dart';
@@ -14,64 +15,25 @@ class OffersWidgetsWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Offers> items = [
-      Offers(
-          title: 'خصم 10.00 ر.س على بيغ تيستي',
-          image: 'assets/images/im4.png',
-          offer: 'خصم  10.00 ر.س',
-          point: '600 نقطة'),
-      Offers(
-          title: 'خصم 05.00 ر.س على برغر كينغ',
-          image: 'assets/images/im1.png',
-          offer: 'خصم  05.00 ر.س',
-          point: '300 نقطة'),
-      Offers(
-          title: 'خصم 15.00 ر.س على حلي الورد',
-          image: 'assets/images/im2.png',
-          offer: 'خصم  15.00 ر.س',
-          point: '800 نقطة'),
-      Offers(
-          title: 'خصم 15.00 ر.س على حلي الورد',
-          image: 'assets/images/im3.png',
-          offer: 'خصم  15.00 ر.س',
-          point: '800 نقطة'),
-      Offers(
-          title: 'خصم 10.00 ر.س على بيغ تيستي',
-          image: 'assets/images/im4.png',
-          offer: 'خصم  10.00 ر.س',
-          point: '600 نقطة'),
-      Offers(
-          title: 'خصم 05.00 ر.س على برغر كينغ',
-          image: 'assets/images/im1.png',
-          offer: 'خصم  05.00 ر.س',
-          point: '300 نقطة'),
-      Offers(
-          title: 'خصم 15.00 ر.س على حلي الورد',
-          image: 'assets/images/im2.png',
-          offer: 'خصم  15.00 ر.س',
-          point: '800 نقطة'),
-      Offers(
-          title: 'خصم 15.00 ر.س على حلي الورد',
-          image: 'assets/images/im3.png',
-          offer: 'خصم  15.00 ر.س',
-          point: '800 نقطة'),
+      Offers(title: 'خصم 10.00 ر.س على بيغ تيستي', image: 'assets/images/im4.png', offer: 'خصم  10.00 ر.س', point: '600 نقطة'),
+      Offers(title: 'خصم 05.00 ر.س على برغر كينغ', image: 'assets/images/im1.png', offer: 'خصم  05.00 ر.س', point: '300 نقطة'),
+      Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im2.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+      Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im3.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+      Offers(title: 'خصم 10.00 ر.س على بيغ تيستي', image: 'assets/images/im4.png', offer: 'خصم  10.00 ر.س', point: '600 نقطة'),
+      Offers(title: 'خصم 05.00 ر.س على برغر كينغ', image: 'assets/images/im1.png', offer: 'خصم  05.00 ر.س', point: '300 نقطة'),
+      Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im2.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
+      Offers(title: 'خصم 15.00 ر.س على حلي الورد', image: 'assets/images/im3.png', offer: 'خصم  15.00 ر.س', point: '800 نقطة'),
     ];
     return Padding(
-      padding:
-          ResponsiveLayout.isWeb() ? EdgeInsets.all(32.0.w) : EdgeInsets.zero,
+      padding: ResponsiveLayout.isWeb() ? EdgeInsets.all(32.0.w) : EdgeInsets.zero,
       child: GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-            crossAxisCount: ResponsiveLayout.isWeb() &&
-                    !ResponsiveLayout.isMobile(context) &&
-                    !ResponsiveLayout.isTab(context)
+            crossAxisCount: ResponsiveLayout.isWeb() && !ResponsiveLayout.isMobile(context) && !ResponsiveLayout.isTab(context)
                 ? 2
                 : 2, // Number of columns in the grid
-            crossAxisSpacing: ResponsiveLayout.isWeb()
-                ? 50.h
-                : 15.0.h, // Spacing between columns
-            mainAxisSpacing: ResponsiveLayout.isWeb()
-                ? 50.h
-                : 15.0.w, // Spacing between rows
+            crossAxisSpacing: ResponsiveLayout.isWeb() ? 50.h : 15.0.h, // Spacing between columns
+            mainAxisSpacing: ResponsiveLayout.isWeb() ? 50.h : 15.0.w, // Spacing between rows
             height: ResponsiveLayout.isWeb() ? 366.h : 160.h),
         physics: NeverScrollableScrollPhysics(),
         itemCount: items.length, // Total number of products
@@ -102,8 +64,7 @@ class OffersGrid extends StatelessWidget {
             discount: true,
             widget: Custom_Text(
               context,
-              text:
-                  'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
+              text: 'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
               style: font10Grey400W(context),
             ),
             subTitle: '600 نقطة',
@@ -116,9 +77,7 @@ class OffersGrid extends StatelessWidget {
                       subTitle: 'لقد حصلت على 15.00 ر.س خصم',
                       widget: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(
-                                width: 1, color: AppColors.orangeColor)),
+                            borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.orangeColor)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -130,8 +89,7 @@ class OffersGrid extends StatelessWidget {
                               Expanded(
                                 child: Custom_Text(
                                   context,
-                                  text:
-                                      'لا تنسى استعمال القسيمة عند مرحلة الدفع',
+                                  text: 'لا تنسى استعمال القسيمة عند مرحلة الدفع',
                                   style: font10Grey400W(context),
                                   maxLines: 1,
                                   textOverFlow: TextOverflow.ellipsis,
@@ -150,13 +108,10 @@ class OffersGrid extends StatelessWidget {
       },
       child: Container(
         clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6.r),
-            border: Border.all(color: AppColors.gryColor_3, width: 2.0)),
+        decoration:
+            BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: AppColors.gryColor_3, width: 2.0)),
         child: Padding(
-          padding: ResponsiveLayout.isWeb()
-              ? EdgeInsets.all(16.0.w)
-              : EdgeInsets.zero,
+          padding: ResponsiveLayout.isWeb() ? EdgeInsets.all(16.0.w) : EdgeInsets.zero,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -179,9 +134,7 @@ class OffersGrid extends StatelessWidget {
                     padding: const EdgeInsets.all(5.0),
                     child: Container(
                       width: ResponsiveLayout.isWeb() ? 140.h : 70.w,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: AppColors.orangeColor),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), color: AppColors.orangeColor),
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Row(
@@ -190,9 +143,7 @@ class OffersGrid extends StatelessWidget {
                               'assets/images/gift.svg',
                             ),
                             SizedBox(width: 5.w),
-                            Custom_Text(context,
-                                text: offer.offer,
-                                style: font6WhiteColor400W(context))
+                            Custom_Text(context, text: offer.offer, style: font6WhiteColor400W(context))
                           ],
                         ),
                       ),
@@ -232,9 +183,5 @@ class Offers {
   String title;
   String point;
 
-  Offers(
-      {required this.image,
-      required this.title,
-      required this.offer,
-      required this.point});
+  Offers({required this.image, required this.title, required this.offer, required this.point});
 }

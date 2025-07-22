@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/features/orders/widgets/step_service/build_delivery_step_two.dart';
@@ -8,13 +9,13 @@ import 'package:shella_design/features/orders/widgets/step_service/build_image_s
 import 'package:shella_design/features/orders/widgets/step_service/build_service.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class Step_Tow_Service_Screen extends StatefulWidget {
   const Step_Tow_Service_Screen({super.key});
 
   @override
-  State<Step_Tow_Service_Screen> createState() => _Step_Tow_Service_ScreenState();
+  State<Step_Tow_Service_Screen> createState() =>
+      _Step_Tow_Service_ScreenState();
 }
 
 class _Step_Tow_Service_ScreenState extends State<Step_Tow_Service_Screen> {
@@ -28,9 +29,8 @@ class _Step_Tow_Service_ScreenState extends State<Step_Tow_Service_Screen> {
         title: "نقل بواسطة الدراجة",
         onPressed: () {
           //
-          popRoute(
-            context,
-          );
+
+          nav.back();
         },
       ),
       body: SingleChildScrollView(

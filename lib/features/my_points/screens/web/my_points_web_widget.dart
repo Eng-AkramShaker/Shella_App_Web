@@ -18,7 +18,7 @@ class _MyPointsWebWidgetState extends State<MyPointsWebWidget> {
     final availableWidth = MediaQuery.of(context).size.width;
     final double maxPanelWidth = 750.w;
     final double panelWidth =
-    availableWidth >= maxPanelWidth ? maxPanelWidth : availableWidth * 0.7;
+        availableWidth >= maxPanelWidth ? maxPanelWidth : availableWidth * 0.7;
 
     return Center(
       child: Container(
@@ -54,5 +54,3 @@ class _MyPointsWebWidgetState extends State<MyPointsWebWidget> {
     );
   }
 }
-
-

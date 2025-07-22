@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:shella_design/common/models/response_model.dart';
 import 'package:shella_design/common/widgets/print/custom_print.dart';
 import 'package:shella_design/features/orders/domain/models/orders_model.dart';
 import 'package:shella_design/features/orders/domain/repositories/orders_repository_interface.dart';

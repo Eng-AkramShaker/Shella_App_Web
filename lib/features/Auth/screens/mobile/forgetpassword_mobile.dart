@@ -1,17 +1,18 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/validate_check.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
-import 'package:shella_design/common/widgets/custom_snacbar.dart';
+import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/forget_password_button_widget.dart';
 
 class Forgetpassword extends StatefulWidget {
   const Forgetpassword({super.key});
@@ -24,6 +25,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late TextEditingController phone;
   String countrycode = '';
+  final authController = AuthController;
 
   @override
   void initState() {
@@ -53,16 +55,16 @@ class _ForgetpasswordState extends State<Forgetpassword> {
         "\x1B[32mNumber with country code: $numberWithCountryCode\x1B[0m");
 
     if (number.isEmpty) {
-      showCustomSnackBar('Invalid phone number', context);
+      showCustomSnackBar('Invalid phone number', isError: true);
       return;
     }
     authController.setphone = numberWithCountryCode;
     authController.forgetPassword(numberWithCountryCode).then(
       (value) {
         if (value.isSuccess) {
-          pushNewScreen(context, AppRoutes.mobilelVerification);
+          nav.push(AppRoutes.mobilelVerification);
         } else {
-          showCustomSnackBar(value.message, context);
+          showCustomSnackBar(value.message, isError: false);
         }
       },
     );
@@ -73,12 +75,7 @@ class _ForgetpasswordState extends State<Forgetpassword> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back, size: 30, color: Colors.black),
-        ),
-      ),
+      appBar: customAppBar(context),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -105,14 +102,8 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                 SizedBox(height: size.height / 10),
                 Consumer<AuthController>(
                   builder: (context, authController, _) {
-                    return ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.greenColor,
-                        minimumSize: Size(60.w, 60.h),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.r),
-                        ),
-                      ),
+                    return ForgetPasswordActionButton(
+                      authController: authController,
                       onPressed:
                           authController.verificationstate == AuthState.loading
                               ? null
@@ -134,6 +125,35 @@ class _ForgetpasswordState extends State<Forgetpassword> {
                                   size: 30.r,
                                 ),
                     );
+                    // return ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: AppColors.greenColor,
+                    //     minimumSize: Size(60.w, 60.h),
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(15.r),
+                    //     ),
+                    //   ),
+                    //   onPressed:
+                    //       authController.verificationstate == AuthState.loading
+                    //           ? null
+                    //           : () => _onPressedForgetPass(
+                    //               countrycode, authController, context),
+                    //   child:
+                    //       authController.verificationstate == AuthState.loading
+                    //           ? SizedBox(
+                    //               width: 24.w,
+                    //               height: 24.h,
+                    //               child: CircularProgressIndicator(
+                    //                 color: Colors.white,
+                    //                 strokeWidth: 3,
+                    //               ),
+                    //             )
+                    //           : Icon(
+                    //               Icons.arrow_forward,
+                    //               color: Colors.white,
+                    //               size: 30.r,
+                    //             ),
+                    // );
                   },
                 ),
               ],

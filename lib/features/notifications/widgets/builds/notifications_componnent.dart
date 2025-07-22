@@ -1,8 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/widgets/loading/loading.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/loading.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
 import 'package:shella_design/features/notifications/widgets/notification_card.dart';

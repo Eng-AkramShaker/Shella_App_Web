@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/gap/height/height.dart';
@@ -17,20 +18,16 @@ class BuildFilterResultWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.gryColor_3),
-        borderRadius: BorderRadius.circular(5)
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 15,vertical: 15),
+      decoration: BoxDecoration(border: Border.all(color: AppColors.gryColor_3), borderRadius: BorderRadius.circular(5)),
+      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: SizedBox(
         width: width(context, 0.2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Custom_Text(context, text: 'تصفية النتائج',style: font11Black500W(context,size: 14)),
+            Custom_Text(context, text: 'تصفية النتائج', style: font11Black500W(context, size: 14)),
             PriceRangeWeb(),
-            if(SearchFilterController.get(context).allCategoriesModel!=null)
-            FilterCategoryWeb(),
+            if (SearchFilterController.get(context).allCategoriesModel != null) FilterCategoryWeb(),
             FilterRatingWeb(),
             FilterLocationWeb()
           ],

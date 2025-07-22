@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
@@ -10,12 +11,10 @@ import 'package:shella_design/features/payment/widgets/bottomBar_pyment.dart';
 import 'package:shella_design/features/payment/widgets/paymentOption.dart';
 import 'package:shella_design/features/payment/widgets/paymentSummaryRow.dart';
 import 'package:shella_design/features/payment/widgets/paymentSwitch.dart';
-import 'package:shella_design/features/schedule_order/screen/schedule_order.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 // تعريف Provider (إذا كان هنالك حاجة لإدارة الحالة)
@@ -40,7 +39,7 @@ class MobilePayment extends StatelessWidget {
           context,
           title: 'تفاصيل الدفع',
           img: AppImages.icon_v,
-          onPressed: () => popRoute(context),
+          onPressed: () => nav.back(),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -68,7 +67,7 @@ class MobilePayment extends StatelessWidget {
                   style: font11White400W(context),
                   onPressed: () {
                     // استخدم pushNewScreen هنا
-                    pushNewScreen(context, AppRoutes.payment_method_screen);
+                    nav.push(AppRoutes.payment_method_screen);
                   },
                 ),
                 paymentSwitch(),
@@ -137,7 +136,8 @@ class MobilePayment extends StatelessWidget {
                               context: context,
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
-                              builder: (context) => const ScheduleOrderBottomSheet(),
+                              builder: (context) =>
+                                  const ScheduleOrderBottomSheet(),
                             );
                           },
                         ),
@@ -151,7 +151,8 @@ class MobilePayment extends StatelessWidget {
 
                 Custom_Text(
                   context,
-                  text: 'بتنفيذ طلبك فإنك توافق على الشروط والأحكام . يشمل 15% قيمة الضريبة',
+                  text:
+                      'بتنفيذ طلبك فإنك توافق على الشروط والأحكام . يشمل 15% قيمة الضريبة',
                   style: font10Black600W(context),
                 ),
                 SizedBox(height: 16.h),

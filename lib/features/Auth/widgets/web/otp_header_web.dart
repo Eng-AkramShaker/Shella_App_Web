@@ -11,7 +11,8 @@ class OtpHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: onBack, icon: SvgIcon(iconTitle: AppIcons.backLogin)),
+        IconButton(
+            onPressed: onBack, icon: SvgIcon(iconTitle: AppIcons.backLogin)),
         const Spacer(),
         Text(
           'إدخال رمز التأكيد',

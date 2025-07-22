@@ -71,5 +71,4 @@ class _SuperScreenState extends State<SuperScreen> {
       ),
     );
   }
-
 }

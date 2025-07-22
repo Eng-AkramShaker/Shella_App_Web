@@ -13,6 +13,7 @@ class DiscountService implements DiscountServiceInterface {
       // جلب البيانات من الريبو
       final data = await discountRepositoryInterface.fetchDiscountedProducts();
 
+      // ignore: unnecessary_cast
       return (data as List).map<DiscountProduct>((json) {
         return DiscountProduct.fromJson(json);
       }).toList();

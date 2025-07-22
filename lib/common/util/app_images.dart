@@ -39,8 +39,7 @@ class AppImages {
   static const String icon_card = 'assets/icons/card.png';
 
   // ======================== Images ========================
-  static const String individualsService =
-      'assets/images/IndividualsService.png';
+  static const String individualsService = 'assets/images/IndividualsService.png';
   static const String fRAME31 = 'assets/images/FRAME (3) 1.png';
   static const String Plumbingservices = 'assets/images/Plumbingservices.png';
   static const String res_4 = 'assets/images/4.png';
@@ -107,6 +106,9 @@ class AppImages {
   static const String test = 'assets/images/105.png';
   static const String customerservice = 'assets/images/106.png';
   static const String discount = 'assets/images/107.png';
+    static const String discount2 = 'assets/images/discount.png';
+    static const String addIcon= 'assets/images/addIcon.png';
+
   static const String order2 = 'assets/images/100.png';
   static const String mark = 'assets/images/101.png';
   static const String success = 'assets/images/109.png';
@@ -124,14 +126,16 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
+    static const String burger = 'assets/images/im1.png';
+        static const String pizza = 'assets/images/im4.png';
+
+
 
   //
   static const String logo = 'assets/images/logo.png';
   static const String forgetpassword = 'assets/images/6430775 1.png';
-  static const String comfirempassord =
-      'assets/images/create-new-password-isolated-cartoon-vector-illustrations-2XXWJ11 1.png';
-  static const String comfirmpasswordchanged =
-      'assets/images/Illustration Success.png';
+  static const String comfirempassord = 'assets/images/create-new-password-isolated-cartoon-vector-illustrations-2XXWJ11 1.png';
+  static const String comfirmpasswordchanged = 'assets/images/Illustration Success.png';
   static const String blureimage = 'assets/images/Frame 160.png';
   static const String correctsign = 'assets/images/111.png';
   static const String ramadan = 'assets/images/112.png';
@@ -140,6 +144,8 @@ class AppImages {
   static const String alfaris = 'assets/images/130.png';
   static const String avatar = 'assets/images/avatar.png';
   static const String map2 = 'assets/images/map2.png';
+  static const String storeOffer= 'assets/images/storeOffer.png';
+  static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';
@@ -158,6 +164,11 @@ class AppImages {
   static const String wallet = 'assets/svg/wallet.svg';
   static const String support = 'assets/svg/support.svg';
   static const String profileCoupon = 'assets/svg/coupon.svg';
+  static const String percent='assets/svg/percent.svg';
+    static const String sale='assets/svg/sale.svg';
+      static const String done='assets/svg/done.svg';
+
+
 
 //
 }

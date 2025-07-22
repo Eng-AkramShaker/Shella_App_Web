@@ -23,7 +23,7 @@ import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositiory/join_as_driver_repositories.dart';
 import 'package:shella_design/features/join_as_driver/domain/services/joinAsDriverServices/join_as_driver_services.dart';
-import 'package:shella_design/features/kaidha_form/controller/kaidha_form_controller.dart';
+import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/my_coupon/controllers/my_coupon_controller.dart';
 import 'package:shella_design/features/my_coupon/domain/repositories/myCouponRepository/my_coupon_repositories.dart';
 import 'package:shella_design/features/my_coupon/domain/services/myCouponService/my_coupon_services.dart';
@@ -48,7 +48,6 @@ import 'package:shella_design/features/search_filter/controller/search_filter_co
 import 'package:shella_design/features/serveMe/controllers/serve_me_controller.dart';
 import 'package:shella_design/features/splash/controllers/splash_controller.dart';
 import 'package:shella_design/features/splash/domain/services/splash_service.dart';
-
 import '../../features/profile_detailes/controllers/profile_detailes_controller.dart';
 import '../../features/profile_detailes/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import '../../features/profile_detailes/domain/services/profileDetailsService/profile_details_service.dart';
@@ -57,24 +56,18 @@ List<SingleChildWidget> appProviders({
   required String appBaseUrl,
   required SharedPreferences sharedPreferences,
 }) {
-  //
+  // Repository   & Service  ================================================================================
 
-  final apiClient =
-      ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
-  // apiClient.setModuleId(3);
-  // === Repositories & Services ===
-  final authRepo =
-      AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
+  final apiClient = ApiClient(appBaseUrl: appBaseUrl, sharedPreferences: sharedPreferences);
+
+  final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
   final authService = AuthService(authRepositoryInterface: authRepo);
+
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
-  final ordersRepo = OrdersRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
+
+  final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
-  final notificationRepo = NotificationRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
-  final notificationService =
-      NotificationService(notificationRepositoryInterface: notificationRepo);
 
   final cartRepo = CartRepository(apiClient: apiClient);
   final cartService = CartService(cartRepository: cartRepo);
@@ -82,88 +75,70 @@ List<SingleChildWidget> appProviders({
   // ====================================================================================================================================
 
   return [
-    // === Core ===
+    //        Provider  ======================================================================================
 
     Provider<ApiClient>.value(value: apiClient),
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
 
-    // === Controllers ===
-    ChangeNotifierProvider(
-        create: (_) => SplashController(SplashService())..loadConfig()),
-    ChangeNotifierProvider(
-        create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider(
-        create: (_) =>
-            CustomerController(service: customerService)..fetchCustomerData()),
-    ChangeNotifierProvider(
-      create: (context) => ProfileController(
-        profileDetailsService: ProfileDetailsService(
-          profileRepository: ProfileRepository(),
-        ),
-      ),
-    ),
+    ChangeNotifierProvider(create: (_) => SplashController(SplashService())..loadConfig()),
+    ChangeNotifierProvider(create: (_) => AuthController(authServiceInterface: authService)),
+    ChangeNotifierProvider(create: (_) => CustomerController(service: customerService)..fetchCustomerData()),
 
-    // === Home ===
-    ChangeNotifierProvider(
-        create: (_) => BannerProvider(BannerService())..loadBanners()),
-    ChangeNotifierProvider(
-        create: (_) => SectionProvider(SectionService())..fetchCategories()),
-    ChangeNotifierProvider(
-        create: (_) => StoreProvider(StoreService())..fetchStores()),
+    /// ✅ تم إضافة ملفات البروفايل هنا
+    Provider<ProfileRepository>.value(value: profileRepo),
+    Provider<ProfileDetailsService>.value(value: profileService),
+    ChangeNotifierProvider(create: (_) => ProfileController(profileDetailsService: profileService)),
+
+    // Home
+    ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
+    ChangeNotifierProvider(create: (_) => SectionProvider(SectionService())..fetchCategories()..fetchModules()),
+    ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
 
-    // === Discount ===
-
-    ChangeNotifierProvider(
-        create: (_) => DiscountController(
-            service: DiscountService(
-                discountRepositoryInterface: DiscountRepository()))),
     // === Cart ===
     ChangeNotifierProvider(
       create: (_) => CartController(cartService: cartService),
     ),
 
-    // === Join as Driver ===
 
+    // Discount
     ChangeNotifierProvider(
-        create: (_) => DriverRegisterController(
-            deliveryManService: DeliveryManService(DeliveryManRepository()))),
+        create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository()))),
 
-    // === Orders ===
+    // Join as Driver
+    ChangeNotifierProvider(create: (_) => DriverRegisterController(deliveryManService: DeliveryManService(DeliveryManRepository()))),
 
+    // Orders
     ChangeNotifierProvider(
       create: (_) => OrdersController(ordersServiceInterface: ordersService)
         ..getHistoryOrders()
         ..getrunningOrders()
         ..getScheduleOrders(),
     ),
+
     ChangeNotifierProvider(create: (_) => OrderDetailsConroller()),
     ChangeNotifierProvider(create: (_) => OrderTrackingController()),
     ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
 
-    // === Notifications ===
-    ChangeNotifierProvider(
-        create: (_) => NotificationsController(
-            notificationServiceInterface: notificationService)),
+    // Notifications
+    ChangeNotifierProvider(create: (_) => NotificationsController(notificationServiceInterface: notificationService)),
 
-    // === My Coupon ===
+    // My Coupon
     ChangeNotifierProvider(
       create: (_) => MyCouponController(
-        myCouponServiceInterface:
-            MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()),
+        myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()),
       )..getMyCoupon(),
     ),
 
-    // === My Points ===
+    // My Points
     ChangeNotifierProvider(
-      create: (_) => LoyaltyProvider(
-          LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
+      create: (_) => LoyaltyProvider(LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
         ..loadProfile()
         ..loadCoupons(),
     ),
 
-    // === Others ===
+    // Others
     ChangeNotifierProvider(create: (_) => KaidhaFormController()),
     ChangeNotifierProvider(create: (_) => ServeMeController()),
     ChangeNotifierProvider(create: (_) => SearchFilterController()),

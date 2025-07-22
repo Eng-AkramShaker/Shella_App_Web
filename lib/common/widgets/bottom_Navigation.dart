@@ -1,8 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api, unused_import
+// ignore_for_file: library_private_types_in_public_api, unused_import, library_prefixes
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/features/favorite/screens/favoritePage.dart';
-import 'package:shella_design/features/cart/screens/cart_screen.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/features/favorite/screens/mobile/favoritePage.dart';
+import 'package:shella_design/features/cart/screens/mobile/cart_screen.dart';
 import 'package:shella_design/features/home/hyper/screens/hyper_screen.dart';
 import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
@@ -13,8 +14,6 @@ import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/features/profile_detailes/screens/mobile/profile_screen/profile_detailes.dart';
 import 'package:shella_design/features/profile_detailes/screens/mobile/profile_screen/profile_info.dart';
 import '../helper/app_routes.dart';
-import '../util/app_navigators.dart';
-import '../util/app_navigators.dart' as NavigationHelper;
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -30,7 +29,7 @@ class _MainLayoutState extends State<MainLayout> {
     // Super_Screen(),
     // Hyper_Screen(),
     // ShopsScreen(),
-    Home_Screen(),
+    Users_Home_Screen(),
     MobileOrders_Screen(),
     FavoritePage(),
     Cart_Screen(),
@@ -51,8 +50,7 @@ class _MainLayoutState extends State<MainLayout> {
               onDestinationSelected: (index) {
                 setState(() {
                   if (index == 4) {
-                    NavigationHelper.pushNewScreen(
-                        context, AppRoutes.accountdetails);
+                    nav.push(AppRoutes.accountdetails);
                   } else {
                     _selectedIndex = index;
                   }

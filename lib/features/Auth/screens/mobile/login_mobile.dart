@@ -1,19 +1,21 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/green_loading_circle.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/phone_number/custom_phonenumber.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/login_button_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/remember_me_row_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/sign_in_as_guest_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/sign_up_button_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/text_divider_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/login_button_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/remember_me_row_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/sign_in_as_guest_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/sign_up_button_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/text_divider_mobile.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/sizes.dart';
 import '../../controllers/auth_controller.dart';
 
@@ -53,26 +55,21 @@ class _Login_mobileState extends State<Login_mobile> {
                 builder: (context, controller, _) {
                   // Listen to the controller's state to show loading or errors
                   if (controller.state == AuthState.loading) {
-                    return Center(
-                        child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ));
+                    return GreenLoadingCircle();
                   }
                   if (controller.state == AuthState.error) {
                     // Show an error message to the user
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text(
-                                controller.errorMessage ?? 'Login Failed')),
-                      );
+                      showCustomSnackBar(
+                          controller.errorMessage ?? 'Login Failed',
+                          isError: true);
                     });
                   }
 
                   if (controller.state == AuthState.success) {
                     // Navigate to the main layout after successful login
                     WidgetsBinding.instance.addPostFrameCallback((_) {
-                      pushAndRemoveUntil(context, AppRoutes.mainLayout);
+                      nav.pushAndRemoveUnti(AppRoutes.mainLayout);
                     });
                     return SizedBox.shrink(); // Don't show anything further
                   }

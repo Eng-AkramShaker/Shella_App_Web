@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart' as NavigationHelper;
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/my_points/controllers/my_points_controller.dart';
@@ -15,35 +15,36 @@ class PointsAndCouponAndValidityMobile extends StatefulWidget {
   const PointsAndCouponAndValidityMobile({super.key});
 
   @override
-  _PointsAndCouponAndValidityMobileState createState() => _PointsAndCouponAndValidityMobileState();
+  _PointsAndCouponAndValidityMobileState createState() =>
+      _PointsAndCouponAndValidityMobileState();
 }
 
-class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndValidityMobile> {
+class _PointsAndCouponAndValidityMobileState
+    extends State<PointsAndCouponAndValidityMobile> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     // Listen for error changes
-   // final profileProvider = context.watch<ProfileProvider>();
+    // final profileProvider = context.watch<ProfileProvider>();
     final loyaltyProvider = context.watch<LoyaltyProvider>();
-    if ( loyaltyProvider.error != null) {
+    if (loyaltyProvider.error != null) {
       // Schedule showing the SnackBar after build
       WidgetsBinding.instance.addPostFrameCallback((_) {
-         Widget _buildErrorText() {
-  if (loyaltyProvider.error != null) {
-    return Text('حصل خطأ أثناء تحميل القسائم والنقاط');
-  }
-  return Text('حصل خطأ ما');
-}
+        Widget buildErrorText() {
+          if (loyaltyProvider.error != null) {
+            return Text('حصل خطأ أثناء تحميل القسائم والنقاط');
+          }
+          return Text('حصل خطأ ما');
+        }
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: _buildErrorText(),
-
+            content: buildErrorText(),
             backgroundColor: Colors.red,
           ),
         );
         // here I'm clearing the error so it doesn’t keep showing
-       // profileProvider.clearError();
+        // profileProvider.clearError();
         loyaltyProvider.clearError();
       });
     }
@@ -51,7 +52,7 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
 
   @override
   Widget build(BuildContext context) {
-   // final profileProvider = context.watch<ProfileProvider>();
+    // final profileProvider = context.watch<ProfileProvider>();
     final loyaltyProvider = context.watch<LoyaltyProvider>();
     return Column(
       children: [
@@ -59,7 +60,9 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
           children: [
             _buildPointsContainer(context, loyaltyProvider),
             SizedBox(width: 50.w),
-             CopounContainerMobile(provider: loyaltyProvider,),
+            CopounContainerMobile(
+              provider: loyaltyProvider,
+            ),
           ],
         ),
         SizedBox(height: 15.h),
@@ -75,8 +78,8 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
     // because didChangeDependencies will have shown the SnackBar.
     return Expanded(
       child: InkWell(
-        onTap: (){
-          NavigationHelper.pushNewScreen(context,AppRoutes.myPointsTransactionsScreen);
+        onTap: () {
+          nav.push(AppRoutes.myPointsTransactionsScreen);
         },
         child: Container(
           height: 45.h,
@@ -103,7 +106,8 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
                     Custom_Text(
                       context,
                       text: 'عرض السجل',
-                      style: font8Black400W(context).copyWith(color: const Color(0xFF868986)),
+                      style: font8Black400W(context)
+                          .copyWith(color: const Color(0xFF868986)),
                     ),
                   ],
                 ),
@@ -115,6 +119,8 @@ class _PointsAndCouponAndValidityMobileState extends State<PointsAndCouponAndVal
     );
   }
 
-  Widget _loadingIndicator() => const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,));
-
+  Widget _loadingIndicator() => const Center(
+          child: CircularProgressIndicator(
+        color: AppColors.primaryColor,
+      ));
 }

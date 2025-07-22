@@ -32,14 +32,20 @@ Widget custom_Button(
           backgroundColor: buttoncolor ?? AppColors.greenColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: bordersidecolor ?? AppColors.greenColor, width: borderwidth ?? 2),
+            side: BorderSide(
+                color: bordersidecolor ?? AppColors.greenColor,
+                width: borderwidth ?? 2),
           ),
         ),
         onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Custom_Text(context, text: title, style: style, color: textcolor ?? AppColors.wtColor, size: fontSize ?? size_14(context)),
+            Custom_Text(context,
+                text: title,
+                style: style,
+                color: textcolor ?? AppColors.wtColor,
+                size: fontSize ?? size_14(context)),
             isIcon ? SizedBox(width: 10) : SizedBox.shrink(),
             isIcon
                 ? Icon(

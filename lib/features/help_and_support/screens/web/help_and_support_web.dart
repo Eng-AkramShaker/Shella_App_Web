@@ -4,9 +4,9 @@ import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../common/util/app_colors.dart';
 import '../../../../common/util/app_images.dart';
 import '../../../../common/widgets/images/custom_Images.dart';
-import '../../widgets/address_container.dart';
-import '../../widgets/contact_us_container.dart';
-import '../../widgets/email_us_container.dart';
+import '../../widgets/mobile/address_container.dart';
+import '../../widgets/mobile/contact_us_container.dart';
+import '../../widgets/mobile/email_us_container.dart';
 
 class HelpAndSupport extends StatelessWidget {
   const HelpAndSupport({super.key});
@@ -14,7 +14,8 @@ class HelpAndSupport extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width(context, 1)>600?width(context, 0.7):width(context, 0.9),
+      width:
+          width(context, 1) > 600 ? width(context, 0.7) : width(context, 0.9),
       child: Card(
         color: AppColors.backgroundColor,
         shape: RoundedRectangleBorder(
@@ -31,15 +32,19 @@ class HelpAndSupport extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               custom_Images_asset(
-                image: AppImages.helpAndSupport,
-                h: height(context, 0.3),
-                w: width(context, 0.6),
-                fit: BoxFit.fill),
+                  image: AppImages.helpAndSupport,
+                  h: height(context, 0.3),
+                  w: width(context, 0.6),
+                  fit: BoxFit.fill),
               SizedBox(height: 30),
               AddressContainer(),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               ContactUsContainer(),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               EmailUsContainer(),
             ],
           ),

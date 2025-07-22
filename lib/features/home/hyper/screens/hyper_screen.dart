@@ -72,9 +72,7 @@ class _HyperScreenState extends State<HyperScreen> {
               BuildCategoryListView(),
               SizedBox(height: 16.h),
               buildRestaurantGrid(context),
-
               SizedBox(height: 40.h),
-
               buildBanner(context),
               SizedBox(height: 50.h),
             ],
@@ -83,7 +81,4 @@ class _HyperScreenState extends State<HyperScreen> {
       ),
     );
   }
-
-
-
 }

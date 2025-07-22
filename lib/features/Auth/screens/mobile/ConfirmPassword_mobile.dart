@@ -1,17 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:shella_design/common/widgets/custom_snacbar.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_custom_app_bar.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_mobile_change_password.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_password_field_mobile.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
@@ -30,18 +29,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            size: 30,
-            color: Colors.black,
-          ),
-        ),
-      ),
+      appBar: buildCustomAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_18(context)),
         child: Column(
@@ -72,42 +60,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
             SizedBox(height: size_12(context)),
             buildPasswordField("اكد كلمة المرور ", controller: passwordComfirm),
             SizedBox(height: size.height / 20),
-            SizedBox(
-                width: double.infinity,
-                child: Consumer<AuthController>(
-                  builder: (context, authController, _) {
-                    return ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        backgroundColor: AppColors.greenColor,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      onPressed:
-                          authController.verificationstate == AuthState.loading
-                              ? null
-                              : () => _onPressedChangePassword(
-                                    authController,
-                                    context,
-                                  ),
-                      child:
-                          authController.verificationstate == AuthState.loading
-                              ? SizedBox(
-                                  width: 24.w,
-                                  height: 24.h,
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                    strokeWidth: 3,
-                                  ),
-                                )
-                              : Text(
-                                  "حفظ",
-                                  style: font14White600W(context),
-                                ),
-                    );
-                  },
-                )),
+            buildMobileChangePassword(context, _onPressedChangePassword),
           ],
         ),
       ),
@@ -117,7 +70,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
   void _onPressedChangePassword(
       AuthController authController, BuildContext context) async {
     if (password.text.isEmpty || passwordComfirm.text.isEmpty) {
-      showCustomSnackBar('please enter the password right  ', context);
+      showCustomSnackBar('please enter the password right  ', isError: true);
       return;
     }
     // print(authController.user!.token ?? '');
@@ -128,11 +81,51 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
         .then(
       (value) {
         if (value.isSuccess) {
-          pushNewScreen(context, AppRoutes.passwordResetSuccessScreen);
+          nav.push(AppRoutes.passwordResetSuccessScreen);
         } else {
-          showCustomSnackBar(value.message, context);
+          showCustomSnackBar(value.message, isError: false);
         }
       },
     );
   }
 }
+
+
+
+
+
+
+ // SizedBox(
+            //     width: double.infinity,
+            //     child: Consumer<AuthController>(
+            //       builder: (context, authController, _) {
+            //         return ElevatedButton(
+            //           style: ElevatedButton.styleFrom(
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(10),
+            //             ),
+            //             backgroundColor: AppColors.greenColor,
+            //             padding: const EdgeInsets.symmetric(vertical: 15),
+            //           ),
+            //           onPressed: authController.verificationstate == AuthState.loading
+            //               ? null
+            //               : () => _onPressedChangePassword(
+            //                     authController,
+            //                     context,
+            //                   ),
+            //           child: authController.verificationstate == AuthState.loading
+            //               ? SizedBox(
+            //                   width: 24.w,
+            //                   height: 24.h,
+            //                   child: CircularProgressIndicator(
+            //                     color: Colors.white,
+            //                     strokeWidth: 3,
+            //                   ),
+            //                 )
+            //               : Text(
+            //                   "حفظ",
+            //                   style: font14White600W(context),
+            //                 ),
+            //         );
+            //       },
+            //     )),

@@ -5,22 +5,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/resturantGride/build_resturant_gride.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
-import 'package:shella_design/features/home/home/widgets/builds/build_section_title_2.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 
-class Home_Screen extends StatefulWidget {
-  const Home_Screen({super.key});
+class Users_Home_Screen extends StatefulWidget {
+  const Users_Home_Screen({super.key});
 
   @override
-  State<Home_Screen> createState() => _Home_ScreenState();
+  State<Users_Home_Screen> createState() => _Users_Home_ScreenState();
 }
 
-class _Home_ScreenState extends State<Home_Screen> {
+class _Users_Home_ScreenState extends State<Users_Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +65,20 @@ class _Home_ScreenState extends State<Home_Screen> {
               ),
               SizedBox(height: 16.h),
               BuildCategoryListView(),
-              SizedBox(height: 22.h),
-              buildBanner(context),
+              // SizedBox(height: 22.h),
+              // buildBanner(context),
+              Card(
+                color: Colors.red,
+                child: ElevatedButton(
+                  child: const Text('data'),
+                  onPressed: () async {
+                    //
+
+                    nav.push(AppRoutes.splashscreen);
+                  },
+                ),
+              ),
+
               SizedBox(height: 16.h),
               buildSectionTitleTow(context,
                   title: "المتاجر القريبة منك",

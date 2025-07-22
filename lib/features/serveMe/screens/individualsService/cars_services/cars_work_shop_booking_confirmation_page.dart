@@ -1,8 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/textField/custom_textfield.dart';
-import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
+import 'package:shella_design/common/widgets/textField/custom_Note_textfield.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/screens/individualsService/cars_services/cars_booking_confirmation_success.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
@@ -54,9 +53,13 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
                       ),
                       Row(
                         children: List.generate(4, (index) {
-                          return Icon(Icons.star, color: Colors.amber, size: 20.sp);
+                          return Icon(Icons.star,
+                              color: Colors.amber, size: 20.sp);
                         })
-                          ..insert(0, Icon(Icons.star_half, color: Colors.amber, size: 20.sp)),
+                          ..insert(
+                              0,
+                              Icon(Icons.star_half,
+                                  color: Colors.amber, size: 20.sp)),
                       ),
                     ],
                   ),
@@ -70,16 +73,20 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
                 color: Colors.green,
               ),
               SizedBox(height: 16.h),
-              Custom_Text(context, text: 'تفاصيل السيارة', size: 14, color: Colors.black),
+              Custom_Text(context,
+                  text: 'تفاصيل السيارة', size: 14, color: Colors.black),
               _buildInfoTile(context, Icons.directions_car, 'تويوتا كامري'),
               SizedBox(height: 12.h),
-              Custom_Text(context, text: 'نوع الخدمة', size: 14, color: Colors.black),
+              Custom_Text(context,
+                  text: 'نوع الخدمة', size: 14, color: Colors.black),
               _buildInfoTile(context, Icons.build, 'صيانة دورية'),
               SizedBox(height: 12.h),
-              Custom_Text(context, text: 'التاريخ', size: 14, color: Colors.black),
+              Custom_Text(context,
+                  text: 'التاريخ', size: 14, color: Colors.black),
               _buildInfoTile(context, Icons.calendar_today, '15 فبراير 2025'),
               SizedBox(height: 12.h),
-              Custom_Text(context, text: 'الوقت', size: 14, color: Colors.black),
+              Custom_Text(context,
+                  text: 'الوقت', size: 14, color: Colors.black),
               SizedBox(height: 8.h),
               Wrap(
                 spacing: 10.w,
@@ -92,7 +99,8 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16.h),
-              Custom_Text(context, text: 'الملاحظات (اختياري)', size: 14, color: Colors.black),
+              Custom_Text(context,
+                  text: 'الملاحظات (اختياري)', size: 14, color: Colors.black),
               SizedBox(height: 16.h),
 
               DottedBorder(
@@ -132,14 +140,16 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     padding: EdgeInsets.symmetric(vertical: 14.h),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.r)),
                   ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => CarsBookingConfirmationSuccess(),
                     ));
                   },
-                  child: Custom_Text(context, text: 'تأكيد الحجز', size: 16, color: Colors.white),
+                  child: Custom_Text(context,
+                      text: 'تأكيد الحجز', size: 16, color: Colors.white),
                 ),
               ),
             ],
@@ -167,13 +177,16 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
     );
   }
 
-  Widget _timeButton(BuildContext context, String time, {bool selected = false}) {
+  Widget _timeButton(BuildContext context, String time,
+      {bool selected = false}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: selected ? Colors.green : Colors.white,
         borderRadius: BorderRadius.circular(15.r),
-        border: selected ? Border.all(color: Colors.transparent) : Border.all(color: Colors.grey),
+        border: selected
+            ? Border.all(color: Colors.transparent)
+            : Border.all(color: Colors.grey),
       ),
       child: Custom_Text(
         context,
@@ -184,7 +197,8 @@ class CarsWorkShopBookingConfirmationPage extends StatelessWidget {
     );
   }
 
-  Widget _priceRow(BuildContext context, String label, String price, {bool total = false}) {
+  Widget _priceRow(BuildContext context, String label, String price,
+      {bool total = false}) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 4.h),
       child: Row(

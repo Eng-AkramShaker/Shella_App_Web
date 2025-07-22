@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shella_design/common/widgets/textField/custom_textfield.dart';
 
-Widget buildDoubleTextField(String label1, String label2, TextEditingController notesController) {
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/widgets/textField/custom_Note_textfield.dart';
+
+Widget buildDoubleTextField(
+    String label1, String label2, TextEditingController notesController) {
   return Row(
     children: [
       Expanded(

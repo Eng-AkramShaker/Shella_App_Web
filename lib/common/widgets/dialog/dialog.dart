@@ -35,14 +35,20 @@ class _CouponInputDialogState extends State<CouponInputDialog> {
               : MediaQuery.of(context).size.width, // Take full screen width
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: ResponsiveLayout.isWeb() ? BorderRadius.circular(8.r) : BorderRadius.circular(0.r)),
+              color: Colors.white,
+              borderRadius: ResponsiveLayout.isWeb()
+                  ? BorderRadius.circular(8.r)
+                  : BorderRadius.circular(0.r)),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Custom_Text(context, text: 'اضف رمز القسيمة الجديدة', style: font14Black400W(context)),
+              Custom_Text(context,
+                  text: 'اضف رمز القسيمة الجديدة',
+                  style: font14Black400W(context)),
               SizedBox(height: 10.h),
-              Custom_Text(context, text: 'رمز القسمية', style: font14Black400W(context)),
+              Custom_Text(context,
+                  text: 'رمز القسمية', style: font14Black400W(context)),
               SizedBox(height: 10.h),
               CustomTextField(
                 labelText: 'رمز القسيمة',
@@ -52,13 +58,24 @@ class _CouponInputDialogState extends State<CouponInputDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    child: custom_Button(context, title: 'إضافة', onPressed: () {}, buttoncolor: AppColors.greenColor, h: 40.h, style: font13White400W(context)),
+                    child: custom_Button(context,
+                        title: 'إضافة',
+                        onPressed: () {},
+                        buttoncolor: AppColors.greenColor,
+                        h: 40.h,
+                        style: font13White400W(context)),
                   ),
                   SizedBox(
                     width: 20,
                   ),
                   Expanded(
-                    child: custom_Button(context,title: 'إلغاء', onPressed: () {Navigator.pop(context);}, buttoncolor: AppColors.wtColor, h: 40.h, style: font13Black400W(context)),
+                    child: custom_Button(context, title: 'إلغاء',
+                        onPressed: () {
+                      Navigator.pop(context);
+                    },
+                        buttoncolor: AppColors.wtColor,
+                        h: 40.h,
+                        style: font13Black400W(context)),
                   ),
                 ],
               ),

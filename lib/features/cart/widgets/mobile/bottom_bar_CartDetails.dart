@@ -6,6 +6,7 @@ import 'package:shella_design/common/widgets/loading/custom_loading.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
+import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'builds/build_quantity_controls.dart';
@@ -16,6 +17,7 @@ class BottomBar_CartDetails extends StatelessWidget {
 
   final CartItem item;
   final CartController cartController;
+  const BottomBar_CartDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

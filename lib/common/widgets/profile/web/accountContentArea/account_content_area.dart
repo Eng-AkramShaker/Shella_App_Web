@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/widgets/gap/height/height.dart';
 import 'package:shella_design/common/widgets/gap/width/width.dart';
 import '../../../../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../../../../features/my_coupon/screens/web/my_coupon_web.dart';
@@ -71,8 +70,8 @@ class AccountContentArea extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if(width(context, 1)>600||controller.currentPage==0)
-        const AccountInformationColumn1(),
+        if (width(context, 1) > 600 || controller.currentPage == 0)
+          const AccountInformationColumn1(),
         Padding(
           padding: const EdgeInsets.only(right: 0),
           child: content,

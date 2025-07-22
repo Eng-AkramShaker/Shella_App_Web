@@ -18,6 +18,7 @@ class PhoneNumberField extends StatefulWidget {
 }
 
 class _PhoneNumberFieldState extends State<PhoneNumberField> {
+  // ignore: unused_field
   String _dialCode = '+966';
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,8 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           decoration: InputDecoration(
               hintText: '92501178889966',
               hintStyle: TextStyle(color: Colors.grey[400]),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6),
                 borderSide: BorderSide(color: Colors.grey.shade400),
@@ -49,7 +51,8 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               ),
               helper: widget.showHelper
                   ? Align(
-                      alignment: AlignmentDirectional.centerEnd, // will respect LTR/RTL
+                      alignment: AlignmentDirectional
+                          .centerEnd, // will respect LTR/RTL
                       child: Text(
                         'من الضروري ملئ هذه الخانة',
                         style: TextStyle(fontSize: 16, color: Colors.grey[400]),
@@ -57,7 +60,8 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
                     )
                   : null,
               isDense: true,
-              prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
+              prefixIconConstraints:
+                  const BoxConstraints(minWidth: 0, minHeight: 0),
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: CountryCodePicker(

@@ -662,6 +662,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "qr_code_scanner_plus",
+      "rootUri": "file:///C:/Users/ASUS/AppData/Local/Pub/Cache/hosted/pub.dev/qr_code_scanner_plus-2.0.10+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///C:/Users/ASUS/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.28.0",
       "packageUri": "lib/",

@@ -5,8 +5,8 @@ import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
-
-Widget buildSectionTitle_One(context, {required String title, String? lapel, required bool underline}) {
+Widget buildSectionTitle_One(context,
+    {required String title, String? lapel, required bool underline}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [

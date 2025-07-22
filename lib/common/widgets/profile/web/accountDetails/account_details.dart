@@ -20,7 +20,9 @@ class _AccountDetailsState extends State<AccountDetails> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProfileController(profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository())),
+      create: (_) => ProfileController(
+          profileDetailsService:
+              ProfileDetailsService(profileRepository: ProfileRepository())),
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: PreferredSize(
@@ -31,7 +33,8 @@ class _AccountDetailsState extends State<AccountDetails> {
           builder: (context, controller, child) => ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

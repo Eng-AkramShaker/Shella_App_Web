@@ -9,7 +9,8 @@ class Shops_RestaurantItem extends StatelessWidget {
   final String image;
   final String label;
 
-  const Shops_RestaurantItem({super.key, required this.image, required this.label});
+  const Shops_RestaurantItem(
+      {super.key, required this.image, required this.label});
 
   @override
   Widget build(BuildContext context) {

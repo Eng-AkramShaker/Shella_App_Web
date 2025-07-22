@@ -26,7 +26,8 @@ class OffersGridMobile extends StatelessWidget {
             discount: true,
             widget: Custom_Text(
               context,
-              text: 'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
+              text:
+                  'وفر خصم 15 ر,س على اوردرك من حلي الورد !\nلما اوردرك يكون باكثر من 75 ر,س\nيمكن استخدام هذا الكود لمدة مرتين',
               style: font10Grey400W(context),
             ),
             subTitle: '600 نقطة',
@@ -39,7 +40,9 @@ class OffersGridMobile extends StatelessWidget {
                       subTitle: 'لقد حصلت على 15.00 ر.س خصم',
                       widget: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.r), border: Border.all(width: 1, color: AppColors.orangeColor)),
+                            borderRadius: BorderRadius.circular(8.r),
+                            border: Border.all(
+                                width: 1, color: AppColors.orangeColor)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -51,7 +54,8 @@ class OffersGridMobile extends StatelessWidget {
                               Expanded(
                                 child: Custom_Text(
                                   context,
-                                  text: 'لا تنسى استعمال القسيمة عند مرحلة الدفع',
+                                  text:
+                                      'لا تنسى استعمال القسيمة عند مرحلة الدفع',
                                   style: font10Grey400W(context),
                                   maxLines: 1,
                                   textOverFlow: TextOverflow.ellipsis,

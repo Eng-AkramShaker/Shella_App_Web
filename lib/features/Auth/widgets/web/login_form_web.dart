@@ -1,13 +1,13 @@
 // ignore_for_file: avoid_print, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/Auth/widgets/web/login_action_buttons_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/login_header_row_web.dart';
 import 'package:shella_design/features/Auth/widgets/web/phone_number_field_web.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       print('Sending code to ${_phoneCtr.text}');
 
-      pushAndRemoveUntil(context, AppRoutes.webHome);
+      nav.pushAndRemoveUnti(AppRoutes.webHome);
     }
   }
 
@@ -47,13 +47,16 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              LoginHeaderRow(title: 'تسجيل الدخول', onBack: () => Navigator.of(context).pop()),
+              LoginHeaderRow(
+                  title: 'تسجيل الدخول',
+                  onBack: () => Navigator.of(context).pop()),
               Divider(height: 1.h, color: Colors.grey.shade300),
               const SizedBox(height: 8),
               Text(
                 'الرجاء إدخال الرقم الخلوي لإكمال تسجيل الدخول',
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 24),
               Form(
@@ -72,7 +75,9 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
               const SizedBox(height: 24),
-              LoginActionButtonsRow(onClose: () => Navigator.of(context).pop(), onSend: _sendCode),
+              LoginActionButtonsRow(
+                  onClose: () => Navigator.of(context).pop(),
+                  onSend: _sendCode),
             ],
           ),
         ),

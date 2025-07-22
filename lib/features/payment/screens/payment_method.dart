@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
 import 'package:shella_design/common/widgets/container/empty_%20container.dart';
-import 'package:shella_design/common/widgets/divider/custom_divider.dart';
+import 'package:shella_design/common/widgets/divider/custom_dashed_divider.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
@@ -29,7 +29,7 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
         context,
         title: 'طرق الدفع',
         img: AppImages.icon_v,
-        onPressed: () => popRoute(context),
+        onPressed: () => nav.back(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -46,7 +46,7 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
               InkWell(
                 onTap: () {
                   //
-                  pushNewScreen(context, AppRoutes.payment_screen);
+                  nav.push(AppRoutes.payment_screen);
                 },
                 child: _paymentMethodRow(
                   context,
@@ -62,7 +62,7 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
               InkWell(
                 onTap: () {
                   //
-                  pushNewScreen(context, AppRoutes.payment_screen);
+                  nav.push(AppRoutes.payment_screen);
                 },
                 child: _paymentOption(
                   context,
@@ -103,7 +103,7 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
               InkWell(
                 onTap: () {
                   //
-                  pushNewScreen(context, AppRoutes.add_new_card_screen);
+                  nav.push(AppRoutes.add_new_card_screen);
                 },
                 child: _paymentOption(
                   context,
@@ -151,7 +151,8 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
             children: [
               Row(
                 children: [
-                  custom_Images_asset(image: image, h: 30.h, w: 25.w, fit: BoxFit.fill),
+                  custom_Images_asset(
+                      image: image, h: 30.h, w: 25.w, fit: BoxFit.fill),
                   SizedBox(width: 8.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,14 +160,17 @@ class _Payment_Method_ScreenState extends State<Payment_Method_Screen> {
                     children: [
                       Row(
                         children: [
-                          Custom_Text(context, text: title, style: font14Grey400W(context)),
+                          Custom_Text(context,
+                              text: title, style: font14Grey400W(context)),
                           if (hasIcon) ...[
                             SizedBox(width: 5.w),
-                            Icon(Icons.error_outline, color: AppColors.gryColor_2),
+                            Icon(Icons.error_outline,
+                                color: AppColors.gryColor_2),
                           ],
                         ],
                       ),
-                      Custom_Text(context, text: description, style: font10Grey400W(context)),
+                      Custom_Text(context,
+                          text: description, style: font10Grey400W(context)),
                     ],
                   ),
                 ],

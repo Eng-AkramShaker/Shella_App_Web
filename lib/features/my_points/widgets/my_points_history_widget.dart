@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/widgets/history_item_widget.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/features/my_points/controllers/my_points_controller.dart';
+
 class LoyaltyHistoryWidget extends StatelessWidget {
   const LoyaltyHistoryWidget({Key? key}) : super(key: key);
 
@@ -15,7 +16,13 @@ class LoyaltyHistoryWidget extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (list.isEmpty) {
-      return  Center(child: Image.asset(AppImages.noDataFound,height: 50, width: 50,),);
+      return Center(
+        child: Image.asset(
+          AppImages.noDataFound,
+          height: 50,
+          width: 50,
+        ),
+      );
     }
 
     return Column(
@@ -40,5 +47,3 @@ class LoyaltyHistoryWidget extends StatelessWidget {
     );
   }
 }
-
-

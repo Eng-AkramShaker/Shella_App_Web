@@ -8,7 +8,6 @@ import '../../../controllers/my_coupon_controller.dart';
 import 'availableCouponContainerWeb/available_coupon_container_web.dart';
 
 class AvailableCouponWeb extends StatelessWidget {
-
   const AvailableCouponWeb({super.key});
 
   @override
@@ -19,28 +18,46 @@ class AvailableCouponWeb extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyCouponController.get(context).availableCoupons!.isEmpty
-            ? Center(
-              child: Padding(
-                padding: EdgeInsets.only(top: height(context, 0.15)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/my_coupon_not_found.png'),
-                    Custom_Text(context, text: 'ليس لديك اي قسائم حاليآ', style: font12Grey400W(context,size: 12))
-                  ],
+              ? Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: height(context, 0.15)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/images/my_coupon_not_found.png'),
+                        Custom_Text(context,
+                            text: 'ليس لديك اي قسائم حاليآ',
+                            style: font12Grey400W(context, size: 12))
+                      ],
+                    ),
+                  ),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemCount:
+                      MyCouponController.get(context).availableCoupons!.length,
+                  itemBuilder: (context, index) {
+                    return width(context, 1) < 700
+                        ? AvailableCouponMobile(
+                            index: index,
+                            discount: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .discount,
+                            expiredDate: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .expireDate,
+                          )
+                        : AvailableCouponContainerWeb(
+                            discount: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .discount,
+                            expiredDate: MyCouponController.get(context)
+                                .availableCoupons![index]
+                                .expireDate,
+                          );
+                  },
                 ),
-              ),
-            ):
-          ListView.builder(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            itemCount: MyCouponController.get(context).availableCoupons!.length,
-            itemBuilder: (context, index) {
-              return width(context, 1)<700?
-              AvailableCouponMobile(index: index,discount: MyCouponController.get(context).availableCoupons![index].discount,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,):
-              AvailableCouponContainerWeb(discount: MyCouponController.get(context).availableCoupons![index].discount,expiredDate: MyCouponController.get(context).availableCoupons![index].expireDate,);
-            },
-          ),
         ],
       ),
     );

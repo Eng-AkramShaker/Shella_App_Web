@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button_2.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/success_icon.dart';
@@ -8,7 +10,6 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class StartTrackingOrder extends StatelessWidget {
@@ -49,7 +50,7 @@ class StartTrackingOrder extends StatelessWidget {
                   h: 50,
                   title: "تتبع الطلب",
                   onPressed: () {
-                    pushNewScreen(context, AppRoutes.order_tracking);
+                    nav.push(AppRoutes.order_tracking);
                   },
                 ),
               ),

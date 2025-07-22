@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/features/profile_detailes/domain/models/customer_info_model.dart';

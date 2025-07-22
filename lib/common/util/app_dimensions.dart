@@ -25,8 +25,12 @@ double size_22(BuildContext context) => sp(context, 22);
 double size_24(BuildContext context) => sp(context, 24);
 
 double sp(BuildContext context, double fontSize) {
-  double scaleFactor = ResponsiveLayout.isWeb() ? MediaQuery.of(context).size.width / 1420 : MediaQuery.of(context).size.width / 375;
-  double heightFactor = ResponsiveLayout.isWeb() ? MediaQuery.of(context).size.width / 700 : MediaQuery.of(context).size.height / 812;
+  double scaleFactor = ResponsiveLayout.isWeb()
+      ? MediaQuery.of(context).size.width / 1420
+      : MediaQuery.of(context).size.width / 375;
+  double heightFactor = ResponsiveLayout.isWeb()
+      ? MediaQuery.of(context).size.width / 700
+      : MediaQuery.of(context).size.height / 812;
 
   double responsiveFactor = (scaleFactor + heightFactor) / 2;
 

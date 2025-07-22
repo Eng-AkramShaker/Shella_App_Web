@@ -47,14 +47,19 @@ class Icon_Button extends StatelessWidget {
             decoration: BoxDecoration(
               color: backgroundColor ?? AppColors.backgroundColor,
               borderRadius: BorderRadius.circular(border_Radius ?? 7),
-              border: Border.all(color: border_Color ?? Colors.transparent, width: 1),
+              border: Border.all(
+                  color: border_Color ?? Colors.transparent, width: 1),
             ),
             child: Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Custom_Text(context, text: title ?? '', style: font10Black400W(context)),
-                  icon_img != null ? custom_Images_asset(image: icon_img!, h: 30, w: 10, fit: BoxFit.none) : SizedBox(),
+                  Custom_Text(context,
+                      text: title ?? '', style: font10Black400W(context)),
+                  icon_img != null
+                      ? custom_Images_asset(
+                          image: icon_img!, h: 30, w: 10, fit: BoxFit.none)
+                      : SizedBox(),
                 ],
               ),
             ),

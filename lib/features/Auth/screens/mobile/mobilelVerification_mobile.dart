@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/custom_pin_code_txt_field_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/resend_code_row_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/send_verify_btn_mobile.dart';
-import 'package:shella_design/features/Auth/widgets/mobile/timer_row_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_custom_app_bar.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/custom_pin_code_txt_field_mobile.dart'
+    show CustomPinCodeTextField;
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/resend_code_row_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/send_verify_btn_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/timer_row_mobile.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class MobilelVerification extends StatefulWidget {
@@ -32,18 +35,7 @@ class _MobilelVerificationState extends State<MobilelVerification> {
         CountdownTimerController(endTime: endTime, onEnd: onEnd);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            size: 30,
-            color: Colors.black,
-          ),
-        ),
-      ),
+      appBar: buildCustomAppBar(context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
@@ -53,7 +45,7 @@ class _MobilelVerificationState extends State<MobilelVerification> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "التحقق رقم هاتفك الخاص",
+                  MainAppConstants.checkMobileNumber,
                   style: font18Black600W(context),
                 ),
                 SizedBox(
@@ -63,7 +55,7 @@ class _MobilelVerificationState extends State<MobilelVerification> {
                 Consumer<AuthController>(
                   builder: (context, authController, _) {
                     return Text(
-                      'تم ارسال رمز التحقق الى الرقم الخاص بك  ${authController.phone}',
+                      MainAppConstants.otp + authController.phone!,
                       style: font14Black400W(context),
                     );
                   },
@@ -74,7 +66,7 @@ class _MobilelVerificationState extends State<MobilelVerification> {
               height: size.height / 10,
             ),
             Text(
-              'ادخل رمز التحقق',
+              MainAppConstants.inputOtp,
               style: font14Black400W(context),
             ),
             SizedBox(

@@ -22,12 +22,14 @@ Widget custom_Button(BuildContext context,
         backgroundColor: buttoncolor ?? AppColors.greenColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
-          side: BorderSide(color: border_color ?? AppColors.greenColor, width: 1.5),
+          side: BorderSide(
+              color: border_color ?? AppColors.greenColor, width: 1.5),
         ),
         padding: EdgeInsets.zero,
       ),
       onPressed: onPressed,
-      child: Custom_Text(context, text: title, style: style ?? font14White400W(context)),
+      child: Custom_Text(context,
+          text: title, style: style ?? font14White400W(context)),
     ),
   );
 }

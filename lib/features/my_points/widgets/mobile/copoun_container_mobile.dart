@@ -21,7 +21,9 @@ class CopounContainerMobile extends StatelessWidget {
       child: Container(
         height: ResponsiveLayout.isWeb() ? 86.h : 45.h,
         decoration: BoxDecoration(
-            color: ResponsiveLayout.isWeb() ? AppColors.lightBlue : AppColors.backgroundColor,
+            color: ResponsiveLayout.isWeb()
+                ? AppColors.lightBlue
+                : AppColors.backgroundColor,
             borderRadius: BorderRadius.circular(6.r),
             border: Border.all(width: 1, color: AppColors.gryColor_6)),
         child: Padding(
@@ -35,12 +37,18 @@ class CopounContainerMobile extends StatelessWidget {
               SizedBox(
                 width: 5.w,
               ),
-              Custom_Text(context, text: '${provider.couponsCount} قسيمة', style: font12Black400W(context)),
+              Custom_Text(context,
+                  text: '${provider.couponsCount} قسيمة',
+                  style: font12Black400W(context)),
             ],
           ),
         ),
       ),
     );
   }
-  Widget _loadingIndicator() => const Center(child: CircularProgressIndicator(color: AppColors.primaryColor,));
+
+  Widget _loadingIndicator() => const Center(
+          child: CircularProgressIndicator(
+        color: AppColors.primaryColor,
+      ));
 }

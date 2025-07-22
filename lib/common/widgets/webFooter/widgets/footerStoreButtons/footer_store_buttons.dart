@@ -24,7 +24,7 @@ class FooterStoreButtons extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
       ),
-      child: custom_Images_asset(image: assetPath,w: 25.w,h: 30.h),
+      child: custom_Images_asset(image: assetPath, w: 25.w, h: 30.h),
     );
   }
 }

@@ -52,11 +52,11 @@ class _VideoLogoWidgetState extends State<VideoLogoWidget> {
         child: _isInitialized
             ? VideoPlayer(_controller)
             : custom_Images_asset(
-          image: AppImages.logo,
-          h: 50,
-          w: 111,
-          fit: BoxFit.fill,
-        ),
+                image: AppImages.logo,
+                h: 50,
+                w: 111,
+                fit: BoxFit.fill,
+              ),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shella_design/common/widgets/loading/loading.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/loading.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/search_filter/controller/search_filter_controller.dart';
@@ -25,7 +25,6 @@ class SearchFilter extends StatefulWidget {
 }
 
 class _SearchFilterState extends State<SearchFilter> {
-
   @override
   Widget build(BuildContext context) {
     final searchFilterController = Provider.of<SearchFilterController>(context);
@@ -49,11 +48,13 @@ class _SearchFilterState extends State<SearchFilter> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               LocationHeader(
-                num: searchFilterController.cartProductsModel?.items.length??0,
+                num:
+                    searchFilterController.cartProductsModel?.items.length ?? 0,
                 sites: searchFilterController.sites,
               ),
               CustomTextField(
-                controller: SearchFilterController.get(context).searchController,
+                controller:
+                    SearchFilterController.get(context).searchController,
                 radius: 20,
                 borderWidth: 2,
                 borderColor: AppColors.gryColor_3,
@@ -61,39 +62,43 @@ class _SearchFilterState extends State<SearchFilter> {
                 padding: 0,
                 labelText: 'البحث',
                 prefixIcon: Icon(Icons.search, size: 25),
-                onChanged: (value){
+                onChanged: (value) {
                   EasyDebounce.debounce(
-                    'search products',
-                    Duration(milliseconds: 700),
-                    (){
-                      if(value.trim().isNotEmpty){
-                        searchFilterController.saveSearchHistory(value);
-                      }
-                      searchFilterController.searchItems(value: value);
+                      'search products', Duration(milliseconds: 700), () {
+                    if (value.trim().isNotEmpty) {
+                      searchFilterController.saveSearchHistory(value);
                     }
-                  );
+                    searchFilterController.searchItems(value: value);
+                  });
                 },
               ),
-              if(searchFilterController.searchResultModel!=null)
-              CategoryTabs(
-                initialCategory: searchFilterController.selectedCategory,
-                onCategoryChanged: (category) => setState(() => searchFilterController.selectedCategory = category),
-              ),
-              if(PlatformDispatcher.instance.implicitView!.viewInsets.bottom > 0.0)
-              SearchHistorySection(
-                previousSearches: searchFilterController.searchHistory,
-                context: context,
-              ),
+              if (searchFilterController.searchResultModel != null)
+                CategoryTabs(
+                  initialCategory: searchFilterController.selectedCategory,
+                  onCategoryChanged: (category) => setState(
+                      () => searchFilterController.selectedCategory = category),
+                ),
+              if (PlatformDispatcher.instance.implicitView!.viewInsets.bottom >
+                  0.0)
+                SearchHistorySection(
+                  previousSearches: searchFilterController.searchHistory,
+                  context: context,
+                ),
               SizedBox(height: 10),
-              if(SearchFilterController.get(context).allCategoriesModel!=null&&searchFilterController.selectedCategory==0)
-              BuildFilterCategory(),
-              searchFilterController.state==SearchState.loading||searchFilterController.mostSearchedModel==null?
-              Loading(isData: true,):
-              searchFilterController.searchResultModel!=null?
-              searchFilterController.selectedCategory==0?
-              BuildSearchItems():
-              BuildSearchStores():
-              BuildMostSearched()
+              if (SearchFilterController.get(context).allCategoriesModel !=
+                      null &&
+                  searchFilterController.selectedCategory == 0)
+                BuildFilterCategory(),
+              searchFilterController.state == SearchState.loading ||
+                      searchFilterController.mostSearchedModel == null
+                  ? Loading(
+                      isData: true,
+                    )
+                  : searchFilterController.searchResultModel != null
+                      ? searchFilterController.selectedCategory == 0
+                          ? BuildSearchItems()
+                          : BuildSearchStores()
+                      : BuildMostSearched()
             ],
           ),
         ),

@@ -6,6 +6,8 @@ class GapHeight extends StatelessWidget {
   final double gap;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: MediaQuery.of(context).size.height*gap,);
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * gap,
+    );
   }
 }

@@ -1,10 +1,10 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/buttons/custom_Button.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 
 class BottomBar_CartScren extends StatelessWidget {
   const BottomBar_CartScren({super.key});
@@ -22,7 +22,7 @@ class BottomBar_CartScren extends StatelessWidget {
             title: 'الدفع',
             h: 45.h,
             onPressed: () {
-              pushNewScreen(context, AppRoutes.payment_screen);
+              nav.push(AppRoutes.payment_screen);
             },
           ),
         ],

@@ -15,7 +15,8 @@ Widget buildButton(BuildContext context) {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: Custom_Text(context, text: "إدخال", style: font14White400W(context)),
+        child: Custom_Text(context,
+            text: "إدخال", style: font14White400W(context)),
       ),
     ],
   );

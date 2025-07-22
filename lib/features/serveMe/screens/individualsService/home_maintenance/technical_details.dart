@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/serveMe/widgets/greenAppBar.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 class TechnicianDetailsScreen extends StatelessWidget {
@@ -271,7 +271,7 @@ class TechnicianDetailsScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 14.h),
                 ),
                 onPressed: () {
-                  pushNewScreen(context, AppRoutes.confirmReservation);
+                  nav.push(AppRoutes.confirmReservation);
                 },
                 child: Custom_Text(
                   context,

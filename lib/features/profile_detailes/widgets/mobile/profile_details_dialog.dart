@@ -24,8 +24,7 @@ class CustomDialog extends StatelessWidget {
     required this.onCancel,
     this.confirmColor = AppColors.greenColor,
     this.cancelColor = AppColors.gryColor_2,
-  }) : assert(content != null || customContent != null,
-            'يجب توفير إما محتوى نصي أو محتوى مخصص');
+  }) : assert(content != null || customContent != null, 'يجب توفير إما محتوى نصي أو محتوى مخصص');
 
   @override
   Widget build(BuildContext context) {

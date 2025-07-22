@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
 import 'package:shella_design/features/product/widgets/images/image_circle.dart';

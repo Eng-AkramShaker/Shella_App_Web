@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
@@ -25,9 +26,9 @@ class profile_info_button extends StatelessWidget {
         children: [
           Text(
             'حذف الحساب',
-            style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w700, color: Colors.white),
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: Colors.white),
           ),
-          SizedBox(width: 10.w), 
+          SizedBox(width: 10.w),
           Icon(Icons.delete, size: 20.sp, color: Colors.white),
         ],
       ),

@@ -33,7 +33,8 @@ class IconButtonCircle extends StatelessWidget {
           width: width ?? 30,
           height: height ?? 30,
           alignment: Alignment.center,
-          child: Icon(icon, color: iconcolor ?? Colors.black, size: iconsize ?? 24),
+          child: Icon(icon,
+              color: iconcolor ?? Colors.black, size: iconsize ?? 24),
         ),
       ),
     );

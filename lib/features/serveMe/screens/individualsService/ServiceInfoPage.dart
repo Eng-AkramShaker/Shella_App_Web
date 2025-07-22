@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -258,7 +259,7 @@ class ServiceInfoPage extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          // pushNewScreen(context, AppRoutes.infoOfService,arguments: );
+          //nav.push( AppRoutes.infoOfService,arguments: );
           // Navigator.pushNamed(context, route, arguments: arguments);
           Navigator.push(
               context,

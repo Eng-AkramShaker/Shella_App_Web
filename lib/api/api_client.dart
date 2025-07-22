@@ -8,19 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:shella_design/api/api_checker.dart';
 import 'package:shella_design/common/models/error_response.dart';
-import 'package:shella_design/common/util/indian_app_constants.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
+
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import '../common/helper/app_routes.dart';
-import '../common/util/app_navigators.dart';
 
 class ApiClient {
   final String appBaseUrl;
   final SharedPreferences sharedPreferences;
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
   final int timeoutInSeconds = 40;
-
-  // int? moduleId;
 
   String? token;
   late Map<String, String> _mainHeaders;
@@ -31,9 +29,8 @@ class ApiClient {
       print('Token: $token');
     }
     if (token == null || token!.split('.').length != 3) {
-      print('❌ JWT غير صالح أو غير موجود');
+      throw Exception('Invalid JWT format');
     }
-
     updateHeader(
       token,
       [],
@@ -52,7 +49,20 @@ class ApiClient {
     if (kDebugMode) {
       print('Token: $token');
     }
-
+    // AddressModel? addressModel;
+    // try {
+    //   addressModel = AddressModel.fromJson(
+    //       jsonDecode(sharedPreferences.getString(AppConstants.userAddress)!));
+    // } catch (_) {}
+    // int? moduleID;
+    // if (GetPlatform.isWeb &&
+    //     sharedPreferences.containsKey(AppConstants.moduleId)) {
+    //   try {
+    //     moduleID = ModuleModel.fromJson(
+    //             jsonDecode(sharedPreferences.getString(AppConstants.moduleId)!))
+    //         .id;
+    //   } catch (_) {}
+    // }
     updateHeader(
       token,
       [],
@@ -62,6 +72,13 @@ class ApiClient {
       '1',
       '1',
       setHeader: true,
+      // addressModel?.zoneIds,
+      // addressModel?.areaIds,
+
+      // sharedPreferences.getString(AppConstants.languageCode),
+      // moduleID,
+      // addressModel?.latitude,
+      // addressModel?.longitude,
     );
   }
 
@@ -75,17 +92,23 @@ class ApiClient {
       String? longitude,
       {bool setHeader = true}) {
     Map<String, String> header = {};
+
     if (moduleID != null ||
-        sharedPreferences.getString(AppConstants.cacheModuleId) != null) {}
-    // if (moduleID != null) {
-    //   header['moduleId'] = moduleID.toString();
-    // }
+        sharedPreferences.getString(Api_Constants.cacheModuleId) != null) {
+      // header.addAll({
+      //   AppConstants.moduleId:
+      //       '${moduleID ?? ModuleModel.fromJson(jsonDecode(sharedPreferences.getString(AppConstants.cacheModuleId)!)).id}'
+      // });
+    }
     header.addAll({
       'Content-Type': 'application/json; charset=UTF-8',
-      AppConstants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
-      AppConstants.localizationKey: languageCode ?? 'ar',
-      AppConstants.latitude: latitude != null ? jsonEncode(latitude) : '',
-      AppConstants.longitude: longitude != null ? jsonEncode(longitude) : '',
+      Api_Constants.zoneId: zoneIDs != null ? jsonEncode(zoneIDs) : '',
+
+      ///this will add in ride module
+      // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
+      Api_Constants.localizationKey: languageCode ?? 'ar',
+      Api_Constants.latitude: latitude != null ? jsonEncode(latitude) : '',
+      Api_Constants.longitude: longitude != null ? jsonEncode(longitude) : '',
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     });
@@ -94,20 +117,6 @@ class ApiClient {
     }
     return header;
   }
-
-  // void setModuleId(int id) {
-  //   moduleId = id;
-  //   updateHeader(
-  //     token,
-  //     [],
-  //     [],
-  //     'ar',
-  //     moduleId,
-  //     '1',
-  //     '1',
-  //     setHeader: true,
-  //   );
-  // }
 
   Map<String, String> getHeader() => _mainHeaders;
 
@@ -200,14 +209,8 @@ class ApiClient {
       request.fields.addAll(newBody);
       http.Response response =
           await http.Response.fromStream(await request.send());
-      print('✅ اكتمل طلب POST Multipart - status: ${response.statusCode}');
-      print('📝 محتوى الاستجابة: ${response.body}');
-
-      // return handleResponse(response, uri, handleError);
-      return response;
+      return handleResponse(response, uri, handleError);
     } catch (e) {
-      print(
-          '❌ //////////////////////////////////////////////خطأ في POST Multipart: ${e.toString()}');
       return http.Response('error', 1);
     }
   }
@@ -228,6 +231,14 @@ class ApiClient {
       final streamedResponse = await request.send();
       final response = await http.Response.fromStream(streamedResponse);
       return handleResponse(response, uri, handleError);
+      // http.Response response = await http
+      //     .put(
+      //       Uri.parse(appBaseUrl + uri),
+      //       body: jsonEncode(body),
+      //       headers: headers ?? _mainHeaders,
+      //     )
+      //     .timeout(Duration(seconds: timeoutInSeconds));
+      // return handleResponse(response, uri, handleError);
     } catch (e) {
       return http.Response('error', 1);
     }
@@ -261,7 +272,8 @@ class ApiClient {
     try {
       final body = jsonDecode(response.body);
       if (response.statusCode == 401) {
-        pushAndRemoveUntil(Navigation.currentContext, AppRoutes.Login_Mobile);
+        nav.push(AppRoutes.Login_Mobile);
+
         return response;
       } else
       // Optional: Custom error handling if API returns structured error formats

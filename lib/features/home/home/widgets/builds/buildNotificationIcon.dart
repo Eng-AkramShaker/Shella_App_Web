@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_navigators.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
 // Notification icon with badge
@@ -16,7 +16,7 @@ Widget buildNotificationIcon(context) {
     child: IconButton(
       icon: Image.asset(AppImages.notifications),
       onPressed: () {
-        pushNewScreen(context, AppRoutes.notifications);
+        nav.push(AppRoutes.notifications);
       },
     ),
   );
