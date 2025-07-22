@@ -172,6 +172,87 @@ List<Map<String, dynamic>> nationalities = [
 List<int> img = [7, 8, 2, 1];
 List<String> title = ["خدمة تخدمني", "استلام وتسليم", "المطاعم", "سوبر ماركت"];
 
+List<String> discountsTypes=["الكل","عرض الحزم","العناية الشخصية", "المثلجات"];
+
+final List<Map<String,dynamic>> categories=[
+  {
+     "name":"السندويش",
+     "image":"assets/images/9.png"
+  },
+  {
+   "name":"البيتزا",
+  "image":"assets/images/19.png"
+
+  },
+  {
+  "name":"المشروبات",
+  "image":"assets/images/20.png"
+
+  }
+
+];
+
+final List<Map<String,dynamic>> discounts =[
+
+  {
+    "id":1,
+    "name": "داجستيف بيسكويت",
+    "image": "assets/images/dagestiv.jpg",
+    "price": 15.0 ,
+    "discount" :25.0
+  },
+
+  {
+    "id":2,
+    "name": "عرض رز الذرة",
+    "image": "assets/images/rice.jpg",
+    "price": 15.0,
+    "discount":25.0
+  },
+  {
+    "id":3,
+    "name":"عرض نسكافيه 3*1" ,
+    "image": "assets/images/nescavie.png",
+    "price": 20.0 ,
+    "discount":25.0
+  },
+  {
+    "id":4,
+    "name": "ليبتون 48 ظروف",
+    "image": "assets/images/libton.png",
+    "price": 10.0 ,
+    "discount":17.0
+  },
+  {
+    "id":5,
+    "name": "زيت مازولا 2 ليتر",
+    "image": "assets/images/mazola.jpg",
+    "price": 10.0 ,
+    "discount": 20.0
+  },
+  {
+    "id":6,
+    "name":"نوتيلا 500 غرام" ,
+    "image": "assets/images/nutella.jpg",
+    "price": 20.0,
+    "discount":35.0
+  },
+  {
+    "id":7,
+    "name":"شاي الوزة 400 غرام" ,
+    "image": "assets/images/tea.png",
+    "price": 10.0,
+    "discount":20.0
+  },
+  {
+    "id":1,
+    "name": "برينغلز كبير",
+    "image": "assets/images/pringles.jpg",
+    "price": 7.0,
+    "discount":10.0
+  }
+];
+
 final List<Map<String, dynamic>> orders = [
   {
     "name": "بيتزا هت 100200#",

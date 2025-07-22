@@ -1,7 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, avoid_unnecessary_containers, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/widgets/buttons/bottom_bar_widget.dart';

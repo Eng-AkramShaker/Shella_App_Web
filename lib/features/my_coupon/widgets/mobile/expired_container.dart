@@ -16,18 +16,11 @@ class ExpiredContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.sp),
-      decoration: BoxDecoration(
-          border: Border(
-              bottom: index == 1
-                  ? BorderSide(
-                      color: AppColors.greenColor,
-                      width: 2,
-                    )
-                  : BorderSide.none)),
+      decoration: BoxDecoration(border: Border(bottom: index == 1 ? BorderSide(color: AppColors.greenColor, width: 2,) : BorderSide.none)),
       child: Custom_Text(
         context,
         text: 'منتهية الصلاحية',
-        style: font14Black400W(context, size: 14),
+        style: font14Black400W(context,size: 14),
       ),
     );
   }

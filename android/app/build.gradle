@@ -18,7 +18,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
+signingConfigs {
+        release {
+            storeFile file('C:/Users/DELL/Desktop/private/upload-key.jks') // غيّر المسار للمسار اللي حفظت فيه المفتاح
+            storePassword '123456789' // غيّرها لكلمة مرور المفتاح
+            keyAlias 'upload' // غيّرها للاسم المستعار اللي اخترته (upload لو ما غيرتوش)
+            keyPassword '123456789' // غيّرها لكلمة مرور الـ alias
+        }
+    }
     defaultConfig {
         applicationId "com.example.shella_app"
         minSdkVersion 21 

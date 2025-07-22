@@ -112,6 +112,7 @@ class AppRoutes {
   static const String notifications = '/notifications';
   static const String searchfilter = '/searchfilter';
   static const String seveMePage = '/seveMePage';
+  static const String restaurantDetails = '/restaurantDetails';
 
   static const String signup = '/signup';
   static const String forgetpassword = '/forgetpassword';
@@ -283,6 +284,10 @@ class AppRoutes {
     myCouponScreen: (context) => const MyCouponScreen(),
     myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false),
     myPointsMobile: (context) => MyPointsScreenMobile(),
+
+    //Restaurant
+
+    restaurantDetails: (context) => RestaurantDetails(),
 
     // Web
     loginPage: (context) => const LoginPage(),

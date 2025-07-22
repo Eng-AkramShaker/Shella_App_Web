@@ -32,6 +32,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
             children: [
               for (int index = 0; index < items.length; index++)
                 buildCartItem(items[index], index, context),
+
               buildPromoCodeInput(context),
 
               //

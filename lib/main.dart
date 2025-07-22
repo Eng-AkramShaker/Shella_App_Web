@@ -10,7 +10,10 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/check_Logged.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import 'package:shella_design/common/helper/date_converter.dart';
+import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
 import 'common/util/app_colors.dart';
+
+// the start of application
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

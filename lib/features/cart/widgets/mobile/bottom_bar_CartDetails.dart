@@ -3,6 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
+
+import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
+
+import 'package:shella_design/features/cart/domain/models/cart_model.dart';
+
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_styles.dart';
+
+import '../../controllers/cart_controller.dart';
+// import 'builds/build_quantity_controls.dart';
+
 import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';

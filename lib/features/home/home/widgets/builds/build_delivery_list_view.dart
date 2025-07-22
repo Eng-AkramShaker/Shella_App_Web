@@ -86,7 +86,7 @@ Widget buildDeliveryListView(BuildContext context) {
                       ),
                       Custom_Text(
                         context,
-                        text: store.address,
+                        text: store.module!.moduleType ?? "",
                         style: font10Grey400W(context),
                       ),
                       Padding(
