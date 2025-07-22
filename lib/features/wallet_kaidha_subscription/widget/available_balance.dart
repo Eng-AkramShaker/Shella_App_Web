@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/price_converter.dart';
 import 'package:shella_design/common/util/app_styles.dart';

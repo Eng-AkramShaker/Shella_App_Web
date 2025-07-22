@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
@@ -273,8 +273,8 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       Response? response;
       // Response response = await apiClient.postData(context,AppConstants.nafath_checkStatusUri, data);
 
-      if ((response!.statusCode == 200 || response.statusCode == 201) && response.body != null) {
-        NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(response.body);
+      if ((response!.statusCode == 200 || response.statusCode == 201)) {
+        NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(response.body as Map<String, dynamic>);
 
         print("✅ حالة Nafath: ${response.body}");
 
@@ -305,7 +305,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       // Response response = await apiClient.postData(context,AppConstants.nafath_initiateUri, data);
 
       if ((response!.statusCode == 200 || response.statusCode == 201)) {
-        model = NafathRandomModel.fromJson(response.body);
+        model = NafathRandomModel.fromJson(response.body as Map<String, dynamic>);
 
         return model;
       } else if (response.statusCode == 422) {

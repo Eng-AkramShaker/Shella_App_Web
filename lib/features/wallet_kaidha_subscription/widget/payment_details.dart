@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:shella_design/common/helper/price_converter.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
@@ -53,10 +53,10 @@ class PaymentDetails extends StatelessWidget {
                           Custom_Text(context, text: ' | ', style: TextStyle(color: Colors.grey)),
                           Custom_Text(context,
                               text: wallet.status == "Pending"
-                                  ? "pending".tr
+                                  ? "pending".tr()
                                   : wallet.status == "Active"
-                                      ? "available".tr
-                                      : "closed_now".tr,
+                                      ? "available".tr()
+                                      : "closed_now".tr(),
                               style: font16SecondaryColor400W(context)),
                         ],
                       )

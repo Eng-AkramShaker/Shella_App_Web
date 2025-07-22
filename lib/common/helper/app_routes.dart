@@ -238,9 +238,8 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
 
-    main_subscription: (context) => const Step_1_Screen(),
-
-    walletKaidha_Step_1_Screen: (context) => const KiadaWalletSubscriptionScreen(),
+    main_subscription: (context) => const KiadaWalletSubscriptionScreen(),
+    walletKaidha_Step_1_Screen: (context) => const Step_1_Screen(),
 
     helpAndSupport: (context) => const HelpAndSupport(),
 

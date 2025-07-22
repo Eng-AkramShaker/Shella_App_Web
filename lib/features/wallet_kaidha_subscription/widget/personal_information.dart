@@ -1,8 +1,7 @@
-// ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison
+// ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -195,6 +194,13 @@ class _PersonalInformationState extends State<PersonalInformation> {
               focusNode: KaidhaSub_Controller.numberOfFamilyFocus,
               containerKey: KaidhaSubscription_Controller.numberOfFamilyKey,
               isEmpty: KaidhaSub_Controller.isNumberOfFamilyEmpty,
+              onChanged: (value) {
+                if (value.isNotEmpty && KaidhaSub_Controller.isNumberOfFamilyEmpty) {
+                  setState(() {
+                    KaidhaSub_Controller.isNumberOfFamilyEmpty = false;
+                  });
+                }
+              },
             ),
 
             // رقم بطاقة الأحوال
@@ -208,12 +214,16 @@ class _PersonalInformationState extends State<PersonalInformation> {
               focusNode: KaidhaSub_Controller.identityCardFocus,
               containerKey: KaidhaSubscription_Controller.identityCardKey,
               isEmpty: KaidhaSub_Controller.isIdentityCardEmpty,
+              onChanged: (value) {
+                if (value.isNotEmpty && KaidhaSub_Controller.isIdentityCardEmpty) {
+                  setState(() {
+                    KaidhaSub_Controller.isIdentityCardEmpty = false;
+                  });
+                }
+              },
             ),
 
-            _buildExpirationDateField(
-              context,
-              text: "تاريخ انتهاء الهوية",
-            ),
+            _buildExpirationDateField(context, text: "تاريخ انتهاء الهوية"),
 
             SizedBox(height: 25),
 
@@ -234,30 +244,11 @@ class _PersonalInformationState extends State<PersonalInformation> {
               ),
             ),
 
-            // _custom_number(mycontroller: KaidhaSub_Controller.phoneController, text: "رقم الهاتف", context: context),
-
             SizedBox(height: 20),
 
             _buildHouseType(context),
 
             SizedBox(height: 10),
-
-            // Text(
-            //   "الحي",
-            //   textAlign: TextAlign.center,
-            //   style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeLarge),
-            // ),
-
-            // SizedBox(height: 10),
-
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 17),
-            //   child: Text(
-            //     AddressHelper().removeEnglishAndNumbers(address!.address.toString()),
-            //     textAlign: TextAlign.center,
-            //     style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
-            //   ),
-            // ),
 
             _customTextFormAuth(
               mycontroller: KaidhaSub_Controller.neighborhood,
@@ -282,13 +273,19 @@ class _PersonalInformationState extends State<PersonalInformation> {
             ),
 
             _custom_number(
-              mycontroller: KaidhaSub_Controller.total_salary,
-              text: "الراتب الاجمالي",
-              context: context,
-              focusNode: KaidhaSub_Controller.totalSalaryFocus,
-              containerKey: KaidhaSubscription_Controller.totalSalaryKey,
-              isEmpty: KaidhaSub_Controller.isTotalSalaryEmpty,
-            ),
+                mycontroller: KaidhaSub_Controller.total_salary,
+                text: "الراتب الاجمالي",
+                context: context,
+                focusNode: KaidhaSub_Controller.totalSalaryFocus,
+                containerKey: KaidhaSubscription_Controller.totalSalaryKey,
+                isEmpty: KaidhaSub_Controller.isTotalSalaryEmpty,
+                onChanged: (value) {
+                  if (value.isNotEmpty && KaidhaSub_Controller.isTotalSalaryEmpty) {
+                    setState(() {
+                      KaidhaSub_Controller.isTotalSalaryEmpty = false;
+                    });
+                  }
+                }),
 
             _buildInstallments(context),
           ],
@@ -316,7 +313,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "yes",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateInstallments(value!);
+                KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
             _buildRadioOption(
@@ -325,7 +322,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "no",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateInstallments(value!);
+                KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
           ],
@@ -353,7 +350,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "single",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -362,7 +359,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "married",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -371,7 +368,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "divorced",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
           ],
@@ -392,7 +389,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 value: type,
                 groupValue: KaidhaSubController.house_type,
                 onChanged: (v) {
-                  // KaidhaSubController.updateHousetype(v!);
+                  KaidhaSubController.updateHousetype(v!);
                 },
               )),
         ],
@@ -443,6 +440,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
     required FocusNode focusNode,
     required GlobalKey containerKey,
     required bool isEmpty,
+    required Function(String value)? onChanged, // ✅ أضف هذا
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -460,6 +458,11 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(10),
               ],
+              onChanged: (value) {
+                if (onChanged != null) {
+                  onChanged(value);
+                }
+              },
               cursorColor: AppColors.bgColor,
               controller: mycontroller,
               obscureText: obscureText ?? false,
@@ -594,7 +597,11 @@ class _PersonalInformationState extends State<PersonalInformation> {
             child: TextFormField(
               controller: TextEditingController(text: KaidhaSub_Controller.birthDate),
               readOnly: true,
-              onTap: () => _selectDate_Old_10(context, KaidhaSub_Controller),
+              onTap: () {
+                _selectDate_Old_10(context, KaidhaSub_Controller);
+                KaidhaSub_Controller.isBirthDateEmpty = false;
+                setState(() {});
+              },
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'الرجاء اختيار تاريخ الميلاد';
@@ -644,7 +651,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
     if (picked != null) {
       final String formattedDate =
           "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      // controller.updateBirthDate(formattedDate);
+      controller.updateBirthDate(formattedDate);
     }
   }
 
@@ -690,6 +697,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           validator: (value) {
             if (value == null || value.isEmpty) {
               KaidhaSub_Controller.isEndDateEmpty = true;
+              setState(() {});
 
               // التمرير إلى الحقل
               Future.delayed(Duration(milliseconds: 100), () {
@@ -705,6 +713,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
             }
 
             KaidhaSub_Controller.isEndDateEmpty = false;
+            setState(() {});
             return null;
           },
         ),
@@ -734,7 +743,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
     if (picked != null) {
       final formattedDate = "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      // Get.find<KaidhaSubscription_Controller>().updateExpirationDate(formattedDate);
+      Provider.of<KaidhaSubscription_Controller>(context, listen: false).updateExpirationDate(formattedDate);
     }
   }
+
+  //
 }

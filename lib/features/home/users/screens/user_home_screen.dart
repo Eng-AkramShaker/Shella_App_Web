@@ -57,6 +57,20 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
+              //
+
+              Card(
+                color: Colors.red,
+                child: ElevatedButton(
+                  child: const Text('data'),
+                  onPressed: () async {
+                    //
+                  },
+                ),
+              ),
+
+              //------------------------------------------
+
               buildSectionTitle_One(
                 context,
                 title: "الاقسام",
@@ -67,23 +81,14 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
               BuildCategoryListView(),
               // SizedBox(height: 22.h),
               // buildBanner(context),
-              Card(
-                color: Colors.red,
-                child: ElevatedButton(
-                  child: const Text('data'),
-                  onPressed: () async {
-                    //
-
-                    nav.push(AppRoutes.splashscreen);
-                  },
-                ),
-              ),
 
               SizedBox(height: 16.h),
-              buildSectionTitleTow(context,
-                  title: "المتاجر القريبة منك",
-                  lapel: "المزيد",
-                  underline: true),
+              buildSectionTitleTow(
+                context,
+                title: "المتاجر القريبة منك",
+                lapel: "المزيد",
+                underline: true,
+              ),
               SizedBox(height: 16.h),
               buildDeliveryListView(context),
               SizedBox(height: 50.h),

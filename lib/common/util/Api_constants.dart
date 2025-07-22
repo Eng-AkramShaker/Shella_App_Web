@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, camel_case_types, file_names
 
-import 'package:get/get.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ApiConstants {
   static const String appName = 'شلة';
@@ -353,16 +353,16 @@ class ApiConstants {
   static final dataList = [
     'invite_your_friends_and_business'.tr,
     '${'they_register'.tr} ${ApiConstants.appName} ${'with_special_offer'.tr}',
-    'you_made_your_earning'.tr,
+    'you_made_your_earning'.tr(),
   ];
 
   /// Delivery Tips
   static List<String> tips = ['0', '15', '10', '20', '40', 'custom'];
   static List<String> deliveryInstructionList = [
-    'deliver_to_front_door'.tr,
-    'deliver_the_reception_desk'.tr,
-    'avoid_calling_phone'.tr,
-    'come_with_no_sound'.tr,
+    'deliver_to_front_door'.tr(),
+    'deliver_the_reception_desk'.tr(),
+    'avoid_calling_phone'.tr(),
+    'come_with_no_sound'.tr(),
   ];
 
   // static List<ChooseUsModel> whyChooseUsList = [

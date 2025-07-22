@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, empty_catches, unnecessary_null_comparison
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -49,7 +49,7 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
       backgroundColor: AppColors.wtColor,
       appBar: custom_AppBar(
         context,
-        title: 'kiadha_wallet'.tr,
+        title: 'kiadha_wallet'.tr(),
         icon: Icons.arrow_back_sharp,
         titleIcon: Icons.account_balance_wallet_outlined,
       ),

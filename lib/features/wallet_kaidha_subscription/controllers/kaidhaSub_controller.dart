@@ -1,9 +1,8 @@
-// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable
+// ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable, use_build_context_synchronously
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
-
+import 'package:http/http.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
@@ -146,42 +145,42 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   // =====================================================================================
 
-  void notifyListeners_isShow() {
+  void update_isShow() {
     _isShow = false;
     notifyListeners();
   }
 
-  void notifyListenersjobSpecification(String newjobSpecification) {
+  void updatejobSpecification(String newjobSpecification) {
     jobSpecification = newjobSpecification;
     notifyListeners();
   }
 
-  void notifyListenersInstallments(String newinstallments) {
+  void updateInstallments(String newinstallments) {
     Installments = newinstallments;
     notifyListeners();
   }
 
-  void notifyListenersMaritalStatus(String newStatus) {
+  void updateMaritalStatus(String newStatus) {
     marital_status = newStatus;
     notifyListeners();
   }
 
-  void notifyListenersCity(String notifyListenerscity) {
+  void updateCity(String notifyListenerscity) {
     city = notifyListenerscity;
     notifyListeners();
   }
 
-  void notifyListenersHousetype(String newhousetype) {
+  void updateHousetype(String newhousetype) {
     house_type = newhousetype;
     notifyListeners();
   }
 
-  void notifyListenersBirthDate(String newDate) {
+  void updateBirthDate(String newDate) {
     birthDate = newDate;
     notifyListeners();
   }
 
-  void notifyListenersExpirationDate(String newexpirationDate) {
+  void updateExpirationDate(String newexpirationDate) {
     end_date = newexpirationDate;
     notifyListeners();
   }
@@ -651,7 +650,7 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   void validate_Fields_Screen_2(BuildContext context, String nationalId) async {
     //
-    // nextStage(context, isNext: true);
+    nextStage(context, isNext: true);
 
     if (jobSpecification.isEmpty || salary_day.text.isEmpty || monthlyIncome.text.isEmpty) {
       if (salary_day.text.isEmpty) {
@@ -755,7 +754,6 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     isEndDateEmpty = false;
     isMonthlyIncomeEmpty = false;
 
-    // Call notifyListeners to refresh UI if using GetX
     notifyListeners();
   }
 }

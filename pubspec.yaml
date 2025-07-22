@@ -31,7 +31,7 @@ dependencies:
   url_launcher: ^6.3.1
   video_player: ^2.9.3
   intl_phone_field: ^3.2.0
-  intl: ^0.20.2
+  intl: ^0.19.0
   chewie: ^1.10.0
   font_awesome_flutter: ^10.8.0
 
@@ -46,7 +46,7 @@ dependencies:
   country_code_picker: ^3.3.0
   drift: ^2.26.1
   drift_flutter: ^0.2.4
-  get: ^4.7.2
+
   easy_debounce: ^2.0.3
   flutter_rating_bar: ^4.0.1
   shimmer: ^3.0.0
@@ -55,11 +55,13 @@ dependencies:
   flutter_spinkit:
   google_maps_flutter:
   geolocator:
+  pdf: ^3.11.3
 
   qr_code_scanner_plus: ^2.0.10+1
   syncfusion_flutter_pdfviewer: ^29.1.38
   confetti: ^0.8.0
   animated_text_kit: ^4.2.3
+  easy_localization: ^3.0.7+1
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +81,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/svg/
+    - assets/language/
 
   fonts:
     - family: ReadexPro
