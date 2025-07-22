@@ -146,42 +146,42 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   // =====================================================================================
 
-  void notifyListeners_isShow() {
+  void update_isShow() {
     _isShow = false;
     notifyListeners();
   }
 
-  void notifyListenersjobSpecification(String newjobSpecification) {
+  void updatejobSpecification(String newjobSpecification) {
     jobSpecification = newjobSpecification;
     notifyListeners();
   }
 
-  void notifyListenersInstallments(String newinstallments) {
+  void updateInstallments(String newinstallments) {
     Installments = newinstallments;
     notifyListeners();
   }
 
-  void notifyListenersMaritalStatus(String newStatus) {
+  void updateMaritalStatus(String newStatus) {
     marital_status = newStatus;
     notifyListeners();
   }
 
-  void notifyListenersCity(String notifyListenerscity) {
+  void updateCity(String notifyListenerscity) {
     city = notifyListenerscity;
     notifyListeners();
   }
 
-  void notifyListenersHousetype(String newhousetype) {
+  void updateHousetype(String newhousetype) {
     house_type = newhousetype;
     notifyListeners();
   }
 
-  void notifyListenersBirthDate(String newDate) {
+  void updateBirthDate(String newDate) {
     birthDate = newDate;
     notifyListeners();
   }
 
-  void notifyListenersExpirationDate(String newexpirationDate) {
+  void updateExpirationDate(String newexpirationDate) {
     end_date = newexpirationDate;
     notifyListeners();
   }

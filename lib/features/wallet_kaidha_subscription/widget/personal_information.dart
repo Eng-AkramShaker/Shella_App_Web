@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison
+// ignore_for_file: non_constant_identifier_names, unnecessary_null_comparison, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -210,10 +210,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               isEmpty: KaidhaSub_Controller.isIdentityCardEmpty,
             ),
 
-            _buildExpirationDateField(
-              context,
-              text: "تاريخ انتهاء الهوية",
-            ),
+            _buildExpirationDateField(context, text: "تاريخ انتهاء الهوية"),
 
             SizedBox(height: 25),
 
@@ -316,7 +313,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "yes",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateInstallments(value!);
+                KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
             _buildRadioOption(
@@ -325,7 +322,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "no",
               groupValue: KaidhaSub_Controller.Installments,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateInstallments(value!);
+                KaidhaSub_Controller.updateInstallments(value!);
               },
             ),
           ],
@@ -353,7 +350,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "single",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -362,7 +359,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "married",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
             _buildRadioOption(
@@ -371,7 +368,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               value: "divorced",
               groupValue: KaidhaSub_Controller.marital_status,
               onChanged: (value) {
-                // KaidhaSub_Controller.updateMaritalStatus(value!);
+                KaidhaSub_Controller.updateMaritalStatus(value!);
               },
             ),
           ],
@@ -392,7 +389,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 value: type,
                 groupValue: KaidhaSubController.house_type,
                 onChanged: (v) {
-                  // KaidhaSubController.updateHousetype(v!);
+                  KaidhaSubController.updateHousetype(v!);
                 },
               )),
         ],
@@ -690,6 +687,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           validator: (value) {
             if (value == null || value.isEmpty) {
               KaidhaSub_Controller.isEndDateEmpty = true;
+              setState(() {});
 
               // التمرير إلى الحقل
               Future.delayed(Duration(milliseconds: 100), () {
@@ -705,6 +703,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
             }
 
             KaidhaSub_Controller.isEndDateEmpty = false;
+            setState(() {});
             return null;
           },
         ),
@@ -734,7 +733,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
     if (picked != null) {
       final formattedDate = "${picked.year}-${picked.month.toString().padLeft(2, '0')}-${picked.day.toString().padLeft(2, '0')}";
-      // Get.find<KaidhaSubscription_Controller>().updateExpirationDate(formattedDate);
+      Provider.of<KaidhaSubscription_Controller>(context, listen: false).updateExpirationDate(formattedDate);
     }
   }
 }

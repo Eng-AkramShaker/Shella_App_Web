@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
@@ -40,9 +41,10 @@ class _Step_1_ScreenState extends State<Step_1_Screen> {
                           //
                           SizedBox(height: 20),
                           Container(
-                            width: 1170,
+                            width: width_media(context),
                             padding: EdgeInsets.all(size_10(context)),
                             child: CustomButton(
+                              color: AppColors.primaryColor,
                               isLoading: false,
                               buttonText: "التالي ",
                               onPressed: () async {
