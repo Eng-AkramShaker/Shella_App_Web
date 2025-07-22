@@ -2,14 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/lists.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
+
 import 'package:shella_design/common/widgets/divider/divider_2.dart';
 import 'package:shella_design/features/cart/widgets/mobile/bottom_bar_CartScreen.dart';
 import 'package:shella_design/features/cart/widgets/builds/mobile/build_cart_item.dart';
 import 'package:shella_design/features/cart/widgets/builds/mobile/build_promo_code_input.dart';
 import 'package:shella_design/features/cart/widgets/builds/mobile/build_summary_row.dart';
+
+import 'package:shella_design/features/cart/controllers/cart_controller.dart';
+
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/lists.dart';
+import 'package:shella_design/features/cart/widgets/mobile/bottom_bar_CartScreen.dart';
 
 class Cart_Screen extends StatefulWidget {
   const Cart_Screen({super.key});
@@ -20,10 +26,23 @@ class Cart_Screen extends StatefulWidget {
 
 class _Cart_ScreenState extends State<Cart_Screen> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final cartController = Provider.of<CartController>(
+        context,
+        listen: false,
+      );
+      cartController.loadCartItems();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
       appBar: customAppBar(context, title: 'السلة'),
+// <<<<<<< HEAD:lib/features/cart/screens/mobile/cart_screen.dart
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -32,6 +51,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
             children: [
               for (int index = 0; index < items.length; index++)
                 buildCartItem(items[index], index, context),
+
               buildPromoCodeInput(context),
 
               //
@@ -56,6 +76,10 @@ class _Cart_ScreenState extends State<Cart_Screen> {
           ),
         ),
       ),
+// =======
+      // body: Consumer<CartController>(builder: (context, cartController, _) {
+      //   return buildCartScreenBody(context, cartController);
+      // }),
       bottomNavigationBar: BottomBar_CartScren(),
     );
   }
