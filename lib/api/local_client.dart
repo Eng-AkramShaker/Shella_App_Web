@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:drift/drift.dart' as drift;

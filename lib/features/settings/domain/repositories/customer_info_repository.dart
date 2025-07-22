@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
@@ -26,11 +28,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
   @override
   Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data) async {
     final uri = Uri.parse(ApiConstants.updateCustomerInfo);
-    final response = await apiClient.postData(
-      context,
-      uri.toString(),
-      data,
-    );
+    final response = await apiClient.postData(uri.toString(), data);
 
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);

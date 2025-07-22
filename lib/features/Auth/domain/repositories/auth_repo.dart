@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/Auth/domain/models/signup_body_model.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repository_interface.dart';
-
 import '../../../../api/api_client.dart';
 import '../../../../common/util/sharedPre_constants.dart';
 import 'package:http/http.dart' as http;
@@ -17,7 +16,7 @@ class AuthRepo implements AuthRepositoryInterface {
   AuthRepo({required this.sharedPreferences, required this.apiClient});
 
   @override
-  Future<http.Response?> login(context,
+  Future<http.Response?> login(
       {required String emailOrPhone,
       required String password,
       required String loginType,
@@ -34,7 +33,7 @@ class AuthRepo implements AuthRepositoryInterface {
     if (guestId.isNotEmpty) {
       data.addAll({"guest_id": guestId});
     }
-    return await apiClient.postData(context, ApiConstants.login, data);
+    return await apiClient.postData(ApiConstants.login, data);
   }
 
   @override
@@ -55,7 +54,7 @@ class AuthRepo implements AuthRepositoryInterface {
 
   @override
   Future<http.Response?> registration(SignUpBodyModel signUpBody) async {
-    return await apiClient.postData(context, ApiConstants.signup, signUpBody.toJson());
+    return await apiClient.postData(ApiConstants.signup, signUpBody.toJson());
   }
 
   @override
@@ -65,7 +64,7 @@ class AuthRepo implements AuthRepositoryInterface {
       "phone": phone,
       // "cm_firebase_token": token!,
     };
-    http.Response response = await apiClient.postData(context, ApiConstants.forgetPasswordUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.forgetPasswordUri, data);
     return response;
   }
 
@@ -78,7 +77,7 @@ class AuthRepo implements AuthRepositoryInterface {
       "password": password,
       "confirm_password": confirmPassword
     };
-    http.Response response = await apiClient.postData(context, ApiConstants.resetPasswordUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.resetPasswordUri, data);
     return response;
   }
 
@@ -88,7 +87,7 @@ class AuthRepo implements AuthRepositoryInterface {
       'phone': phone,
       'otp': otp,
     };
-    http.Response response = await apiClient.postData(context, ApiConstants.verifyPhoneUri, data);
+    http.Response response = await apiClient.postData(ApiConstants.verifyPhoneUri, data);
 
     return response;
   }
