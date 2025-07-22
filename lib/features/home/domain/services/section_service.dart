@@ -16,7 +16,7 @@ class SectionService {
 
     var request = http.Request(
       'GET',
-      Uri.parse('${Api_Constants.appBaseUrl}/api/v1/categories'),
+      Uri.parse('${ApiConstants.appBaseUrl}/api/v1/categories'),
     );
 
     request.headers.addAll(headers);
@@ -27,20 +27,15 @@ class SectionService {
       final responseBody = await response.stream.bytesToString();
       final data = json.decode(responseBody);
 
-      final List<dynamic> categoriesJson = data is List
-          ? data
-          : (data['categories'] ?? data['data'] ?? []) as List<dynamic>;
+      final List<dynamic> categoriesJson = data is List ? data : (data['categories'] ?? data['data'] ?? []) as List<dynamic>;
 
-      return categoriesJson
-          .map((e) => SectionModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      return categoriesJson.map((e) => SectionModel.fromJson(e as Map<String, dynamic>)).toList();
     } else {
       throw Exception('Failed to fetch categories: ${response.reasonPhrase}');
     }
   }
 
-
- Future<List<Module>> fetchModules() async {
+  Future<List<Module>> fetchModules() async {
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -54,7 +49,7 @@ class SectionService {
     // shellafood.com
     var request = http.Request(
       'GET',
-      Uri.parse('${Api_Constants.appBaseUrl}/api/v1/module'),
+      Uri.parse('${ApiConstants.appBaseUrl}/api/v1/module'),
     );
 
     request.headers.addAll(headers);
@@ -65,15 +60,11 @@ class SectionService {
       final responseBody = await response.stream.bytesToString();
       final data = json.decode(responseBody);
 
-      final List<dynamic> modulesJson = data ;
-        
+      final List<dynamic> modulesJson = data;
 
-      return modulesJson
-          .map((e) => Module.fromJson(e as Map<String, dynamic>))
-          .toList();
+      return modulesJson.map((e) => Module.fromJson(e as Map<String, dynamic>)).toList();
     } else {
       throw Exception('Failed to fetch modules: ${response.reasonPhrase}');
     }
   }
-
 }
