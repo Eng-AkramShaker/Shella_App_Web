@@ -6,16 +6,13 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
 import 'package:shella_design/features/product/widgets/buttons/quantity_selector.dart';
 
-
-
-
 import 'package:shella_design/features/cart/domain/models/cart_model.dart';
 
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 
 import '../../controllers/cart_controller.dart';
-import 'builds/build_quantity_controls.dart';
+// import 'builds/build_quantity_controls.dart';
 
 class BottomBar_CartDetails extends StatelessWidget {
   const BottomBar_CartDetails({super.key});
@@ -27,18 +24,13 @@ class BottomBar_CartDetails extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           QuantitySelector(),
-
-
           Container(
             margin: EdgeInsets.symmetric(horizontal: 16),
             height: 60,
             width: 450.w,
             child: ElevatedButton(
-
               onPressed: () {},
-
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.greenColor,
                 minimumSize: Size(double.infinity, 50),
@@ -63,9 +55,7 @@ class BottomBar_CartDetails extends StatelessWidget {
                   Row(
                     children: [
                       Custom_Text(context,
-
                           text: "50 ريال", style: font14White400W(context)),
-
                       SizedBox(width: 5),
                       Icon(Icons.money, color: AppColors.wtColor, size: 20),
                     ],
