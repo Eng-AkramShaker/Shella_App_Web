@@ -1,16 +1,14 @@
 // ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, avoid_print
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:shella_design/api/api_checker.dart';
 import 'package:shella_design/common/models/error_response.dart';
 import 'package:shella_design/common/util/Api_constants.dart';
-
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/util/sharedPre_constants.dart';
 import '../common/helper/app_routes.dart';
@@ -18,7 +16,7 @@ import '../common/helper/app_routes.dart';
 class ApiClient {
   final String appBaseUrl;
   final SharedPreferences sharedPreferences;
-  static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
+  static final String noInternetMessage = 'connection_to_api_server_failed'.tr();
   final int timeoutInSeconds = 40;
 
   String? token;
@@ -100,7 +98,6 @@ class ApiClient {
       ApiConstants.zoneId: zoneIDs != null && zoneIDs.isNotEmpty ? jsonEncode(zoneIDs) : jsonEncode([2, 3, 4, 5]),
       ApiConstants.moduleId: moduleID != null && moduleID != 0 ? jsonEncode(moduleID) : jsonEncode(3),
 
-
       ///this will add in ride module
       // AppConstants.operationAreaId: operationIds != null ? jsonEncode(operationIds) : '',
       ApiConstants.localizationKey: languageCode ?? 'ar',
@@ -127,9 +124,7 @@ class ApiClient {
       final stopwatch = Stopwatch()..start();
 
       http.Response response = await http
-
           .get(Uri.parse(appBaseUrl + uri).replace(queryParameters: query), headers: headers ?? _mainHeaders)
-
           .timeout(Duration(seconds: timeoutInSeconds));
       print("//////////////////////////////////////////////////// ${response.request?.headers}");
       stopwatch.stop();

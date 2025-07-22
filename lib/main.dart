@@ -14,8 +14,6 @@ import 'package:shella_design/common/util/sharedPre_constants.dart';
 import 'package:shella_design/common/helper/date_converter.dart';
 import 'common/util/app_colors.dart';
 
-// the start of application
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -31,6 +29,7 @@ void main() async {
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/language',
       fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'), // يبدأ دائمًا بالعربية
       child: MultiProvider(
         providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
         child: ScreenUtilInit(
@@ -55,28 +54,35 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'شلة',
       navigatorKey: navigatorKey,
+
+      // ربط اللغة والاتجاه بالتطبيق
+
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
-      routes: AppRoutes.routes,
 
+      routes: AppRoutes.routes,
       initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
-      //
       theme: ThemeData(
         fontFamily: 'Tajawal',
         useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          primary: AppColors.greenColor,
+        ).copyWith(surface: AppColors.wtColor).copyWith(error: AppColors.redColor),
         textSelectionTheme: TextSelectionThemeData(
-          selectionColor: AppColors.greenColor.withOpacity(0.4),
+          selectionColor: AppColors.greenColor.withAlpha(100),
           cursorColor: AppColors.greenColor,
           selectionHandleColor: AppColors.greenColor,
         ),
-        appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: AppColors.wtColor)),
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
       ),
     );
   }
 }
 
-
+ 
 
   //  599966674
   //  12345678

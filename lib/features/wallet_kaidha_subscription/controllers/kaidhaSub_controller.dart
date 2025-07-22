@@ -2,8 +2,7 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
-
+import 'package:http/http.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';

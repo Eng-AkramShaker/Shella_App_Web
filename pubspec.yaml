@@ -46,7 +46,7 @@ dependencies:
   country_code_picker: ^3.3.0
   drift: ^2.26.1
   drift_flutter: ^0.2.4
-  get: ^4.7.2
+
   easy_debounce: ^2.0.3
   flutter_rating_bar: ^4.0.1
   shimmer: ^3.0.0
@@ -55,6 +55,7 @@ dependencies:
   flutter_spinkit:
   google_maps_flutter:
   geolocator:
+  pdf: ^3.11.3
 
   qr_code_scanner_plus: ^2.0.10+1
   syncfusion_flutter_pdfviewer: ^29.1.38

@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:http/http.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/kaidhaSub_model.dart';

@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, non_constant_identifier_names, deprecated_member_use, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -57,7 +56,7 @@ class _KiadaWalletSubscriptionScreenState extends State<KiadaWalletSubscriptionS
           backgroundColor: AppColors.wtColor,
           appBar: custom_AppBar(
             context,
-            title: 'KiadaWallet_Subscription'.tr,
+            title: 'KiadaWallet_Subscription'.tr(),
             icon: Icons.arrow_back_sharp,
             img_icon: AppImages.KiadaWalletSubscription,
             onPressed: () {

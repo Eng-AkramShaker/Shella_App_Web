@@ -145,6 +145,13 @@ class _Step_2_ScreenState extends State<Step_2_Screen> {
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       cursorColor: AppColors.bgColor,
                       controller: KaidhaSubController.monthlyIncome,
+                      onChanged: (value) {
+                        if (value.isNotEmpty && KaidhaSubController.isMonthlyIncomeEmpty) {
+                          setState(() {
+                            KaidhaSubController.isMonthlyIncomeEmpty = false;
+                          });
+                        }
+                      },
                       decoration: InputDecoration(
                         hintText: "ادخل الدخل الشهري تقريبًا",
                         hintStyle: font10Grey500W(context, size: size_14(context)),

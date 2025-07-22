@@ -22,7 +22,7 @@ class JobSpecification extends StatelessWidget {
           value: "government employee",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            // kaidhaFormController.updatejobSpecification(value!);
+            kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -34,7 +34,7 @@ class JobSpecification extends StatelessWidget {
           value: "private sector employee",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            // kaidhaFormController.updatejobSpecification(value!);
+            kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -46,7 +46,7 @@ class JobSpecification extends StatelessWidget {
           value: "self-employed",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            // kaidhaFormController.updatejobSpecification(value!);
+            kaidhaFormController.updatejobSpecification(value!);
           },
         ),
         SizedBox(height: 20),
@@ -58,7 +58,7 @@ class JobSpecification extends StatelessWidget {
           value: "retired",
           groupValue: kaidhaFormController.jobSpecification,
           onChanged: (value) {
-            // kaidhaFormController.updatejobSpecification(value!);
+            kaidhaFormController.updatejobSpecification(value!);
           },
         ),
       ],
