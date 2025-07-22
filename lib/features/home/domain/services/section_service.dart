@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/home/domain/models/section_model.dart';
 import 'package:shella_design/features/search_filter/domain/models/mostSearchedModel/most_searched_model.dart';
 
@@ -15,7 +16,7 @@ class SectionService {
 
     var request = http.Request(
       'GET',
-      Uri.parse('https://shellafood.com/api/v1/categories'),
+      Uri.parse('${Api_Constants.appBaseUrl}/api/v1/categories'),
     );
 
     request.headers.addAll(headers);
@@ -53,7 +54,7 @@ class SectionService {
     // shellafood.com
     var request = http.Request(
       'GET',
-      Uri.parse('https://shalafood.net/api/v1/module'),
+      Uri.parse('${Api_Constants.appBaseUrl}/api/v1/module'),
     );
 
     request.headers.addAll(headers);
