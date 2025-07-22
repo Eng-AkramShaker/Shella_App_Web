@@ -1,23 +1,23 @@
-class UserInfoModel {
+class User_Model {
   final int? id;
   final String? fName;
   final String? lName;
   final int? loyaltyPoint;
 
-  UserInfoModel({
+  User_Model({
     this.id,
     this.fName,
     this.lName,
     this.loyaltyPoint,
   });
 
-  UserInfoModel copyWith({
+  User_Model copyWith({
     int? id,
     String? fName,
     String? lName,
     int? loyaltyPoint,
   }) {
-    return UserInfoModel(
+    return User_Model(
       id: id ?? this.id,
       fName: fName ?? this.fName,
       lName: lName ?? this.lName,
@@ -25,8 +25,8 @@ class UserInfoModel {
     );
   }
 
-  factory UserInfoModel.fromJson(Map<String, dynamic> json) {
-    return UserInfoModel(
+  factory User_Model.fromJson(Map<String, dynamic> json) {
+    return User_Model(
       id: json['id'],
       fName: json['f_name'],
       lName: json['l_name'],

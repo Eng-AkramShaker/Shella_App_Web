@@ -238,7 +238,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
             Padding(
               padding: const EdgeInsets.only(right: 17),
               child: Text(
-                " Get.find<ProfileController>().userInfoModel!.phone.toString()",
+                " Get.find<ProfileController>().User_Model!.phone.toString()",
                 textAlign: TextAlign.center,
                 style: font14Black500W(context),
               ),

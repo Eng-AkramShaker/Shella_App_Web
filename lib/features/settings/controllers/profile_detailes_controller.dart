@@ -1,16 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/settings/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/settings/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
 
 enum RequestState { initial, loading, success, error }
 
-class ProfileController extends ChangeNotifier {
+class AddressController extends ChangeNotifier {
   final ProfileDetailsServiceInterface profileDetailsService;
 
-  ProfileController({required this.profileDetailsService});
+  AddressController({required this.profileDetailsService});
 
   RequestState adressstate = RequestState.initial;
 

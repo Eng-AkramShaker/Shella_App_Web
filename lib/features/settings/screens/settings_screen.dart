@@ -16,31 +16,13 @@ import 'package:shella_design/common/util/app_colors.dart';
 import '../../../common/helper/app_routes.dart';
 
 class ProfileDetailsPage extends StatefulWidget {
-  const ProfileDetailsPage({
-    super.key,
-  });
+  const ProfileDetailsPage({super.key});
 
   @override
   State<ProfileDetailsPage> createState() => _ProfileDetailsPageState();
 }
 
 class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     _loadCustomerData();
-  //   });
-  // }
-  //
-  // void _loadCustomerData() {
-  //   final controller = Provider.of<CustomerController>(context, listen: false);
-  //   controller.fetchCustomerData();
-  //   if (controller.customer == null) {
-  //     controller.fetchCustomerData();
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
@@ -48,14 +30,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor,
-        title: Text(
-          'تفاصيل الحساب',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: Text('تفاصيل الحساب', style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: ListView(

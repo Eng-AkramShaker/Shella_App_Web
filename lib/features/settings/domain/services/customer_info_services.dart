@@ -6,12 +6,12 @@ class CustomerService {
 
   CustomerService({required this.customerRepository});
 
-  Future<CustomerModel?> getCustomerInfo() async {
-    return await customerRepository.getCustomerInfo();
+  Future<User_Model?> getUserInfo() async {
+    return await customerRepository.getUserInfo();
   }
 
-  Future<CustomerModel?> updateCustomerInfo(Map<String, dynamic> data) async {
-    return await customerRepository.updateCustomerInfo(data);
+  Future<User_Model?> updatedUserInfo(Map<String, dynamic> data) async {
+    return await customerRepository.updatedUserInfo(data);
   }
 
   Future<bool> deleteAccount() async {

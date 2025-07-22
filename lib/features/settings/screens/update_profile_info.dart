@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,11 +31,11 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   @override
   void initState() {
     super.initState();
-    final customer = Provider.of<CustomerController>(context, listen: false).customer;
-    _fullNameController = TextEditingController(text: customer?.fullName ?? '');
-    _phoneController = TextEditingController(text: customer?.phone ?? '');
+    final user = Provider.of<ProfileController>(context, listen: false).user;
+    _fullNameController = TextEditingController(text: user?.fullName ?? '');
+    _phoneController = TextEditingController(text: user?.phone ?? '');
     _birthDateController = TextEditingController(text: "01/01/2000");
-    _emailController = TextEditingController(text: customer?.email ?? '');
+    _emailController = TextEditingController(text: user?.email ?? '');
     _passwordController = TextEditingController(text: "********");
 
     _fullNameController.addListener(_checkForChanges);
@@ -42,11 +44,11 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   }
 
   void _checkForChanges() {
-    final customer = Provider.of<CustomerController>(context, listen: false).customer;
+    final user = Provider.of<ProfileController>(context, listen: false).user;
 
-    final hasTextChanges = _fullNameController.text != (customer?.fullName ?? '') ||
-        _phoneController.text != (customer?.phone ?? '') ||
-        _emailController.text != (customer?.email ?? '');
+    final hasTextChanges = _fullNameController.text != (user?.fullName ?? '') ||
+        _phoneController.text != (user?.phone ?? '') ||
+        _emailController.text != (user?.email ?? '');
 
     setState(() {
       _hasChanges = hasTextChanges;
@@ -113,7 +115,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
             SizedBox(height: 40.h),
 
             // Save button
-            Consumer<CustomerController>(
+            Consumer<ProfileController>(
               builder: (context, controller, _) {
                 return ProfileButton(
                   title: "حفظ التغييرات",
@@ -164,7 +166,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
   void _saveChange(
     BuildContext context,
-    CustomerController controller,
+    ProfileController controller,
   ) async {
     if (!_hasChanges) {
       Navigator.pop(context);
@@ -194,7 +196,7 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
       if (success) {
         navigator.pop();
-        Provider.of<CustomerController>(context, listen: false).fetchCustomerData();
+        Provider.of<ProfileController>(context, listen: false).fetchUserData();
       } else {
         messenger.showSnackBar(
           SnackBar(

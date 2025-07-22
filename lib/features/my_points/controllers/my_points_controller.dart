@@ -11,27 +11,28 @@ class LoyaltyProvider with ChangeNotifier {
   String? _error;
 
   LoyaltyProvider(
-      this._service,
-     // this._profileProvider
-      );
+    this._service,
+    // this._profileProvider
+  );
 
   bool get isConverting => _converting;
   String? get error => _error;
 
   int _offset = 1;
   int get offset => _offset;
-  List<String> _offsetList =[];
+  List<String> _offsetList = [];
   List<Transaction>? _transactionList;
   List<Transaction>? get transactionList => _transactionList;
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   int? _pageSize;
   int? get pageSize => _pageSize;
-  UserInfoModel? _user;
-  UserInfoModel? get user => _user;
+  User_Model? _user;
+  User_Model? get user => _user;
   List<CouponModel> _coupons = [];
-  List<CouponModel> get coupons      => _coupons;
-  int               get couponsCount => _coupons.length;
+  List<CouponModel> get coupons => _coupons;
+  int get couponsCount => _coupons.length;
+
   /// Clears any existing error and notifies listeners.
   void clearError() {
     if (_error != null) {
@@ -39,9 +40,10 @@ class LoyaltyProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
   Future<void> loadCoupons() async {
     _isLoading = true;
-    _error   = null;
+    _error = null;
     notifyListeners();
 
     try {
@@ -92,12 +94,13 @@ class LoyaltyProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-      Future<void> getLoyaltyTransactionList(String offset, bool reload) async {
-    if(offset == '1' || reload) {
+
+  Future<void> getLoyaltyTransactionList(String offset, bool reload) async {
+    if (offset == '1' || reload) {
       _offsetList = [];
       _offset = 1;
       _transactionList = null;
-      if(reload) {
+      if (reload) {
         notifyListeners();
       }
     }
@@ -116,13 +119,14 @@ class LoyaltyProvider with ChangeNotifier {
         notifyListeners();
       }
     } else {
-      if(isLoading) {
+      if (isLoading) {
         _isLoading = false;
         notifyListeners();
       }
     }
   }
-void setOffset(int offset) {
+
+  void setOffset(int offset) {
     _offset = offset;
   }
 

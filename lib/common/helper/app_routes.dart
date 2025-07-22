@@ -93,10 +93,6 @@ class AppRoutes {
   static const discountScreen = '/discountScreen';
   static const String walletScreen = '/walletScreen';
 
-  static const String main_subscription = '/main_subscription';
-
-  static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
-
   static const String myCouponScreen = '/myCouponScreen';
   static const String helpAndSupportMobile = '/helpAndSupportMobile';
   static const String helpAndSupportWeb = '/helpAndSupportWeb';
@@ -136,8 +132,8 @@ class AppRoutes {
   static const String addaddress = '/addaddress';
 
   // kaidha form
-  static const String aliashtirakFiQaydiha = '/aliashtirakFiQaydiha';
-  static const String verifySourceOfIncome = '/verifySourceOfIncome';
+  static const String main_subscription = '/main_subscription';
+  static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';

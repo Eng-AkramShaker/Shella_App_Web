@@ -1,22 +1,21 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/features/settings/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/settings/domain/services/customer_info_services.dart';
-
 import '../../../common/helper/app_routes.dart';
 import '../widgets/profile_details_dialog.dart';
 
-class CustomerController extends ChangeNotifier {
+class ProfileController extends ChangeNotifier {
   final CustomerService service;
-  CustomerModel? customer;
+
+  User_Model? user;
+
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
-  Future<void> fetchCustomerData() async {
+  Future<void> fetchUserData() async {
     _isLoading = true;
     notifyListeners();
     await loadCustomerInfo();
@@ -24,16 +23,16 @@ class CustomerController extends ChangeNotifier {
     notifyListeners();
   }
 
-  CustomerController({required this.service});
+  ProfileController({required this.service});
 
   String? toExternalReference;
 
   Future<void> loadCustomerInfo() async {
     try {
-      final result = await service.getCustomerInfo();
+      final result = await service.getUserInfo();
       if (result != null) {
         print("✅ تم جلب البيانات: ${result.fullName}");
-        customer = result;
+        user = result;
         notifyListeners();
       } else {
         toExternalReference = 'فشل في تحميل بيانات العميل.';
@@ -42,34 +41,6 @@ class CustomerController extends ChangeNotifier {
       toExternalReference = 'حدثت مشكلة في الاتصال!';
     }
   }
-
-  // void showEditDialog(
-  //   BuildContext context,
-  //   String fieldTitle,
-  //   String currentValue,
-  //   Function(String) onSave,
-  // ) {
-  //   TextEditingController controller =
-  //       TextEditingController(text: currentValue);
-  //
-  //   CustomDialog.showCustomDialog(
-  //           context: context,
-  //           title: 'تعديل $fieldTitle',
-  //           customContent: TextField(
-  //             controller: controller,
-  //             decoration: InputDecoration(
-  //               border: OutlineInputBorder(
-  //                 borderRadius: BorderRadius.circular(12),
-  //               ),
-  //             ),
-  //           ),
-  //           onConfirm: () {})
-  //       .then((confirmed) {
-  //     if (confirmed == true) {
-  //       onSave(controller.text);
-  //     }
-  //   });
-  // }
 
   Future<bool> updateProfileInfo(Map<String, dynamic> data) async {
     try {
@@ -80,25 +51,17 @@ class CustomerController extends ChangeNotifier {
         'phone': data['phone'],
         'email': data['email'],
       };
-      final shouldUpdate =
-          apiData['name'] != customer?.fullName || apiData['phone'] != customer?.phone || apiData['email'] != customer?.email;
+      final shouldUpdate = apiData['name'] != user?.fullName || apiData['phone'] != user?.phone || apiData['email'] != user?.email;
 
       if (!shouldUpdate) {
         _isLoading = false;
         notifyListeners();
         return true; // No changes needed
       }
-      final updatedCustomer = await service.updateCustomerInfo(apiData);
-      // final updateData = {
-      //   'name': field,
-      //   'value': newValue,
-      // };
+      final updatedUser = await service.updatedUserInfo(apiData);
 
-      // final updatedCustomer = await service.updateCustomerInfo(updateData);
-
-      if (updatedCustomer != null) {
-        customer = updatedCustomer;
-        // await fetchCustomerData();
+      if (updatedUser != null) {
+        user = updatedUser;
         print('تم التحديث بنجاح');
         return true;
       }

@@ -20,14 +20,14 @@ class _AccountDetailsState extends State<AccountDetails> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => ProfileController(profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository())),
+      create: (_) => AddressController(profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository())),
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80.0),
           child: WebHomeApppar(),
         ),
-        body: Consumer<ProfileController>(
+        body: Consumer<AddressController>(
           builder: (context, controller, child) => ListView(
             children: [
               Padding(

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +29,7 @@ class AddressDetailsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(child: Consumer<ProfileController>(
+          Expanded(child: Consumer<AddressController>(
             builder: (context, controller, _) {
               if (controller.adressstate == RequestState.initial) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -132,7 +134,7 @@ class AddressDetailsPage extends StatelessWidget {
       ),
     ).then((result) {
       if (result == true) {
-        context.read<ProfileController>().getAdress();
+        context.read<AddressController>().getAdress();
       }
     });
   }
@@ -143,7 +145,7 @@ class AddressDetailsPage extends StatelessWidget {
       MaterialPageRoute(builder: (context) => AddNewAddressScreen()),
     ).then((result) {
       if (result == true) {
-        context.read<ProfileController>().getAdress();
+        context.read<AddressController>().getAdress();
       }
     });
   }
