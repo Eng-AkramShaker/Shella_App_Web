@@ -26,7 +26,7 @@ class MainAppConstants {
   static const String fullName = 'الاسم بالكامل"';
   static const String typeFullName = 'ادخل اسمك بالكامل';
   static const String typeFullEmail = 'ادخل ايميلك بالكامل';
-  static const String phoneNumber = 'رقم الهاتف"';
+  static const String phoneNumber = 'رقم الهاتف';
   static const String iAcceptTermsCondition =
       'اوافق على الشروط والأحكام وسياسة الخصوصية';
   static const String regiterSuccefully = 'تم إنشاء الحساب بنجاح';
@@ -77,4 +77,34 @@ class MainAppConstants {
   static const String availableDelivery = 'توصيل متاح';
   static const String noDelivery = 'لايوجد توصيل';
   static const String discount25FirstOrder = 'خصم يصل إلى 25% عند اول طلب';
+
+
+  //----------------Pick up and order service----------------------
+
+  static const String packetsPosition='موقع الطرود';
+  static const String senderInfo='معلومات المرسل';
+  static const String receiverInfo='معلومات المتلقي';
+  static const String takingPosition='موقع الالتقاط';
+    static const String addNew='أضف جديد';
+      static const String house='المنزل';
+        static const String explainYourAddress='وضح عنوانك';
+      static const String streetName='اسم الشارع';
+   static const String areaName='اسم المنطقة';
+    static const String block='الطابق';
+    static const String senderName='اسم المرسل';
+     static const String receiverName='اسم المتلقي';
+      static const String continueWord='يكمل';
+        static const String nextWord='التالي';
+        static const String serviceDetails='تفاصيل الخدمة المراد نقلها';
+
+
+  
+ 
+
+    
+
+
+
+
+
 }

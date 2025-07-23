@@ -25,6 +25,8 @@ import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
 import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_two.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/packet_position.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
 import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
@@ -214,6 +216,8 @@ class AppRoutes {
   static const String companyMarketsShopes = '/companyMarketsShopes';
   static const String returantsDetailes = '/returantsDetailes';
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
+  static const String packetsPosition='/packetsPosition';
+  static const String receiverInfo='/receiverInfo';
 
   // App =========================================================================================================
   static final Map<String, Widget Function(BuildContext)> routes = {
@@ -308,6 +312,10 @@ class AppRoutes {
     //Restaurant
 
     restaurantDetails: (context) => RestaurantDetails(),
+
+    // Pickup and order Service
+    packetsPosition : (context) => PacketsPosition(),
+  //  receiverInfo: (context) => ReceiverInfo(),
 
     // Web
     loginPage: (context) => const LoginPage(),

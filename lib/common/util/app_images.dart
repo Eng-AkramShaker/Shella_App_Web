@@ -126,8 +126,9 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
-    static const String burger = 'assets/images/im1.png';
-        static const String pizza = 'assets/images/im4.png';
+  static const String burger = 'assets/images/im1.png';
+  static const String pizza = 'assets/images/im4.png';
+  static const String packet= 'assets/images/packet.png';
 
 
 
@@ -146,6 +147,10 @@ class AppImages {
   static const String map2 = 'assets/images/map2.png';
   static const String storeOffer= 'assets/images/storeOffer.png';
   static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
+  static const String houseIcon= 'assets/images/houseicon.png';
+    static const String greenMarker= 'assets/images/marker.png';
+
+
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';

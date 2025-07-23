@@ -728,6 +728,20 @@ TextStyle font14Grey500W(
   );
 }
 
+TextStyle font14Primary400W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_14(context),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w400,
+  );
+}
+
 // ==================== 13 ===================
 
 TextStyle font13Green500W(
