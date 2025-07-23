@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "25.1.8937393"
     namespace = "com.example.shella_design"
 
     compileSdk = 35
