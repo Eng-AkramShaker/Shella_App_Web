@@ -7,6 +7,9 @@ import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
+import 'package:shella_design/features/cart/controllers/cart_controller.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
@@ -67,6 +70,10 @@ List<SingleChildWidget> appProviders({
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
 
+  //  cart   =======
+  final cartRepo = CartRepository(apiClient: apiClient);
+  final cartService = CartService(cartRepository: cartRepo );
+
   //  orders   =======
   final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
@@ -92,12 +99,12 @@ List<SingleChildWidget> appProviders({
 
     ChangeNotifierProvider(create: (_) => SplashController(SplashService())..loadConfig()),
     ChangeNotifierProvider(create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider(create: (_) => ProfileController(service: customerService)..fetchUserData()),
+    ChangeNotifierProvider(create: (_) => CustomerController(service: customerService)..fetchCustomerData()),
 
     /// ✅ تم إضافة ملفات البروفايل هنا
-    Provider<ProfileRepository>.value(value: profileRepo),
-    Provider<ProfileDetailsService>.value(value: profileService),
-    ChangeNotifierProvider(create: (_) => AddressController(profileDetailsService: profileService)),
+    // Provider<ProfileRepository>.value(value: profileRepo),
+    // Provider<ProfileDetailsService>.value(value: profileService),
+    // ChangeNotifierProvider(create: (_) => ProfileController(profileDetailsService: profileService)),
 
     // Home
     ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
@@ -107,6 +114,19 @@ List<SingleChildWidget> appProviders({
           ..fetchModules()),
     ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
+
+
+    ChangeNotifierProvider(
+      create: (context) => ProfileController(
+        profileDetailsService: ProfileDetailsService(
+          profileRepository: ProfileRepository(),
+        ),
+      ),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => CartController(cartService: cartService),
+    ),
+
 
     // Discount
     ChangeNotifierProvider(

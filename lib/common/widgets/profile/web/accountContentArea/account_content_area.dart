@@ -6,7 +6,7 @@ import '../../../../../features/settings/controllers/profile_detailes_controller
 import '../accountInformationColumn1/account_information_column1.dart';
 
 class AccountContentArea extends StatelessWidget {
-  final AddressController controller;
+  final ProfileController controller;
   const AccountContentArea({super.key, required this.controller});
 
   @override

@@ -1,12 +1,10 @@
-// ignore_for_file: camel_case_types
-
-class User_Model {
+class CustomerModel {
   final int? id;
   final String? fName;
   final String? lName;
   final String? phone;
   final String? email;
-  final String? image;
+  late final String? image;
   final bool? isPhoneVerified;
   final String? emailVerifiedAt;
   final String? createdAt;
@@ -24,12 +22,19 @@ class User_Model {
   final String? refBy;
   final String? tempToken;
 
+  //final List<String>? moduleIds;
   final bool? isEmailVerified;
   final bool? isFromPos;
   final String? fullName;
-  final String? imageFullUrl;
+  late final String? imageFullUrl;
 
-  User_Model({
+  String? get safeImageFullUrl {
+    if (imageFullUrl == null || imageFullUrl!.isEmpty) return null;
+
+    return imageFullUrl;
+  }
+
+  CustomerModel({
     this.id,
     this.fName,
     this.lName,
@@ -59,15 +64,17 @@ class User_Model {
     this.imageFullUrl,
   });
 
-  factory User_Model.fromJson(Map<String, dynamic> json) {
-    return User_Model(
+  factory CustomerModel.fromJson(Map<String, dynamic> json) {
+    return CustomerModel(
       id: json['id'],
       fName: json['f_name'],
       lName: json['l_name'],
       phone: json['phone'],
       email: json['email'],
       image: json['image'],
-      isPhoneVerified: json['is_phone_verified'] != null ? json['is_phone_verified'] == 1 : null,
+      isPhoneVerified: json['is_phone_verified'] != null
+          ? json['is_phone_verified'] == 1
+          : null,
       emailVerifiedAt: json['email_verified_at'],
       createdAt: json['created_at'],
       updatedAt: json['updated_at'],
@@ -77,13 +84,17 @@ class User_Model {
       loginMedium: json['login_medium'],
       socialId: json['social_id'],
       zoneId: json['zone_id'],
-      walletBalance: json['wallet_balance'] != null ? (json['wallet_balance'] as num).toDouble() : null,
+      walletBalance: json['wallet_balance'] != null
+          ? (json['wallet_balance'] as num).toDouble()
+          : null,
       loyaltyPoint: json['loyalty_point'],
       refCode: json['ref_code'],
       languageKey: json['current_language_key'],
       refBy: json['ref_by'],
       tempToken: json['temp_token'],
-      isEmailVerified: json['is_email_verified'] != null ? json['is_email_verified'] == 1 : null,
+      isEmailVerified: json['is_email_verified'] != null
+          ? json['is_email_verified'] == 1
+          : null,
       isFromPos: json['is_from_pos'] != null ? json['is_from_pos'] == 1 : null,
       fullName: json['full_name'],
       imageFullUrl: json['image_full_url'],

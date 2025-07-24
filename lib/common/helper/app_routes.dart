@@ -129,7 +129,7 @@ class AppRoutes {
   static const String profileInfo = '/profile_info';
   static const String updateProfileInfoPage = '/update_profile_info_page';
   static const String addressDetails = '/addressDetails';
-  static const String addaddress = '/addaddress';
+  static const String addAddress = '/addaddress';
 
   // kaidha form
   static const String main_subscription = '/main_subscription';
@@ -258,7 +258,7 @@ class AppRoutes {
     profileInfo: (context) => const ProfileInfo(),
     updateProfileInfoPage: (context) => const UpdateProfileInfoPage(),
     addressDetails: (context) => const AddressDetailsPage(),
-    addaddress: (context) => const AddNewAddressScreen(),
+    addAddress: (context) => const AddNewAddressScreen(),
 
     // Kaidha
     // aliashtirakFiQaydiha: (context) => const AliashtirakFiQaydiha(),

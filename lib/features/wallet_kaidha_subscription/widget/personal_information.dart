@@ -67,8 +67,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
       {'name': 'تركي', 'code': 'TR', 'flag': '🇹🇷'},
     ];
 
-    return Consumer3<KaidhaSubscription_Controller, ProfileController, AddressController>(
-        builder: (context, KaidhaSub_Controller, profController, addressController, _) {
+    return Consumer3<KaidhaSubscription_Controller, ProfileController,  CustomerController>(
+        builder: (context, KaidhaSub_Controller, profController, customerController, _) {
       return Form(
         key: KaidhaSub_Controller.formstate,
         child: Column(
@@ -241,7 +241,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
             Padding(
               padding: const EdgeInsets.only(right: 17),
               child: Text(
-                profController.user!.phone.toString(),
+                // profController.user!.phone.toString(),
+                customerController.customer?.phone.toString() ?? "",
                 textAlign: TextAlign.center,
                 style: font14Black500W(context),
               ),
