@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
@@ -72,8 +71,8 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
     //
 
-    return Consumer3<KaidhaSubscription_Controller, ProfileController, AddressController>(
-      builder: (context, KaidhaSubController, profController, addressController, _) {
+    return Consumer3<KaidhaSubscription_Controller, ProfileController, CustomerController>(
+      builder: (context, KaidhaSubController, profController, customerController, _) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -266,7 +265,7 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
                                           if (onValue.statusCode == 200 || onValue.statusCode == 201) {
                                             await KaidhaSubController.Submit_Store_Info(
-                                                context, addressController.address![0].address, profController.user!.phone!);
+                                                context, profController.address![0].address, customerController.customer!.phone!);
                                           } else if (onValue.statusCode == 404) {
                                             //
 

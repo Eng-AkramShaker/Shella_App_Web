@@ -48,9 +48,9 @@ class Address {
       longitude: (json['longitude'] ?? 0.0),
       userId: json['user_id'] ?? 0,
       createdAt:
-          DateTime.tryParse(json['created_at'] ?? '') ?? DateTime(1970, 1, 1),
+      DateTime.tryParse(json['created_at'] ?? '') ?? DateTime(1970, 1, 1),
       updatedAt:
-          DateTime.tryParse(json['updated_at'] ?? '') ?? DateTime(1970, 1, 1),
+      DateTime.tryParse(json['updated_at'] ?? '') ?? DateTime(1970, 1, 1),
       zoneId: json['zone_id'] ?? 0,
       zoneIds: (json['zone_ids'] as List?)?.map((e) => e as int).toList() ?? [],
       floor: json['floor'] ?? '',

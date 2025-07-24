@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
@@ -26,7 +25,7 @@ class ProfileInfoTile extends StatelessWidget {
                 title,
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15.sp),
               ),
-              SizedBox(height: 8.h), // مسافة بين العنوان والقيمة
+              SizedBox(height: 8.h),
               Text(
                 value,
                 style: TextStyle(color: AppColors.supListTitle, fontSize: 14.sp, fontWeight: FontWeight.w400),
