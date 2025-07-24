@@ -30,7 +30,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
     final uri = Uri.parse(ApiConstants.updateCustomerInfo);
     final response = await apiClient.postData(uri.toString(), data);
 
-    if (response.statusCode == 200) {
+    if (response!.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
       if (jsonBody.containsKey('customer')) {
         return User_Model.fromJson(jsonBody['customer']);

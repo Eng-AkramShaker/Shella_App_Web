@@ -1,13 +1,11 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, use_build_context_synchronously, camel_case_types, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
-
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_styles.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
@@ -77,7 +75,7 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
-            child: KaidhaSubController.isLoading_Status || KaidhaSubController.isLoading
+            child: KaidhaSubController.isLoading_Status
                 ? Center(
                     child: CircularProgressIndicator(),
                   )
@@ -241,47 +239,45 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
                           //
 
-                          (KaidhaSubController.nafath_checkStatus != null &&
-                                  KaidhaSubController.nafath_checkStatus!.status == "approved")
-                              ? Container(
-                                  width: 1170,
-                                  padding: EdgeInsets.all(size_15(context)),
-                                  child: CustomButton(
-                                    isLoading: false,
-                                    buttonText: "توقيع العقد ولإرسال البيانات",
-                                    onPressed: () async {
+                          Container(
+                            width: 1170,
+                            padding: EdgeInsets.all(size_15(context)),
+                            child: CustomButton(
+                              isLoading: false,
+                              buttonText: "توقيع العقد ولإرسال البيانات",
+                              onPressed: () async {
+                                //
+
+                                await KaidhaSubController.Nafath_send_All_Data(
+                                  context,
+                                  KaidhaSubController.identity_card_number.text,
+                                  KaidhaSubController.nationality.toString(),
+                                  KaidhaSubController.neighborhood.text,
+                                  KaidhaSubController.house_type,
+                                ).then(
+                                  (onValue) async {
+                                    //
+
+                                    debugPrint("\x1B[32m  Nafath_send_All_Data   $onValue  \x1B[0m");
+
+                                    if (onValue) {
+                                      await KaidhaSubController.Submit_Store_Info(
+                                        context,
+                                        addressController.address![0].address,
+                                        profController.user!.phone!,
+                                      );
+                                    } else {
                                       //
 
-                                      await KaidhaSubController.Nafath_send_All_Data(
-                                        context,
-                                        KaidhaSubController.identity_card_number.text,
-                                        KaidhaSubController.nationality.toString(),
-                                        KaidhaSubController.neighborhood.text,
-                                        KaidhaSubController.house_type,
-                                      ).then(
-                                        (onValue) async {
-                                          //
+                                      KaidhaSubController.update_isShow();
 
-                                          debugPrint("\x1B[32m  Nafath_send_All_Data   ${onValue!.statusCode}  \x1B[0m");
-
-                                          if (onValue.statusCode == 200 || onValue.statusCode == 201) {
-                                            await KaidhaSubController.Submit_Store_Info(
-                                                context, addressController.address![0].address, profController.user!.phone!);
-                                          } else if (onValue.statusCode == 404) {
-                                            //
-
-                                            KaidhaSubController.update_isShow();
-
-                                            showCustomSnackBar(context, "اعد المحاوله مره اخري في وقت لاحق");
-                                          } else {
-                                            KaidhaSubController.update_isShow();
-                                          }
-                                        },
-                                      );
-                                    },
-                                  ),
-                                )
-                              : SizedBox(),
+                                      showCustomSnackBar(context, "اعد المحاوله مره اخري في وقت لاحق");
+                                    }
+                                  },
+                                );
+                              },
+                            ),
+                          )
 
                           //
                         ],

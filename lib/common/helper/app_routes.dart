@@ -55,6 +55,8 @@ import 'package:shella_design/features/serveMe/screens/serve_product_screen.dart
 import 'package:shella_design/features/support_conversation/screens/support_conversation_screen.dart';
 import 'package:shella_design/features/wallet/screens/wallet_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/main_subscription.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/show_pdf_screen.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/contract_review_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/step1_screen.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
@@ -134,6 +136,7 @@ class AppRoutes {
   static const String addaddress = '/addaddress';
 
   // kaidha form
+  static const String Contract_Review = '/contract_review_screen';
   static const String main_subscription = '/main_subscription';
   static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
 
@@ -236,6 +239,7 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
 
+    Contract_Review: (context) => const Contract_ReviewScreen(),
     main_subscription: (context) => const KiadaWalletSubscriptionScreen(),
     walletKaidha_Step_1_Screen: (context) => const Step_1_Screen(),
 

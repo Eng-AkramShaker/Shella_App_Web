@@ -174,8 +174,8 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateHousetype(String newhousetype) {
-    house_type = newhousetype;
+  void updateHousetype(String type) {
+    house_type = type;
     notifyListeners();
   }
 
@@ -291,7 +291,7 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   // send All  Data   =============
 
-  Future<Response?> Nafath_send_All_Data(
+  Future<bool> Nafath_send_All_Data(
     BuildContext context,
     String national_id,
     String city,
@@ -307,11 +307,12 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     debugPrint("\x1B[32m  house_type/ $house_type  \x1B[0m");
 
     try {
-      Response response = await kaidhaSubServiceInterface.Nafath_send_All_Data(context, national_id, city, neighborhood, house_type);
+      bool success = await kaidhaSubServiceInterface.Nafath_send_All_Data(context, national_id, city, neighborhood, house_type);
 
-      return response;
+      return success;
     } catch (e) {
-      return null;
+      debugPrint("\x1B[31m ERRRRRor  Nafath_send_All_Data: $e \x1B[0m");
+      return false;
     } finally {
       _nafath_checkStatus = null;
       _isLoading = false;
@@ -365,7 +366,6 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   Future Submit_Store_Info(context, String address, String mobile) async {
     _isLoading_Status = true;
-    notifyListeners();
 
     KaidhaSubModel kaidhaSub = KaidhaSubModel(
       first_name: firstname.text,
@@ -380,8 +380,8 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
       end_date: end_date,
       mobile: mobile,
       house_type: 'apartment',
-      city: 'damascus',
-      neighborhood: address,
+      city: nationality,
+      neighborhood: neighborhood.text,
       name_of_employer: name_of_employer.text,
       total_salary: total_salary.text,
       installments: Installments,
@@ -389,16 +389,21 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
       monthly_amount: monthlyIncome.text,
       salary_day: "2",
     );
+    notifyListeners();
+
+    debugPrint("\x1B[32m     $mobile     \x1B[0m");
+    debugPrint("\x1B[32m     $nationality     \x1B[0m");
+    debugPrint("\x1B[32m     $house_type     \x1B[0m");
+    debugPrint("\x1B[32m     ${neighborhood.text}     \x1B[0m");
 
     await kaidhaSubServiceInterface.Stor_info(context, kaidhaSub, All_files).then((value) async {
-      //
-
       debugPrint("\x1B[32m     Submit_Store_Info  $value      \x1B[0m");
 
       if (value == true) {
         backStage();
         nav.push(AppRoutes.main_subscription);
 
+        debugPrint("\x1B[32m    3333333333333333     \x1B[0m");
         clearForm();
         await get_Wallet_Kaidh();
         await get_Pdf();
@@ -642,7 +647,7 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
 
   void validate_Fields_Screen_2(BuildContext context, String nationalId) async {
     //
-    nextStage(context, isNext: true);
+    // nextStage(context, isNext: true);
 
     if (jobSpecification.isEmpty || salary_day.text.isEmpty || monthlyIncome.text.isEmpty) {
       if (salary_day.text.isEmpty) {
@@ -704,48 +709,48 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
   void clearForm() {
     // Clear TextEditingControllers
 
-    // firstname.clear();
-    // fathername.clear();
-    // grandfathername.clear();
-    // last_name.clear();
-    // number_of_family_members.clear();
-    // identity_card_number.clear();
-    // phoneController.clear();
-    // neighborhood.clear();
-    // name_of_employer.clear();
-    // total_salary.clear();
-    // salary_day.clear();
-    // monthlyIncome.clear();
-    // jobSpecification = '';
-    // qr.clear();
+    firstname.clear();
+    fathername.clear();
+    grandfathername.clear();
+    last_name.clear();
+    number_of_family_members.clear();
+    identity_card_number.clear();
+    phoneController.clear();
+    neighborhood.clear();
+    name_of_employer.clear();
+    total_salary.clear();
+    salary_day.clear();
+    monthlyIncome.clear();
+    jobSpecification = '';
+    qr.clear();
 
-    // // Clear dropdowns / selected values
-    // birthDate = '';
-    // nationality = '';
-    // marital_status = '';
-    // end_date = '';
-    // house_type = '';
-    // city = '';
-    // Installments = '';
+    // Clear dropdowns / selected values
+    birthDate = '';
+    nationality = '';
+    marital_status = '';
+    end_date = '';
+    house_type = '';
+    city = '';
+    Installments = '';
 
-    // // Clear selected files or lists
-    // All_files = [];
+    // Clear selected files or lists
+    All_files = [];
 
-    // // Reset error states if you use them
-    // isFirstNameEmpty = false;
-    // isFatherNameEmpty = false;
-    // isGrandFatherNameEmpty = false;
-    // isLastNameEmpty = false;
-    // isNumberOfFamilyEmpty = false;
-    // isIdentityCardEmpty = false;
-    // isNeighborhoodEmpty = false;
-    // isEmployerEmpty = false;
-    // isTotalSalaryEmpty = false;
-    // isBirthDateEmpty = false;
-    // isNationalityEmpty = false;
-    // isMaritalStatusEmpty = false;
-    // isEndDateEmpty = false;
-    // isMonthlyIncomeEmpty = false;
+    // Reset error states if you use them
+    isFirstNameEmpty = false;
+    isFatherNameEmpty = false;
+    isGrandFatherNameEmpty = false;
+    isLastNameEmpty = false;
+    isNumberOfFamilyEmpty = false;
+    isIdentityCardEmpty = false;
+    isNeighborhoodEmpty = false;
+    isEmployerEmpty = false;
+    isTotalSalaryEmpty = false;
+    isBirthDateEmpty = false;
+    isNationalityEmpty = false;
+    isMaritalStatusEmpty = false;
+    isEndDateEmpty = false;
+    isMonthlyIncomeEmpty = false;
 
     notifyListeners();
   }

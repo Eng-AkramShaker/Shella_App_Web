@@ -51,7 +51,7 @@ class kaidhaSubService implements kaidhaSub_ServiceInterface {
   }
 
   @override
-  Future<Response> Nafath_send_All_Data(
+  Future<bool> Nafath_send_All_Data(
       BuildContext context, String national_id, String city, String neighborhood, String house_type) async {
     return await kaidhaSubRepositoryinterface.Nafath_send_All_Data(context, national_id, city, neighborhood, house_type);
   }

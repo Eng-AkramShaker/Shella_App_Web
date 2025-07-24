@@ -26,5 +26,5 @@ abstract class KaidhaSubRepositoryInterface {
 
   Future<NafathCheckStatusModel?> Nafath_send_checkStatus(BuildContext context, String nationalId);
 
-  Future<Response> Nafath_send_All_Data(BuildContext context, String national_id, String city, String neighborhood, String house_type);
+  Future<bool> Nafath_send_All_Data(BuildContext context, String national_id, String city, String neighborhood, String house_type);
 }
