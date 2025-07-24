@@ -96,6 +96,9 @@ class MainAppConstants {
       static const String continueWord='يكمل';
         static const String nextWord='التالي';
         static const String serviceDetails='تفاصيل الخدمة المراد نقلها';
+      static const String accept='قبول';
+      static const String reject='رفض';
+
 
 
   

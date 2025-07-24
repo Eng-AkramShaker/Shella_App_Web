@@ -25,6 +25,7 @@ import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
 import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_one.dart';
 import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_two.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/driver_offers.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/packet_position.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
 import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
@@ -218,6 +219,7 @@ class AppRoutes {
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
   static const String packetsPosition='/packetsPosition';
   static const String receiverInfo='/receiverInfo';
+  static const String driverOffers='/driverOffers';
 
   // App =========================================================================================================
   static final Map<String, Widget Function(BuildContext)> routes = {
@@ -315,7 +317,9 @@ class AppRoutes {
 
     // Pickup and order Service
     packetsPosition : (context) => PacketsPosition(),
+    driverOffers : (context) => DriverOffers(),
   //  receiverInfo: (context) => ReceiverInfo(),
+
 
     // Web
     loginPage: (context) => const LoginPage(),

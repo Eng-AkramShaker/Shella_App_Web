@@ -129,6 +129,8 @@ class AppImages {
   static const String burger = 'assets/images/im1.png';
   static const String pizza = 'assets/images/im4.png';
   static const String packet= 'assets/images/packet.png';
+    static const String rank= 'assets/images/rank.png';
+
 
 
 
@@ -149,7 +151,7 @@ class AppImages {
   static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
   static const String houseIcon= 'assets/images/houseicon.png';
     static const String greenMarker= 'assets/images/marker.png';
-
+  static const String backgroundMap='assets/images/FRAME (10) 1.png';
 
 
   ///======================== SVG ========================
