@@ -298,28 +298,28 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
   Future<NafathRandomModel?> Nafath_send_National_Id(BuildContext context, String nationalId) async {
     NafathRandomModel model = NafathRandomModel();
-    debugPrint("\x1B[32m     ///55     \x1B[0m");
-    try {
-      if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
-        showCustomSnackBar(context, "رقم الهوية غير صالح");
-        return null;
-      }
 
-      Map<String, String> data = {'national_id': nationalId};
+    if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
+      showCustomSnackBar(context, "رقم الهوية غير صالح");
+      return null;
+    }
 
-      Response response = await apiClient.postData(ApiConstants.nafath_initiateUri, data);
+    Map<String, String> data = {'national_id': nationalId};
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final jsonMap = jsonDecode(response.body);
-        model = NafathRandomModel.fromJson(jsonMap);
-        return model;
-      } else if (response.statusCode == 422) {
-        showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
-      } else {
-        showCustomSnackBar(context, "فشل في المعالجة، الرجاء المحاولة لاحقًا");
-      }
-    } catch (e) {
-      showCustomSnackBar(context, "حدث خطأ أثناء الاتصال بالخادم");
+    Response response = await apiClient.postData(ApiConstants.nafath_initiateUri, data);
+
+    if (!context.mounted) return null; // ✅ تحقق مهم جداً
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonMap = jsonDecode(response.body);
+      model = NafathRandomModel.fromJson(jsonMap);
+      return model;
+    } else if (response.statusCode == 400) {
+      showCustomSnackBar(context, "تمت الموافقة على الطلب. لا يمكن الإرسال مرة أخرى.");
+    } else if (response.statusCode == 422) {
+      showCustomSnackBar(context, "يوجد طلب نشط حاليًا لا يمكن تنفيذ آخر");
+    } else {
+      showCustomSnackBar(context, "فشل في المعالجة، الرجاء المحاولة لاحقًا");
     }
 
     return null;

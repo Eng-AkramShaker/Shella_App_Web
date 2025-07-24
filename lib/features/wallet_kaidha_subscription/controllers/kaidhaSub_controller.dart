@@ -1,16 +1,12 @@
 // ignore_for_file: camel_case_types, file_names, non_constant_identifier_names, avoid_print, override_on_non_overriding_member, prefer_final_fields, unused_local_variable, use_build_context_synchronously
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_snackbar.dart';
 import 'package:shella_design/common/widgets/dialog/confirmation_dialog.dart';
-import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
-import 'package:shella_design/features/settings/controllers/profile_detailes_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/NamedFile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/kaidhaSub_model.dart';
@@ -516,7 +512,7 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     return await kaidhaSubServiceInterface.send_Pay_debit(context, total);
   }
 
-  // -------------------------------
+  // =========================================================================================
 
   void validate_Fields_Screen_1(BuildContext context) {
     isFirstNameEmpty = firstname.text.isEmpty;
@@ -642,6 +638,8 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
     nextStage(context, isNext: true);
   }
 
+  // =========================================================================================
+
   void validate_Fields_Screen_2(BuildContext context, String nationalId) async {
     //
     nextStage(context, isNext: true);
@@ -705,48 +703,49 @@ class KaidhaSubscription_Controller extends ChangeNotifier {
   @override
   void clearForm() {
     // Clear TextEditingControllers
-    firstname.clear();
-    fathername.clear();
-    grandfathername.clear();
-    last_name.clear();
-    number_of_family_members.clear();
-    identity_card_number.clear();
-    phoneController.clear();
-    neighborhood.clear();
-    name_of_employer.clear();
-    total_salary.clear();
-    salary_day.clear();
-    monthlyIncome.clear();
-    jobSpecification = '';
-    qr.clear();
 
-    // Clear dropdowns / selected values
-    birthDate = '';
-    nationality = '';
-    marital_status = '';
-    end_date = '';
-    house_type = '';
-    city = '';
-    Installments = '';
+    // firstname.clear();
+    // fathername.clear();
+    // grandfathername.clear();
+    // last_name.clear();
+    // number_of_family_members.clear();
+    // identity_card_number.clear();
+    // phoneController.clear();
+    // neighborhood.clear();
+    // name_of_employer.clear();
+    // total_salary.clear();
+    // salary_day.clear();
+    // monthlyIncome.clear();
+    // jobSpecification = '';
+    // qr.clear();
 
-    // Clear selected files or lists
-    All_files = [];
+    // // Clear dropdowns / selected values
+    // birthDate = '';
+    // nationality = '';
+    // marital_status = '';
+    // end_date = '';
+    // house_type = '';
+    // city = '';
+    // Installments = '';
 
-    // Reset error states if you use them
-    isFirstNameEmpty = false;
-    isFatherNameEmpty = false;
-    isGrandFatherNameEmpty = false;
-    isLastNameEmpty = false;
-    isNumberOfFamilyEmpty = false;
-    isIdentityCardEmpty = false;
-    isNeighborhoodEmpty = false;
-    isEmployerEmpty = false;
-    isTotalSalaryEmpty = false;
-    isBirthDateEmpty = false;
-    isNationalityEmpty = false;
-    isMaritalStatusEmpty = false;
-    isEndDateEmpty = false;
-    isMonthlyIncomeEmpty = false;
+    // // Clear selected files or lists
+    // All_files = [];
+
+    // // Reset error states if you use them
+    // isFirstNameEmpty = false;
+    // isFatherNameEmpty = false;
+    // isGrandFatherNameEmpty = false;
+    // isLastNameEmpty = false;
+    // isNumberOfFamilyEmpty = false;
+    // isIdentityCardEmpty = false;
+    // isNeighborhoodEmpty = false;
+    // isEmployerEmpty = false;
+    // isTotalSalaryEmpty = false;
+    // isBirthDateEmpty = false;
+    // isNationalityEmpty = false;
+    // isMaritalStatusEmpty = false;
+    // isEndDateEmpty = false;
+    // isMonthlyIncomeEmpty = false;
 
     notifyListeners();
   }

@@ -72,6 +72,9 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String home = '/home';
 
+  static const String onBoarding = '/onboarding';
+  static const String onBoarding_end = '/onBoarding_end';
+
   static const String Login_Mobile = '/Login_Mobile';
 
   static const String shops_screen = '/shops_screen';
@@ -103,8 +106,7 @@ class AppRoutes {
   static const String supportConversation = '/supportConversation';
   static const String order_tracking = '/order_tracking';
   static const String start_tracking_order = '/start_tracking_order';
-  static const String onBoarding = '/onboarding';
-  static const String onBoarding_end = '/onBoarding_end';
+
   static const String splashscreen = '/splashscreen';
   static const String notifications = '/notifications';
   static const String searchfilter = '/searchfilter';
