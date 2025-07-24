@@ -40,7 +40,7 @@ class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<AddressController>(context);
+    Provider.of<ProfileController>(context);
     return Expanded(
       child: SizedBox(
         height: height(context, 0.85),
@@ -54,7 +54,7 @@ class _AccountInformationColumn1State extends State<AccountInformationColumn1> {
           color: AppColors.backgroundColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
-            child: Consumer<AddressController>(
+            child: Consumer<ProfileController>(
               builder: (context, controller, child) => ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemCount: title.length,

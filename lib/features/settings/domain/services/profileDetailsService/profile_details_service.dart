@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:shella_design/features/settings/domain/models/profile_detailes_model.dart';
 import 'package:shella_design/features/settings/domain/repositories/profileDetailsRepositoryInterface/profile_details_repository_interface.dart';
 import 'package:shella_design/features/settings/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
+
+import '../../models/profile_detailes_model.dart';
 
 class ProfileDetailsService implements ProfileDetailsServiceInterface {
   final ProfileDetailsRepositoryInterface profileRepository;
@@ -91,8 +92,9 @@ class ProfileDetailsService implements ProfileDetailsServiceInterface {
     if (response?.statusCode == 200) {
       try {
         final body = jsonDecode(response!.body);
-        final success =
-            body['status'] == 'success' || body['success'] == true || (body['message'] != null && body['message'].contains('نجاح'));
+        final success = body['status'] == 'success' ||
+            body['success'] == true ||
+            (body['message'] != null && body['message'].contains('نجاح'));
         return success;
       } catch (e) {
         throw Exception('$operation Failed: Invalid response format');

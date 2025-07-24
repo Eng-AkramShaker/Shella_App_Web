@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
-import 'package:shella_design/features/settings/domain/models/profile_detailes_model.dart';
+
 import 'package:shella_design/common/util/app_colors.dart';
+
+import '../../domain/models/profile_detailes_model.dart';
 
 class AdressCard extends StatelessWidget {
   final Address address;
