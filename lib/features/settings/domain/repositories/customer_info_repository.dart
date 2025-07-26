@@ -29,11 +29,12 @@ class CustomerRepository implements CustomerRepositoryInterface {
   @override
   Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data) async {
     final uri = Uri.parse(ApiConstants.updateCustomerInfo);
-    final response = await apiClient.postData(
-      uri.toString(),
-      data,
-    );
-    if (response.statusCode == 200) {
+
+
+
+    final response = await apiClient.postData(uri.toString(), data);
+
+    if (response!.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
       if (jsonBody.containsKey('customer')) {
         return CustomerModel.fromJson(jsonBody['customer']);

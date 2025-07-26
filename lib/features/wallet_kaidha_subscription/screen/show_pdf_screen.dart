@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/custom_button.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 
@@ -104,7 +106,7 @@ class _Show_Pdf_ScreenState extends State<Show_Pdf_Screen> {
                   color: AppColors.orangeColor,
                   buttonText: "استعراض العقد",
                   onPressed: () async {
-                    // Get.toNamed(RouteHelper.getContract_ReviewRoute());
+                    nav.push(AppRoutes.Contract_Review);
                   },
                 ),
               ),

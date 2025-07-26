@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shella_design/api/api_client.dart';
+import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,10 +20,13 @@ import '../domain/models/mostSearchedModel/most_searched_model.dart';
 enum SearchState { initial, loading, success, error }
 
 class SearchFilterController with ChangeNotifier {
+  final ApiClient apiClient;
   final SearchServiceInterface? searchServiceInterface;
-  SearchFilterController({this.searchServiceInterface});
+  SearchFilterController(
+      {required this.apiClient, this.searchServiceInterface});
 
-  static SearchFilterController get(context, {listen = true}) => Provider.of<SearchFilterController>(context, listen: listen);
+  static SearchFilterController get(context, {listen = true}) =>
+      Provider.of<SearchFilterController>(context, listen: listen);
 
   /// GET STATE
   SearchState _state = SearchState.initial;
@@ -74,21 +82,26 @@ class SearchFilterController with ChangeNotifier {
   }
 
   /// GET SEARCH HISTORY
-  List<String> _searchHistory = sp<SharedPreferences>().getStringList(SharedPrefKeys.searchHistory) ?? [];
+  List<String> _searchHistory =
+      sp<SharedPreferences>().getStringList(SharedPrefKeys.searchHistory) ?? [];
   List<String> get searchHistory => _searchHistory;
 
   /// SAVE SEARCH HISTORY
   saveSearchHistory(value) {
     _searchHistory.add(value);
-    sp<SharedPreferences>().setStringList(SharedPrefKeys.searchHistory, _searchHistory);
+    sp<SharedPreferences>()
+        .setStringList(SharedPrefKeys.searchHistory, _searchHistory);
     notifyListeners();
   }
 
   /// REMOVE SEARCH HISTORY ITEM
   removeSearchHistoryItem(index) {
-    _searchHistory = sp<SharedPreferences>().getStringList(SharedPrefKeys.searchHistory) ?? [];
+    _searchHistory =
+        sp<SharedPreferences>().getStringList(SharedPrefKeys.searchHistory) ??
+            [];
     _searchHistory.removeAt(index);
-    sp<SharedPreferences>().setStringList(SharedPrefKeys.searchHistory, _searchHistory);
+    sp<SharedPreferences>()
+        .setStringList(SharedPrefKeys.searchHistory, _searchHistory);
     notifyListeners();
   }
 
@@ -130,7 +143,8 @@ class SearchFilterController with ChangeNotifier {
       _state = SearchState.loading;
       searchResultModel = null;
       notifyListeners();
-      searchResultModel = await searchServiceInterface!.searchItems(value: value);
+      searchResultModel =
+          await searchServiceInterface!.searchItems(value: value);
       mixedItems();
       _state = SearchState.success;
       notifyListeners();
@@ -142,18 +156,36 @@ class SearchFilterController with ChangeNotifier {
 
   /// MOST SEARCHED
   MostSearchedModel? mostSearchedModel;
-  mostSearched() async {
+
+  Future<void> mostSearched() async {
     try {
-      _state = SearchState.loading;
-      notifyListeners();
-      mostSearchedModel = await searchServiceInterface!.mostSearched();
-      _state = SearchState.success;
-      notifyListeners();
+      http.Response response =
+          await apiClient.getData(ApiConstants.mostSearched);
+      if (response.statusCode == 200) {
+        mostSearchedModel =
+            MostSearchedModel.fromJson(jsonDecode(response.body));
+      } else {
+        // Handle non-200 status codes
+        print('Failed to load most searched items: ${response.statusCode}');
+      }
     } catch (e) {
-      _state = SearchState.error;
-      notifyListeners();
+      print('Error fetching most searched items: $e');
     }
+    notifyListeners(); // Notify UI after data is loaded or error occurs
   }
+
+  // Future<void> mostSearched() async {
+  //   try {
+  //     _state = SearchState.loading;
+  //     notifyListeners();
+  //     mostSearchedModel = await searchServiceInterface!.mostSearched();
+  //     _state = SearchState.success;
+  //     notifyListeners();
+  //   } catch (e) {
+  //     _state = SearchState.error;
+  //     notifyListeners();
+  //   }
+  // }
 
   /// GET ADDRESS
   AddressModel? addressModel;

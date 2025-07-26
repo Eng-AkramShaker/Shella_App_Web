@@ -25,7 +25,7 @@ class _Step_2_ScreenState extends State<Step_2_Screen> {
     return Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
       return Padding(
         padding: const EdgeInsets.all(12.0),
-        child: KaidhaSubController.isLoading_OTP == false
+        child: KaidhaSubController.isLoading_OTP
             ? Center(
                 child: CircularProgressIndicator(),
               )

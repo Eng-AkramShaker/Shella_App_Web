@@ -4,6 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
+import 'package:shella_design/common/widgets/appBar/mobile/appBar_mobile.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/models/contract_pdf_model.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -56,7 +60,16 @@ class _Contract_ReviewScreenState extends State<Contract_ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(child: Text("عرض العقد"))),
+      backgroundColor: AppColors.wtColor,
+      appBar: custom_AppBar(
+        context,
+        title: "عرض العقد",
+        icon: Icons.arrow_back_sharp,
+        img_icon: AppImages.KiadaWalletSubscription,
+        onPressed: () {
+          nav.back();
+        },
+      ),
       body: _buildBody(),
       floatingActionButton: _buildPageControls(),
     );

@@ -14,6 +14,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "another_flushbar",
+      "rootUri": "file:///C:/Users/Akramm/AppData/Local/Pub/Cache/hosted/pub.dev/another_flushbar-1.12.30",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "args",
       "rootUri": "file:///C:/Users/ASUS/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.7.0",
       "packageUri": "lib/",
@@ -1052,6 +1058,9 @@
       "languageVersion": "3.6"
     }
   ],
+
+  "generated": "2025-07-23T17:24:32.972402Z",
+
   "generator": "pub",
   "generatorVersion": "3.8.1",
   "flutterRoot": "file:///C:/flutter",
