@@ -31,8 +31,7 @@ void main() async {
       fallbackLocale: const Locale('ar'),
       startLocale: const Locale('ar'), // يبدأ دائمًا بالعربية
       child: MultiProvider(
-        providers: appProviders(
-            appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
+        providers: appProviders(appBaseUrl: baseUrl, sharedPreferences: sharedPreferences),
         child: ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
@@ -71,9 +70,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.light(
           primary: AppColors.greenColor,
-        )
-            .copyWith(surface: AppColors.wtColor)
-            .copyWith(error: AppColors.redColor),
+        ).copyWith(surface: AppColors.wtColor).copyWith(error: AppColors.redColor),
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: AppColors.greenColor.withAlpha(100),
           cursorColor: AppColors.greenColor,
