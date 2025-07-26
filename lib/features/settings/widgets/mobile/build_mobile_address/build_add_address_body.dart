@@ -14,15 +14,15 @@ import '../../../domain/models/profile_detailes_model.dart';
 import 'build_label_text.dart';
 
 Widget buildAddAddressBody(
-    MapController mapController,
-    bool isEditing,
-    TextEditingController addressController,
-    TextEditingController nameController,
-    TextEditingController phoneController,
-    TextEditingController streetController,
-    ProfileController profileController,
-    Address? editAddress,
-    ) {
+  MapController mapController,
+  bool isEditing,
+  TextEditingController addressController,
+  TextEditingController nameController,
+  TextEditingController phoneController,
+  TextEditingController streetController,
+  AddressController profileController,
+  Address? editAddress,
+) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
     child: Column(
@@ -35,53 +35,45 @@ Widget buildAddAddressBody(
         SizedBox(height: 20.h),
         buildLabelTextAddress(isEditing),
         SizedBox(height: 20.h),
-        Consumer<ProfileController>(
+        Consumer<AddressController>(
           builder: (context, controller, _) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("تسمية الموقع",
-                  style:
-                  TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+              Text("تسمية الموقع", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
               SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                     onTap: () {
-                      context.read<ProfileController>().updateTybe(1);
+                      context.read<AddressController>().updateTybe(1);
                     },
                     child: locationTag(
                       icon: Icons.home,
                       label: "منزل",
-                      color: (controller.tybe == 1)
-                          ? AppColors.primaryColor
-                          : AppColors.darkGreyColor,
+                      color: (controller.tybe == 1) ? AppColors.primaryColor : AppColors.darkGreyColor,
                     ),
                   ),
                   SizedBox(width: 10.w),
                   InkWell(
                     onTap: () {
-                      context.read<ProfileController>().updateTybe(2);
+                      context.read<AddressController>().updateTybe(2);
                     },
                     child: locationTag(
                       icon: Icons.work,
                       label: "عمل",
-                      color: (controller.tybe == 2)
-                          ? AppColors.primaryColor
-                          : AppColors.darkGreyColor,
+                      color: (controller.tybe == 2) ? AppColors.primaryColor : AppColors.darkGreyColor,
                     ),
                   ),
                   SizedBox(width: 10.w),
                   InkWell(
                     onTap: () {
-                      context.read<ProfileController>().updateTybe(3);
+                      context.read<AddressController>().updateTybe(3);
                     },
                     child: locationTag(
                       icon: Icons.add,
                       label: "إضافة",
-                      color: (controller.tybe == 3)
-                          ? AppColors.primaryColor
-                          : AppColors.darkGreyColor,
+                      color: (controller.tybe == 3) ? AppColors.primaryColor : AppColors.darkGreyColor,
                     ),
                   ),
                 ],
@@ -121,25 +113,21 @@ Widget buildAddAddressBody(
                 children: [
                   InkWell(
                     onTap: () {
-                      context.read<ProfileController>().updateFloor(1);
+                      context.read<AddressController>().updateFloor(1);
                     },
                     child: selectableButton(
                       "منزل (اختياري)",
-                      (controller.floor == 1)
-                          ? AppColors.greenColor
-                          : AppColors.darkGreyColor,
+                      (controller.floor == 1) ? AppColors.greenColor : AppColors.darkGreyColor,
                     ),
                   ),
                   SizedBox(width: 10),
                   InkWell(
                     onTap: () {
-                      context.read<ProfileController>().updateFloor(2);
+                      context.read<AddressController>().updateFloor(2);
                     },
                     child: selectableButton(
                       "أرضية (اختياري)",
-                      (controller.floor == 2)
-                          ? AppColors.greenColor
-                          : AppColors.darkGreyColor,
+                      (controller.floor == 2) ? AppColors.greenColor : AppColors.darkGreyColor,
                     ),
                   ),
                 ],
@@ -162,8 +150,7 @@ Widget buildAddAddressBody(
                   backgroundColor: Colors.green,
                   minimumSize: Size(double.infinity, 50),
                 ),
-                child: Text(
-                    editAddress != null ? "تحديث العنوان" : "حفظ العنوان",
+                child: Text(editAddress != null ? "تحديث العنوان" : "حفظ العنوان",
                     style: const TextStyle(fontSize: 18, color: Colors.white)),
               ),
             ],

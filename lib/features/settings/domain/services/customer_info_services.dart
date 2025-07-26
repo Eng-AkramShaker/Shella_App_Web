@@ -2,24 +2,23 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/features/settings/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/settings/domain/repositories/customer_info_reposittory_interface.dart';
 
-
 class CustomerService {
   final CustomerRepositoryInterface customerRepository;
 
   CustomerService({required this.customerRepository});
 
-  Future<CustomerModel?> getCustomerInfo() async {
+  Future<User_Model?> getCustomerInfo() async {
     return await customerRepository.getCustomerInfo();
   }
 
-  Future<CustomerModel?> updateCustomerInfo(Map<String, dynamic> data) async {
+  Future<User_Model?> updateCustomerInfo(Map<String, dynamic> data) async {
     return await customerRepository.updateCustomerInfo(data);
   }
 
-  Future<CustomerModel?> updateCustomerInfoWithImage(
-      Map<String, dynamic> data, {
-        required XFile imageFile,
-      }) async {
+  Future<User_Model?> updateCustomerInfoWithImage(
+    Map<String, dynamic> data, {
+    required XFile imageFile,
+  }) async {
     return await customerRepository.updateCustomerInfoWithImage(
       data,
       imageFile: imageFile,

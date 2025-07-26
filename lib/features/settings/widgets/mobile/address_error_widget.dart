@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 import '../../controllers/profile_detailes_controller.dart';
 import 'profile_buttons.dart';
 
 class AddressErrorWidget extends StatelessWidget {
-  final ProfileController controller;
+  final AddressController controller;
 
   const AddressErrorWidget({super.key, required this.controller});
 

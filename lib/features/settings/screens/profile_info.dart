@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -10,7 +9,6 @@ import 'package:shella_design/features/settings/widgets/mobile/build_mobile_prof
 import 'package:shella_design/features/settings/widgets/mobile/build_mobile_profile/build_no_data.dart';
 import 'package:shella_design/features/settings/widgets/mobile/build_mobile_profile/build_profile_info_body.dart';
 import 'package:shella_design/features/settings/widgets/mobile/build_mobile_profile/build_title_text.dart';
-
 
 class ProfileInfo extends StatefulWidget {
   const ProfileInfo({super.key});
@@ -32,11 +30,11 @@ class _ProfileInfoState extends State<ProfileInfo> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Consumer<CustomerController>(builder: (context, provider, _) {
+        child: Consumer<ProfileController>(builder: (context, provider, _) {
           return buildDeleteAccountButton(context, provider);
         }),
       ),
-      body: Consumer<CustomerController>(
+      body: Consumer<ProfileController>(
         builder: (context, provider, _) {
           if (provider.isLoading) {
             return CustomLoading(color: AppColors.greenColor);
@@ -44,7 +42,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
           if (provider.toExternalReference != null) {
             return buildErrorWidget(provider);
           }
-          final customer = provider.customer;
+          final customer = provider.user;
           if (customer == null) {
             return buildNoData();
           }

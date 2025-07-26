@@ -6,40 +6,37 @@ import 'package:shella_design/common/util/Api_constants.dart';
 import 'package:shella_design/features/settings/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/settings/domain/repositories/customer_info_reposittory_interface.dart';
 
-
 class CustomerRepository implements CustomerRepositoryInterface {
   final ApiClient apiClient;
 
   CustomerRepository({required this.apiClient});
 
   @override
-  Future<CustomerModel> getCustomerInfo() async {
+  Future<User_Model> getCustomerInfo() async {
     final uri = Uri.parse(ApiConstants.customerInfo);
     final response = await apiClient.getData(
       uri.toString(),
     );
     if (response.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
-      return CustomerModel.fromJson(jsonBody);
+      return User_Model.fromJson(jsonBody);
     } else {
       throw Exception('Failed to load customer data');
     }
   }
 
   @override
-  Future<CustomerModel> updateCustomerInfo(Map<String, dynamic> data) async {
+  Future<User_Model> updateCustomerInfo(Map<String, dynamic> data) async {
     final uri = Uri.parse(ApiConstants.updateCustomerInfo);
-
-
 
     final response = await apiClient.postData(uri.toString(), data);
 
     if (response!.statusCode == 200) {
       final jsonBody = jsonDecode(response.body);
       if (jsonBody.containsKey('customer')) {
-        return CustomerModel.fromJson(jsonBody['customer']);
+        return User_Model.fromJson(jsonBody['customer']);
       } else if (jsonBody.containsKey('data')) {
-        return CustomerModel.fromJson(jsonBody['data']);
+        return User_Model.fromJson(jsonBody['data']);
       } else {
         return await getCustomerInfo();
       }
@@ -52,10 +49,10 @@ class CustomerRepository implements CustomerRepositoryInterface {
   }
 
   @override
-  Future<CustomerModel> updateCustomerInfoWithImage(
-      Map<String, dynamic> data, {
-        required XFile imageFile,
-      }) async {
+  Future<User_Model> updateCustomerInfoWithImage(
+    Map<String, dynamic> data, {
+    required XFile imageFile,
+  }) async {
     final bytes = await imageFile.readAsBytes();
     final base64Image = base64Encode(bytes);
 
@@ -75,22 +72,21 @@ class CustomerRepository implements CustomerRepositoryInterface {
     return _handleUpdateResponse(response);
   }
 
-  Future<CustomerModel> _handleUpdateResponse(dynamic response) async {
+  Future<User_Model> _handleUpdateResponse(dynamic response) async {
     try {
       if (response is http.Response) {
         if (response.statusCode == 200) {
           final jsonBody = jsonDecode(response.body);
           if (jsonBody.containsKey('customer')) {
-            return CustomerModel.fromJson(jsonBody['customer']);
+            return User_Model.fromJson(jsonBody['customer']);
           } else if (jsonBody.containsKey('data')) {
-            return CustomerModel.fromJson(jsonBody['data']);
+            return User_Model.fromJson(jsonBody['data']);
           } else {
             return await getCustomerInfo();
           }
         } else {
           final errorBody = jsonDecode(response.body);
-          final errorMessage =
-              errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
+          final errorMessage = errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
           throw Exception(errorMessage);
         }
       } else {

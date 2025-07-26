@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 
 import 'package:shella_design/features/settings/widgets/mobile/profile_buttons.dart';
 
 import '../../../../common/widgets/loading_progress/loading/custom_loading.dart';
-import '../../controllers/custome_info_controller.dart';
 
 Widget buildProfileHeader(onTap) {
-  return Consumer<CustomerController>(
+  return Consumer<ProfileController>(
     builder: (context, provider, _) {
-      final customer = provider.customer;
+      final customer = provider.user;
 
       if (provider.isLoading) {
         return const Center(child: CustomLoading(color: AppColors.greenColor));
@@ -27,7 +26,7 @@ Widget buildProfileHeader(onTap) {
                 const SizedBox(height: 10),
                 ProfileButton(
                   title: 'إعادة المحاولة',
-                  onTap: () => provider.fetchCustomerData(),
+                  onTap: () => provider.fetchUserData(),
                 ),
               ],
             ),

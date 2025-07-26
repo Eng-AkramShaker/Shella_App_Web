@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +22,7 @@ class AddNewAddressScreen extends StatefulWidget {
 
 class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   Address? editAddress;
-  late final ProfileController profileController;
+  late final AddressController profileController;
   late MapController _mapController;
   final TextEditingController addressController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -35,7 +34,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   @override
   void initState() {
     super.initState();
-    profileController = Provider.of<ProfileController>(context, listen: false);
+    profileController = Provider.of<AddressController>(context, listen: false);
     // profileController.resetOperationState();
     _isEditing = widget.editAddress != null;
     _mapController = MapController(
@@ -89,7 +88,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           icon: Icons.location_on,
         ),
       ),
-      body: Selector<ProfileController, RequestState>(
+      body: Selector<AddressController, RequestState>(
         selector: (_, controller) => controller.addressState,
         builder: (context, addressState, child) {
           if (addressState == RequestState.success) {
@@ -107,27 +106,20 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           if (addressState == RequestState.error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!mounted) return;
-              final error = context.read<ProfileController>().errorMessage;
+              final error = context.read<AddressController>().errorMessage;
               if (error != null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(error)),
                 );
-                context.read<ProfileController>().resetAddState();
+                context.read<AddressController>().resetAddState();
               }
             });
           }
           return child!;
         },
         child: SingleChildScrollView(
-          child: buildAddAddressBody(
-              _mapController,
-              _isEditing,
-              addressController,
-              nameController,
-              phoneController,
-              streetController,
-              profileController,
-              widget.editAddress),
+          child: buildAddAddressBody(_mapController, _isEditing, addressController, nameController, phoneController, streetController,
+              profileController, widget.editAddress),
         ),
       ),
     );

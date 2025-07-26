@@ -55,17 +55,13 @@ import '../../features/settings/controllers/profile_detailes_controller.dart';
 import '../../features/settings/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import '../../features/settings/domain/services/profileDetailsService/profile_details_service.dart';
 
-List<SingleChildWidget> appProviders({
-  required String appBaseUrl,
-  required SharedPreferences sharedPreferences,
-}) {
+List<SingleChildWidget> appProviders({required String appBaseUrl, required SharedPreferences sharedPreferences}) {
   // Repository   & Service  ================================================================================
 
   final apiClient = ApiClient(sharedPreferences: sharedPreferences);
 
   //  auth   =======
-  final authRepo =
-      AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
+  final authRepo = AuthRepo(apiClient: apiClient, sharedPreferences: sharedPreferences);
   final authService = AuthService(authRepositoryInterface: authRepo);
 
   //  customer   =======
@@ -74,28 +70,23 @@ List<SingleChildWidget> appProviders({
 
   //  cart   =======
   final cartRepo = CartRepository(apiClient: apiClient);
-  final cartService = CartService(cartRepository: cartRepo );
+  final cartService = CartService(cartRepository: cartRepo);
 
   //  orders   =======
-  final ordersRepo = OrdersRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
+  final ordersRepo = OrdersRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
   final ordersService = OrdersService(ordersRepositoryInterface: ordersRepo);
 
   //  notification   =======
-  final notificationRepo = NotificationRepository(
-      sharedPreferences: sharedPreferences, apiClient: apiClient);
-  final notificationService =
-      NotificationService(notificationRepositoryInterface: notificationRepo);
+  final notificationRepo = NotificationRepository(sharedPreferences: sharedPreferences, apiClient: apiClient);
+  final notificationService = NotificationService(notificationRepositoryInterface: notificationRepo);
 
   //  profile  =======
   final profileRepo = ProfileRepository();
   final profileService = ProfileDetailsService(profileRepository: profileRepo);
 
   //  wallet Kaidha Subscription   =======
-  final walletKaidhaSubscriptionRepo =
-      KaidhaSubRepository(apiClient: apiClient);
-  final walletKaidhaSubscriptionService = kaidhaSubService(
-      kaidhaSubRepositoryinterface: walletKaidhaSubscriptionRepo);
+  final walletKaidhaSubscriptionRepo = KaidhaSubRepository(apiClient: apiClient);
+  final walletKaidhaSubscriptionService = kaidhaSubService(kaidhaSubRepositoryinterface: walletKaidhaSubscriptionRepo);
 
   return [
     //        Provider  ======================================================================================
@@ -104,57 +95,39 @@ List<SingleChildWidget> appProviders({
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
 
-
-    ChangeNotifierProvider(
-        create: (_) => SplashController(SplashService())..loadConfig()),
-    ChangeNotifierProvider(
-        create: (_) => AuthController(authServiceInterface: authService)),
-    ChangeNotifierProvider(
-        create: (_) =>
-            ProfileController(service: customerService)..fetchUserData()),
+    ChangeNotifierProvider(create: (_) => SplashController(SplashService())..loadConfig()),
+    ChangeNotifierProvider(create: (_) => AuthController(authServiceInterface: authService)),
+    ChangeNotifierProvider(create: (_) => ProfileController(service: customerService)..fetchUserData()),
 
     /// ✅ تم إضافة ملفات البروفايل هنا
     Provider<ProfileRepository>.value(value: profileRepo),
     Provider<ProfileDetailsService>.value(value: profileService),
-    ChangeNotifierProvider(
-        create: (_) =>
-            AddressController(profileDetailsService: profileService)),
-
+    ChangeNotifierProvider(create: (_) => AddressController(profileDetailsService: profileService)),
 
     // Home
-    ChangeNotifierProvider(
-        create: (_) => BannerProvider(BannerService())..loadBanners()),
+    ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
     ChangeNotifierProvider(
         create: (_) => SectionProvider(SectionService())
           ..fetchCategories()
           ..fetchModules()),
-    ChangeNotifierProvider(
-        create: (_) => StoreProvider(StoreService())..fetchStores()),
+    ChangeNotifierProvider(create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
 
-
     ChangeNotifierProvider(
-      create: (context) => ProfileController(
-        profileDetailsService: ProfileDetailsService(
-          profileRepository: ProfileRepository(),
-        ),
+      create: (context) => AddressController(
+        profileDetailsService: ProfileDetailsService(profileRepository: ProfileRepository()),
       ),
     ),
     ChangeNotifierProvider(
       create: (_) => CartController(cartService: cartService),
     ),
 
-
     // Discount
     ChangeNotifierProvider(
-        create: (_) => DiscountController(
-            service: DiscountService(
-                discountRepositoryInterface: DiscountRepository()))),
+        create: (_) => DiscountController(service: DiscountService(discountRepositoryInterface: DiscountRepository()))),
 
     // Join as Driver
-    ChangeNotifierProvider(
-        create: (_) => DriverRegisterController(
-            deliveryManService: DeliveryManService(DeliveryManRepository()))),
+    ChangeNotifierProvider(create: (_) => DriverRegisterController(deliveryManService: DeliveryManService(DeliveryManRepository()))),
 
     // Orders
     ChangeNotifierProvider(
@@ -169,41 +142,31 @@ List<SingleChildWidget> appProviders({
     ChangeNotifierProvider(create: (_) => StartTrackingOrderController()),
 
     // Notifications
-    ChangeNotifierProvider(
-        create: (_) => NotificationsController(
-            notificationServiceInterface: notificationService)),
+    ChangeNotifierProvider(create: (_) => NotificationsController(notificationServiceInterface: notificationService)),
 
     // My Coupon
     ChangeNotifierProvider(
       create: (_) => MyCouponController(
-        myCouponServiceInterface:
-            MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()),
+        myCouponServiceInterface: MyCouponServices(myCouponRepositoryInterface: MyCouponRepository()),
       )..getMyCoupon(),
     ),
 
     // My Points
     ChangeNotifierProvider(
-      create: (_) => LoyaltyProvider(
-          LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
+      create: (_) => LoyaltyProvider(LoyaltyService(myPointsRepositoryInterface: MyPointsRepository()))
         ..loadProfile()
         ..loadCoupons(),
     ),
 
     // Others
     ChangeNotifierProvider(create: (_) => ServeMeController()),
-    ChangeNotifierProvider(
-        create: (_) => SearchFilterController(
-            apiClient: ApiClient(sharedPreferences: sharedPreferences))),
+    ChangeNotifierProvider(create: (_) => SearchFilterController(apiClient: ApiClient(sharedPreferences: sharedPreferences))),
     ChangeNotifierProvider(create: (_) => ScheduleController()),
     ChangeNotifierProvider(create: (context) => ProductProviderr()),
 
     //  wallet Kaidha Subscription   =======
 
-    ChangeNotifierProvider(
-        create: (_) => KaidhaSubscription_Controller(
-            kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
-    ChangeNotifierProvider(
-        create: (_) => KaidhaSubscription_Controller(
-            kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
+    ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
+    ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
   ];
 }

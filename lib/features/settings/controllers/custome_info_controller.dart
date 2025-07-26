@@ -1,16 +1,15 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_details_dialog.dart';
 import 'package:shella_design/features/settings/domain/models/customer_info_model.dart';
 import 'package:shella_design/features/settings/domain/services/customer_info_services.dart';
 
-class CustomerController extends ChangeNotifier {
+class ProfileController extends ChangeNotifier {
   final CustomerService service;
-  CustomerModel? customer;
+  User_Model? user;
   bool _isLoading = false;
 
   /// Image variable
@@ -26,18 +25,16 @@ class CustomerController extends ChangeNotifier {
   bool get isImageRemoved => _isImageRemoved;
 
   bool get hasChanges => _hasChanges;
-  CustomerController({required this.service});
+  ProfileController({required this.service});
 
   /// Fetch Customer Data
-  Future<void> fetchCustomerData() async {
+  Future<void> fetchUserData() async {
     _isLoading = true;
     notifyListeners();
     await loadCustomerInfo();
     _isLoading = false;
     notifyListeners();
   }
-
-
 
   String? toExternalReference;
 
@@ -47,7 +44,7 @@ class CustomerController extends ChangeNotifier {
       final result = await service.getCustomerInfo();
       if (result != null) {
         // print("✅ تم جلب البيانات: ${result.fullName}");
-        customer = result;
+        user = result;
         notifyListeners();
       } else {
         toExternalReference = 'فشل في تحميل بيانات العميل.';
@@ -59,11 +56,11 @@ class CustomerController extends ChangeNotifier {
 
   /// Update Profile Info
   Future<bool> updateProfileInfo(
-      Map<String, dynamic> data, {
-        XFile? imageFile,
-        bool isImageRemoved = false,
-        BuildContext? context,
-      }) async {
+    Map<String, dynamic> data, {
+    XFile? imageFile,
+    bool isImageRemoved = false,
+    BuildContext? context,
+  }) async {
     try {
       _isLoading = true;
       notifyListeners();
@@ -72,7 +69,7 @@ class CustomerController extends ChangeNotifier {
         'phone': data['phone'],
         'email': data['email'],
       };
-      CustomerModel? updatedCustomer;
+      User_Model? updatedCustomer;
       if (isImageRemoved) {
         apiData['image'] = "";
         updatedCustomer = await service.updateCustomerInfo(apiData);
@@ -94,17 +91,13 @@ class CustomerController extends ChangeNotifier {
       //   updatedCustomer = await service.updateCustomerInfo(apiData);
       // }
 
-      if (updatedCustomer != null) {
-        customer = updatedCustomer;
-        _pickedImage = null;
-        _isImageRemoved = false;
+      user = updatedCustomer;
+      _pickedImage = null;
+      _isImageRemoved = false;
 
-        // print('تم التحديث بنجاح');
+      // print('تم التحديث بنجاح');
 
-        return true;
-      }
-      // print('❌ لم يتم التحديث - response null');
-      return false;
+      return true;
     } catch (e) {
       print('حدث خطأ: ${e.toString()}');
       return false;
@@ -122,8 +115,7 @@ class CustomerController extends ChangeNotifier {
 
       final success = await service.deleteAccount();
       if (success) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, AppRoutes.loginPage, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginPage, (route) => false);
       } else {
         throw Exception('فشل في حذف الحساب');
       }
@@ -149,9 +141,7 @@ class CustomerController extends ChangeNotifier {
 
   /// Verified of Changes
   void checkForChanges(String fullName, String phone, String email) {
-    final hasTextChanges = fullName != (customer?.fullName ?? '') ||
-        phone != (customer?.phone ?? '') ||
-        email != (customer?.email ?? '');
+    final hasTextChanges = fullName != (user?.fullName ?? '') || phone != (user?.phone ?? '') || email != (user?.email ?? '');
 
     _hasChanges = hasTextChanges || _pickedImage != null || _isImageRemoved;
     notifyListeners();
@@ -187,7 +177,7 @@ class CustomerController extends ChangeNotifier {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (customer?.image != null || _pickedImage != null) ...[
+              if (user?.image != null || _pickedImage != null) ...[
                 ListTile(
                   leading: Icon(Icons.delete, color: Colors.red),
                   title: Text('حذف الصورة'),
@@ -223,9 +213,9 @@ class CustomerController extends ChangeNotifier {
 
   /// Save Changes
   Future<void> saveProfileChanges(
-      BuildContext context,
-      Map<String, String> updateData,
-      ) async {
+    BuildContext context,
+    Map<String, String> updateData,
+  ) async {
     if (!_hasChanges) {
       Navigator.pop(context);
       return;
@@ -249,7 +239,7 @@ class CustomerController extends ChangeNotifier {
       );
 
       if (success) {
-        customer = await service.getCustomerInfo();
+        user = await service.getCustomerInfo();
         _pickedImage = null;
         _isImageRemoved = false;
         _hasChanges = false;

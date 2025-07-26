@@ -8,7 +8,6 @@ import 'package:shella_design/features/settings/widgets/mobile/address_error_wid
 import 'package:shella_design/features/settings/widgets/mobile/build_mobile_address/build_appBar.dart';
 import 'package:shella_design/features/settings/widgets/mobile/empty_address.dart';
 
-
 class AddressDetailsPage extends StatelessWidget {
   const AddressDetailsPage({super.key});
 
@@ -23,7 +22,7 @@ class AddressDetailsPage extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Consumer<ProfileController>(
+            child: Consumer<AddressController>(
               builder: (context, controller, _) {
                 if (controller.addressState == RequestState.initial) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -40,8 +39,7 @@ class AddressDetailsPage extends StatelessWidget {
                   WidgetsBinding.instance.addPostFrameCallback((_) {});
                   return AddressErrorWidget(controller: controller);
                 }
-                if (controller.getAddresses == null ||
-                    controller.getAddresses!.isEmpty) {
+                if (controller.getAddresses == null || controller.getAddresses!.isEmpty) {
                   return EmptyAddressWidget();
                 }
                 return ListView.builder(
@@ -49,10 +47,8 @@ class AddressDetailsPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return AdressCard(
                       address: controller.getAddresses![index],
-                      onDelete: () => controller.removeAddress(
-                          controller.getAddresses![index].idString),
-                      onEdit: () => controller.navigateToEditScreen(
-                          context, controller.getAddresses![index]),
+                      onDelete: () => controller.removeAddress(controller.getAddresses![index].idString),
+                      onEdit: () => controller.navigateToEditScreen(context, controller.getAddresses![index]),
                     );
                   },
                 );
@@ -61,14 +57,12 @@ class AddressDetailsPage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton:
-      Consumer<ProfileController>(builder: (context, controller, _) {
+      floatingActionButton: Consumer<AddressController>(builder: (context, controller, _) {
         return FloatingActionButton(
           backgroundColor: Colors.green,
           child: Icon(Icons.add, color: Colors.white),
           onPressed: () {
-            Provider.of<ProfileController>(context, listen: false)
-                .navigateToAddScreen(context);
+            Provider.of<AddressController>(context, listen: false).navigateToAddScreen(context);
             // controller.navigateToAddScreen(context);
           },
         );

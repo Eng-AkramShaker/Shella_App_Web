@@ -5,17 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/features/settings/domain/services/profileDetailsServiceInterface/profile_details_service_interface.dart';
 import 'package:shella_design/features/settings/screens/addNewAdress.dart';
 
-
-
 import '../domain/models/profile_detailes_model.dart';
 import 'map_controller.dart';
 
 enum RequestState { initial, loading, success, error }
 
-class ProfileController extends ChangeNotifier {
+class AddressController extends ChangeNotifier {
   final ProfileDetailsServiceInterface profileDetailsService;
 
-  ProfileController({required this.profileDetailsService});
+  AddressController({required this.profileDetailsService});
 
   RequestState addressState = RequestState.initial;
 
@@ -178,7 +176,7 @@ class ProfileController extends ChangeNotifier {
       ),
     ).then((result) {
       if (result == true) {
-        context.read<ProfileController>().getAddress();
+        context.read<AddressController>().getAddress();
       }
     });
   }
@@ -215,10 +213,7 @@ class ProfileController extends ChangeNotifier {
     required String address,
     required LatLng? location,
   }) {
-    return name.isNotEmpty &&
-        phone.isNotEmpty &&
-        address.isNotEmpty &&
-        location != null;
+    return name.isNotEmpty && phone.isNotEmpty && address.isNotEmpty && location != null;
   }
 
   /// Get Address Type
@@ -258,8 +253,7 @@ class ProfileController extends ChangeNotifier {
 
     if (address.addressType == 'عمل') {
       updateTybe(2);
-    } else if (address.addressType == 'أخرى' ||
-        address.addressType == 'إضافة') {
+    } else if (address.addressType == 'أخرى' || address.addressType == 'إضافة') {
       updateTybe(3);
     } else {
       updateTybe(1);
@@ -270,18 +264,16 @@ class ProfileController extends ChangeNotifier {
 
   /// Submit Address Button
   void submitAddress(
-      BuildContext context,
-      Address? address,
-      MapController mapController,
-      bool isEditing,
-      TextEditingController nameController,
-      TextEditingController phoneController,
-      TextEditingController addressController,
-      TextEditingController streetController,
-      ) {
-    if (nameController.text.isEmpty ||
-        phoneController.text.isEmpty ||
-        addressController.text.isEmpty) {
+    BuildContext context,
+    Address? address,
+    MapController mapController,
+    bool isEditing,
+    TextEditingController nameController,
+    TextEditingController phoneController,
+    TextEditingController addressController,
+    TextEditingController streetController,
+  ) {
+    if (nameController.text.isEmpty || phoneController.text.isEmpty || addressController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('يرجى ملء جميع الحقول المطلوبة')),
       );
@@ -296,8 +288,8 @@ class ProfileController extends ChangeNotifier {
     final addressType = tybe == 1
         ? 'منزل'
         : tybe == 2
-        ? 'عمل'
-        : 'أخرى';
+            ? 'عمل'
+            : 'أخرى';
 
     final newAddress = Address(
       id: isEditing ? address?.id ?? 0 : 0,

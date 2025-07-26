@@ -6,7 +6,7 @@ import 'package:shella_design/features/profile_detailes/widgets/mobile/profile_i
 import '../../../domain/models/customer_info_model.dart';
 import '../profile_divider.dart';
 
-Widget buildProfileInfoBody(BuildContext context, CustomerModel customer) {
+Widget buildProfileInfoBody(BuildContext context, User_Model customer) {
   return ListView(
     padding: EdgeInsets.all(6.w),
     children: [

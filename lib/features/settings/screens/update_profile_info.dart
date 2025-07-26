@@ -27,8 +27,8 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   @override
   void initState() {
     super.initState();
-    final controller = context.read<CustomerController>();
-    final customer = controller.customer;
+    final controller = context.read<ProfileController>();
+    final customer = controller.user;
     _fullNameController = TextEditingController(text: customer?.fullName ?? '');
     _phoneController = TextEditingController(text: customer?.phone ?? '');
     _emailController = TextEditingController(text: customer?.email ?? '');
@@ -44,11 +44,11 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
   }
 
   void _updateControllerChanges() {
-    context.read<CustomerController>().checkForChanges(
-      _fullNameController.text,
-      _phoneController.text,
-      _emailController.text,
-    );
+    context.read<ProfileController>().checkForChanges(
+          _fullNameController.text,
+          _phoneController.text,
+          _emailController.text,
+        );
   }
 
   @override
@@ -62,16 +62,12 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.watch<CustomerController>();
+    final controller = context.watch<ProfileController>();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
           backgroundColor: AppColors.greenColor,
-          title: Text('تحديث الملف الشخصي',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold)),
+          title: Text('تحديث الملف الشخصي', style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold)),
           centerTitle: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
@@ -81,25 +77,19 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
               onTap: () {
                 controller.showImagePickerBottomSheet(context);
               },
-              child: Consumer<CustomerController>(
+              child: Consumer<ProfileController>(
                 builder: (context, controller, _) {
-                  final customer = controller.customer;
+                  final customer = controller.user;
                   return CircleAvatar(
                     radius: 60.r,
                     backgroundColor: AppColors.wGreyColor,
                     backgroundImage: controller.pickedImage != null
                         ? FileImage(File(controller.pickedImage!.path))
-                        : (customer?.image != null &&
-                        !controller.isImageRemoved)
-                        ? NetworkImage(
-                        '${ApiConstants.appBaseUrl}/storage/profile/${customer!.image}')
-                    as ImageProvider
-                        : null,
-                    child: controller.pickedImage == null &&
-                        (customer?.image == null ||
-                            controller.isImageRemoved)
-                        ? Icon(Icons.person,
-                        size: 50.r, color: AppColors.wtColor)
+                        : (customer?.image != null && !controller.isImageRemoved)
+                            ? NetworkImage('${ApiConstants.appBaseUrl}/storage/profile/${customer!.image}') as ImageProvider
+                            : null,
+                    child: controller.pickedImage == null && (customer?.image == null || controller.isImageRemoved)
+                        ? Icon(Icons.person, size: 50.r, color: AppColors.wtColor)
                         : null,
                   );
                 },
@@ -114,20 +104,18 @@ class _UpdateProfileInfoPageState extends State<UpdateProfileInfoPage> {
             SizedBox(height: 20.h),
             GestureDetector(
                 onTap: () {
-                  nav.push( AppRoutes.confirmPasswordScreen);
+                  nav.push(AppRoutes.confirmPasswordScreen);
                 },
-                child: buildTextField(
-                    _passwordController, 'كلمة المرور', Icons.password,
-                    enabled: false)),
+                child: buildTextField(_passwordController, 'كلمة المرور', Icons.password, enabled: false)),
             SizedBox(height: 40.h),
             ProfileButton(
                 title: "حفظ التغييرات",
                 isLoading: controller.isLoading,
                 onTap: () => controller.saveProfileChanges(context, {
-                  'full_name': _fullNameController.text,
-                  'phone': _phoneController.text,
-                  'email': _emailController.text,
-                }))
+                      'full_name': _fullNameController.text,
+                      'phone': _phoneController.text,
+                      'email': _emailController.text,
+                    }))
           ],
         ),
       ),
