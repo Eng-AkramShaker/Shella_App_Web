@@ -39,11 +39,11 @@ class PaymentDetails extends StatelessWidget {
                         children: [
                           Custom_Text(context, text: "تاريخ انتهاء الشهر :", style: font14Black500W(context)),
                           SizedBox(width: 5),
-                          Custom_Text(context, text: wallet.lockDay!, style: font16SecondaryColor400W(context)),
+                          Custom_Text(context, text: wallet.lockDay, style: font16SecondaryColor400W(context)),
                         ],
                       ),
                       SizedBox(height: 8),
-                      Custom_Text(context, text: wallet.serialNumber!, style: font13Green500W(context, size: 20)),
+                      Custom_Text(context, text: wallet.serialNumber, style: font13Green500W(context, size: 20)),
                       SizedBox(
                         height: 8,
                       ),
@@ -70,24 +70,22 @@ class PaymentDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Custom_Text(context, text: 'الرصيد المتاح', style: font13Black400W(context)),
-                SizedBox(
-                  height: 8,
-                ),
+                SizedBox(height: 8),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     PriceConverter.convertPrice2(
                       context,
-                      double.parse(wallet.creditLimit!),
-                      textStyle: font11Black400W(context),
-                    ),
+                      profController.user!.walletBalance,
+                      textStyle: font14Black600W(context),
+                    )
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 LinearProgressIndicator(
-                  value: wallet.usedPercentage! / 100,
+                  value: wallet.usedPercentage / 100,
                   backgroundColor: Colors.grey,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
                 ),
@@ -103,7 +101,7 @@ class PaymentDetails extends StatelessWidget {
                       children: [
                         PriceConverter.convertPrice2(
                           context,
-                          double.parse(wallet.availableBalance!.toString()),
+                          double.parse(wallet.availableBalance.toString()),
                           textStyle: font13Grey400W(context),
                         ),
                       ],

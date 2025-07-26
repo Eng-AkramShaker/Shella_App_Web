@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/settings/widgets/profile_buttons.dart';
 import 'package:shella_design/features/settings/widgets/profile_loading.dart';
-
 import '../../../common/util/app_colors.dart';
 
 Widget buildProfileHeader(onTap) {

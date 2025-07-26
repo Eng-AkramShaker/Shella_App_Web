@@ -29,11 +29,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
         // iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           'معلومات الحساب',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.sp,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
