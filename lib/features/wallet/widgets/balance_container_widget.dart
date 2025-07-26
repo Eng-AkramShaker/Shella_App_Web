@@ -44,11 +44,17 @@ class BalanceContainerWidget extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  PriceConverter.convertPrice2(
-                    context,
-                    profController.user!.walletBalance,
-                    textStyle: font14Black600W(context),
-                  )
+                  profController.user == null
+                      ? PriceConverter.convertPrice2(
+                          context,
+                          00,
+                          textStyle: font14Black600W(context),
+                        )
+                      : PriceConverter.convertPrice2(
+                          context,
+                          profController.user!.walletBalance,
+                          textStyle: font14Black600W(context),
+                        ),
                 ],
               )),
               IconButton(onPressed: () {}, icon: Image.asset('assets/images/wallet.png')),

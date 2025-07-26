@@ -54,59 +54,86 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
       ),
       body: Consumer<KaidhaSubscription_Controller>(builder: (context, KaidhaSubController, _) {
         return SingleChildScrollView(
-            child: Padding(
-                padding: EdgeInsets.all(16),
-                child: KaidhaSubController.isLoading_wallet
-                    ? SizedBox(
-                        height: height_media(context) * .7,
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: KaidhaSubController.isLoading_wallet == true
+                ? SizedBox(
+                    height: height_media(context) * .7,
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                : KaidhaSubController.walletKaidhaModel!.wallet == null || KaidhaSubController.walletKaidhaModel == null
+                    ? Center(
+                        child: PaymentDetailsShimmer(),
                       )
-                    : KaidhaSubController.walletKaidhaModel == null || KaidhaSubController.walletKaidhaModel?.wallet == null
-                        ? Center(child: PaymentDetailsShimmer())
-                        : Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              PaymentDetails(
-                                wallet: KaidhaSubController.walletKaidhaModel!.wallet!,
-                              ),
-                              SizedBox(height: 20),
-                              if (KaidhaSubController.walletKaidhaModel!.wallet!.status == "Active") ...[
-                                PaymentOptions(wallet: KaidhaSubController.walletKaidhaModel!.wallet!),
-                                SizedBox(height: 20),
-                                Text('أدخل مبلغ آخر', style: font13Black400W(context)),
-                                SizedBox(height: 10),
-                                CustomTextField(
-                                  labelText: '',
-                                  controller: KaidhaSubController.another_amount,
-                                  suffixIcon: Image.asset(AppImages.sar, width: 20, height: 20),
-                                ),
-                                SizedBox(height: 80),
-                                TextButtonWidget(
-                                  text: 'الدفع الآن',
-                                  backgroundColor: AppColors.secondaryColor,
-                                  textStyle: font13White400W(context),
-                                  height: 60,
-                                  width: double.infinity,
-                                  radius: 16,
-                                  verticalPadd: 0,
-                                  horizontalPadd: 0,
-                                  onPressed: () async {
-                                    if (KaidhaSubController.another_amount.text == "0.00") {
-                                      showCustomSnackBar(context, " لم يتم ادخال اي مبلغ بعد ...");
-                                      return;
-                                    }
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          //
+                          PaymentDetails(wallet: KaidhaSubController.walletKaidhaModel!.wallet!),
 
-                                    await KaidhaSubController.Send_Pay_Credit(
-                                      context,
-                                      double.parse(KaidhaSubController.another_amount.text),
-                                    );
-                                  },
+                          //
+
+                          SizedBox(height: 20),
+
+                          //
+
+                          KaidhaSubController.walletKaidhaModel!.wallet!.status != "Active"
+                              ? SizedBox(height: 20)
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    PaymentOptions(wallet: KaidhaSubController.walletKaidhaModel!.wallet!),
+
+                                    //
+
+                                    SizedBox(height: 20),
+
+                                    Text('أدخل مبلغ آخر', style: font13Black400W(context)),
+
+                                    SizedBox(height: 10),
+
+                                    CustomTextField(
+                                      labelText: '',
+                                      controller: KaidhaSubController.another_amount,
+                                      suffixIcon: Image.asset(AppImages.sar, width: 20, height: 20),
+                                    ),
+
+                                    SizedBox(height: 80),
+
+                                    // payment button
+
+                                    TextButtonWidget(
+                                      text: 'الدفع الآن',
+                                      backgroundColor: AppColors.secondaryColor,
+                                      textStyle: font13White400W(context),
+                                      height: 60,
+                                      width: double.infinity,
+                                      radius: 16,
+                                      verticalPadd: 0,
+                                      horizontalPadd: 0,
+                                      onPressed: () async {
+                                        //
+
+                                        if (KaidhaSubController.another_amount == null ||
+                                            KaidhaSubController.another_amount.text == "0.00") {
+                                          showCustomSnackBar(context, " لم يتم ادخال اي مبلغ بعد ...");
+
+                                          return;
+                                        }
+
+                                        await KaidhaSubController.Send_Pay_Credit(
+                                          context,
+                                          double.parse(KaidhaSubController.another_amount.text),
+                                        );
+                                      },
+                                    )
+                                  ],
                                 ),
-                              ],
-                            ],
-                          )));
+                        ],
+                      ),
+          ),
+        );
       }),
     );
   }

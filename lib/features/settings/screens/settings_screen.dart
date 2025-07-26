@@ -1,6 +1,5 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/helper/price_converter.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
@@ -11,12 +10,10 @@ import 'package:shella_design/common/util/svg_icon_widget.dart';
 import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
 import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/settings/screens/language_selection_page.dart';
+import 'package:shella_design/features/settings/widgets/mobile/profile_divider.dart';
+import 'package:shella_design/features/settings/widgets/mobile/profile_header.dart';
 import 'package:shella_design/features/settings/widgets/profile_ListTile.dart';
-import 'package:shella_design/features/settings/widgets/profile_divider.dart';
-import 'package:shella_design/features/settings/widgets/profile_header.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-
-import '../../../common/helper/app_routes.dart';
 
 class ProfileDetailsPage extends StatefulWidget {
   const ProfileDetailsPage({super.key});
@@ -29,11 +26,19 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
   @override
   Widget build(BuildContext context) {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.greenColor,
-        title: Text('تفاصيل الحساب', style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold)),
+        title: Text(
+          'تفاصيل الحساب',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Consumer<ProfileController>(builder: (context, profController, _) {
@@ -44,9 +49,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             }),
             ProfileDivider(),
             buildListTile('العناوين المحفوظة', Icon(Icons.location_on_outlined), context, () {
-              nav.push(
-                AppRoutes.addressDetails,
-              );
+              nav.push(AppRoutes.addressDetails);
             }),
             ProfileDivider(),
             buildListTile('المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
@@ -61,23 +64,6 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   MaterialPageRoute(builder: (context) => LanguageSelectionPage()),
                 );
               },
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'العربية',
-                    style: TextStyle(fontSize: 14.sp),
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 16,
-                    color: AppColors.wGreyColor,
-                  )
-                ],
-              ),
             ),
             ProfileDivider(),
             buildListTile('إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context, () {
@@ -128,7 +114,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             }),
             ProfileDivider(),
             buildListTile('قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context, () {
-              isWideScreen == true ? nav.push(AppRoutes.accountdetails) : nav.push(AppRoutes.myCouponScreen);
+              isWideScreen ? nav.push(AppRoutes.accountdetails) : nav.push(AppRoutes.myCouponScreen);
             }),
             ProfileDivider(),
             buildListTile('الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context, () {
@@ -143,26 +129,11 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               nav.push(AppRoutes.joinAsDriverOne);
             }),
             ProfileDivider(),
-            buildListTile(
-              'سياسة الخصوصية',
-              Icon(Icons.privacy_tip_outlined),
-              context,
-              () {},
-            ),
+            buildListTile('سياسة الخصوصية', Icon(Icons.privacy_tip_outlined), context, () {}),
             ProfileDivider(),
-            buildListTile(
-              'الحصول على المساعدة',
-              Icon(Icons.help_outline),
-              context,
-              () {},
-            ),
+            buildListTile('الحصول على المساعدة', Icon(Icons.help_outline), context, () {}),
             ProfileDivider(),
-            buildListTile(
-              'الشروط والأحكام',
-              Icon(Icons.list_alt_outlined),
-              context,
-              () {},
-            ),
+            buildListTile('الشروط والأحكام', Icon(Icons.list_alt_outlined), context, () {}),
             ProfileDivider(),
             buildListTile(
               'سياسة الاسترداد',
