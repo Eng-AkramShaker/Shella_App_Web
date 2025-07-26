@@ -63,8 +63,9 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
 
       routes: AppRoutes.routes,
-      initialRoute:
-          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+
+      initialRoute: isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.onBoarding,
+
       theme: ThemeData(
         fontFamily: 'Tajawal',
         useMaterial3: true,
@@ -114,4 +115,17 @@ class MyApp extends StatelessWidget {
 
   //  1126305067
  
+
+ 
+    // showConfirmationDialog(
+    //   context: context,
+    //   title: "هل قمت بالمصادقة داخل تطبيق نفاذ ؟",
+    //   description: "هذه مرحه تحقق هل تم تأكيد الكود بنجاح أم لا ",
+    //   onConfirmed: () async {
+    //     //
+    //     await Nafath_send_checkStatus(context, nationalId);
+    //   },
+    // );
+ 
+
  
