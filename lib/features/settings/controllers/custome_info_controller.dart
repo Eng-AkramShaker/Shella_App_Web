@@ -23,11 +23,13 @@ class ProfileController extends ChangeNotifier {
   XFile? get pickedImage => _pickedImage;
 
   bool get isImageRemoved => _isImageRemoved;
+  String? toExternalReference;
 
   bool get hasChanges => _hasChanges;
   ProfileController({required this.service});
 
-  /// Fetch Customer Data
+  /// Fetch
+
   Future<void> fetchUserData() async {
     _isLoading = true;
     notifyListeners();
@@ -35,8 +37,6 @@ class ProfileController extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
-
-  String? toExternalReference;
 
   /// Load Customer Info
   Future<void> loadCustomerInfo() async {
