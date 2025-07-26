@@ -98,6 +98,14 @@ class MainAppConstants {
         static const String serviceDetails='تفاصيل الخدمة المراد نقلها';
       static const String accept='قبول';
       static const String reject='رفض';
+            static const String offerNegotiation='التفاوض على العرض';
+      static const String priceNegotiation='التفاوض على السعر';
+      static const String negotiationWithDriver='تفاوض مع السائق على السعر المناسب';
+      static const String proposedPrice='السعر المقترح حاليا';
+      static const String proposeNewPrice='اقترح سعرا جديدا';
+      static const String writeYourMessage='اكتب رسالتك هنا';
+      static const String acceptTheOffer='قبول العرض';
+      static const String goToAnotherOffer='الانتقال إلى عرض آخر';
 
 
 

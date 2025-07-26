@@ -57,6 +57,7 @@ dependencies:
   geolocator:
   qr_code_scanner_plus: ^2.0.10+1
   geocoding: ^4.0.0
+  step_progress_indicator: ^1.0.2
 
 dev_dependencies:
   flutter_test:

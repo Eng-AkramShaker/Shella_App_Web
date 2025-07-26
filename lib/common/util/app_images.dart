@@ -129,7 +129,8 @@ class AppImages {
   static const String burger = 'assets/images/im1.png';
   static const String pizza = 'assets/images/im4.png';
   static const String packet= 'assets/images/packet.png';
-    static const String rank= 'assets/images/rank.png';
+  static const String rank= 'assets/images/rank.png';
+  static const String percent1= 'assets/images/percent1.png';
 
 
 
@@ -172,8 +173,9 @@ class AppImages {
   static const String support = 'assets/svg/support.svg';
   static const String profileCoupon = 'assets/svg/coupon.svg';
   static const String percent='assets/svg/percent.svg';
-    static const String sale='assets/svg/sale.svg';
-      static const String done='assets/svg/done.svg';
+  static const String sale='assets/svg/sale.svg';
+  static const String done='assets/svg/done.svg';
+  static const String sendicon='assets/svg/sendicon.svg';
 
 
 

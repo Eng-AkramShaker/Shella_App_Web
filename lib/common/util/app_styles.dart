@@ -795,3 +795,17 @@ TextStyle font18Green500W(BuildContext context,
       color: AppColors.greenColor,
       fontWeight: FontWeight.w500);
 }
+
+TextStyle font24Primary700W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_24(context),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w700,
+  );
+}

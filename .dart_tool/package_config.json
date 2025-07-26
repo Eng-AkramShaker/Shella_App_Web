@@ -770,6 +770,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "step_progress_indicator",
+      "rootUri": "file:///C:/Users/lenovo/AppData/Local/Pub/Cache/hosted/pub.dev/step_progress_indicator-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "stream_channel",
       "rootUri": "file:///C:/Users/lenovo/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.4",
       "packageUri": "lib/",
@@ -962,7 +968,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-07-22T15:21:04.530651Z",
+  "generated": "2025-07-26T00:18:03.187290Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///C:/flutter",
