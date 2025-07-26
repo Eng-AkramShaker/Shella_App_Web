@@ -8,7 +8,7 @@ import '../../../gap/width/width.dart';
 import '../../../texts/custom_text.dart';
 
 class AccountHeader extends StatelessWidget {
-  final AddressController controller;
+  final ProfileController controller;
   const AccountHeader({super.key, required this.controller});
 
   @override

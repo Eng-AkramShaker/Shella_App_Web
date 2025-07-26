@@ -2,20 +2,20 @@ import 'package:shella_design/features/cart/widgets/mobile/cart_item.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import '../../features/my_points/widgets/mobile/offers_mobile.dart';
 
-List<CartItem> items = [
-  CartItem(
+List<CartItems> items = [
+  CartItems(
       name: 'شاي ليبتون',
       description: 'عرض 35 ظرف + 5 هدية',
       price: 10,
       quantity: 1,
       img: AppImages.item_25),
-  CartItem(
+  CartItems(
       name: 'شاي ليبتون',
       description: 'عرض 35 ظرف + 5 هدية',
       price: 10,
       quantity: 1,
       img: AppImages.item_26),
-  CartItem(
+  CartItems(
       name: 'شاي ليبتون',
       description: 'عرض 35 ظرف + 5 هدية',
       price: 10,
@@ -176,17 +176,17 @@ List<String> discountsTypes=["الكل","عرض الحزم","العناية ال
 
 final List<Map<String,dynamic>> categories=[
   {
-     "name":"السندويش",
-     "image":"assets/images/9.png"
+    "name":"السندويش",
+    "image":"assets/images/9.png"
   },
   {
-   "name":"البيتزا",
-  "image":"assets/images/19.png"
+    "name":"البيتزا",
+    "image":"assets/images/19.png"
 
   },
   {
-  "name":"المشروبات",
-  "image":"assets/images/20.png"
+    "name":"المشروبات",
+    "image":"assets/images/20.png"
 
   }
 

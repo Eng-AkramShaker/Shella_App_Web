@@ -70,8 +70,8 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
 
     //
 
-    return Consumer3<KaidhaSubscription_Controller, ProfileController, AddressController>(
-      builder: (context, KaidhaSubController, profController, addressController, _) {
+    return Consumer3<KaidhaSubscription_Controller, ProfileController, CustomerController>(
+      builder: (context, KaidhaSubController, profController, customerController, _) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -263,8 +263,34 @@ class _Step_3_ScreenState extends State<Step_3_Screen> {
                                     if (onValue) {
                                       await KaidhaSubController.Submit_Store_Info(
                                         context,
+
+                                        KaidhaSubController.identity_card_number.text,
+                                        KaidhaSubController.nationality.toString(),
+                                        KaidhaSubController.neighborhood.text,
+                                        KaidhaSubController.house_type,
+                                      ).then(
+                                        (onValue) async {
+                                          //
+
+                                          debugPrint("\x1B[32m  Nafath_send_All_Data   ${onValue!.statusCode}  \x1B[0m");
+
+                                          if (onValue.statusCode == 200 || onValue.statusCode == 201) {
+                                            await KaidhaSubController.Submit_Store_Info(
+                                                context, profController.address![0].address, customerController.customer!.phone!);
+                                          } else if (onValue.statusCode == 404) {
+                                            //
+
+                                            KaidhaSubController.update_isShow();
+
+                                            showCustomSnackBar(context, "اعد المحاوله مره اخري في وقت لاحق");
+                                          } else {
+                                            KaidhaSubController.update_isShow();
+                                          }
+                                        },
+
                                         addressController.address![0].address,
                                         profController.user!.phone!,
+
                                       );
                                     } else {
                                       //

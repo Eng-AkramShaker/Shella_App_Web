@@ -1,22 +1,14 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
-import 'package:shella_design/common/util/navigation/navigation.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/svg_icon_widget.dart';
-import 'package:shella_design/features/notifications/controllers/notifications_controller.dart';
-import 'package:shella_design/features/settings/screens/language_selection_page.dart';
-import 'package:shella_design/features/settings/widgets/profile_ListTile.dart';
-import 'package:shella_design/features/settings/widgets/profile_divider.dart';
-import 'package:shella_design/features/settings/widgets/profile_header.dart';
-import 'package:shella_design/common/util/app_colors.dart';
 
-import '../../../common/helper/app_routes.dart';
+import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/features/settings/widgets/mobile/build_mobile_profile/build_profile_details_body.dart';
+
+import '../widgets/mobile/build_mobile_profile/build_appBar.dart';
 
 class ProfileDetailsPage extends StatefulWidget {
-  const ProfileDetailsPage({super.key});
+  const ProfileDetailsPage({
+    super.key,
+  });
 
   @override
   State<ProfileDetailsPage> createState() => _ProfileDetailsPageState();
@@ -26,13 +18,14 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
   @override
   Widget build(BuildContext context) {
     bool isWideScreen = MediaQuery.of(context).size.width > 600;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.greenColor,
-        title: Text('تفاصيل الحساب', style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold)),
-        centerTitle: true,
-      ),
+
+      appBar: PreferredSize(
+        preferredSize: Size(80, height / 15),
+        child: buildAppBar('تفاصيل الحساب'),
+
       body: ListView(
         children: [
           buildProfileHeader(() {
@@ -202,7 +195,9 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             trailing: SizedBox(height: 1, width: 1),
           ),
         ],
+
       ),
+      body: buildProfileDetailsBody(context, isWideScreen),
     );
   }
 }
