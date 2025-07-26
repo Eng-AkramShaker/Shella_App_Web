@@ -60,9 +60,9 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^29.1.38
   confetti: ^0.8.0
   animated_text_kit: ^4.2.3
-  easy_localization: ^3.0.7+1
+  easy_localization:
   awesome_dialog: ^3.1.0
-
+#  easy_localization: ^3.0.7+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

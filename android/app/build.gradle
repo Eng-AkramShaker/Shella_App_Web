@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+
     ndkVersion "25.1.8937393"
     // ndkVersion "27.0.12077973"  // ✅ استخدم هذا فقط
 
@@ -30,10 +31,12 @@ signingConfigs {
     defaultConfig {
         applicationId "com.example.shella_app"
         minSdkVersion 21 
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutter.versionCode.toInteger()
         versionName flutter.versionName
+        // ndkVersion "27.0.12077973"
     }
+     
 
     buildTypes {
         release {
