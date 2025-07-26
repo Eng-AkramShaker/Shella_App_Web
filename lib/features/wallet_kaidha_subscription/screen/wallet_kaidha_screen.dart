@@ -2,7 +2,6 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
@@ -104,33 +103,31 @@ class _WalletKaidhaScreenState extends State<WalletKaidhaScreen> {
 
                                     // payment button
 
-                                    // GetBuilder<CheckoutController>(builder: (checkoutController) {
-                                    //   return TextButtonWidget(
-                                    //     text: 'الدفع الآن',
-                                    //     backgroundColor: AppColors.secondaryColor,
-                                    //     textStyle: font13White400W(context),
-                                    //     height: 60,
-                                    //     width: double.infinity,
-                                    //     radius: 16,
-                                    //     verticalPadd: 0,
-                                    //     horizontalPadd: 0,
-                                    //     onPressed: () async {
-                                    //       //
+                                    TextButtonWidget(
+                                      text: 'الدفع الآن',
+                                      backgroundColor: AppColors.secondaryColor,
+                                      textStyle: font13White400W(context),
+                                      height: 60,
+                                      width: double.infinity,
+                                      radius: 16,
+                                      verticalPadd: 0,
+                                      horizontalPadd: 0,
+                                      onPressed: () async {
+                                        //
 
-                                    //       if (KaidhaSubController.another_amount == null ||
-                                    //           KaidhaSubController.another_amount.text == "0.00") {
-                                    //          showCustomSnackBar(context," لم يتم ادخال اي مبلغ بعد ...");
+                                        if (KaidhaSubController.another_amount == null ||
+                                            KaidhaSubController.another_amount.text == "0.00") {
+                                          showCustomSnackBar(context, " لم يتم ادخال اي مبلغ بعد ...");
 
-                                    //         return;
-                                    //       }
+                                          return;
+                                        }
 
-                                    //       await KaidhaSubController.Send_Pay_Credit(
-                                    //         context,
-                                    //         double.parse(KaidhaSubController.another_amount.text),
-                                    //       );
-                                    //     },
-                                    //   );
-                                    // })
+                                        await KaidhaSubController.Send_Pay_Credit(
+                                          context,
+                                          double.parse(KaidhaSubController.another_amount.text),
+                                        );
+                                      },
+                                    )
                                   ],
                                 ),
                         ],

@@ -58,6 +58,7 @@ import 'package:shella_design/features/wallet_kaidha_subscription/screen/main_su
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/show_pdf_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/contract_review_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/step1_screen.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/wallet_kaidha_screen.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
 import '../../features/my_points/screens/my_points_transactions_screen.dart';
@@ -135,10 +136,11 @@ class AppRoutes {
   static const String addressDetails = '/addressDetails';
   static const String addaddress = '/addaddress';
 
-  // kaidha form
+  // kaidha
   static const String Contract_Review = '/contract_review_screen';
   static const String main_subscription = '/main_subscription';
   static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
+  static const String kaidhaWallet = '/kaidha-allet';
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
@@ -239,9 +241,11 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
 
+    // Kaidha
     Contract_Review: (context) => const Contract_ReviewScreen(),
     main_subscription: (context) => const KiadaWalletSubscriptionScreen(),
     walletKaidha_Step_1_Screen: (context) => const Step_1_Screen(),
+    kaidhaWallet: (context) => const WalletKaidhaScreen(),
 
     helpAndSupport: (context) => const HelpAndSupport(),
 
@@ -265,10 +269,6 @@ class AppRoutes {
     updateProfileInfoPage: (context) => const UpdateProfileInfoPage(),
     addressDetails: (context) => const AddressDetailsPage(),
     addaddress: (context) => const AddNewAddressScreen(),
-
-    // Kaidha
-    // aliashtirakFiQaydiha: (context) => const AliashtirakFiQaydiha(),
-    // verifySourceOfIncome: (context) => const VerifySourceOfIncome(),
 
     // Services
     homeservicespage: (context) => const Homeservicespage(),

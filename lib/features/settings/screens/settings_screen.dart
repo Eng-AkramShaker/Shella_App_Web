@@ -111,7 +111,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
           }),
           ProfileDivider(),
           buildListTile('محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context, () {
-            // nav.push(AppRoutes.walletKaidhaScreen);
+            nav.push(AppRoutes.kaidhaWallet);
           }),
           ProfileDivider(),
           buildListTile('بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
