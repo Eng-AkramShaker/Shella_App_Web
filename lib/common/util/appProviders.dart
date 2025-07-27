@@ -7,6 +7,8 @@ import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
+import 'package:shella_design/features/advertisment/controller/advertisment_controller.dart';
+import 'package:shella_design/features/advertisment/domain/advertisment_service.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
@@ -17,6 +19,7 @@ import 'package:shella_design/features/home/controllers/store_controller.dart';
 import 'package:shella_design/features/home/domain/services/banner_service.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
+import 'package:shella_design/features/home/users/controllers/item_search_controller.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
 import 'package:shella_design/features/join_as_driver/domain/repositories/joinAsDriverRepositiory/join_as_driver_repositories.dart';
 import 'package:shella_design/features/join_as_driver/domain/services/joinAsDriverServices/join_as_driver_services.dart';
@@ -96,6 +99,17 @@ List<SingleChildWidget> appProviders({
     Provider<ApiClient>.value(value: apiClient),
     Provider<CustomerRepositoryInterface>.value(value: customerRepo),
     Provider<CustomerService>.value(value: customerService),
+    Provider<HttpAdvertisementService>(
+        create: (_) => HttpAdvertisementService()),
+    ChangeNotifierProvider(
+      create: (context) {
+        return AdvertisementProvider(
+          // نمرر فقط advertisementService الآن
+          advertisementService:
+              Provider.of<HttpAdvertisementService>(context, listen: false),
+        );
+      },
+    ),
 
     ChangeNotifierProvider(
         create: (_) => SplashController(SplashService())..loadConfig()),
@@ -113,8 +127,8 @@ List<SingleChildWidget> appProviders({
             AddressController(profileDetailsService: profileService)),
 
     // Home
-    ChangeNotifierProvider(
-        create: (_) => BannerProvider(BannerService())..loadBanners()),
+    ChangeNotifierProvider(create: (_) => BannerProvider()..fetchBanners()),
+    ChangeNotifierProvider(create: (context) => ItemSearchProvider()),
     ChangeNotifierProvider(
         create: (_) => SectionProvider(SectionService())
           ..fetchCategories()

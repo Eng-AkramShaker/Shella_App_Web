@@ -31,9 +31,11 @@ class _MainLayoutState extends State<MainLayout> {
     // Hyper_Screen(),
     // ShopsScreen(),
     Users_Home_Screen(),
-    MobileOrders_Screen(),
     FavoritePage(),
     Cart_Screen(),
+    MobileOrders_Screen(),
+
+    // Cart_Screen(),
     ProfileDetailsPage(),
     ProfileInfo(),
   ];
@@ -65,20 +67,26 @@ class _MainLayoutState extends State<MainLayout> {
                       Container(
                         height: 3,
                         width: 40,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : Colors.transparent,
                       ),
                       const SizedBox(height: 5),
                       Image.asset(
                         _getIconPath(index),
                         width: 24,
                         height: 24,
-                        color: _selectedIndex == index ? AppColors.primaryColor : AppColors.gryColor,
+                        color: _selectedIndex == index
+                            ? AppColors.primaryColor
+                            : AppColors.gryColor,
                       ),
                       const SizedBox(height: 5),
                       if (_selectedIndex == index)
                         Text(
                           _getLabel(index),
-                          style: const TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                     ],
                   ),
@@ -92,6 +100,8 @@ class _MainLayoutState extends State<MainLayout> {
       bottomNavigationBar: isWideScreen
           ? null
           : BottomNavigationBar(
+              showUnselectedLabels: true,
+              showSelectedLabels: true,
               currentIndex: _selectedIndex,
               onTap: (index) {
                 setState(() {
@@ -105,18 +115,36 @@ class _MainLayoutState extends State<MainLayout> {
                 return BottomNavigationBarItem(
                   icon: Column(
                     children: [
-                      Container(
-                        height: 3,
-                        width: 70,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.transparent,
-                      ),
-                      const SizedBox(height: 5),
-                      Image.asset(
-                        _getIconPath(index),
-                        width: 24,
-                        height: 24,
-                        color: _selectedIndex == index ? AppColors.primaryColor : Colors.grey,
-                      ),
+                      // Container(
+                      //   height: 3,
+                      //   width: 70,
+                      //   color: _selectedIndex == index
+                      //       ? AppColors.primaryColor
+                      //       : Colors.transparent,
+                      // ),
+                      // const SizedBox(height: 5),
+                      index == 2
+                          ? Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: AppColors.greenColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Image.asset(
+                                _getIconPath(index),
+                                width: 24,
+                                height: 24,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Image.asset(
+                              _getIconPath(index),
+                              width: 24,
+                              height: 24,
+                              color: _selectedIndex == index
+                                  ? AppColors.primaryColor
+                                  : Colors.grey,
+                            ),
                     ],
                   ),
                   label: _selectedIndex == index ? _getLabel(index) : "",
@@ -130,11 +158,11 @@ class _MainLayoutState extends State<MainLayout> {
     switch (index) {
       case 0:
         return AppImages.main_home;
-      case 1:
-        return AppImages.main_order;
-      case 2:
-        return AppImages.main_favorites;
       case 3:
+        return AppImages.main_order;
+      case 1:
+        return AppImages.main_favorites;
+      case 2:
         return AppImages.main_cart;
       case 4:
         return AppImages.main_sitings;
@@ -146,12 +174,12 @@ class _MainLayoutState extends State<MainLayout> {
   String _getLabel(int index) {
     switch (index) {
       case 0:
-        return "الرئيسية";
-      case 1:
-        return "الطلبات";
-      case 2:
-        return "المفضلة";
+        return "المنزل";
       case 3:
+        return "طلباتي";
+      case 1:
+        return "المفضلة";
+      case 2:
         return "السلّة";
       case 4:
         return "المزيد";

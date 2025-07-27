@@ -42,7 +42,7 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
             children: [
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                reverse: true,
+                // reverse: true,
                 child: Row(
                   children: List.generate(modules.length, (index) {
                     final Module mod = modules[index];

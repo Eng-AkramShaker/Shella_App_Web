@@ -1,4 +1,3 @@
-
 import 'package:shella_design/common/util/app_images.dart';
 
 class StoreModel {
@@ -20,25 +19,24 @@ class StoreModel {
   final double? deliveryFeeTax;
   final Module? module;
 
-  StoreModel({
-    required this.id,
-    required this.name,
-    required this.phone,
-    required this.email,
-    required this.logoUrl,
-    required this.logo,
-    required this.coverPhotoUrl,
-    required this.address,
-    required this.delivery,
-    required this.takeAway,
-    required this.deliveryTime,
-    required this.open,
-    required this.categoryIds,
-    required this.distance,
-    required this.currentOpeningTime,
-    required this.deliveryFeeTax,
-    required this.module
-  });
+  StoreModel(
+      {required this.id,
+      required this.name,
+      required this.phone,
+      required this.email,
+      required this.logoUrl,
+      required this.logo,
+      required this.coverPhotoUrl,
+      required this.address,
+      required this.delivery,
+      required this.takeAway,
+      required this.deliveryTime,
+      required this.open,
+      required this.categoryIds,
+      required this.distance,
+      required this.currentOpeningTime,
+      required this.deliveryFeeTax,
+      required this.module});
 
   factory StoreModel.fromJson(Map<String, dynamic> json) {
     return StoreModel(
@@ -56,7 +54,7 @@ class StoreModel {
       open: json['open'] == 1,
       distance: json['distance']?.toDouble(),
       currentOpeningTime: json['current_opening_time'],
-      deliveryFeeTax:json['deliveryfee_tax']?.toDouble(),
+      deliveryFeeTax: json['deliveryfee_tax']?.toDouble(),
       module: json['module'] != null ? Module.fromJson(json['module']) : null,
       categoryIds: (json['category_ids'] as List<dynamic>?)
               ?.map((e) => int.tryParse(e.toString()) ?? 0)
@@ -66,27 +64,18 @@ class StoreModel {
   }
 }
 
+class Module {
+  final int? id;
+  final String? moduleName;
+  final String? moduleType;
 
-class Module{
-    final int? id;
-    final String? moduleName;
-    final String? moduleType;
+  Module(
+      {required this.id, required this.moduleName, required this.moduleType});
 
-    Module({
-      required this.id,
-      required this.moduleName,
-      required this.moduleType
-    });
-
-    factory Module.fromJson(Map<String,dynamic> json ){
-
-      return Module(
+  factory Module.fromJson(Map<String, dynamic> json) {
+    return Module(
         id: json['id'],
         moduleName: json['module_name'],
-        moduleType: json['module_type']
-        
-        );
-    }
-
+        moduleType: json['module_type']);
+  }
 }
-

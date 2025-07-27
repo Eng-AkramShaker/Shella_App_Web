@@ -62,6 +62,9 @@ dependencies:
   animated_text_kit: ^4.2.3
   easy_localization:
   awesome_dialog: ^3.1.0
+  carousel_slider: ^5.1.1
+  shimmer_animation: ^2.2.2
+  cached_network_image: ^3.4.1
 #  easy_localization: ^3.0.7+1
 dev_dependencies:
   flutter_test:

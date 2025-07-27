@@ -37,9 +37,6 @@ class _SearchFilterState extends State<SearchFilter> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
-        ],
         backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         centerTitle: true,

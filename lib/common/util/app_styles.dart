@@ -781,3 +781,27 @@ TextStyle font18Green500W(BuildContext context,
       color: AppColors.greenColor,
       fontWeight: FontWeight.w500);
 }
+
+final robotoRegular = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w400,
+  fontSize: 20,
+);
+
+final robotoMedium = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w500,
+  fontSize: 20,
+);
+
+final robotoBold = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w700,
+  fontSize: 20,
+);
+
+final robotoBlack = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w900,
+  fontSize: 20,
+);

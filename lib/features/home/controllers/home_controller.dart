@@ -12,14 +12,14 @@ class HomeController extends ChangeNotifier {
   late final StoreProvider storeProvider;
 
   HomeController() {
-    bannerProvider = BannerProvider(BannerService());
+    bannerProvider = BannerProvider();
     categoryProvider = SectionProvider(SectionService());
     storeProvider = StoreProvider(StoreService());
   }
 
   Future<void> loadInitialData() async {
     await Future.wait([
-      bannerProvider.loadBanners(),
+      bannerProvider.fetchBanners(),
       categoryProvider.fetchCategories(),
       storeProvider.fetchStores(),
     ]);

@@ -77,4 +77,11 @@ class MainAppConstants {
   static const String availableDelivery = 'توصيل متاح';
   static const String noDelivery = 'لايوجد توصيل';
   static const String discount25FirstOrder = 'خصم يصل إلى 25% عند اول طلب';
+
+  // assets
+  static const String highlightIcon = 'assets/images/highlight_icon.png';
+  static const String notificationPlaceholder =
+      'assets/images/notification_placeholder.jpg';
+  static const String placeholder = 'assets/images/placeholder.jpg';
+  static const String distanceLine = 'assets/images/distance_line.png';
 }

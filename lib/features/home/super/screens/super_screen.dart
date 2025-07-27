@@ -56,7 +56,7 @@ class _SuperScreenState extends State<SuperScreen> {
               SizedBox(height: 16.h),
               BuildCategoryListView(),
               SizedBox(height: 22.h),
-              // buildBanner(context),
+              buildBanner(context),
               SizedBox(height: 24.h),
               buildSectionTitleTow(context,
                   title: "المتاجر القريبة منك",
