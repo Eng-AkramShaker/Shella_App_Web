@@ -13,16 +13,17 @@ Widget buildAddressRow(context) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
-          height: 28.h,
-          width: 24.w,
-          child: IconButton(
-            icon: Image.asset(AppImages.shape),
-            onPressed: () {},
-          ),
-        ),
+        SizedBox(width: 10),
+        // SizedBox(
+        //   height: 28.h,
+        //   width: 24.w,
+        //   child: IconButton(
+        //     icon: Image.asset(AppImages.shape),
+        //     onPressed: () {},
+        //   ),
+        // ),
         Custom_Text(context,
-            text: 'التوصيل الى السعودية ,شارع 112 بناء 14  ',
+            text: 'موقعك : احمد بن الخطاب طويق الرياض السعودية ',
             style: font11White400W(context)),
         Icon(Icons.keyboard_arrow_down,
             color: AppColors.backgroundColor, size: 22.w),

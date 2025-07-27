@@ -181,13 +181,7 @@ class ProfileController extends ChangeNotifier {
       notifyListeners();
     }
   }
-  //
-  // void _prepareForOperation() {
-  //   addressState = RequestState.initial;
-  //   _errorMessage = null;
-  //   notifyListeners();
-  //
-  // }
+
   /// Reset the controller state
   void resetAddState() {
     bool shouldNotify = false;

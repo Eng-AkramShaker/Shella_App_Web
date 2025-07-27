@@ -41,7 +41,8 @@ class CompaniesWorkshopsPage extends StatelessWidget {
                   hintStyle: const TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                   prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 ),
                 textDirection: TextDirection.rtl,
               ),

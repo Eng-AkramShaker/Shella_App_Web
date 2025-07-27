@@ -23,6 +23,7 @@ class _NotificationsComponnentState extends State<NotificationsComponnent> {
   @override
   void initState() {
     super.initState();
+    context.read<NotificationsController>().getMyNotificatios();
     // _scrollController.addListener(() {
     //   final provider = NotificationsController.get(context, listen: false);
 

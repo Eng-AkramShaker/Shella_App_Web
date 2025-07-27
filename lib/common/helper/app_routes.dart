@@ -55,7 +55,10 @@ import 'package:shella_design/features/serveMe/screens/serve_product_screen.dart
 import 'package:shella_design/features/support_conversation/screens/support_conversation_screen.dart';
 import 'package:shella_design/features/wallet/screens/wallet_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/main_subscription.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/show_pdf_screen.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/contract_review_screen.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/screen/subscription_steps/step1_screen.dart';
+import 'package:shella_design/features/wallet_kaidha_subscription/screen/wallet_kaidha_screen.dart';
 import '../../features/help_and_support/screens/web/help_and_support_web.dart';
 import '../../features/my_points/screens/mobile/my_points_screen_mobile.dart';
 import '../../features/my_points/screens/my_points_transactions_screen.dart';
@@ -71,6 +74,9 @@ class AppRoutes {
   static const String mainLayout = '/mainLayout';
   static const String splash = '/splash';
   static const String home = '/home';
+
+  static const String onBoarding = '/onboarding';
+  static const String onBoarding_end = '/onBoarding_end';
 
   static const String Login_Mobile = '/Login_Mobile';
 
@@ -103,8 +109,7 @@ class AppRoutes {
   static const String supportConversation = '/supportConversation';
   static const String order_tracking = '/order_tracking';
   static const String start_tracking_order = '/start_tracking_order';
-  static const String onBoarding = '/onboarding';
-  static const String onBoarding_end = '/onBoarding_end';
+
   static const String splashscreen = '/splashscreen';
   static const String notifications = '/notifications';
   static const String searchfilter = '/searchfilter';
@@ -131,9 +136,11 @@ class AppRoutes {
   static const String addressDetails = '/addressDetails';
   static const String addAddress = '/addaddress';
 
-  // kaidha form
+  // kaidha
+  static const String Contract_Review = '/contract_review_screen';
   static const String main_subscription = '/main_subscription';
   static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
+  static const String kaidhaWallet = '/kaidha-allet';
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
@@ -234,8 +241,11 @@ class AppRoutes {
     returnAndEarnScreen: (context) => const ReturnAndEarnScreen(),
     walletScreen: (context) => const WalletScreen(),
 
+    // Kaidha
+    Contract_Review: (context) => const Contract_ReviewScreen(),
     main_subscription: (context) => const KiadaWalletSubscriptionScreen(),
     walletKaidha_Step_1_Screen: (context) => const Step_1_Screen(),
+    kaidhaWallet: (context) => const WalletKaidhaScreen(),
 
     helpAndSupport: (context) => const HelpAndSupport(),
 

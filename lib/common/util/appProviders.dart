@@ -7,6 +7,7 @@ import 'package:shella_design/api/api_client.dart';
 import 'package:shella_design/features/Auth/controllers/auth_controller.dart';
 import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
+import 'package:shella_design/features/advertisment/domain/advertisment_service.dart';
 import 'package:shella_design/features/cart/controllers/cart_controller.dart';
 import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
 import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
@@ -17,7 +18,7 @@ import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/controllers/section_controller.dart';
 import 'package:shella_design/features/home/controllers/home_controller.dart';
 import 'package:shella_design/features/home/controllers/store_controller.dart';
-import 'package:shella_design/features/home/domain/services/banner_service.dart';
+
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/domain/services/store_service.dart';
 import 'package:shella_design/features/join_as_driver/controllers/join_as_driver_controller.dart';
@@ -50,6 +51,9 @@ import 'package:shella_design/features/splash/domain/services/splash_service.dar
 import 'package:shella_design/features/wallet_kaidha_subscription/controllers/kaidhaSub_controller.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/reposotories/kaidhaSub_repository.dart';
 import 'package:shella_design/features/wallet_kaidha_subscription/domain/services/kaidhaSub_service.dart';
+import '../../features/advertisment/controller/advertisment_controller.dart';
+import '../../features/home/domain/services/banner_service.dart';
+import '../../features/search_filter/controller/product_provider.dart';
 import '../../features/settings/controllers/profile_detailes_controller.dart';
 import '../../features/settings/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import '../../features/settings/domain/services/profileDetailsService/profile_details_service.dart';
@@ -89,6 +93,7 @@ List<SingleChildWidget> appProviders({
   //  wallet Kaidha Subscription   =======
   final walletKaidhaSubscriptionRepo = KaidhaSubRepository(apiClient: apiClient);
   final walletKaidhaSubscriptionService = kaidhaSubService(kaidhaSubRepositoryinterface: walletKaidhaSubscriptionRepo);
+  final HttpAdvertisementService advertisementService = HttpAdvertisementService( );
 
   return [
     //        Provider  ======================================================================================
@@ -107,7 +112,7 @@ List<SingleChildWidget> appProviders({
     // ChangeNotifierProvider(create: (_) => ProfileController(profileDetailsService: profileService)),
 
     // Home
-    ChangeNotifierProvider(create: (_) => BannerProvider(BannerService())..loadBanners()),
+      ChangeNotifierProvider(create: (_) => BannerProvider( )..fetchBanners()),
     ChangeNotifierProvider(
         create: (_) => SectionProvider(SectionService())
           ..fetchCategories()
@@ -166,12 +171,14 @@ List<SingleChildWidget> appProviders({
 
     // Others
     ChangeNotifierProvider(create: (_) => ServeMeController()),
-    ChangeNotifierProvider(create: (_) => SearchFilterController()),
+    ChangeNotifierProvider(create: (_) => SearchFilterController(apiClient: apiClient)),
     ChangeNotifierProvider(create: (_) => ScheduleController()),
 
     //  wallet Kaidha Subscription   =======
 
     ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
     ChangeNotifierProvider(create: (_) => KaidhaSubscription_Controller(kaidhaSubServiceInterface: walletKaidhaSubscriptionService)),
+    ChangeNotifierProvider(create: (_) => ProductProvider()),
+    ChangeNotifierProvider(create: (_) => AdvertisementProvider(advertisementService: advertisementService)),
   ];
 }

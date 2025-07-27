@@ -31,7 +31,7 @@ dependencies:
   url_launcher: ^6.3.1
   video_player: ^2.9.3
   intl_phone_field: ^3.2.0
-  intl: ^0.20.2
+  intl:
   chewie: ^1.10.0
   font_awesome_flutter: ^10.8.0
 
@@ -60,8 +60,14 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^29.1.38
   confetti: ^0.8.0
   animated_text_kit: ^4.2.3
-  easy_localization: ^3.0.7+1
+  easy_localization:
   awesome_dialog: ^3.1.0
+  carousel_slider: ^5.1.1
+  shimmer_animation: ^2.2.2
+  cached_network_image: ^3.4.1
+#  easy_localization: ^3.0.7+1
+
+  another_flushbar: ^1.10.30
 
 dev_dependencies:
   flutter_test:

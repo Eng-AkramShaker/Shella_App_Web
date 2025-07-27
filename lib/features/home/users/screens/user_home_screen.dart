@@ -2,13 +2,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_dimensions.dart';
+import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
+import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
+import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/features/advertisment/widget/hilight_widget.dart';
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
+import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
+import 'package:shella_design/features/home/home/widgets/builds/build_most_popular.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
+import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
+import 'package:shella_design/features/search_filter/controller/product_provider.dart';
+import 'package:shella_design/features/search_filter/widget/mobile/category_tabs.dart';
+import 'package:shella_design/features/search_filter/widget/mobile/location_header.dart';
+import 'package:shella_design/features/search_filter/widget/mobile/search_history_section.dart';
 
 class Users_Home_Screen extends StatefulWidget {
   const Users_Home_Screen({super.key});
@@ -44,48 +58,85 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              //
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //
 
-              Card(
-                color: Colors.red,
-                child: ElevatedButton(
-                  child: const Text('data'),
-                  onPressed: () async {
-                    //
-                  },
+                // Card(
+                //   color: Colors.red,
+                //   child: ElevatedButton(
+                //     child: const Text('data'),
+                //     onPressed: () async {
+                //       //
+                //     },
+                //   ),
+                // ),
+
+                //------------------------------------------
+
+                buildSectionTitle_One(
+                  context,
+                  title: "الاقسام",
+                  // lapel: 'عرض الكل',
+                  underline: false,
                 ),
-              ),
+                SizedBox(height: 16.h),
+                BuildCategoryListView(),
+                buildBanner(context),
+                // SizedBox(height: 22.h),
+                // buildBanner(context),
 
-              //------------------------------------------
+                SizedBox(height: 16.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    buildSectionTitleTow(context,
+                        icon: true,
+                        iconUrl: AppImages.fireIcon,
+                        title: 'المنتجات الأكثر شعبية',
+                        underline: false),
+                    Container(
+                      height: 35,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: AppColors.greenColor),
+                      child: Center(
+                          child: Text(
+                        'رؤية الكل',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      )),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.h),
+                BuildMostPopular(),
+                SizedBox(height: 20.h),
+                HighlightWidget(),
 
-              buildSectionTitle_One(
-                context,
-                title: "الاقسام",
-                lapel: 'عرض الكل',
-                underline: false,
-              ),
-              SizedBox(height: 16.h),
-              BuildCategoryListView(),
-              // SizedBox(height: 22.h),
-              // buildBanner(context),
-
-              SizedBox(height: 16.h),
-              buildSectionTitleTow(
-                context,
-                title: "المتاجر القريبة منك",
-                lapel: "المزيد",
-                underline: true,
-              ),
-              SizedBox(height: 16.h),
-              buildDeliveryListView(context),
-              SizedBox(height: 50.h),
-            ],
+                SizedBox(height: 16.h),
+                buildSectionTitleTow(
+                  context,
+                  title: "كل المتاجر",
+                  lapel: "المتاجر القريبة منك",
+                  underline: false,
+                ),
+                CategoriesSelectList(),
+                SizedBox(height: 16.h),
+                buildDeliveryListView(context),
+                SizedBox(height: 50.h),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, avoid_print
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -33,8 +35,8 @@ class CustomerRepository implements CustomerRepositoryInterface {
       uri.toString(),
       data,
     );
-    if (response.statusCode == 200) {
-      final jsonBody = jsonDecode(response.body);
+    if (response?.statusCode == 200) {
+      final jsonBody = jsonDecode(response!.body);
       if (jsonBody.containsKey('customer')) {
         return CustomerModel.fromJson(jsonBody['customer']);
       } else if (jsonBody.containsKey('data')) {
@@ -43,7 +45,7 @@ class CustomerRepository implements CustomerRepositoryInterface {
         return await getCustomerInfo();
       }
     } else {
-      final errorBody = jsonDecode(response.body);
+      final errorBody = jsonDecode(response!.body);
       final errors = errorBody['errors'] as List<dynamic>;
       final errorMessage = errorBody['message'] ?? 'فشل في تحديث الملف الشخصي';
       throw Exception(errorMessage);

@@ -26,6 +26,13 @@ class SearchFilter extends StatefulWidget {
 
 class _SearchFilterState extends State<SearchFilter> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<SearchFilterController>().mostSearched();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final searchFilterController = Provider.of<SearchFilterController>(context);
     return Scaffold(

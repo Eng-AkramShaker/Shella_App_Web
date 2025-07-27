@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +33,6 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
 
   @override
   void initState() {
-
-    print("********************* inside initState");
     super.initState();
     profileController = Provider.of<ProfileController>(context, listen: false);
 
@@ -49,8 +46,6 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    print("********************* inside didChangeDependencies");
-
     if (!_isInitialized && widget.editAddress != null) {
       profileController.initializeEditForm(
         widget.editAddress!,
@@ -66,45 +61,8 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     }
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   profileController = Provider.of<ProfileController>(context, listen: false);
-  //   // profileController.resetOperationState();
-  //   _isEditing = widget.editAddress != null;
-  //   _mapController = MapController(
-  //     initialLocation: _isEditing ? null : const LatLng(24.7136, 46.6753),
-  //   );
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     profileController.resetOperationState();
-  //   });
-  // }
-  //
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //
-  //   if (!_isInitialized && widget.editAddress != null) {
-  //     WidgetsBinding.instance.addPostFrameCallback((_) {
-  //       if (!mounted) return;
-  //       profileController.initializeEditForm(
-  //         widget.editAddress!,
-  //         _mapController,
-  //         nameController,
-  //         phoneController,
-  //         addressController,
-  //         streetController,
-  //         profileController.updateTybe,
-  //         profileController.updateFloor,
-  //       );
-  //     });
-  //     _isInitialized = true;
-  //   }
-  // }
-
   @override
   void dispose() {
-    print("********************* inside didChangeDependencies");
     addressController.dispose();
     phoneController.dispose();
     nameController.dispose();
@@ -115,8 +73,8 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("********************* inside build");
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height / 15),
@@ -128,35 +86,11 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
       body: Selector<ProfileController, RequestState>(
         selector: (_, controller) => controller.addressState,
         builder: (context, addressState, child) {
-          // if (addressState == RequestState.success) {
-          //   WidgetsBinding.instance.addPostFrameCallback((_) {
-          //     print("********************* inside addPostFrameCallback");
-          //     if (!mounted) return;
-          //        profileController.resetOperationState();
-          //     Navigator.pop(context, true);
-          //   });
-          //   return CustomLoading(color: AppColors.primaryColor);
-          // }
-
-          // if (addressState == RequestState.success) {
-          //   WidgetsBinding.instance.addPostFrameCallback((_) {
-          //     print("********************* inside addPostFrameCallback for success");
-          //     if (!mounted) return;
-          //
-          //     // Reset state BEFORE navigation
-          //     profileController.resetOperationState();
-          //
-          //     Navigator.pop(context, true);
-          //   });
-          //   return CustomLoading(color: AppColors.primaryColor);
-          // }
           if (addressState == RequestState.loading) {
             return CustomLoading(color: AppColors.primaryColor);
           }
           if (addressState == RequestState.error) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              print("********************* inside addPostFrameCallback");
-
               if (!mounted) return;
               final error = context.read<ProfileController>().errorMessage;
               if (error != null) {
