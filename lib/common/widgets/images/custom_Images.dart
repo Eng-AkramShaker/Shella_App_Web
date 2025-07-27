@@ -26,6 +26,7 @@ Image custom_Images_asset({
   } else {
     return Image.asset(
       image,
+      color: Colors.white,
       width: w ?? 75.w,
       height: h ?? 75.h,
       fit: fit ?? BoxFit.cover,

@@ -131,6 +131,7 @@ class AppImages {
   static const String packet= 'assets/images/packet.png';
   static const String rank= 'assets/images/rank.png';
   static const String percent1= 'assets/images/percent1.png';
+  static const String truckicon= 'assets/images/trackIcon.png';
 
 
 
@@ -176,6 +177,8 @@ class AppImages {
   static const String sale='assets/svg/sale.svg';
   static const String done='assets/svg/done.svg';
   static const String sendicon='assets/svg/sendicon.svg';
+  static const String truckiconsvg='assets/svg/truckiconsvg.svg';
+
 
 
 

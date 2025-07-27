@@ -106,6 +106,20 @@ class MainAppConstants {
       static const String writeYourMessage='اكتب رسالتك هنا';
       static const String acceptTheOffer='قبول العرض';
       static const String goToAnotherOffer='الانتقال إلى عرض آخر';
+      static const String orderConfirmed='تأكيد الطلب';
+      static const String confirmedSuccessfully='تم تأكيد الطلب بنجاح';
+      static const String orderNumber='رقم الطلب';
+      static const String deliveryDetails='تفاصيل التوصيل';
+      static const String expectedArrivalTime='وقت الوصول المتوقع';
+      static const String distance='المسافة';
+      static const String subtotal='المجموع الفرعي';
+      static const String deliveryFees='رسوم التوصيل';
+      static const String cashOnDeliveryFees='رسوم الدفع عند الاستلام';
+      static const String total='الإجمالي';
+      static const String orderTracking='تتبع الطلب';
+      static const String backToMain='العودة للرئيسية';
+
+
 
 
 
