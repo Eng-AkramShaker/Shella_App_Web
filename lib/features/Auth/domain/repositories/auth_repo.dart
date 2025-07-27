@@ -64,7 +64,7 @@ class AuthRepo implements AuthRepositoryInterface {
       "phone": phone,
       // "cm_firebase_token": token!,
     };
-    http.Response response = await apiClient.postData(ApiConstants.forgetPasswordUri, data);
+    http.Response? response = await apiClient.postData(ApiConstants.forgetPasswordUri, data);
     return response;
   }
 
@@ -77,7 +77,7 @@ class AuthRepo implements AuthRepositoryInterface {
       "password": password,
       "confirm_password": confirmPassword
     };
-    http.Response response = await apiClient.postData(ApiConstants.resetPasswordUri, data);
+    http.Response? response = await apiClient.postData(ApiConstants.resetPasswordUri, data);
     return response;
   }
 
@@ -87,7 +87,7 @@ class AuthRepo implements AuthRepositoryInterface {
       'phone': phone,
       'otp': otp,
     };
-    http.Response response = await apiClient.postData(ApiConstants.verifyPhoneUri, data);
+    http.Response? response = await apiClient.postData(ApiConstants.verifyPhoneUri, data);
 
     return response;
   }

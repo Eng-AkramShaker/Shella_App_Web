@@ -23,7 +23,6 @@ class User_Model {
   final String? languageKey;
   final String? refBy;
   final String? tempToken;
-
   final bool? isEmailVerified;
   final bool? isFromPos;
   final String? fullName;

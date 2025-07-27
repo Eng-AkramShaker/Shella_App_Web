@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
-import 'package:shella_design/features/settings/widgets/profile_buttons.dart';
-import 'package:shella_design/features/settings/widgets/profile_loading.dart';
+import 'package:shella_design/common/util/app_colors.dart';
 
-import '../../../common/util/app_colors.dart';
+import 'package:shella_design/features/settings/widgets/mobile/profile_buttons.dart';
+
+import '../../../../common/widgets/loading_progress/loading/custom_loading.dart';
 
 Widget buildProfileHeader(onTap) {
   return Consumer<ProfileController>(
     builder: (context, provider, _) {
-      final user = provider.user;
+      final customer = provider.user;
 
       if (provider.isLoading) {
-        return const Center(child: ProfileLoading(color: AppColors.greenColor));
+        return const Center(child: CustomLoading(color: AppColors.greenColor));
       }
       if (provider.toExternalReference != null) {
         return Center(
@@ -32,7 +33,7 @@ Widget buildProfileHeader(onTap) {
           ),
         );
       }
-      if (user == null) {
+      if (customer == null) {
         return const Center(child: Text('لا توجد بيانات'));
       }
 
@@ -48,16 +49,16 @@ Widget buildProfileHeader(onTap) {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: user.imageFullUrl != null ? NetworkImage(user.imageFullUrl ?? "") : null,
+                    backgroundImage: customer.imageFullUrl != null ? NetworkImage(customer.imageFullUrl ?? "") : null,
                     backgroundColor: Colors.grey[300],
-                    child: user.imageFullUrl == null ? Icon(Icons.person, size: 40, color: Colors.grey[600]) : null,
+                    child: customer.imageFullUrl == null ? Icon(Icons.person, size: 40, color: Colors.grey[600]) : null,
                   ),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.fullName ?? 'الاسم غير متوفر',
+                        customer.fullName ?? 'الاسم غير متوفر',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

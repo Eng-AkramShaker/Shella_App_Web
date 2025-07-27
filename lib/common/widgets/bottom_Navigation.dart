@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, unused_import, library_prefixes
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/features/favorite/screens/mobile/favoritePage.dart';
 import 'package:shella_design/features/cart/screens/mobile/cart_screen.dart';
@@ -9,6 +10,7 @@ import 'package:shella_design/features/home/shops/screens/shops_screen.dart';
 import 'package:shella_design/features/home/super/screens/super_screen.dart';
 import 'package:shella_design/features/home/users/screens/user_home_screen.dart';
 import 'package:shella_design/features/orders/screens/order_screen/mobile_orders_screen.dart';
+import 'package:shella_design/features/settings/controllers/custome_info_controller.dart';
 import 'package:shella_design/features/settings/screens/settings_screen.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
@@ -27,9 +29,6 @@ class _MainLayoutState extends State<MainLayout> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    // Super_Screen(),
-    // Hyper_Screen(),
-    // ShopsScreen(),
     Users_Home_Screen(),
     FavoritePage(),
     Cart_Screen(),
@@ -39,6 +38,13 @@ class _MainLayoutState extends State<MainLayout> {
     ProfileDetailsPage(),
     ProfileInfo(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    Provider.of<ProfileController>(context, listen: false).fetchUserData();
+  }
 
   @override
   Widget build(BuildContext context) {

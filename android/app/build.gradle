@@ -7,7 +7,6 @@ plugins {
 android {
 
     ndkVersion "25.1.8937393"
-    // ndkVersion "27.0.12077973"  // ✅ استخدم هذا فقط
 
     namespace "com.example.shella_app"
     compileSdk 35

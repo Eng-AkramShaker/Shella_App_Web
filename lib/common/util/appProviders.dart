@@ -9,6 +9,9 @@ import 'package:shella_design/features/Auth/domain/repositories/auth_repo.dart';
 import 'package:shella_design/features/Auth/domain/services/Auth_service.dart';
 import 'package:shella_design/features/advertisment/controller/advertisment_controller.dart';
 import 'package:shella_design/features/advertisment/domain/advertisment_service.dart';
+import 'package:shella_design/features/cart/controllers/cart_controller.dart';
+import 'package:shella_design/features/cart/domain/repositories/cartRepository/cart_repository.dart';
+import 'package:shella_design/features/cart/domain/services/cartService/cart_service.dart';
 import 'package:shella_design/features/discount/controllers/discount_controller.dart';
 import 'package:shella_design/features/discount/domain/repositories/discountRepository/discount_repository.dart';
 import 'package:shella_design/features/discount/domain/services/discountService/discount_service.dart';
@@ -55,10 +58,9 @@ import '../../features/settings/controllers/profile_detailes_controller.dart';
 import '../../features/settings/domain/repositories/profileDetailsRepository/profile_details_repository.dart';
 import '../../features/settings/domain/services/profileDetailsService/profile_details_service.dart';
 
-List<SingleChildWidget> appProviders({
-  required String appBaseUrl,
-  required SharedPreferences sharedPreferences,
-}) {
+List<SingleChildWidget> appProviders(
+    {required String appBaseUrl,
+    required SharedPreferences sharedPreferences}) {
   // Repository   & Service  ================================================================================
 
   final apiClient = ApiClient(sharedPreferences: sharedPreferences);
@@ -71,6 +73,10 @@ List<SingleChildWidget> appProviders({
   //  customer   =======
   final customerRepo = CustomerRepository(apiClient: apiClient);
   final customerService = CustomerService(customerRepository: customerRepo);
+
+  //  cart   =======
+  final cartRepo = CartRepository(apiClient: apiClient);
+  final cartService = CartService(cartRepository: cartRepo);
 
   //  orders   =======
   final ordersRepo = OrdersRepository(
@@ -136,6 +142,16 @@ List<SingleChildWidget> appProviders({
     ChangeNotifierProvider(
         create: (_) => StoreProvider(StoreService())..fetchStores()),
     ChangeNotifierProvider(create: (_) => HomeController()),
+
+    ChangeNotifierProvider(
+      create: (context) => AddressController(
+        profileDetailsService:
+            ProfileDetailsService(profileRepository: ProfileRepository()),
+      ),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => CartController(cartService: cartService),
+    ),
 
     // Discount
     ChangeNotifierProvider(

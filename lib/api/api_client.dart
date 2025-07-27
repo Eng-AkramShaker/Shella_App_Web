@@ -79,7 +79,7 @@ class ApiClient {
       {Map<String, dynamic>? query, Map<String, String>? headers, bool handleError = true}) async {
     try {
       if (kDebugMode) {
-        print('====> API Call: $uri  ');
+        debugPrint("\x1B[32m ====> API Call: ${ApiConstants.appBaseUrl + uri}  \x1B[0m");
       }
       initHeader();
       final stopwatch = Stopwatch()..start();
@@ -106,23 +106,32 @@ class ApiClient {
     }
   }
 
-  Future<http.Response> postData(String uri, dynamic body,
+  Future<http.Response?> postData(String uri, dynamic body,
       {Map<String, String>? headers, int? timeout, bool handleError = true}) async {
     try {
       if (kDebugMode) {
-        print('====> API Call: $uri ');
+        debugPrint("\x1B[32m ====> API Call: ${ApiConstants.appBaseUrl + uri}  \x1B[0m");
         print('====> API Body: $body');
       }
-      http.Response response = await http
-          .post(Uri.parse(ApiConstants.appBaseUrl + uri), body: jsonEncode(body), headers: headers ?? _mainHeaders)
+
+      final response = await http
+          .post(
+            Uri.parse(ApiConstants.appBaseUrl + uri),
+            body: jsonEncode(body),
+            headers: headers ?? _mainHeaders,
+          )
           .timeout(Duration(seconds: timeout ?? timeoutInSeconds));
+
+      // ✅ لا تحاول عمل jsonDecode هنا، اتركها لمن يستهلك هذا response
       if (kDebugMode) {
-        var reponsemap = jsonDecode(response.body);
-        print("====> API response body: $reponsemap");
+        print("====> API status: ${response.statusCode}");
+        print("====> API headers: ${response.headers['content-type']}");
       }
-      return handleResponse(response, uri, handleError);
+
+      return response;
     } catch (e) {
-      return http.Response('error', 1);
+      debugPrint("====> Exception in postData: $e");
+      return null; // ✅ بدلًا من استخدام statusCode 1 الخاطئ
     }
   }
 

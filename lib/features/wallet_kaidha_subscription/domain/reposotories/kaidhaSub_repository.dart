@@ -131,27 +131,24 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
   @override
   Future<WalletKaidhaModel?> getWalletKaidh({bool forceRefresh = false}) async {
-    // 1. التحقق من وجود التوكن
+    // 1. تحقق من التوكن
     if (apiClient.token == null || apiClient.token!.isEmpty) {
       print("⚠️ لا يوجد توكن. لن يتم تنفيذ طلب المحفظة.");
       return null;
     }
 
-    // 2. إذا كان هناك كاش مسبق ولم يُطلب تحديث صريح، استخدم الكاش
-    if (!forceRefresh && _walletKaidhaCache != null) {
-      print("📦 إرجاع البيانات من الكاش.");
-      return _walletKaidhaCache;
-    }
-
     try {
       final response = await apiClient.getData(ApiConstants.get_walletUri);
 
-      if ((response.statusCode == 200 || response.statusCode == 201) && response.body is Map<String, dynamic>) {
-        _walletKaidhaCache = WalletKaidhaModel.fromJson(response.body as Map<String, dynamic>);
-        print("✅ تم تحميل محفظة قيدها بنجاح: ${_walletKaidhaCache!.wallet?.status}");
-        return _walletKaidhaCache;
-      } else {
-        print("❌ فشل استرجاع المحفظة: كود ${response.statusCode}، الرد: ${response.body}");
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final Map<String, dynamic> decoded = jsonDecode(response.body);
+
+        if (decoded.containsKey('wallet')) {
+          _walletKaidhaCache = WalletKaidhaModel.fromJson(decoded);
+          return _walletKaidhaCache;
+        } else {
+          print("❌ JSON لا يحتوي على المفتاح 'wallet'");
+        }
       }
     } catch (e, stackTrace) {
       print("❌ استثناء أثناء استرجاع المحفظة: $e");
@@ -222,7 +219,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
     Response? response = await apiClient.postData(ApiConstants.pay_creditUri, data);
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
+    if (response!.statusCode == 200 || response.statusCode == 201) {
       getWalletKaidh();
 
       final decodedBody = jsonDecode(response.body);
@@ -242,9 +239,9 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'amount': total,
     };
 
-    Response response = await apiClient.postData(ApiConstants.pay_debitUri, data);
+    http.Response? response = await apiClient.postData(ApiConstants.pay_debitUri, data);
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
+    if (response!.statusCode == 200 || response.statusCode == 201) {
       getWalletKaidh();
       return true;
     } else if (response.statusCode == 429) {
@@ -269,17 +266,16 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       return null;
     }
 
+    Map<String, String> data = {'national_id': nationalId};
+
+    // إرسال الطلب
+
     try {
-      Map<String, String> data = {
-        'national_id': nationalId,
-      };
+      http.Response? response = await apiClient.postData(ApiConstants.nafath_checkStatusUri, data);
 
-      // إرسال الطلب
-
-      Response response = await apiClient.postData(ApiConstants.nafath_checkStatusUri, data);
-
-      if ((response.statusCode == 200 || response.statusCode == 201)) {
-        NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(response.body as Map<String, dynamic>);
+      if ((response!.statusCode == 200 || response.statusCode == 201)) {
+        final jsonMap = jsonDecode(response.body);
+        NafathCheckStatusModel checkStatus = NafathCheckStatusModel.fromJson(jsonMap);
 
         print("✅ حالة Nafath: ${response.body}");
 
@@ -289,7 +285,7 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
         return null;
       }
     } catch (e) {
-      print("❌ Nafath فشل    ");
+      print("❌ Nafath فشل ");
       return null;
     }
   }
@@ -297,29 +293,27 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
   // send National Id   =========================
 
   Future<NafathRandomModel?> Nafath_send_National_Id(BuildContext context, String nationalId) async {
-    NafathRandomModel model = NafathRandomModel();
-    debugPrint("\x1B[32m     ///55     \x1B[0m");
+    if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
+      showCustomSnackBar(context, "رقم الهوية غير صالح");
+      return null;
+    }
+
     try {
-      if (nationalId.length != 10 || !RegExp(r'^\d{10}$').hasMatch(nationalId)) {
-        showCustomSnackBar(context, "رقم الهوية غير صالح");
-        return null;
-      }
-
       Map<String, String> data = {'national_id': nationalId};
+      http.Response? response = await apiClient.postData(ApiConstants.nafath_initiateUri, data);
 
-      Response response = await apiClient.postData(ApiConstants.nafath_initiateUri, data);
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (response!.statusCode == 200 || response.statusCode == 201) {
         final jsonMap = jsonDecode(response.body);
-        model = NafathRandomModel.fromJson(jsonMap);
-        return model;
+        return NafathRandomModel.fromJson(jsonMap);
+      } else if (response.statusCode == 400) {
+        showCustomSnackBar(context, "تمت الموافقة على الطلب. لا يمكن الإرسال مرة أخرى.");
       } else if (response.statusCode == 422) {
-        showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
+        showCustomSnackBar(context, "يوجد طلب نشط حاليًا لا يمكن تنفيذ آخر");
       } else {
         showCustomSnackBar(context, "فشل في المعالجة، الرجاء المحاولة لاحقًا");
       }
     } catch (e) {
-      showCustomSnackBar(context, "حدث خطأ أثناء الاتصال بالخادم");
+      showCustomSnackBar(context, "رقم الهوية غير صحيح أو مرفوض");
     }
 
     return null;
@@ -327,10 +321,10 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
 
   // send All  Data   =========================
 
-// هذه الدالة ترجع الملف المحمل والمحفوظ مؤقتاً
+  // هذه الدالة ترجع الملف المحمل والمحفوظ مؤقتاً
 
   @override
-  Future<Response> Nafath_send_All_Data(
+  Future<bool> Nafath_send_All_Data(
     BuildContext context,
     String nationalId,
     String city,
@@ -343,10 +337,34 @@ class KaidhaSubRepository implements KaidhaSubRepositoryInterface {
       'neighborhood': neighborhood,
       'house_type': houseType,
     };
-    await apiClient.postData(ApiConstants.nafath_signUri, payload);
 
-    Response? response;
-    return response!;
+    try {
+      final response = await apiClient.postData(ApiConstants.nafath_signUri, payload);
+
+      if (response != null && (response.statusCode == 200 || response.statusCode == 201)) {
+        final contentType = response.headers['content-type'] ?? '';
+
+        if (contentType.contains('application/json')) {
+          final decodedBody = jsonDecode(response.body);
+          debugPrint("\x1B[32m JSON Response: $decodedBody \x1B[0m");
+        } else if (contentType.contains('application/pdf')) {
+          debugPrint("\x1B[34m PDF response received. Length: ${response.bodyBytes.length} bytes \x1B[0m");
+
+          // يمكنك الآن حفظ الملف إذا كنت تريد فتحه للمستخدم
+          // await saveAndOpenPDF(response.bodyBytes);
+        } else {
+          debugPrint("\x1B[33m Unknown content-type: $contentType \x1B[0m");
+        }
+
+        return true;
+      } else {
+        debugPrint("\x1B[31m Response error: ${response?.statusCode} \x1B[0m");
+        return false;
+      }
+    } catch (e) {
+      debugPrint("\x1B[31m Exception in Nafath_send_All_Data: $e \x1B[0m");
+      return false;
+    }
   }
 
   //
