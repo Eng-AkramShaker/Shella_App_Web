@@ -161,7 +161,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             nav.push(AppRoutes.joinAsDriverOne);
           }),
            ProfileDivider(),
-          buildListTile('خدمة التقاط الطلب', Icon(Icons.local_mall_rounded), context, () {
+          buildListTile('خدمة استلام وتسليم', Icon(Icons.local_mall_rounded), context, () {
             nav.push(AppRoutes.packetsPosition);
           }),
           ProfileDivider(),
