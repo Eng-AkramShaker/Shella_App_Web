@@ -177,8 +177,10 @@ void _handleTextChanged() {
                    buildPhoneField(phoneController2),
                    SizedBox(height: 10.0,),
                    PickupCustomButton(text:MainAppConstants.nextWord,onPressed: () {
-                      if (Form.of(context)!.validate()) {
-                Form.of(context)!.save();
+                      if (true
+                     //   Form.of(context)!.validate()
+                        ) {
+                // Form.of(context)!.save();
                 widget.onSubmit();
               }
                    },)

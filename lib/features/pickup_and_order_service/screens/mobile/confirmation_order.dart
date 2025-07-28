@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/lists.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/delivery_details.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/order_app_bar.dart';
@@ -51,6 +53,9 @@ class _ConfirmationOrderState extends State<ConfirmationOrder> {
                   child: PickupCustomButton(
                     text: MainAppConstants.orderTracking,
                     imageUrl: AppImages.truckicon,
+                    onPressed: () {
+                      nav.push(AppRoutes.trackingPickUpOrder);
+                    },
                     
                   ),
                 ),

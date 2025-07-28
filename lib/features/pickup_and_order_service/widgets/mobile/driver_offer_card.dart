@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/driver_info.dart';
@@ -73,14 +75,23 @@ class DriverOfferCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        PickupCustomButton(height: 38,width: 124,text: MainAppConstants.accept,),
+                        PickupCustomButton(height: 38,
+                        width: 124,
+                        text: MainAppConstants.accept,
+                        onPressed: () {
+                          
+                        },
+                        ),
                         PickupCustomButton(
                         height: 38,
                         width: 124,
-                        text: MainAppConstants.reject,
+                        text: MainAppConstants.negotiate,
                         backgroundColor: AppColors.backgroundColor,
                         textColor: AppColors.secondaryColor,
                         borderColor: AppColors.secondaryColor,
+                        onPressed: () {
+                          nav.push(AppRoutes.negotiationInfo);
+                        },
                         )
                       ],
                     )

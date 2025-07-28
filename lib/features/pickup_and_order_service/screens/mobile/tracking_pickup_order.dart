@@ -110,7 +110,18 @@ class _TrackingPickUpOrderState extends State<TrackingPickUpOrder> {
                                 
                               ],
                             ),
-                          )   
+                          ),
+
+                           SizedBox(height: 25.h,),
+
+                 Center(
+                  child: 
+                    InkWell(
+                  onTap: () {  },
+                   child: Custom_Text(context,text: MainAppConstants.backToMain,
+                    style: font14SecondaryColor500W(context))),
+                    ) ,
+                    SizedBox(height: 10.h,)  
 
           
           

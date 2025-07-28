@@ -97,7 +97,7 @@ class MainAppConstants {
         static const String nextWord='التالي';
         static const String serviceDetails='تفاصيل الخدمة المراد نقلها';
       static const String accept='قبول';
-      static const String reject='رفض';
+      static const String negotiate='تفاوض';
             static const String offerNegotiation='التفاوض على العرض';
       static const String priceNegotiation='التفاوض على السعر';
       static const String negotiationWithDriver='تفاوض مع السائق على السعر المناسب';
