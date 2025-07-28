@@ -30,6 +30,7 @@ import 'package:shella_design/features/pickup_and_order_service/screens/mobile/d
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/negotiation_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/packet_position.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/tracking_pickup_order.dart';
 import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/controller/kaidha_form_controller.dart';
 import 'package:shella_design/features/wallet_kaidha/kaidha_form/screen/aliashtirak_fi_qaydiha.dart';
@@ -224,6 +225,8 @@ class AppRoutes {
   static const String driverOffers='/driverOffers';
   static const String negotiationInfo='/negotiationInfo';
   static const String confirmationOrder='/confirmationOrder';
+  static const String trackingPickUpOrder='/trackingPickUpOrder';
+
 
   // App =========================================================================================================
   static final Map<String, Widget Function(BuildContext)> routes = {
@@ -324,6 +327,7 @@ class AppRoutes {
     driverOffers : (context) => DriverOffers(),
     negotiationInfo : (context) => NegotiationInfo(),
     confirmationOrder: (context) => ConfirmationOrder(),
+    trackingPickUpOrder : (context) => TrackingPickUpOrder(),
   //  receiverInfo: (context) => ReceiverInfo(),
 
 

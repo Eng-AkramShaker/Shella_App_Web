@@ -17,6 +17,7 @@ PreferredSize orderAppBar(BuildContext context,
     int? orderNumber,
     IconData? icon,
     Color? iconbackcolor,
+    required bool hasStatus,
     Color? backgroundColor,
     double? appBarHeight,
     Function()? onPressed}) {
@@ -49,18 +50,21 @@ PreferredSize orderAppBar(BuildContext context,
                 ),
               )  
               ),
-           orderStatus!= null ?
+          
             Positioned(
                top: 180.h,
                left: 100.w,
-              child:Custom_Text(context,text: orderStatus,style: font21White500W(context))
-            )
+              child:Visibility(
+                visible: hasStatus,
+                child: Custom_Text(context,text: orderStatus!,style: font21White500W(context))
+                )
+            ),
             
-            :SizedBox(height: 0.h,),
+       
 
 
              Positioned(
-               top: orderStatus != null  ? 225.h : 180.h,
+               top: hasStatus  ? 225.h : 185.h,
                left: 110.w,
               child:Custom_Text(context,text: '  رقم الطلب : #${orderNumber.toString()} ',style: font16White500W(context))
             )

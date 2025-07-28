@@ -24,6 +24,7 @@ class _ConfirmationOrderState extends State<ConfirmationOrder> {
       backgroundColor: AppColors.wtColor,
       appBar: orderAppBar(context,
       appBarHeight: 240,
+      hasStatus: true,
       title:MainAppConstants.orderConfirmed,
       orderStatus: MainAppConstants.confirmedSuccessfully,
       orderNumber: 463646,

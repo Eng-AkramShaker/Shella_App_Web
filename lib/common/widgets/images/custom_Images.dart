@@ -7,6 +7,7 @@ Image custom_Images_asset({
   BoxFit? fit,
   double? h,
   double? w,
+  String? color
 }) {
   if (image.startsWith('https')) {
     return Image.network(
@@ -26,7 +27,7 @@ Image custom_Images_asset({
   } else {
     return Image.asset(
       image,
-      color: Colors.white,
+     // color: Colors.white,
       width: w ?? 75.w,
       height: h ?? 75.h,
       fit: fit ?? BoxFit.cover,

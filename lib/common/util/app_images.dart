@@ -152,8 +152,12 @@ class AppImages {
   static const String storeOffer= 'assets/images/storeOffer.png';
   static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
   static const String houseIcon= 'assets/images/houseicon.png';
-    static const String greenMarker= 'assets/images/marker.png';
+  static const String greenMarker= 'assets/images/marker.png';
   static const String backgroundMap='assets/images/FRAME (10) 1.png';
+  static const String call='assets/images/call.png';
+  static const String message='assets/images/message.png';
+
+
 
 
   ///======================== SVG ========================

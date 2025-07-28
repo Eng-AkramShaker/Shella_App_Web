@@ -117,7 +117,16 @@ class MainAppConstants {
       static const String cashOnDeliveryFees='رسوم الدفع عند الاستلام';
       static const String total='الإجمالي';
       static const String orderTracking='تتبع الطلب';
+      static const String orderConfirmedIsDone='تم تأكيد الطلب';
+      static const String preparing='جاري التحضير';
+      static const String inTheWay='في الطريق';
+      static const String soon='قريبا';
       static const String backToMain='العودة للرئيسية';
+      static const String delivered='تم توصيل الطلب';
+      static const String expectedArrival='الوصول المتوقع';
+      static const String contact='اتصال';
+      static const String message='رسالة';
+
 
 
 
