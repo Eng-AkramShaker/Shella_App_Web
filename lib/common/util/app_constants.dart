@@ -26,7 +26,7 @@ class MainAppConstants {
   static const String fullName = 'الاسم بالكامل"';
   static const String typeFullName = 'ادخل اسمك بالكامل';
   static const String typeFullEmail = 'ادخل ايميلك بالكامل';
-  static const String phoneNumber = 'رقم الهاتف"';
+  static const String phoneNumber = 'رقم الهاتف';
   static const String iAcceptTermsCondition =
       'اوافق على الشروط والأحكام وسياسة الخصوصية';
   static const String regiterSuccefully = 'تم إنشاء الحساب بنجاح';
@@ -84,4 +84,53 @@ class MainAppConstants {
       'assets/images/notification_placeholder.jpg';
   static const String placeholder = 'assets/images/placeholder.jpg';
   static const String distanceLine = 'assets/images/distance_line.png';
+
+  //----------------Pick up and order service----------------------
+
+  static const String packetsPosition = 'موقع الطرود';
+  static const String senderInfo = 'معلومات المرسل';
+  static const String receiverInfo = 'معلومات المتلقي';
+  static const String takingPosition = 'موقع الالتقاط';
+  static const String addNew = 'أضف جديد';
+  static const String house = 'المنزل';
+  static const String explainYourAddress = 'وضح عنوانك';
+  static const String streetName = 'اسم الشارع';
+  static const String areaName = 'اسم المنطقة';
+  static const String block = 'الطابق';
+  static const String senderName = 'اسم المرسل';
+  static const String receiverName = 'اسم المتلقي';
+  static const String continueWord = 'يكمل';
+  static const String nextWord = 'التالي';
+  static const String serviceDetails = 'تفاصيل الخدمة المراد نقلها';
+  static const String accept = 'قبول';
+  static const String negotiate = 'تفاوض';
+  static const String offerNegotiation = 'التفاوض على العرض';
+  static const String priceNegotiation = 'التفاوض على السعر';
+  static const String negotiationWithDriver =
+      'تفاوض مع السائق على السعر المناسب';
+  static const String proposedPrice = 'السعر المقترح حاليا';
+  static const String proposeNewPrice = 'اقترح سعرا جديدا';
+  static const String writeYourMessage = 'اكتب رسالتك هنا';
+  static const String acceptTheOffer = 'قبول العرض';
+  static const String goToAnotherOffer = 'الانتقال إلى عرض آخر';
+  static const String orderConfirmed = 'تأكيد الطلب';
+  static const String confirmedSuccessfully = 'تم تأكيد الطلب بنجاح';
+  static const String orderNumber = 'رقم الطلب';
+  static const String deliveryDetails = 'تفاصيل التوصيل';
+  static const String expectedArrivalTime = 'وقت الوصول المتوقع';
+  static const String distance = 'المسافة';
+  static const String subtotal = 'المجموع الفرعي';
+  static const String deliveryFees = 'رسوم التوصيل';
+  static const String cashOnDeliveryFees = 'رسوم الدفع عند الاستلام';
+  static const String total = 'الإجمالي';
+  static const String orderTracking = 'تتبع الطلب';
+  static const String orderConfirmedIsDone = 'تم تأكيد الطلب';
+  static const String preparing = 'جاري التحضير';
+  static const String inTheWay = 'في الطريق';
+  static const String soon = 'قريبا';
+  static const String backToMain = 'العودة للرئيسية';
+  static const String delivered = 'تم توصيل الطلب';
+  static const String expectedArrival = 'الوصول المتوقع';
+  static const String contact = 'اتصال';
+  static const String message = 'رسالة';
 }

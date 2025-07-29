@@ -27,7 +27,7 @@ PreferredSize customAppBar(BuildContext context,
           Positioned(
             left: 0,
             right: 0,
-            bottom: 22,
+            bottom: 15,
             child: Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -36,7 +36,7 @@ PreferredSize customAppBar(BuildContext context,
                   Custom_Text(context,
                       text: " $title ",
                       style: style ?? font14White600W(context)),
-                  const SizedBox(width: 10),
+              //    const SizedBox(width: 10),
                   Image.asset(img ?? AppImages.empty,
                       width: 20, height: 18, alignment: Alignment.bottomCenter),
                   const SizedBox(width: 10),
@@ -46,7 +46,7 @@ PreferredSize customAppBar(BuildContext context,
             ),
           ),
           Positioned(
-            bottom: 10,
+            bottom: 5,
             right: 15,
             child: IconButton(
               icon: Icon(Icons.arrow_back_sharp,

@@ -127,11 +127,17 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
+  static const String burger = 'assets/images/im1.png';
+  static const String pizza = 'assets/images/im4.png';
+  static const String packet = 'assets/images/packet.png';
+  static const String rank = 'assets/images/rank.png';
+  static const String percent1 = 'assets/images/percent1.png';
+  static const String truckicon = 'assets/images/trackIcon.png';
 
   static const String walletIcon = 'assets/images/wallet_icon.png';
 
-  static const String burger = 'assets/images/im1.png';
-  static const String pizza = 'assets/images/im4.png';
+  // static const String burger = 'assets/images/im1.png';
+  // static const String pizza = 'assets/images/im4.png';
 
   //
   static const String logo = 'assets/images/logo.png';
@@ -166,6 +172,12 @@ class AppImages {
   static const String KiadaWalletSubscription =
       'assets/images/KiadaWalletSubscription.png';
 
+  static const String houseIcon = 'assets/images/houseicon.png';
+  static const String greenMarker = 'assets/images/marker.png';
+  static const String backgroundMap = 'assets/images/FRAME (10) 1.png';
+  static const String call = 'assets/images/call.png';
+  static const String message = 'assets/images/message.png';
+
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';
   static const String pharmacy = 'assets/svg/pharmacy.svg';
@@ -186,6 +198,8 @@ class AppImages {
   static const String percent = 'assets/svg/percent.svg';
   static const String sale = 'assets/svg/sale.svg';
   static const String done = 'assets/svg/done.svg';
+  static const String sendicon = 'assets/svg/sendicon.svg';
+  static const String truckiconsvg = 'assets/svg/truckiconsvg.svg';
 
 //
 }
