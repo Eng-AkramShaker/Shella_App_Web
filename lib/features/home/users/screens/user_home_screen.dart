@@ -1,17 +1,15 @@
 // ignore_for_file: unused_element, sized_box_for_whitespace, avoid_unnecessary_containers, non_constant_identifier_names, camel_case_types
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_dimensions.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
-import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
-import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/advertisment/widget/hilight_widget.dart';
+import 'package:shella_design/features/home/controllers/store_controller.dart';
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
@@ -19,10 +17,8 @@ import 'package:shella_design/features/home/home/widgets/builds/build_delivery_l
 import 'package:shella_design/features/home/home/widgets/builds/build_most_popular.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
-import 'package:shella_design/features/search_filter/controller/product_provider.dart';
-import 'package:shella_design/features/search_filter/widget/mobile/category_tabs.dart';
-import 'package:shella_design/features/search_filter/widget/mobile/location_header.dart';
-import 'package:shella_design/features/search_filter/widget/mobile/search_history_section.dart';
+import 'package:shella_design/features/home/home/widgets/builds/visit_again_build.dart';
+import 'package:shella_design/features/home/home/widgets/builds/visit_again_view.dart';
 
 class Users_Home_Screen extends StatefulWidget {
   const Users_Home_Screen({super.key});
@@ -92,6 +88,8 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 // SizedBox(height: 22.h),
                 // buildBanner(context),
 
+                // SizedBox(height: 16.h),
+                // visitAgainBuild(context),
                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,7 +120,7 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 SizedBox(height: 20.h),
                 BuildMostPopular(),
                 SizedBox(height: 20.h),
-                HighlightWidget(),
+                // HighlightWidget(),
 
                 SizedBox(height: 16.h),
                 buildSectionTitleTow(

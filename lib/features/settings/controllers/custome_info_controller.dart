@@ -115,7 +115,8 @@ class ProfileController extends ChangeNotifier {
 
       final success = await service.deleteAccount();
       if (success) {
-        Navigator.pushNamedAndRemoveUntil(context, AppRoutes.loginPage, (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, AppRoutes.loginPage, (route) => false);
       } else {
         throw Exception('فشل في حذف الحساب');
       }
@@ -141,7 +142,9 @@ class ProfileController extends ChangeNotifier {
 
   /// Verified of Changes
   void checkForChanges(String fullName, String phone, String email) {
-    final hasTextChanges = fullName != (user?.fullName ?? '') || phone != (user?.phone ?? '') || email != (user?.email ?? '');
+    final hasTextChanges = fullName != (user?.fullName ?? '') ||
+        phone != (user?.phone ?? '') ||
+        email != (user?.email ?? '');
 
     _hasChanges = hasTextChanges || _pickedImage != null || _isImageRemoved;
     notifyListeners();

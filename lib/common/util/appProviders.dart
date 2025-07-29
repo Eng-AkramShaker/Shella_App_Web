@@ -179,7 +179,8 @@ List<SingleChildWidget> appProviders(
     // Notifications
     ChangeNotifierProvider(
         create: (_) => NotificationsController(
-            notificationServiceInterface: notificationService)),
+            notificationServiceInterface: notificationService)
+          ..getMyNotificatios()),
 
     // My Coupon
     ChangeNotifierProvider(

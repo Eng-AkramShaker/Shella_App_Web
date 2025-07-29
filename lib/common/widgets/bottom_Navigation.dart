@@ -43,7 +43,7 @@ class _MainLayoutState extends State<MainLayout> {
   void initState() {
     super.initState();
 
-    Provider.of<ProfileController>(context, listen: false).fetchUserData();
+    // Provider.of<ProfileController>(context, listen: false).fetchUserData();
   }
 
   @override

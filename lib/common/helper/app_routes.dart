@@ -90,7 +90,8 @@ class AppRoutes {
   static const String ordersScreen = '/orders_screen';
   static const String step_one_service_screen = '/step_one_service_screen';
   static const String step_tow_service_screen = '/step_tow_service_screen';
-  static const String address_details_service_screen = '/address_details_service_screen';
+  static const String address_details_service_screen =
+      '/address_details_service_screen';
   static const String payment_screen = '/payment_screen';
   static const String payment_method_screen = '/payment_method_screen';
   static const String add_new_card_screen = '/add_new_card_screen';
@@ -120,7 +121,8 @@ class AppRoutes {
   static const String forgetpassword = '/forgetpassword';
   static const String mobilelVerification = '/mobilelVerification';
   static const String confirmPasswordScreen = '/confirmPasswordScreen';
-  static const String passwordResetSuccessScreen = '/passwordResetSuccessScreen';
+  static const String passwordResetSuccessScreen =
+      '/passwordResetSuccessScreen';
   static const String succsessflycreated = '/succsessflycreated';
   static const String orderdetails = '/orderdetails';
   static const String alfaressaudiarabiascreen = '/alfaressaudiarabiascreen';
@@ -139,12 +141,14 @@ class AppRoutes {
   // kaidha
   static const String Contract_Review = '/contract_review_screen';
   static const String main_subscription = '/main_subscription';
-  static const String walletKaidha_Step_1_Screen = '/walletKaidha_Step_1_Screen';
+  static const String walletKaidha_Step_1_Screen =
+      '/walletKaidha_Step_1_Screen';
   static const String kaidhaWallet = '/kaidha-allet';
 
   // individualsService
   static const String homeservicespage = '/homeservicespage';
-  static const String bookingConfirmationSuccess = '/bookingConfirmationSuccess';
+  static const String bookingConfirmationSuccess =
+      '/bookingConfirmationSuccess';
   static const String companiesWorkshopsPage1 = '/companiesWorkshopsPage';
   static const String serveMeProductView = '/serveMeProductView';
 
@@ -157,7 +161,8 @@ class AppRoutes {
   static const String carsServicesPage = '/carsServicesPage';
   static const String technicalTracking = '/technicalTracking';
   static const String reviewOfAService = '/reviewOfAService';
-  static const String myPointsTransactionsScreen = '/myPointsTransactionsScreen';
+  static const String myPointsTransactionsScreen =
+      '/myPointsTransactionsScreen';
   static const String myPointsWeb = '/myPointsWeb';
   static const String myPointsMobile = 'myPointsMobile';
 
@@ -226,7 +231,8 @@ class AppRoutes {
     ordersScreen: (context) => const OrdersPage(),
     step_one_service_screen: (context) => const Step_One_Service_Screen(),
     step_tow_service_screen: (context) => const Step_Tow_Service_Screen(),
-    address_details_service_screen: (context) => const Address_Details_Service_Screen(),
+    address_details_service_screen: (context) =>
+        const Address_Details_Service_Screen(),
     order_tracking: (context) => const OrderTracking(),
     start_tracking_order: (context) => const StartTrackingOrder(),
     orderdetails: (context) => const OrderDetails(),
@@ -284,7 +290,8 @@ class AppRoutes {
 
     // My Coupon & Points
     myCouponScreen: (context) => const MyCouponScreen(),
-    myPointsTransactionsScreen: (context) => MyPointsTransactionsScreen(fromNotification: false),
+    myPointsTransactionsScreen: (context) =>
+        MyPointsTransactionsScreen(fromNotification: false),
     myPointsMobile: (context) => MyPointsScreenMobile(),
 
     //Restaurant
