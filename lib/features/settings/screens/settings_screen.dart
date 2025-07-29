@@ -48,11 +48,14 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               nav.push(AppRoutes.profileInfo);
             }),
             ProfileDivider(),
-            buildListTile('العناوين المحفوظة', Icon(Icons.location_on_outlined), context, () {
+            buildListTile(
+                'العناوين المحفوظة', Icon(Icons.location_on_outlined), context,
+                () {
               nav.push(AppRoutes.addressDetails);
             }),
             ProfileDivider(),
-            buildListTile('المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
+            buildListTile(
+                'المفضلة لديك', Icon(Icons.favorite_border), context, () {}),
             ProfileDivider(),
             buildListTile(
               'اللغة',
@@ -61,12 +64,15 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LanguageSelectionPage()),
+                  MaterialPageRoute(
+                      builder: (context) => LanguageSelectionPage()),
                 );
               },
             ),
             ProfileDivider(),
-            buildListTile('إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context, () {
+            buildListTile(
+                'إحصائياتي', SvgIcon(iconTitle: AppImages.statistics), context,
+                () {
               nav.push(AppRoutes.statisticsScreen);
             }),
             ProfileDivider(),
@@ -92,48 +98,75 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                           textStyle: font14Black600W(context),
                         ),
                   SizedBox(width: 8.w),
-                  Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.wGreyColor)
+                  Icon(Icons.arrow_forward_ios,
+                      size: 16, color: AppColors.wGreyColor)
                 ],
               ),
             ),
             ProfileDivider(),
-            buildListTile('الاشتراك في قيدها', Icon(Icons.account_circle_outlined), context, () {
+            buildListTile('الاشتراك في قيدها',
+                Icon(Icons.account_circle_outlined), context, () {
               nav.push(AppRoutes.main_subscription);
             }),
             ProfileDivider(),
-            buildListTile('محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            buildListTile(
+                'محفظة قيدها', SvgIcon(iconTitle: AppImages.wallet), context,
+                () {
               nav.push(AppRoutes.kaidhaWallet);
             }),
             ProfileDivider(),
-            buildListTile('بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
+            buildListTile(
+                'بطاقاتي', SvgIcon(iconTitle: AppImages.wallet), context, () {
               // nav.push(AppRoutes.walletKaidha_Step_1_Screen);
             }),
             ProfileDivider(),
-            buildListTile('كود الخصم', SvgIcon(iconTitle: AppImages.discountSvg), context, () {
+            buildListTile(
+                'كود الخصم', SvgIcon(iconTitle: AppImages.discountSvg), context,
+                () {
               Navigator.pushNamed(context, AppRoutes.discountScreen);
             }),
             ProfileDivider(),
-            buildListTile('قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context, () {
-              isWideScreen ? nav.push(AppRoutes.accountdetails) : nav.push(AppRoutes.myCouponScreen);
+            buildListTile(
+                'قسائمي', SvgIcon(iconTitle: AppImages.profileCoupon), context,
+                () {
+              isWideScreen
+                  ? nav.push(AppRoutes.accountdetails)
+                  : nav.push(AppRoutes.myCouponScreen);
             }),
             ProfileDivider(),
-            buildListTile('الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context, () {
+            buildListTile(
+                'الرجوع والكسب', SvgIcon(iconTitle: AppImages.people), context,
+                () {
               nav.push(AppRoutes.returnAndEarnScreen);
             }),
             ProfileDivider(),
-            buildListTile('نقاطي', SvgIcon(iconTitle: AppImages.myPoints), context, () {
-              isWideScreen ? nav.push(AppRoutes.myPointsWeb) : nav.push(AppRoutes.myPointsMobile);
+            buildListTile(
+                'نقاطي', SvgIcon(iconTitle: AppImages.myPoints), context, () {
+              isWideScreen
+                  ? nav.push(AppRoutes.myPointsWeb)
+                  : nav.push(AppRoutes.myPointsMobile);
             }),
             ProfileDivider(),
-            buildListTile('انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context, () {
+            buildListTile(
+                'انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context,
+                () {
               nav.push(AppRoutes.joinAsDriverOne);
             }),
             ProfileDivider(),
-            buildListTile('سياسة الخصوصية', Icon(Icons.privacy_tip_outlined), context, () {}),
+            buildListTile(
+                'خدمة استلام وتسليم', Icon(Icons.local_mall_rounded), context,
+                () {
+              nav.push(AppRoutes.packetsPosition);
+            }),
             ProfileDivider(),
-            buildListTile('الحصول على المساعدة', Icon(Icons.help_outline), context, () {}),
+            buildListTile('سياسة الخصوصية', Icon(Icons.privacy_tip_outlined),
+                context, () {}),
             ProfileDivider(),
-            buildListTile('الشروط والأحكام', Icon(Icons.list_alt_outlined), context, () {}),
+            buildListTile('الحصول على المساعدة', Icon(Icons.help_outline),
+                context, () {}),
+            ProfileDivider(),
+            buildListTile('الشروط والأحكام', Icon(Icons.list_alt_outlined),
+                context, () {}),
             ProfileDivider(),
             buildListTile(
               'سياسة الاسترداد',
@@ -142,15 +175,18 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               () {},
             ),
             ProfileDivider(),
-            buildListTile('المساعدة والدعم', SvgIcon(iconTitle: AppImages.support), context, () {
+            buildListTile('المساعدة والدعم',
+                SvgIcon(iconTitle: AppImages.support), context, () {
               nav.push(AppRoutes.helpAndSupport);
             }),
             ProfileDivider(),
-            buildListTile('الدردشة المباشرة', Icon(Icons.comment_outlined), context, () {
+            buildListTile(
+                'الدردشة المباشرة', Icon(Icons.comment_outlined), context, () {
               nav.push(AppRoutes.supportConversation);
             }),
             ProfileDivider(),
-            Consumer<NotificationsController>(builder: (context, controller, _) {
+            Consumer<NotificationsController>(
+                builder: (context, controller, _) {
               return buildListTile(
                 'الاشعارات',
                 Icon(Icons.notifications_none_outlined),
