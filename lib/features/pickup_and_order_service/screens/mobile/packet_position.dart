@@ -4,16 +4,11 @@ import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/appBar/customAppBar.dart';
-import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/sender_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/tab_bar_packets.dart';
-
-import '../../../orders/widgets/taps_card.dart';
-
 
 class PacketsPosition extends StatefulWidget {
   const PacketsPosition({super.key});
@@ -23,25 +18,23 @@ class PacketsPosition extends StatefulWidget {
 }
 
 class _PacketsPositionState extends State<PacketsPosition> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final Map<String, dynamic> _formData = {};
 
-    late TabController _tabController;
-     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final Map<String, dynamic> _formData = {};
-
-    @override
+  @override
   void initState() {
     super.initState();
-    _tabController=TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
-   @override
+  @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
   }
 
-   void _submitForm() {
-
+  void _submitForm() {
     nav.push(AppRoutes.driverOffers);
     // if (_formKey.currentState!.validate()) {
     //   // _formKey.currentState!.save();
@@ -50,12 +43,11 @@ class _PacketsPositionState extends State<PacketsPosition> with SingleTickerProv
     // }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.wtColor,
-      appBar: customAppBar(context,title:MainAppConstants.packetsPosition,img:AppImages.packet ),
+      appBar: customAppBar(context, title: MainAppConstants.packetsPosition, img: AppImages.packet),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 17.w),
         child: Column(
@@ -63,9 +55,9 @@ class _PacketsPositionState extends State<PacketsPosition> with SingleTickerProv
           children: [
             SizedBox(height: 5.h),
 
-                //tab bar header
-              TabBarPackets( tabController: _tabController),
-          
+            //tab bar header
+            TabBarPackets(tabController: _tabController),
+
             //   TabBarView
             Expanded(
               child: Form(
@@ -73,15 +65,15 @@ class _PacketsPositionState extends State<PacketsPosition> with SingleTickerProv
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                   SenderInfo(
-                     formData: _formData,
-                     onNext: () => _tabController.animateTo(1),
-                   ),
-                   ReceiverInfo(
-                    formData: _formData,
-              onPrevious: () => _tabController.animateTo(0),
-              onSubmit: _submitForm,
-                   )
+                    SenderInfo(
+                      formData: _formData,
+                      onNext: () => _tabController.animateTo(1),
+                    ),
+                    ReceiverInfo(
+                      formData: _formData,
+                      onPrevious: () => _tabController.animateTo(0),
+                      onSubmit: _submitForm,
+                    )
                   ],
                 ),
               ),

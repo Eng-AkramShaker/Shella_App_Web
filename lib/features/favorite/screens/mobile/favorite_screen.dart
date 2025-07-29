@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/features/favorite/widget/mobile/favorite_page_app_bar.dart';
 
-class FavoritePage extends StatefulWidget {
-  const FavoritePage({super.key});
+class FavoriteScreen extends StatefulWidget {
+  const FavoriteScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _FavoritePageState createState() => _FavoritePageState();
+  _FavoriteScreenState createState() => _FavoriteScreenState();
 }
 
-class _FavoritePageState extends State<FavoritePage>
-    with SingleTickerProviderStateMixin {
+class _FavoriteScreenState extends State<FavoriteScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
