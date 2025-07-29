@@ -100,7 +100,8 @@ class MyApp extends StatelessWidget {
   //         child: const Text('data'),
   //         onPressed: () async {
   //           //
-  //           nav.push(AppRoutes.splashscreen);
+             // nav.push(AppRoutes.splashscreen);
+               // final controller = Provider.of<Favorite_Controller>(context, listen: false);
   //         },
   //       ),
   //     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_constants.dart';
+import 'package:shella_design/features/favorite/controllers/favorite_controller.dart';
 import 'package:shella_design/features/favorite/widget/mobile/favorite_page_app_bar.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -27,15 +29,41 @@ class _FavoriteScreenState extends State<FavoriteScreen> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: favoritePageAppBar(context, controller: _tabController),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          Center(child: Text(MainAppConstants.favoriteProductsList)),
-          Center(child: Text(MainAppConstants.listFavoriteStores)),
-        ],
-      ),
-    );
+    return Consumer<Favorite_Controller>(builder: (context, favoriteController, _) {
+      return Scaffold(
+        appBar: favoritePageAppBar(context, controller: _tabController),
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            // المنتجات ===================================================================================================
+
+            Center(
+              child: Column(
+                children: [
+                  Card(
+                    color: Colors.red,
+                    child: ElevatedButton(
+                      child: const Text('data'),
+                      onPressed: () async {
+                        //
+
+                        await favoriteController.getFavourite();
+                      },
+                    ),
+                  ),
+                  Text(MainAppConstants.favoriteProductsList),
+                ],
+              ),
+            ),
+
+            //  المتاجر ===================================================================================================
+
+            Center(
+              child: Text(MainAppConstants.listFavoriteStores),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
