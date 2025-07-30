@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
+import 'package:shella_design/common/util/custom_image.dart';
 import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
 import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/advertisment/widget/hilight_widget.dart';
@@ -16,6 +17,7 @@ import 'package:shella_design/features/home/home/widgets/builds/build_category_l
 import 'package:shella_design/features/home/home/widgets/builds/build_delivery_list_view.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_most_popular.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
+import 'package:shella_design/features/home/home/widgets/builds/build_visit_again.dart';
 import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
 import 'package:shella_design/features/home/home/widgets/builds/visit_again_build.dart';
 import 'package:shella_design/features/home/home/widgets/builds/visit_again_view.dart';
@@ -85,6 +87,8 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 SizedBox(height: 16.h),
                 BuildCategoryListView(),
                 buildBanner(context),
+                SizedBox(height: 16.h),
+                buildVisitAgain(context),
                 // SizedBox(height: 22.h),
                 // buildBanner(context),
 
