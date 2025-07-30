@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/custom_image.dart';
 import 'package:shella_design/common/widgets/images/custom_Images.dart';
@@ -60,7 +59,7 @@ Widget buildDeliveryListView(BuildContext context) {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadiusGeometry.circular(12),
+                            borderRadius: BorderRadius.circular(12),
                             child: custom_Images_asset(
                               image: store.coverPhotoUrl,
                               h: 100,
@@ -75,8 +74,7 @@ Widget buildDeliveryListView(BuildContext context) {
                                 Custom_Text(
                                   context,
                                   text: store.name,
-                                  style:
-                                      font14Black500W(context, lineHeight: 2.5),
+                                  style: font14Black500W(context, lineHeight: 2.5),
                                 ),
                                 // Row(
                                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -106,11 +104,8 @@ Widget buildDeliveryListView(BuildContext context) {
                                 // ),
                                 Row(
                                   children: [
-                                    Icon(Icons.location_on_outlined,
-                                        color: Colors.green, size: 15),
-                                    Custom_Text(context,
-                                        text: store.address,
-                                        style: font10Grey400W(context)),
+                                    Icon(Icons.location_on_outlined, color: Colors.green, size: 15),
+                                    Custom_Text(context, text: store.address, style: font10Grey400W(context)),
                                   ],
                                 ),
                                 const SizedBox(height: 20),
@@ -123,22 +118,15 @@ Widget buildDeliveryListView(BuildContext context) {
                                   const SizedBox(width: 10),
                                   Text(
                                     '${store.distance! > 100 ? '100+' : store.distance?.toStringAsFixed(2)} ${'كم'}',
-                                    style: robotoBold.copyWith(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: 10),
+                                    style: robotoBold.copyWith(color: Theme.of(context).primaryColor, fontSize: 10),
                                   ),
                                   const SizedBox(width: 10),
-                                  Text('منك',
-                                      style: robotoRegular.copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 10)),
+                                  Text('منك', style: robotoRegular.copyWith(color: Theme.of(context).primaryColor, fontSize: 10)),
                                   Spacer(),
                                   Container(
                                     height: 30,
                                     width: 70,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: AppColors.greenColor),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: AppColors.greenColor),
                                     child: Center(
                                         child: Text(
                                       'تسوق الان',
@@ -213,16 +201,11 @@ Widget buildDeliveryListView(BuildContext context) {
                           height: 80,
                           width: 80,
                           padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.white),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.white),
                           child: ClipRRect(
-                            borderRadius: BorderRadiusGeometry.circular(8),
+                            borderRadius: BorderRadius.circular(8),
                             child: CustomImage(
-                                image: stores[index].logoUrl,
-                                fit: BoxFit.cover,
-                                height: double.infinity,
-                                width: double.infinity),
+                                image: stores[index].logoUrl, fit: BoxFit.cover, height: double.infinity, width: double.infinity),
                           ),
                         ),
                         //           store.avgrating! > 0 ? Positioned(
