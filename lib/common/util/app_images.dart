@@ -156,6 +156,12 @@ class AppImages {
   static const String backgroundMap='assets/images/FRAME (10) 1.png';
   static const String call='assets/images/call.png';
   static const String message='assets/images/message.png';
+  static const String send2='assets/images/send2.png';
+  static const String camera='assets/images/camera.png';
+  static const String upload='assets/images/upload.png';
+
+
+
 
 
 

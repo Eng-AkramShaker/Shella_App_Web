@@ -126,6 +126,8 @@ class MainAppConstants {
       static const String expectedArrival='الوصول المتوقع';
       static const String contact='اتصال';
       static const String message='رسالة';
+      static const String isActive='متصل الآن';
+      static const String chatIsStarted='تم بدء المحادثة';
 
 
 
