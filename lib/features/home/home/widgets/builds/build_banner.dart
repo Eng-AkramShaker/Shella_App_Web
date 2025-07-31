@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shella_design/common/widgets/gap/height/height.dart';
+import 'package:shella_design/common/widgets/gap/width/width.dart';
 import 'package:shella_design/features/home/controllers/banner_controller.dart';
 import 'package:shella_design/features/home/home/widgets/banner_container_image_widget.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_custom_carousol_slider.dart';
+import 'package:shella_design/features/home/home/widgets/builds/build_shimmer_list_view.dart';
+import 'package:shimmer/shimmer.dart';
 
 Widget buildBanner(BuildContext context) {
   return Consumer<BannerProvider>(
@@ -12,7 +17,6 @@ Widget buildBanner(BuildContext context) {
           child: CircularProgressIndicator(),
         );
       }
-
       if (bannerProvider.errorMessage != null) {
         return Center(
           child: Text(
@@ -26,6 +30,24 @@ Widget buildBanner(BuildContext context) {
         return const Center(
           child: Text('لا توجد بانرات حالياً'),
         );
+        // List.generate(
+        //   3,
+        //   (index) {
+        //     return Shimmer.fromColors(
+        //       baseColor: Colors.grey[300]!, // Base color of the shimmer
+        //       highlightColor:
+        //           Colors.grey[100]!, // Highlight color of the shimmer
+        //       child: Container(
+        //         // Use provided height or let parent constrain
+        //         decoration: BoxDecoration(
+        //           color: Colors.white, // Placeholder color that shimmers
+        //           borderRadius: BorderRadius.circular(10.0),
+        //         ),
+        //         margin: const EdgeInsets.symmetric(vertical: 2.0),
+        //       ),
+        //     );
+        //   },
+        // );
       }
 
       return Column(

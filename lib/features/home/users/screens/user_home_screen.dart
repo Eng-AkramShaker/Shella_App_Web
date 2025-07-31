@@ -14,6 +14,7 @@ import 'package:shella_design/features/home/home/widgets/builds/build_most_popul
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_visit_again.dart';
 import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
+import 'package:shella_design/features/home/users/widgets/green_button_widget.dart';
 
 class Users_Home_Screen extends StatefulWidget {
   const Users_Home_Screen({super.key});
@@ -96,22 +97,7 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                         iconUrl: AppImages.fireIcon,
                         title: 'المنتجات الأكثر شعبية',
                         underline: false),
-                    Container(
-                      height: 35,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: AppColors.greenColor),
-                      child: Center(
-                          child: Text(
-                        'رؤية الكل',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      )),
-                    ),
+                    greenButtonWidget(text: 'رؤية الكل'),
                   ],
                 ),
                 SizedBox(height: 20.h),
