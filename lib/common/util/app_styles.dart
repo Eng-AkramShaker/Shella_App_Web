@@ -586,6 +586,20 @@ TextStyle font16Black500W(
   );
 }
 
+TextStyle font16Black300W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_16(context),
+    color: Colors.black,
+    fontWeight: FontWeight.w300,
+  );
+}
+
 // ==================== 12 ====================
 
 TextStyle font10Grey400W(

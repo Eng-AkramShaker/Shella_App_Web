@@ -128,6 +128,23 @@ class MainAppConstants {
       static const String message='رسالة';
       static const String isActive='متصل الآن';
       static const String chatIsStarted='تم بدء المحادثة';
+      static const String serviceType='نوع الخدمة';
+      static const String furnitureTransport='نقل أثاث';
+      static const String goodsTransport='نقل بضائع';
+      static const String packetsDelivery='توصيل الطرود';
+      static const String loadingType='نوع التحميل';
+      static const String loadingOnly='تحميل فقط';
+      static const String loadingAndUnloading='تحميل وتنزيل';
+      static const String packetStatue='حالة الطرد';
+      static const String breakable='قابل للكسر';
+      static const String materialsDetails='تفاصيل المواد';
+      static const String approximateSize='حجم تقريبي';
+      static const String numberOfPieces='عدد القطع';
+      static const String additionalNotes='ملاحظات إضافية';
+      static const String done='تم';
+
+
+
 
 
 

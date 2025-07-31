@@ -11,6 +11,7 @@ import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_l
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_text_field_mobile.dart';
 import 'package:shella_design/features/orders/widgets/builds/build_title_order.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/service_details.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/pickup_custom_button.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/select_address_on_map.dart';
 
@@ -70,7 +71,16 @@ void _handleTextChanged() {
         
                 Container(
                 child: InkWell(
-                  onTap: () { },
+                  onTap: () { 
+                  //  nav.push(AppRoutes.pickupServiceDetails);
+                    Navigator.push(
+                context,
+                PageRouteBuilder(
+                  opaque: false, // Makes the route transparent
+                  pageBuilder: (_, __, ___) =>  ServiceDetails(),
+                ),
+              );
+                  },
                   child: Row(
                   children: [
                     Icon(Icons.add,color: AppColors.primaryColor,size: 20,),

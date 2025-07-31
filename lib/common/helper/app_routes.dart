@@ -30,6 +30,7 @@ import 'package:shella_design/features/pickup_and_order_service/screens/mobile/d
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/negotiation_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/packet_position.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/service_details.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/tracking_pickup_order.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/Instant_chat.dart';
 import 'package:shella_design/features/restaurant/screens/mobile/restaurant_details.dart';
@@ -228,6 +229,7 @@ class AppRoutes {
   static const String confirmationOrder='/confirmationOrder';
   static const String trackingPickUpOrder='/trackingPickUpOrder';
   static const String instantChat='/instantChat';
+  static const String pickupServiceDetails='/pickupServiceDetails';
 
 
   // App =========================================================================================================
@@ -331,6 +333,7 @@ class AppRoutes {
     confirmationOrder: (context) => ConfirmationOrder(),
     trackingPickUpOrder : (context) => TrackingPickUpOrder(),
     instantChat:(context) => InstantChat(),
+    pickupServiceDetails:(context) => ServiceDetails(),
   //  receiverInfo: (context) => ReceiverInfo(),
 
 
