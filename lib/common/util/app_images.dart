@@ -159,6 +159,9 @@ class AppImages {
   static const String send2='assets/images/send2.png';
   static const String camera='assets/images/camera.png';
   static const String upload='assets/images/upload.png';
+  static const String subwayLocation='assets/images/subway_location.png';
+  static const String carsym='assets/images/carSym.png';
+
 
 
 

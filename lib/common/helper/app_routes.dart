@@ -27,6 +27,7 @@ import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_dri
 import 'package:shella_design/features/join_as_driver/screens/mobile/join_as_driver_two.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/confirmation_order.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/driver_offers.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/looking_for_driver.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/negotiation_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/packet_position.dart';
 import 'package:shella_design/features/pickup_and_order_service/screens/mobile/receiver_info.dart';
@@ -230,7 +231,7 @@ class AppRoutes {
   static const String trackingPickUpOrder='/trackingPickUpOrder';
   static const String instantChat='/instantChat';
   static const String pickupServiceDetails='/pickupServiceDetails';
-
+  static const String lookingForDriver='/lookingForDriver';
 
   // App =========================================================================================================
   static final Map<String, Widget Function(BuildContext)> routes = {
@@ -334,6 +335,7 @@ class AppRoutes {
     trackingPickUpOrder : (context) => TrackingPickUpOrder(),
     instantChat:(context) => InstantChat(),
     pickupServiceDetails:(context) => ServiceDetails(),
+    lookingForDriver:(context) => LookingForDriver(),
   //  receiverInfo: (context) => ReceiverInfo(),
 
 

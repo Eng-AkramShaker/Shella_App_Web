@@ -142,6 +142,12 @@ class MainAppConstants {
       static const String numberOfPieces='عدد القطع';
       static const String additionalNotes='ملاحظات إضافية';
       static const String done='تم';
+      static const String driversShowOrder='يعرض 3 سائقين طلبك';
+      static const String sendOrderToDrivers='جاري ارسال طلبك إلى السائقين';
+      static const String yourOffer='عرضك';
+      static const String deliveryPeriod='مدة التوصيل';
+      static const String increaseFee='زيادة الأجرة';
+      static const String cancelOrder='الغاء الطلب';
 
 
 
