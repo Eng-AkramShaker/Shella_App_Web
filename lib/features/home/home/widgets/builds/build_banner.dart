@@ -39,8 +39,7 @@ Widget buildBanner(BuildContext context) {
                 onTap: () async {
                   print('Tapped on banner: ${banner.imageUrlFull}');
                 },
-                child:
-                    BannerContainerImageWidget(imageUrl: banner.imageUrlFull!),
+                child: BannerContainerImageWidget(imageUrl: banner.imageUrlFull!),
               );
             },
           ),
@@ -57,20 +56,16 @@ Widget buildBanner(BuildContext context) {
                 padding: const EdgeInsets.symmetric(horizontal: 3),
                 child: isActive
                     ? Container(
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(10.0)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 1),
-                        child: Text('${(index) + 1}/$totalBanner',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 12)),
+                        decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(10.0)),
+                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                        child: Text('${(index) + 1}/$totalBanner', style: const TextStyle(color: Colors.white, fontSize: 12)),
                       )
                     : Container(
                         height: 5,
                         width: 6,
                         decoration: BoxDecoration(
                             color:
+                                // ignore: deprecated_member_use
                                 Theme.of(context).primaryColor.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(10.0)),
                       ),

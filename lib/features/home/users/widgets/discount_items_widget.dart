@@ -4,14 +4,13 @@ import 'package:shella_design/common/helper/grid_view_fix_height.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/lists.dart';
 import 'package:shella_design/features/home/users/widgets/discount_item.dart';
-import 'package:shella_design/features/my_points/widgets/mobile/offers_gride.dart';
 
 class DiscountItemsWidget extends StatelessWidget {
   const DiscountItemsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return   SingleChildScrollView(
+    return SingleChildScrollView(
       child: Padding(
         padding: ResponsiveLayout.isWeb() ? EdgeInsets.all(32.0.w) : EdgeInsets.all(8.0),
         child: GridView.builder(
@@ -31,9 +30,7 @@ class DiscountItemsWidget extends StatelessWidget {
               name: discounts[index]['name'],
               image: discounts[index]['image'],
               price: discounts[index]['price'],
-               discount: discounts[index]['discount'], 
-      
-      
+              discount: discounts[index]['discount'],
             );
           },
         ),

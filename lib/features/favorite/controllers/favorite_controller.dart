@@ -16,5 +16,9 @@ class Favorite_Controller with ChangeNotifier {
   Future getFavourite() async {
     List_favourite = await favoriteServiceInterface.getFavourite();
     notifyListeners();
+
+    debugPrint("\x1B[32m     ${List_favourite.item.length}     \x1B[0m");
+
+    debugPrint("\x1B[32m     ${List_favourite.store.length}     \x1B[0m");
   }
 }
