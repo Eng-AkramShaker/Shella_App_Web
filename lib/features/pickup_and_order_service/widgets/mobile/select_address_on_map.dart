@@ -13,24 +13,24 @@ import 'package:shella_design/common/widgets/texts/custom_text.dart';
 
 class GoogleMapsLocationPicker extends StatefulWidget {
   TextEditingController addressController;
-  GoogleMapsLocationPicker({required this.addressController});
+  GoogleMapsLocationPicker({super.key, required this.addressController});
   @override
   _GoogleMapsLocationPickerState createState() => _GoogleMapsLocationPickerState();
 }
 
 class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
   late GoogleMapController _mapController;
- // late TextEditingController _addresscontroller;
+  // late TextEditingController _addresscontroller;
   LatLng? _selectedLocation;
   String _locationInfo = 'Tap on the map ';
-  String _street='street';
+  String _street = 'street';
   bool _isLoading = false;
 
   // Default location (New York)
- // static const LatLng _initialPosition = LatLng(40.7128, -74.0060);
+  // static const LatLng _initialPosition = LatLng(40.7128, -74.0060);
 
-   // Default location  (saudia arabia)
- static const LatLng _initialPosition = LatLng( 24.7136,  46.6753);
+  // Default location  (saudia arabia)
+  static const LatLng _initialPosition = LatLng(24.7136, 46.6753);
 
   // Map markers
   final Set<Marker> _markers = {};
@@ -38,14 +38,12 @@ class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
   @override
   void initState() {
     super.initState();
- //   _getCurrentLocation();
+    //   _getCurrentLocation();
   }
-
-  
 
   Future<void> _getCurrentLocation() async {
     setState(() => _isLoading = true);
-    
+
     try {
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
@@ -96,13 +94,13 @@ class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
       if (placemarks.isNotEmpty) {
         Placemark place = placemarks.first;
         setState(() {
-         
 // Country: ${place.country ?? 'N/A'}
 // City: ${place.locality ?? place.subAdministrativeArea ?? 'N/A'}
 
-          _locationInfo= "${place.country ?? ''} ,${place.locality ?? place.street ?? ''} , ${location.latitude.toStringAsFixed(6)} ,  ${location.longitude.toStringAsFixed(6)}";
-           widget.addressController.text= _locationInfo;
-           _street=place.street ?? '';
+          _locationInfo =
+              "${place.country ?? ''} ,${place.locality ?? place.street ?? ''} , ${location.latitude.toStringAsFixed(6)} ,  ${location.longitude.toStringAsFixed(6)}";
+          widget.addressController.text = _locationInfo;
+          _street = place.street ?? '';
         });
       }
 
@@ -110,24 +108,23 @@ class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
       _markers.clear();
 
       final BitmapDescriptor greenCircleIcon = await BitmapDescriptor.fromAssetImage(
-  const ImageConfiguration(size: Size(48, 48)),
-  AppImages.greenMarker, // Your custom green circle image
-);
-      _markers.add(
-        // Marker(
-        //   markerId: MarkerId('selected-location'),
-        //   position: location,
-        //   infoWindow: InfoWindow(title: 'Selected Location'),
-        //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-        // ),
-
-        Marker(
-  markerId: MarkerId('green_circle_marker'),
-  position: location,
-  icon: greenCircleIcon, // Use your custom icon
-  consumeTapEvents: true,
-   )
+        const ImageConfiguration(size: Size(48, 48)),
+        AppImages.greenMarker, // Your custom green circle image
       );
+      _markers.add(
+          // Marker(
+          //   markerId: MarkerId('selected-location'),
+          //   position: location,
+          //   infoWindow: InfoWindow(title: 'Selected Location'),
+          //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          // ),
+
+          Marker(
+        markerId: MarkerId('green_circle_marker'),
+        position: location,
+        icon: greenCircleIcon, // Use your custom icon
+        consumeTapEvents: true,
+      ));
     } catch (e) {
       setState(() {
         _locationInfo = 'Error getting address: ${e.toString()}';
@@ -139,15 +136,13 @@ class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-    height: 250,
-    
+    return SizedBox(
+      height: 250,
       child: Column(
         children: [
           Expanded(
-            child: Stack(
-              children: [
-                Container(
+            child: Stack(children: [
+              SizedBox(
                 height: 185.h,
                 child: GoogleMap(
                   onMapCreated: (controller) => _mapController = controller,
@@ -164,74 +159,58 @@ class _GoogleMapsLocationPickerState extends State<GoogleMapsLocationPicker> {
                 ),
               ),
 
-              Positioned(
-                top:25,
-                left: 100,
-            child: ClipRRect(
-              child: Container(
-                decoration: BoxDecoration(
-                 color: AppColors.primaryColor,
-                 borderRadius: BorderRadius.circular(16)
+              //   Positioned(
+              //     top:25,
+              //     left: 100,
+              // child: ClipRRect(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //      color: AppColors.primaryColor,
+              //      borderRadius: BorderRadius.circular(16)
 
-                ),
-                height: 40,
-                width: 120,
-                child: Center(child: Custom_Text(context, text: _street
-                ,style: font11White400W(context))),
-              ),
-            )
-               )
-              
-              
-              ]
-            ),
+              //     ),
+              //     height: 40,
+              //     width: 120,
+              //     child: Center(child: Custom_Text(context, text: _street
+              //     ,style: font11White400W(context))),
+              //   ),
+              // )
+              //    )
+            ]),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical:6.h,horizontal: 2),
-              color: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 2),
+            color: Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-             
                 SizedBox(height: 10),
-               Directionality(
-                      textDirection: TextDirection.rtl,
-                child: SizedBox(
-                  height: 44,
-                  child: TextFormField(
-                   cursorColor: AppColors.greenColor,
-                   decoration: InputDecoration(
-                    labelText: MainAppConstants.house,
-                    prefixIcon: Image(image: AssetImage(AppImages.houseIcon)),
-                    contentPadding: EdgeInsets.symmetric(
-                 vertical: 5, horizontal: 5),
-                 enabledBorder: 
-                 OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular( 8.r),
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade200,
-                      width: 1)),
-                      focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: BorderSide(
-                    color: AppColors.greenColor,
-                    width: 1)),
-                    border:  OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.r),
-                    borderSide: BorderSide(
-                    width:1,
-                    )),
-
-                   ),
-                     readOnly: true,
-                    style: TextStyle(fontSize: 10,color: AppColors.bgColor),
-                    controller: widget.addressController)
-                    )
-                ),
-   
+                Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: SizedBox(
+                        height: 44,
+                        child: TextFormField(
+                            cursorColor: AppColors.greenColor,
+                            decoration: InputDecoration(
+                              labelText: MainAppConstants.house,
+                              prefixIcon: Image(image: AssetImage(AppImages.houseIcon)),
+                              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  borderSide: BorderSide(color: Colors.grey.shade200, width: 1)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  borderSide: BorderSide(color: AppColors.greenColor, width: 1)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                  )),
+                            ),
+                            readOnly: true,
+                            style: TextStyle(fontSize: 10, color: AppColors.bgColor),
+                            controller: widget.addressController))),
                 SizedBox(height: 10),
-              
               ],
             ),
           ),
