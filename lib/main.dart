@@ -65,8 +65,8 @@ class MyApp extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
           )),
       routes: AppRoutes.routes,
-      initialRoute:
-          isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
+       initialRoute:
+           isLoggedInUser ? AppRoutes.mainLayout : AppRoutes.Login_Mobile,
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,

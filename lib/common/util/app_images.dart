@@ -126,8 +126,13 @@ class AppImages {
   static const String onboarding4 = 'assets/images/onboarding4.jpg';
   static const String basket = 'assets/images/110.png';
   static const String date = 'assets/images/date.png';
-    static const String burger = 'assets/images/im1.png';
-        static const String pizza = 'assets/images/im4.png';
+  static const String burger = 'assets/images/im1.png';
+  static const String pizza = 'assets/images/im4.png';
+  static const String packet= 'assets/images/packet.png';
+  static const String rank= 'assets/images/rank.png';
+  static const String percent1= 'assets/images/percent1.png';
+  static const String truckicon= 'assets/images/trackIcon.png';
+
 
 
 
@@ -146,6 +151,23 @@ class AppImages {
   static const String map2 = 'assets/images/map2.png';
   static const String storeOffer= 'assets/images/storeOffer.png';
   static const String footerStoreImge= 'assets/images/footerStoreImge.jpg';
+  static const String houseIcon= 'assets/images/houseicon.png';
+  static const String greenMarker= 'assets/images/marker.png';
+  static const String backgroundMap='assets/images/FRAME (10) 1.png';
+  static const String call='assets/images/call.png';
+  static const String message='assets/images/message.png';
+  static const String send2='assets/images/send2.png';
+  static const String camera='assets/images/camera.png';
+  static const String upload='assets/images/upload.png';
+  static const String subwayLocation='assets/images/subway_location.png';
+  static const String carsym='assets/images/carSym.png';
+
+
+
+
+
+
+
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';
@@ -165,8 +187,11 @@ class AppImages {
   static const String support = 'assets/svg/support.svg';
   static const String profileCoupon = 'assets/svg/coupon.svg';
   static const String percent='assets/svg/percent.svg';
-    static const String sale='assets/svg/sale.svg';
-      static const String done='assets/svg/done.svg';
+  static const String sale='assets/svg/sale.svg';
+  static const String done='assets/svg/done.svg';
+  static const String sendicon='assets/svg/sendicon.svg';
+  static const String truckiconsvg='assets/svg/truckiconsvg.svg';
+
 
 
 

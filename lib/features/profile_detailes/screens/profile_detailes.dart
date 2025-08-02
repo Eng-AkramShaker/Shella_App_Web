@@ -160,6 +160,10 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
           buildListTile('انضم كرجل توصيل', Icon(Icons.account_circle_outlined), context, () {
             nav.push(AppRoutes.joinAsDriverOne);
           }),
+           ProfileDivider(),
+          buildListTile('خدمة استلام وتسليم', Icon(Icons.local_mall_rounded), context, () {
+            nav.push(AppRoutes.packetsPosition);
+          }),
           ProfileDivider(),
           buildListTile(
             'سياسة الخصوصية',

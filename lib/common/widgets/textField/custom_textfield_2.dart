@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? enableBorderColor;
+   final Color? backgroundColor;
 
   final Function(String)? onChanged;
 
@@ -50,6 +51,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.width,
     this.height,
+    this.backgroundColor
   }) : super(key: key);
 
   @override
@@ -71,6 +73,8 @@ class CustomTextField extends StatelessWidget {
           onChanged: onChanged,
           style: TextStyle(color: AppColors.bgColor),
           decoration: InputDecoration(
+            filled: backgroundColor != null ?  true :false,
+            fillColor: backgroundColor,
             labelText: labelText,
             suffixIcon: suffixIcon,
             suffixIconColor: suffixColor,
