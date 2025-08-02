@@ -139,6 +139,9 @@ class _NegotiationInfoState extends State<NegotiationInfo> {
                                   textColor: AppColors.secondaryColor,
                                   backgroundColor: AppColors.wtColor,
                                   fontSize: 10,
+                                   onPressed: () {
+                                    nav.push(AppRoutes.lookingForDriver);
+                                  },
                                 ),
                                   PickupCustomButton(
                                   height: 45.h,

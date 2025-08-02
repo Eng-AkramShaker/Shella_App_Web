@@ -161,7 +161,7 @@ Widget buildVisitAgain(BuildContext context) {
                                     ),
                                     child: ClipRRect(
                                       borderRadius:
-                                          BorderRadiusGeometry.circular(12),
+                                          BorderRadius.circular(12),
                                       child: CustomImage(image: store.logoUrl),
                                     ),
                                   ),
