@@ -7,6 +7,9 @@ import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field_mobile.dart';
+import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_text_field_mobile.dart';
+import 'package:shella_design/features/orders/widgets/builds/build_title_order.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/service_details.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/pickup_custom_button.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/select_address_on_map.dart';
 
@@ -50,10 +53,22 @@ class _SenderInfoState extends State<SenderInfo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Custom_Text(context, text: MainAppConstants.takingPosition, underline: false, style: font14Black500W(context)),
+              Custom_Text(context,
+                  text: MainAppConstants.takingPosition,
+                  underline: false,
+                  style: font14Black500W(context)),
               Container(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    //  nav.push(AppRoutes.pickupServiceDetails);
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        opaque: false, // Makes the route transparent
+                        pageBuilder: (_, __, ___) => ServiceDetails(),
+                      ),
+                    );
+                  },
                   child: Row(
                     children: [
                       Icon(
@@ -64,7 +79,10 @@ class _SenderInfoState extends State<SenderInfo> {
                       SizedBox(
                         width: 5.w,
                       ),
-                      Custom_Text(context, text: MainAppConstants.addNew, underline: false, style: font14Primary400W(context)),
+                      Custom_Text(context,
+                          text: MainAppConstants.addNew,
+                          underline: false,
+                          style: font14Primary400W(context)),
                     ],
                   ),
                 ),
@@ -97,8 +115,10 @@ class _SenderInfoState extends State<SenderInfo> {
             ),
             //explain address section
             Center(
-              child:
-                  Custom_Text(context, text: MainAppConstants.explainYourAddress, underline: false, style: font14Primary400W(context)),
+              child: Custom_Text(context,
+                  text: MainAppConstants.explainYourAddress,
+                  underline: false,
+                  style: font14Primary400W(context)),
             ),
             SizedBox(
               height: 10.h,
@@ -160,7 +180,10 @@ class _SenderInfoState extends State<SenderInfo> {
             ),
             // sender info
             Center(
-              child: Custom_Text(context, text: MainAppConstants.senderInfo, underline: false, style: font14Primary400W(context)),
+              child: Custom_Text(context,
+                  text: MainAppConstants.senderInfo,
+                  underline: false,
+                  style: font14Primary400W(context)),
             ),
 
             //sender name
