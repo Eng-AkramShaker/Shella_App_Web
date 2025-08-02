@@ -148,6 +148,7 @@ class MainAppConstants {
       static const String deliveryPeriod='مدة التوصيل';
       static const String increaseFee='زيادة الأجرة';
       static const String cancelOrder='الغاء الطلب';
+      static const String showSuitablePriceForYou='اعرض الأجرة المناسبة لك';
 
 
 

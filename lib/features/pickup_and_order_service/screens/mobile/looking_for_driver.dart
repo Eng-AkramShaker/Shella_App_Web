@@ -6,6 +6,7 @@ import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/accept_partner.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/header_of_looking_driver.dart';
+import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/keyboard_dialog.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/offer_rectangle.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/pickup_custom_button.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -18,6 +19,7 @@ class LookingForDriver extends StatefulWidget {
 }
 
 class _LookingForDriverState extends State<LookingForDriver> {
+  TextEditingController priceController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +81,17 @@ class _LookingForDriverState extends State<LookingForDriver> {
 
                  Padding(
                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                   child: PickupCustomButton(text: MainAppConstants.increaseFee,height: 48.h,fontSize: 16,),
+                   child: PickupCustomButton(text: MainAppConstants.increaseFee,
+                   height: 48.h,fontSize: 16,
+                   onPressed: () {
+                     showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          contentPadding: EdgeInsets.zero,
+                          content: KeyboardDialog(priceController: priceController,),
+                        ));
+                   },
+                   ),
                  ),
                  SizedBox(height: 10.h,),
                 Padding(
