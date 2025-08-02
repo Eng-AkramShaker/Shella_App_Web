@@ -2,20 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/app_dimensions.dart';
-import 'package:shella_design/common/util/app_styles.dart';
 import 'package:shella_design/common/util/custom_image.dart';
-import 'package:shella_design/common/widgets/texts/custom_text.dart';
+import 'package:shella_design/common/widgets/errorWidget/error_text_widget.dart';
+import 'package:shella_design/common/widgets/loading_progress/loading/green_loading_circle.dart';
 import 'package:shella_design/features/search_filter/controller/product_provider.dart';
-
-// Assuming you have a Product model like this:
-// class Product {
-//   final String id;
-//   final String name;
-//   final String image;
-//
-//   Product({required this.id, required this.name, required this.image});
-// }
 
 class BuildMostPopular extends StatefulWidget {
   const BuildMostPopular({super.key});
@@ -40,35 +30,11 @@ class _BuildMostPopularState extends State<BuildMostPopular> {
       builder: (context, productProvider, child) {
         // --- Handle Loading, Error, Empty States with fixed height ---
         if (productProvider.isLoading) {
-          return SizedBox(
-            height: 150.h, // Fixed height for the loader area
-            child: const Center(
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
+          GreenLoadingCircle();
         } else if (productProvider.errorMessage != null) {
-          return SizedBox(
-            height: 150.h, // Fixed height for the error message area
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text('Error: ${productProvider.errorMessage}'),
-              ),
-            ),
-          );
+          return ErrorTextWidget(text: productProvider.errorMessage);
         } else if (productProvider.products.isEmpty) {
-          return SizedBox(
-            height: 150.h, // Fixed height for the no products message area
-            child: const Center(
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text('No popular products found.'),
-              ),
-            ),
-          );
+          return ErrorTextWidget(text: 'No popular products found.');
         }
 
         // --- If data is available, build the Horizontal ListView ---
@@ -81,23 +47,6 @@ class _BuildMostPopularState extends State<BuildMostPopular> {
                 horizontal: 1.w), // Using .w for horizontal padding
 
             children: [
-              // 1. "الاكثر بحثا" text as the first item
-              // SizedBox(
-              //   width: 100
-              //       .w, // *** Crucial: Define a fixed width for this child ***
-              //   child: Padding(
-              //     padding: EdgeInsets.symmetric(horizontal: 10.w),
-              //     child: Center(
-              //       child: Custom_Text(
-              //         context,
-              //         text: "الاكثر بحثا",
-              //         style: font10Grey400W(context, size: size_10(context)),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-
-              // Add a SizedBox for spacing between the text and the first product card
               SizedBox(width: 10.w),
 
               // 2. Map product data to individual Card widgets
@@ -166,57 +115,7 @@ class _BuildMostPopularState extends State<BuildMostPopular> {
                     ),
                   ],
                 );
-                // return Card(
-                //   margin: EdgeInsets.symmetric(
-                //       horizontal: 8.0.w, vertical: 4.0.h), // Responsive margins
-                //   elevation: 4.0,
-                //   // *** Crucial: Define a fixed width for each Card's content ***
-                //   child: SizedBox(
-                //     width: 250
-                //         .w, // Example width for each product card. Adjust as needed.
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Row(
-                //         crossAxisAlignment:
-                //             CrossAxisAlignment.start, // Align content to top
-                //         children: [
-                //           // Image container with explicit width and height
-                //           product.image.isNotEmpty
-                //               ? SizedBox(
-                //                   width: 80.w,
-                //                   height: 80.h,
-                //                   child: Image.network(
-                //                     product.image,
-                //                     fit: BoxFit.cover,
-                //                     errorBuilder: (context, error, stackTrace) {
-                //                       return const Icon(Icons.broken_image,
-                //                           size: 40);
-                //                     },
-                //                   ),
-                //                 )
-                //               : SizedBox(
-                //                   width: 80.w,
-                //                   height: 80.h,
-                //                   child: const Icon(Icons.image_not_supported,
-                //                       size: 40),
-                //                 ),
-                //           SizedBox(width: 16.0.w), // Horizontal spacing
-                //           Expanded(
-                //             // Takes remaining space within the SizedBox(width: 250.w)
-                //             child: Custom_Text(
-                //               context,
-                //               text: product.name,
-                //               style: font10Black600W(context,
-                //                   size: size_14(context)),
-                //               maxLines: 2,
-                //               // overflow: TextOverflow.ellipsis, // Ensure text truncates
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // );
+                // ignore: unnecessary_to_list_in_spreads
               }).toList(),
             ],
           ),

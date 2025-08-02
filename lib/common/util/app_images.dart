@@ -156,6 +156,16 @@ class AppImages {
   static const String map2 = 'assets/images/map2.png';
   static const String storeOffer = 'assets/images/storeOffer.png';
   static const String footerStoreImge = 'assets/images/footerStoreImge.jpg';
+  static const String houseIcon = 'assets/images/houseicon.png';
+  static const String greenMarker = 'assets/images/marker.png';
+  static const String backgroundMap = 'assets/images/FRAME (10) 1.png';
+  static const String call = 'assets/images/call.png';
+  static const String message = 'assets/images/message.png';
+  static const String send2 = 'assets/images/send2.png';
+  static const String camera = 'assets/images/camera.png';
+  static const String upload = 'assets/images/upload.png';
+  static const String subwayLocation = 'assets/images/subway_location.png';
+  static const String carsym = 'assets/images/carSym.png';
 
   static const String qr = 'assets/images/qr.png';
   static const String sar = 'assets/images/sar.png';
@@ -172,11 +182,11 @@ class AppImages {
   static const String KiadaWalletSubscription =
       'assets/images/KiadaWalletSubscription.png';
 
-  static const String houseIcon = 'assets/images/houseicon.png';
-  static const String greenMarker = 'assets/images/marker.png';
-  static const String backgroundMap = 'assets/images/FRAME (10) 1.png';
-  static const String call = 'assets/images/call.png';
-  static const String message = 'assets/images/message.png';
+  // static const String houseIcon = 'assets/images/houseicon.png';
+  // static const String greenMarker = 'assets/images/marker.png';
+  // static const String backgroundMap = 'assets/images/FRAME (10) 1.png';
+  // static const String call = 'assets/images/call.png';
+  // static const String message = 'assets/images/message.png';
 
   ///======================== SVG ========================
   static const String cIcon = 'assets/svg/c.svg';

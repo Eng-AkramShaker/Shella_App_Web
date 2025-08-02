@@ -12,7 +12,6 @@ Widget buildBanner(BuildContext context) {
           child: CircularProgressIndicator(),
         );
       }
-
       if (bannerProvider.errorMessage != null) {
         return Center(
           child: Text(

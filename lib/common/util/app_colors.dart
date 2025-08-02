@@ -40,6 +40,10 @@ class AppColors {
   static const Color gryColor_9 = Color(0xfff0f0f0);
   static const Color gryColor_10 = Color(0xFFD8D8D8);
   static const Color gryColor_11 = Color(0xFFD9D9D9);
+  static const Color gryColor_12 = Color(0xFFD1D5DB);
+  static const Color gryColor_13 = Color(0xFF6E6E6E);
+
+
 
   static const Color redColor = Colors.red;
   static const Color orangeColor = Color(0xFFFA9D2B);
@@ -48,5 +52,7 @@ class AppColors {
   static const Color lightBlue = Color(0xFFE5F6EE);
   static const Color gold = Color.fromARGB(255, 250, 242, 43);
    static const  Color yal2Color = Color(0xFFEBF942);
+  static const  Color blueDark = Color(0xFF503091);
+ 
 
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shella_design/common/helper/app_routes.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_styles.dart';
+import 'package:shella_design/common/util/navigation/navigation.dart';
 import 'package:shella_design/common/widgets/textField/custom_textfield_2.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_label_mobile.dart';
 import 'package:shella_design/features/Auth/widgets/mobile/builds_mobile/build_phone_field_mobile.dart';
+import 'package:shella_design/features/pickup_and_order_service/screens/mobile/service_details.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/pickup_custom_button.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/select_address_on_map.dart';
 
@@ -67,7 +70,15 @@ void _handleTextChanged() {
         
                 Container(
                 child: InkWell(
-                  onTap: () { },
+                  onTap: () {
+                 Navigator.push(
+                context,
+                PageRouteBuilder(
+                  opaque: false, // Makes the route transparent
+                  pageBuilder: (_, __, ___) =>  ServiceDetails(),
+                ),
+              );
+                   },
                   child: Row(
                   children: [
                     Icon(Icons.add,color: AppColors.primaryColor,size: 20,),

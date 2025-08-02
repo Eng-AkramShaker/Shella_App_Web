@@ -50,6 +50,20 @@ TextStyle font10Black300W(
   );
 }
 
+TextStyle font16Grey600W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_16(context),
+    color: AppColors.gryColor_13,
+    fontWeight: FontWeight.w600,
+  );
+}
+
 TextStyle font10Black600W(
   BuildContext context, {
   double? size,
@@ -586,6 +600,20 @@ TextStyle font16Black500W(
   );
 }
 
+TextStyle font16Black300W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_16(context),
+    color: Colors.black,
+    fontWeight: FontWeight.w300,
+  );
+}
+
 // ==================== 12 ====================
 
 TextStyle font10Grey400W(
@@ -728,6 +756,20 @@ TextStyle font13Grey400W(
   );
 }
 
+TextStyle font13Grey500W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_13(context),
+    color: AppColors.gryColor_13,
+    fontWeight: FontWeight.w500,
+  );
+}
+
 TextStyle font14Grey400W(
   BuildContext context, {
   double? size,
@@ -767,6 +809,20 @@ TextStyle font14Primary400W(
     fontSize: size ?? size_14(context),
     color: AppColors.primaryColor,
     fontWeight: FontWeight.w400,
+  );
+}
+
+TextStyle font14Primary600W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_14(context),
+    color: AppColors.primaryColor,
+    fontWeight: FontWeight.w600,
   );
 }
 
@@ -872,5 +928,19 @@ TextStyle font21White500W(
     fontSize: size ?? size_21(context),
     color: AppColors.wtColor,
     fontWeight: FontWeight.w500,
+  );
+}
+
+TextStyle font20Black700W(
+  BuildContext context, {
+  double? size,
+  double? lineHeight,
+}) {
+  return TextStyle(
+    fontFamily: 'ReadexPro',
+    height: lineHeight ?? 1.5,
+    fontSize: size ?? size_20(context),
+    color: AppColors.bgColor,
+    fontWeight: FontWeight.w700,
   );
 }

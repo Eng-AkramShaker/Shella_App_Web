@@ -7,7 +7,7 @@ import 'package:shella_design/features/home/controllers/section_controller.dart'
 import 'package:shella_design/features/home/domain/models/store_model.dart';
 import 'package:shella_design/features/home/domain/services/section_service.dart';
 import 'package:shella_design/features/home/home/widgets/category_Item.dart';
-import 'package:shella_design/features/home/users/screens/SuperMarketDiscounts.dart';
+import 'package:shella_design/features/home/users/screens/mobile/SuperMarketDiscounts.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/common/widgets/texts/coustom_Text_Button.dart';
 import 'package:shella_design/common/util/app_colors.dart';
@@ -40,7 +40,8 @@ class _ProductViewState extends State<ProductView> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200) {
       endOfPage = true;
     }
   }
@@ -68,7 +69,9 @@ class _ProductViewState extends State<ProductView> {
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(image: AssetImage(AppImages.storeOffer), fit: BoxFit.cover)),
+                      image: DecorationImage(
+                          image: AssetImage(AppImages.storeOffer),
+                          fit: BoxFit.cover)),
                 ),
               ),
               // Scroll Content
@@ -101,7 +104,8 @@ class _ProductViewState extends State<ProductView> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (_) => SuperMarketDiscounts()),
+                                MaterialPageRoute(
+                                    builder: (_) => SuperMarketDiscounts()),
                               );
                             },
                             child: CategoryItem(
@@ -122,13 +126,19 @@ class _ProductViewState extends State<ProductView> {
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            image: DecorationImage(image: AssetImage(AppImages.footerStoreImge), fit: BoxFit.cover)),
+                            image: DecorationImage(
+                                image: AssetImage(AppImages.footerStoreImge),
+                                fit: BoxFit.cover)),
                       ),
                     )
                   : Container(),
 
               // Header Section
-              Positioned(top: 0, left: 0, right: 0, child: buildHeaderSection(context)),
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: buildHeaderSection(context)),
 
               // Store Info
               Positioned(
@@ -144,7 +154,9 @@ class _ProductViewState extends State<ProductView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Custom_Text(context, text: widget.store.name, style: font14Black600W(context)),
+                        Custom_Text(context,
+                            text: widget.store.name,
+                            style: font14Black600W(context)),
                         const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +166,10 @@ class _ProductViewState extends State<ProductView> {
                               text: "${widget.store.module!.moduleType}",
                               style: font6SecondaryColor400W(context, size: 12),
                             ),
-                            Custom_Text(context, text: widget.store.currentOpeningTime ?? "10:00 Pm", style: font12Black400W(context)),
+                            Custom_Text(context,
+                                text: widget.store.currentOpeningTime ??
+                                    "10:00 Pm",
+                                style: font12Black400W(context)),
                           ],
                         ),
                         const SizedBox(height: 15),
@@ -290,7 +305,8 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
-  Widget buildSectionTitle(BuildContext context, {required String title, String? lapel}) {
+  Widget buildSectionTitle(BuildContext context,
+      {required String title, String? lapel}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
