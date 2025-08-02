@@ -4,7 +4,6 @@ import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/features/favorite/controllers/favorite_controller.dart';
 import 'package:shella_design/features/favorite/widget/mobile/favorite_page_app_bar.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
-import 'package:shella_design/features/home/users/widgets/discount_items_widget.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});

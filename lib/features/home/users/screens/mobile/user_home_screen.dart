@@ -5,11 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_images.dart';
-<<<<<<< HEAD:lib/features/home/users/screens/user_home_screen.dart
-import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
-import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
-=======
->>>>>>> ca00feb5d5f66482735258a1e82bb62c0eb10a58:lib/features/home/users/screens/mobile/user_home_screen.dart
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
@@ -18,11 +13,8 @@ import 'package:shella_design/features/home/home/widgets/builds/build_most_popul
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_visit_again.dart';
 import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
-<<<<<<< HEAD:lib/features/home/users/screens/user_home_screen.dart
-=======
 import 'package:shella_design/features/home/users/widgets/mobile/green_button_widget.dart';
 import 'package:shella_design/features/home/users/widgets/mobile/home_screen_app_bar_widget.dart';
->>>>>>> ca00feb5d5f66482735258a1e82bb62c0eb10a58:lib/features/home/users/screens/mobile/user_home_screen.dart
 
 class Users_Home_Screen extends StatefulWidget {
   const Users_Home_Screen({super.key});
@@ -59,7 +51,6 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-<<<<<<< HEAD:lib/features/home/users/screens/user_home_screen.dart
                     buildSectionTitleTow(
                       context,
                       icon: true,
@@ -67,28 +58,7 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                       title: 'المنتجات الأكثر شعبية',
                       underline: false,
                     ),
-                    Container(
-                      height: 35,
-                      width: 60,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: AppColors.greenColor),
-                      child: Center(
-                          child: Text(
-                        'رؤية الكل',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      )),
-                    ),
-=======
-                    buildSectionTitleTow(context,
-                        icon: true,
-                        iconUrl: AppImages.fireIcon,
-                        title: MainAppConstants.mostPopularProducts,
-                        underline: false),
                     greenButtonWidget(text: MainAppConstants.seeAll),
->>>>>>> ca00feb5d5f66482735258a1e82bb62c0eb10a58:lib/features/home/users/screens/mobile/user_home_screen.dart
                   ],
                 ),
                 SizedBox(height: 20.h),

@@ -92,19 +92,14 @@ Widget buildVisitAgain(BuildContext context) {
                                       Container(
                                         height: 160.h,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(12),
                                           color: Colors.white,
                                           boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurRadius: 5,
-                                                spreadRadius: 1),
+                                            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1),
                                           ],
                                         ),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             SizedBox(height: 30.h),
                                             Flexible(
@@ -117,13 +112,9 @@ Widget buildVisitAgain(BuildContext context) {
                                             )),
                                             SizedBox(height: 10.h),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                Icon(Icons.star,
-                                                    color:
-                                                        AppColors.primaryColor,
-                                                    size: 20),
+                                                Icon(Icons.star, color: AppColors.primaryColor, size: 20),
                                                 SizedBox(width: 5.h),
                                                 Text(
                                                   '3.8',
@@ -132,25 +123,19 @@ Widget buildVisitAgain(BuildContext context) {
                                                   ),
                                                 ),
                                                 SizedBox(width: 5.h),
-                                                Text('(4)',
-                                                    style: TextStyle(
-                                                        color: Colors.grey)),
+                                                Text('(4)', style: TextStyle(color: Colors.grey)),
                                               ],
                                             ),
                                             SizedBox(height: 16.h),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                Icon(Icons.storefront_outlined,
-                                                    color: Colors.grey,
-                                                    size: 20),
+                                                Icon(Icons.storefront_outlined, color: Colors.grey, size: 20),
                                                 SizedBox(width: 5.h),
                                                 Flexible(
                                                     child: Text(
                                                   store.address,
-                                                  style: TextStyle(
-                                                      color: Colors.grey),
+                                                  style: TextStyle(color: Colors.grey),
                                                 ))
                                               ],
                                             ),
@@ -168,10 +153,8 @@ Widget buildVisitAgain(BuildContext context) {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadiusGeometry.circular(12),
-                                        child:
-                                            CustomImage(image: store.logoUrl),
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: CustomImage(image: store.logoUrl),
                                       ),
                                     ),
                                   ),
@@ -179,9 +162,7 @@ Widget buildVisitAgain(BuildContext context) {
                                     top: 20,
                                     left: 5,
                                     child: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(Icons.favorite_outline,
-                                            color: AppColors.primaryColor)),
+                                        onPressed: () {}, icon: Icon(Icons.favorite_outline, color: AppColors.primaryColor)),
                                   ),
                                 ],
                               ),

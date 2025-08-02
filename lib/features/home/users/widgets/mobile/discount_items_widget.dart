@@ -3,11 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/helper/grid_view_fix_height.dart';
 import 'package:shella_design/common/helper/responsive_helper.dart';
 import 'package:shella_design/common/util/lists.dart';
-<<<<<<< HEAD:lib/features/home/users/widgets/discount_items_widget.dart
-import 'package:shella_design/features/home/users/widgets/discount_item.dart';
-=======
-import 'package:shella_design/features/home/users/widgets/mobile/discount_item.dart';
->>>>>>> ca00feb5d5f66482735258a1e82bb62c0eb10a58:lib/features/home/users/widgets/mobile/discount_items_widget.dart
+import 'package:shella_design/features/home/users/widgets/discount_item.dart' as common;
+import 'package:shella_design/features/home/users/widgets/mobile/discount_item.dart' as mobile;
 
 class DiscountItemsWidget extends StatelessWidget {
   const DiscountItemsWidget({super.key});
@@ -16,28 +13,20 @@ class DiscountItemsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: ResponsiveLayout.isWeb()
-            ? EdgeInsets.all(32.0.w)
-            : EdgeInsets.all(8.0),
+        padding: ResponsiveLayout.isWeb() ? EdgeInsets.all(32.0.w) : EdgeInsets.all(8.0),
         child: GridView.builder(
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-              crossAxisCount: ResponsiveLayout.isWeb() &&
-                      !ResponsiveLayout.isMobile(context) &&
-                      !ResponsiveLayout.isTab(context)
+              crossAxisCount: ResponsiveLayout.isWeb() && !ResponsiveLayout.isMobile(context) && !ResponsiveLayout.isTab(context)
                   ? 4
                   : 3, // Number of columns in the grid
-              crossAxisSpacing: ResponsiveLayout.isWeb()
-                  ? 50.h
-                  : 15.0.h, // Spacing between columns
-              mainAxisSpacing: ResponsiveLayout.isWeb()
-                  ? 50.h
-                  : 10.0.w, // Spacing between rows
+              crossAxisSpacing: ResponsiveLayout.isWeb() ? 50.h : 15.0.h, // Spacing between columns
+              mainAxisSpacing: ResponsiveLayout.isWeb() ? 50.h : 10.0.w, // Spacing between rows
               height: ResponsiveLayout.isWeb() ? 255.h : 160.h),
           physics: NeverScrollableScrollPhysics(),
           itemCount: discounts.length, // Total number of products
           itemBuilder: (context, index) {
-            return DiscountItem(
+            return mobile.DiscountItem(
               id: discounts[index]['id'],
               name: discounts[index]['name'],
               image: discounts[index]['image'],
