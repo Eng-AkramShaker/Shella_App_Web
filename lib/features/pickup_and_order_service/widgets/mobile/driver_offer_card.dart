@@ -10,7 +10,7 @@ import 'package:shella_design/common/widgets/images/custom_Images.dart';
 import 'package:shella_design/common/widgets/texts/custom_text.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/driver_info.dart';
 import 'package:shella_design/features/pickup_and_order_service/widgets/mobile/pickup_custom_button.dart';
-    
+
 class DriverOfferCard extends StatelessWidget {
   final String? driverName;
   final String? driverPhoto;
@@ -21,68 +21,75 @@ class DriverOfferCard extends StatelessWidget {
   final String? carType;
   final double? price;
   final int? tripsNumber;
-  DriverOfferCard({
-        this.driverName,
-        this.driverPhoto,
-        this.driverStatus,
-        this.driverRate,
-        this.distance,
-        this.time,
-        this.carType,
-        this.price,
-        this.tripsNumber}  
-   );
-  
+  DriverOfferCard(
+      {this.driverName,
+      this.driverPhoto,
+      this.driverStatus,
+      this.driverRate,
+      this.distance,
+      this.time,
+      this.carType,
+      this.price,
+      this.tripsNumber});
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
-           width: MediaQuery.of(context).size.width,
-           height: 160.h, 
-                      decoration: BoxDecoration(
-                        color:AppColors.wtColor,
-                        borderRadius: BorderRadius.circular(15.r),
-                      ),
+          width: MediaQuery.of(context).size.width,
+          height: 160.h,
+          decoration: BoxDecoration(
+            color: AppColors.wtColor,
+            borderRadius: BorderRadius.circular(15.r),
+          ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             child: Column(
               children: [
-              DriverInfo(),
-                 Container(
+                DriverInfo(),
+                Container(
                   height: 35.h,
-               //   color: Colors.green,
-                  child: Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                     children: [
-                   Custom_Text(context,size: 18,text: price!= null ? 'SAR ${price.toString()}' : "SAR 68"),
-                   Row(
+                  //   color: Colors.green,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.local_taxi_outlined,size: 14,color: AppColors.greenColor,),
-                      SizedBox(width: 8.w,),
-                      Custom_Text(context,style: font13Black400W(context),text: carType ?? "Chevrolet Aveo")
-                    ],)
-
-                      ],
-                    )
-                    ),
+                      Custom_Text(context,
+                          size: 18,
+                          text: price != null
+                              ? 'SAR ${price.toString()}'
+                              : "SAR 68"),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.local_taxi_outlined,
+                            size: 14,
+                            color: AppColors.greenColor,
+                          ),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Custom_Text(context,
+                              style: font13Black400W(context),
+                              text: carType ?? "Chevrolet Aveo")
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                 Container(
+                Container(
                   height: 45.h,
-                  child: Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        PickupCustomButton(height: 38,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PickupCustomButton(
+                        height: 38,
                         width: 124,
                         text: MainAppConstants.accept,
-                        onPressed: () {
-                          
-                        },
-                        ),
-                        PickupCustomButton(
+                        onPressed: () {},
+                      ),
+                      PickupCustomButton(
                         height: 38,
                         width: 124,
                         text: MainAppConstants.negotiate,
@@ -92,15 +99,13 @@ class DriverOfferCard extends StatelessWidget {
                         onPressed: () {
                           nav.push(AppRoutes.negotiationInfo);
                         },
-                        )
-                      ],
-                    )
-                    ),
+                      )
+                    ],
+                  ),
                 ),
-                
               ],
             ),
-          ),            
+          ),
         ),
       ),
     );

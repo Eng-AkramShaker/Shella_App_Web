@@ -3,9 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shella_design/common/util/app_colors.dart';
+import 'package:shella_design/common/util/app_constants.dart';
 import 'package:shella_design/common/util/app_images.dart';
-import 'package:shella_design/common/widgets/addressRow/buildAddressRow.dart';
-import 'package:shella_design/common/widgets/searchRow/buildSearchRow.dart';
 import 'package:shella_design/features/home/home/widgets/builds/buildSectionTitle_One.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_banner.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_category_list_view.dart';
@@ -14,7 +13,8 @@ import 'package:shella_design/features/home/home/widgets/builds/build_most_popul
 import 'package:shella_design/features/home/home/widgets/builds/build_section_title_two.dart';
 import 'package:shella_design/features/home/home/widgets/builds/build_visit_again.dart';
 import 'package:shella_design/features/home/home/widgets/builds/categories_select_list.dart';
-import 'package:shella_design/features/home/users/widgets/green_button_widget.dart';
+import 'package:shella_design/features/home/users/widgets/mobile/green_button_widget.dart';
+import 'package:shella_design/features/home/users/widgets/mobile/home_screen_app_bar_widget.dart';
 
 class Users_Home_Screen extends StatefulWidget {
   const Users_Home_Screen({super.key});
@@ -28,28 +28,7 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(117.0.h),
-        child: Container(
-          color: AppColors.primaryColor,
-          padding: EdgeInsets.only(bottom: 6.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17.w),
-                child: buildSearchRow(context),
-              ),
-              SizedBox(height: 14.h),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 11.w),
-                child: buildAddressRow(context),
-              ),
-              SizedBox(height: 3.h),
-            ],
-          ),
-        ),
-      ),
+      appBar: homeScreenAppBar(context),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: SingleChildScrollView(
@@ -58,24 +37,9 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //
-
-                // Card(
-                //   color: Colors.red,
-                //   child: ElevatedButton(
-                //     child: const Text('data'),
-                //     onPressed: () async {
-                //       //
-                //     },
-                //   ),
-                // ),
-
-                //------------------------------------------
-
                 buildSectionTitle_One(
                   context,
-                  title: "الاقسام",
-                  // lapel: 'عرض الكل',
+                  title: MainAppConstants.sections,
                   underline: false,
                 ),
                 SizedBox(height: 16.h),
@@ -83,11 +47,6 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 buildBanner(context),
                 SizedBox(height: 16.h),
                 buildVisitAgain(context),
-                // SizedBox(height: 22.h),
-                // buildBanner(context),
-
-                // SizedBox(height: 16.h),
-                // visitAgainBuild(context),
                 SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,21 +54,19 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                     buildSectionTitleTow(context,
                         icon: true,
                         iconUrl: AppImages.fireIcon,
-                        title: 'المنتجات الأكثر شعبية',
+                        title: MainAppConstants.mostPopularProducts,
                         underline: false),
-                    greenButtonWidget(text: 'رؤية الكل'),
+                    greenButtonWidget(text: MainAppConstants.seeAll),
                   ],
                 ),
                 SizedBox(height: 20.h),
                 BuildMostPopular(),
                 SizedBox(height: 20.h),
-                // HighlightWidget(),
-
                 SizedBox(height: 16.h),
                 buildSectionTitleTow(
                   context,
-                  title: "كل المتاجر",
-                  lapel: "المتاجر القريبة منك",
+                  title: MainAppConstants.allStores,
+                  lapel: MainAppConstants.nearByStores,
                   underline: false,
                 ),
                 CategoriesSelectList(),

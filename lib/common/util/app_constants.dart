@@ -156,4 +156,7 @@ class MainAppConstants {
   static const String increaseFee = 'زيادة الأجرة';
   static const String cancelOrder = 'الغاء الطلب';
   static const String showSuitablePriceForYou = 'اعرض الأجرة المناسبة لك';
+  static const String mostPopularProducts = 'المنتجات الأكثر شعبية';
+  static const String seeAll = 'رؤية الكل';
+  static const String nearByStores = "المتاجر القريبة منك";
 }

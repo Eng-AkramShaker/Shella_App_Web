@@ -4,7 +4,7 @@ import 'package:shella_design/common/util/app_colors.dart';
 import 'package:shella_design/common/util/app_images.dart';
 import 'package:shella_design/common/util/lists.dart';
 import 'package:shella_design/features/home/home/widgets/builds/DiscountAppBar.dart';
-import 'package:shella_design/features/home/users/widgets/discount_items_widget.dart';
+import 'package:shella_design/features/home/users/widgets/mobile/discount_items_widget.dart';
 
 class SuperMarketDiscounts extends StatefulWidget {
   const SuperMarketDiscounts({super.key});
@@ -13,7 +13,8 @@ class SuperMarketDiscounts extends StatefulWidget {
   _SuperMarketDiscountsState createState() => _SuperMarketDiscountsState();
 }
 
-class _SuperMarketDiscountsState extends State<SuperMarketDiscounts> with SingleTickerProviderStateMixin {
+class _SuperMarketDiscountsState extends State<SuperMarketDiscounts>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -43,7 +44,8 @@ class _SuperMarketDiscountsState extends State<SuperMarketDiscounts> with Single
           child: Column(
             children: [
               TabBar(
-                  unselectedLabelStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
+                  unselectedLabelStyle:
+                      TextStyle(color: Colors.black, fontSize: 14.sp),
                   labelStyle: TextStyle(color: Colors.black, fontSize: 14.sp),
                   controller: _tabController,
                   labelColor: Colors.black,
@@ -64,7 +66,9 @@ class _SuperMarketDiscountsState extends State<SuperMarketDiscounts> with Single
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(image: AssetImage(AppImages.storeOffer), fit: BoxFit.cover)),
+                    image: DecorationImage(
+                        image: AssetImage(AppImages.storeOffer),
+                        fit: BoxFit.cover)),
               ),
               Expanded(
                 child: TabBarView(

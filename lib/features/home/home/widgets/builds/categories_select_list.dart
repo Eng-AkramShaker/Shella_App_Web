@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shella_design/common/util/app_colors.dart';
-import 'package:shella_design/common/util/lists.dart';
 
 class CategoriesSelectList extends StatefulWidget {
   const CategoriesSelectList({super.key});
@@ -23,38 +22,49 @@ class _CategoriesSelectListState extends State<CategoriesSelectList> {
       child: SizedBox(
         height: 35,
         child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          separatorBuilder: (context, index) => const SizedBox(width: 15),
-          itemBuilder: (context, index) => Container(
-            padding: EdgeInsets.all(10),
-            width: 50,
-            height: 35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(7),
-              border: Border.all(
-                  color: categories[index].selected
-                      ? AppColors.greenColor
-                      : Colors.grey.shade200),
-            ),
-            child: Center(
-                child: Text(
-              categories[index].name,
-              style: TextStyle(
-                  fontSize: 10,
-                  color: categories[index].selected
-                      ? AppColors.greenColor
-                      : Colors.grey),
-            )),
-          ),
-        ),
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 15),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    for (var i = 0; i < categories.length; i++) {
+                      categories[i].selected = false;
+                      categories[index].selected = true;
+                    }
+                  });
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  width: 50,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    border: Border.all(
+                        color: categories[index].selected
+                            ? AppColors.greenColor
+                            : Colors.grey.shade200),
+                  ),
+                  child: Center(
+                      child: Text(
+                    categories[index].name,
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: categories[index].selected
+                            ? AppColors.greenColor
+                            : Colors.grey),
+                  )),
+                ),
+              );
+            }),
       ),
     );
   }
 }
 
 class Category {
-  final bool selected;
+  bool selected;
   final String name;
 
   Category({required this.selected, required this.name});
