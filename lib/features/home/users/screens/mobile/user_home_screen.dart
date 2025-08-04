@@ -51,11 +51,13 @@ class _Users_Home_ScreenState extends State<Users_Home_Screen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildSectionTitleTow(context,
-                        icon: true,
-                        iconUrl: AppImages.fireIcon,
-                        title: MainAppConstants.mostPopularProducts,
-                        underline: false),
+                    buildSectionTitleTow(
+                      context,
+                      icon: true,
+                      iconUrl: AppImages.fireIcon,
+                      title: 'المنتجات الأكثر شعبية',
+                      underline: false,
+                    ),
                     greenButtonWidget(text: MainAppConstants.seeAll),
                   ],
                 ),
