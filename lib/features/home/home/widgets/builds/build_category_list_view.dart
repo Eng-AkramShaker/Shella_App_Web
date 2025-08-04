@@ -31,8 +31,7 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
 
         if (sectionProvider.errorMessage2.isNotEmpty) {
           // return Center(child: Text(sectionProvider.errorMessage));
-          showCustomSnackBar(context, sectionProvider.errorMessage,
-              isError: true);
+          showCustomSnackBar(context, sectionProvider.errorMessage, isError: true);
           return buildShimmerListView();
         }
 
@@ -71,12 +70,8 @@ class _BuildCategoryListViewState extends State<BuildCategoryListView> {
                               SizedBox(height: 7),
                               Container(
                                 height: 3,
-                                width: _getTextWidth(
-                                        context, mod.moduleName ?? "") *
-                                    1.3,
-                                color: selectedIndex == index
-                                    ? AppColors.greenColor
-                                    : Colors.transparent,
+                                width: _getTextWidth(context, mod.moduleName ?? "") * 1.3,
+                                color: selectedIndex == index ? AppColors.greenColor : Colors.transparent,
                               ),
                             ],
                           ),
